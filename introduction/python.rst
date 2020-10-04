@@ -83,6 +83,26 @@ De igual modo son muchas las empresas, instituciones y organismos que utilizan P
 
 Existen ránkings y estudios de mercado que sitúan a Python como uno de los lenguajes más *usados* y la vez, más *amados* dentro del mundo del desarrollo de software. En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *agosto de 2020* en la que Python ocupa el **tercer lugar de los lenguajes de programación más usados**, sólo por detrás de *C* y *Java*. Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ hecha en 2020, Python ocupa el **cuarto puesto de los lenguajes de programación más usados**, sólo por detrás de *Javascript*, *HTML/CSS* y *SQL*.
 
+Python2 vs Python3
+==================
+
+En el momento de la escritura de este material, se muestra a continuación la evolución de las versiones mayores de Python a lo largo de la historia: [#python-versions]_
+
+.. csv-table:: Versiones mayores de Python
+    :file: tables/python_versions.csv
+    :widths: 15, 30
+    :header-rows: 1
+    :class: longtable
+
+El cambio de **Python 2** a **Python 3** fue bastante "traumático" ya que se **perdió la compatibilidad** en muchas de las estructuras del lenguaje. Los "*core-developers*" [#core-developers]_, con *Guido van Rossum* a la cabeza, vieron la necesidad de aplicar estas modificaciones en beneficio del rendimiento y expresividad del lenguaje de programación. Este cambio implicaba que el código escrito en Python 2 no funcionaría (de manera inmediata) en Python 3.
+
+El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versión 2.7** del lenguaje de programación Python. Es por ello que se recomienda lo siguiente:
+
+- Si aún desarrollas aplicaciones escritas en Python 2, deberías migrar a Python 3.
+- Si vas a desarrollar una nueva aplicación, deberías hacerlo directamente en Python 3.
+
+.. important:: Únete a **Python 3** y aprovecha todas sus ventajas.
+
 Zen de Python
 =============
 
@@ -139,6 +159,8 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 
 .. [#python-unsplash] Foto original por `Markéta Marcellová`_ en Unsplash.
 .. [#pithonic] Dícese de algo/alguien que sigue las convenciones de Python.
+.. [#python-versions] Fuente: `python.org <https://www.python.org/doc/versions/>`_.
+.. [#core-developers] Término que se refiere a los/las desarrolladores/as principales del lenguaje de programación.
 
 .. --------------- Hyperlinks ---------------
 
