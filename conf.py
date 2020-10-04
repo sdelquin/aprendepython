@@ -80,8 +80,17 @@ html_js_files = ['custom.js']
 
 # -- Latex configuration ---------------------------------------------------
 
+# xelatex engine & Symbola font allow using emojis (black&white thought)
+# Symbola ttf: https://github.com/gearit/ttf-symbola/blob/master/Symbola.ttf
+
+latex_engine = 'xelatex'
+
 latex_elements = {
     'pointsize': '12pt',
+    'fontpkg': r'''
+\usepackage{fontspec}
+\setmainfont{Symbola}
+''',
 }
 
 latex_logo = '_static/logo-aprendepython.png'
