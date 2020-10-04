@@ -1,0 +1,5 @@
+.vscode
+.DS_Store
+_build
+resources
+*.pyc

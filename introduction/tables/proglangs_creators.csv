@@ -1,0 +1,28 @@
+Personaje,Aporte
+Joe Armstrong,Creador de Erlang
+John Backus,Inventor de Fortran
+Alan Cooper,Desarrollador de Visual Basic
+Edsger W. Dijkstra,Desarrolló la estructura para la programación estructurada
+James Gosling,"Desarrollador de Oak,Precursor de Java"
+Anders Hejlsberg,"Desarrollador de Turbo Pascal,Delphi y C#"
+Grace Hopper,"Desarrolladora de Flow-Matic,Influenciando el lenguaje COBOL"
+Kenneth E. Iverson,"Desarrollador de APL,Y co-desarrollador de J junto a Roger Hui"
+Bill Joy,"Inventor de vi,Autor de BSD Unix,Creador de SunOS,El cual se convirtió en Solaris"
+Alan Kay,"Pionero en programación orientada a objetos,Creador de Smalltalk"
+Brian Kernighan,"Coautor del primer libro de programación en lenguaje C con Dennis Ritchie,Y coautor de los lenguajes de programación AWK y AMPL"
+Yukihiro Matsumoto,Creador de Ruby
+Mitchel Resnick,Creador del lenguaje visual Scratch
+John McCarthy,Inventor de LISP
+Bertrand Meyer,Inventor de Eiffel
+Robin Milner,"Inventor de ML,Y compartió crédito en el método Hindley–Milner de inferencia de tipo polimórfica"
+John von Neumann,Creador del concepto de sistema operativo
+Martin Odersky,"Creador de Scala,Y previamente contribuyó en el diseño de Java"
+Seymour Papert,"Pionero de la inteligencia artificial,Inventor del lenguaje de programación Logo en 1968"
+Dennis Ritchie,Inventor de C. Sistema Operativo Unix
+Nathaniel Rochester,Inventor del primer lenguaje en ensamblador simbólico (IBM 701)
+Guido van Rossum,Creador de Python
+Bjarne Stroustrup,Desarrollador de C++
+Ken Thompson,"Inventor de B,Desarrollador de Go,Y coauthor del sistema operativo Unix"
+Larry Wall,Creador de Perl y Perl 6
+Niklaus Wirth,"Inventor de Pascal,Modula y Oberon"
+Stephen Wolfram,Creador de Mathematica

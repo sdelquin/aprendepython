@@ -1,0 +1,110 @@
+/* Smooth the scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Increase spacing above footnotes block */
+dl.footnote {
+  margin-top: 4rem;
+}
+
+/* Reduce spacing among footnotes */
+dl.footnote dd p {
+  margin-bottom: 0.5rem;
+}
+
+/* Increase spacing above footer / signature */
+div.footer {
+  margin-top: 4rem;
+}
+
+/* Font size fot custom TOC */
+ul.toptoc {
+  font-size: 18px;
+}
+
+/* Remove underline on custom about (logo) link */
+div.customabout a,
+div.customabout a:hover {
+  border-bottom: none;
+}
+
+/* Fix scroll on sidebar */
+div.sphinxsidebar {
+  max-height: calc(100% - 30px);
+  overflow-y: auto;
+}
+
+/* Remove too much space above sidear */
+div.sphinxsidebarwrapper {
+  padding-top: 0;
+}
+div.sphinxsidebarwrapper p.logo {
+  margin-top: 0;
+}
+
+/* Much improved spacing around code blocks */
+div.highlight pre {
+  padding: 11px 14px;
+}
+
+/* Custom colors for admonitions */
+div.admonition.note {
+  background-color: #dff3f9;
+  border: 1px solid #84a9b7;
+}
+
+div.admonition.important {
+  background-color: #fae4b1;
+  border: 1px solid #bbb246;
+}
+
+div.admonition.tip {
+  background-color: #cff3d5;
+  border: 1px solid #9ead99;
+}
+
+div.admonition.hint {
+  background-color: #fff1ff;
+  border: 1px solid #baa6bb;
+}
+
+/* Custom admonition for exercises */
+div.admonition.exercise {
+  background-color: #ffeddb;
+  border: 1px solid #dab47a;
+}
+
+/* Change background color of download links */
+code.download {
+  background-color: #a1da754a;
+}
+code.download:hover {
+  background-color: #a1da759c;
+}
+
+/* Button to remove prompt in Python code */
+.copybutton {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border-bottom: 2px;
+  border-left: 2px;
+  border-top: 0px;
+  border-right: 0px;
+  border-color: #d2d2d2;
+  border-style: solid;
+  border-radius: 0 0 0 5px;
+  font-family: monospace;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  font-size: 85%;
+}
+
+/* Add some space before and after headings in sidebar */
+div.sphinxsidebar h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

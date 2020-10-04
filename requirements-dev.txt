@@ -1,0 +1,6 @@
+flake8
+black
+rope
+rstcheck
+sphinx-autobuild
+Fabric3

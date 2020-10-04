@@ -1,0 +1,10 @@
+Nombre,Tipo,Ejemplos
+Booleano,bool,"``True``, ``False``"
+Entero,int,"``21``, ``34500``, ``34_500``"
+Flotante,float,"``3.14``, ``1.5e3``"
+Complejo,complex,"``2j``, ``3 + 5j``"
+Cadena,str,"``'tfn'``, ``'''tenerife - islas canarias'''``"
+Tupla,tuple,"``(1, 3, 5)``"
+Lista,list,"``['Chrome', 'Firefox']``"
+Conjunto,set,"``set([2, 4, 6])``"
+Diccionario,dict,"``{'Chrome': 'v79' , 'Firefox': 'v71'}``"
