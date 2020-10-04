@@ -108,3 +108,8 @@ div.sphinxsidebar h3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+/* Remove title of search box */
+h3#searchlabel {
+  display: none;
+}

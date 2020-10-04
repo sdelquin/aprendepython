@@ -71,8 +71,8 @@ html_show_sourcelink = False
 html_show_sphinx = False
 
 html_sidebars = {
-    'index': ['about.html', 'customsearch.html', 'navigation.html'],
-    '**': ['about.html', 'customsearch.html', 'innertoc.html'],
+    'index': ['about.html', 'searchbox.html', 'navigation.html'],
+    '**': ['about.html', 'searchbox.html', 'innertoc.html'],
 }
 
 html_css_files = ['custom.css']
