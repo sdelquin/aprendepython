@@ -1,11 +1,12 @@
 Personaje,Aporte,Año
-Gottfried Wilheml von Leibniz,Máquinas de operaciones básicas, XV
-Charles Babbage,Máquina diferencial para el cálculo de polinomios,XVII
-Lady Ada Countess of Lovelace,Almacenamiento en tarjetas perforadas,XVII
-Herman Hollerit, Creador de un sistema para automatizar la pesada tarea del censo,1890
-Alan Mathison Turing,Máquina de Turing - una máquina capaz de resolver problemas - Aportes de Lógica Matemática - Computadora con tubos de vacío,1943
-George Boole,Contribuyó al algebra binaria y a los sistemas de circuitos de computadora (álgebra booleana),1854
-John Vincent Atanasoff,Primera computadora digital electrónica patentada - Atanasoff Berry Computer (ABC),1942
-Howard Aiken,"En colaboración con IBM desarrolló el Mark 1, una computadora electromecánica de 16 metros de largo y más de dos de alto que podía realizar las cuatro operaciones básicas y trabajar con información almacenada en forma de tablas",1944 
-John W. Mauchly,Junto a John Presper Eckert desarrolló una computadora electrónica completamente operacional a gran escala llamada Electronic Numerical Integrator And Computer (ENIAC),1946 
-Johann Ludwig Von Neumann,"Propuso guardar en memoria no solo la información, sino también los programas, acelerando los procesos",1945 
+`Gottfried Leibniz <https://es.wikipedia.org/wiki/Gottfried_Leibniz>`_,Máquinas de **operaciones básicas**, XV
+`Charles Babbage <https://es.wikipedia.org/wiki/Charles_Babbage>`_,**Máquina diferencial** para el cálculo de polinomios,XVII
+`Ada Lovelace <https://es.wikipedia.org/wiki/Ada_Lovelace>`_,"Matemática, informática y escritora británica. **Primera programadora** de la historia por el desarrollo de algoritmos para la máquina analítica de Babbage",XVII
+`Herman Hollerit <https://es.wikipedia.org/wiki/Herman_Hollerith>`_, Creador de un **sistema para automatizar** la pesada tarea del censo,1890
+`Alan Turing <https://es.wikipedia.org/wiki/Alan_Turing>`_,**Máquina de Turing** - una máquina capaz de resolver problemas - Aportes de Lógica Matemática - Computadora con tubos de vacío,1943
+`George Boole <https://es.wikipedia.org/wiki/George_Boole>`_,Contribuyó al **algebra binaria** y a los sistemas de circuitos de computadora (álgebra booleana),1854
+`John Atanasoff <https://es.wikipedia.org/wiki/John_Atanasoff>`_,Primera **computadora digital** electrónica patentada: Atanasoff Berry Computer (ABC),1942
+`Howard Aiken <https://es.wikipedia.org/wiki/Howard_H._Aiken>`_,"En colaboración con IBM desarrolló el **Mark I**, una computadora electromecánica de 16 metros de largo y más de dos de alto que podía realizar las cuatro operaciones básicas y trabajar con información almacenada en forma de tablas",1944 
+`Grace Hopper <https://es.wikipedia.org/wiki/Grace_Murray_Hopper>`_,Primera **programadora** que utilizó el Mark I,1945
+`John W. Mauchly <https://es.wikipedia.org/wiki/John_William_Mauchly>`_,Junto a John Presper Eckert desarrolló una **computadora electrónica** completamente operacional a gran escala llamada Electronic Numerical Integrator And Computer (ENIAC),1946 
+`John Von Neumann <https://es.wikipedia.org/wiki/John_von_Neumann>`_,"Propuso guardar en **memoria** no solo la **información**, sino también los **programas**, acelerando los procesos",1946 
