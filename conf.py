@@ -93,6 +93,6 @@ latex_elements = {
 ''',
 }
 
-latex_logo = '_static/logo-aprendepython.png'
+latex_logo = '_static/logo-solo-aprendepython.png'
 
 latex_documents = [('index', 'main.tex', description, author, 'manual',)]
