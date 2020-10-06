@@ -113,3 +113,23 @@ div.sphinxsidebar h3 {
 h3#searchlabel {
   display: none;
 }
+
+/* Custom box for difficulty levels */
+.difficulty-level {
+  padding: 0.2rem;
+}
+.beginner-level {
+  background-color: #c4f0ff;
+  color: #246398;
+  border: 1px solid #7cabdc;
+}
+.intermediate-level {
+  background-color: #c9f7d2;
+  color: #176f36;
+  border: 1px solid #61ad60;
+}
+.advanced-level {
+  background-color: #ffe1a9;
+  color: #9e5d17;
+  border: 1px solid orange;
+}
