@@ -1,8 +1,3 @@
-/* Smooth the scroll */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Increase spacing above footnotes block */
 dl.footnote {
   margin-top: 4rem;
