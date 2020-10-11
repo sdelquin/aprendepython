@@ -85,13 +85,14 @@ html_js_files = ['custom.js']
 # xelatex engine & Symbola font allow using emojis (black&white thought)
 # Symbola ttf: https://github.com/gearit/ttf-symbola/blob/master/Symbola.ttf
 
-latex_engine = 'xelatex'
+latex_engine = 'lualatex'
 
 latex_elements = {
     'pointsize': '12pt',
     'fontpkg': r'''
-\usepackage{fontspec}
-\setmainfont{Symbola}
+\usepackage{emojitex}
+\setsansfont{Helvetica}
+\setmonofont[Scale=0.9]{Fira Code}
 ''',
 }
 
