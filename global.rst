@@ -9,6 +9,6 @@
 
 .. |beglev| replace:: :beginner-level:`🧩 Nivel principiante`
 
-.. |intlev| replace:: :intermediate-level:`🧪 Nivel intermedio`
+.. |intlev| replace:: :intermediate-level:`🐍 Nivel intermedio`
 
 .. |advlev| replace:: :advanced-level:`🚀 Nivel avanzado`
