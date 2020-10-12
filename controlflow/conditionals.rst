@@ -136,7 +136,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="440" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Operadores de comparación
 =========================
@@ -204,6 +204,17 @@ Python ofrece la posibilidad de ver si un valor está entre dos límites de mane
     1. Una expresión de comparación siempre devuelve un valor *booleano*, es decir ``True`` o ``False``.
     2. El uso de paréntesis, en función del caso, puede aclarar la expresión de comparación.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Dada una variable ``year`` con un valor entero, compruebe si dicho año es **bisiesto** o no lo es.
+
+    ℹ️ Un año es bisiesto en el calendario Gregoriano, si es divisible entre 4 y no divisible entre 100, o bien si es divisible entre 400. Puedes hacer la comprobación en `esta lista de años bisiestos <https://kalender-365.de/leap-years.php>`_.
+
+    **Ejemplo**
+        * Entrada: ``2008``
+        * Salida: ``Es un año bisiesto``
+
 "Booleanos" en condiciones
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -255,9 +266,97 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
 .. admonition:: Ejercicio
     :class: exercise
 
-    Dada una variable ``year`` con un valor entero, compruebe si dicho año es bisiesto o no.
+    Escriba un programa que permita adivinar un personaje de `Marvel`_ en base a las tres preguntas siguientes:
 
-    *Un año es bisiesto en el calendario Gregoriano, si es divisible entre 4 y no divisible entre 100, o bien si es divisible entre 400*. Puede hacer la comprobación en `esta lista de años bisiestos <https://kalender-365.de/leap-years.php>`_.
+    1. ¿Puede volar?
+    2. ¿Es humano?
+    3. ¿Tiene máscara?
+
+    .. image:: img/marvel-flowchart.png
+
+    **Ejemplo**
+        * Entrada: ``can_fly = True``, ``is_human = True`` y ``has_mask = True``
+        * Salida: ``Ironman``
+    
+    🤔 Es una especie de `Akinator`_ para personajes de Marvel...
+       
+
+``None`` es útil
+~~~~~~~~~~~~~~~~
+
+|intlev|
+
+``None`` es un valor especial de Python que almacena el **valor nulo** [#none]_. No es lo mismo que ``False``, aunque lo parezca cuando lo evaluamos como booleano::
+
+    >>> thing = None
+
+    >>> if thing:
+    ...     print("It's some thing")
+    ... else:
+    ...     print("It's no thing")
+    ...
+    It's no thing
+
+Para distinguir ``None`` del valor booleano ``False`` se recomienda el uso del operador ``is``::
+
+    >>> thing = None
+
+    >>> if thing is None:
+    ...     print("It's nothing")
+    ... else:
+    ...     print("It's something")
+    ...
+    It's nothing
+
+La forma "pitónica" de preguntar si algo **no es nulo** es la siguiente:
+
+.. code-block::
+    :emphasize-lines: 3
+
+    >>> value = 99
+
+    >>> if value is not None:
+    ...     print(f'{value=}')
+    ...
+    value=99
+
+Operador morsa
+==============
+
+|advlev|
+
+A partir de Python 3.8 se incorpora el `operador morsa`_ [#walrus-operator]_, que usa la siguiente sentencia de asignación: ``name := expression``.
+
+Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, indicando al usuario que debe incrementarlo siempre y cuando no llegue a un mínimo establecido.
+
+**Versión tradicional**
+
+.. code-block::
+
+    >>> radius = 4.25
+    ... perimeter = 2 * 3.14 * radius
+    ... if perimeter < 100:
+    ...     print('Increase radius to reach minimum perimeter')
+    ...     print('Actual perimeter: ', perimeter)
+    ...
+    Increase radius to reach minimum perimeter
+    Actual perimeter:  26.69
+
+**Versión con operador morsa**
+
+.. code-block::
+    :emphasize-lines: 2
+
+    >>> radius = 4.25
+    ... if (perimeter := 2 * 3.14 * radius) < 100:
+    ...     print('Increase radius to reach minimum perimeter')
+    ...     print('Actual perimeter: ', perimeter)
+    ...
+    Increase radius to reach minimum perimeter
+    Actual perimeter:  26.69
+
+Como hemos comprobado, el operador morsa permite realizar asignaciones dentro de expresiones, lo que, en muchas ocasiones permite tener un código más compacto.
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -271,8 +370,13 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
 .. [#fork-unsplash] Foto original de portada por `ali nafezarefi`_ en Unsplash.
 .. [#pep8] Reglas de indentación definidas en `PEP 8`_
 .. [#nesting] El anidamiento (o "nesting") hace referencia a incorporar sentencias unas dentro de otras mediante la inclusión de diversos niveles de profunidad (indentación).
+.. [#none] Lo que en otros lenguajes se conoce como ``nil``, ``null``, ``nothing``.
+.. [#walrus-operator] Se denomina así porque el operador ``:=`` tiene similitud con los colmillos de una morsa.
 
 .. --------------- Hyperlinks ---------------
 
 .. _ali nafezarefi: https://unsplash.com/@beautyisblinding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _PEP 8: https://www.python.org/dev/peps/pep-0008/#indentation
+.. _operador morsa: https://www.python.org/dev/peps/pep-0572/
+.. _Marvel: https://www.marvel.com/
+.. _Akinator: https://es.akinator.com/
