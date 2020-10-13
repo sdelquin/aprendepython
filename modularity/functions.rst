@@ -738,7 +738,7 @@ Veamos otro ejemplo en el que mostramos una tabla con el resultado de aplicar el
 Enfoque funcional
 ~~~~~~~~~~~~~~~~~
 
-Como se comentó en la :ref:`introducción <introdution/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los paradigmas menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
+Como se comentó en la :ref:`introducción <introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los paradigmas menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
 
 Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: ``map()``, ``filter()`` y ``reduce()``.
 
