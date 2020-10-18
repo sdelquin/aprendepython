@@ -11,6 +11,7 @@ En este capítulo veremos las facilidades que nos proporciona Python para trabaj
 .. toctree::
 
     modularity/functions
+    modularity/oop
     modularity/modules
 
 
