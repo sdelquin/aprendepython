@@ -1,13 +1,14 @@
-*******
+#######
 Números
-*******
+#######
 
 .. image:: img/brett-jordan-4aB1nGtD_Sg-unsplash.jpg
 
 En esta sección veremos los tipos de datos númericos que ofrece Python centrándonos en **booleanos**, **enteros** y **flotantes**. [#dice-unsplash]_
 
+*********
 Booleanos
-=========
+*********
 
 `George Boole`_ es considerado como uno de los fundadores del campo de las ciencias de la computación y fue el creador del `Álgebra de Boole`_ que da lugar, entre otras estructuras algebraicas, a la `Lógica binaria`_. En esta lógica las variables sólo pueden tomar dos valores discretos: **verdadero** o **falso**.
 
@@ -41,13 +42,14 @@ La primera variable ``is_opened`` está representando el hecho de que algo esté
       File "<stdin>", line 1, in <module>
     NameError: name 'false' is not defined
 
+*******
 Enteros
-=======
+*******
 
 Los números enteros no tienen decimales pero sí pueden contener signo y estar expresados en alguna base distinta de la usual (base 10).
 
 Literales enteros
------------------
+=================
 
 Veamos algunos ejemplos de números enteros:
 
@@ -80,7 +82,7 @@ Dos detalles a tener en cuenta:
 * Python permite dividir los números enteros con *guiones bajos* ``_`` para clarificar su lectura/escritura. A efectos prácticos es como si esos guiones bajos no existieran.
 
 Operaciones con enteros
------------------------
+=======================
 
 A continuación se muestra una tabla con las distintas operaciones sobre enteros que podemos realizar en Python:
 
@@ -107,7 +109,7 @@ Veamos algunas pruebas de estos operadores::
 Es de buen estilo de programación **dejar un espacio** entre cada operador. Además hay que tener en cuenta que podemos obtener errores dependiendo de la operación (más bien de los *operandos*) que estemos utilizando, como es el caso de la *división por cero*.
 
 Asignación aumentada
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Python nos ofrece la posibilidad de escribir una `asignación aumentada <https://www.python.org/dev/peps/pep-0577/>`_ mezclando la *asignación* y un *operador*. 
 
@@ -158,7 +160,7 @@ Estas dos formas son equivalentes a nivel de resultados y funcionalidad, pero ob
     15
 
 Módulo
-~~~~~~
+------
 
 La operación **módulo** (también llamado **resto**), cuyo símbolo en Python es ``%``, se define como el resto de dividir dos números. Veamos un ejemplo para enteder bien su funcionamiento:
 
@@ -181,7 +183,7 @@ La operación **módulo** (también llamado **resto**), cuyo símbolo en Python 
     2
 
 Exponenciación
-~~~~~~~~~~~~~~
+--------------
 
 Para elevar un número a otro en Python utilizamos el operador de exponenciación ``**``::
 
@@ -201,8 +203,46 @@ Hecho en Python::
     >>> 4 ** 0.5
     2.0
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Una ecuación de segundo grado se define como :math:`ax^2 + bx + c = 0`, y (en determinados casos) tiene dos soluciones:
+
+    .. math::
+
+        x_1 = \frac{-b + \sqrt{b^2 - 4ac}}{2a}
+
+        x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a}
+
+    Dados los coeficientes ``a=4``, ``b=6`` y ``c=2`` calcule sus dos soluciones. Tenga en cuenta subdividir los cálculos y reutilizar variables (por ejemplo el `discriminante`_).
+
+    La solución para los valores anteriores es:
+
+    - ``x1 = 1``
+    - ``x2 = 0.5``
+
+    Recuerde que la **raíz cuadrada** se puede calcular como la exponenciación a :math:`\frac{1}{2}`.
+
+    Puede comprobar los resultados para otros valores de entrada con esta `aplicación para resolver ecuaciones cuadráticas <https://www.mathsisfun.com/quadratic-equation-solver.html>`_.
+
+
+
+Tamaño de un entero
+===================
+
+¿Cómo de grande puede ser un ``int`` en Python? La respuesta es **de cualquier tamaño**. Por poner un ejemplo, supongamos que queremos representar un `Googol`_. Este valor viene a ser un "1" seguido por 100 ceros::
+
+    >>> googol = 10**100
+
+    >>> googol
+    10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+.. note:: En muchos lenguajes tratar con enteros tan largos causaría un *integer overflow*. No es el caso de Python que puede manejar estos valores sin problema.
+
+
+*********
 Flotantes
-=========
+*********
 
 Los números en **punto flotante** [#floating-point]_ tienen **parte decimal**. Veamos algunos ejemplos de flotantes en Python.
 
@@ -253,6 +293,11 @@ Podemos resumir la conversión implícita en la siguiente tabla:
 | ``int``  | ``float`` | ``float`` |
 +----------+-----------+-----------+
 
+Se puede ver claramente que la conversión numérica de los valores booleanos es:
+
+- ``True`` 👉 ``1``
+- ``False`` 👉 ``0``
+
 Conversión explícita
 --------------------
 
@@ -275,12 +320,16 @@ Veamos algunos ejemplos de estas funciones::
     False
     >>> int(True)
     1
-    >>> int(25.5)
-    25
+    >>> int(False)
+    0
+    >>> float(1)
+    1.0
+    >>> float(0)
+    0.0
+    >>> float(True)
+    1.0
     >>> float(False)
     0.0
-    >>> float(10)
-    10.0
 
 Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la función ``type()``::
 
@@ -310,6 +359,76 @@ Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la 
     - :math:`sin(45) = 0.7071067811865475`
     - :math:`sin(50) = 0.766044443118978`
 
+*****
+Bases
+*****
+
+|intlev|
+
+Los valores numéricos con los que estamos acostumbrados a trabajar están en **base 10** (o decimal). Esto indica que disponemos de 10 "símbolos" para representar las cantidades. En este caso del ``0`` al ``9``.
+
+Pero también es posible representar números en **otras bases**. Python nos ofrece una serie de **prefijos** y **funciones** para este cometido.
+
+Base binaria
+============
+
+Cuenta con **2** símbolos para representar los valores: ``0`` y ``1``.
+
+**Prefijo**: ``0b``
+
+    >>> 0b1001
+    9
+    >>> 0b1100
+    12
+
+**Función**: ``bin()``
+
+    >>> bin(9)
+    '0b1001'
+    >>> bin(12)
+    '0b1100'
+
+Base octal
+==========
+
+Cuenta con **8** símbolos para representar los valores: ``0``, ``1``, ``2``, ``3``, ``4``, ``5``, ``6`` y ``7``.
+
+**Prefijo**: ``0o``
+
+    >>> 0o6243
+    3235
+    >>> 0o1257
+    687
+
+**Función**: ``oct()``
+
+    >>> oct(3235)
+    '0o6243'
+    >>> oct(687)
+    '0o1257'
+
+Base hexadecimal
+================
+
+Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``, ``A``, ``B``, ``C``, ``D``, ``E`` y ``F``.
+
+**Prefijo**: ``0x``
+
+    >>> 0x7F2A
+    32554
+    >>> 0x48FF
+    18687
+
+**Función**: ``hex()``
+
+    >>> hex(32554)
+    '0x7f2a'
+    >>> hex(18687)
+    '0x48ff'
+
+.. note:: Las letras para la representación hexadecimal no atienden a mayúsculas y minúsculas.
+
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `The Python Square Root Function <https://realpython.com/python-square-root-function/>`_
@@ -331,3 +450,5 @@ Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la 
 .. _Álgebra de Boole: https://es.wikipedia.org/wiki/%C3%81lgebra_de_Boole
 .. _Lógica binaria: https://es.wikipedia.org/wiki/L%C3%B3gica_binaria
 .. _principio DRY: https://es.wikipedia.org/wiki/No_te_repitas
+.. _Googol: https://es.wikipedia.org/wiki/G%C3%BAgol
+.. _discriminante: https://es.wikipedia.org/wiki/Discriminante
