@@ -229,6 +229,55 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     3. Identifica el tipo del literal ``True``.
     4. Asigna la expresión ``5 + 2.0`` a la variable ``result`` y muestra su tipo.
 
+Mutabilidad
+===========
+
+|advlev|
+
+Las variables son nombres, no lugares. Detrás de esta frase se esconde la reflexión de que cuando asignamos un valor a una variable, lo que realmente está ocurriendo es que se hace **apuntar** el nombre de la variable a una zona de memoria en el que se representa el objeto (con su valor).
+
+Si realizamos la asignación de una variable a un valor lo que está ocurriendo es que el nombre de la variable es una **referencia** al valor, no el valor en sí mismo::
+
+    >>> a = 7
+
+.. figure:: img/var-memory1.png
+
+   Representación de la asignación de valor a variable
+
+Si ahora "copiamos" el valor de ``a`` en otra variable ``b`` se podría esperar que hubiera otro espacio en memoria para dicho valor, pero como ya hemos dicho, son referencias a memoria::
+
+    >>> b = a
+
+.. figure:: img/var-memory2.png
+
+   Representación de la asignación de una variable a otra variable
+
+La función ``id()`` nos permite conocer la dirección de memoria [#memory-address]_ de un objeto en Python. A través de ella podemos comprobar que los dos objetos que hemos creado "apuntan" a la misma zona de memoria::
+
+    >>> id(a)
+    4445989712
+
+    >>> id(b)
+    4445989712
+
+La característica de que los nombres de variables sean referencias a objetos en memoria es la que hace posible diferenciar entre **objetos mutables e inmutables**:
+
++-----------+----------+
+| Inmutable | Mutable  |
++===========+==========+
+| ``bool``  | ``list`` |
++-----------+----------+
+| ``int``   | ``set``  |
++-----------+----------+
+| ``float`` | ``dict`` |
++-----------+----------+
+| ``str``   |          |
++-----------+----------+
+| ``tuple`` |          |
++-----------+----------+
+
+.. important:: El hecho de que un tipo de datos sea inmutable significa que no podemos modificar su valor "in-situ", pero siempre podremos asignarle un nuevo valor (hacerlo apuntar a otra zona de memoria).
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Basic Data Types in Python <https://realpython.com/courses/python-data-types/>`_
@@ -244,6 +293,7 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
 .. [#case-sensitive] Sensible a cambios en mayúsculas y minúsculas.
 .. [#naming-pep8] Más información sobre convenciones de nombres en `PEP 8 <https://www.python.org/dev/peps/pep-0008/#naming-conventions>`__.
 .. [#peps-link] Del término inglés "Python Enhancement Proposals".
+.. [#memory-address] Esto es un detalle de implementación de CPython.
 
 .. --------------- Hyperlinks ---------------
 
