@@ -97,6 +97,34 @@ Quizás la *secuencia de escape* más conocida es ``\n`` que representa un *salt
 
 .. note:: Es cuando utilizamos la función ``print()`` que vemos el resultado de utilizar los caracteres escapados.
     
+Expresiones literales
+=====================
+
+|intlev|
+
+Hay situaciones en las que nos interesa que los caracteres especiales pierdan ese significado y poder usarlos de otra manera. Existe un modificar de cadena que proporciona Python para tratar el texto *en bruto*. Es el llamado "raw data" y se aplica anteponiendo una ``r`` a la cadena de texto.
+
+Veamos algunos ejemplos::
+
+    >>> text = 'abc\ndef'
+    >>> print(text)
+    abc
+    def
+
+    >>> text = r'abc\ndef'
+    >>> print(text)
+    abc\ndef
+
+    >>> text = 'a\tb\tc'
+    >>> print(text)
+    a    b    c
+
+    >>> text = r'a\tb\tc'
+    >>> print(text)
+    a\tb\tc
+
+.. hint:: El modificador ``r''`` es muy utilizado para la escritura de **expresiones regulares**.
+
 *********************
 Más sobre ``print()``
 *********************
@@ -276,6 +304,13 @@ A contrario que ``len()`` algunas funciones son específicas de "strings". Para 
 
 Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una **lista** (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Obtenga el número de palabras que contiene la siguiente cadena de texto::
+
+        quote = 'Before software can be reusable, it first has to be usable'
+
 Limpiar cadenas
 ===============
 
@@ -350,6 +385,23 @@ Contabilizar el **número de veces que aparece** una subcadena::
     >>> lyrics.count('él')
     0
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Dada la siguiente letra [#tenerife-sea]_, obtenga la misma pero sustituyendo la palabra ``voices`` por ``sounds``:
+
+        >>> song = '''You look so beautiful in this light
+        ... Your silhouette over me
+        ... The way it brings out the blue in your eyes
+        ... Is the Tenerife sea
+        ... And all of the voices surrounding us here
+        ... They just fade out when you take a breath
+        ... Just say the word and I will disappear
+        ... Into the wilderness'''
+
+    Utilice para ello únicamente búsqueda, concatenación y troceado de cadenas de texto.
+
+
 Reemplazar elementos
 ====================
 
@@ -409,14 +461,127 @@ Supongamos que disponemos de los datos de una persona y queremos formar una fras
 
 .. warning:: Si olvidamos poner la **f** delante del "string" no conseguiremos sustitución de variables.
 
+Formateando cadenas
+===================
+
+|intlev|
+
 Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: ancho del texto, número de decimales, tamaño de la cifra, alineación, etc. Muchas de estas facilidades se pueden consultar en el artículo `Best of Python3.6 f-strings`_ [#best-fstrings]_
+
+Dando formato a valores enteros
+-------------------------------
+
+.. code-block::
+
+    >>> mount_height = 3718
+
+    >>> f'{mount_height:10d}'
+    '      3718'
+
+    >>> f'{mount_height:010d}'
+    '0000003718'
+
+Dando formato a otras bases
+---------------------------
+
+.. code-block::
+
+    >>> value = 0b10010011
+    >>> f'{value}'
+    '147'
+    >>> f'{value:b}'
+    '10010011'
+
+    >>> value = 0o47622
+    >>> f'{value}'
+    '20370'
+    >>> f'{value:o}'
+    '47622'
+
+    >>> value = 0xab217
+    >>> f'{value}'
+    '700951'
+    >>> f'{value:x}'
+    'ab217'
+
+Dando formato a valores flotantes
+---------------------------------
+
+.. code-block::
+
+    >>> pi = 3.14159265
+
+    >>> f'{pi:f}'
+    '3.141593'
+
+    >>> f'{pi:.3f}'
+    '3.142'
+
+    >>> f'{pi:12f}'
+    '    3.141593'
+
+    >>> f'{pi:7.2f}'
+    '   3.14'
+
+    >>> f'{pi:07.2f}'
+    '0003.14'
+
+    >>> f'{pi:.010f}'
+    '3.1415926500'
+
+    >>> f'{pi:e}'
+    '3.141593e+00'
+
+Alineando valores
+-----------------
+
+.. code-block::
+
+    >>> text1 = 'how'
+    >>> text2 = 'are'
+    >>> text3 = 'you'
+
+    >>> f'{text1:<7s}|{text2:^11s}|{text3:>7s}'
+    'how    |    are    |    you'
+
+    >>> f'{text1:-<7s}|{text2:·^11s}|{text3:->7s}'
+    'how----|····are····|----you'
+
+Modo "debug"
+============
+
+A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variable y su valor, como un atajo para depurar nuestro código. Para ello sólo tenemos que incluir un símbolo ``=`` después del nombre de la variable::
+
+    >>> serie = 'The Simpsons'
+    >>> imdb_rating = 8.7
+    >>> num_seasons = 30
+
+    >>> f'{serie=}'
+    "serie='The Simpsons'"
+
+    >>> f'{imdb_rating=}'
+    'imdb_rating=8.7'
+
+    >>> f'{serie[4:]=}'  # incluso podemos añadir expresiones!
+    "serie[4:]='Simpsons'"
+
+    >>> f'{imdb_rating / num_seasons=}'
+    'imdb_rating / num_seasons=0.29'
 
 .. admonition:: Ejercicio
     :class: exercise
 
-    Obtenga el número de palabras que contiene la siguiente cadena de texto::
+    Dada la variable::
 
-        quote = 'Before software can be reusable, it first has to be usable'
+        e = 2.71828
+    
+    , obtenga los siguientes resultados utilizando "f-strings"::
+
+        '2.718'
+        '    2.72'
+        '2.718280e+00'
+        '00002.7183'
+        '            2.71828'
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -441,6 +606,7 @@ Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: an
 .. [#built-in] Término inglés para referirse a algo que ya está incorporado por defecto con el lenguaje de programación.
 .. [#padding] Se suele utilizar el término inglés "padding" para referirse a estos caracteres.
 .. [#best-fstrings] Escrito por Nirant Kasliwal en Medium.
+.. [#tenerife-sea] "Tenerife Sea" por Ed Sheeran.
 
 .. --------------- Hyperlinks ---------------
 
