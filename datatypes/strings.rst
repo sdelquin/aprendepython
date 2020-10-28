@@ -1,13 +1,14 @@
-****************
+################
 Cadenas de texto
-****************
+################
 
 .. image:: img/roman-kraft-_Zua2hyvTBk-unsplash.jpg
 
 Los "strings" o cadenas de texto son el primer ejemplo de *secuencia* en Python. En concreto se trata de una **secuencia de caracteres**. Un carácter es la mínima unidad en un sistema de escritura e incluye letras, dígitos, símbolos, signos de puntuación e incluso espacios en blanco o directivas. [#newspaper-unsplash]_
 
+*****************
 Creando "strings"
-=================
+*****************
 
 Para escribir una cadena de texto en Python basta con rodear los caracteres con comillas simples::
 
@@ -32,7 +33,7 @@ Puede surgir la duda de cómo incluimos *comillas simples* dentro de la propia c
 En la primera opción estamos **escapando** las comillas simples para que no sean tratadas como caracteres especiales. En la segunda opción estamos creando el "string" con comillas dobles (por fuera) para poder incluir directamente las comillas simples (por dentro). Python también nos ofrece esta posibilidad.
 
 Comillas triples
-~~~~~~~~~~~~~~~~
+================
 
 Hay una forma alternativa de crear cadenas de texto utilizando *comillas triples*. Su uso está pensado principalmente para **cadenas multilínea**::
 
@@ -44,15 +45,16 @@ Hay una forma alternativa de crear cadenas de texto utilizando *comillas triples
 .. important:: Los tres puntos ``...`` que aparecen a la izquierda de las líneas no están incluidos en la cadena de texto. Es el símbolo que ofrece el intérprete de Python cuando saltamos de línea.
 
 Cadena vacía
-~~~~~~~~~~~~
+============
 
 La cadena vacía es aquella que no tiene caracteres pero es perfectamente válida. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier código. Su representación en Python es la siguiente:
 
     >>> ''
     ''
 
+**********
 Conversión
-==========
+**********
 
 Podemos crear "strings" a partir de otros tipos de datos usando la función ``str()``::
 
@@ -63,8 +65,9 @@ Podemos crear "strings" a partir de otros tipos de datos usando la función ``st
     >>> str(21.7)
     '21.7'
 
+********************
 Secuencias de escape
-====================
+********************
 
 Python permite **escapar** el significado de algunos caracteres para conseguir otros resultados. Si escribimos una barra invertida ``\`` antes del caracter en cuestión, le otorgamos un significado especial.
 
@@ -94,8 +97,9 @@ Quizás la *secuencia de escape* más conocida es ``\n`` que representa un *salt
 
 .. note:: Es cuando utilizamos la función ``print()`` que vemos el resultado de utilizar los caracteres escapados.
     
+*********************
 Más sobre ``print()``
-=====================
+*********************
 
 Hemos estado utilizando la función ``print()`` de forma sencilla, pero admite `algunos parámetros <https://docs.python.org/es/3/library/functions.html#print>`_ interesantes:
 
@@ -122,8 +126,9 @@ Hemos estado utilizando la función ``print()`` de forma sencilla, pero admite `
 *Línea 10:*
     El *carácter de final de texto* es un *salto de línea*, podemos cambiar el caracter que se utiliza como final de texto.
 
+************************
 Leer datos desde teclado
-========================
+************************
 
 Los programas se hacen para tener interacción con el usuario. Una de las formas de interacción es solicitar la entrada de datos por teclado. Como muchos otros lenguajes de programación, Python también nos ofrece la posibilidad de leer la información introducida por teclado. Para ello se utiliza la función ``input()``:
 
@@ -140,11 +145,12 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
 
 .. note:: La función ``input()`` siempre nos devuelve un objeto de tipo cadena de texto o ``str``. Tenerlo muy en cuenta a la hora de trabajar con números, ya que debemos realizar una :ref:`conversión explícita <datatypes/numbers:Conversión explícita>`.
 
+*************************
 Operaciones con "strings"
-=========================
+*************************
 
 Combinar cadenas
-~~~~~~~~~~~~~~~~
+================
 
 Podemos combinar dos o más cadenas de texto utilizando el operador ``+``::
 
@@ -157,7 +163,7 @@ Podemos combinar dos o más cadenas de texto utilizando el operador ``+``::
     'Cuando el río suena, agua lleva'
 
 Repetir cadenas
-~~~~~~~~~~~~~~~
+===============
 
 Podemos repetir dos o más cadenas de texto utilizando el operador ``*``::
 
@@ -166,7 +172,7 @@ Podemos repetir dos o más cadenas de texto utilizando el operador ``*``::
     'WowWowWowWow'
 
 Obtener un caracter
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Los "strings" están **indexados** y cada caracter tiene su posición propia. Para obtener un único caracter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
 
@@ -210,7 +216,7 @@ Las cadenas de texto son tipos de datos **inmutables**. Es por ello que no podem
 .. tip:: Existen formas de modificar una cadena de texto que veremos más adelante, aunque realmente no estemos transformando el original sino que se crea un nuevo objeto con las modificaciones.
 
 Trocear una cadena
-~~~~~~~~~~~~~~~~~~
+==================
 
 Es posible extraer "trozos" ("rebanadas") de una cadena de texto [#slice]_. Tenemos varias aproximaciones a ello:
 
@@ -243,7 +249,7 @@ Veamos la aplicación de cada uno de estos accesos a través de un ejemplo::
 .. important:: El troceado siempre llega a una unidad menos del índice final que hayamos especificado. Sin embargo el comienzo sí coincide con el que hemos puesto.
 
 Longitud de una cadena
-~~~~~~~~~~~~~~~~~~~~~~
+======================
 
 Para obtener la longitud de una cadena podemos hacer uso de ``len()`` que es una de las funciones "built-in" [#built-in]_ que ofrece Python::
 
@@ -255,7 +261,7 @@ Para obtener la longitud de una cadena podemos hacer uso de ``len()`` que es una
     0
 
 Dividir una cadena
-~~~~~~~~~~~~~~~~~~
+==================
 
 A contrario que ``len()`` algunas funciones son específicas de "strings". Para usar una función de cadena es necesario escribir el nombre del "string", un punto y el nombre de la función, pasando cualquier *argumento* necesario::
 
@@ -271,7 +277,7 @@ A contrario que ``len()`` algunas funciones son específicas de "strings". Para 
 Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una **lista** (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original.
 
 Limpiar cadenas
-~~~~~~~~~~~~~~~
+===============
 
 Cuando leemos datos del usuario o de cualquier fuente externa de información, es bastante probable que se incluyan en esas cadenas de texto, *caracteres de relleno* [#padding]_ al comienzo y al final. Python nos ofrece la posibilidad de eliminar estos caracteres u otros que no nos interesen.
 
@@ -300,7 +306,7 @@ Como habíamos comentado, también existe la posibilidad de especificar los cara
 .. important:: La función ``strip()`` no modifica la cadena que estamos usando (*algo obvio porque los "strings" son inmutables*) sino que devuelve una nueva cadena de texto con las modificaciones pertinentes.
 
 Realizar búsquedas
-~~~~~~~~~~~~~~~~~~
+==================
 
 Veamos aquellas funciones que proporciona Python para la búsqueda en cadenas de texto. Vamos a partir de una variable que contiene un trozo de la canción `Mediterráneo`_ de *Joan Manuel Serrat*::
 
@@ -345,7 +351,7 @@ Contabilizar el **número de veces que aparece** una subcadena::
     0
 
 Reemplazar elementos
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 Podemos usar la función ``replace()`` indicando la *subcadena a reemplazar*, la *subcadena de reemplazo* y *cuántas instancias* se deben reemplazar. Si no se especifica este último argumento, la sustitución se hará en todas las instancias encontradas::
 
@@ -358,7 +364,7 @@ Podemos usar la función ``replace()`` indicando la *subcadena a reemplazar*, la
     'Quien bien anda mal acaba'
 
 Mayúsculas y minúsculas
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 Python nos permite realizar variaciones en los caracteres de una cadena de texto para pasarlos a mayúsculas y/o minúsculas. Veamos las distintas opciones disponibles::
 
@@ -382,8 +388,9 @@ Python nos permite realizar variaciones en los caracteres de una cadena de texto
     >>> proverb.swapcase()
     'QUIEN A BUEN ÁRBOL SE ARRIMA bUENA sOMBRA LE COBIJA'
 
+***********
 "f-strings"
-===========
+***********
 
 Los **f-strings** `aparecieron en Python 3.6 <https://docs.python.org/3/whatsnew/3.6.html#new-features>`_ y se suelen usar en código de nueva creación. Es la forma más potente -- y en muchas ocasiones más eficiente -- de formar cadenas de texto incluyendo valores de otras variables.
 

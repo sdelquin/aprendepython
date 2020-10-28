@@ -1,6 +1,6 @@
-************
+############
 Diccionarios
-************
+############
 
 .. image:: img/aaron-burden-fgmf2Eyrwm4-unsplash.jpg
 
@@ -20,8 +20,9 @@ Los diccionarios en Python tienen las siguientes *características*:
 
 .. note:: En otros lenguajes de programación, a los diccionarios se les conoce como *arrays asociativos*, *"hashes"* o *"hashmaps"*.
 
+********************
 Creando diccionarios
-====================
+********************
 
 Para crear un diccionario basta con usar llaves ``{}`` rodeando pares ``clave: valor`` separados por comas. Veamos algunos ejemplos de diccionarios::
 
@@ -56,9 +57,9 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="515" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_dict%20%3D%20%7B%7D%0A%0Arae%20%3D%20%7B%0A%20%20%20%20'bifronte'%3A%20'De%20dos%20frentes%20o%20dos%20caras',%0A%20%20%20%20'anarcoide'%3A%20'Que%20tiende%20al%20desorden',%0A%20%20%20%20'montuvio'%3A%20'Campesino%20de%20la%20costa'%0A%7D%0A%0Apopulation_can%20%3D%20%7B%0A%20%20%20%202015%3A%202_135_209,%0A%20%20%20%202016%3A%202_154_924,%0A%20%20%20%202017%3A%202_177_048,%0A%20%20%20%202018%3A%202_206_901,%0A%20%20%20%202019%3A%202_220_270%0A%7D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
-
+**********
 Conversión
-==========
+**********
 
 Para convertir otros tipos de datos en un diccionario podemos usar la función ``dict()``::
 
@@ -74,11 +75,12 @@ Para convertir otros tipos de datos en un diccionario podemos usar la función `
     >>> dict([['a', 'b'], ['c', 'd']])
     {'a': 'b', 'c': 'd'}
 
+****************************
 Operaciones con diccionarios
-============================
+****************************
 
 Obtener un elemento
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Para obtener un elemento de un diccionario basta con escribir la **clave** entre corchetes. Veamos un ejemplo:
 
@@ -102,7 +104,7 @@ Si intentamos acceder a una clave que no existe, obtendremos un error::
     KeyError: 'acceso'
 
 Usando ``get()``
-""""""""""""""""
+----------------
 
 Existe una función muy útil para "superar" los posibles errores de acceso por claves inexistentes. Se trata de ``get()`` y su comportamiento es el siguiente:
 
@@ -133,7 +135,7 @@ Existe una función muy útil para "superar" los posibles errores de acceso por 
     La clave buscada no existe y nos devuelve el valor que hemos aportado por defecto.
 
 Añadir o modificar un elemento
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==============================
 
 Añadir un elemento a un diccionario es sencillo. Sólo es necesario hacer referencia a la *clave* y asignarle un *valor*:
 
@@ -169,7 +171,7 @@ Supongamos ahora que queremos **modificar** el significado de la palabra *enjuic
      'enjuiciar': 'Instruir, juzgar o sentenciar una causa'}
 
 Pertenencia de una clave
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 La forma **pitónica** de comprobar la existencia de una clave dentro de un diccionario, es utilizar el operador ``in``::
 
@@ -182,7 +184,7 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
 .. note:: El operador ``in`` siempre devuelve un valor booleano, es decir, verdadero o falso.
 
 Obtener todos los elementos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================
 
 Python ofrece mecanismos para obtener todos los elementos de un diccionario. Partimos del siguiente diccionario::
 
@@ -223,7 +225,7 @@ Python ofrece mecanismos para obtener todos los elementos de un diccionario. Par
 .. note:: Para este último caso cabe destacar que los "items" se devuelven como una lista de *tuplas*, donde cada tupla tiene dos elementos: el primero representa la clave y el segundo representa el valor.
 
 Longitud de un diccionario
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Podemos conocer el número de elementos ("clave-valor") que tiene un diccionario con la función ``len()``::
 
@@ -237,7 +239,7 @@ Podemos conocer el número de elementos ("clave-valor") que tiene un diccionario
     4
 
 Iterar sobre un diccionario
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================
 
 En base a :ref:`los elementos que podemos obtener <datastructures/dicts:Obtener todos los elementos>`, Python nos proporciona tres maneras de iterar sobre un diccionario.
 
@@ -274,7 +276,7 @@ En base a :ref:`los elementos que podemos obtener <datastructures/dicts:Obtener 
 .. note:: En este último caso, recuerde el uso de los :ref:`datatypes/strings:"f-strings"` para formatear cadenas de texto.
 
 Combinar diccionarios
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Dados dos (o más) diccionarios, es posible "mezclarlos" para obtener una combinación de los mismos. Esta combinación se basa en dos premisas:
 
@@ -317,7 +319,7 @@ Python ofrece dos mecanismos para realizar esta combinación. Vamos a partir de 
 .. note:: Tener en cuenta que el orden en el que especificamos los diccionarios a la hora de su combinación (mezcla) es relevante en el resultado final. En este caso *el orden de los factores sí altera el producto*.
 
 Borrar elementos
-~~~~~~~~~~~~~~~~
+================
 
 Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario:
 
@@ -392,8 +394,9 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
 
     .. note:: La diferencia entre ambos métodos tiene que ver con cuestiones internas de gestión de memoria y de rendimiento.
 
+**********************
 Cuidado con las copias
-======================
+**********************
 
 Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de la propiedad de *mutabilidad*. Veamos un ejemplo concreto:
 
@@ -445,8 +448,9 @@ Una **posible solución** a este problema es hacer una "copia dura". Para ello P
      'anarcoide': 'Que tiende al desorden',
      'montuvio': 'Campesino de la costa'}
 
+***************************
 Construyendo un diccionario
-===========================
+***************************
 
 Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir un diccionario donde las claves son las letras vocales y los valores son sus posiciones::
 

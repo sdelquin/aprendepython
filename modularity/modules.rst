@@ -1,13 +1,14 @@
-*******
+#######
 Módulos
-*******
+#######
 
 .. image:: img/xavi-cabrera-kn-UmDZQDjM-unsplash.jpg
 
 Es una certeza que, antes o después, usaremos código Python en más de un fichero. Un **módulo** es simplemente un fichero con código Python. No se necesita hacer nada especial. Cualquier código Python se puede usar como un módulo en código de terceros. [#lego-unsplash]_
 
+******************
 Importar un módulo
-==================
+******************
 
 Para hacer uso del código de otros módulos usaremos la sentencia ``import``. Esto permite importar el código y las variables de dicho módulo para que estén disponibles en tu programa.
 
@@ -23,7 +24,7 @@ Supongamos que partimos del siguiente fichero (*módulo*):
 Desde otro fichero - en principio en la misma carpeta - podríamos hacer uso de las funciones definidas en ``arith.py``. 
 
 Importar módulo completo
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 Desde otro fichero haríamos lo siguiente para importar todo el contenido del módulo ``arith.py``:
 
@@ -39,7 +40,7 @@ Desde otro fichero haríamos lo siguiente para importar todo el contenido del m�
 .. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el **espacio de nombres** que define el módulo ``arith``.
 
 Importar partes de un módulo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+============================
 
 Es posible que no necesitemos todo aquello que está definido en ``arith.py``. Supongamos que sólo vamos a realizar divisiones. Para ello haremos lo siguiente:
 
@@ -54,8 +55,9 @@ Es posible que no necesitemos todo aquello que está definido en ``arith.py``. S
 
 .. note:: Nótese que en la **línea 3** ya podemos hacer uso directamente de la función ``partitus()`` porque la hemos importado directamente. Este esquema tiene el inconveniente de la posible **colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando.
 
+********
 Paquetes
-========
+********
 
 Un **paquete** es simplemente una carpeta que contiene ficheros ``.py``. Además permite tener una jerarquía con más de un nivel de subcarpetas anidadas.
 
@@ -95,7 +97,7 @@ Si nuestro código principal va a estar en un fichero ``main.py`` (*a primer niv
     Módulo para operaciones lógicas.
 
 Importar desde un paquete
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 Si ya estamos en el fichero ``main.py`` (o a ese nivel) podremos hacer uso de nuestro paquete de la siguiente forma:
 
@@ -118,8 +120,9 @@ Si ya estamos en el fichero ``main.py`` (o a ese nivel) podremos hacer uso de nu
 **Línea 5**
     Uso de la función ``et`` que está definida en el módulo ``logic``
 
+******************
 Programa principal
-==================
+******************
 
 Cuando decidimos hacer una pieza de software en Python, normalmente usamos distintos ficheros para ello. Algunos de esos ficheros se convertirán en *módulos*, otros se englobarán en *paquetes* y existirá uno en concreto que será nuestro **punto de entrada**, también llamado **programa principal**.
 
@@ -143,7 +146,7 @@ La estructura que suele tener este *programa principal* es la siguiente::
         $ python3 main.py
 
 ``if __name__ == '__main__'``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=============================
 
 Esta condición permite, en el programa principal, diferenciar qué codigo se lanzará cuando el fichero se ejecuta directamente o cuando el fichero se importa desde otro lugar.
 

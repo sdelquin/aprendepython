@@ -1,6 +1,6 @@
-*****
+#####
 Datos
-*****
+#####
 
 .. image:: img/alexander-sinn-KgLtFCgfC28-unsplash.jpg
 
@@ -18,8 +18,9 @@ Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en
    Esquema (*metadatos*) de un objeto en Python
 
 
+**************
 Tipos de datos
-==============
+**************
 
 A continuación se muestran los distintos `tipos de datos <https://docs.python.org/3/library/stdtypes.html>`__ que podemos encontrar en Python, sin incluir aquellos que proveen paquetes externos:
 
@@ -29,8 +30,9 @@ A continuación se muestran los distintos `tipos de datos <https://docs.python.o
     :header-rows: 1
     :class: longtable
 
+*********
 Variables
-=========
+*********
 
 Las **variables** son un concepto clave en los lenguajes de programación y permiten definir **nombres** para los **valores** que tenemos en memoria y que vamos a usar en nuestro programa.
 
@@ -39,7 +41,7 @@ Las **variables** son un concepto clave en los lenguajes de programación y perm
    Uso de un *nombre* de variable
 
 Reglas para nombrar variables
------------------------------
+=============================
 
 En Python existen una serie de reglas para los nombres de variables:
 
@@ -71,7 +73,7 @@ Podemos obtener un listado de las palabras reservadas del lenguaje de la siguien
 .. note:: Por lo general se prefiere dar nombres **en inglés** a las variables que utilicemos, ya que así hacemos nuestro código más "internacional" y con la posibilidad de que otras personas puedan leerlo, entenderlo y -- llegado el caso -- modificarlo. Es sólo una recomendación, nada impide que se haga en castellano.
 
 Ejemplos de nombres de variables
---------------------------------
+================================
 
 Veamos a continuación una tabla con nombres de variables:
 
@@ -82,19 +84,19 @@ Veamos a continuación una tabla con nombres de variables:
     :class: longtable
 
 Convenciones para nombres
--------------------------
+=========================
 
 Mientras se sigan las :ref:`reglas <datatypes/data:Reglas para nombrar variables>` que hemos visto para nombrar variables no hay problema en la forma en la que se escriban, pero sí existe una convención para la **nomenclatura de las variables**. Se utiliza el llamado ``snake_case`` en el que utilizamos **caracteres en minúsculas** (incluyendo dígitos si procede) junto con **guiones bajos** -- cuando sean necesarios para su legibilidad --. [#naming-pep8]_ Por ejemplo, para nombrar una variable que almacene el número de canciones en nuestro ordenador, podríamos usar ``num_songs``.
 
 Esta convención, y muchas otras, están definidas en un documento denominado `PEP 8`_. Se trata de una **guía de estilo** para escribir código en Python. Los `PEPs`_ [#peps-link]_ son las propuestas que se hacen para la mejora del lenguaje.
 
 Constantes
-~~~~~~~~~~
+----------
 
 Un caso especial y que vale la pena destacar son las **constantes**. Podríamos decir que es un tipo de variable pero que su valor no cambia a lo largo de nuestro programa. Por ejemplo la velocidad de la luz. Sabemos que su valor es constante de 300.000 km/s. En el caso de las constantes utilizamos **mayúsculas** (incluyendo guiones bajos si es necesario) para nombrarlas. Para la velocidad de la luz nuestra constante se podría llamar: ``LIGHT_SPEED``.
 
 Elegir buenos nombres
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 Se suele decir que una persona programadora (con cierta experiencia), a lo que dedica más tiempo, es a buscar un buen nombre para sus variables. Quizás pueda resultar algo excesivo pero da una idea de lo importante que es esta tarea. Es fundamental que los nombres de variables sean **autoexplicativos**, pero siempre llegando a un compromiso entre ser concisos y claros.
 
@@ -107,8 +109,9 @@ Supongamos que queremos buscar un nombre de variable para almacenar el número d
 
 No existe una regla mágica que nos diga cuál es el nombre perfecto, pero podemos aplicar el *sentido común* y, a través de la experiencia, ir detectando aquellos nombres que sean más adecuados. En el ejemplo anterior, quizás podríamos descartar de principio la opción *1* y la *4* (por ser demasiado cortas o demasiado largas); nos quedaríamos con las otras dos. Si nos fijamos bien, casi no hay mucha información adicional de la opción *3* con respecto a la *2*. Así que podríamos concluir que la opción *2* es válida para nuestras necesidades. En cualquier caso esto dependerá siempre del contexto del problema que estemos tratando.
 
+**********
 Asignación
-==========
+**********
 
 En Python se usa el símbolo ``=`` para **asignar** un valor a una variable:
 
@@ -158,7 +161,7 @@ Recordemos que los nombres de variables deben seguir unas :ref:`reglas estableci
     SyntaxError: can't assign to operator
 
 Asignando una variable a otra variable
---------------------------------------
+======================================
 
 Las asignaciones que hemos hecho hasta ahora han sido de un **valor literal** a una variable. Pero nada impide que podamos hacer asignaciones de una variable a otra variable:
 
@@ -183,7 +186,7 @@ Eso sí, la variable que utilicemos como valor de asignación **debe existir pre
 De hecho, en el *lado derecho* de la asignación pueden aparecer *expresiones* más complejas que se verán en su momento.
 
 Conocer el valor de una variable
---------------------------------
+================================
 
 Hemos visto previamente cómo asignar un valor a una variable, pero aún no sabemos cómo "comprobar" el valor que tiene dicha variable. Para ello podemos utilizar dos estrategias:
 
@@ -201,7 +204,7 @@ Hemos visto previamente cómo asignar un valor a una variable, pero aún no sabe
 .. note:: ``print`` sirve también cuando estamos en una sesión interactiva de Python ("shell")
 
 Conocer el tipo de una variable
--------------------------------
+===============================
 
 Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la función ``type()``. Veamos algunos ejemplos de su uso::
 
@@ -229,8 +232,9 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     3. Identifica el tipo del literal ``True``.
     4. Asigna la expresión ``5 + 2.0`` a la variable ``result`` y muestra su tipo.
 
+***********
 Mutabilidad
-===========
+***********
 
 |advlev|
 

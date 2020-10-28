@@ -1,14 +1,15 @@
-*************
+#############
 Contexto real
-*************
+#############
 
 .. image:: img/spacex-uj3hvdfQujI-unsplash.jpg
 
 
 Hemos visto que :ref:`Thonny <devenv/thonny:Thonny>` es una herramienta especialmente diseñada para el aprendizaje de Python, integrando diferentes módulos que facilitan su gestión. Si bien lo podemos utilizar para un desarrollo más *"serio"*, se suele recurrir a un flujo de trabajo algo diferente en **contextos más reales**. [#rocket-unsplash]_
 
+******
 Python
-======
+******
 
 La forma más habitual de instalar Python (junto con sus librerías) es descargarlo e instalarlo desde su página oficial:
 
@@ -17,7 +18,7 @@ La forma más habitual de instalar Python (junto con sus librerías) es descarga
 * `Versiones de Python para Linux`_
 
 Anaconda
---------
+========
 
 Otra de las alternativas para disponer de Python es nuestro sistema y que además es muy utilizada, es **Anaconda**. Se trata de un *conjunto de herramientas*, orientadas en principio a la *ciencia de datos*, pero que podemos utilizarlas para desarrollo general en Python (junto con otras librerías adicionales). Existen versiones de pago, pero la distribución *Individual Edition* es "open-source" y gratuita. Se puede descargar desde los siguientes enlaces:
 
@@ -25,8 +26,9 @@ Otra de las alternativas para disponer de Python es nuestro sistema y que ademá
 * `Anaconda 64-bits para Mac`_
 * `Anaconda 64-bits para Linux`_
 
+*******************
 Gestión de paquetes
-===================
+*******************
 
 La instalación limpia [#vanilla-installation]_ de Python ya ofrece de por sí muchos paquetes y módulos que vienen por defecto. Es lo que se llama la `librería estándar`_. Pero una de las características más destacables de Python es su inmenso "ecosistema" de paquetes disponibles en el `Python Package Index (PyPI)`_.
 
@@ -39,8 +41,9 @@ Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herrami
     $ pip uninstall pandas
     $ pip install pandas --upgrade
 
+******************
 Entornos virtuales
-==================
+******************
 
 Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (*a nivel de máquina*). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, y esto nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos.
 
@@ -97,8 +100,9 @@ Veamos a continuación algunos de los comandos que nos ofrece:
 * ``$ workon env1``: activa el entorno virtual ``env1``
 * ``$ lssitepackages``: lista los paquetes instalados en el entorno virtual activo
 
+********
 Editores
-========
+********
 
 Existen multitud de editores en el mercado que nos pueden servir perfectamente para escribir código Python. Algunos de ellos incorporan funcionalidades extra y otros simplemente nos permiten editar ficheros. Cabe destacar aquí el concepto de **Entorno de Desarrollo Integrado**, más conocido por sus siglas en inglés **IDE** [#ide]_. Se trata de una `aplicación informática <https://es.wikipedia.org/wiki/Entorno_de_desarrollo_integrado>`_ que proporciona servicios integrales para el desarrollo de software.
 
@@ -119,8 +123,9 @@ Podríamos decir que :ref:`Thonny <devenv/thonny:Thonny>` es un IDE de aprendiza
 
 Cada editor tiene sus características (ventajas e inconvenientes). Supongo que la preferencia por alguno de ellos estará en en base a la experiencia y a las necesidades que surjan. La parte buena es que hay diversidad de opciones para elegir.
 
+****************
 Jupyter Notebook
-================
+****************
 
 `Jupyter Notebook <https://jupyter.org/install.html>`__ es una aplicación "open-source" que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque suele estar más enfocado a *ciencia de datos*: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización de datos o "machine-learning" [#machine-learning]_.
 
@@ -128,8 +133,9 @@ Podemos verlo como un intérprete de Python (contiene un "kernel" [#kernel]_ que
 
 .. note:: Aunque su uso está más extendido en el mundo Python, `existen muchos otros "kernels" <https://github.com/jupyter/jupyter/wiki/Jupyter-kernels>`_ sobre los que trabajar en Jupyter Notebook.
 
+******
 WSL
-===
+******
 
 Si estamos trabajando en un sistema **Windows 10** es posible que nos encontremos más cómodos usando una terminal tipo "Linux", entre otras cosas para poder usar con facilidad las herramientas vistas en esta sección para preparar y gestionar el entorno de desarrollo Python. Durante mucho tiempo esto fue difícil de conseguir hasta que *Microsoft* sacó WSL.
 

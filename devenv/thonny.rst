@@ -1,6 +1,6 @@
-******
+######
 Thonny
-******
+######
 
 .. image:: img/freddie-marriage-vSchPA-YA_A-unsplash.jpg
 
@@ -12,8 +12,9 @@ Hay otra herramienta interesante dentro del entorno de desarrollo que sería el 
 
 `Thonny <https://thonny.org/>`__ es un programa muy interesante para empezar a aprender Python ya que engloba estas tres herramientas: intérprete, editor y depurador. [#thonny-unsplash]_
 
+***********
 Instalación
-===========
+***********
 
 Para instalar Thonny debemos acceder a su `web <https://thonny.org>`_ y descargar la aplicación para nuestro sistema operativo. La ventaja es que está disponible tanto para **Windows**, **Mac** y **Linux**. Una vez descargado el fichero lo ejecutamos y seguimos su instalación paso por paso.
 
@@ -32,7 +33,7 @@ Podemos observar que la pantalla está dividida en 3 paneles:
 * *Panel derecho* que contiene el **depurador**. Más concretamente se trata de la ventana de variables donde podemos *inspeccionar* el valor de las mismas.
 
 Versiones de Python
--------------------
+===================
 
 Existen múltiples versiones de Python. Desde el lanzamiento de la versión 1.0 en 1994 se han ido liberando versiones, cada vez, con nuevas características que aportan riqueza al lenguaje:
 
@@ -43,8 +44,9 @@ Existen múltiples versiones de Python. Desde el lanzamiento de la versión 1.0 
 
 .. note:: Para ser exactos, esta tabla (y en general todo este manual) versa sobre una implementación concreta de Python denominada ``CPython``, pero existen `otras implementaciones alternativas de Python <https://www.python.org/download/alternatives/>`_. A los efectos de aprendizaje del lenguaje podemos referirnos a *Python* (aunque realmente estaríamos hablando de *CPython*).
 
+**********************
 Probando el intérprete
-======================
+**********************
 
 El intérprete de Python (por lo general) se identifica claramente porque posee un **prompt** [#prompt]_ con trés angulos hacia la derech ``>>>``. En Thonny lo podemos encontrar en el panel inferior, pero se debe tener en cuenta que el intérprete de Python es una herramienta autocontenida y que la podemos ejecutar desde el símbolo del sistema o la terminal:
 
@@ -64,8 +66,9 @@ Para hacer una primera prueba del intérprete vamos a retomar el primer programa
 
 Lo que hemos hecho es indicarle a Python que ejecute como **entrada** la instrucción ``print('Hello, World')``. La **salida** es el texto ``Hello, World`` que lo vemos en la siguiente línea (*ya sin el prompt* ``>>>``).
 
+******************
 Probando el editor
-==================
+******************
 
 Ahora vamos a realizar la misma operación, pero en vez de ejecutar la instrucción directamente en el intérprete, vamos a crear un fichero y guardarlo con la sentencia que nos interesa. Para ello escribimos ``print('Hello, World')`` en el panel de edición (*superior*) y luego guardamos el archivo con el nombre ``helloworld.py`` [#save-file]_:
 
@@ -77,8 +80,9 @@ Ahora vamos a realizar la misma operación, pero en vez de ejecutar la instrucci
 
 Ahora ya podemos *ejecutar* nuestro fichero ``helloworld.py``. Para ello pulsamos el botón verde con triángulo blanco (en la barra de herramientas) o bien damos a la tecla :kbd:`F5`. Veremos que en el panel de *Shell* nos aparece la salida esperada. Lo que está pasando "entre bambalinas" es que el intérprete de Python está recibiendo como entrada el fichero que hemos creado; lo ejecuta y devuelve la salida para que Thonny nos lo muestre en el panel correspondiente.
 
+*********************
 Probando el depurador
-=====================
+*********************
 
 Nos falta por probar el depurador o "debugger". Aunque su funcionamiento va mucho más allá, de momento nos vamos a quedar en la posibilidad de inspeccionar las variables de nuestro programa. Desafortunadamente ``helloworld.py`` es muy simple y ni siquiera contiene variables, pero podemos hacer una pequeña modificación al programa para poder incorporarlas:
 

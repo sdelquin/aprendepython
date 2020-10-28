@@ -1,5 +1,6 @@
+##############
 Aprende Python
-==============
+##############
 
 .. image:: _static/monty-python.jpg
 

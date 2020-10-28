@@ -1,13 +1,14 @@
-****************
+################
 Objetos y Clases
-****************
+################
 
 .. image:: img/rabie-madaci-skx1Rn6LW9I-unsplash.jpg
 
 Todo en Python es un objeto, desde números a funciones. Sin embargo Python oculta la mayoría de la maquinaria de los objetos a través de una sintaxis especial. En general sólo nos adentramos en esta sintaxis cuando queremos crear nuevos objetos o modificar el comportamiento de objetos ya existentes. [#things-unsplash]_
 
+********************************
 Programación orientada a objetos
-================================
+********************************
 
 La programación orientada a objetos (`POO`_) o en sus siglas inglesas **OOP** es una manera de programar que permite a las personas que desarrollan, pensar como si trabajaran con entidades de la vida real u objetos.
 
@@ -27,7 +28,7 @@ Sus **beneficios** son los siguientes:
    Beneficios de la Programación Orientada a Objetos
 
 ¿Qué es un objeto?
-~~~~~~~~~~~~~~~~~~
+==================
 
 Un **objeto** es una **estructura de datos personalizada** que contiene:
 
@@ -43,7 +44,7 @@ Se podría pensar en los **atributos** como **nombres** y en sus **métodos** co
    Analogía de atributos y métodos en un objeto "bicicleta"
 
 ¿Qué es una clase?
-~~~~~~~~~~~~~~~~~~
+==================
 
 Para crear un objeto primero debemos definir la clase que lo contiene. Podemos pensar en la **clase** como el **molde** con el que crear nuevos objetos de ese tipo.
 
@@ -51,8 +52,9 @@ Para crear un objeto primero debemos definir la clase que lo contiene. Podemos p
 
    Ejemplificación de creación de objetos a partir de una clase
 
+***************
 Creando objetos
-===============
+***************
 
 Empecemos por crear nuestra **primera clase**. En este caso vamos a modelar algunos de los `droides de la saga StarWars`_:
 
@@ -82,7 +84,7 @@ Existen multitud de droides en el universo StarWars. Una vez que hemos definido 
     __main__.StarWarsDroid
 
 Añadiendo atributos
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Un **atributo** es una variable que está dentro de una clase o de un objeto. Podemos asignar atributos durante la creación del objeto (e incluso después). Un atributo puede ser cualquier otro objeto::
 
@@ -120,7 +122,7 @@ Hemos definido un droide "socio". Veremos a continuación que podemos trabajar c
     >>> blue_droid.partner_droid.num_feet = 2
 
 Añadiendo métodos
-~~~~~~~~~~~~~~~~~
+=================
 
 Un **método** es una función que está dentro de una clase o de un objeto. Un método parece una función ordinaria, pero se puede usar de formas especiales. Los métodos se definen dentro de la clase como funciones ordinarias, salvo que el primer parámetro será ``self`` (una referencia al objeto actual).
 
@@ -143,7 +145,7 @@ Una de las acciones más sencillas que se puede hacer sobre un droide es encende
     Bye! I'm going to sleep
 
 Inicialización
-~~~~~~~~~~~~~~
+==============
 
 Existe un **método especial** que se ejecuta cuando creamos una instancia de un objeto. Este método es ``__init__`` y nos permite asignar atributos y realizar operaciones con el objeto en el momento de su creación. También es ampliamente conocido como el **constructor**. 
 
@@ -192,13 +194,14 @@ Veamos un ejemplo de este método con nuestros droides en el que únicamente gua
 
     Crear al menos una instancia (móvil) a partir de la clase creada y "jugar" con los métodos, visualizando cómo cambian sus atributos.
 
+*********
 Atributos
-=========
+*********
 
 En Python tanto los métodos como los atributos de un objeto son, *normalmente*, públicos. Esto implica una cierta "responsabilidad" en la persona que desarrolla de cara al manejo de los objetos.
 
 Acceso directo
-~~~~~~~~~~~~~~
+==============
 
 En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en el constructor de la clase, también podemos modificarlo desde "fuera" con un acceso directo::
 
@@ -215,7 +218,7 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
     >>> droid.name = 'waka-waka'  # esto sería válido!
 
 Propiedades
-~~~~~~~~~~~
+===========
 
 La solución "pitónica" para una cierta privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <modularity/functions:Decoradores>`:
 
@@ -258,7 +261,7 @@ En cualquier caso, seguimos pudiendo acceder directamente a ``.hidden_name``::
     'Nigel'
 
 Valores calculados
-""""""""""""""""""
+------------------
 
 Una propiedad también se puede usar para devolver un **valor calculado** (o computado).
 
@@ -285,7 +288,7 @@ A modo de ejemplo, supongamos que la altura del periscopio de los droides astrom
     AttributeError: can't set attribute
 
 Ocultando atributos
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Python tiene una convención sobre aquellos atributos que queremos hacer **"privados"** (u ocultos): comenzar el nombre con doble subguión ``__``
 
@@ -309,7 +312,7 @@ Lo que realmente ocurre tras el telón se conoce como "*name mangling*" y consis
     'BC-44'
 
 Atributos de clase
-~~~~~~~~~~~~~~~~~~
+==================
 
 Podemos asignar atributos a las clases y serán heredados por todos los objetos instanciados de esa clase.
 
@@ -331,11 +334,12 @@ A modo de ejemplo, en un principio, todos los droides están diseñados para que
     >>> Droid.obeys_owner  # el cambio no afecta a nivel de clase
     True
 
+*******
 Métodos
-=======
+*******
 
 Métodos de instancia
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 Estos métodos son los más comunes y permiten modificar el comportamiento de un objeto. Se caracterizan por tener ``self`` como primer parámetro y hacen que Python pase el objeto como argumento en su llamada.
 
@@ -360,7 +364,7 @@ Veamos un ejemplo en el que, además del constructor, creamos un método de inst
     Moving 10 steps
 
 Métodos de clase
-~~~~~~~~~~~~~~~~
+================
 
 Estos métodos afectan a toda la clase en su conjunto. Cualquier cambio sobre la clase afecta a todos sus objetos. Para definir un método de clase debemos utilizar el decorador ``@classmethod`` y el primer parámetro será ``cls`` en referencia a la propia clase.
 
@@ -388,7 +392,7 @@ Veamos un ejemplo en el que implementaremos un método de clase que lleva la cue
     3 droids built so far!
 
 Métodos estáticos
-~~~~~~~~~~~~~~~~~
+=================
 
 Estos métodos no afectan ni a la clase ni a sus objetos. Se utilizan para todas aquellas cuestiones relacionadas con la clase pero que ni acceden ni modifican sus atributos. Para escribir un método estático debemos utilizar el decorador ``@staticmethod`` y no incluyen ningún parámetro obligatorio inicial.
 
@@ -410,7 +414,7 @@ Veamos un ejemplo en el que creamos un método estático para devolver las categ
     ['Messeger', 'Astromech', 'Power', 'Protocol']
 
 Métodos mágicos
-~~~~~~~~~~~~~~~
+===============
 
 |advlev|
 
@@ -477,7 +481,7 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     C3PO-R2D2 with power 136
 
 ``__str__``
-"""""""""""
+-----------
 
 Uno de los métodos mágicos más utilizados es ``__str__`` que permite establecer la forma en la que un objeto es representado como *cadena de texto*::
 
@@ -518,8 +522,9 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
         \bigg[ \frac{25}{30} * \frac{40}{45} = \frac{20}{27} \bigg] \hspace{5mm}
         \bigg[ \frac{25}{30} / \frac{40}{45} = \frac{15}{16} \bigg]
 
+********
 Herencia
-========
+********
 
 |intlev|
 
@@ -532,7 +537,7 @@ La **herencia** consiste en **crear una nueva clase partiendo de una clase exist
 .. note:: Cuando se utiliza herencia, la clase derivada, de forma automática, puede usar todo el código de la clase base sin necesidad de copiar nada explícitamente.
 
 Heredar desde una clase base
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+============================
 
 Para que una clase "herede" de otra, basta con indicar la clase base entre paréntesis en la definición de la clase derivada.
 
@@ -583,7 +588,7 @@ Vamos a añadir un par de métodos a la clase base, y analizar su comportamiento
     Bye! I'm going to sleep
 
 Sobreescribir un método
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 Como hemos visto, una clase derivada hereda todo lo que tiene su clase base. Pero en muchas ocasiones nos interesa modificar el comportamiento de esta herencia.
 
@@ -612,7 +617,7 @@ En el ejemplo vamos a modificar el comportamiento del método ``switch_on()`` pa
     Hi! I'm a PROTOCOL droid. Can I help you?
 
 Añadir un método
-~~~~~~~~~~~~~~~~
+================
 
 La clase derivada también puede añadir métodos que no estaban presentes en su clase base. En el siguiente ejemplo vamos a añadir un método ``translate()`` que permita a los *droides de protocolo* traducir cualquier mensaje:
 
@@ -648,7 +653,7 @@ La clase derivada también puede añadir métodos que no estaban presentes en su
 Con esto ya hemos aportado una personalidad diferente a los droides de protocolo, a pesar de que heredan de la clase genérica de droides de StarWars.
 
 Accediendo a la clase base
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Puede darse la situación en la que tengamos que acceder desde la clase derivada a métodos o atributos de la clase base. Python ofrece ``super()`` como mecanismo para ello.
 
@@ -677,7 +682,7 @@ Veamos un ejemplo más elaborado con nuestros droides:
     ['Ewokese', 'Huttese', 'Jawaese']    
 
 Herencia múltiple
-~~~~~~~~~~~~~~~~~
+=================
 
 |advlev|
 
@@ -767,7 +772,7 @@ Veamos el resultado de la llamada a los métodos definidos::
         [bool, int, object]
 
 Mixins
-~~~~~~
+======
 
 Se puede incluir una clase base extra en la definición de nuestra clase, sólo para **tareas auxiliares**, sin que se compartan métodos con otras clases base, y así evitar ambigüedad en la resolución de métodos. Estas clases auxiliares se llaman "mixins".
 
@@ -812,7 +817,7 @@ Veamos un ejemplo en el que usamos un mixin para mostrar las variables de un obj
     5. Imprimir por pantalla la ``info()`` de este objeto (el método ``info()`` debería retornar ``str`` y debería hacer uso de los métodos ``info()`` de las clases base).
 
 Agregación y composición
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 La herencia es una buena técnica cuando queremos que una clase derivada actúe como su clase base la mayoría del tiempo: hablamos de una relación "**is-a**" (es un).
 

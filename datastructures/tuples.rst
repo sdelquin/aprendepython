@@ -1,14 +1,15 @@
-******
+######
 Tuplas
-******
+######
 
 .. image:: img/engin-akyurt-hdJYDQ9CUtQ-unsplash.jpg
 
 
 El concepto de **tupla** es muy similar al de :ref:`lista <datastructures/lists:Listas>`. Aunque hay algunas diferencias menores, lo fundamental es que, mientras una *lista* es mutable y se puede modificar, una *tupla* no admite cambios y por lo tanto, es **inmutable**. [#chain-unsplash]_
 
+**************
 Creando tuplas
-==============
+**************
 
 Podemos pensar en crear tuplas tal y como :ref:`lo hacíamos con listas <datastructures/lists:Creando listas>`, pero usando **paréntesis** en lugar de *corchetes*::
 
@@ -19,7 +20,7 @@ Podemos pensar en crear tuplas tal y como :ref:`lo hacíamos con listas <datastr
     >>> three_wise_men = ('Melchor', 'Gaspar', 'Baltasar')
 
 Tuplas de un elemento
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Hay que prestar especial atención cuando vamos a crear una **tupla de un único elemento**. La intención primera sería hacerlo de la siguiente manera::
 
@@ -42,7 +43,7 @@ Realmente, hemos creado una variable de tipo ``str`` (cadena de texto). Para cre
     tuple
 
 Tuplas sin paréntesis
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Según el caso, hay veces que nos podemos encontrar con tuplas que no llevan paréntesis. Quizás no está tan extendido pero a efectos prácticos tiene el mismo resultado. Veamos algunos ejemplos de ello::
 
@@ -52,8 +53,9 @@ Según el caso, hay veces que nos podemos encontrar con tuplas que no llevan par
 
     >>> tenerife_geoloc = 28.46824, -16.25462
 
+*******************
 Modificar una tupla
-===================
+*******************
 
 Como ya hemos comentado previamente, las tuplas con estructuras de datos **inmutables**. Una vez que las creamos con un valor, no podemos modificarlas. Veamos qué ocurre si lo intentamos::
 
@@ -64,8 +66,9 @@ Como ya hemos comentado previamente, las tuplas con estructuras de datos **inmut
       File "<stdin>", line 1, in <module>
     TypeError: 'tuple' object does not support item assignment
 
+**********
 Conversión
-==========
+**********
 
 Para convertir otros tipos de datos en una tupla podemos usar la función ``tuple()``::
 
@@ -86,8 +89,9 @@ El uso de la función ``tuple()`` sin argumentos equivale a crear una tupla vac�
     >>> tuple()
     ()
 
+**********************
 Operaciones con tuplas
-======================
+**********************
 
 Con las tuplas podemos realizar :ref:`todas las operaciones que vimos con listas <datastructures/lists:Operaciones con listas>` **salvo las que conlleven una modificación** "in-situ" de la misma:
 
@@ -98,8 +102,9 @@ Con las tuplas podemos realizar :ref:`todas las operaciones que vimos con listas
 * ``clear()``
 * ``sort()``
 
+************************
 Desempaquetado de tuplas
-========================
+************************
 
 El **desempaquetado** es una característica de las tuplas que nos permite *asignar una tupla a variables independientes*:
 
@@ -121,7 +126,7 @@ Veamos un ejemplo con código::
     'Baltasar'
 
 Intercambio de valores
-~~~~~~~~~~~~~~~~~~~~~~
+======================
 
 A través del desempaquetado de variables podemos llevar a cabo *el intercambio de los valores de dos variables* de manera directa:
 

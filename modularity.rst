@@ -1,6 +1,6 @@
-===========
+###########
 Modularidad
-===========
+###########
 
 La **modularidad** es la característica de un sistema que permite que sea estudiado, visto o entendido como la unión de varias partes que interactúan entre sí y que trabajan solidariamente para alcanzar un objetivo común, realizando cada una de ellas una tarea necesaria para la consecución de dicho objetivo.
 

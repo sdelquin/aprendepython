@@ -1,13 +1,14 @@
-*************
+#############
 Condicionales
-*************
+#############
 
 .. image:: img/ali-nafezarefi-62H_swdrc4A-unsplash.jpg
 
 En esta sección veremos la sentencia condicional ``if`` y las distintas variantes que puede asumir, pero antes de eso introduciremos algunas cuestiones generales de *escritura de código*. [#fork-unsplash]_
 
+*********************
 Definición de bloques
-=====================
+*********************
 
 A diferencia de otros lenguajes que utilizan llaves para definir los bloques de código, cuando Guido Van Rossum :ref:`creó el lenguaje <introduction/python:Python>` quiso evitar estos caracteres por considerarlos innecesarios. Es por ello que en Python los bloques de código se definen a través de **espacios en blanco, preferiblemente 4**. [#pep8]_ En términos técnicos se habla del **tamaño de indentación**.
 
@@ -17,8 +18,9 @@ A diferencia de otros lenguajes que utilizan llaves para definir los bloques de 
 
 .. hint:: Esto puede resultar extraño e incómodo a personas que vienen de otros lenguajes de programación pero desaparece rápido y se siente natural a medida que se escribe código.
 
+***********
 Comentarios
-===========
+***********
 
 Un *comentario* es un trozo de texto en tu programa que es ignorado por el intérprete de Python. Se pueden usar para aclarar líneas de código adyacentes, para dejar notas recordatorias o cualquier otro propósito.
 
@@ -37,8 +39,9 @@ Los comentarios también pueden aparecer en la misma línea de código, aunque `
 
     stock = 0   # Liberar productos adicionales
 
+****************
 Ancho del código
-================
+****************
 
 Los programas suelen ser más legibles cuando las líneas no son excesivamente largas. La longitud máxima de línea recomendada por `la guía de estilo de Python <https://www.python.org/dev/peps/pep-0008/#maximum-line-length>`__ es de **80 caracteres**.
 
@@ -59,8 +62,9 @@ En caso de que queramos **romper una línea de código** demasiado larga, tenemo
     ...              2 *
     ...              1)
 
+*******************
 La sentencia ``if``
-===================
+*******************
 
 Las sentencia condicional en Python (al igual que en muchos otros lenguajes de programación) es ``if``. En su escritura debemos añadir una **expresión de comparación** terminando con dos puntos al final de la línea. Veamos un ejemplo::
 
@@ -138,8 +142,9 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="440" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
+*************************
 Operadores de comparación
-=========================
+*************************
 
 Cuando escribimos condiciones debemos incluir alguna expresión de comparación. Para usar estas expresiones es fundamental conocer los operadores que nos ofrece Python:
 
@@ -216,7 +221,7 @@ Python ofrece la posibilidad de ver si un valor está entre dos límites de mane
         * Salida: ``Es un año bisiesto``
 
 "Booleanos" en condiciones
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Cuando queremos preguntar por la *veracidad* de determinada variable "booleana" en una condición, la primera aproximación que parece razonable es la siguiente:
 
@@ -282,7 +287,7 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
        
 
 ``None`` es útil
-~~~~~~~~~~~~~~~~
+================
 
 |intlev|
 
@@ -320,8 +325,9 @@ La forma "pitónica" de preguntar si algo **no es nulo** es la siguiente:
     ...
     value=99
 
+**************
 Operador morsa
-==============
+**************
 
 |advlev|
 

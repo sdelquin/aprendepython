@@ -1,6 +1,6 @@
-********
+########
 Ficheros
-********
+########
 
 .. image:: img/maksym-kaharlytskyi-Q9y3LRuuxmg-unsplash.jpg
 
@@ -8,8 +8,9 @@ Aunque los ficheros encajarían más en un apartado de "*entrada/salida*" ya que
 
 Un **fichero** es una *secuencia de bytes* almacenados en algún *sistema de ficheros* y accesibles por un *nombre de fichero*. Un *directorio* (o carpeta) es una colección de ficheros, y probablemente de otros directorios. Muchos sistemas de ficheros son jerárquicos y a menudo nos referimos a ellos como árbol de ficheros.
 
+*********************
 Lectura de un fichero
-=====================
+*********************
 
 Python ofrece la función ``open()`` para "abrir" un fichero. Esta apertura se puede realizar en 3 modos distintos:
 
@@ -40,7 +41,7 @@ Hay que tener en cuenta que la ruta al fichero que abrimos (*en modo lectura*) *
 Una vez abierto el fichero ya podemos proceder a leer su contenido. Para ello Python nos ofrece la posibilidad de leer todo el fichero de una vez o bien leerlo línea a línea.
 
 Lectura completa de un fichero
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==============================
 
 Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el contenido del fichero de una sola vez. Para esta operación, Python nos provee, al menos, de dos funciones:
 
@@ -63,7 +64,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
 .. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello es posible utilizar :ref:`las funciones ya vistas de cadenas de texto <datatypes/strings:Limpiar cadenas>`.
 
 Lectura línea a línea
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Hay situaciones en las que interesa leer el contenido del fichero línea a línea. Imaginemos un fichero de tamaño considerable (varios GB). Si intentamos leer completamente este fichero de una vez podríamos ocupar demasiada RAM y reducir el rendimiento de la máquina.
 
@@ -93,8 +94,9 @@ Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros
 
 .. tip:: Igual que pasaba anteriormente, la lectura línea por línea también incluye el **salto de línea** ``\n`` lo que provoca un "doble espacio" entre cada una de las salidas. Bastaría con aplicar ``line.split()`` para eliminarlo.
 
+***********************
 Escritura en un fichero
-=======================
+***********************
 
 Para escribir texto en un fichero hay que abrir dicho fichero en **modo escritura**. Para ello utilizamos un *argumento adicional* en la función ``open()`` que indica esta operación::
 
@@ -125,8 +127,9 @@ Nótese:
 
 .. warning:: Siempre que se abre un fichero en **modo escritura** utilizando el argumento ``'w'``, el fichero se inicializa, borrando cualquier contenido que pudiera tener.
 
+********************
 Añadido a un fichero
-====================
+********************
 
 La única diferencia entre añadir información a un fichero y :ref:`escribir información en un fichero <datastructures/files:Escritura en un fichero>` es el modo de apertura del fichero. En este caso utilizamos ``'a'`` por "append"::
 
@@ -134,8 +137,9 @@ La única diferencia entre añadir información a un fichero y :ref:`escribir in
 
 En este caso el fichero ``more-data.txt`` se abrir en *modo añadir* con lo que las llamadas a la función ``write()`` hará que aparezcan nuevo contenido al final del contenido ya existente en dicho fichero.
 
+*****************
 Usandos contextos
-=================
+*****************
 
 Python ofrece `gestores de contexto`_ que permiten establecer reglas de entrada y salida al contexto definido. En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se ocupará de cerrar adecuadamente el fichero que hemos abierto, liberando así sus recursos:
 

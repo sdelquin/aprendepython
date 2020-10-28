@@ -1,13 +1,14 @@
-******
+######
 Python
-******
+######
 
 .. image:: img/marketa-marcellova-Bjm9JmpNfd0-unsplash.jpg
 
 `Python <https://www.python.org/>`__ es un lenguaje de programación de :ref:`alto nivel <introduction/machine:Python>` creado a finales de los 80/principios de los 90 por `Guido van Rossum`_, holandés que trabajaba por aquella época en el *Centro para las Matemáticas y la Informática* de los Países Bajos. Sus instrucciones están muy cercanas al **lenguaje natural** en inglés y se hace hincapié en la **legibilidad** del código. Toma su nombre de los `Monty Python`_, grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje ``ABC``. [#python-unsplash]_
 
+****************************
 Características del lenguaje
-============================
+****************************
 
 A partir de su `definición de la Wikipedia <https://es.wikipedia.org/wiki/Python>`_:
 
@@ -16,7 +17,7 @@ A partir de su `definición de la Wikipedia <https://es.wikipedia.org/wiki/Pytho
 * Añadiría, como característica destacada, que se trata de un lenguaje de **propósito general**.
 
 Ventajas
---------
+========
 
 * Libre y gratuito (OpenSource).
 * Fácil de leer, parecido a pseudocódigo.
@@ -36,7 +37,7 @@ Ventajas
 * Hay diferentes implementaciones: CPython, Jython, IronPython, MicroPython, ...
 
 Desventajas
------------
+===========
 
 * Interpretado (velocidad de ejecución, multithread vs GIL, etc.).
 * Consumo de memoria.
@@ -47,8 +48,9 @@ Desventajas
 * Varios módulos para la misma funcionalidad.
 * Librerías de terceros no siempre del todo maduras.
 
+*************
 Uso de Python
-=============
+*************
 
 Al ser un lenguaje de propósito general, podemos encontrar aplicaciones prácticamente en todos los campos científico-tecnológicos:
 
@@ -83,8 +85,9 @@ De igual modo son muchas las empresas, instituciones y organismos que utilizan P
 
 Existen ránkings y estudios de mercado que sitúan a Python como uno de los lenguajes más *usados* y la vez, más *amados* dentro del mundo del desarrollo de software. En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *agosto de 2020* en la que Python ocupa el **tercer lugar de los lenguajes de programación más usados**, sólo por detrás de *C* y *Java*. Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ hecha en 2020, Python ocupa el **cuarto puesto de los lenguajes de programación más usados**, sólo por detrás de *Javascript*, *HTML/CSS* y *SQL*.
 
+******************
 Python2 vs Python3
-==================
+******************
 
 En el momento de la escritura de este material, se muestra a continuación la evolución de las versiones mayores de Python a lo largo de la historia: [#python-versions]_
 
@@ -103,8 +106,9 @@ El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versi�
 
 .. important:: Únete a **Python 3** y aprovecha todas sus ventajas.
 
+*************
 Zen de Python
-=============
+*************
 
 Existen una serie de *reglas* "filosóficas" que indican una manera de hacer y de pensar dentro del mundo **pitónico** [#pithonic]_ creadas por `Tim Peters`_, llamadas el `Zen de Python <https://www.python.org/dev/peps/pep-0020/>`__ y que se pueden aplicar incluso más allá de la programación::
 

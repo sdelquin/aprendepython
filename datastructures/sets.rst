@@ -1,13 +1,14 @@
-*********
+#########
 Conjuntos
-*********
+#########
 
 .. image:: img/duy-pham-Cecb0_8Hx-o-unsplash.jpg
 
 Un **conjunto** en Python se representa por una serie de **valores únicos** y **sin orden establecido**. Lo podríamos ver como un diccionario al que le hemos quitado los valores y nos hemos quedado sólo con las claves. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
 
+*****************
 Creando conjuntos
-=================
+*****************
 
 Para crear un conjunto basta con separar sus valores por *comas* y rodearlos de llaves ``{}``::
 
@@ -35,8 +36,9 @@ La única opción que tenemos es utilizar la función ``set()``::
     >>> type(empty_set)
     set
 
+**********
 Conversión
-==========
+**********
 
 Para convertir otros tipos de datos en un conjunto podemos usar la función ``set()``::
 
@@ -56,18 +58,19 @@ Para convertir otros tipos de datos en un conjunto podemos usar la función ``se
 
 .. note:: El hecho de que en los ejemplos anteriores los elementos de los conjuntos estén ordenados es únicamente un "detalle de implementación" en el que no se puede confiar.
 
+*************************
 Operaciones con conjuntos
-=========================
+*************************
 
 Obtener un elemento
-~~~~~~~~~~~~~~~~~~~
+===================
 
 En un conjunto no existe un orden establecido para sus elementos, por lo cual **no podemos acceder a un elemento en concreto**. 
 
 De este hecho se deriva igualmente que *no podemos modificar un elemento existente*, ya que no podemos acceder a él. Python sí nos permite añadir o borrar elementos de un conjunto.
 
 Añadir un elemento
-~~~~~~~~~~~~~~~~~~
+==================
 
 Para añadir un elemento a un conjunto debemos utilizar la función ``add()``. Como ya hemos indicado, al no importar el orden dentro del conjunto, la inserción no establece a priori la posición dónde se realizará.
 
@@ -96,7 +99,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
         <iframe width="800" height="320" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Borrar elementos
-~~~~~~~~~~~~~~~~
+================
 
 Para borrar un elemento de un conjunto podemos utilizar la función ``remove()``. Siguiendo con el ejemplo anterior vamos a borrar al último "beatle" añadido::
 
@@ -109,7 +112,7 @@ Para borrar un elemento de un conjunto podemos utilizar la función ``remove()``
     {'Harrison', 'Lennon', 'McCartney', 'Starr'}
 
 Longitud de un conjunto
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 Podemos conocer el número de elementos que tiene un conjunto con la función ``len()``::
 
@@ -120,7 +123,7 @@ Podemos conocer el número de elementos que tiene un conjunto con la función ``
     4
 
 Iterar sobre un conjunto
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 Tal y como hemos visto para otros tipos de datos *iterables*, la forma de recorrer los elementos de un conjunto es utilizar la sentencia ``for``::
 
@@ -135,7 +138,7 @@ Tal y como hemos visto para otros tipos de datos *iterables*, la forma de recorr
 .. hint:: Como en el ejemplo anterior, es muy común utilizar una *variable en singular* para recorrer un iterable (en plural). No es una regla fija ni sirve para todos los casos, pero sí suele ser una *buena práctica*.
 
 Pertenencia de elemento
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 Al igual que con otros tipos de datos, Python nos ofrece el operador ``in`` para determinar si un elemento pertenece a un conjunto::
 
@@ -148,8 +151,9 @@ Al igual que con otros tipos de datos, Python nos ofrece el operador ``in`` para
     >>> 'Fari' in beatles
     False
 
+*******************
 Teoría de conjuntos
-===================
+*******************
 
 Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemplificar las distintas operaciones que se pueden hacer entre ellos basadas en los `Diagramas de Venn`_ y la `Teoría de Conjuntos <https://es.wikipedia.org/wiki/Teor%C3%ADa_de_conjuntos>`__::
 
@@ -162,7 +166,7 @@ Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemp
    Diagramas de Venn
 
 Intersección
-~~~~~~~~~~~~
+============
 
 :math:`A \cap B` -- Elementos que están a la vez en :math:`A` y en :math:`B`::
 
@@ -173,7 +177,7 @@ Intersección
     {2}
 
 Unión
-~~~~~
+=====
 
 :math:`A \cup B` -- Elementos que están tanto en :math:`A` como en :math:`B`::
 
@@ -184,7 +188,7 @@ Unión
     {1, 2, 3}
 
 Diferencia
-~~~~~~~~~~
+==========
 
 :math:`A - B` -- Elementos que están en :math:`A` y no están en :math:`B`::
 
@@ -195,7 +199,7 @@ Diferencia
     {1}
 
 Diferencia simétrica
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 :math:`\overline{A \cap B}` -- Elementos que están en :math:`A` o en :math:`B` pero no en ambos conjuntos::
 

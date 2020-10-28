@@ -1,6 +1,6 @@
-*********
+#########
 Funciones
-*********
+#########
 
 .. image:: img/nathan-dumlao-6Lh0bRb9LOA-unsplash.jpg
 
@@ -13,8 +13,9 @@ Básicamente podemos hacer dos cosas con una función:
 - Definirla (con cero o más parámetros).
 - Invocarla (y obtener cero o más resultados).
 
+*******************
 Definir una función
-===================
+*******************
 
 Para definir una función en Python debemos usar la palabra reservada ``def`` seguida del nombre de la función con paréntesis rodeando a los parámetros de entrada y finalmente dos puntos ``:``
 
@@ -33,7 +34,7 @@ Hagamos una primera función sencilla que no recibe parámetros::
 - Los *nombres de las funciones* siguen :ref:`las mismas reglas que las variables <datatypes/data:Variables>`.
 
 Invocar una función
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Para invocar (o "llamar") a una función basta con escribir su nombre y utilizar paréntesis. En el caso de la función sencilla (vista anteriormente) se haría así:
 
@@ -50,7 +51,7 @@ Para invocar (o "llamar") a una función basta con escribir su nombre y utilizar
 Como era de esperar, al invocar a la función obtenemos un mensaje por pantalla, fruto de la ejecución del cuerpo de la función.
 
 Retornar un valor
-~~~~~~~~~~~~~~~~~
+=================
 
 Las funciones pueden retornar (o "devolver") un valor. Veamos un ejemplo muy sencillo::
 
@@ -103,8 +104,9 @@ Si una función no incluye un ``return`` de forma explícita, devolverá ``None`
         * Entrada: ``3`` y ``4``
         * Salida: ``25``
 
+*********
 Veracidad
-=========
+*********
 
 |intlev|
 
@@ -120,7 +122,7 @@ Vamos a crear una función propia para comprobar la veracidad de distintos objet
     ...
 
 Evaluando a ``False``
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Veamos qué "cosas" son evaluadas a ``False`` en Python::
 
@@ -154,7 +156,7 @@ Veamos qué "cosas" son evaluadas a ``False`` en Python::
 .. important:: El resto de objetos son evaluados a ``True`` en Python.
 
 Evaluando a ``True``
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 Veamos ciertos ejemplos que son evaluados a ``True`` en Python::
 
@@ -176,8 +178,9 @@ Veamos ciertos ejemplos que son evaluados a ``True`` en Python::
     >>> truthiness('🦆')
     🦆 is True
 
+***********************
 Parámetros y argumentos
-=======================
+***********************
 
 Vamos a empezar a crear funciones que reciben **parámetros**. En este caso escribiremos una función ``echo()`` que recibe el parámetro ``anything`` y muestra esa variable dos veces separada por un espacio::
 
@@ -219,7 +222,7 @@ Veamos otra función con algo más de lógica de negocio: [#blogic]_
     "It's a kiwi"
 
 Argumentos posicionales
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 Los **argumentos posicionales** son aquellos argumentos que se copian en sus correspondientes parámetros **en orden**. Vamos a mostrar un ejemplo definiendo una función que construye y devuelve un diccionario a partir de los argumentos recibidos::
 
@@ -247,7 +250,7 @@ Lo que ha sucedido es un **mapeo** directo entre argumentos y parámetros en el 
 .. note:: Una clara desventaja del uso de argumentos posicionales es que se necesita recordar el significado de cada posición.
 
 Argumentos por nombre
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Para evitar la confusión que pueden producir los argumentos posicionales, es posible especificar argumentos **usando el nombre de los correspondientes parámetros**, incluso en un orden distinto a cómo están definidos en la función::
 
@@ -268,7 +271,7 @@ Incluso podemos *mezclar* argumentos posicionales y argumentos por nombre::
     SyntaxError: positional argument follows keyword argument
 
 Parámetros por defecto
-~~~~~~~~~~~~~~~~~~~~~~
+======================
 
 Es posible especificar **valores por defecto** en los parámetros de una función. El valor por defecto se usará cuando en la llamada a la función no se haya proporcionado el correspondiente argumento.
 
@@ -305,7 +308,7 @@ Llamada a la función indicando un postre concreto::
         * Salida: ``120``
 
 Modificando parámetros mutables
-"""""""""""""""""""""""""""""""
+-------------------------------
 
 |advlev|
 
@@ -365,14 +368,14 @@ La forma de arreglar el código anterior utilizando un parámetro con valor por 
     ['b']
 
 Empaquetar/Desempaquetar argumentos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================
 
 |advlev|
 
 Python nos ofrece la posibilidad de empaquetar y desempaquetar argumentos cuando estamos invocando a una función, tanto para **argumentos posicionales** como para **argumentos por nombre**.
 
 Empaquetar/Desempaquetar argumentos posicionales
-""""""""""""""""""""""""""""""""""""""""""""""""
+------------------------------------------------
 
 Si utilizamos el operador ``*`` delante del nombre de un parámetro posicional, estaremos indicando que los argumentos pasados a la función se empaqueten en una **tupla**::
 
@@ -426,7 +429,7 @@ Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función par
     Positional tuple: (4, 3, 7, 9)
 
 Empaquetar/Desempaquetar argumentos por nombre
-""""""""""""""""""""""""""""""""""""""""""""""
+----------------------------------------------
 
 Si utilizamos el operador ``**`` delante del nombre de un parámetro por nombre, estaremos indicando que los argumentos pasados a la función se empaqueten en un **diccionario**::
 
@@ -462,7 +465,7 @@ Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco
     Keyword arguments: {'ram': 8, 'os': 'debian', 'cpu': 2.7}
 
 Argumentos sólo por nombre
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 |advlev|
 
@@ -493,7 +496,7 @@ Hasta aquí no hay nada especialmente diferente, pero si intentamos llamar a la 
     TypeError: print_data() takes 1 positional argument but 3 were given
 
 Argumentos mutables e inmutables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================
 
 |intlev|
 
@@ -516,7 +519,7 @@ Igual que veíamos en la incidencia de :ref:`parámetros por defecto con valores
 .. warning:: Esto **no es una buena práctica**. O bien documentar que el argumento puede modificarse o bien retornar un nuevo valor.
 
 Funciones como parámetros
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 |advlev|
 
@@ -557,8 +560,9 @@ Veamos un segundo ejemplo en el que pasamos, no sólo una función como argument
     >>> run_something_with_args(add_args, 5, 9)
     14
 
+*************
 Documentación
-=============
+*************
 
 Ya hemos visto que en Python podemos incluir :ref:`comentarios <controlflow/conditionals:Comentarios>` para explicar mejor determinadas zonas de nuestro código.
 
@@ -595,10 +599,8 @@ Para ver el ``docstring`` de una función, basta con utilizar ``help``::
 
 .. note:: Si queremos ver el ``docstring`` de una función en "crudo" (sin formatear), podemos usar ``print_if_true.__doc__``.
 
-
-
 Explicación de parámetros
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 Como ya se ha visto es posible documentar una función utilizando un ``docstring``. Pero la redacción y el formato de esta cadena de texto puede ser muy variada. Existen distintas distintas formas de documentar una función (u otros objetos) [#docstring-formats]_ pero vamos a centrarnos en el modelo **NumPy/SciPy**. 
 
@@ -639,13 +641,14 @@ Veamos un ejemplo::
     >>> substract(3, 5, True)
     2
 
+******************
 Tipos de funciones
-==================
+******************
 
 |advlev|
 
 Funciones interiores
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 Está permitido definir una función dentro de otra función::
 
@@ -659,7 +662,7 @@ Está permitido definir una función dentro de otra función::
     11
 
 Clausuras
-~~~~~~~~~
+=========
 
 Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de las variables que fueron creadas fuera de la función::
 
@@ -688,7 +691,7 @@ Una **clausura** (del término inglés "*closure*") establece el uso de una :ref
 .. note:: En una clausura retornamos una función, no una llamada a la función.
 
 Funciones anónimas "lambda"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================
 
 Una **función "lambda"** es una función **anómina** que se expresa en **una única sentencia**. Se puede ver como alternativa a pequeñas funciones ordinarias.
 
@@ -736,7 +739,7 @@ Veamos otro ejemplo en el que mostramos una tabla con el resultado de aplicar el
     1 & 1 = 1
 
 Enfoque funcional
-~~~~~~~~~~~~~~~~~
+=================
 
 Como se comentó en la :ref:`introducción <introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los paradigmas menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
 
@@ -747,7 +750,7 @@ Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: `
     Rutinas muy enfocadas a programación funcional
 
 ``map()``
-"""""""""
+---------
 
 Esta función **aplica otra función** sobre cada elemento de un iterable. Supongamos que queremos aplicar la siguiente función:
 
@@ -779,7 +782,7 @@ Aplicando una :ref:`función anónima "lambda" <modularity/functions:Funciones a
 .. important:: ``map()`` devuelve un **generador**, no directamente una lista.
 
 ``filter()``
-""""""""""""
+------------
 
 Esta función **selecciona** aquellos elementos de un iterable que cumplan una determinada condición. Supongamos que queremos seleccionar sólo aquellos números impares dentro de un rango::
 
@@ -805,7 +808,7 @@ Aplicando una :ref:`función anónima "lambda" <modularity/functions:Funciones a
 .. important:: ``filter()`` devuelve un **generador**, no directamente una lista.
 
 ``reduce()``
-""""""""""""
+------------
 
 Para poder usar esta función debemos usar el módulo ``functools``. Nos permite aplicar una función dada sobre todos los elementos de un iterable de manera acumulativa. O dicho en otras palabras, nos permite **reducir** una función sobre un conjunto de valores. Supongamos que queremos realizar el producto de una serie de valores aplicando este enfoque::
 
@@ -828,7 +831,7 @@ Aplicando una :ref:`función anónima "lambda" <modularity/functions:Funciones a
 .. hint:: Por cuestiones de legibilidad del código, se suelen preferir las **listas por comprensión** a funciones como ``map()`` o ``filter()``, aunque cada problema tiene sus propias características y sus soluciones más adecuadas.
 
 Generadores
-~~~~~~~~~~~
+===========
 
 Un **generador** es un objeto que premite crear secuencias. La gran ventaja de usar generadores es que podemos iterar sobre enormes secuencias sin necesidad de crearlas ni de almacenarlas completamente en memoria de una sola vez.
 
@@ -840,7 +843,7 @@ Los generadores suelen ser la fuente de datos de los **iteradores**. De hecho ya
 .. note:: Cada vez que iteramos a través de un generador se lleva un seguimiento del último valor generado para poder generar el siguiente (si procede). Esto es diferente de una función ordinaria, que no tiene "memoria" de sus llamadas anteriores y siempre empieza desde la primera línea con el mismo estado.
 
 Funciones generadoras
-"""""""""""""""""""""
+---------------------
 
 Si necesitamos crear una secuencia *potencialmente larga* podemos escribir una **función generadora**. Se trata de una función ordinaria pero que retorna su valor con ``yield`` en vez de con ``return``.
 
@@ -874,7 +877,7 @@ Una vez creado el generador, ya podemos iterar sobre él::
 .. important:: Un detalle muy importante sobre los generadores es que "se agotan". Es decir, una vez que ya hemos consumido todos sus elementos ya no obtendremos nuevos valores.
 
 Expresiones generadoras
-"""""""""""""""""""""""
+-----------------------
 
 Una **expresión generadora** es sintácticamente muy similar a una *lista por comprensión*, pero utilizamos **paréntesis** en vez de corchetes. Se podría ver como una versión acortada de una función generadora.
 
@@ -901,7 +904,7 @@ Veamos un ejemplo en el que crearemos una expresión generadora para producir lo
     Escriba una **función generadora** que devuelva los 100 primeros números enteros elevados al cuadrado.
 
 Decoradores
-~~~~~~~~~~~
+===========
 
 Hay veces que necesitamos modificar una función existente sin cambiar su código fuente. Un ejemplo muy común es añadir algunas sentencias de depuración para ver qué argumentos estamos pasando.
 
@@ -951,7 +954,7 @@ Ahora aplicaremos el decorador definido previamente ``document_it()`` sobre la f
     9
 
 Usando ``@`` para decorar
-"""""""""""""""""""""""""
+-------------------------
 
 Como una alternativa a la aplicación manual de un decorador podemos usar el operador ``@`` (seguido del nombre del decorador) antes de la definición de la función que queremos decorar::
 
@@ -1012,7 +1015,7 @@ Ahora aplicaremos los dos decoradores que hemos escrito::
         * Salida: ``21``
 
 Funciones recursivas
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 La **recursividad** es el mecanismo por el cual una función se llama a sí misma::
 
@@ -1048,7 +1051,7 @@ Veamos ahora un ejemplo más real en el que computar el enésimo término de la 
     6765
 
 Función generadora recursiva
-""""""""""""""""""""""""""""
+----------------------------
 
 Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los términos de la sucesión hasta un límite, pero con la filosofía recursiva, podríamos plantear el uso de una :ref:`función generadora <modularity/functions:Funciones generadoras>`::
 
@@ -1098,8 +1101,9 @@ Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los 
         * Entrada: ``5``
         * Salida: ``120``
 
+*******************
 Espacios de nombres
-===================
+*******************
 
 Un nombre puede hacer referencia a múltiples cosas, dependiendo de dónde lo estemos usando. Los programas en Python tienen diferentes **espacios de nombres**, secciones donde un nombre particular es único e independiente del mismo nombre en otros espacios de nombres.
 
@@ -1159,7 +1163,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
         <iframe width="800" height="440" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=animal%20%3D%20'tiger'%0A%0Adef%20change_local%28%29%3A%0A%20%20%20%20animal%20%3D%20'panther'%0A%20%20%20%20print%28'inside%20change_local%3A',%20animal%29%0A%0A%0Aprint%28'at%20the%20top%20level%3A',%20animal%29%0A%0A%0Achange_local%28%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Modificación local de variables globales
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+========================================
 
 |intlev|
 
@@ -1192,7 +1196,7 @@ Si dentro de una función, accedemos al valor de la variable global y luego la m
     Creación de la variable **local** ``animal``.
 
 Acceso con ``global``
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 |intlev|
 
@@ -1229,12 +1233,12 @@ Python nos ofrece la posibilidad de acceder (y modificar) las variables globales
 .. warning:: No se recomienda el uso de variables globales ya que puede dar lugar a confusiones en los accesos.
 
 Introspección de funciones
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 |advlev|
 
 Contenido de los espacios de nombres
-""""""""""""""""""""""""""""""""""""
+------------------------------------
 
 Python proporciona dos funciones para acceder al contenido de los espacios de nombres:
 
@@ -1305,7 +1309,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
      '_i5': 'globals()'}
 
 Usos de doble subguión ``__``
-"""""""""""""""""""""""""""""
+-----------------------------
 
 Los nombres que comienzan y terminan con dos subguiones ``__`` están reservados para uso interno de Python, así que no se deberían utilizar en código propio. Estos nombres se conocen como **"dunder"** que proviene de "double-underscore".
 
