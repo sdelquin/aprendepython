@@ -440,9 +440,28 @@ Python nos permite realizar variaciones en los caracteres de una cadena de texto
     >>> proverb.swapcase()
     'QUIEN A BUEN ÁRBOL SE ARRIMA bUENA sOMBRA LE COBIJA'
 
-***********
+************************
+Interpolación de cadenas
+************************
+
+En este apartado veremos cómo **interpolar** valores dentro de cadenas utilizando diferentes formatos. Interpolar (en este contexto) significa sustituir una variable por su valor dentro de una cadena de texto.
+
+Veamos los estilos que proporciona Python para este cometido:
+
++----------------+-------------+--------------+
+|     Nombre     |   Símbolo   |   Soportado  |
++================+=============+==============+
+| Estilo antiguo | ``%``       | >= Python2   |
++----------------+-------------+--------------+
+| Estilo "nuevo" | ``.format`` | >= Python2.6 |
++----------------+-------------+--------------+
+| "f-strings"    | ``f''``     | >= Python3.6 |
++----------------+-------------+--------------+
+
+Aunque aún podemos encontrar código con el `estilo antiguo y el estilo nuevo en el formateo de cadenas <https://pyformat.info/>`_, vamos a centrarnos en el análisis de los **"f-strings"** que se están utilizando bastante en la actualidad.
+
 "f-strings"
-***********
+===========
 
 Los **f-strings** `aparecieron en Python 3.6 <https://docs.python.org/3/whatsnew/3.6.html#new-features>`_ y se suelen usar en código de nueva creación. Es la forma más potente -- y en muchas ocasiones más eficiente -- de formar cadenas de texto incluyendo valores de otras variables.
 
@@ -462,14 +481,13 @@ Supongamos que disponemos de los datos de una persona y queremos formar una fras
 .. warning:: Si olvidamos poner la **f** delante del "string" no conseguiremos sustitución de variables.
 
 Formateando cadenas
-===================
+-------------------
 
 |intlev|
 
 Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: ancho del texto, número de decimales, tamaño de la cifra, alineación, etc. Muchas de estas facilidades se pueden consultar en el artículo `Best of Python3.6 f-strings`_ [#best-fstrings]_
 
-Dando formato a valores enteros
--------------------------------
+**Dando formato a valores enteros:**
 
 .. code-block::
 
@@ -481,8 +499,7 @@ Dando formato a valores enteros
     >>> f'{mount_height:010d}'
     '0000003718'
 
-Dando formato a otras bases
----------------------------
+**Dando formato a otras bases:**
 
 .. code-block::
 
@@ -504,8 +521,7 @@ Dando formato a otras bases
     >>> f'{value:x}'
     'ab217'
 
-Dando formato a valores flotantes
----------------------------------
+**Dando formato a valores flotantes:**
 
 .. code-block::
 
@@ -532,8 +548,7 @@ Dando formato a valores flotantes
     >>> f'{pi:e}'
     '3.141593e+00'
 
-Alineando valores
------------------
+**Alineando valores:**
 
 .. code-block::
 
@@ -548,7 +563,7 @@ Alineando valores
     'how----|····are····|----you'
 
 Modo "debug"
-============
+------------
 
 A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variable y su valor, como un atajo para depurar nuestro código. Para ello sólo tenemos que incluir un símbolo ``=`` después del nombre de la variable::
 
