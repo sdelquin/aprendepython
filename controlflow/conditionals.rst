@@ -219,6 +219,10 @@ Python ofrece la posibilidad de ver si un valor está entre dos límites de mane
     **Ejemplo**
         * Entrada: ``2008``
         * Salida: ``Es un año bisiesto``
+    
+    .. only:: html
+    
+        |solution| :download:`leap_year.py <files/leap_year.py>`
 
 "Booleanos" en condiciones
 ==========================
@@ -283,8 +287,11 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
         * Entrada: ``can_fly = True``, ``is_human = True`` y ``has_mask = True``
         * Salida: ``Ironman``
     
-    🤔 Es una especie de `Akinator`_ para personajes de Marvel...
+    Es una especie de `Akinator`_ para personajes de Marvel...
        
+    .. only:: html
+    
+        |solution| :download:`marvel.py <files/marvel.py>`
 
 ``None`` es útil
 ================
