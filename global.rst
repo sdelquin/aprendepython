@@ -12,3 +12,5 @@
 .. |intlev| replace:: :intermediate-level:`🐍 Nivel intermedio`
 
 .. |advlev| replace:: :advanced-level:`🚀 Nivel avanzado`
+
+.. |solution| replace:: 🔥 *Solución*:

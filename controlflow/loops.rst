@@ -41,7 +41,10 @@ La condición del bucle se comprueba en cada nueva repetición. En este caso che
 Romper un bucle while
 =====================
 
-Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que cumpla la condición de parada*. Supongamos un ejemplo en el que estamos buscando el primer número múltiplo de 3 yendo desde 20 hasta 1::
+Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que cumpla la condición de parada*. Supongamos un ejemplo en el que estamos buscando el primer número múltiplo de 3 yendo desde 20 hasta 1:
+
+.. code-block::
+    :emphasize-lines: 6
 
     >>> num = 20
 
@@ -66,6 +69,76 @@ Ejecución **paso a paso** a través de *Python Tutor*:
         <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2020%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos encontrado nuestro objetivo: el primer múltiplo de 3. Pero si no lo hubiéramos encontrado, el bucle habría seguido decrementando la variable ``num`` hasta valer 0, y la condición del bucle ``while`` hubiera resultado falsa.
+
+Comprobar la rotura
+-------------------
+
+|intlev|
+
+Python nos ofrece la posibilidad de **detectar si el bucle ha acabado de forma ordinaria**, esto es, ha finalizado por no cumplirse la condición establecida. Para ello podemos hacer uso de la sentencia ``else`` como parte del propio bucle. Si el bucle while finaliza normalmente (sin llamada a ``break``) el flujo de control pasa a la sentencia opcional ``else``.
+
+Veamos un ejemplo en el que tratamos de encontrar un múltiplo de 9 en el rango :math:`[1, 8]` (es obvio que no sucederá):
+
+.. code-block::
+    :emphasize-lines: 8
+
+    >>> num = 8
+
+    >>> while num >= 1:
+    ...     if num % 9 == 0:
+    ...         print(f'{num} is a multiple of 9!')
+    ...         break
+    ...     num -= 1
+    ... else:
+    ...     print('No multiples of 9 found!')
+    ...
+    No multiples of 9 found!
+
+Ejecución **paso a paso** a través de *Python Tutor*:
+
+.. only:: latex
+
+    https://cutt.ly/CgYQFiA
+
+.. only:: html
+
+    .. raw:: html
+
+        <iframe width="800" height="400" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%208%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%209%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum%7D%20is%20a%20multiple%20of%209!'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201%0Aelse%3A%0A%20%20%20%20print%28'No%20multiples%20of%209%20found!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+Continuar un bucle
+==================
+
+|intlev|
+
+Hay veces que no queremos romper un bucle sino simplemente **saltar adelante hacia la siguiente repetición**. Para ello Python nos ofrece la sentencia ``continue`` que hace precisamente eso, descartar el resto del código del bucle y saltar a la siguiente iteración.
+
+Veamos un ejemplo en el que usaremos esta estrategia para mostrar todos los números en el rango :math:`[1, 20]` ignorando aquellos que sean múltiplos de 3:
+
+.. code-block::
+    :emphasize-lines: 6
+
+    >>> num = 21
+
+    >>> while num >= 1:
+    ...     num -= 1
+    ...     if num % 3 == 0:
+    ...         continue
+    ...     print(num, end=', ')
+    ...
+    20, 19, 17, 16, 14, 13, 11, 10, 8, 7, 5, 4, 2, 1,
+
+Ejecución **paso a paso** a través de *Python Tutor*:
+
+.. only:: latex
+
+    https://cutt.ly/YgYQ3m6
+
+.. only:: html
+
+    .. raw:: html
+
+        <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2021%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20num%20-%3D%201%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20print%28num,%20end%3D',%20'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Bucle infinito
 ==============
@@ -113,6 +186,19 @@ Una posible solución a este error es reescribir la condición de parada en el b
        
 
 .. tip:: Para abortar una situación de *bucle infinito* podemos pulsar en el teclado la combinación :kbd:`CTRL-C`. Se puede ver reflejado en el intérprete de Python por ``KeyboardInterrupt``.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud.
+
+    **Ejemplo**
+        * Entrada: ``0001010011101`` y ``0000110010001``
+        * Salida: ``4``
+
+    .. only:: html
+
+        |solution| :download:`hamming.py <files/hamming.py>` 
 
 .. _for-sentence:
 
@@ -183,7 +269,22 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="350" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+.. tip:: Tanto la :ref:`comprobación de rotura de un bucle <controlflow/loops:Comprobar la rotura>` como la :ref:`continuación a la siguiente iteración <controlflow/loops:Continuar un bucle>` se llevan a cabo del mismo modo que hemos visto con los bucles de tipo ``while``.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Dada una cadena de texto, indique el número de vocales que tiene.
+
+    **Ejemplo**
+        * Entrada: ``Supercalifragilisticoespialidoso``
+        * Salida: ``15``
+
+    .. only:: html
+
+        |solution| :download:`num_vowels.py <files/num_vowels.py>`    
 
 Generar secuencias de números
 =============================
@@ -241,9 +342,47 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="250" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="270" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
     
 .. tip:: Se suelen utilizar nombres de variables `i`, `j`, `k` para lo que se viene a denominar **contadores**. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores. No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de asignar un nombre semánticamente más significativo.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Determine si un número dado es un `número primo`_.
+
+    *No es necesario implementar ningún algoritmo en concreto. La idea es probar los números menores al dado e ir viendo si las divisiones tienen resto cero o no*.
+
+    **Ejemplo**
+        * Entrada: ``11``
+        * Salida: ``Es primo``
+
+    .. only:: html
+
+        |solution| :download:`prime.py <files/prime.py>`
+
+Usando el guión bajo
+--------------------
+
+|advlev|
+
+Hay situaciones en las que **no necesitamos usar la variable** que toma valores en el rango, sino que únicamente queremos repetir una acción un número determinado de veces.
+
+Para estos casos se suele recomendar usar el **guión bajo** ``_`` como **nombre de variable**, que da a entender que no estamos usando esta variable de forma explícita::
+
+    >>> for _ in range(10):
+    ...     print('Repeat me 10 times!')
+    ...
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
+    Repeat me 10 times!
 
 ***************
 Bucles anidados
@@ -363,6 +502,10 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     Imprima los 100 primeros números de la `sucesión de Fibonacci`_: :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots` 
 
+    .. only:: html
+    
+        |solution| :download:`fibonacci.py <files/fibonacci.py>`
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `The Python range() Function <https://realpython.com/courses/python-range-function/>`_
@@ -383,3 +526,5 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. _Gary Lopater: https://unsplash.com/@glopater?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _complejidad ciclomática: https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica
 .. _sucesión de Fibonacci: https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci
+.. _número primo: https://es.wikipedia.org/wiki/N%C3%BAmero_primo
+.. _distancia hamming: https://es.wikipedia.org/wiki/Distancia_de_Hamming
