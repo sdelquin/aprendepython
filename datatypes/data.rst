@@ -232,6 +232,10 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     3. Identifica el tipo del literal ``True``.
     4. Asigna la expresión ``5 + 2.0`` a la variable ``result`` y muestra su tipo.
 
+    .. only:: html
+    
+        |solution| :download:`numbers.py <files/numbers.py>`
+
 ***********
 Mutabilidad
 ***********

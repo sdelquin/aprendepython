@@ -310,6 +310,10 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una **lista** (otr
     Obtenga el número de palabras que contiene la siguiente cadena de texto::
 
         quote = 'Before software can be reusable, it first has to be usable'
+    
+    .. only:: html
+    
+        |solution| :download:`num_words.py <files/num_words.py>`
 
 Limpiar cadenas
 ===============
@@ -401,6 +405,9 @@ Contabilizar el **número de veces que aparece** una subcadena::
 
     Utilice para ello únicamente búsqueda, concatenación y troceado de cadenas de texto.
 
+    .. only:: html
+    
+        |solution| :download:`replace.py <files/replace.py>`
 
 Reemplazar elementos
 ====================
@@ -597,6 +604,10 @@ A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variab
         '2.718280e+00'
         '00002.7183'
         '            2.71828'
+
+    .. only:: html
+    
+        |solution| :download:`fstrings.py <files/fstrings.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

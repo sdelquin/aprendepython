@@ -214,7 +214,7 @@ Hecho en Python::
 
         x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a}
 
-    Dados los coeficientes ``a=4``, ``b=6`` y ``c=2`` calcule sus dos soluciones. Tenga en cuenta subdividir los cálculos y reutilizar variables (por ejemplo el `discriminante`_).
+    Dados los coeficientes ``a=4``, ``b=-6`` y ``c=2`` calcule sus dos soluciones. Tenga en cuenta subdividir los cálculos y reutilizar variables (por ejemplo el `discriminante`_).
 
     La solución para los valores anteriores es:
 
@@ -225,7 +225,9 @@ Hecho en Python::
 
     Puede comprobar los resultados para otros valores de entrada con esta `aplicación para resolver ecuaciones cuadráticas <https://www.mathsisfun.com/quadratic-equation-solver.html>`_.
 
-
+    .. only:: html
+    
+        |solution| :download:`quadratic.py <files/quadratic.py>`
 
 Tamaño de un entero
 ===================
@@ -358,6 +360,10 @@ Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la 
     - :math:`sin(90) = 1.0`
     - :math:`sin(45) = 0.7071067811865475`
     - :math:`sin(50) = 0.766044443118978`
+
+    .. only:: html
+    
+        |solution| :download:`sin_approx.py <files/sin_approx.py>`
 
 *****
 Bases
