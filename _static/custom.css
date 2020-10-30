@@ -1,6 +1,8 @@
-/* Increase spacing above footnotes block */
+/* Footnotes section styling */
 dl.footnote {
   margin-top: 4rem;
+  border-top: 1px solid lightgray;
+  padding-top: 1rem;
 }
 
 /* Reduce spacing among footnotes */
