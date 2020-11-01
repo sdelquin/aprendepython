@@ -44,6 +44,9 @@ div.sphinxsidebarwrapper p.logo {
 div.highlight pre {
   padding: 11px 14px;
 }
+div.linenodiv pre {
+  padding: 11px 6px;
+}
 
 /* Custom colors for admonitions */
 div.admonition.note {
