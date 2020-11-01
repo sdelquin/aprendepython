@@ -89,6 +89,8 @@ El uso de la función ``tuple()`` sin argumentos equivale a crear una tupla vac�
     >>> tuple()
     ()
 
+.. tip:: Para crear una tupla vacía, se suele recomendar el uso de ``()`` frente a ``tuple()``, no sólo por ser más *pitónico* sino por tener (en promedio) un mejor rendimiento en tiempos de ejecución.
+
 **********************
 Operaciones con tuplas
 **********************
@@ -145,6 +147,33 @@ A través del desempaquetado de variables podemos llevar a cabo *el intercambio 
 
 .. note:: A priori puede parecer que esto es algo "natural", pero en la gran mayoría de lenguajes de programación no es posible hacer este intercambio de forma "directa" ya que necesitamos recurrir a una tercera variable "auxiliar" como almacén temporal en el paso intermedio de traspaso de valores.
 
+************************
+¿Tuplas por comprensión?
+************************
+
+Los tipos mutables (*listas, diccionarios y conjuntos*) permiten comprensiones. Los tipos inmutables como *cadenas de texto* y *tuplas* hay que crearlos con otros métodos.
+
+Se podría pensar que usando paréntesis en vez de los corchetes de una lista por comprensión obtendríamos una tupla por comprensión, pero no es así. Aparentemente no hay ningún error::
+
+    >>> myrange = (number for number in range(1, 6))
+
+Pero lo que realmente hemos creado es un generador::
+
+    >>> myrange
+    <generator object <genexpr> at 0x10b3732e0>
+
+****************
+Tuplas vs Listas
+****************
+
+A menudo podemos usar tuplas en vez de listas, pero tienen muchas menos funciones (no existen ``append()`` ni ``insert()``, por ejemplo) porque no se pueden modificar después de su creación. Entonces, ¿por qué no usar listas en vez de tuplas en todas las ocasiones?
+
+1. Las tuplas usan **menos espacio**.
+2. En las tuplas existe **protección** frente a cambios indeseados.
+3. Las tuplas se pueden usar como **claves de diccionarios**.
+4. Las `namedtuples`_ son una alternativa sencilla a los objetos.
+
+
 
 .. --------------- Footnotes ---------------
 
@@ -153,3 +182,4 @@ A través del desempaquetado de variables podemos llevar a cabo *el intercambio 
 .. --------------- Hyperlinks ---------------
 
 .. _engin akyurt: https://unsplash.com/@enginakyurt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+.. _namedtuples: https://docs.python.org/es/3/library/collections.html#collections.namedtuple
