@@ -18,8 +18,8 @@ Supongamos que partimos del siguiente fichero (*módulo*):
 
 :download:`arith.py <files/mymath/arith.py>`
 
-    .. include:: files/mymath/arith.py
-        :literal:
+.. literalinclude:: files/mymath/arith.py
+    :linenos:
 
 Desde otro fichero - en principio en la misma carpeta - podríamos hacer uso de las funciones definidas en ``arith.py``. 
 
@@ -70,8 +70,8 @@ El código del módulo de operaciones lógicas es el siguiente:
 
 :download:`logic.py <files/mymath/logic.py>`
 
-    .. include:: files/mymath/logic.py
-        :literal:
+.. literalinclude:: files/mymath/logic.py
+    :linenos:
 
 Si nuestro código principal va a estar en un fichero ``main.py`` (*a primer nivel*), la estructura de ficheros nos quedaría tal que así:
 
@@ -156,9 +156,8 @@ Esta condición permite, en el programa principal, diferenciar qué codigo se la
 
 :download:`hello.py <files/hello.py>`
 
-    .. include:: files/hello.py
-        :number-lines:
-        :literal:
+.. literalinclude:: files/hello.py
+    :linenos:
 
 ``import hello``
     El código se ejecuta siempre desde la primera instrucción a la última:
