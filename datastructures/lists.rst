@@ -55,6 +55,8 @@ Existe una manera particular de usar ``list()`` y es no pasarle ningún argument
     >>> list()
     []
 
+.. tip:: Para crear una lista vacía, se suele recomendar el uso de ``[]`` frente a ``list()``, no sólo por ser más *pitónico* sino por tener (en promedio) un mejor rendimiento en tiempos de ejecución.
+
 **********************
 Operaciones con listas
 **********************
@@ -155,7 +157,7 @@ Python nos ofrece, al menos, tres mecanismos para invertir los elementos de una 
         ['Limón', 'Sal', 'Aceite', 'Huevos', 'Agua']
 
 **Modificando la lista original**:
-    Utilizando la función `reverse()` (nótese que es sin *"d"* al final)::
+    Utilizando la función ``reverse()`` (nótese que es sin *"d"* al final)::
 
         >>> shopping
         ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
@@ -176,6 +178,33 @@ La forma tradicional de añadir elementos al final de una lista es utilizar la f
 
     >>> shopping
     ['Agua', 'Huevos', 'Aceite', 'Atún']
+
+Creando desde vacío
+-------------------
+
+Una forma muy habitual de trabajar con listas es empezar con una vacía e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir una lista con los números pares del 1 al 20::
+
+    >>> even_numbers = []
+
+    >>> for i in range(20):
+    ...     if i % 2 == 0:
+    ...         even_numbers.append(i)
+    ...
+
+    >>> even_numbers
+    [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
+Ejecución **paso a paso** a través de *Python Tutor*:
+
+.. only:: latex
+
+    https://cutt.ly/2fiS9Ax
+
+.. only:: html
+
+    .. raw:: html
+
+        <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=even_numbers%20%3D%20%5B%5D%0A%0Afor%20i%20in%20range%2820%29%3A%0A%20%20%20%20if%20i%20%25%202%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20even_numbers.append%28i%29%0A%0Aprint%28even_numbers%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Añadir en cualquier posición de una lista
 =========================================
@@ -402,6 +431,22 @@ La forma **pitónica** de comprobar la existencia de un elemento (valor) dentro 
 
 .. note:: El operador ``in`` siempre devuelve un valor booleano, es decir, verdadero o falso.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Determine si una cadena de texto dada es un **isograma**, es decir, no se repite ninguna letra.
+
+    Ejemplos válidos de isogramas:
+
+    - *lumberjacks*
+    - *background*
+    - *downstream*
+    - *six-year-old*
+
+    .. only:: html
+    
+        |solution| :download:`isogram.py <files/isogram.py>`
+
 Número de ocurrencias
 =====================
 
@@ -445,6 +490,17 @@ Hay que tener en cuenta que ``join()`` sólo funciona si *todos sus elementos so
     TypeError: sequence item 0: expected str instance, int found
 
 .. tip:: Esta función ``join()`` es realmente la **opuesta** a la de ``split()`` para :ref:`dividir una cadena <datatypes/strings:Dividir una cadena>`.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Consiga la siguiente transformación:
+
+    ``12/31/20`` ➡️ ``31-12-2020``
+
+    .. only:: html
+    
+        |solution| :download:`fixdate.py <files/fixdate.py>`
 
 Ordenar una lista
 =================
@@ -570,12 +626,33 @@ Dado que ``zip()`` produce un *iterador*, si queremos obtener una **lista explí
     [('Agua', 'mineral natural'),
      ('Aceite', 'de oliva virgen'),
      ('Arroz', 'basmati')]
+    
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Dados dos vectores (listas) de la misma dimensión, utilice la función ``zip()`` para calcular su `producto escalar`_.
+
+    **Ejemplo**
+        * Entrada::
+
+            v1 = [4, 3, 8, 1]
+            v2 = [9, 2, 7, 3]
+
+        * Salida: ``101``
+
+        :math:`v1 \times v2 = [4 \cdot 9 + 3 \cdot 2 + 8 \cdot 7 + 1 \cdot 3] = 101`
+    
+    .. only:: html
+    
+        |solution| :download:`vect_prod.py <files/vect_prod.py>`
 
 **********************
 Cuidado con las copias
 **********************
 
-Las listas son estructuras de datos **mutables** y esta característica nos obliga a tener cuidado cuando realizamos copias de listas, ya que la modificación de una de ellas puede afectar a la otra.
+|intlev|
+
+Las listas son estructuras de datos :ref:`mutables <datatypes/data:Mutabilidad>` y esta característica nos obliga a tener cuidado cuando realizamos copias de listas, ya que la modificación de una de ellas puede afectar a la otra.
 
 Veamos un ejemplo sencillo::
 
@@ -634,35 +711,130 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="370" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list.copy%28%29%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list.copy%28%29%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+.. tip:: En el caso de que estemos trabajando con listas que contienen elementos mutables, debemos hacer uso de la función ``deepcopy()`` dentro del módulo ``copy`` de la librería estándar.
 
 **********************
-Construyendo una lista
+Listas por comprensión
 **********************
 
-Una forma muy habitual de trabajar con listas es empezar con una vacía e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir una lista con los números pares del 1 al 20::
+|intlev|
 
-    >>> even_numbers = []
+Las **listas por comprensión** establecen una técnica para crear listas de forma más **compacta** basándose en el concepto matemático de `conjuntos definidos por comprensión <http://recursostic.educacion.es/descartes/web/materiales_didacticos/conjuntos_y_operaciones_agsm/conjuntos_12.html>`_.
 
-    >>> for i in range(20):
-    ...     if i % 2 == 0:
-    ...         even_numbers.append(i)
+.. figure:: img/list-comprehensions.png
+
+   Estructura de una lista por comprensión
+
+En primer lugar veamos un ejemplo en el que convertimos una cadena de texto con valores numéricos en una lista con los mismos valores pero convertidos a enteros. En su **versión clásica** haríamos algo tal que así::
+
+    >>> values = '32,45,11,87,20,48'
+
+    >>> int_values = []
+
+    >>> for value in values.split(','):
+    ...     int_value = int(value)
+    ...     int_values.append(int_value)
     ...
 
-    >>> even_numbers
-    [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+    >>> int_values
+    [32, 45, 11, 87, 20, 48]
 
-Ejecución **paso a paso** a través de *Python Tutor*:
+Ahora veamos el código utilizando una **lista por comprensión**::
 
-.. only:: latex
+    >>> values = '32,45,11,87,20,48'
 
-    https://cutt.ly/2fiS9Ax
+    >>> int_values = [int(value) for value in values.split(',')]
 
-.. only:: html
+    >>> int_values
+    [32, 45, 11, 87, 20, 48]
 
-    .. raw:: html
+Condiciones en comprensiones
+============================
 
-        <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=even_numbers%20%3D%20%5B%5D%0A%0Afor%20i%20in%20range%2820%29%3A%0A%20%20%20%20if%20i%20%25%202%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20even_numbers.append%28i%29%0A%0Aprint%28even_numbers%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+También existe la posibilidad de incluir condiciones en las **listas por comprensión**.
+
+En continuidad con el ejemplo anterior, supongamos que sólo queremos crear la lista con aquellos valores que empiecen por el dígito 4::
+
+    >>> values = '32,45,11,87,20,48'
+
+    >>> int_values = [int(v) for v in values.split(',') if v.startswith('4')]
+
+    >>> int_values
+    [45, 48]
+
+Anidamiento en comprensiones
+============================
+
+|advlev|
+
+En la iteración que usamos dentro de la lista por comprensión es posible usar :ref:`bucles anidados <controlflow/loops:Bucles anidados>`.
+
+Veamos un ejemplo en el que generamos combinaciones de los valores entre sí::
+
+    >>> values = '32,45,11,87,20,48'
+
+    >>> svalues = values.split(',')
+
+    >>> combinations = [f'{v1}x{v2}' for v1 in svalues for v2 in svalues]
+
+    >>> combinations
+    ['32x32',
+     '32x45',
+     '32x11',
+     '32x87',
+     '32x20',
+     '32x48',
+     '45x32',
+     '45x45',
+     ...
+     '48x45',
+     '48x11',
+     '48x87',
+     '48x20',
+     '48x48']
+
+.. hint:: Las listas por comprensión son muy potentes y nos ayudan en muchas circunstancias, pero hay que tener cuidado de no generar **expresiones excesivamente complejas**. En estos casos es mejor una *aproximación clásica*.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Utilizando listas por comprensión, cree una lista que contenga el resultado de aplicar la función :math:`f(x) = 3x + 2` para :math:`x \in [0, 20)`.
+
+    **Salida esperada**: ``[2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59]``
+
+    .. only:: html
+    
+        |solution| :download:`comprehension.py <files/comprehension.py>`
+
+************
+``sys.argv``
+************
+
+Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendremos la posibilidad de acceder a los argumentos de dicho programa. Para ello se utiliza una lista que la encontramos dentro del módulo ``sys`` y que se denomina ``argv``:
+
+.. figure:: img/sys-argv.png
+
+    Acceso a parámetros en línea de comandos
+
+Veamos un ejemplo de código en el que simulamos el paso de parámetros recogido en la figura:
+
+:download:`get-args.py <files/get-args.py>`
+
+.. literalinclude:: files/get-args.py
+    :linenos:
+
+Si lo ejecutamos obtenemos lo siguiente:
+
+.. code-block:: console
+
+    $ python3 get-args.py hello 99.9 55 "a nice arg"
+
+    arg1='hello'
+    arg2=99.9
+    arg3=55
+    arg4='a nice arg'
 
 *********************
 Funciones matemáticas
@@ -691,57 +863,105 @@ Python nos ofrece, entre otras [#more-math]_, estas tres funciones matemáticas 
         >>> max(data)
         9
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Lea :ref:`desde teclado <datatypes/strings:Leer datos desde teclado>` una cadena de texto con números separados por comas. obtenga la media de dichos valores (*muestre el resultado con 2 decimales*).
+
+    **Ejemplo**
+        * Entrada: ``'32,56,21,99,12,17'``
+        * Salida: ``39.50``
+    
+    .. only:: html
+    
+        |solution| :download:`avg.py <files/avg.py>`
+
 ****************
 Listas de listas
 ****************
 
+|intlev|
+
 Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Una de la forma en las que podemos utilizarlas es usando listas como elementos.
 
-Por ejemplo, si pensamos en la variable ``shopping`` que hemos estado usando y que representa la *lista de la compra*, la podríamos dividir en sublistas, cada una de ellas indicando los productos que vamos a comprar en las secciones del supermercado::
+Veamos un ejemplo deportivo. Un equipo de fútbol suele tener una disposición en el campo organizado por líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
 
-    >>> fruit_shop = ['Naranjas', 'Manzanas', 'Melón']
-    >>> butcher_shop = ['Pollo', 'Hamburguesas', 'Lomo']
-    >>> delicatessen = ['Jamón', 'Queso', 'Salami', 'Mortadela']
-    >>> hygiene = ['Jabón', 'Desodorante', 'Crema']
-    >>> bakery = ['Pan', 'Croissant', 'Magdalenas']
+.. figure:: img/world-champions.png
 
-Ahora podríamos juntar todo en una única lista de la compra::
+   Lista de listas (como equipo de fútbol)
 
-    >>> shopping = []
+Veamos una posible representación de este equipo de fútbol usando una lista compuesta de listas. Primero definimos cada una de las líneas::
 
-    >>> shopping.append(fruit_shop)
-    >>> shopping.append(butcher_shop)
-    >>> shopping.append(delicatessen)
-    >>> shopping.append(hygiene)
-    >>> shopping.append(bakery)
+    >>> goalkeeper = 'Casillas'
+    >>> defenders = ['Capdevila', 'Piqué', 'Puyol', 'Ramos']
+    >>> midfielders = ['Xabi', 'Busquets', 'X. Alonso']
+    >>> forwards = ['Iniesta', 'Villa', 'Pedro']
 
-    >>> shopping
-    [['Naranjas', 'Manzanas', 'Melón'],
-     ['Pollo', 'Hamburguesas', 'Lomo'],
-     ['Jamón', 'Queso', 'Salami', 'Mortadela'],
-     ['Jabón', 'Desodorante', 'Crema'],
-     ['Pan', 'Croissant', 'Magdalenas']]
+Y ahora las juntamos en una única lista::
 
-Ejecución **paso a paso** a través de *Python Tutor*:
+    >>> team = [goalkeeper, defenders, midfielders, forwards]
 
-.. only:: latex
+    >>> team
+    ['Casillas',
+     ['Capdevila', 'Piqué', 'Puyol', 'Ramos'],
+     ['Xabi', 'Busquets', 'X. Alonso'],
+     ['Iniesta', 'Villa', 'Pedro']]
 
-    https://cutt.ly/dfi7e41
+Podemos comprobar el acceso a distintos elementos::
 
-.. only:: html
+    >>> team[0]  # portero
+    'Casillas'
 
-    .. raw:: html
+    >>> team[1][0]  # lateral izquierdo
+    'Capdevila'
 
-        <iframe width="800" height="520" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=fruit_shop%20%3D%20%5B'Naranjas',%20'Manzanas',%20'Mel%C3%B3n'%5D%0Abutcher_shop%20%3D%20%5B'Pollo',%20'Hamburguesas',%20'Lomo'%5D%0Adelicatessen%20%3D%20%5B'Jam%C3%B3n',%20'Queso',%20'Salami',%20'Mortadela'%5D%0Ahygiene%20%3D%20%5B'Jab%C3%B3n',%20'Desodorante',%20'Crema'%5D%0Abakery%20%3D%20%5B'Pan',%20'Croissant',%20'Magdalenas'%5D%0A%0Ashopping%20%3D%20%5B%5D%0A%0Ashopping.append%28fruit_shop%29%0Ashopping.append%28butcher_shop%29%0Ashopping.append%28delicatessen%29%0Ashopping.append%28hygiene%29%0Ashopping.append%28bakery%29%0A%0Aprint%28shopping%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    >>> team[2]  # centrocampistas
+    ['Xabi', 'Busquets', 'X. Alonso']
+
+    >>> team[3][1]  # delantero centro
+    'Villa'
 
 .. admonition:: Ejercicio
     :class: exercise
 
-    Lea :ref:`desde teclado <datatypes/strings:Leer datos desde teclado>` una cadena de texto con números separados por comas. Sin utilizar las :ref:`funciones matemáticas <datastructures/lists:Funciones matemáticas>`, obtenga la media de dichos valores (*muestre el resultado con 2 decimales*).
+    Escriba un programa que permita multiplicar únicamente matrices de 2 filas por 2 columnas. Veamos un ejemplo concreto:
 
-    **Ejemplo**
-        * Entrada: ``'32,56,21,99,12,17'``
-        * Salida: ``37.50``
+    .. code-block::
+    
+        A = [[6, 4], [8, 9]]
+        B = [[3, 2], [1, 7]]
+    
+    El producto :math:`\mathbb{P} = A \times B` se calcula siguiendo la `multiplicación de matrices`_ tal y como se indica a continuación:
+
+    .. math::
+
+        \mathbb{P}
+        =
+        \begin{pmatrix}
+        6_{[00]} & 4_{[01]}\\
+        8_{[10]} & 9_{[11]}
+        \end{pmatrix}
+        \times
+        \begin{pmatrix}
+        3_{[00]} & 2_{[01]}\\
+        1_{[10]} & 7_{[11]}
+        \end{pmatrix}
+        =\\
+        \begin{pmatrix}
+        6 \cdot 3  + 4 \cdot 1 & 6 \cdot 2  + 4 \cdot 7\\
+        8 \cdot 3  + 9 \cdot 1 & 8 \cdot 2  + 9 \cdot 7
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        22 & 40\\
+        33 & 79
+        \end{pmatrix}
+
+    .. only:: html
+    
+        |solution| :download:`matrix2x2.py <files/matrix2x2.py>`
+    
+        · Solución generalizada para matrices de cualquier dimensión: :download:`matrix.py <files/matrix.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -765,3 +985,5 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. _Mike Arney: https://unsplash.com/@mikearney?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _Numpy: https://numpy.org/
+.. _producto escalar: https://es.wikipedia.org/wiki/Producto_escalar
+.. _multiplicación de matrices: https://www.superprof.es/apuntes/escolar/matematicas/algebralineal/matrices/producto-de-matrices.html
