@@ -147,6 +147,29 @@ A través del desempaquetado de variables podemos llevar a cabo *el intercambio 
 
 .. note:: A priori puede parecer que esto es algo "natural", pero en la gran mayoría de lenguajes de programación no es posible hacer este intercambio de forma "directa" ya que necesitamos recurrir a una tercera variable "auxiliar" como almacén temporal en el paso intermedio de traspaso de valores.
 
+Desempaquetado extendido
+========================
+
+No tenemos que ceñirnos a realizar desempaquetado uno a uno. También podemos extenderlo e indicar ciertos "grupos" de elementos mediante el operador ``*``.
+
+Veamos un ejemplo:
+
+.. code-block::
+    :emphasize-lines: 3
+
+    >>> ranking = ('G', 'A', 'R', 'Y', 'W')
+
+    >>> head, *body, tail = ranking
+
+    >>> head
+    'G'
+
+    >>> body
+    ['A', 'R', 'Y']
+
+    >>> tail
+    'W'
+
 ************************
 ¿Tuplas por comprensión?
 ************************
