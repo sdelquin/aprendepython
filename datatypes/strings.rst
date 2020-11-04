@@ -487,6 +487,13 @@ Supongamos que disponemos de los datos de una persona y queremos formar una fras
 
 .. warning:: Si olvidamos poner la **f** delante del "string" no conseguiremos sustitución de variables.
 
+Podría surgir la duda de cómo incluir llaves dentro de la cadena de texto, teniendo en cuenta que las llaves son símbolos especiales para la interpolación de variables. La respuesta es duplicar las llaves::
+
+    >>> x = 10
+
+    >>> f'The variable is {{ x = {x} }}'
+    'The variable is { x = 10 }'
+
 Formateando cadenas
 -------------------
 
