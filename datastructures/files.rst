@@ -185,6 +185,19 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 .. important:: Para evitar este tipo de **errores**, se debe convertir a ``str`` aquellos valores que queramos usar con la función ``write()`` para escribir información en un fichero de texto.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Dado el fichero :download:`temperatures.txt <files/temperatures.txt>` con 12 filas (meses) y 31 columnas (temperaturas de cada día), se pide:
+
+    1. Leer el fichero de datos.
+    2. Calcular la temperatura media de cada mes.
+    3. Escribir un fichero de salida ``avgtemps.txt`` con 12 filas (*meses*) y la temperatura media de cada mes.
+
+    .. only:: html
+    
+        |solution| :download:`avgtemps.py <files/avgtemps.py>`
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 - `Reading and Writing Files in Python <https://realpython.com/courses/reading-and-writing-files-python/>`_
