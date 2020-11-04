@@ -75,6 +75,54 @@ Para convertir otros tipos de datos en un diccionario podemos usar la función `
     >>> dict([['a', 'b'], ['c', 'd']])
     {'a': 'b', 'c': 'd'}
 
+Diccionario vacío
+=================
+
+Existe una manera particular de usar ``dict()`` y es no pasarle ningún argumento. En este caso estaremos queriendo convertir el *vacío* en un diccionario, con lo que obtendremos un *diccionario vacío*::
+
+    >>> dict()
+    {}
+
+.. tip:: Para crear un diccionario vacío, se suele recomendar el uso de ``{}`` frente a ``dict()``, no sólo por ser más *pitónico* sino por tener (en promedio) un mejor rendimiento en tiempos de ejecución.
+
+Creación con ``dict()``
+=======================
+
+También es posible utilizar la función ``dict()`` para crear dicionarios y no tener que utilizar llaves y comillas:
+
+Supongamos que queremos transformar la siguiente tabla en un diccionario:
+
++-------------+----------------+
+|  Atributo   |     Valor      |
++=============+================+
+|  ``name``   |     Guido      |
++-------------+----------------+
+| ``surname`` | Van Rossum     |
++-------------+----------------+
+| ``job``     | Python creator |
++-------------+----------------+
+
+Utilizando la construcción mediante ``dict`` podemos pasar clave y valor como **argumentos** de la función::
+
+    >>> person = dict(
+    ...     name='Guido',
+    ...     surname='Van Rossum',
+    ...     job='Python creator'
+    ... )
+
+    >>> person
+    {'name': 'Guido', 'surname': 'Van Rossum', 'job': 'Python creator'}
+
+El inconveniente que tiene esta aproximación es que las **claves deben ser identificadores válidos** en Python. Por ejemplo, no se permiten espacios::
+
+    >>> person = dict(
+    ...     name='Guido van Rossum',
+    ...     date of birth='31/01/1956'
+      File "<stdin>", line 3
+        date of birth='31/01/1956'
+              ^
+    SyntaxError: invalid syntax
+
 ****************************
 Operaciones con diccionarios
 ****************************
@@ -170,6 +218,43 @@ Supongamos ahora que queremos **modificar** el significado de la palabra *enjuic
      'montuvio': 'Campesino de la costa',
      'enjuiciar': 'Instruir, juzgar o sentenciar una causa'}
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Construya un diccionario partiendo de una cadena de texto con el siguiente formato:
+
+    ``<city>:<population>;<city>:<population>;<city>:<population>;....``
+
+    - Claves: **ciudades**.
+    - Valores: **habitantes** (*como enteros*).
+
+    **Ejemplo**
+
+    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000; Mumbai:21_357_000;São Paulo:21_297_000``
+    * Salida: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
+    
+    .. only:: html
+    
+        |solution| :download:`cities.py <files/cities.py>`
+
+Creando desde vacío
+-------------------
+
+Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir un diccionario donde las claves son las letras vocales y los valores son sus posiciones::
+
+    >>> vowels = 'aeiou'
+
+    >>> enum_vowels = {}
+
+    >>> for i, vowel in enumerate(vowels):
+    ...     enum_vowels[vowel] = i + 1
+    ...
+
+    >>> enum_vowels
+    {'a': 1, 'e': 2, 'i': 3, 'o': 4, 'u': 5}
+
+.. note:: Hemos utilizando la función ``enumerate()`` que ya vimos para las listas en el apartado: :ref:`datastructures/lists:Iterar usando enumeración`.
+
 Pertenencia de una clave
 ========================
 
@@ -182,6 +267,19 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
     False
 
 .. note:: El operador ``in`` siempre devuelve un valor booleano, es decir, verdadero o falso.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Usando un diccionario, cuente el número de veces que se repite cada letra en una cadena de texto dada.
+
+    **Ejemplo**
+        * Entrada: ``'boom'``
+        * Salida: ``{'b': 1, 'o': 2, 'm': 1}`` 
+
+    .. only:: html
+
+        |solution| :download:`counter.py <files/counter.py>`
 
 Obtener todos los elementos
 ===========================
@@ -275,6 +373,20 @@ En base a :ref:`los elementos que podemos obtener <datastructures/dicts:Obtener 
 
 .. note:: En este último caso, recuerde el uso de los :ref:`datatypes/strings:"f-strings"` para formatear cadenas de texto.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Dado el diccionario de ciudades y poblaciones ya visto, y suponiendo que estas ciudades son las únicas que existen en el planeta, calcule el porcentaje de población relativo de cada una de ellas con respecto al total.
+
+    **Ejemplo**
+
+    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000; Mumbai:21_357_000;São Paulo:21_297_000``
+    * Salida: ``{'Tokyo': 28.952722193544467, 'Delhi': 20.081680988673973, 'Shanghai': 18.58622050830474, 'Mumbai': 16.212461664591746, 'São Paulo': 16.16691464488507}``
+    
+    .. only:: html
+    
+        |solution| :download:`population.py <files/population.py>`
+
 Combinar diccionarios
 =====================
 
@@ -300,6 +412,14 @@ Python ofrece dos mecanismos para realizar esta combinación. Vamos a partir de 
     Mediante el operador ``**``::
 
         >>> {**rae1, **rae2}
+        {'bifronte': 'De dos frentes o dos caras',
+         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
+         'anarcoide': 'Que tiende al desorden',
+         'montuvio': 'Campesino de la costa'}
+
+    A partir de **Python 3.9** podemos utilizar el operador ``|`` para combinar dos diccionarios::
+
+        >>> rae1 | rae2
         {'bifronte': 'De dos frentes o dos caras',
          'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
          'anarcoide': 'Que tiende al desorden',
@@ -398,6 +518,8 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
 Cuidado con las copias
 **********************
 
+|intlev|
+
 Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de la propiedad de *mutabilidad*. Veamos un ejemplo concreto:
 
 .. code-block::
@@ -448,33 +570,38 @@ Una **posible solución** a este problema es hacer una "copia dura". Para ello P
      'anarcoide': 'Que tiende al desorden',
      'montuvio': 'Campesino de la costa'}
 
-***************************
-Construyendo un diccionario
-***************************
+.. tip:: En el caso de que estemos trabajando con diccionarios que contienen elementos mutables, debemos hacer uso de la función ``deepcopy()`` dentro del módulo ``copy`` de la librería estándar.
 
-Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir un diccionario donde las claves son las letras vocales y los valores son sus posiciones::
+****************************
+Diccionarios por comprensión
+****************************
 
-    >>> vowels = 'aeiou'
+|intlev|
 
-    >>> enum_vowels = {}
+De forma análoga a como se escriben las :ref:`listas por comprensión <datastructures/lists:Listas por comprensión>`, podemos aplicar este método a los diccionarios usando llaves ``{`` ``}``.
 
-    >>> for i, vowel in enumerate(vowels):
-    ...     enum_vowels[vowel] = i + 1
-    ...
+Veamos un ejemplo en el que creamos un **diccionario por comprensión** en el que las claves son palabras y los valores son sus longitudes:
 
-    >>> enum_vowels
-    {'a': 1, 'e': 2, 'i': 3, 'o': 4, 'u': 5}
+.. code-block::
+    :emphasize-lines: 3
 
-.. note:: Hemos utilizando la función ``enumerate()`` que ya vimos para las listas en el apartado: :ref:`datastructures/lists:Iterar usando enumeración`.
+    >>> words = ('sun', 'space', 'rocket', 'earth')
 
-.. admonition:: Ejercicio
-    :class: exercise
+    >>> words_length = {word: len(word) for word in words}
 
-    Usando un diccionario, cuente el número de veces que se repite cada letra en una cadena de texto dada.
+    >>> words_length
+    {'sun': 3, 'space': 5, 'rocket': 6, 'earth': 5}
 
-    **Ejemplo**
-        * Entrada: ``'boom'``
-        * Salida: ``{'b': 1, 'o': 2, 'm': 1}`` 
+También podemos aplicar **condiciones** a estas comprensiones. Continuando con el ejemplo anterior podemos incorporar la restricción de sólo incluir palabras que no empiecen por vocal::
+
+    >>> words = ('sun', 'space', 'rocket', 'earth')
+
+    >>> words_length = {w: len(w) for w in words if w[0] not in 'aeiou'}
+
+    >>> words_length
+    {'sun': 3, 'space': 5, 'rocket': 6}
+
+.. note:: Se puede consultar el `PEP-274`_ para ver más ejemplos sobre diccionarios por comprensión.
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -499,3 +626,4 @@ Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e 
 
 .. _Aaron Burden: https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _análisis de complejidad y rendimiento: https://wiki.python.org/moin/TimeComplexity
+.. _PEP-274: https://www.python.org/dev/peps/pep-0274/
