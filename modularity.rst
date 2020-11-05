@@ -12,6 +12,7 @@ En este capítulo veremos las facilidades que nos proporciona Python para trabaj
 
     modularity/functions
     modularity/oop
+    modularity/exceptions
     modularity/modules
 
 
