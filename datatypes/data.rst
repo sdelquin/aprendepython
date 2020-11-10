@@ -286,6 +286,21 @@ La característica de que los nombres de variables sean referencias a objetos en
 
 .. important:: El hecho de que un tipo de datos sea inmutable significa que no podemos modificar su valor "in-situ", pero siempre podremos asignarle un nuevo valor (hacerlo apuntar a otra zona de memoria).
 
+********************
+Funciones "built-in"
+********************
+
+|intlev|
+
+Hemos ido usando una serie de :ref:`funciones <modularity/functions:Funciones>` sin ser especialmente conscientes de ello. Esto se debe a que son funciones "built-in" o incorporadas por defecto en el propio lenguaje Python.
+
+.. csv-table:: Funciones "built-in"
+    :file: tables/builtin-functions.csv
+    :widths: 20, 20, 20, 20, 20
+    :class: longtable
+
+Los detalles de estas funciones se puede consultar en la `documentación oficial de Python <https://docs.python.org/es/3/library/functions.html?highlight=built>`_.
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Basic Data Types in Python <https://realpython.com/courses/python-data-types/>`_
