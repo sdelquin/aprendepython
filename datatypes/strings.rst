@@ -616,6 +616,123 @@ A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variab
     
         |solution| :download:`fstrings.py <files/fstrings.py>`
 
+************
+Casos de uso
+************
+
+|advlev|
+
+Hemos estado usando muchas funciones de objetos tipo "string" (y de otros tipos previamente). Pero quizás no sabemos aún como podemos descubrir todo lo que podemos hacer con ellos y los **casos de uso** que nos ofrece.
+
+Python proporciona una :ref:`función "built-in" <datatypes/data:Funciones "built-in">` llamada ``dir()`` para inspeccionar un determinado tipo de objeto::
+
+    >>> text = 'This is it!'
+
+    >>> dir(text)
+    ['__add__',
+     '__class__',
+     '__contains__',
+     '__delattr__',
+     '__dir__',
+     '__doc__',
+     '__eq__',
+     '__format__',
+     '__ge__',
+     '__getattribute__',
+     '__getitem__',
+     '__getnewargs__',
+     '__gt__',
+     '__hash__',
+     '__init__',
+     '__init_subclass__',
+     '__iter__',
+     '__le__',
+     '__len__',
+     '__lt__',
+     '__mod__',
+     '__mul__',
+     '__ne__',
+     '__new__',
+     '__reduce__',
+     '__reduce_ex__',
+     '__repr__',
+     '__rmod__',
+     '__rmul__',
+     '__setattr__',
+     '__sizeof__',
+     '__str__',
+     '__subclasshook__',
+     'capitalize',
+     'casefold',
+     'center',
+     'count',
+     'encode',
+     'endswith',
+     'expandtabs',
+     'find',
+     'format',
+     'format_map',
+     'index',
+     'isalnum',
+     'isalpha',
+     'isascii',
+     'isdecimal',
+     'isdigit',
+     'isidentifier',
+     'islower',
+     'isnumeric',
+     'isprintable',
+     'isspace',
+     'istitle',
+     'isupper',
+     'join',
+     'ljust',
+     'lower',
+     'lstrip',
+     'maketrans',
+     'partition',
+     'replace',
+     'rfind',
+     'rindex',
+     'rjust',
+     'rpartition',
+     'rsplit',
+     'rstrip',
+     'split',
+     'splitlines',
+     'startswith',
+     'strip',
+     'swapcase',
+     'title',
+     'translate',
+     'upper',
+     'zfill']
+
+Esto es aplicable tanto a variables como a literales e incluso a tipos de datos (clases) explícitos::
+
+    >>> dir(10)
+    ['__abs__',
+     '__add__',
+     '__and__',
+     '__bool__',
+     ...
+     'imag',
+     'numerator',
+     'real',
+     'to_bytes']
+    
+    >>> dir(float)
+    ['__abs__',
+     '__add__',
+     '__bool__',
+     '__class__',
+     ...
+     'hex',
+     'imag',
+     'is_integer',
+     'real']
+
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `A Guide to the Newer Python String Format Techniques <https://realpython.com/python-formatted-output/>`_
