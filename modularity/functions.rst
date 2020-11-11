@@ -641,6 +641,51 @@ Veamos un ejemplo::
     >>> substract(3, 5, True)
     2
 
+Anotación de tipos
+==================
+
+|intlev|
+
+Las anotaciones de tipos [#type-hints]_ se introdujeron en Python 3.5 y permiten indicar tipos para los parámetros de una función así como su valor de retorno (aunque también funcionan en creación de variables).
+
+Veamos un ejemplo en el que creamos una función para dividir una cadena de texto por la posición especificada en el parámetro::
+
+    >>> def ssplit(text: str, split_pos: int) -> tuple:
+    ...     return text[:split_pos], text[split_pos:]
+    ...
+
+    >>> ssplit('Always remember us this way', 15)
+    ('Always remember', ' us this way')
+
+Como se puede observar, vamos añadiendo los tipos después de cada parámetro utilizando ``:`` como separador. En el caso del valor de retorno usamos ``->``
+
+Quizás la siguiente ejecución pueda sorprender::
+
+    >>> ssplit([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5)
+    ([1, 2, 3, 4, 5], [6, 7, 8, 9, 10])
+
+Efectivamente como habrás visto, **no hemos obtenido ningún error**, a pesar de que estamos pasando como primer argumento una lista en vez de una cadena de texto. Esto ocurre porque lo que hemos definido es una anotación de tipo, no una declaración de tipo. Existen herramientas como `mypy`_ que sí se encargan de chequear estas situaciones.
+
+Valores por defecto
+-------------------
+
+Al igual que ocurre en la definición ordinaria de funciones, cuando usamos anotaciones de tipos también podemos indicar un valor por defecto para los parámetros.
+
+Veamos la forma de hacerlo continuando con el ejemplo anterior::
+
+    >>> def ssplit(text: str, split_pos: int = -1) -> tuple:
+    ...     if split_pos == -1:
+    ...         split_pos = len(text) // 2
+    ...     return text[:split_pos], text[split_pos:]
+    ...
+
+    >>> ssplit('Always remember us this way')
+    ('Always rememb', 'er us this way')
+
+Simplemente añadimos el valor por defecto después de indicar el tipo.
+
+.. note:: Las **anotaciones de tipos** son una herramienta muy potente y que, usada de forma adecuada, permite complementar la documentación de nuestro código y aclarar ciertos aspectos, que a priori, pudieran parecer confusos. Su aplicación estará en función de la necesidad detectada por parte del equipo de desarrollo.
+
 ******************
 Tipos de funciones
 ******************
@@ -1354,6 +1399,7 @@ Veamos un ejemplo en el que se muestra el nombre de una función y su documentac
 .. [#blogic] Término para identificar el "algoritmo" o secuencia de instrucciones derivadas del procesamiento que corresponda.
 .. [#docstring-formats] Véase `Docstring Formats`_.
 .. [#functional-programming] Definición de `Programación funcional` en Wikipedia.
+.. [#type-hints] Conocidos como "type hints" en terminología inglesa.
 
 .. --------------- Hyperlinks ---------------
 
@@ -1362,3 +1408,4 @@ Veamos un ejemplo en el que se muestra el nombre de una función y su documentac
 .. _Programación funcional: https://es.wikipedia.org/wiki/Programaci%C3%B3n_funcional
 .. _Modelo de datos: https://docs.python.org/es/3/reference/datamodel.html
 .. _Sucesión de Fibonacci: https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci
+.. _mypy: http://mypy-lang.org/
