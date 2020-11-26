@@ -1,3 +1,6 @@
+.. meta::
+   :property=og:title: Aprende Python
+
 .. include:: README.rst
 
 .. hint:: **"Programming is not about typing, it's about thinking."** -- Rich Hickey

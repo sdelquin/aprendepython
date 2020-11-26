@@ -1,3 +1,6 @@
+.. meta::
+   :property=og:image: https://github.com/sdelquin/aprendepython/raw/master/_static/logo-aprendepython.png
+
 .. role:: beginner-level(strong)
     :class: difficulty-level beginner-level
 

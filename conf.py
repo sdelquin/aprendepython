@@ -80,6 +80,8 @@ html_sidebars = {
 html_css_files = ['custom.css']
 html_js_files = ['custom.js']
 
+html_title = description
+
 # -- Latex configuration ---------------------------------------------------
 
 # xelatex engine & Symbola font allow using emojis (black&white thought)
