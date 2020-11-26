@@ -1,5 +1,6 @@
 .. meta::
-   :property=og:image: https://github.com/sdelquin/aprendepython/raw/master/_static/logo-aprendepython.png
+   :property=og:image: https://raw.githubusercontent.com/sdelquin/aprendepython/master/_static/logo-aprendepython.png
+   :property=og:description: Curso gratuito para aprender el lenguaje de programación Python, incluyendo ejercicios y cobertura para distintos niveles.
 
 .. role:: beginner-level(strong)
     :class: difficulty-level beginner-level
