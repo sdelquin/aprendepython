@@ -4,7 +4,9 @@ Cadenas de texto
 
 .. image:: img/roman-kraft-_Zua2hyvTBk-unsplash.jpg
 
-Los "strings" o cadenas de texto son el primer ejemplo de *secuencia* en Python. En concreto se trata de una **secuencia de caracteres**. Un carácter es la mínima unidad en un sistema de escritura e incluye letras, dígitos, símbolos, signos de puntuación e incluso espacios en blanco o directivas. [#newspaper-unsplash]_
+Las cadenas de texto son **secuencias** de **caracteres**. También se les conoce como "strings" y nos permiten almacenar información textual de forma muy cómoda. [#newspaper-unsplash]_
+
+Es importante destacar que Python 3 almacena los caracteres codificados en el estándar `Unicode`_, lo que es una gran ventaja con respecto a versiones antiguas del lenguaje. Además permite representar una cantidad ingente de símbolos incluyendo los famosos emojis 😎.
 
 *****************
 Creando "strings"
@@ -23,10 +25,14 @@ Para incluir *comillas dobles* dentro de la cadena de texto no hay mayor inconve
 Puede surgir la duda de cómo incluimos *comillas simples* dentro de la propia cadena de texto. Veamos soluciones para ello:
 
 .. code-block::
-    :emphasize-lines: 1, 3
+    :caption: Comillas simples escapadas
 
     >>> 'Los llamados \'strings\' son secuencias de caracteres'
     "Los llamados 'strings' son secuencias de caracteres"
+
+.. code-block::
+    :caption: Comillas simples dentro de comillas dobles
+
     >>> "Los llamados 'strings' son secuencias de caracteres"
     "Los llamados 'strings' son secuencias de caracteres"
 
@@ -47,7 +53,7 @@ Hay una forma alternativa de crear cadenas de texto utilizando *comillas triples
 Cadena vacía
 ============
 
-La cadena vacía es aquella que no tiene caracteres pero es perfectamente válida. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier código. Su representación en Python es la siguiente:
+La cadena vacía es aquella que no contiene ningún caracter. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier código. Su representación en Python es la siguiente:
 
     >>> ''
     ''
@@ -95,7 +101,7 @@ Quizás la *secuencia de escape* más conocida es ``\n`` que representa un *salt
     >>> print(msg)
     Capítulo \ Sección \ Encabezado
 
-.. note:: Es cuando utilizamos la función ``print()`` que vemos el resultado de utilizar los caracteres escapados.
+.. note:: Al utilizar la función ``print()`` es cuando vemos realmente el resultado de utilizar los caracteres escapados.
     
 Expresiones literales
 =====================
@@ -158,18 +164,21 @@ Hemos estado utilizando la función ``print()`` de forma sencilla, pero admite `
 Leer datos desde teclado
 ************************
 
-Los programas se hacen para tener interacción con el usuario. Una de las formas de interacción es solicitar la entrada de datos por teclado. Como muchos otros lenguajes de programación, Python también nos ofrece la posibilidad de leer la información introducida por teclado. Para ello se utiliza la función ``input()``:
+Los programas se hacen para tener interacción con el usuario. Una de las formas de interacción es solicitar la entrada de datos por teclado. Como muchos otros lenguajes de programación, Python también nos ofrece la posibilidad de leer la información introducida por teclado. Para ello se utiliza la función ``input()``::
 
     >>> name = input('Introduzca su nombre: ')
     Introduzca su nombre: Sergio
     >>> name
     'Sergio'
+    >>> type(name)
+    str
+
     >>> age = input('Introduzca su edad: ')
     Introduzca su edad: 41
     >>> age
     '41'
     >>> type(age)
-    <class 'str'>
+    str
 
 .. note:: La función ``input()`` siempre nos devuelve un objeto de tipo cadena de texto o ``str``. Tenerlo muy en cuenta a la hora de trabajar con números, ya que debemos realizar una :ref:`conversión explícita <datatypes/numbers:Conversión explícita>`.
 
@@ -184,6 +193,7 @@ Podemos combinar dos o más cadenas de texto utilizando el operador ``+``::
 
     >>> proverb1 = 'Cuando el río suena'
     >>> proverb2 = 'agua lleva'
+
     >>> proverb1 + proverb2
     'Cuando el río suenaagua lleva'
 
@@ -196,19 +206,20 @@ Repetir cadenas
 Podemos repetir dos o más cadenas de texto utilizando el operador ``*``::
 
     >>> reaction = 'Wow'
+
     >>> reaction * 4
     'WowWowWowWow'
 
 Obtener un caracter
 ===================
 
-Los "strings" están **indexados** y cada caracter tiene su posición propia. Para obtener un único caracter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
+Los "strings" están **indexados** y cada caracter tiene su propia posición. Para obtener un único caracter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
 
 .. figure:: img/string-indexing.png
 
    Indexado de una cadena de texto
 
-Veamos algunos ejemplos de acceso a caracteres:
+Veamos algunos ejemplos de acceso a caracteres::
 
     >>> sentence = 'Hola, Mundo'
 
@@ -221,18 +232,18 @@ Veamos algunos ejemplos de acceso a caracteres:
     >>> sentence[-5]
     'M'
 
-.. note:: Nótese que existen tanto **índices positivos** como **índices negativos** para acceder a cada caracter de la cadena de texto. A priori puede parecer redundante, pero es muy útil para determinados casos.
+.. tip:: Nótese que existen tanto **índices positivos** como **índices negativos** para acceder a cada caracter de la cadena de texto. A priori puede parecer redundante, pero es muy útil en determinados casos.
 
 En caso de que intentemos acceder a un índice que no existe, obtendremos un error por *fuera de rango*:
 
-    >>> sentence[100]
+    >>> sentence[50]
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     IndexError: string index out of range
 
 .. warning:: Téngase en cuenta que el indexado de una cadena de texto siempre empieza en **0** y termina en **una unidad menos de la longitud** de la cadena.
 
-Las cadenas de texto son tipos de datos **inmutables**. Es por ello que no podemos modificar un caracter directamente::
+Las cadenas de texto son tipos de datos :ref:`inmutables <datatypes/data:Mutabilidad>`. Es por ello que no podemos modificar un caracter directamente::
 
     >>> song = 'Hey Jude'
 
@@ -241,12 +252,12 @@ Las cadenas de texto son tipos de datos **inmutables**. Es por ello que no podem
       File "<stdin>", line 1, in <module>
     TypeError: 'str' object does not support item assignment
 
-.. tip:: Existen formas de modificar una cadena de texto que veremos más adelante, aunque realmente no estemos transformando el original sino que se crea un nuevo objeto con las modificaciones.
+.. tip:: Existen formas de modificar una cadena de texto que veremos más adelante, aunque realmente no estemos transformando el original sino creando un nuevo objeto con las modificaciones.
 
 Trocear una cadena
 ==================
 
-Es posible extraer "trozos" ("rebanadas") de una cadena de texto [#slice]_. Tenemos varias aproximaciones a ello:
+Es posible extraer "trozos" ("rebanadas") de una cadena de texto [#slice]_. Tenemos varias aproximaciones para ello:
 
 ``[:]``
     Extrae la secuencia entera desde el comienzo hasta el final. Es una especia de **copia** de toda la cadena de texto.
@@ -265,12 +276,16 @@ Veamos la aplicación de cada uno de estos accesos a través de un ejemplo::
 
     >>> proverb[:]
     'Agua pasada no mueve molino'
+
     >>> proverb[12:]
     'no mueve molino'
+
     >>> proverb[:11]
     'Agua pasada'
+
     >>> proverb[5:11]
     'pasada'
+
     >>> proverb[5:11:2]
     'psd'
 
@@ -279,11 +294,12 @@ Veamos la aplicación de cada uno de estos accesos a través de un ejemplo::
 Longitud de una cadena
 ======================
 
-Para obtener la longitud de una cadena podemos hacer uso de ``len()`` que es una de las funciones "built-in" [#built-in]_ que ofrece Python::
+Para obtener la longitud de una cadena podemos hacer uso de ``len()``, una función común a prácticamente todos los tipos y estructuras de datos en Python::
 
     >>> proberb = 'Lo cortés no quita lo valiente'
     >>> len(proverb)
     27
+
     >>> empty = ''
     >>> len(empty)
     0
@@ -291,18 +307,24 @@ Para obtener la longitud de una cadena podemos hacer uso de ``len()`` que es una
 Dividir una cadena
 ==================
 
-A contrario que ``len()`` algunas funciones son específicas de "strings". Para usar una función de cadena es necesario escribir el nombre del "string", un punto y el nombre de la función, pasando cualquier *argumento* necesario::
+Una tarea muy común al trabajar con cadenas de texto es dividirlas por algún tipo de *separador*. En este sentido, Python nos ofrece la función ``split()``, que debemos usar anteponiendo el "string" que queramos dividir::
 
     >>> proverb = 'No hay mal que por bien no venga'
     >>> proverb.split()
     ['No', 'hay', 'mal', 'que', 'por', 'bien', 'no', 'venga']
+
     >>> tools = 'Martillo,Sierra,Destornillador'
     >>> tools.split(',')
     ['Martillo', 'Sierra', 'Destornillador']
 
 .. note:: Si no se especifica un separador, ``split()`` usa por defecto cualquier secuencia de espacios en blanco, tabuladores y saltos de línea.
 
-Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una **lista** (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original.
+Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <datastructures/lists:Listas>` (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original::
+
+    >>> game = 'piedra-papel-tijera'
+
+    >>> type(game.split())
+    list
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -320,21 +342,29 @@ Limpiar cadenas
 
 Cuando leemos datos del usuario o de cualquier fuente externa de información, es bastante probable que se incluyan en esas cadenas de texto, *caracteres de relleno* [#padding]_ al comienzo y al final. Python nos ofrece la posibilidad de eliminar estos caracteres u otros que no nos interesen.
 
-La función ``strip()`` se utiliza para eliminar caracteres del principio y final del "string". También existen variantes de esta función para aplicarla únicamente al comienzo o al final de la cadena de texto:
+La función ``strip()`` se utiliza para eliminar caracteres del principio y final del "string". También existen variantes de esta función para aplicarla únicamente al comienzo o únicamente al final de la cadena de texto.
 
 Supongamos que debemos procesar un fichero con números de serie de un determinado artículo. Cada línea contiene el valor que nos interesa pero se han "colado" ciertos caracteres de relleno que debemos limpiar::
 
     >>> serial_number = '\n\t   \n 48374983274832    \n\n\t   \t   \n'
+
     >>> serial_number.strip()
     '48374983274832'
 
 .. note:: Si no se especifican los caracteres a eliminar, ``strip()`` usa por defecto cualquier combinación de *espacios en blanco*, *saltos de línea* ``\n`` y *tabuladores* ``\t``.
 
-A continuación vamos a hacer "limpieza" por la izquierda (*comienzo*) y por la derecha (*final*) utilizando la función ``lstrip()`` y ``rstrip()`` respectivamente::
+A continuación vamos a hacer "limpieza" por la izquierda (*comienzo*) y por la derecha (*final*) utilizando la función ``lstrip()`` y ``rstrip()`` respectivamente:
 
-    >>> serial_number.lstrip()  # left strip
+.. code-block::
+    :caption: "Left strip"
+
+    >>> serial_number.lstrip()
     '48374983274832    \n\n\t   \t   \n'
-    >>> serial_number.rstrip()  # right strip
+
+.. code-block::
+    :caption: "Right strip"
+
+    >>> serial_number.rstrip()
     '\n\t   \n 48374983274832'
 
 Como habíamos comentado, también existe la posibilidad de especificar los caracteres que queremos borrar::
@@ -360,6 +390,7 @@ Comprobar si una cadena de texto **empieza o termina por alguna subcadena**::
 
     >>> lyrics.startswith('Quizás')
     True
+
     >>> lyrics.endswith('Final')
     False
 
@@ -367,6 +398,7 @@ Encontrar la **primera ocurrencia** de alguna subcadena::
 
     >>> lyrics.find('amor')
     93
+
     >>> lyrics.index('amor')
     93
 
@@ -374,18 +406,20 @@ Tanto ``find()`` como ``index()`` devuelven el **índice** de la primera ocurren
 
     >>> lyrics.find('universo')
     -1
+
     >>> lyrics.index('universo')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     ValueError: substring not found
-    >>>
 
 Contabilizar el **número de veces que aparece** una subcadena::
 
     >>> lyrics.count('mi')
     2
+
     >>> lyrics.count('tu')
     3
+
     >>> lyrics.count('él')
     0
 
@@ -446,6 +480,47 @@ Python nos permite realizar variaciones en los caracteres de una cadena de texto
     
     >>> proverb.swapcase()
     'QUIEN A BUEN ÁRBOL SE ARRIMA bUENA sOMBRA LE COBIJA'
+
+Identificando caracteres
+========================
+
+Hay veces que recibimos información textual de distintas fuentes de las que necesitamos identificar qué tipo de caracteres contienen. Para ello Python nos ofrece un grupo de funciones.
+
+Veamos **algunas** de estas funciones:
+
+.. code-block::
+    :caption: Detectar si todos los caracteres son letras o números
+
+    >>> 'R2D2'.isalnum()
+    True
+    >>> 'C3-PO'.isalnum()
+    False
+
+.. code-block::
+    :caption: Detectar si todos los caracteres son números
+
+    >>> '314'.isnumeric()
+    True
+    >>> '3.14'.isnumeric()
+    False
+
+.. code-block::
+    :caption: Detectar si todos los caracteres son letras
+
+    >>> 'abc'.isalpha()
+    True
+    >>> 'a-b-c'.isalpha()
+    False
+
+.. code-block::
+    :caption: Detectar mayúsculas/minúsculas
+
+    >>> 'BIG'.isupper()
+    True
+    >>> 'small'.islower()
+    True
+    >>> 'First Heading'.istitle()
+    True
 
 ************************
 Interpolación de cadenas
@@ -518,6 +593,7 @@ Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: an
 .. code-block::
 
     >>> value = 0b10010011
+
     >>> f'{value}'
     '147'
     >>> f'{value:b}'
@@ -753,7 +829,6 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 
 .. [#newspaper-unsplash] Foto original de portada por `Roman Kraft`_ en Unsplash.
 .. [#slice] El término usado en inglés es *slice*.
-.. [#built-in] Término inglés para referirse a algo que ya está incorporado por defecto con el lenguaje de programación.
 .. [#padding] Se suele utilizar el término inglés "padding" para referirse a estos caracteres.
 .. [#best-fstrings] Escrito por Nirant Kasliwal en Medium.
 .. [#tenerife-sea] "Tenerife Sea" por Ed Sheeran.
@@ -763,3 +838,4 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Roman Kraft: https://unsplash.com/@romankraft?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _Mediterráneo: https://open.spotify.com/track/7Bewui7KtaMzROeteRitRz?si=NGwOUmwfRSuapY3JL7s1uQ
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
+.. _Unicode: https://es.wikipedia.org/wiki/Unicode

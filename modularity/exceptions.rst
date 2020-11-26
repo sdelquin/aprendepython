@@ -4,9 +4,9 @@ Excepciones
 
 .. image:: img/sarah-kilian-52jRtc2S_VE-unsplash.jpg
 
-Una **excepción** es el código que se ejecuta cuando se produce un **error** en nuestro programa Python durante la fase de ejecución. [#icecream-unsplash]_
+Una **excepción** es el bloque de código que se lanza cuando se produce un **error** en la ejecución de un programa Python. [#icecream-unsplash]_
 
-De hecho ya hemos visto algunas de estas excepciones: accesos fuera de rango a listas o tuplas, accesos a claves inexistentes en diccionarios, etc. Cuando ejecutamos código que podría fallar bajo ciertas circunstancias necesitamos también manejar las excepciones de manera adecuada.
+De hecho ya hemos visto algunas de estas excepciones: accesos fuera de rango a listas o tuplas, accesos a claves inexistentes en diccionarios, etc. Cuando ejecutamos código que podría fallar bajo ciertas circunstancias, necesitamos también manejar, de manera adecuada, las excepciones que se generan.
 
 *****************
 Manejando errores
@@ -14,59 +14,59 @@ Manejando errores
 
 Si una excepción ocurre en algún lugar de nuestro programa y no es capturada en ese punto, va subiendo (burbujeando) hasta que es capturada en alguna función que ha hecho la llamada. Si en toda la "pila" de llamadas no existe un control de la excepción, Python muestra un mensaje de error con información adicional::
 
-    >>> short_list = ['a', 'b', 'c']
+    >>> def intdiv(a, b):
+    ...     return a // b
+    ...
 
-    >>> short_list[5]
+    >>> intdiv(3, 0)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    IndexError: list index out of range
+      File "<stdin>", line 2, in intdiv
+    ZeroDivisionError: integer division or modulo by zero
 
 Para manejar (capturar) las excepciones podemos usar un bloque de código con las palabras reservadas ``try`` and ``except``::
 
-    >>> short_list = ['a', 'b', 'c']
-    >>> position = 5
-
-    >>> try:
-    ...     short_list[position]
-    ... except:
-    ...     print(f'Need a position between 0 and {len(short_list) - 1} but got {position}')
+    >>> def intdiv(a, b):
+    ...     try:
+    ...         return a // b
+    ...     except:
+    ...         print('Please do not divide by zero...')
     ...
-    Need a position between 0 and 2 but got 5
 
-El código que está dentro del bloque ``try`` se ejecuta, si hay un error se "levanta" una excepción y se ejecuta el código que está dentro del bloque ``except``. En caso de que no hayan errores no se ejecuta el bloque ``except``.
+    >>> intdiv(3, 0)
+    Please do not divide by zero...
+
+Aquel código que se encuentre dentro del bloque ``try`` se ejecutará normalmente siempre y cuando no haya un error. Si se produce una excepción, ésta será capturada por el bloque ``except``, ejecutándose el código que contiene.
 
 .. hint:: No es una buena práctica usar un bloque ``except`` sin indicar el **tipo de excepción** que estamos gestionando, no sólo porque puedan existir varias excepciones que capturar sino porque, como dice el :ref:`Zen de Python <introduction/python:Zen de Python>`: "explícito" es mejor que "implícito".
 
 Especificando excepciones
 =========================
 
-En el siguiente ejemplo mejoraremos el código anterior capturando, en primer lugar ``IndexError`` y luego capturando cualquier otra excepción que se pueda producir::
+En el siguiente ejemplo mejoraremos el código anterior, capturando distintos tipos de excepciones:
 
-    >>> short_list = ['a', 'b', 'c']
+- ``TypeError`` por si los operandos no permiten la división.
+- ``ZeroDivisionError`` por si el denominador es cero.
+- ``Exception`` para cualquier otro error que se pueda producir.
 
-    >>> while True:
-    ...     value = input('Position [q to quit]? ')
-    ...     if value == 'q':
-    ...         break
+Veamos su implementación::
+
+    >>> def intdiv(a, b):
     ...     try:
-    ...         position = int(value)
-    ...         print(short_list[position])
-    ...     except IndexError as err:
-    ...         print('Bad index:', position)
-    ...     except Exception as other:
-    ...         print('Something else broke:', other)
+    ...         result = a // b
+    ...     except TypeError:
+    ...         print('Check operands. Some of them seems strange...')
+    ...     except ZeroDivisionError:
+    ...         print('Please do not divide by zero...')
+    ...     except Exception:
+    ...         print('Ups. Something went wrong...')
     ...
-    Position [q to quit]? 0
-    a
-    Position [q to quit]? 1
-    b
-    Position [q to quit]? 2
-    c
-    Position [q to quit]? 100
-    Bad index: 100
-    Position [q to quit]? ciao
-    Something else broke: invalid literal for int() with base 10: 'ciao'
-    Position [q to quit]? q
+
+    >>> intdiv(3, 0)
+    Please do not divide by zero...
+
+    >>> intdiv(3, '0')
+    Check operands. Some of them seems strange...
 
 *******************
 Excepciones propias
@@ -74,58 +74,59 @@ Excepciones propias
 
 |advlev|
 
-Todas las excepciones que hemos visto hasta ahora estaban ya predefinidas en el propio lenguaje o en la librería estándar. Pero es posible crear **excepciones propias** para manejar situaciones especiales que podrían producirse en nuestro código.
+Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello tendremos que crear una clase :ref:`heredando <modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
 
-Para crear una excepción propia debemos crear una clase que herede de ``Exception``. En principio, valdría con una clase vacía.
+Veamos un ejemplo en el que creamos una excepción propia controlando que el valor sea un número entero::
 
-Veamos un ejemplo en el que crearemos una excepción propia controlando que una cadena de texto esté escrita en mayúsculas::
-
-    >>> class UppercaseException(Exception):
+    >>> class NotIntError(Exception):
     ...     pass
     ...
 
-    >>> words = ['chocolate', 'milk', 'TEA', 'water']
+    >>> values = (4, 7, 2.11, 9)
 
-    >>> for word in words:
-    ...     if word.isupper():
-    ...         raise UppercaseException(word)
+    >>> for value in values:
+    ...     if not isinstance(value, int):
+    ...         raise NotIntError(value)
     ...
     Traceback (most recent call last):
       File "<stdin>", line 3, in <module>
-    __main__.UppercaseException: TEA
+    __main__.NotIntError: 2.11
 
 Hemos usado la sentencia ``raise`` para "elevar" esta excepción, que podría ser controlada en un nivel superior mediante un bloque ``try`` - ``except``.
+
+.. note:: Para crear una excepción propia basta con crear una clase vacía. No es necesario incluir código más allá de un ``pass``.
 
 Mensaje personalizado
 =====================
 
 Podemos personalizar la excepción añadiendo un mensaje más informativo. Siguiendo el ejemplo anterior, veamos cómo introducimos esta información::
 
-    >>> class UppercaseException(Exception):
-    ...     def __init__(self, message='Uppercase means shout. Please do not use it!'):
-    ...         super().__init__(message)
+    >>> class NotIntError(Exception):
+    ...     def __init__(self, message='This module only works with integers. Sorry!'):
+    ...             super().__init__(message)
     ...
 
-    >>> raise UppercaseException()
+    >>> raise NotIntError()
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    __main__.UppercaseException: Uppercase means shout. Please do not use it!
+    __main__.NotIntError: This module only works with integers. Sorry!
 
-Podemos ir un paso más allá e incorporar en el mensaje la propia cadena de texto que está generando el error::
+Podemos ir un paso más allá e incorporar en el mensaje el propio valor que está generando el error::
 
-    >>> class UppercaseException(Exception):
-    ...     def __init__(self, word, message='Uppercase means shout. Please do not use it!'):
-    ...         self.word = word
+    >>> class NotIntError(Exception):
+    ...     def __init__(self, value, message='This module only works with integers. Sorry!'):
+    ...         self.value = value
     ...         self.message = message
     ...         super().__init__(self.message)
     ...
     ...     def __str__(self):
-    ...         return f'{self.word} -> {self.message}'
+    ...         return f'{self.value} -> {self.message}'
     ...
-    >>> raise UppercaseException('TEA')
+
+    >>> raise NotIntError(2.11)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    __main__.UppercaseException: TEA -> Uppercase means shout. Please do not use it!
+    __main__.NotIntError: 2.11 -> This module only works with integers. Sorry!
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -142,3 +143,4 @@ Podemos ir un paso más allá e incorporar en el mensaje la propia cadena de tex
 .. --------------- Hyperlinks ---------------
 
 .. _Sarah Kilian: https://unsplash.com/@rojekilian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+.. _excepciones predefinidas: https://docs.python.org/es/3/library/exceptions.html

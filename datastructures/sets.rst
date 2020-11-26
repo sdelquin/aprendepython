@@ -4,7 +4,7 @@ Conjuntos
 
 .. image:: img/duy-pham-Cecb0_8Hx-o-unsplash.jpg
 
-Un **conjunto** en Python se representa por una serie de **valores únicos** y **sin orden establecido**. Lo podríamos ver como un diccionario al que le hemos quitado los valores y nos hemos quedado sólo con las claves. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
+Un **conjunto** en Python representa una serie de **valores únicos** y **sin orden establecido**, con la única restricción de que sus elementos deben ser :ref:`"hashables" <datastructures/dicts:Objetos "hashables">`. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
 
 *****************
 Creando conjuntos
@@ -67,12 +67,12 @@ Obtener un elemento
 
 En un conjunto no existe un orden establecido para sus elementos, por lo cual **no podemos acceder a un elemento en concreto**. 
 
-De este hecho se deriva igualmente que *no podemos modificar un elemento existente*, ya que no podemos acceder a él. Python sí nos permite añadir o borrar elementos de un conjunto.
+De este hecho se deriva igualmente que *no podemos modificar un elemento existente*, ya que no podamos acceder a él. Python sí nos permite añadir o borrar elementos de un conjunto.
 
 Añadir un elemento
 ==================
 
-Para añadir un elemento a un conjunto debemos utilizar la función ``add()``. Como ya hemos indicado, al no importar el orden dentro del conjunto, la inserción no establece a priori la posición dónde se realizará.
+Para añadir un elemento a un conjunto debemos utilizar la función ``add()``. Como ya hemos indicado, al no importar el orden dentro del conjunto, la inserción no establece a priori la posición donde se realizará.
 
 A modo de ejemplo, vamos a partir de un conjunto que representa a los cuatro integrantes originales de *The Beatles*. Luego añadiremos a un nuevo componente:  
 
@@ -121,7 +121,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Borrar elementos
 ================
 
-Para borrar un elemento de un conjunto podemos utilizar la función ``remove()``. Siguiendo con el ejemplo anterior vamos a borrar al último "beatle" añadido::
+Para borrar un elemento de un conjunto podemos utilizar la función ``remove()``. Siguiendo con el ejemplo anterior, vamos a borrar al último "beatle" añadido::
 
     >>> beatles
     {'Best', 'Harrison', 'Lennon', 'McCartney', 'Starr'}
@@ -235,7 +235,7 @@ Conjuntos por comprensión
 
 Los conjuntos, al igual que las listas y los diccionarios, también se pueden crear por comprensión.
 
-Veamos un ejemplo en el que creamos un conjunto con los múltiplos de 3 en el rango :math:`[0, 20)`::
+Veamos un ejemplo en el que creamos un conjunto por comprensión con los enteros múltiplos de 3 en el rango :math:`[0, 20)`::
 
     >>> m3 = {number for number in range(0, 20) if number % 3 == 0}
 
@@ -262,16 +262,20 @@ Veamos un ejemplo en el que creamos un conjunto con los múltiplos de 3 en el ra
 Conjuntos inmutables
 ********************
 
-Python ofrece la posibilidad de crear **conjuntos inmutables** haciendo uso de la función ``frozenset()`` que recibe cualquier iterable como argumento::
+Python ofrece la posibilidad de crear **conjuntos inmutables** haciendo uso de la función ``frozenset()`` que recibe cualquier iterable como argumento.
 
-    >>> fs = frozenset([3, 2, 1])
+Supongamos que recibimos una serie de calificaciones de exámenes y queremos crear un conjunto inmutable con los posibles niveles (categorías) de calificaciones::
 
-    >>> fs
-    frozenset({1, 2, 3})
+    >>> marks = [1, 3, 2, 3, 1, 4, 2, 4, 5, 2, 5, 5, 3, 1, 4]
+
+    >>> marks_levels = frozenset(marks)
+
+    >>> marks_levels
+    frozenset({1, 2, 3, 4, 5})
 
 Veamos qué ocurre si intentamos modificar este conjunto::
 
-    >>> fs.add(4)
+    >>> marks_levels.add(50)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     AttributeError: 'frozenset' object has no attribute 'add'

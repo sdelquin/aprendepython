@@ -4,7 +4,9 @@ Módulos
 
 .. image:: img/xavi-cabrera-kn-UmDZQDjM-unsplash.jpg
 
-Es una certeza que, antes o después, usaremos código Python en más de un fichero. Un **módulo** es simplemente un fichero con código Python. No se necesita hacer nada especial. Cualquier código Python se puede usar como un módulo en código de terceros. [#lego-unsplash]_
+Escribir pequeños trozos de código puede resultar interesante para realizar determinadas pruebas. Pero a la larga, nuestros programas tenderán a crecer y será necesario agrupar el código en unidades manejables.
+
+Los **módulos** son simplemente ficheros de texto que contienen código Python y representan unidades con las que *evitar la repetición* y *favorecer la reutilización*. [#lego-unsplash]_
 
 ******************
 Importar un módulo
@@ -37,7 +39,7 @@ Desde otro fichero haríamos lo siguiente para importar todo el contenido del m�
     >>> arith.addere(3, 7)
     10
 
-.. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el **espacio de nombres** que define el módulo ``arith``.
+.. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el :ref:`espacio de nombres <modularity/functions:Espacios de nombres>` que define el módulo ``arith``.
 
 Importar partes de un módulo
 ============================
@@ -55,13 +57,28 @@ Es posible que no necesitemos todo aquello que está definido en ``arith.py``. S
 
 .. note:: Nótese que en la **línea 3** ya podemos hacer uso directamente de la función ``partitus()`` porque la hemos importado directamente. Este esquema tiene el inconveniente de la posible **colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando.
 
+Importar usando un alias
+========================
+
+Hay ocasiones en las que interesa, por colisión de otros nombres o por mejorar la legibilidad, usar un nombre diferente del módulo que estamos importando. Python nos ofrece esta posibilidad a través de la sentencias ``as``.
+
+Supongamos que queremos importar la función del ejemplo anterior pero con otro nombre:
+
+.. code-block::
+    :emphasize-lines: 1
+
+    >>> from arith import partitus as mydivision
+
+    >>> mydivision(5, 2)
+    2.5
+
 ********
 Paquetes
 ********
 
 Un **paquete** es simplemente una carpeta que contiene ficheros ``.py``. Además permite tener una jerarquía con más de un nivel de subcarpetas anidadas.
 
-Para ejemplificar vamos a crear un paquete llamado ``mymath`` que contendrá 2 módulos:
+Para ejemplificar este modelo vamos a crear un paquete llamado ``mymath`` que contendrá 2 módulos:
 
 * :download:`arith.py <files/mymath/arith.py>` para operaciones aritméticas (ya visto :ref:`anteriormente <modularity/modules:Importar un módulo>`).
 * :download:`logic.py <files/mymath/logic.py>` para operaciones lógicas.
@@ -124,7 +141,7 @@ Si ya estamos en el fichero ``main.py`` (o a ese nivel) podremos hacer uso de nu
 Programa principal
 ******************
 
-Cuando decidimos hacer una pieza de software en Python, normalmente usamos distintos ficheros para ello. Algunos de esos ficheros se convertirán en *módulos*, otros se englobarán en *paquetes* y existirá uno en concreto que será nuestro **punto de entrada**, también llamado **programa principal**.
+Cuando decidimos desarrollar una pieza de software en Python, normalmente usamos distintos ficheros para ello. Algunos de esos ficheros se convertirán en *módulos*, otros se englobarán en *paquetes* y existirá uno en concreto que será nuestro **punto de entrada**, también llamado **programa principal**.
 
 .. hint:: Suele ser una buena práctica llamar ``main.py`` al fichero que contiene nuestro programa principal.
 

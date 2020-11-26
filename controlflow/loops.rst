@@ -10,33 +10,33 @@ Cuando queremos hacer algo más de una vez, necesitamos recurrir a un **bucle**.
 La sentencia ``while``
 **********************
 
-El mecanismo más sencillo en Python para repetir instrucciones es mediante la sentencia ``while``. El mensaje que podemos interpretar tras esta sentencia es: "Mientras se cumpla la condición haz algo". Veamos un sencillo bucle que muestra por pantalla los números del 1 al 5::
+El primer mecanismo que existe en Python para repetir instrucciones es usar la sentencia ``while``. El mensaje que podemos interpretar tras esta sentencia es: "Mientras se cumpla la condición haz algo". Veamos un sencillo bucle que muestra por pantalla los números del 1 al 4::
 
-    >>> count = 1
+    >>> value = 1
 
-    >>> while count <= 5:
-    ...     print(count)
-    ...     count += 1
+    >>> while value <= 4:
+    ...     print(value)
+    ...     value += 1
     ...
     1
     2
     3
     4
-    5
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/dfeqTCZ
+    https://cutt.ly/RgM2HYn
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="330" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=count%20%3D%201%0A%0Awhile%20count%20%3C%3D%205%3A%0A%20%20%20%20print%28count%29%0A%20%20%20%20count%20%2B%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="330" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=value%20%3D%201%0A%0Awhile%20value%20%3C%3D%204%3A%0A%20%20%20%20print%28value%29%0A%20%20%20%20value%20%2B%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
-La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``count`` sea menor o igual que 5. Dentro del cuerpo del bucle estamos incrementando esa variable en 1 unidad.
+
+La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``value`` sea menor o igual que 4. Dentro del cuerpo del bucle estamos incrementando esa variable en 1 unidad.
 
 Romper un bucle while
 =====================
@@ -111,7 +111,7 @@ Continuar un bucle
 
 |intlev|
 
-Hay veces que no queremos romper un bucle sino simplemente **saltar adelante hacia la siguiente repetición**. Para ello Python nos ofrece la sentencia ``continue`` que hace precisamente eso, descartar el resto del código del bucle y saltar a la siguiente iteración.
+Hay situaciones en las que, en vez de romper un bucle, nos interesa **saltar adelante hacia la siguiente repetición**. Para ello Python nos ofrece la sentencia ``continue`` que hace precisamente eso, descartar el resto del código del bucle y saltar a la siguiente iteración.
 
 Veamos un ejemplo en el que usaremos esta estrategia para mostrar todos los números en el rango :math:`[1, 20]` ignorando aquellos que sean múltiplos de 3:
 
@@ -150,16 +150,12 @@ Si no establecemos bien la **condición de parada** o bien el valor de alguna va
     >>> while num != 10:
     ...     num += 2
     ...
-    ^C---------------------------------------------------------------------------
-    KeyboardInterrupt                         Traceback (most recent call last)
-    <ipython-input-59-f6cb5d82e006> in <module>
-          1 while num != 10:
-    ----> 2     num += 2
-          3
+    # CTRL-C
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    KeyboardInterrupt
 
-    KeyboardInterrupt:
-
-El problema que surje es que la variable ``num`` toma los valores ``1, 3, 5, 7, 9, 11, ...`` por lo que nunca se cumple la condición del bucle. Esto hace que repitamos eternamente la instrucción de incremento.
+El problema que surje es que la variable ``num`` toma los valores ``1, 3, 5, 7, 9, 11, ...`` por lo que nunca se cumple la condición del bucle. Esto hace que repitamos "eternamente" la instrucción de incremento.
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
@@ -239,7 +235,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
-.. note:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener cualquier nombre. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
+.. note:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
 
 Romper un bucle for
 ===================
@@ -286,14 +282,18 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         |solution| :download:`num_vowels.py <files/num_vowels.py>`    
 
-Generar secuencias de números
-=============================
+Secuencias de números
+=====================
 
-La función ``range()`` devuelve un *flujo de números* en el rango especificado, sin necesidad de crear y almacenar previamente una larga estructura de datos. Esto permite generar rangos enormes sin consumir toda la *memoria* del sistema.
+Es muy habitual hacer uso de secuencias de números en bucles. Python no tiene una instrucción específica para ello. Lo que sí aporta es una función ``range()`` que devuelve un *flujo de números* en el rango especificado. Una de las grandes ventajas es que la "lista" generada no se construye explícitamente, sino que cada valor se genera bajo demanda. Esta técnica mejora el consumo de recursos, especialmente en términos de memoria.
 
-El uso de ``range()`` es similar a los :ref:`"slices" <datatypes/strings:Trocear una cadena>`: ``range(start, stop, step)``. Podemos omitir ``start`` y el rango empezaría en 0. El único valor requerido es ``stop`` y el último valor generado será justo el anterior a este. El valor por defecto de ``step`` es 1, pero se puede ir "hacia detrás" con -1.
+La técnica para la generación de secuencias de números es muy similar a la utilizada en los :ref:`"slices" <datatypes/strings:Trocear una cadena>` de cadenas de texto. En este caso disponemos de la función ``range(start, stop, step)``:
 
-``range()`` devuelve un *objeto iterable*, así que necesitamos obtener los valores paso a paso con una sentencia ``for ... in`` [#convert-list]_. Veamos diferentes ejemplos de uso:
+- ``start`` es *opcional* y tiene valor por defecto **0**.
+- ``stop`` es *obligatorio*.
+- ``step`` es *opcional* y tiene valor por defecto **1**.
+
+``range()`` devuelve un *objeto iterable*, así que iremos obteniendo los valores paso a paso con una sentencia ``for ... in`` [#convert-list]_. Veamos diferentes ejemplos de uso:
 
 **Rango:** :math:`[0, 1, 2]`
     ::

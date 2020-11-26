@@ -22,22 +22,22 @@ A diferencia de otros lenguajes que utilizan llaves para definir los bloques de 
 Comentarios
 ***********
 
-Un *comentario* es un trozo de texto en tu programa que es ignorado por el intérprete de Python. Se pueden usar para aclarar líneas de código adyacentes, para dejar notas recordatorias o cualquier otro propósito.
+Los comentarios son anotaciones que podemos incluir en nuestros programa y que nos permiten aclarar ciertos aspectos del código. Estas indicaciones son ignoradas por el intérprete de Python.
 
-Los comentarios se inician con el símbolo almohadilla ``#`` y desde ese punto hasta el final de la línea es parte del comentario:
+Los comentarios se incluyen usando el símbolo almohadilla ``#`` y comprenden hasta el final de la línea.
 
 .. code-block::
     :caption: Comentario de bloque
 
-    # 60 sec/min * 60 min/hr * 24 hr/day
-    seconds_per_day = 86400
+    # Universe age expressed in days
+    universe_age = 13800 * (10 ** 6) * 365
 
 Los comentarios también pueden aparecer en la misma línea de código, aunque `la guía de estilo de Python <https://www.python.org/dev/peps/pep-0008/#inline-comments>`__ no aconseja usarlos en demasía:
 
 .. code-block::
     :caption: Comentario en línea
 
-    stock = 0   # Liberar productos adicionales
+    stock = 0   # Release additional articles
 
 ****************
 Ancho del código
@@ -166,15 +166,15 @@ Cuando escribimos condiciones debemos incluir alguna expresión de comparación.
 
 A continuación vamos a ver una serie de ejemplos con expresiones de comparación. Téngase en cuenta que estas expresiones habría que incluirlas dentro de la sentencia condicional en el caso de que quisiéramos tomar una acción concreta::
 
-    >>> value = 7
+    >>> value = 8
 
-    >>> value == 5
+    >>> value == 4
     False
 
-    >>> value == 7
+    >>> value == 8
     True
 
-    >>> 5 < value
+    >>> 4 < value
     True
 
     >>> value < 10
@@ -191,18 +191,18 @@ Podemos escribir condiciones más complejas usando los **operadores lógicos**:
 
 .. code-block::
 
-    >>> (5 < value) or (value > 10)
+    >>> (4 < value) or (value > 9)
     True
 
-    >>> (5 < value) and (not (value > 10))
+    >>> (4 < value) and (not (value > 9))
     True
 
-    >>> (5 > value) and (value < 10)
+    >>> (4 > value) and (value < 9)
     True
 
 Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa. Así, por ejemplo, para descubrir si ``value`` está entre *5* y *10* haríamos::
 
-    >>> 5 < value < 10
+    >>> 4 < value < 9
     True
 
 .. note::
@@ -293,32 +293,35 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
     
         |solution| :download:`marvel.py <files/marvel.py>`
 
-``None`` es útil
-================
+Valor nulo
+==========
 
 |intlev|
 
-``None`` es un valor especial de Python que almacena el **valor nulo** [#none]_. No es lo mismo que ``False``, aunque lo parezca cuando lo evaluamos como booleano::
+``None`` es un valor especial de Python que almacena el **valor nulo** [#none]_. Veamos cómo se comporta al incorporarlo en condiciones de veracidad::
 
-    >>> thing = None
+    >>> value = None
 
-    >>> if thing:
-    ...     print("It's some thing")
+    >>> if value:
+    ...     print('Value has some useful value')
     ... else:
-    ...     print("It's no thing")
+    ...     print('Value seems to be void')
     ...
-    It's no thing
+    Value seems to be void
 
-Para distinguir ``None`` del valor booleano ``False`` se recomienda el uso del operador ``is``::
+Para distinguir ``None`` de los valores propiamente booleanos, se recomienda el uso del operador ``is``. Veamos un ejemplo en el que tratamos de averiguar si un valor **es nulo**:
 
-    >>> thing = None
+.. code-block::
+    :emphasize-lines: 3
 
-    >>> if thing is None:
-    ...     print("It's nothing")
+    >>> value = None
+
+    >>> if value is None:
+    ...     print('Value is clearly void')
     ... else:
-    ...     print("It's something")
+    ...     print('Value has some useful value')
     ...
-    It's nothing
+    Value is clearly void
 
 La forma "pitónica" de preguntar si algo **no es nulo** es la siguiente:
 
@@ -338,7 +341,7 @@ Operador morsa
 
 |advlev|
 
-A partir de Python 3.8 se incorpora el `operador morsa`_ [#walrus-operator]_, que usa la siguiente sentencia de asignación: ``name := expression``.
+A partir de Python 3.8 se incorpora el `operador morsa`_ [#walrus-operator]_ que permite unificar **sentencias de asignación dentro de expresiones**. Su nombre proviene de la forma que adquiere ``:=``
 
 Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, indicando al usuario que debe incrementarlo siempre y cuando no llegue a un mínimo establecido.
 
@@ -368,7 +371,7 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
     Increase radius to reach minimum perimeter
     Actual perimeter:  26.69
 
-Como hemos comprobado, el operador morsa permite realizar asignaciones dentro de expresiones, lo que, en muchas ocasiones permite tener un código más compacto.
+.. hint:: Como hemos comprobado, el operador morsa permite realizar asignaciones dentro de expresiones, lo que, en muchas ocasiones, permite obtener un código más compacto. Sería conveniente encontrar un equilibrio entre la expresividad y la legibilidad.
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS

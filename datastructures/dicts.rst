@@ -7,6 +7,7 @@ Diccionarios
 
 Podemos trasladar el concepto de *diccionario* de la vida real al de *diccionario* en Python. Al fin y al cabo un diccionario es un objeto que contiene palabras, y cada palabra tiene asociado un significado. Haciendo el paralelismo, diríamos que en Python un diccionario es también un objeto indexado por **claves** (las palabras) que tienen asociados unos **valores** (los significados). [#dict-unsplash]_
 
+
 .. figure:: img/dicts.png
 
    Analogía de un diccionario en Python
@@ -24,7 +25,7 @@ Los diccionarios en Python tienen las siguientes *características*:
 Creando diccionarios
 ********************
 
-Para crear un diccionario basta con usar llaves ``{}`` rodeando pares ``clave: valor`` separados por comas. Veamos algunos ejemplos de diccionarios::
+Para crear un diccionario usamos llaves ``{}`` rodeando asignaciones ``clave: valor`` que están separadas por comas. Veamos algunos ejemplos de diccionarios::
 
     >>> empty_dict = {}
 
@@ -64,16 +65,16 @@ Conversión
 Para convertir otros tipos de datos en un diccionario podemos usar la función ``dict()``::
 
     >>> # Diccionario a partir de una lista de cadenas de texto
-    >>> dict(['ab', 'cd'])
-    {'a': 'b', 'c': 'd'}
+    >>> dict(['a1', 'b2'])
+    {'a': '1', 'b': '2'}
 
     >>> # Diccionario a partir de una tupla de cadenas de texto
-    >>> dict(('ab', 'cd'))
-    {'a': 'b', 'c': 'd'}
+    >>> dict(('a1', 'b2'))
+    {'a': '1', 'b': '2'}
 
-    >>> # Diccionario a partir de una lista de listas (de cadenas de texto)
-    >>> dict([['a', 'b'], ['c', 'd']])
-    {'a': 'b', 'c': 'd'}
+    >>> # Diccionario a partir de una lista de listas
+    >>> dict([['a', 1], ['b', 2]])
+    {'a': 1, 'b': 2}
 
 Diccionario vacío
 =================
@@ -185,12 +186,12 @@ Existe una función muy útil para "superar" los posibles errores de acceso por 
 Añadir o modificar un elemento
 ==============================
 
-Añadir un elemento a un diccionario es sencillo. Sólo es necesario hacer referencia a la *clave* y asignarle un *valor*:
+Para añadir un elemento a un diccionario sólo es necesario hacer referencia a la *clave* y asignarle un *valor*:
 
-* Si la clave ya existía en el diccionario, se reemplaza el valor existente por el nuevo.
-* Si la clave es nueva, se añade al diccionario con su valor.
+* Si la clave **ya existía** en el diccionario, **se reemplaza** el valor existente por el nuevo.
+* Si la clave **es nueva**, **se añade** al diccionario con su valor. *No vamos a obtener un error a diferencia de las listas*.
 
-Al contrario que en :ref:`las listas <datastructures/lists:Obtener un elemento>`, no hay que preocuparse por las excepciones (errores) por fuera de rango durante la asignación de elementos a un diccionario::
+Partimos del siguiente diccionario para ejemplificar estas acciones::
 
     >>> rae = {
     ...     'bifronte': 'De dos frentes o dos caras',
@@ -520,7 +521,7 @@ Cuidado con las copias
 
 |intlev|
 
-Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de la propiedad de *mutabilidad*. Veamos un ejemplo concreto:
+Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de *mutabilidad*. Veamos un ejemplo concreto:
 
 .. code-block::
     :emphasize-lines: 12, 17
@@ -592,7 +593,7 @@ Veamos un ejemplo en el que creamos un **diccionario por comprensión** en el qu
     >>> words_length
     {'sun': 3, 'space': 5, 'rocket': 6, 'earth': 5}
 
-También podemos aplicar **condiciones** a estas comprensiones. Continuando con el ejemplo anterior podemos incorporar la restricción de sólo incluir palabras que no empiecen por vocal::
+También podemos aplicar **condiciones** a estas comprensiones. Continuando con el ejemplo anterior, podemos incorporar la restricción de sólo incluir palabras que no empiecen por vocal::
 
     >>> words = ('sun', 'space', 'rocket', 'earth')
 
@@ -602,6 +603,45 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
     {'sun': 3, 'space': 5, 'rocket': 6}
 
 .. note:: Se puede consultar el `PEP-274`_ para ver más ejemplos sobre diccionarios por comprensión.
+
+*******************
+Objetos "hashables"
+*******************
+
+|advlev|
+
+La única restricción que deben cumplir las **claves** de un diccionario es ser **"hashables"** [#hashables-terron]_. Un objeto es "hashable" si se le puede asignar un valor "hash" que no cambia en ejecución durante toda su vida.
+
+Para encontrar el "hash" de un objeto, Python usa la función ``hash()``, que devuelve un número entero y es utilizado para indexar la *tabla "hash"* que se mantiene internamente::
+
+    >>> hash(999)
+    999
+
+    >>> hash(3.14)
+    322818021289917443
+
+    >>> hash('hello')
+    -8103770210014465245
+
+    >>> hash(('a', 'b', 'c'))
+    -2157188727417140402
+
+Para que un objeto sea "hashable", debe ser **inmutable**::
+
+    >>> hash(['a', 'b', 'c'])
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: unhashable type: 'list'
+
+.. note:: De lo anterior se deduce que las claves de los diccionarios, al tener que ser "hasheables", sólo pueden ser objetos inmutables.
+
+La función "built-in" ``hash()`` realmente hace una llamada al método mágico ``__hash__()`` del objeto en cuestión::
+
+    >>> hash('spiderman')
+    -8105710090476541603
+
+    >>> 'spiderman'.__hash__()
+    -8105710090476541603
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -621,6 +661,7 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 .. [#none] ``None`` es la palabra reservada en Python para la "nada". Más información en `esta web <https://recursospython.com/guias-y-manuales/el-tipo-de-dato-none/>`_.
 .. [#invisible-none] Realmente no estamos viendo nada en la consola de Python porque la representación en cadena de texto es vacía.
 .. [#last-dict] En este caso "último" hace referencia al diccionario que se encuentra más a la derecha en la expresión.
+.. [#hashables-terron] Se recomienda `esta ponencia <https://www.youtube.com/watch?v=JP3MnEcrdfQ>`_ de Víctor Terrón sobre objetos "hashables".
 
 .. --------------- Hyperlinks ---------------
 

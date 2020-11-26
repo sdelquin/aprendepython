@@ -45,7 +45,7 @@ Realmente, hemos creado una variable de tipo ``str`` (cadena de texto). Para cre
 Tuplas sin paréntesis
 =====================
 
-Según el caso, hay veces que nos podemos encontrar con tuplas que no llevan paréntesis. Quizás no está tan extendido pero a efectos prácticos tiene el mismo resultado. Veamos algunos ejemplos de ello::
+Según el caso, hay veces que nos podemos encontrar con tuplas que no llevan paréntesis. Quizás no está tan extendido, pero a efectos prácticos tiene el mismo resultado. Veamos algunos ejemplos de ello::
 
     >>> one_item_tuple = 'Papá Noel',
 
@@ -174,13 +174,13 @@ Veamos un ejemplo:
 ¿Tuplas por comprensión?
 ************************
 
-Los tipos mutables (*listas, diccionarios y conjuntos*) permiten comprensiones. Los tipos inmutables como *cadenas de texto* y *tuplas* hay que crearlos con otros métodos.
+Los tipos de datos mutables (*listas, diccionarios y conjuntos*) sí permiten comprensiones pero no así los tipos de datos inmutables como *cadenas de texto* y *tuplas*.
 
-Se podría pensar que usando paréntesis en vez de los corchetes de una lista por comprensión obtendríamos una tupla por comprensión, pero no es así. Aparentemente no hay ningún error::
+Si intentamos crear una **tupla por comprensión** utilizando paréntesis alrededor de la expresión, vemos que no obtenemos ningún error al ejecutarlo::
 
     >>> myrange = (number for number in range(1, 6))
 
-Pero lo que realmente hemos creado es un generador::
+Sin embargo no hemos conseguido una tupla por comprensión sino un generador::
 
     >>> myrange
     <generator object <genexpr> at 0x10b3732e0>
@@ -189,11 +189,11 @@ Pero lo que realmente hemos creado es un generador::
 Tuplas vs Listas
 ****************
 
-A menudo podemos usar tuplas en vez de listas, pero tienen muchas menos funciones (no existen ``append()`` ni ``insert()``, por ejemplo) porque no se pueden modificar después de su creación. Entonces, ¿por qué no usar listas en vez de tuplas en todas las ocasiones?
+Aunque puedan parecer estructuras de datos muy similares, sabemos que las tuplas carecen de ciertas operaciones, especialmente las que tienen que ver con la modificación de sus valores, ya que no son inmutables. Si las listas son más flexibles y potentes, ¿por qué íbamos a necesitar tuplas? Veamos 4 potenciales ventajas del uso de tuplas frente a las listas:
 
-1. Las tuplas usan **menos espacio**.
+1. Las tuplas ocupan **menos espacio** en memoria.
 2. En las tuplas existe **protección** frente a cambios indeseados.
-3. Las tuplas se pueden usar como **claves de diccionarios**.
+3. Las tuplas se pueden usar como **claves de diccionarios** (son :ref:`"hashables" <datastructures/dicts:Objetos "hashables">`).
 4. Las `namedtuples`_ son una alternativa sencilla a los objetos.
 
 

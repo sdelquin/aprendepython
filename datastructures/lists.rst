@@ -4,13 +4,13 @@ Listas
 
 .. image:: img/mike-arney-9r-_2gzP37k-unsplash.jpg
 
-Las listas son adecuadas para **guardar elementos** en un **orden concreto**. A diferencia, por ejemplo, de las cadenas de texto, las listas son **mutables**. Podemos modificar, añadir o borrar elementos de una lista. Cabe destacar que un mismo valor puede aparecer más de una vez en una lista. [#wishlist-unsplash]_
+Las listas permiten **almacenar objetos** mediante un **orden definido** y con posibilidad de duplicados. Las listas son estructuras de datos **mutables**, lo que significa que podemos añadir, eliminar o modificar sus elementos. [#wishlist-unsplash]_
 
 **************
 Creando listas
 **************
 
-Una lista está compuesta por *cero* o *más elementos*, separados por *comas* y rodeados por *corchetes*. Veamos algunos ejemplos de listas::
+Una lista está compuesta por *cero* o *más elementos*. En Python debemos escribir estos elementos separados por *comas* y dentro de *corchetes*. Veamos algunos ejemplos de listas::
 
     >>> empty_list = []
 
@@ -45,7 +45,7 @@ Para convertir otros tipos de datos en una lista podemos usar la función ``list
     >>> list('Python')
     ['P', 'y', 't', 'h', 'o', 'n']
 
-Si nos fijamos en lo que ha pasado, al convertir la cadena de texto ``Python`` se ha creado una lista con *6* elementos, donde cada uno de ellos representa un caracter de la cadena. Podemos *extender* este comportamiento a cualquier otro tipo de datos que permita acceder a sus elementos.
+Si nos fijamos en lo que ha pasado, al convertir la cadena de texto ``Python`` se ha creado una lista con *6* elementos, donde cada uno de ellos representa un caracter de la cadena. Podemos *extender* este comportamiento a cualquier otro tipo de datos que permita acceder a sus elementos (*iterables*).
 
 Lista vacía
 ===========
@@ -64,7 +64,7 @@ Operaciones con listas
 Obtener un elemento
 ===================
 
-Igual que en el caso de las :ref:`cadenas de texto <datatypes/strings:Obtener un caracter>` podemos extraer un elemento de una lista especificando su **índice**. Veamos un ejemplo::
+Igual que en el caso de las :ref:`cadenas de texto <datatypes/strings:Obtener un caracter>`, podemos obtener un elemento de una lista a través del **índice** (lugar) que ocupa. Veamos un ejemplo::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -117,7 +117,7 @@ El troceado de listas funciona de manera totalmente análoga al :ref:`troceado d
     >>> shopping[::-1]
     ['Limón', 'Sal', 'Aceite', 'Huevos', 'Agua']
 
-Hacer notar que el uso de *índices inválidos* en el troceado no genera una excepción. Python trata de ajustarse al índice válido más próximo::
+A diferencia de obtener elementos, donde sí que influye el índice especificado fuera de rango, en el caso del troceado no debemos preocuparnos por acceder a *índices inválidos* ya que Python los restringirá a los límites de la lista::
 
     >>> shopping
     ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
@@ -170,7 +170,7 @@ Python nos ofrece, al menos, tres mecanismos para invertir los elementos de una 
 Añadir al final de la lista
 ===========================
 
-La forma tradicional de añadir elementos al final de una lista es utilizar la función ``append()``. Se trata de un método *destructivo* que modifica la lista original::
+Una de las operaciones más utilizadas en listas es añadir elementos al final de las mismas. Para ello Python nos ofrece la función ``append()``. Se trata de un método *destructivo* que modifica la lista original::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -209,7 +209,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Añadir en cualquier posición de una lista
 =========================================
 
-La función ``append()`` sólo permite añadir elementos al final de la lista. Cuando se quiere insertar un elemento en otra posición de una lista debemos usar ``insert()`` especificando el índice de colocación. También se trata de una función *destructiva* [#destructive]_::
+Ya hemos visto cómo añadir elementos al final de una lista. Sin embargo, Python ofrece una función ``insert()`` que vendría a ser una generalización de la anterior, para incorporar elementos en cualquier posición. Simplemente debemos especificar el índice de inserción y el elemento en cuestión. También se trata de una función *destructiva* [#destructive]_::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -225,7 +225,7 @@ La función ``append()`` sólo permite añadir elementos al final de la lista. C
 
 .. note:: El índice que especificamos en la función ``insert()`` lo podemos intepretar como la posición *delante* (a la izquierda) de la cual vamos a colocar el nuevo valor en la lista.
 
-No hay que preocuparse por insertar un elemento en desplazamientos no válidos. Si el índice supera el tamaño de la lista, el elemento se insertará al final de la lista. Si el índice es demasiado bajo se insertará al comienzo de la lista. En ninguno de los dos casos vamos a obtener un error debido a esta circunstancia::
+Al igual que ocurría con el :ref:`troceado de listas <datastructures/lists:Trocear una lista>`, en este tipo de inserciones no obtendremos un error si especificamos índices fuera de los límites de la lista. Estos se ajustarán al principio o al final en función del valor que indiquemos::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -238,6 +238,21 @@ No hay que preocuparse por insertar un elemento en desplazamientos no válidos. 
 
     >>> shopping
     ['Arroz', 'Agua', 'Huevos', 'Aceite', 'Mermelada']
+
+.. hint:: Aunque es posible utilizar ``insert()`` para añadir **elementos al final de una lista**, siempre se recomienda usar ``append()`` por su mayor legibilidad:
+
+    .. code-block::
+        :emphasize-lines: 2
+    
+        >>> values = [1, 2, 3]
+        >>> values.append(4)
+        >>> values
+        [1, 2, 3, 4]
+
+        >>> values = [1, 2, 3]
+        >>> values.insert(len(values), 4)  # don't do it!
+        >>> values
+        [1, 2, 3, 4]
 
 Repetir elementos
 =================
@@ -329,6 +344,23 @@ En el caso de acceder a un *índice no válido* de la lista, incluso para modifi
       File "<stdin>", line 1, in <module>
     IndexError: list assignment index out of range
 
+Modificar con troceado
+----------------------
+
+No sólo es posible modificar un elemento de cada vez, sino que podemos asignar valores a trozos de una lista::
+
+    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+
+    >>> shopping[1:4]
+    ['Huevos', 'Aceite', 'Sal']
+
+    >>> shopping[1:4] = ['Atún', 'Pasta']
+
+    >>> shopping
+    ['Agua', 'Atún', 'Pasta', 'Limón']
+
+.. note:: La lista que asignamos no necesariamente debe tener la misma longitud que el trozo que sustituimos.
+
 Borrar elementos
 ================
 
@@ -358,7 +390,7 @@ Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
 .. warning:: Si existen valores duplicados, la función ``remove()`` sólo borrará la primera ocurrencia.
 
 **Por su índice (con extracción)**::
-    Las dos funciones anteriores ``del()`` y ``remove()`` efectivamente borran el elemento indicado de la lista, pero no "devuelven" [#return]_ nada. Sin embargo, Python nos ofrece la función ``pop()`` que además de borrar nos "recupera" el elemento; algo así como una *extracción**. Lo podemos ver como una combinación de *acceso* + *borrado*::
+    Las dos funciones anteriores ``del()`` y ``remove()`` efectivamente borran el elemento indicado de la lista, pero no "devuelven" [#return]_ nada. Sin embargo, Python nos ofrece la función ``pop()`` que además de borrar nos "recupera" el elemento; algo así como una *extracción*. Lo podemos ver como una combinación de *acceso* + *borrado*::
 
         >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -374,33 +406,47 @@ Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
         >>> shopping
         ['Agua', 'Huevos', 'Sal']
 
-.. note:: Si usamos la función sin pasarle ningún argumento, por defecto usará el índice *-1*, es decir, el último elemento de la lista. Pero también podemos indicarle el índice del elemento a extraer.
+.. note:: Si usamos la función ``pop()`` sin pasarle ningún argumento, por defecto usará el índice *-1*, es decir, el último elemento de la lista. Pero también podemos indicarle el índice del elemento a extraer.
 
-**Borrado completo de la lista**:
-    1. Utilizando la función ``clear()``::
-
-        >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
-
-        >>> shopping.clear()
-
-        >>> shopping
-        []
-
-    2. "Reinicializando" la lista a vacío con ``[]``::
+**Por su rango**:
+    Mediante troceado de listas::
 
         >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
-        >>> shopping = []
+        >>> shopping[1:4] = []
 
         >>> shopping
-        []
+        ['Agua', 'Limón']        
 
+Borrado completo de la lista
+----------------------------
+
+Python nos ofrece, al menos, dos formas para borrar una lista por completo:
+
+1. Utilizando la función ``clear()``::
+
+    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+
+    >>> shopping.clear()
+
+    >>> shopping
+    []
+
+2. "Reinicializando" la lista a vacío con ``[]``::
+
+    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+
+    >>> shopping = []
+
+    >>> shopping
+    []
+    
 .. note:: La diferencia entre ambos métodos tiene que ver con cuestiones internas de gestión de memoria y de rendimiento.
 
 Encontrar un elemento
 =====================
 
-Para conocer el **índice** que tiene un determinado elemento dentro de una lista podemos hacer uso de la función ``index()``::
+Si queremos descubrir el **índice** que corresponde a un determinado valor dentro la lista podemos usar la función ``index()`` para ello::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -416,10 +462,12 @@ Tener en cuenta que si el elemento que buscamos no está en la lista, obtendremo
       File "<stdin>", line 1, in <module>
     ValueError: 'Pollo' is not in list
 
+.. note:: Si buscamos un valor que existe más de una vez en una lista, la función ``index()`` sólo nos devolverá el índice de la primera ocurrencia.
+
 Pertenencia de un elemento
 ==========================
 
-La forma **pitónica** de comprobar la existencia de un elemento (valor) dentro de una lista, es utilizar el operador ``in``::
+Si queremos comprobar la existencia de un determinado elemento en una lista, podríamos buscar su índice, pero la forma **pitónica** de hacerlo es utilizar el operador ``in``::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -771,10 +819,9 @@ Anidamiento en comprensiones
 
 En la iteración que usamos dentro de la lista por comprensión es posible usar :ref:`bucles anidados <controlflow/loops:Bucles anidados>`.
 
-Veamos un ejemplo en el que generamos combinaciones de los valores entre sí::
+Veamos un ejemplo en el que generamos todas las combinaciones de una serie de valores::
 
     >>> values = '32,45,11,87,20,48'
-
     >>> svalues = values.split(',')
 
     >>> combinations = [f'{v1}x{v2}' for v1 in svalues for v2 in svalues]
@@ -795,7 +842,7 @@ Veamos un ejemplo en el que generamos combinaciones de los valores entre sí::
      '48x20',
      '48x48']
 
-.. hint:: Las listas por comprensión son muy potentes y nos ayudan en muchas circunstancias, pero hay que tener cuidado de no generar **expresiones excesivamente complejas**. En estos casos es mejor una *aproximación clásica*.
+.. hint:: Las listas por comprensión son una herramienta muy potente y nos ayuda en muchas ocasiones, pero hay que tener cuidado de no generar **expresiones excesivamente complejas**. En estos casos es mejor una *aproximación clásica*.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -884,7 +931,7 @@ Listas de listas
 
 Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Una de la forma en las que podemos utilizarlas es usando listas como elementos.
 
-Veamos un ejemplo deportivo. Un equipo de fútbol suele tener una disposición en el campo organizado por líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
+Veamos un ejemplo a través de un simil deportivo. Un equipo de fútbol suele tener una disposición en el campo organizado por líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
 
 .. figure:: img/world-champions.png
 

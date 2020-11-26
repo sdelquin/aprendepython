@@ -11,7 +11,6 @@ Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en
 * Un **tipo** del dato almacenado.
 * Un **identificador** único para distinguirlo de otros objetos.
 * Un **valor** consistente con su tipo.
-* Un **número de referencias** que rastrea las veces que se usa un objeto.
 
 .. figure:: img/object.png
 
@@ -34,7 +33,7 @@ A continuación se muestran los distintos `tipos de datos <https://docs.python.o
 Variables
 *********
 
-Las **variables** son un concepto clave en los lenguajes de programación y permiten definir **nombres** para los **valores** que tenemos en memoria y que vamos a usar en nuestro programa.
+Las **variables** son fundamentales ya que permiten definir **nombres** para los **valores** que tenemos en memoria y que vamos a usar en nuestro programa.
 
 .. figure:: img/name-variable.png
 
@@ -45,14 +44,13 @@ Reglas para nombrar variables
 
 En Python existen una serie de reglas para los nombres de variables:
 
-* Sólo pueden **contener los siguientes caracteres** [#special-chars]_:
-    * Letras minúsculas (de la ``a`` a la ``z``).
-    * Letras mayúsculas (de la ``A`` a la ``Z``).
-    * Dígitos (del ``0`` al ``9``).
+1. Sólo pueden **contener los siguientes caracteres** [#special-chars]_:
+    * Letras minúsculas.
+    * Letras mayúsculas.
+    * Dígitos.
     * Guiones bajos (``_``).
-* Son "case-sensitive" [#case-sensitive]_. Por ejemplo, ``thing``, ``Thing`` y ``THING`` son nombres diferentes.
-* Deben **empezar con una letra o un guión bajo**, nunca con un dígito.
-* No pueden ser una palabra reservada del lenguaje ("keywords").
+2. Deben **empezar con una letra o un guión bajo**, nunca con un dígito.
+3. No pueden ser una **palabra reservada** del lenguaje ("keywords").
 
 Podemos obtener un listado de las palabras reservadas del lenguaje de la siguiente forma::
 
@@ -71,6 +69,8 @@ Podemos obtener un listado de las palabras reservadas del lenguaje de la siguien
     break               for                 not
 
 .. note:: Por lo general se prefiere dar nombres **en inglés** a las variables que utilicemos, ya que así hacemos nuestro código más "internacional" y con la posibilidad de que otras personas puedan leerlo, entenderlo y -- llegado el caso -- modificarlo. Es sólo una recomendación, nada impide que se haga en castellano.
+
+.. important:: Los nombres de variables son "case-sensitive" [#case-sensitive]_. Por ejemplo, ``stuff`` y ``Stuff`` son nombres diferentes.
 
 Ejemplos de nombres de variables
 ================================
@@ -230,7 +230,7 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     1. Asigna un valor entero ``2001`` a la variable ``space_odyssey`` y muestra su valor.
     2. Descubre el tipo del literal ``'Good night & Good luck'``.
     3. Identifica el tipo del literal ``True``.
-    4. Asigna la expresión ``5 + 2.0`` a la variable ``result`` y muestra su tipo.
+    4. Asigna la expresión ``10 * 3.0`` a la variable ``result`` y muestra su tipo.
 
     .. only:: html
     
@@ -246,7 +246,7 @@ Las variables son nombres, no lugares. Detrás de esta frase se esconde la refle
 
 Si realizamos la asignación de una variable a un valor lo que está ocurriendo es que el nombre de la variable es una **referencia** al valor, no el valor en sí mismo::
 
-    >>> a = 7
+    >>> a = 5
 
 .. figure:: img/var-memory1.png
 

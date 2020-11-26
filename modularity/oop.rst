@@ -4,7 +4,9 @@ Objetos y Clases
 
 .. image:: img/rabie-madaci-skx1Rn6LW9I-unsplash.jpg
 
-Todo en Python es un objeto, desde números a funciones. Sin embargo Python oculta la mayoría de la maquinaria de los objetos a través de una sintaxis especial. En general sólo nos adentramos en esta sintaxis cuando queremos crear nuevos objetos o modificar el comportamiento de objetos ya existentes. [#things-unsplash]_
+Hasta ahora hemos estado usando objetos de forma totalmente transparente, casi sin ser conscientes de ello. Pero, en realidad, todo en Python es un objeto, desde números a funciones. El lenguaje provee ciertos mecanismos para no tener que usar explícitamente técnicas de orientación a objetos.
+
+Llegados a este punto, investigaremos en profundidad sobre la creación y manipulación de clases y objetos, y todas las operaciones que engloban este paradigma. [#things-unsplash]_
 
 ********************************
 Programación orientada a objetos
@@ -86,7 +88,9 @@ Existen multitud de droides en el universo StarWars. Una vez que hemos definido 
 Añadiendo atributos
 ===================
 
-Un **atributo** es una variable que está dentro de una clase o de un objeto. Podemos asignar atributos durante la creación del objeto (e incluso después). Un atributo puede ser cualquier otro objeto::
+Un **atributo** no es más que una variable, un nombre al que asignamos un valor, con la particularidad de vivir dentro de una clase o de un objeto.
+
+Los atributos se pueden asignar durante la creación de un objeto o incluso añadirlos a posteriori::
 
     >>> blue_droid = StarWarsDroid()
     >>> golden_droid = StarWarsDroid()
@@ -124,7 +128,9 @@ Hemos definido un droide "socio". Veremos a continuación que podemos trabajar c
 Añadiendo métodos
 =================
 
-Un **método** es una función que está dentro de una clase o de un objeto. Un método parece una función ordinaria, pero se puede usar de formas especiales. Los métodos se definen dentro de la clase como funciones ordinarias, salvo que el primer parámetro será ``self`` (una referencia al objeto actual).
+Un **método** es una función que forma parte de una clase o de un objeto. En su ámbito tiene acceso a otros métodos y atributos de la clase o del objeto al que pertenece.
+
+La definición de un método (de instancia) es análoga a la de una función ordinaria, pero incorporando un primer parámetro ``self`` que hace referencia a la instancia actual del objeto.
 
 Una de las acciones más sencillas que se puede hacer sobre un droide es encenderlo o apagarlo. Vamos a implementar estos dos métodos en nuestra clase::
 
@@ -198,8 +204,6 @@ Veamos un ejemplo de este método con nuestros droides en el que únicamente gua
 Atributos
 *********
 
-En Python tanto los métodos como los atributos de un objeto son, *normalmente*, públicos. Esto implica una cierta "responsabilidad" en la persona que desarrolla de cara al manejo de los objetos.
-
 Acceso directo
 ==============
 
@@ -220,7 +224,9 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
 Propiedades
 ===========
 
-La solución "pitónica" para una cierta privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <modularity/functions:Decoradores>`:
+Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas desarrolladoras de otros lenguajes. En Python existe un cierto "sentido de responsabilidad" a la hora de programar, para manejar este tipo de situaciones.
+
+Una posible solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <modularity/functions:Decoradores>`:
 
 - ``@property`` para leer el valor de un atributo.
 - ``@name.setter`` para escribir el valor de un atributo.
@@ -341,7 +347,7 @@ Métodos
 Métodos de instancia
 ====================
 
-Estos métodos son los más comunes y permiten modificar el comportamiento de un objeto. Se caracterizan por tener ``self`` como primer parámetro y hacen que Python pase el objeto como argumento en su llamada.
+Un **método de instancia** es un método que modifica el comportamiento del objeto al que hace referencia. Recibe ``self`` como primer parámetro, el cual se convierte en el propio objeto sobre el que estamos trabajando. Python envía este argumento de forma transparente.
 
 Veamos un ejemplo en el que, además del constructor, creamos un método de instancia para desplazar un droide:
 
@@ -366,7 +372,7 @@ Veamos un ejemplo en el que, además del constructor, creamos un método de inst
 Métodos de clase
 ================
 
-Estos métodos afectan a toda la clase en su conjunto. Cualquier cambio sobre la clase afecta a todos sus objetos. Para definir un método de clase debemos utilizar el decorador ``@classmethod`` y el primer parámetro será ``cls`` en referencia a la propia clase.
+Un **método de clase** es un método que modifica el comportamiento de la clase a la que hace referencia. Recibe ``cls`` como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador ``@classmethod`` a la función.
 
 Veamos un ejemplo en el que implementaremos un método de clase que lleva la cuenta de los droides que hemos creado:
 
@@ -394,7 +400,7 @@ Veamos un ejemplo en el que implementaremos un método de clase que lleva la cue
 Métodos estáticos
 =================
 
-Estos métodos no afectan ni a la clase ni a sus objetos. Se utilizan para todas aquellas cuestiones relacionadas con la clase pero que ni acceden ni modifican sus atributos. Para escribir un método estático debemos utilizar el decorador ``@staticmethod`` y no incluyen ningún parámetro obligatorio inicial.
+Un **método estático** es un método que no modifica el comportamiento del objeto ni de la clase. No recibe ningún parámetro especial. La identificación de estos métodos se completa aplicando el decorador ``@staticmethod`` a la función.
 
 Veamos un ejemplo en el que creamos un método estático para devolver las categorías de droides que existen en StarWars:
 
@@ -418,11 +424,11 @@ Métodos mágicos
 
 |advlev|
 
-Cuando escribimos ``a = 3 + 8`` ¿cómo saben los objetos enteros 3 y 8 qué deben hacer para sumarse? O dicho de otra forma, ¿cuál es la implementación del operador ``+``? En este caso parece evidente, pero quizás no lo sea tanto para cadenas de texto o listas, entre otros.
+Cuando escribimos ``'hello' + 'world'`` ¿cómo sabe el objeto ``'hello'`` qué debe hacer para sumarse con la cadena de texto ``'world'``? O dicho de otra forma, ¿cuál es la implementación del operador ``+`` para "strings"? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos.
 
-La respuesta a estas preguntas son los **métodos mágicos** que permiten implementaciones de operaciones entre objetos. Los métodos mágicos empiezan y terminan por doble subguión ``__`` (también se les conoce como "dunder-methods"). El método mágico más famoso es el constructor de una clase: ``__init__()``.
+La solución que proporciona Python para estas situaciones son los **métodos mágicos**, que permiten implementar operaciones entre objetos. Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ello que también se les conoce como "dunder-methods"). Uno de los "dunder-methods" más famosos es el constructor de una clase: ``__init__()``.
 
-Para cada operador existe un método mágico asociado (que podemos personalizar). Por ejemplo la comparación de dos objetos se realiza con el método ``__eq__()``:
+Para cada operador, existe un método mágico asociado (que podemos personalizar). Por ejemplo la comparación de dos objetos se realiza con el método ``__eq__()``:
 
 .. figure:: img/magic-methods.png
 
@@ -532,7 +538,7 @@ La **herencia** consiste en **crear una nueva clase partiendo de una clase exist
 
 .. figure:: img/inheritance.png
 
-   Nomenclatura de clases en la herencia
+   Nomenclatura de clases en la herencia [#freepik-icons]_
 
 .. note:: Cuando se utiliza herencia, la clase derivada, de forma automática, puede usar todo el código de la clase base sin necesidad de copiar nada explícitamente.
 
@@ -686,9 +692,9 @@ Herencia múltiple
 
 |advlev|
 
-Los objetos pueden heredar de **múltiples clases base**. Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base.
+Aunque no está disponible en todos los lenguajes de programación, Python sí permite que los objetos pueden heredar de **múltiples clases base**.
 
-Es posible que exista una colisión en caso de que el método o el atributo esté en varias clases base. En este caso Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
+Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base. Es posible que exista una *colisión* en caso de que el método o el atributo buscado esté, a la vez, en varias clases base. En este caso, Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
 
 Supongamos que queremos modelar la siguiente estructura de clases con *herencia múltiple*:
 
@@ -722,7 +728,7 @@ Supongamos que queremos modelar la siguiente estructura de clases con *herencia 
     ...     pass
     
 
-Todas las clases en Python disponen de un método especial llamado ``mro()`` que devuelve una lista de las clases que visitaría en caso de acceder a un método a un atributo. También existe el atributo ``__mro__`` como una tupla de esas clases::
+Todas las clases en Python disponen de un método especial llamado ``mro()`` que devuelve una lista de las clases que se visitarían en caso de acceder a un método o un atributo. También existe el atributo ``__mro__`` como una tupla de esas clases::
 
     >>> SuperDroid.mro()
     [__main__.SuperDroid,
@@ -774,15 +780,15 @@ Veamos el resultado de la llamada a los métodos definidos::
 Mixins
 ======
 
-Se puede incluir una clase base extra en la definición de nuestra clase, sólo para **tareas auxiliares**, sin que se compartan métodos con otras clases base, y así evitar ambigüedad en la resolución de métodos. Estas clases auxiliares se llaman "mixins".
+Hay situaciones en la que nos interesa incorporar una clase base "independiente" de la jerarquía establecida, y sólo a efectos de **tareas auxiliares**. Esta aproximación podría ayudar a evitar *colisiones* en métodos o atributos reduciendo la ambigüedad que añade la herencia múltiple. Estas clases auxiliares reciben el nombre de **"mixins"**.
 
-Veamos un ejemplo en el que usamos un mixin para mostrar las variables de un objeto::
+Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un objeto::
 
-    >>> class PrettyMixin:
-    ...     def dump(self):
+    >>> class Instrospection:
+    ...     def dig(self):
     ...         print(vars(self))  ## vars devuelve las variables del argumento
     ...
-    ... class Droid(PrettyMixin):
+    ... class Droid(Instrospection):
     ...     pass
     ...
 
@@ -792,7 +798,7 @@ Veamos un ejemplo en el que usamos un mixin para mostrar las variables de un obj
     >>> droid.num_feet = 2
     >>> droid.type = 'Power Droid'
 
-    >>> droid.dump()
+    >>> droid.dig()
     {'code': 'DN-LD', 'num_feet': 2, 'type': 'Power Droid'}
 
 .. admonition:: Ejercicio
@@ -819,9 +825,7 @@ Veamos un ejemplo en el que usamos un mixin para mostrar las variables de un obj
 Agregación y composición
 ========================
 
-La herencia es una buena técnica cuando queremos que una clase derivada actúe como su clase base la mayoría del tiempo: hablamos de una relación "**is-a**" (es un).
-
-Sin embargo existen muchas situaciones en las que la agregación o la composición son mejor opción. En este caso una clase se compone de otras cases: hablamos de una relación "**has-a**" (tiene un).
+Aunque la herencia de clases nos permite modelar una gran cantidad de casos de uso en términos de "**is-a**" (*es un*), existen muchas otras situaciones en las que la agregación o la composición son una mejor opción. En este caso una clase se compone de otras cases: hablamos de una relación "**has-a**" (*tiene un*).
 
 Hay una sutil diferencia entre agregación y composición:
 

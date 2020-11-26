@@ -56,25 +56,25 @@ Veamos algunos ejemplos de números enteros:
 .. code-block::
     :emphasize-lines: 5, 18
 
-    >>> 5
-    5
+    >>> 8
+    8
     >>> 0
     0
-    >>> 05
+    >>> 08
       File "<stdin>", line 1
-        05
+        08
          ^
     SyntaxError: invalid token
-    >>> 123
-    123
-    >>> +123
-    123
-    >>> -123
-    -123
-    >>> 1000000
-    1000000
-    >>> 1_000_000
-    1000000
+    >>> 99
+    99
+    >>> +99
+    99
+    >>> -99
+    -99
+    >>> 3000000
+    3000000
+    >>> 3_000_000
+    3000000
 
 Dos detalles a tener en cuenta:
 
@@ -93,15 +93,15 @@ A continuación se muestra una tabla con las distintas operaciones sobre enteros
 
 Veamos algunas pruebas de estos operadores::
 
-    >>> 5 + 9 + 4
-    18
+    >>> 2 + 8 + 4
+    14
     >>> 4 ** 4
     256
     >>> 7 / 3
     2.3333333333333335
     >>> 7 // 3
     2
-    >>> 5 / 0
+    >>> 6 / 0
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     ZeroDivisionError: division by zero
@@ -229,17 +229,21 @@ Hecho en Python::
     
         |solution| :download:`quadratic.py <files/quadratic.py>`
 
-Tamaño de un entero
+Límite de un entero
 ===================
 
-¿Cómo de grande puede ser un ``int`` en Python? La respuesta es **de cualquier tamaño**. Por poner un ejemplo, supongamos que queremos representar un `Googol`_. Este valor viene a ser un "1" seguido por 100 ceros::
+|advlev|
 
-    >>> googol = 10**100
+¿Cómo de grande puede ser un ``int`` en Python? La respuesta es **de cualquier tamaño**. Por poner un ejemplo, supongamos que queremos representar un `centillón`_. Este valor viene a ser un "1" seguido por ¡600 ceros! ¿Será capaz Python de almacenarlo?
 
-    >>> googol
-    10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+.. code-block::
 
-.. note:: En muchos lenguajes tratar con enteros tan largos causaría un *integer overflow*. No es el caso de Python que puede manejar estos valores sin problema.
+    >>> centillion = 10 ** 600
+
+    >>> centillion
+    1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+.. note:: En muchos lenguajes tratar con enteros tan largos causaría un "integer overflow". No es el caso de Python que puede manejar estos valores sin problema.
 
 
 *********
@@ -249,18 +253,18 @@ Flotantes
 Los números en **punto flotante** [#floating-point]_ tienen **parte decimal**. Veamos algunos ejemplos de flotantes en Python.
 
 .. code-block::
-    :caption: Distintas formas de escribir el flotante *5.0*
+    :caption: Distintas formas de escribir el flotante *4.0*
 
-    >>> 5.0
-    5.0
-    >>> 5.
-    5.0
-    >>> 05.0
-    5.0
-    >>> 05.
-    5.0
-    >>> 5e0
-    5.0
+    >>> 4.0
+    4.0
+    >>> 4.
+    4.0
+    >>> 04.0
+    4.0
+    >>> 04.
+    4.0
+    >>> 4e0
+    4.0
 
 Conversión de tipos
 ===================
@@ -338,9 +342,11 @@ Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la 
     >>> is_raining = False
     >>> type(is_raining)
     <class 'bool'>
+
     >>> sound_level = 35
     >>> type(sound_level)
     <class 'int'>
+
     >>> temperature = 36.6
     >>> type(temperature)
     <class 'float'>
@@ -456,5 +462,5 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 .. _Álgebra de Boole: https://es.wikipedia.org/wiki/%C3%81lgebra_de_Boole
 .. _Lógica binaria: https://es.wikipedia.org/wiki/L%C3%B3gica_binaria
 .. _principio DRY: https://es.wikipedia.org/wiki/No_te_repitas
-.. _Googol: https://es.wikipedia.org/wiki/G%C3%BAgol
+.. _centillón: https://es.wikipedia.org/wiki/Centill%C3%B3n
 .. _discriminante: https://es.wikipedia.org/wiki/Discriminante

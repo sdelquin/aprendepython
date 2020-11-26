@@ -6,7 +6,7 @@ Ficheros
 
 Aunque los ficheros encajarían más en un apartado de "*entrada/salida*" ya que representan un **medio de almacenamiento persistente**, también podrían ser vistos como *estructuras de datos*, puesto que nos permiten guardar la información y asignarles un cierto formato. [#file-unsplash]_
 
-Un **fichero** es una *secuencia de bytes* almacenados en algún *sistema de ficheros* y accesibles por un *nombre de fichero*. Un *directorio* (o carpeta) es una colección de ficheros, y probablemente de otros directorios. Muchos sistemas de ficheros son jerárquicos y a menudo nos referimos a ellos como árbol de ficheros.
+Un **fichero** es un *conjunto de bytes* almacenados en algún *dispositivo*. El *sistema de ficheros* es la estructura lógica que alberga los ficheros y está jerarquizado a través de *directorios* (o carpetas). Cada fichero se identifica unívocamente a través de una *ruta* que nos permite acceder a él.
 
 *********************
 Lectura de un fichero

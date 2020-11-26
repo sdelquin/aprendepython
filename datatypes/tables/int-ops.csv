@@ -1,8 +1,8 @@
 Operador,Descripción,Ejemplo,Resultado
-``+``,Suma,``5 + 8``,``13``
-``-``,Resta,``90 - 10``,``80``
-``*``,Multiplicación,``4 * 7``,``28``
-``/``,División flotante,``7 / 2``,``3.5``
-``//``,División entera,``7 // 2``,``3``
-``%``,Módulo,``7 % 3``,``1``
-``**``,Exponenciación,``3 ** 4``,``81``
+``+``,Suma,``3 + 9``,``12``
+``-``,Resta,``6 - 2``,``4``
+``*``,Multiplicación,``5 * 5``,``25``
+``/``,División flotante,``9 / 2``,``4.5``
+``//``,División entera,``9 // 2``,``4``
+``%``,Módulo,``9 % 4``,``1``
+``**``,Exponenciación,``2 ** 4``,``16``
