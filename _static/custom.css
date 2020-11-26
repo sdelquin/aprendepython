@@ -114,6 +114,11 @@ h3#searchlabel {
   display: none;
 }
 
+/* Sans-serif font within search box */
+.searchformwrapper input[type='text'] {
+  font-family: sans-serif;
+}
+
 /* Custom box for difficulty levels */
 .difficulty-level {
   padding: 0.2rem;
