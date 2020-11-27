@@ -84,8 +84,7 @@ html_title = description
 
 # -- Latex configuration ---------------------------------------------------
 
-# xelatex engine & Symbola font allow using emojis (black&white thought)
-# Symbola ttf: https://github.com/gearit/ttf-symbola/blob/master/Symbola.ttf
+# lualatex in combination with https://github.com/sdelquin/emojitex.sty allow emojis
 
 latex_engine = 'lualatex'
 
