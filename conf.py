@@ -92,7 +92,7 @@ latex_elements = {
     'pointsize': '12pt',
     'fontpkg': r'''
 \usepackage{emojitex}
-\setsansfont{Helvetica}
+\setsansfont{Arimo}
 \setmonofont[Scale=0.9]{Fira Code}
 ''',
 }
