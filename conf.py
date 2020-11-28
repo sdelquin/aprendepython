@@ -73,7 +73,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 
 html_sidebars = {
-    'index': ['about.html', 'searchbox.html', 'navigation.html'],
+    'index': ['about.html', 'searchbox.html', 'navigation.html', 'badges.html'],
     '**': ['about.html', 'searchbox.html', 'innertoc.html'],
 }
 

@@ -138,3 +138,14 @@ h3#searchlabel {
   color: #9e5d17;
   border: 1px solid orange;
 }
+
+/* Badges side panel */
+div.badges {
+  margin-top: 2rem;
+}
+div.badges a {
+  border-bottom: none;
+}
+div.badges a:hover {
+  border-bottom: none;
+}
