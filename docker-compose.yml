@@ -1,0 +1,10 @@
+version: '3'
+services:
+  aprendepython:
+    build: .
+    image: aprendepython:latest
+    volumes:
+      - ./:/usr/share/aprendepython
+    ports:
+      - 8000:8000
+        
