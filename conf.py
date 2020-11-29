@@ -93,7 +93,7 @@ latex_elements = {
     'fontpkg': r'''
 \usepackage{emojitex}
 \setsansfont{Arimo}
-\setmonofont[Scale=0.9]{Fira Code}
+\setmonofont{inconsolata}
 ''',
 }
 
