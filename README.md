@@ -14,9 +14,9 @@ Construir la imagen del proyecto:
 $ docker-compose build
 ```
 
-### Documentación en `html`
+### Documentación en `html` para desarrollo
 
-Renderizar la documentación en `html` con "live-reload":
+Renderizar la documentación en `html` con **live-reload**:
 
 ```console
 $ docker-compose up
@@ -31,6 +31,16 @@ Start detecting changes
 ```
 
 , ya se podrá acceder a http://127.0.0.1:8000/ para ver la documentación.
+
+### Documentación en `html` para producción
+
+Renderizar la documentación completa en `html`:
+
+```console
+$ docker-compose run aprendepython make dirhtml
+```
+
+Al terminar la ejecución, se podrá encontrar la documentación del curso en: `_build/dirhtml/`.
 
 ### Documentación en `pdf`
 
