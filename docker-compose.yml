@@ -2,7 +2,7 @@ version: '3'
 services:
   aprendepython:
     build: .
-    image: aprendepython:latest
+    image: sdelquin/aprendepython:latest
     volumes:
       - ./:/usr/share/aprendepython
     ports:
