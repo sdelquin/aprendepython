@@ -1,28 +1,8 @@
 name: Deploy
 on: push
 jobs:
-  deploy-html-documentation:
-    name: Deploy documentation in html format
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Pull docker image
-        run: docker pull sdelquin/aprendepython
-      - name: Build documentation in html
-        run: docker-compose run aprendepython make dirhtml
-      - name: Sync files with production server
-        uses: burnett01/rsync-deployments@4.1
-        with:
-          switches: -avzr --delete
-          path: _build/dirhtml/
-          remote_host: aprendepython.es
-          remote_path: ${{ secrets.REMOTE_HTML_PATH }}
-          remote_user: ${{ secrets.REMOTE_USER }}
-          remote_key: ${{ secrets.REMOTE_KEY }}
-
-  deploy-pdf-documentation:
-    name: Deploy documentation in pdf format
+  deploy-documentation:
+    name: Deploy documentation in html/pdf format
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,12 +11,14 @@ jobs:
         run: docker pull sdelquin/aprendepython
       - name: Build documentation in pdf
         run: docker-compose run aprendepython make latexpdf
+      - name: Build documentation in html
+        run: docker-compose run aprendepython make dirhtml
       - name: Sync files with production server
         uses: burnett01/rsync-deployments@4.1
         with:
           switches: -avzr --delete
-          path: _build/latex/
+          path: _build/
           remote_host: aprendepython.es
-          remote_path: ${{ secrets.REMOTE_PDF_PATH }}
+          remote_path: ${{ secrets.REMOTE_BUILD_PATH }}
           remote_user: ${{ secrets.REMOTE_USER }}
           remote_key: ${{ secrets.REMOTE_KEY }}
