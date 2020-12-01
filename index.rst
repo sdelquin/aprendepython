@@ -11,6 +11,10 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
 
 .. hint:: **"Programming is not about typing, it's about thinking."** -- Rich Hickey
 
+.. only:: html
+
+   :download:`Documentación en PDF <_build/latex/aprendepython.pdf>` 
+
 .. toctree::
    :maxdepth: 2
 
