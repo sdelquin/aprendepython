@@ -40,3 +40,11 @@ dl.footnote {
   border: 1px solid #9e5d17;
   border-left: 7px solid #9e5d17;
 }
+
+/* Badges */
+.badges {
+  margin-bottom: 1rem;
+}
+.badges span {
+  padding-right: 0.5rem;
+}
