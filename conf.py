@@ -20,7 +20,7 @@
 project = 'aprendepython'
 # Description just for Latex purposes
 description = 'Aprende Python'
-copyright = '2020 <a href="https://sdelquin.me">Sergio Delgado Quintero</a>'
+copyright = '2020, Sergio Delgado Quintero'
 author = 'Sergio Delgado Quintero'
 
 
@@ -55,14 +55,7 @@ rst_prolog = open('global.rst').read()
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
-
-html_theme_options = {
-    'logo': 'logo-aprendepython.png',
-    'page_width': '1008px',
-    'show_powered_by': True,
-    'fixed_sidebar': True,
-}
+html_theme = 'furo'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -70,12 +63,7 @@ html_theme_options = {
 html_static_path = ['_static']
 
 html_show_sourcelink = False
-html_show_sphinx = False
-
-html_sidebars = {
-    'index': ['about.html', 'searchbox.html', 'navigation.html', 'badges.html'],
-    '**': ['about.html', 'searchbox.html', 'innertoc.html'],
-}
+# html_show_sphinx = False
 
 html_css_files = ['custom.css']
 html_js_files = ['custom.js']
@@ -100,4 +88,12 @@ latex_elements = {
 
 latex_logo = '_static/logo-solo-aprendepython.png'
 
-latex_documents = [('index', project + '.tex', description, author, 'manual',)]
+latex_documents = [
+    (
+        'index',
+        project + '.tex',
+        description,
+        author,
+        'manual',
+    )
+]

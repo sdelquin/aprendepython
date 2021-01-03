@@ -13,10 +13,10 @@
 .. role:: advanced-level(strong)
     :class: difficulty-level advanced-level
 
-.. |beglev| replace:: :beginner-level:`🧩 Nivel principiante`
+.. |beglev| replace:: :beginner-level:`Nivel principiante`
 
-.. |intlev| replace:: :intermediate-level:`🐍 Nivel intermedio`
+.. |intlev| replace:: :intermediate-level:`Nivel intermedio`
 
-.. |advlev| replace:: :advanced-level:`🚀 Nivel avanzado`
+.. |advlev| replace:: :advanced-level:`Nivel avanzado`
 
-.. |solution| replace:: 🔥 *Solución*:
+.. |solution| replace:: Solución:

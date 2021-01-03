@@ -1,5 +1,5 @@
 .. meta::
-   :property=og:title: Aprende Python
+    :property=og:title: Aprende Python
 
 ##############
 Aprende Python

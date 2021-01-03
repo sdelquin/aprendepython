@@ -1,156 +1,42 @@
-/* Fix body padding */
-div.body {
-  padding: 0 0 0 30px;
-}
-
 /* Footnotes section styling */
 dl.footnote {
   margin-top: 4rem;
-  border-top: 1px solid lightgray;
+  border-top: 1px solid var(--color-background-border);
   padding-top: 1rem;
-}
-
-/* Reduce spacing among footnotes */
-dl.footnote dd p {
-  margin-bottom: 0.5rem;
-}
-
-/* Increase spacing above footer / signature */
-div.footer {
-  margin-top: 4rem;
-}
-
-/* Font size fot custom TOC */
-ul.toptoc {
-  font-size: 18px;
-}
-
-/* Remove underline on custom about (logo) link */
-div.customabout a,
-div.customabout a:hover {
-  border-bottom: none;
-}
-
-/* Fix scroll on sidebar */
-div.sphinxsidebar {
-  max-height: calc(100% - 30px);
-  overflow-y: auto;
-}
-
-/* Remove too much space above sidear */
-div.sphinxsidebarwrapper {
-  padding: 0 10px 0 0;
-}
-div.sphinxsidebarwrapper p.logo {
-  margin-top: 0;
-}
-
-/* Much improved spacing around code blocks */
-div.highlight pre {
-  padding: 11px 14px;
-}
-div.linenodiv pre {
-  padding: 11px 6px;
-}
-
-/* Custom colors for admonitions */
-div.admonition.note {
-  background-color: #dff3f9;
-  border: 1px solid #84a9b7;
-}
-
-div.admonition.important {
-  background-color: #fae4b1;
-  border: 1px solid #bbb246;
-}
-
-div.admonition.tip {
-  background-color: #cff3d5;
-  border: 1px solid #9ead99;
-}
-
-div.admonition.hint {
-  background-color: #fff1ff;
-  border: 1px solid #baa6bb;
-}
-
-/* Custom admonition for exercises */
-div.admonition.exercise {
-  background-color: #ffeddb;
-  border: 1px solid #dab47a;
-}
-
-/* Change background color of download links */
-code.download {
-  background-color: #a1da754a;
-}
-code.download:hover {
-  background-color: #a1da759c;
 }
 
 /* Button to remove prompt in Python code */
 .copybutton {
   cursor: pointer;
   position: absolute;
+  color: var(--color-link);
+  font-weight: bold;
   top: 0;
   right: 0;
-  background-color: white;
-  border-bottom: 2px;
-  border-left: 2px;
-  border-top: 0px;
-  border-right: 0px;
-  border-color: #d2d2d2;
-  border-style: solid;
-  border-radius: 0 0 0 5px;
   font-family: monospace;
   padding-left: 0.3em;
   padding-right: 0.3em;
-  font-size: 85%;
-}
-
-/* Add some space before and after headings in sidebar */
-div.sphinxsidebar h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* Remove title of search box */
-h3#searchlabel {
-  display: none;
-}
-
-/* Sans-serif font within search box */
-.searchformwrapper input[type='text'] {
-  font-family: sans-serif;
+  font-size: 90%;
 }
 
 /* Custom box for difficulty levels */
 .difficulty-level {
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  font-weight: 600;
+  font-size: 90%;
 }
 .beginner-level {
-  background-color: #c4f0ff;
   color: #246398;
-  border: 1px solid #7cabdc;
+  border: 1px solid #246398;
+  border-left: 7px solid #246398;
 }
 .intermediate-level {
-  background-color: #c9f7d2;
   color: #176f36;
-  border: 1px solid #61ad60;
+  border: 1px solid #176f36;
+  border-left: 7px solid #176f36;
 }
 .advanced-level {
-  background-color: #ffe1a9;
   color: #9e5d17;
-  border: 1px solid orange;
-}
-
-/* Badges side panel */
-div.badges {
-  margin-top: 2rem;
-}
-div.badges a {
-  border-bottom: none;
-}
-div.badges a:hover {
-  border-bottom: none;
+  border: 1px solid #9e5d17;
+  border-left: 7px solid #9e5d17;
 }
