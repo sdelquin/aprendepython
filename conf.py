@@ -71,6 +71,11 @@ html_js_files = ['custom.js']
 html_title = description
 html_favicon = 'favicon.png'
 
+html_theme_options = {
+    'light_logo': 'logo-solo-aprendepython-S.png',
+    'dark_logo': 'logo-solo-aprendepython-mono-S.png',
+}
+
 # -- Latex configuration ---------------------------------------------------
 
 # lualatex in combination with https://github.com/sdelquin/emojitex.sty allow emojis
@@ -86,7 +91,7 @@ latex_elements = {
 ''',
 }
 
-latex_logo = '_static/logo-solo-aprendepython.png'
+latex_logo = '_static/logo-solo-aprendepython-S.png'
 
 latex_documents = [
     (

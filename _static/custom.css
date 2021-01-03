@@ -48,3 +48,8 @@ dl.footnote {
 .badges span {
   padding-right: 0.5rem;
 }
+
+/* Center alignment on brand template */
+.sidebar-brand {
+  align-items: center;
+}
