@@ -513,7 +513,7 @@ Convertir lista a cadena de texto
 
 Dada una lista, podemos convetirla a una cadena de texto, uniendo todos sus elementos mediante algún **separador**. Para ello hacemos uso de la función ``join()`` con la siguiente estructura:
 
-.. figure:: img/join-list.png
+.. figure:: img/join-list.jpg
 
    Estructura de llamada a la función ``join()``
 

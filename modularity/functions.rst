@@ -17,7 +17,7 @@ Definir una función
 
 Para definir una función utilizamos la palabra reservada ``def`` seguida del **nombre** de la función. A continuación aparecerán 0 o más **parámetros** separados por comas (entre paréntesis), finalizando la línea con **dos puntos** ``:`` En la siguiente línea empezaría el **cuerpo** de la función que puede contener 1 o más **sentencias**, incluyendo (o no) una **sentencia de retorno** con el resultado mediante ``return``.
 
-.. figure:: img/function-definition.png
+.. figure:: img/function-definition.jpg
 
     Definición de una función en Python
    
@@ -173,7 +173,7 @@ En este caso escribiremos una función que recibe un valor numérico y devuelve 
 
 Cuando llamamos a una función con *argumentos*, los valores de estos argumentos se copian en los correspondientes *parámetros* dentro de la función:
 
-.. figure:: img/args-params.png
+.. figure:: img/args-params.jpg
 
    Parámetros y argumentos de una función
 

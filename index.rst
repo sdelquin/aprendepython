@@ -1,19 +1,29 @@
 .. meta::
-   :property=og:title: Aprende Python
+    :property=og:title: Aprende Python
 
 ##############
 Aprende Python
 ##############
 
+.. only:: html
+
+    .. raw:: html
+        :file: badges.html
+
+
 .. image:: _static/monty-python.jpg
 
 Curso gratuito para aprender el lenguaje de programación **Python** con un enfoque **práctico**, incluyendo **ejercicios** y cobertura para distintos **niveles de conocimiento**. [#monty-python]_
+
+.. only:: html
+
+   :download:`Documentación en PDF <_build/latex/aprendepython.pdf>` 
 
 .. hint:: **"Programming is not about typing, it's about thinking."** -- Rich Hickey
 
 .. only:: html
 
-   :download:`Documentación en PDF <_build/latex/aprendepython.pdf>` 
+   .. rubric:: **Contenidos**
 
 .. toctree::
    :maxdepth: 2
