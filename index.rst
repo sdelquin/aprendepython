@@ -1,5 +1,3 @@
-:hide-toc:
-
 .. meta::
     :property=og:title: Aprende Python
 
@@ -23,9 +21,9 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
 
 .. hint:: **"Programming is not about typing, it's about thinking."** -- Rich Hickey
 
-**********
-Contenidos
-**********
+.. only:: html
+
+   .. rubric:: **Contenidos**
 
 .. toctree::
    :maxdepth: 2
