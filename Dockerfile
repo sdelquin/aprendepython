@@ -18,7 +18,7 @@ WORKDIR $APRENDEPYTHON_DIR
 
 RUN apt-get update && apt-get install -qy \
         build-essential \
-        python3.8 \
+        python3 \
         python3-venv \
         texlive-fonts-extra \
         latexmk \
