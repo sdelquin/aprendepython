@@ -1,6 +1,11 @@
 name: CI
-on: push
-  - branches: master
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
   deploy-documentation:
     name: Deploy documentation in html/pdf format
