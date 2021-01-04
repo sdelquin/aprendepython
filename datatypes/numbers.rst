@@ -113,7 +113,7 @@ Asignación aumentada
 
 Python nos ofrece la posibilidad de escribir una `asignación aumentada <https://www.python.org/dev/peps/pep-0577/>`_ mezclando la *asignación* y un *operador*. 
 
-.. figure:: img/augmented-assignment.png
+.. figure:: img/augmented-assignment.jpg
 
    Asignación aumentada en Python
 
@@ -164,7 +164,7 @@ Módulo
 
 La operación **módulo** (también llamado **resto**), cuyo símbolo en Python es ``%``, se define como el resto de dividir dos números. Veamos un ejemplo para enteder bien su funcionamiento:
 
-.. figure:: img/modulo.png
+.. figure:: img/modulo.jpg
 
    Operador "módulo" en Python
 

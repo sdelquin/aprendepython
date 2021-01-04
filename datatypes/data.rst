@@ -12,7 +12,7 @@ Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en
 * Un **identificador** único para distinguirlo de otros objetos.
 * Un **valor** consistente con su tipo.
 
-.. figure:: img/object.png
+.. figure:: img/object.jpg
 
    Esquema (*metadatos*) de un objeto en Python
 
@@ -35,7 +35,7 @@ Variables
 
 Las **variables** son fundamentales ya que permiten definir **nombres** para los **valores** que tenemos en memoria y que vamos a usar en nuestro programa.
 
-.. figure:: img/name-variable.png
+.. figure:: img/name-variable.jpg
 
    Uso de un *nombre* de variable
 
@@ -115,7 +115,7 @@ Asignación
 
 En Python se usa el símbolo ``=`` para **asignar** un valor a una variable:
 
-.. figure:: img/assignment.png
+.. figure:: img/assignment.jpg
 
    Asignación de *valor* a *nombre* de variable
 

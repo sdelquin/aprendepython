@@ -25,7 +25,7 @@ Sus **beneficios** son los siguientes:
 **Polimorfismo**
     Permite **crear** múltiples objetos a partir de una misma pieza flexible de código.
 
-.. figure:: img/oop.png
+.. figure:: img/oop.jpg
 
    Beneficios de la Programación Orientada a Objetos
 
@@ -41,7 +41,7 @@ Un **objeto** es una **estructura de datos personalizada** que contiene:
 
 Se podría pensar en los **atributos** como **nombres** y en sus **métodos** como **verbos**. Un objeto representa una instancia única de alguna entidad y sus métodos definen cómo interactuan con otros objetos.
 
-.. figure:: img/bike-object.png
+.. figure:: img/bike-object.jpg
 
    Analogía de atributos y métodos en un objeto "bicicleta"
 
@@ -50,7 +50,7 @@ Se podría pensar en los **atributos** como **nombres** y en sus **métodos** co
 
 Para crear un objeto primero debemos definir la clase que lo contiene. Podemos pensar en la **clase** como el **molde** con el que crear nuevos objetos de ese tipo.
 
-.. figure:: img/mold.png
+.. figure:: img/mold.jpg
 
    Ejemplificación de creación de objetos a partir de una clase
 
@@ -457,7 +457,7 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
     >>> droid1.__eq__(droid2)
     True
 
-.. figure:: img/magic-methods-list.png
+.. figure:: img/magic-methods-list.jpg
 
    Métodos mágicos para comparaciones y operaciones matemáticas
 
@@ -536,7 +536,7 @@ Herencia
 
 La **herencia** consiste en **crear una nueva clase partiendo de una clase existente**, pero que añade o modifica ciertos aspectos. Se considera una buena práctica tanto para *reutilizar código* como para *realizar generalizaciones*.
 
-.. figure:: img/inheritance.png
+.. figure:: img/inheritance.jpg
 
    Nomenclatura de clases en la herencia [#freepik-icons]_
 
@@ -698,7 +698,7 @@ Si en una clase se hace referencia a un método o atributo que no existe, Python
 
 Supongamos que queremos modelar la siguiente estructura de clases con *herencia múltiple*:
 
-.. figure:: img/multiple-inheritance.png
+.. figure:: img/multiple-inheritance.jpg
 
     Ejemplo de herencia múltiple [#starwars-fandom]_
    
@@ -806,7 +806,7 @@ Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un o
 
     Dada la siguiente estructura/herencia que representa diferentes clases de ficheros:
 
-    .. image:: img/files-inheritance.png
+    .. image:: img/files-inheritance.jpg
 
     Se pide lo siguiente:
 
@@ -832,7 +832,7 @@ Hay una sutil diferencia entre agregación y composición:
 - La **composición** implica que el objeto utilizado no puede "funcionar" sin la presencia de su propietario
 - La **agregación** implica que el objeto utilizado puede funcionar por sí mismo.
 
-.. figure:: img/aggregation-composition.png
+.. figure:: img/aggregation-composition.jpg
 
    Agregación vs. Composición [#freepik-icons]_
 

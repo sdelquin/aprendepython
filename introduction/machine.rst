@@ -77,7 +77,7 @@ Compiladores
 
 Los `compiladores <https://es.wikipedia.org/wiki/Compilador>`__ son programas que convierten un lenguaje "cualquiera" en *código máquina*. Se pueden ver como traductores, permitiendo a la máquina interpretar lo que queremos hacer.
 
-.. figure:: img/compiler.png
+.. figure:: img/compiler.jpg
 
     Esquema de funcionamiento de un compilador [#compiler]_
 

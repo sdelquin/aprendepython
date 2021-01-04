@@ -215,7 +215,7 @@ Obtener un caracter
 
 Los "strings" están **indexados** y cada caracter tiene su propia posición. Para obtener un único caracter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
 
-.. figure:: img/string-indexing.png
+.. figure:: img/string-indexing.jpg
 
    Indexado de una cadena de texto
 
