@@ -21,7 +21,7 @@ Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en
 Tipos de datos
 **************
 
-A continuación se muestran los distintos `tipos de datos <https://docs.python.org/3/library/stdtypes.html>`__ que podemos encontrar en Python, sin incluir aquellos que proveen paquetes externos:
+A continuación se muestran los distintos `tipos de datos <https://docs.python.org/es/3/library/stdtypes.html>`__ que podemos encontrar en Python, sin incluir aquellos que proveen paquetes externos:
 
 .. csv-table:: Tipos de datos en Python
     :file: tables/datatypes.csv

@@ -892,5 +892,5 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
 .. _Astro Mech Droids: https://www.facebook.com/astromechdroids/
 .. _droides de protocolo: https://starwars.fandom.com/wiki/Category:Protocol_droids
 .. _StarWars Fandom: https://starwars.fandom.com/
-.. _métodos especiales: https://docs.python.org/3/reference/datamodel.html#special-method-names
+.. _métodos especiales: https://docs.python.org/es/3/reference/datamodel.html#special-method-names
 .. _Freepik: https://www.flaticon.com/authors/freepik

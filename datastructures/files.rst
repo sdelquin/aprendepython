@@ -214,4 +214,4 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 .. _Maksym Kaharlytskyi: https://unsplash.com/@qwitka?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _Smart Drone: https://smart-drone.es/codigos-oaci-aeropuertos/
-.. _Gestores de contexto: https://docs.python.org/3/reference/datamodel.html#context-managers
+.. _Gestores de contexto: https://docs.python.org/es/3/reference/datamodel.html#context-managers

@@ -656,7 +656,7 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 .. --------------- Footnotes ---------------
 
 .. [#dict-unsplash] Foto original de portada por `Aaron Burden`_ en Unsplash.
-.. [#keep-order] Aunque históricamente Python no establecía que las claves de los diccionarios tuvieran que mantener su orden de inserción, a partir de Python 3.7 este comportamiento cambió y se garantizó el orden de inserción de las claves como `parte oficial de la especificación del lenguaje <https://docs.python.org/3/whatsnew/3.7.html>`_.
+.. [#keep-order] Aunque históricamente Python no establecía que las claves de los diccionarios tuvieran que mantener su orden de inserción, a partir de Python 3.7 este comportamiento cambió y se garantizó el orden de inserción de las claves como `parte oficial de la especificación del lenguaje <https://docs.python.org/es/3/whatsnew/3.7.html>`_.
 .. [#time-complexity] Véase este `análisis de complejidad y rendimiento`_ de distintas estructuras de datos en CPython.
 .. [#none] ``None`` es la palabra reservada en Python para la "nada". Más información en `esta web <https://recursospython.com/guias-y-manuales/el-tipo-de-dato-none/>`_.
 .. [#invisible-none] Realmente no estamos viendo nada en la consola de Python porque la representación en cadena de texto es vacía.

@@ -14,7 +14,7 @@ Pero aún seguimos con el problema de cómo hacer que un ordenador (o máquina) 
 
 Si intentamos visualizar un programa en código máquina, únicamente obtendríamos una secuencia de ceros y unos:
 
-.. code-block:: raw
+.. code-block::
 
     00001000 00000010 01111011 10101100 10010111 11011001 01000000 01100010 
     00110100 00010111 01101111 10111001 01010110 00110001 00101010 00011111 
@@ -29,20 +29,23 @@ El primer lenguaje de programación que encontramos en esta "escalada" es **ensa
 
 .. code-block:: Nasm
 
-             global    _start
+    SYS_SALIDA equ 1
 
-             section   .text
-    _start:  mov       rax, 1              ; system call for write
-             mov       rdi, 1              ; file handle 1 is stdout
-             mov       rsi, message        ; address of string to output
-             mov       rdx, 13             ; number of bytes
-             syscall                       ; invoke OS to do the write
-             mov       rax, 60             ; system call for exit
-             xor       rdi, rdi            ; exit code 0
-             syscall                       ; invoke OS to exit
+    section .data
+        msg db "Hello, World",0x0a
+        len equ $ - msg ;longitud de msg
 
-             section   .data
-    message: db        "Hello, World", 10  ; note the newline at the end
+    section .text
+    global _start ;para el linker
+    _start: ;marca la entrada
+        mov eax, 4 ;llamada al sistema (sys_write)
+        mov ebx, 1 ;descripción de archivo (stdout)
+        mov ecx, msg ;msg a escribir
+        mov edx, len ;longitud del mensaje
+        int 0x80 ;llama al sistema de interrupciones
+
+    fin: mov eax, SYS_SALIDA ;llamada al sistema (sys_exit)
+        int 0x80
 
 Aunque resulte difícil de creer, lo "único" que hace este programa es mostrar en la pantalla de nuestro ordenador la frase "Hello, World", pero además teniendo en cuenta que sólo funcionará para una `arquitectura x86`_.
 
@@ -97,5 +100,5 @@ Los `compiladores <https://es.wikipedia.org/wiki/Compilador>`__ son programas qu
 .. _Flaticon: http://flaticon.com/
 .. _Garett Mizunaka: https://unsplash.com/@garett3?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _arquitectura x86: https://es.wikipedia.org/wiki/X86
-.. _ejemplo de código en ensamblador: https://cs.lmu.edu/~ray/notes/x86assembly/
+.. _ejemplo de código en ensamblador: https://medium.com/nabucodonosor-editorial/hola-mundo-ensamblado-x86-ff62789ab9b0
 .. _sistema binario: https://es.wikipedia.org/wiki/Sistema_binario

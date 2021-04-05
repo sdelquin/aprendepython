@@ -214,7 +214,7 @@ Python ofrece la posibilidad de ver si un valor está entre dos límites de mane
 
     Dada una variable ``year`` con un valor entero, compruebe si dicho año es **bisiesto** o no lo es.
 
-    ℹ️ Un año es bisiesto en el calendario Gregoriano, si es divisible entre 4 y no divisible entre 100, o bien si es divisible entre 400. Puedes hacer la comprobación en `esta lista de años bisiestos <https://kalender-365.de/leap-years.php>`_.
+    ℹ️ Un año es bisiesto en el calendario Gregoriano, si es divisible entre 4 y no divisible entre 100, o bien si es divisible entre 400. Puedes hacer la comprobación en `esta lista de años bisiestos <https://es.wikipedia.org/wiki/Anexo:A%C3%B1os_bisiestos_en_los_siglos_XX,_XXI_y_XXII>`_.
 
     **Ejemplo**
         * Entrada: ``2008``
@@ -394,5 +394,5 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _ali nafezarefi: https://unsplash.com/@beautyisblinding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _PEP 8: https://www.python.org/dev/peps/pep-0008/#indentation
 .. _operador morsa: https://www.python.org/dev/peps/pep-0572/
-.. _Marvel: https://www.marvel.com/
+.. _Marvel: https://marvel.fandom.com/es/wiki/Categor%C3%ADa:Personajes
 .. _Akinator: https://es.akinator.com/

@@ -148,6 +148,8 @@ Para la instalación de WSL hay que seguir los siguientes pasos:
 
     $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
+.. TODO Ubuntu 20.04 -> https://bit.ly/3sQWXfK
+
 3. Descargamos la imagen de Ubuntu 18.04 que usaremos::
 
     $ Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
