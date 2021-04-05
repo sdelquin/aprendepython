@@ -545,7 +545,7 @@ Aunque aún podemos encontrar código con el `estilo antiguo y el estilo nuevo e
 "f-strings"
 ===========
 
-Los **f-strings** `aparecieron en Python 3.6 <https://docs.python.org/3/whatsnew/3.6.html#new-features>`_ y se suelen usar en código de nueva creación. Es la forma más potente -- y en muchas ocasiones más eficiente -- de formar cadenas de texto incluyendo valores de otras variables.
+Los **f-strings** `aparecieron en Python 3.6 <https://docs.python.org/es/3/whatsnew/3.6.html#new-features>`_ y se suelen usar en código de nueva creación. Es la forma más potente -- y en muchas ocasiones más eficiente -- de formar cadenas de texto incluyendo valores de otras variables.
 
 La **interpolación** en cadenas de texto es un concepto que existe en la gran mayoría de lenguajes de programación y hace referencia al hecho de sustituir los nombres de variables por sus valores a la hora de construir un "string".
 
