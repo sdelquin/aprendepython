@@ -268,6 +268,29 @@ La función ``id()`` nos permite conocer la dirección de memoria [#memory-addre
     >>> id(b)
     4445989712
 
+¿Y esto qué tiene que ver con la **mutabilidad**? Pues se dice, por ejemplo, que un **entero** es inmutable ya que a la hora de modificar su valor obtenemos una nueva *zona de memoria*, o lo que es lo mismo, un nuevo objeto::
+
+    >>> a = 5
+    >>> id(a)
+    4310690224
+
+    >>> a = 7
+    >>> id(a)
+    4310690288
+
+Sin embargo, si tratamos con **listas**, podemos ver que la modificación de alguno de sus valores no implica un cambio en la posición de memoria de la variable, por lo que se habla de objetos inmutables::
+
+    >>> v = [1, 2, 3]
+    >>> id(v)
+    4343530176
+
+    >>> v[0] = 5  # cambio del primer elemento de la lista
+    >>> v
+    [5, 2, 3]
+
+    >>> id(v)
+    4343530176
+
 La característica de que los nombres de variables sean referencias a objetos en memoria es la que hace posible diferenciar entre **objetos mutables e inmutables**:
 
 +-----------+----------+
