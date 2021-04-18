@@ -692,6 +692,37 @@ A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variab
     
         |solution| :download:`fstrings.py <files/fstrings.py>`
 
+******************
+Caracteres Unicode
+******************
+
+Python trabaja *por defecto* con caracteres **Unicode**. Eso significa que tenemos acceso a la `amplia carta de caracteres <https://www.unicode.org/charts/>`_ que nos ofrece este estándar de codificación.
+
+Supongamos un ejemplo sobre el típico "emoji" de un **cohete** definido `en este cuadro <https://www.unicode.org/charts/PDF/U1F680.pdf>`_:
+
+.. figure:: img/rocket-unicode.png
+    :align: center
+
+    Representación Unicode del carácter ROCKET
+
+La función ``chr()`` permite representar un carácter **a partir de su código**::
+
+    >>> rocket_code = 0x1F680
+    >>> rocket = chr(rocket_code)
+    >>> rocket
+    '🚀'
+
+La función ``ord()`` permite obtener el código (decimal) de un carácter **a partir de su representación**::
+
+    >>> rocket_code = hex(ord(rocket))
+    >>> rocket_code
+    '0x1f680'
+
+El modificador ``\N`` permite representar un carácter **a partir de su nombre**::
+
+    >>> '\N{ROCKET}'
+    '🚀' 
+
 ************
 Casos de uso
 ************
