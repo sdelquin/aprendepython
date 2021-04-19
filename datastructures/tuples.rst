@@ -127,6 +127,16 @@ Veamos un ejemplo con código::
     >>> king3
     'Baltasar'
 
+Python proporciona la función "built-in" ``divmod()`` que devuelve el cociente y el resto de una división usando una única llamada. Lo interesante (para el caso que nos ocupa) es que se suele utilizar el desempaquetado de tuplas para obtener los valores::
+
+    >>> quotient, remainder = divmod(7, 3)
+
+    >>> quotient
+    2
+    >>> remainder
+    1
+
+
 Intercambio de valores
 ======================
 
