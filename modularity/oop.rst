@@ -200,6 +200,10 @@ Veamos un ejemplo de este método con nuestros droides en el que únicamente gua
 
     Crear al menos una instancia (móvil) a partir de la clase creada y "jugar" con los métodos, visualizando cómo cambian sus atributos.
 
+    .. only:: html
+    
+        |solution| :download:`mobile.py <files/mobile.py>`
+
 *********
 Atributos
 *********
@@ -528,6 +532,10 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
         \bigg[ \frac{25}{30} * \frac{40}{45} = \frac{20}{27} \bigg] \hspace{5mm}
         \bigg[ \frac{25}{30} / \frac{40}{45} = \frac{15}{16} \bigg]
 
+    .. only:: html
+    
+        |solution| :download:`fraction.py <files/fraction.py>`
+
 ********
 Herencia
 ********
@@ -821,6 +829,10 @@ Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un o
     3. Añadir el contenido hello al fichero.
     4. Añadir el contenido world al fichero.
     5. Imprimir por pantalla la ``info()`` de este objeto (el método ``info()`` debería retornar ``str`` y debería hacer uso de los métodos ``info()`` de las clases base).
+
+    .. only:: html
+    
+        |solution| :download:`file-inheritance.py <files/file-inheritance.py>`
 
 Agregación y composición
 ========================

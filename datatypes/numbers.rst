@@ -371,6 +371,41 @@ Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la 
     
         |solution| :download:`sin_approx.py <files/sin_approx.py>`
 
+
+Errores de aproximación
+=======================
+
+|intlev|
+
+Supongamos el siguiente cálculo::
+
+    >>> (19 / 155) * (155 / 19)
+        0.9999999999999999
+
+Debería dar 1.0, pero no es así puesto que la representación interna de los valores en **coma flotante** sigue el estándar `IEEE 754`_ y estamos trabajando con `aritmética finita`_.
+
+Aunque existen distintas formas de solventar esta limitación, de momento veremos una de las más sencillas utilizando la función "built-in" `round()`_  que nos permite redondear un número flotante a un número determinado de decimales::
+
+    >>> pi = 3.14159265359
+
+    >>> round(pi, 1)
+    3.1
+    >>> round(pi, 2)
+    3.14
+    >>> round(pi, 3)
+    3.142
+    >>> round(pi, 4)
+    3.1416
+    >>> round(pi, 5)
+    3.14159 
+
+Para el caso del error de aproximación que nos ocupa::
+
+    >>> result = (19 / 155) * (155 / 19)
+
+    >>> round(result, 1)
+    1.0
+
 *****
 Bases
 *****
@@ -464,3 +499,6 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 .. _principio DRY: https://es.wikipedia.org/wiki/No_te_repitas
 .. _centillón: https://es.wikipedia.org/wiki/Centill%C3%B3n
 .. _discriminante: https://es.wikipedia.org/wiki/Discriminante
+.. _IEEE 754: https://es.wikipedia.org/wiki/IEEE_754
+.. _aritmética finita: https://www.unioviedo.es/compnum/laboratorios_py/Aritmetica_finita/Aritmetica_finita_y_error.html#Representaci%C3%B3n-de-los-n%C3%BAmeros-reales
+.. _round(): https://docs.python.org/es/3/library/functions.html#round
