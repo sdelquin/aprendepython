@@ -68,6 +68,62 @@ Veamos su implementación::
     >>> intdiv(3, '0')
     Check operands. Some of them seems strange...
 
+Cubriendo más casos
+===================
+
+Python proporciona la cláusula ``else`` para saber que todo ha ido bien y que no se ha lanzado ninguna excepción. Esto es relevante a la hora de manejar los errores.
+
+De igual modo, tenemos a nuestra disposición la cláusula ``finally`` que se ejecuta siempre independientemente de si ha habido o no ha habido error.
+
+Veamos un ejemplo de ambos::
+
+    >>> values = [4, 2, 7]
+
+    >>> user_index = 3
+
+    >>> try:
+    ...     r = values[user_index]
+    ... except IndexError:
+    ...     print('Error: Index not in list')
+    ... else:
+    ...     print(f'Your wishes are my command: {r}')
+    ... finally:
+    ...     print('Have a good day!')
+    ...
+    Error: Index not in list
+    Have a good day!
+
+    >>> user_index = 2
+
+    >>> try:
+    ...     r = values[user_index]
+    ... except IndexError:
+    ...     print('Error: Index not in list')
+    ... else:
+    ...     print(f'Your wishes are my command: {r}')
+    ... finally:
+    ...     print('Have a good day!')
+    ...
+    Your wishes are my command: 7
+    Have a good day!
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Sabiendo que ``ValueError`` es la excepción que se lanza cuando no podemos convertir una cadena de texto en su valor numérico, escribe una función ``get_int()`` que lea un valor entero del usuario y lo devuelva, iterando mientras el valor no sea correcto.
+
+    .. code-block::
+
+        Give me an integer number: ten
+        Not a valid integer. Try it again!
+        Give me an integer number: diez
+        Not a valid integer. Try it again!
+        Give me an integer number: 10
+
+    .. only:: html
+    
+        |solution| :download:`get_int.py <files/get_int.py>`
+
 *******************
 Excepciones propias
 *******************
