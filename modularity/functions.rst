@@ -576,8 +576,7 @@ Del mismo modo podemos (y en muchos casos **debemos**) adjuntar **documentación
 La forma más ortodoxa de escribir un ``docstring`` es utilizando *triples comillas*::
 
     >>> def closest_int(value):
-    ...     '''
-    ...     Returns the closest integer to the given value.
+    ...     '''Returns the closest integer to the given value.
     ...     The operation is:
     ...         1. Compute distance to floor.
     ...         2. If distance less than a half, return floor.
@@ -608,44 +607,52 @@ Para ver el ``docstring`` de una función, basta con utilizar ``help``::
 Explicación de parámetros
 =========================
 
-Como ya se ha visto, es posible documentar una función utilizando un ``docstring``. Pero la redacción y el formato de esta cadena de texto puede ser muy variada. Existen distintas formas de documentar una función (u otros objetos) [#docstring-formats]_ pero vamos a centrarnos en el modelo **NumPy/SciPy**. 
+Como ya se ha visto, es posible documentar una función utilizando un ``docstring``. Pero la redacción y el formato de esta cadena de texto puede ser muy variada. Existen distintas formas de documentar una función (u otros objetos) [#docstring-formats]_:
 
-Este modelo se basa en:
+`Sphinx docstrings`_
+    Formato nativo de documentación `Sphinx`_.
+`Google docstrings`_
+    Formato de documentación recomendado por Google.
+`NumPy-SciPy docstrings`_
+    Combinación de formatos reStructured y Google (usados por el proyecto `NumPy`_).
+`Epytext`_
+    Una adaptación a Python de Epydoc(Java).
+
+Aunque cada uno tienes sus particularidades, todos comparten una misma estructura:
 
 * Una primera línea de **descripción de la función**.
-* A continuación especificamos las características de los **parámetros** (incluyendo sus tipos) usando el encabezado ``Parameters``.
-* Por último, si la función **retorna un valor**, lo indicamos con el encabezado ``Returns``.
+* A continuación especificamos las características de los **parámetros** (incluyendo sus tipos).
+* Por último, indicamos si la función **retorna un valor** y sus características.
 
-Veamos un ejemplo::
+Aunque todos los formatos son válidos, nos centraremos en **Sphinx docstrings** al ser el que viene mejor integrado con la documentación Sphinx. *Google docstrings* y *Numpy docstrings* también son ampliamente utilizados, lo único es que necesitan de un módulo externo denominado `Napoleon`_ para que se puedan incluir en la documentación *Sphinx*.
 
-    >>> def substract(value1, value2, vabs=False):
-    ...     '''Substract two values with choice of absolute value
+Sphinx
+------
+
+`Sphinx`_ es una herramienta para generar documentación e incluye un módulo "built-in" denominado `autodoc`_ el cual permite la autogeneración de documentación a partir de los "docstrings" definidos en el código.
+
+Veamos el uso de este formato en la documentación de la siguiente función "dummy"::
+
+    >>> def my_power(x, n):
+    ...     '''Calculate x raised to the power of n.
     ...
-    ...     Parameters
-    ...     ----------
-    ...     value1 : int
-    ...         First value in substraction
-    ...     value2 : int
-    ...         Second value in substraction
-    ...     vabs : bool
-    ...         Indicates if absolute value is performed over the substraction
+    ...     :param x: number representing the base of the operation
+    ...     :type x: int
+    ...     :param n: number representing the exponent of the operation
+    ...     :type n: int
     ...
-    ...     Returns
-    ...     -------
-    ...     int
-    ...         Substraction of input values
+    ...     :return: :math:`x^n`
+    ...     :rtype: int
     ...     '''
-    ...     result = value1 - value2
-    ...     if vabs:
-    ...         result = abs(result)
+    ...     result = 1
+    ...     for _ in range(n):
+    ...         result *= x
     ...     return result
     ...
+    
+Dentro del "docstring" podemos escribir con sintaxis `reStructured Text`_ -- véase por ejemplo la expresión matemática en el tag ``:return:`` -- lo que nos proporciona una gran flexibilidad.
 
-    >>> substract(3, 5)
-    -2
-
-    >>> substract(3, 5, True)
-    2
+.. note:: La plataforma `Read the Docs`_ aloja la documentación de gran cantidad de proyectos. En muchos de los casos se han usado "docstrings" con el formato Sphinx visto anteriormente.
 
 Anotación de tipos
 ==================
@@ -1320,6 +1327,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
      '_i4': 'catalonia()',
      '_i5': 'globals()'}
 
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 - `Comparing Python Objects the Right Way: "is" vs "==" <https://realpython.com/courses/python-is-identity-vs-equality/>`_
@@ -1356,3 +1364,13 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _Sucesión de Fibonacci: https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci
 .. _mypy: http://mypy-lang.org/
 .. _syntactic sugar: https://es.wikipedia.org/wiki/Az%C3%BAcar_sint%C3%A1ctico
+.. _Sphinx docstrings: https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
+.. _Google docstrings: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings
+.. _reStructured Text: https://www.sphinx-doc.org/es/master/usage/restructuredtext/index.html
+.. _NumPy-SciPy docstrings: https://numpydoc.readthedocs.io/en/latest/format.html
+.. _Epytext: http://epydoc.sourceforge.net/epytext.html
+.. _NumPy: https://numpy.org/
+.. _Sphinx: https://www.sphinx-doc.org/en/master/
+.. _autodoc: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+.. _Read the Docs: https://readthedocs.org/
+.. _Napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
