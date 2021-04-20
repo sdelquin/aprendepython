@@ -204,6 +204,10 @@ Veamos otra función con dos parámetros y algo más de lógica de negocio: [#bl
         * Entrada: ``3`` y ``4``
         * Salida: ``25``
 
+    .. only:: html
+    
+        |solution| :download:`square.py <files/square.py>`
+
 Argumentos posicionales
 =======================
 
@@ -299,6 +303,10 @@ Llamada a la función indicando una frecuencia concreta de "cpu"::
     **Ejemplo**
         * Entrada: ``5``
         * Salida: ``120``
+
+    .. only:: html
+    
+        |solution| :download:`factorial.py <files/factorial.py>`
 
 Modificando parámetros mutables
 -------------------------------
@@ -984,6 +992,10 @@ Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <mo
 
     Escriba una **función generadora** que devuelva los 100 primeros números enteros elevados al cuadrado.
 
+    .. only:: html
+    
+        |solution| :download:`gen_squared.py <files/gen_squared.py>`
+
 Decoradores
 ===========
 
@@ -1081,13 +1093,19 @@ Ahora aplicaremos ambos decoradores sobre una función que realiza el producto d
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba un decorador que convierta a su valor absoluto los dos primeros parámetros de la función que decora y devuelva el resultado de aplicar dicha función a sus dos argumentos.
+    Escriba un decorador llamado ``fabs()`` que convierta a su valor absoluto los dos primeros parámetros de la función que decora y devuelva el resultado de aplicar dicha función a sus dos argumentos.
 
-    A continuación probar el decorador con una función que devuelva el producto de dos valores, jugando con números negativos y positivos.
+    A continuación probar el decorador con una función ``fprod()`` que devuelva el producto de dos valores, jugando con números negativos y positivos.
+    
+    *¿Podrías extender el decorador para que tuviera en cuenta un número indeterminado de argumentos posicionales?*
 
     **Ejemplo**
         * Entrada: ``-3`` y ``7``
         * Salida: ``21``
+
+    .. only:: html
+    
+        |solution| :download:`decorator.py <files/decorator.py>`
 
 Funciones recursivas
 ====================
@@ -1175,6 +1193,10 @@ Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los 
     **Ejemplo**
         * Entrada: ``5``
         * Salida: ``120``
+
+    .. only:: html
+    
+        |solution| :download:`factorial_recursive.py <files/factorial_recursive.py>`
 
 *******************
 Espacios de nombres
