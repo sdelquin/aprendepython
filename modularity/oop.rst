@@ -54,6 +54,8 @@ Para crear un objeto primero debemos definir la clase que lo contiene. Podemos p
 
    Ejemplificación de creación de objetos a partir de una clase
 
+En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los métodos que contenga estén enfocados a una objetivo único y bien definido.
+
 ***************
 Creando objetos
 ***************
@@ -536,6 +538,47 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
     
         |solution| :download:`fraction.py <files/fraction.py>`
 
+Gestores de contexto
+--------------------
+
+Otra de las aplicaciones de los métodos mágicos (especiales) que puede ser interesante es la de **gestores de contexto**. Se trata de un bloque de código en Python que engloba una serie de acciones a la entrada y a la salida del mismo.
+
+Hay dos métodos que son utilizados para implementar los gestores de contexto:
+
+``__enter__()``
+    Acciones que se llevan a cabo al entrar al contexto.
+``__exit__()``
+    Acciones que se llevan a cabo al salir del contexto.
+
+Veamos un ejemplo en el que implementamos un gestor de contexto que mide tiempos de ejecución::
+
+    >>> from time import time
+
+    >>> class Timer():
+    ...     def __enter__(self):
+    ...         self.start = time()
+    ...
+    ...     def __exit__(self, exc_type, exc_value, exc_traceback):
+    ...         # Omit exception handling
+    ...         self.end = time()
+    ...         exec_time = self.end - self.start
+    ...         print(f'Execution time (seconds): {exec_time:.5f}')
+    ...
+
+Ahora podemos probar nuestro gestor de contexto con un ejemplo concreto. La forma de "activar" el contexto es usar la sentencia ``with`` seguida del símbolo que lo gestiona::
+
+    >>> with Timer():
+    ...     for _ in range(1_000_000):
+    ...         x = 2 ** 20
+    ...
+    Execution time (seconds): 0.05283
+
+    >>> with Timer():
+    ...     for _ in range(1_000_000):
+    ...         x = 2 ** 20
+    ...
+    Execution time (seconds): 0.05477
+
 ********
 Herencia
 ********
@@ -884,6 +927,7 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
 - `Modeling Polymorphism in Django With Python <https://realpython.com/modeling-polymorphism-django-python/>`_
 - `Operator and Function Overloading in Custom Python Classes <https://realpython.com/operator-function-overloading/>`_
 - `Object-Oriented Programming (OOP) in Python 3 <https://realpython.com/python3-object-oriented-programming/>`_
+- `Why Bother Using Property Decorators in Python? <https://betterprogramming.pub/why-bother-using-property-decorators-in-python-935c425f86ed>`_
 
 
 
@@ -895,6 +939,7 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
 .. [#mro] Viene del inglés "method resolution order" o ``mro``.
 .. [#starwars-fandom] Imágenes de los droides por `StarWars Fandom`_.
 .. [#freepik-icons] Iconos por `Freepik`_.
+.. [#solid-principles] Principios `SOLID`_
 
 .. --------------- Hyperlinks ---------------
 
@@ -906,3 +951,4 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
 .. _StarWars Fandom: https://starwars.fandom.com/
 .. _métodos especiales: https://docs.python.org/es/3/reference/datamodel.html#special-method-names
 .. _Freepik: https://www.flaticon.com/authors/freepik
+.. _SOLID: https://es.wikipedia.org/wiki/SOLID
