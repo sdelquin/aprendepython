@@ -34,7 +34,7 @@ Ventajas
 * Gran comunidad, amplio soporte.
 * Interpretado.
 * Fuertemente tipado, tipado dinámico.
-* Hay diferentes implementaciones: CPython, Jython, IronPython, MicroPython, ...
+* Hay diferentes implementaciones: CPython, PyPy, Jython, IronPython, MicroPython, ...
 
 Desventajas
 ===========
@@ -91,7 +91,7 @@ Python2 vs Python3
 
 En el momento de la escritura de este material, se muestra a continuación la evolución de las versiones mayores de Python a lo largo de la historia: [#python-versions]_
 
-.. csv-table:: Versiones mayores de Python
+.. csv-table::
     :file: tables/python_versions.csv
     :widths: 15, 30
     :header-rows: 1
