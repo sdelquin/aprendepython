@@ -18,7 +18,7 @@ Instalación
 
 Para instalar Thonny debemos acceder a su `web <https://thonny.org>`_ y descargar la aplicación para nuestro sistema operativo. La ventaja es que está disponible tanto para **Windows**, **Mac** y **Linux**. Una vez descargado el fichero lo ejecutamos y seguimos su instalación paso por paso.
 
-Una vez terminada la instalación ya podemos lanzar la aplicación que se verá parecido a la siguiente imagen:
+Una vez terminada la instalación ya podemos lanzar la aplicación que se verá parecida a la siguiente imagen:
 
 .. figure:: img/thonny-empty.png
 
@@ -37,9 +37,10 @@ Versiones de Python
 
 Existen múltiples versiones de Python. Desde el lanzamiento de la versión 1.0 en 1994 se han ido liberando versiones, cada vez, con nuevas características que aportan riqueza al lenguaje:
 
-.. csv-table:: Versiones de Python
-    :file: tables/python-versions.csv
-    :widths: 20, 20
+.. csv-table::
+    :file: ../introduction/tables/python_versions.csv
+    :widths: 15, 30
+    :header-rows: 1
     :class: longtable
 
 .. note:: Para ser exactos, esta tabla (y en general todo este manual) versa sobre una implementación concreta de Python denominada ``CPython``, pero existen `otras implementaciones alternativas de Python <https://www.python.org/download/alternatives/>`_. A los efectos de aprendizaje del lenguaje podemos referirnos a *Python* (aunque realmente estaríamos hablando de *CPython*).
@@ -48,7 +49,7 @@ Existen múltiples versiones de Python. Desde el lanzamiento de la versión 1.0 
 Probando el intérprete
 **********************
 
-El intérprete de Python (por lo general) se identifica claramente porque posee un **prompt** [#prompt]_ con trés angulos hacia la derech ``>>>``. En Thonny lo podemos encontrar en el panel inferior, pero se debe tener en cuenta que el intérprete de Python es una herramienta autocontenida y que la podemos ejecutar desde el símbolo del sistema o la terminal:
+El intérprete de Python (por lo general) se identifica claramente porque posee un **prompt** [#prompt]_ con tres angulos hacia la derecha ``>>>``. En Thonny lo podemos encontrar en el panel inferior, pero se debe tener en cuenta que el intérprete de Python es una herramienta autocontenida y que la podemos ejecutar desde el símbolo del sistema o la terminal:
 
 .. code-block::
     :caption: Invocando el intérprete de Python 3.7 desde una terminal en MacOS
@@ -59,7 +60,7 @@ El intérprete de Python (por lo general) se identifica claramente porque posee 
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
 
-Para hacer una primera prueba del intérprete vamos a retomar el primer programa que se suele hacer. Es el llamado :ref:`"Hello, World" <introduction/machine:Ensamblador>`. Para ello escribimos lo siguiente en el intérprete y pulsamos la tecla :kbd:`ENTER`::
+Para hacer una prueba inicial del intérprete vamos a retomar el primer programa que se suele hacer. Es el llamado :ref:`"Hello, World" <introduction/machine:Ensamblador>`. Para ello escribimos lo siguiente en el intérprete y pulsamos la tecla :kbd:`ENTER`::
 
     >>> print('Hello, World')
     Hello, World
@@ -93,7 +94,7 @@ Nos falta por probar el depurador o "debugger". Aunque su funcionamiento va much
     msg = 'Hello, World'
     print(msg)
 
-Aunque ya lo veremos en profundidad, lo que hemos hecho es incorporar una variable ``msg`` en la *línea 1* para luego utilizarla al mostrar por pantalla su contenido. Si ahora volvemos a ejecutar nuestro programa veremos que en el panel de variables nos aparece la siguiente información:
+Aunque ya lo veremos en profundidad, lo que hemos hecho es añadir una variable ``msg`` en la *línea 1* para luego utilizarla al mostrar por pantalla su contenido. Si ahora volvemos a ejecutar nuestro programa veremos que en el panel de variables nos aparece la siguiente información:
 
 +---------+--------------------+
 |  Name   |       Value        |
