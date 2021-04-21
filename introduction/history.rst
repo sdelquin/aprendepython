@@ -36,7 +36,7 @@ Un **compilador** lee todas las instrucciones y genera un resultado; un **intér
 Cronología de lenguajes de programación
 ***************************************
 
-Desde la década de los 1950 se han sucedido multitud de lenguajes de programación que cada vez incorporan más funcionalidades destinadas a cubrir las necesidades del desarrollo de aplicaciones. A continuación se muestra una tabla con la historia de los lenguajes de programación más destacados:
+Desde la década de 1950 se han sucedido multitud de lenguajes de programación que cada vez incorporan más funcionalidades destinadas a cubrir las necesidades del desarrollo de aplicaciones. A continuación se muestra una tabla con la historia de los lenguajes de programación más destacados:
 
 .. figure:: img/proglangs.png
 
