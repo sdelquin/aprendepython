@@ -26,6 +26,9 @@ Otra de las alternativas para disponer de Python es nuestro sistema y que ademá
 * `Anaconda 64-bits para Mac`_
 * `Anaconda 64-bits para Linux`_
 
+.. seealso:: `Miniconda`_ es un instalador mínimo que trae por defecto Python y un pequeño número de paquetes útiles.
+
+
 *******************
 Gestión de paquetes
 *******************
@@ -47,7 +50,10 @@ Entornos virtuales
 
 Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (*a nivel de máquina*). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, y esto nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos.
 
-El paquete de Python que nos proporciona la funcionalidad de crear y gestionar entornos virtuales se denomina `virtualenv`_. Su instalación es sencilla a través del gestor de paquetes ``pip``::
+virtualenv
+==========
+
+El paquete "built-in" de Python que nos proporciona la funcionalidad de crear y gestionar entornos virtuales se denomina `virtualenv`_. Su instalación es sencilla a través del gestor de paquetes ``pip``::
 
     $ pip install virtualenv
 
@@ -100,6 +106,59 @@ Veamos a continuación algunos de los comandos que nos ofrece:
 * ``$ workon env1``: activa el entorno virtual ``env1``
 * ``$ lssitepackages``: lista los paquetes instalados en el entorno virtual activo
 
+pyenv
+=====
+
+pyenv permite cambiar fácilmente entre múltiples versiones de Python en un mismo sistema. Su instalación engloba varios pasos y está bien explicada en la `página del proyecto <https://github.com/pyenv/pyenv#installation>`_.
+
+La mayor diferencia con respecto a :ref:`virtualenv <devenv/real-context:virtualenv>` es que no instala las distintas versiones de Python a nivel global del sistema. En vez de eso, se suele crear una carpeta ``.pyenv`` en el HOME del usuario, donde todo está aislado sin generar intrusión en el sistema operativo.
+
+Podemos hacer cosas como:
+
+- Listar las versiones de Python instaladas:
+
+.. code-block:: console
+
+    $ pyenv versions
+      3.7.4
+      * 3.5.0 (set by /Users/yuu/.pyenv/version)
+      miniconda3-3.16.0
+      pypy-2.6.0
+
+- Descubrir la versión global "activa" de Python:
+
+.. code-block:: console
+
+    $ python --version
+    Python 3.5.0
+
+- Cambiar la versión global "activa" de Python:
+
+.. code-block:: console
+
+    $ pyenv global 3.7.4
+
+    $ python --version
+    Python 3.7.4
+
+- Instalar una nueva versión de Python:
+
+.. code-block:: console
+
+    $ pyenv install 3.9.1
+    ...
+
+- Activar una versión de Python local por carpetas:
+
+.. code-block:: console
+
+    $ cd /cool-project
+    $ pyenv local 3.9.1
+    $ python --version
+    Python 3.9.1
+
+También existe un módulo denominado `pyenv-virtualenv`_ para manejar entornos virtuales utilizando las ventajas que proporciona *pyenv*.
+
 ********
 Editores
 ********
@@ -108,7 +167,7 @@ Existen multitud de editores en el mercado que nos pueden servir perfectamente p
 
 Podríamos decir que :ref:`Thonny <devenv/thonny:Thonny>` es un IDE de aprendizaje, pero existen muchos otros. Veamos un listado de editores de código que se suelen utilizar para desarrollo en Python:
 
-* Editores generales o IDEs con soporte para Python
+* Editores generales o IDEs con soporte para Python:
     * `Eclipse`_ + `PyDev`_
     * `Sublime Text`_
     * `Atom`_
@@ -116,18 +175,18 @@ Podríamos decir que :ref:`Thonny <devenv/thonny:Thonny>` es un IDE de aprendiza
     * `Vi-Vim`_
     * `Visual Studio`_ (+ `Python Tools <http://pytools.codeplex.com/>`__)
     * `Visual Studio Code`_  (+ `Python Tools <https://marketplace.visualstudio.com/items?itemName=ms-python.python>`__)
-* Editores o IDEs específicos para Python
+* Editores o IDEs específicos para Python:
     * `PyCharm`_
     * `Spyder`_
     * `Thonny`_
 
-Cada editor tiene sus características (ventajas e inconvenientes). Supongo que la preferencia por alguno de ellos estará en en base a la experiencia y a las necesidades que surjan. La parte buena es que hay diversidad de opciones para elegir.
+Cada editor tiene sus características (ventajas e inconvenientes). Supongo que la preferencia por alguno de ellos estará en base a la experiencia y a las necesidades que surjan. La parte buena es que hay diversidad de opciones para elegir.
 
 ****************
 Jupyter Notebook
 ****************
 
-`Jupyter Notebook <https://jupyter.org/install.html>`__ es una aplicación "open-source" que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque suele estar más enfocado a *ciencia de datos*: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización de datos o "machine-learning" [#machine-learning]_.
+`Jupyter Notebook <https://jupyter.org/install.html>`__ es una aplicación "open-source" que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque suele estar más enfocado a *ciencia de datos*: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización o "machine-learning" [#machine-learning]_.
 
 Podemos verlo como un intérprete de Python (contiene un "kernel" [#kernel]_ que permite ejecutar código) con la capacidad de incluir documentación en formato `Markdown`_, lo que potencia sus funcionalidades y lo hace adecuado para preparar cualquier tipo de material vinculado con lenguajes de programación.
 
@@ -137,22 +196,20 @@ Podemos verlo como un intérprete de Python (contiene un "kernel" [#kernel]_ que
 WSL
 ******
 
-Si estamos trabajando en un sistema **Windows 10** es posible que nos encontremos más cómodos usando una terminal tipo "Linux", entre otras cosas para poder usar con facilidad las herramientas vistas en esta sección para preparar y gestionar el entorno de desarrollo Python. Durante mucho tiempo esto fue difícil de conseguir hasta que *Microsoft* sacó WSL.
+Si estamos trabajando en un sistema **Windows 10** es posible que nos encontremos más cómodos usando una terminal tipo "Linux", entre otras cosas para poder usar con facilidad las herramientas vistas en esta sección y preparar el entorno de desarrollo Python. Durante mucho tiempo esto fue difícil de conseguir hasta que *Microsoft* sacó WSL.
 
-`WSL <https://es.wikipedia.org/wiki/Windows_Subsystem_for_Linux>`_ [#wsl-acronym]_ nos proporciona una *consola con entorno Linux* que podemos utilizar en nuestro *Windows 10* sin necesidad de instalar una máquina virtual o crear una partición aparte para Linux nativo. Es importante también saber que existen dos versiones de WSL hoy en día: WSL y WSL2. La segunda es bastante reciente (publicada a mediados de 2019), tiene mejor rendimiento y se adhiere más al comportamiento de un Linux nativo.
+`WSL <https://es.wikipedia.org/wiki/Windows_Subsystem_for_Linux>`_ [#wsl-acronym]_ nos proporciona una *consola con entorno Linux* que podemos utilizar en nuestro *Windows 10* sin necesidad de instalar una máquina virtual o crear una partición para un Linux nativo. Es importante también saber que existen dos versiones de WSL hoy en día: WSL y WSL2. La segunda es bastante reciente (publicada a mediados de 2019), tiene mejor rendimiento y se adhiere más al comportamiento de un Linux nativo.
 
-Para la instalación de WSL hay que seguir los siguientes pasos:
+Para la instalación de WSL [#wsl-installation]_ hay que seguir los siguientes pasos:
 
 1. Lanzamos Powershell con permisos de administrador.
 2. Activamos la característica de WSL::
 
     $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
-.. TODO Ubuntu 20.04 -> https://bit.ly/3sQWXfK
+3. Descargamos la imagen de Ubuntu 20.04 que usaremos::
 
-3. Descargamos la imagen de Ubuntu 18.04 que usaremos::
-
-    $ Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
+    $ Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
 
 4. Finalmente, la instalamos::
 
@@ -170,6 +227,7 @@ En este punto, WSL debería estar instalado correctamente, y debería también a
 .. [#machine-learning] Término inglés utilizado para hacer referencia a algoritmos de aprendizaje automático.
 .. [#kernel] Proceso específico para un lenguaje de programación que ejecuta instrucciones y actúa como interfaz de entrada/salida.
 .. [#wsl-acronym] Windows Subsystem for Linux.
+.. [#wsl-installation] Tutorial de `instalación de WSL <https://reachmnadeem.wordpress.com/2021/02/15/install-wsl-2-on-windows-10-using-powershell-command-line/>`_.
 
 .. --------------- Hyperlinks ---------------
 
@@ -196,3 +254,5 @@ En este punto, WSL debería estar instalado correctamente, y debería también a
 .. _Spyder: https://github.com/spyder-ide/spyder
 .. _Thonny: http://thonny.org/
 .. _Markdown: https://markdown.es/
+.. _Miniconda: https://docs.conda.io/en/latest/miniconda.html
+.. _pyenv-virtualenv: https://github.com/pyenv/pyenv-virtualenv
