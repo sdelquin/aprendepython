@@ -12,7 +12,7 @@ Es importante destacar que Python 3 almacena los caracteres codificados en el es
 Creando "strings"
 *****************
 
-Para escribir una cadena de texto en Python basta con rodear los caracteres con comillas simples::
+Para escribir una cadena de texto en Python basta con rodear los caracteres con comillas simples [#double-quotes]_::
 
     >>> 'Mi primera cadena en Python'
     'Mi primera cadena en Python'
@@ -131,6 +131,8 @@ Veamos algunos ejemplos::
 
 .. hint:: El modificador ``r''`` es muy utilizado para la escritura de **expresiones regulares**.
 
+.. _more-print:
+
 *********************
 Más sobre ``print()``
 *********************
@@ -181,6 +183,27 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
     str
 
 .. note:: La función ``input()`` siempre nos devuelve un objeto de tipo cadena de texto o ``str``. Tenerlo muy en cuenta a la hora de trabajar con números, ya que debemos realizar una :ref:`conversión explícita <datatypes/numbers:Conversión explícita>`.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Escriba un programa en Python que lea por teclado dos números enteros y muestre por pantalla el resultado de realizar las operaciones básicas entre ellos.
+
+    **Ejemplo**
+        - Valores de entrada 7 y 4.
+        - Salida esperada::
+
+            7+4=11
+            7-4=3
+            7*4=28
+            7/4=1.75
+
+    .. hint:: Aproveche todo el potencial que ofrece :ref:`print() <more-print>` para conseguir la salida esperada.
+
+    .. only:: html
+    
+        |solution| :download:`calc.py <files/calc.py>`
+    
 
 *************************
 Operaciones con "strings"
@@ -323,13 +346,13 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <d
 
     >>> game = 'piedra-papel-tijera'
 
-    >>> type(game.split())
+    >>> type(game.split('-'))
     list
 
 .. admonition:: Ejercicio
     :class: exercise
 
-    Obtenga el número de palabras que contiene la siguiente cadena de texto::
+    Sabiendo que la longitud de una lista se calcula igual que la :ref:`longitud de una cadena de texto <datatypes/strings:Longitud de una cadena>`, obtenga el número de palabras que contiene la siguiente cadena de texto::
 
         quote = 'Before software can be reusable, it first has to be usable'
     
@@ -342,7 +365,7 @@ Limpiar cadenas
 
 Cuando leemos datos del usuario o de cualquier fuente externa de información, es bastante probable que se incluyan en esas cadenas de texto, *caracteres de relleno* [#padding]_ al comienzo y al final. Python nos ofrece la posibilidad de eliminar estos caracteres u otros que no nos interesen.
 
-La función ``strip()`` se utiliza para eliminar caracteres del principio y final del "string". También existen variantes de esta función para aplicarla únicamente al comienzo o únicamente al final de la cadena de texto.
+La función ``strip()`` se utiliza para eliminar caracteres del principio y del final de un "string". También existen variantes de esta función para aplicarla únicamente al comienzo o únicamente al final de la cadena de texto.
 
 Supongamos que debemos procesar un fichero con números de serie de un determinado artículo. Cada línea contiene el valor que nos interesa pero se han "colado" ciertos caracteres de relleno que debemos limpiar::
 
@@ -399,7 +422,7 @@ Encontrar la **primera ocurrencia** de alguna subcadena::
     >>> lyrics.find('amor')
     93
 
-    >>> lyrics.index('amor')
+    >>> lyrics.index('amor')  # Same behaviour?
     93
 
 Tanto ``find()`` como ``index()`` devuelven el **índice** de la primera ocurrencia de la subcadena que estemos buscando, pero se diferencian en su comportamiento cuando la subcadena buscada no existe::
@@ -526,7 +549,7 @@ Veamos **algunas** de estas funciones:
 Interpolación de cadenas
 ************************
 
-En este apartado veremos cómo **interpolar** valores dentro de cadenas utilizando diferentes formatos. Interpolar (en este contexto) significa sustituir una variable por su valor dentro de una cadena de texto.
+En este apartado veremos cómo **interpolar** valores dentro de cadenas de texto utilizando diferentes formatos. Interpolar (en este contexto) significa sustituir una variable por su valor dentro de una cadena de texto.
 
 Veamos los estilos que proporciona Python para este cometido:
 
@@ -547,9 +570,9 @@ Aunque aún podemos encontrar código con el `estilo antiguo y el estilo nuevo e
 
 Los **f-strings** `aparecieron en Python 3.6 <https://docs.python.org/es/3/whatsnew/3.6.html#new-features>`_ y se suelen usar en código de nueva creación. Es la forma más potente -- y en muchas ocasiones más eficiente -- de formar cadenas de texto incluyendo valores de otras variables.
 
-La **interpolación** en cadenas de texto es un concepto que existe en la gran mayoría de lenguajes de programación y hace referencia al hecho de sustituir los nombres de variables por sus valores a la hora de construir un "string".
+La **interpolación** en cadenas de texto es un concepto que existe en la gran mayoría de lenguajes de programación y hace referencia al hecho de sustituir los nombres de variables por sus valores cuando se construye un "string".
 
-Para indicar en Python que una cadena es un "f-string" basta con precederla con una ``f`` e incluir las variables o expresiones a interpolar entre llaves ``{...}``.
+Para indicar en Python que una cadena es un "f-string" basta con precederla de una ``f`` e incluir las variables o expresiones a interpolar entre llaves ``{...}``.
 
 Supongamos que disponemos de los datos de una persona y queremos formar una frase de bienvenida con ellos::
 
@@ -617,7 +640,7 @@ Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: an
 
     >>> pi = 3.14159265
 
-    >>> f'{pi:f}'
+    >>> f'{pi:f}'  # 6 decimales por defecto (se rellenan con ceros si procede)
     '3.141593'
 
     >>> f'{pi:.3f}'
@@ -683,10 +706,11 @@ A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variab
     , obtenga los siguientes resultados utilizando "f-strings"::
 
         '2.718'
-        '    2.72'
+        '2.718280'
+        '    2.72'  # 4 espacios en blanco
         '2.718280e+00'
         '00002.7183'
-        '            2.71828'
+        '            2.71828'  # 12 espacios en blanco
 
     .. only:: html
     
@@ -863,6 +887,7 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. [#padding] Se suele utilizar el término inglés "padding" para referirse a estos caracteres.
 .. [#best-fstrings] Escrito por Nirant Kasliwal en Medium.
 .. [#tenerife-sea] "Tenerife Sea" por Ed Sheeran.
+.. [#double-quotes] También es posible utilizar comillas dobles. Yo me he decantado por las comillas simples ya que quedan más limpias y suele ser el formato que devuelve el propio intérprete de Python.
 
 .. --------------- Hyperlinks ---------------
 
