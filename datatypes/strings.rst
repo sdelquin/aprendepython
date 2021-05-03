@@ -327,6 +327,25 @@ Para obtener la longitud de una cadena podemos hacer uso de ``len()``, una funci
     >>> len(empty)
     0
 
+Pertenencia de un elemento
+==========================
+
+Si queremos comprobar que una determinada subcadena se encuentra en una cadena de texto utilizamos el operador ``in`` para ello. Se trata de una expresión que tiene como resultado un valor "booleano" verdadero o falso::
+
+    >>> proverb = 'Más vale malo conocido que bueno por conocer'
+
+    >>> 'malo' in proverb
+    True
+
+    >>> 'bueno' in proverb
+    True
+
+    >>> 'regular' in proverb
+    False
+
+.. note:: Nada impide que preguntemos si un único carácter está en otra cadena. No se reduce a búsqueda de subcadenas completas.
+
+
 Dividir una cadena
 ==================
 
@@ -400,7 +419,9 @@ Como habíamos comentado, también existe la posibilidad de especificar los cara
 Realizar búsquedas
 ==================
 
-Veamos aquellas funciones que proporciona Python para la búsqueda en cadenas de texto. Vamos a partir de una variable que contiene un trozo de la canción `Mediterráneo`_ de *Joan Manuel Serrat*::
+Aunque hemos visto que la forma pitónica de saber si una subcadena se encuentra dentro de otra es :ref:`a través del operador in <datatypes/strings:Pertenencia de un elemento>`, Python nos ofrece distintas alternativas para realizar búsquedas en cadenas de texto.
+
+Vamos a partir de una variable que contiene un trozo de la canción `Mediterráneo`_ de *Joan Manuel Serrat* para ejemplificar las distintas opciones que tenemos::
 
     >>> lyrics = '''Quizás porque mi niñez
     ... Sigue jugando en tu playa
