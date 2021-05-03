@@ -10,7 +10,7 @@ Cuando queremos hacer algo más de una vez, necesitamos recurrir a un **bucle**.
 La sentencia ``while``
 **********************
 
-El primer mecanismo que existe en Python para repetir instrucciones es usar la sentencia ``while``. El mensaje que podemos interpretar tras esta sentencia es: "Mientras se cumpla la condición haz algo". Veamos un sencillo bucle que muestra por pantalla los números del 1 al 4::
+El primer mecanismo que existe en Python para repetir instrucciones es usar la sentencia ``while``. La semántica tras esta sentencia es: "Mientras se cumpla la condición haz algo". Veamos un sencillo bucle que muestra por pantalla los números del 1 al 4::
 
     >>> value = 1
 
@@ -41,7 +41,7 @@ La condición del bucle se comprueba en cada nueva repetición. En este caso che
 Romper un bucle while
 =====================
 
-Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que cumpla la condición de parada*. Supongamos un ejemplo en el que estamos buscando el primer número múltiplo de 3 yendo desde 20 hasta 1:
+Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que se cumpla la condición de parada*. Supongamos un ejemplo en el que estamos buscando el primer número múltiplo de 3 yendo desde 20 hasta 1:
 
 .. code-block::
     :emphasize-lines: 6
@@ -124,7 +124,7 @@ Veamos un ejemplo en el que usaremos esta estrategia para mostrar todos los núm
     ...     num -= 1
     ...     if num % 3 == 0:
     ...         continue
-    ...     print(num, end=', ')
+    ...     print(num, end=', ')  # Evitar salto de línea
     ...
     20, 19, 17, 16, 14, 13, 11, 10, 8, 7, 5, 4, 2, 1,
 
@@ -143,7 +143,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Bucle infinito
 ==============
 
-Si no establecemos bien la **condición de parada** o bien el valor de alguna variable está fuera de control, es posible que lleguemos a una situación de bucle infinito, del que nunca podamos salir. Veamos un ejemplo de esto::
+Si no establecemos correctamente la **condición de parada** o bien el valor de alguna variable está fuera de control, es posible que lleguemos a una situación de bucle infinito, del que nunca podamos salir. Veamos un ejemplo de esto::
 
     >>> num = 1
 
@@ -155,7 +155,7 @@ Si no establecemos bien la **condición de parada** o bien el valor de alguna va
       File "<stdin>", line 1, in <module>
     KeyboardInterrupt
 
-El problema que surje es que la variable ``num`` toma los valores ``1, 3, 5, 7, 9, 11, ...`` por lo que nunca se cumple la condición del bucle. Esto hace que repitamos "eternamente" la instrucción de incremento.
+El problema que surje es que la variable ``num`` toma los valores ``1, 3, 5, 7, 9, 11, ...`` por lo que nunca se cumple la condición de parada del bucle. Esto hace que repitamos "eternamente" la instrucción de incremento.
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
@@ -204,7 +204,7 @@ La sentencia ``for``
 
 Python permite recorrer aquellos tipos de datos que sean **iterables**, es decir, que admitan *iterar* [#iterate]_ sobre ellos. Algunos ejemplos de tipos y estructuras de datos que permiten ser iteradas (*recorridas*) son: cadenas de texto, listas, diccionarios, ficheros, etc. La sentencia ``for`` nos permite realizar esta acción.
 
-A continuación un ejemplo en el que vamos a recorrer (iterar) una cadena de texto:
+A continuación se plantea un ejemplo en el que vamos a recorrer (iterar) una cadena de texto:
 
 .. code-block::
     :emphasize-lines: 3
@@ -221,7 +221,7 @@ A continuación un ejemplo en el que vamos a recorrer (iterar) una cadena de tex
     o
     n
 
-La clave aquí está en darse cuenta que el bucle va tomando, en cada iteración, cada uno de los elementos de la variable que especifiquemos. En este caso concreto ``letter`` va tomando cada una de las letras que existen en ``word``, porque una cadena de texto está formado por elementos que son caracteres.
+La clave aquí está en darse cuenta que el bucle va tomando, en cada iteración, cada uno de los elementos de la variable que especifiquemos. En este caso concreto ``letter`` va tomando cada una de las letras que existen en ``word``, porque una cadena de texto está formada por elementos que son caracteres.
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
@@ -235,7 +235,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
-.. note:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
+.. important:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
 
 Romper un bucle for
 ===================
@@ -289,9 +289,9 @@ Es muy habitual hacer uso de secuencias de números en bucles. Python no tiene u
 
 La técnica para la generación de secuencias de números es muy similar a la utilizada en los :ref:`"slices" <datatypes/strings:Trocear una cadena>` de cadenas de texto. En este caso disponemos de la función ``range(start, stop, step)``:
 
-- ``start`` es *opcional* y tiene valor por defecto **0**.
-- ``stop`` es *obligatorio*.
-- ``step`` es *opcional* y tiene valor por defecto **1**.
+- **start**: Es *opcional* y tiene valor por defecto **0**.
+- **stop**: es *obligatorio* (siempre se llega a 1 menos que este valor).
+- **step**: es *opcional* y tiene valor por defecto **1**.
 
 ``range()`` devuelve un *objeto iterable*, así que iremos obteniendo los valores paso a paso con una sentencia ``for ... in`` [#convert-list]_. Veamos diferentes ejemplos de uso:
 
@@ -344,7 +344,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="270" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
     
-.. tip:: Se suelen utilizar nombres de variables `i`, `j`, `k` para lo que se viene a denominar **contadores**. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores. No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de asignar un nombre semánticamente más significativo.
+.. tip:: Se suelen utilizar nombres de variables ``i``, ``j``, ``k`` para lo que se denominan **contadores**. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores. No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de asignar un nombre semánticamente más significativo. Esto viene de tiempos antiguos en FORTRAN donde ``i`` era la primera letra que tenía valor entero por defecto.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -352,6 +352,8 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     Determine si un número dado es un `número primo`_.
 
     *No es necesario implementar ningún algoritmo en concreto. La idea es probar los números menores al dado e ir viendo si las divisiones tienen resto cero o no*.
+
+    ¿Podrías optimizar tu código? ¿Realmente es necesario probar con tantos divisores?
 
     **Ejemplo**
         * Entrada: ``11``
@@ -388,7 +390,7 @@ Para estos casos se suele recomendar usar el **guión bajo** ``_`` como **nombre
 Bucles anidados
 ***************
 
-Como ya vimos en las sentencias condicionales, el *anidamiento* es una técnica en la que incluimos distintos niveles de encapsulamiento de sentencias, unas dentro de otras, con mayor nivel de profundidad. En el caso de los bucles también es posible hacer anidamiento.
+Como ya vimos en las :ref:`sentencias condicionales <if-sentence>`, el *anidamiento* es una técnica por la que incluimos distintos niveles de encapsulamiento de sentencias, unas dentro de otras, con mayor nivel de profundidad. En el caso de los bucles también es posible hacer anidamiento.
 
 Veamos un ejemplo de 2 bucles anidados en el que generamos todas las tablas de multiplicar::
 
@@ -495,7 +497,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. note::
     * Podemos añadir todos los niveles de anidamiento que queramos. Eso sí, hay que tener en cuenta que cada nuevo nivel de anidamiento supone un importante aumento de la `complejidad ciclomática`_ de nuestro código, lo que se traduce en mayores tiempos de ejecución.
-    * Los bucles anidados también se pueden aplicar a la sentencia ``while``.
+    * Los bucles anidados también se pueden aplicar en la sentencia ``while``.
 
 .. admonition:: Ejercicio
     :class: exercise

@@ -67,6 +67,8 @@ En caso de que queramos **romper una línea de código** demasiado larga, tenemo
     ...              2 *
     ...              1)
 
+.. _if-sentence:
+
 *******************
 La sentencia ``if``
 *******************
