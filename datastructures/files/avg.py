@@ -1,6 +1,6 @@
-values = input('Introduzca valores separados por comas: ')
+import sys
 
-values = values.strip().split(',')
+values = sys.argv[1:]
 values = [int(v) for v in values]
 
 sum_ = sum(values)
