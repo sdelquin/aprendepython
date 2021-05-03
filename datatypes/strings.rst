@@ -343,7 +343,15 @@ Si queremos comprobar que una determinada subcadena se encuentra en una cadena d
     >>> 'regular' in proverb
     False
 
-.. note:: Nada impide que preguntemos si un único carácter está en otra cadena. No se reduce a búsqueda de subcadenas completas.
+Habría que prestar atención al caso en el que intentamos descubrir si una subcadena **no está** en la cadena de texto::
+
+    >>> dna_sequence = 'ATGAAATTGAAATGGGA'
+
+    >>> not('C' in dna_sequence)  # Primera aproximación
+    True
+
+    >>> 'C' not in dna_sequence  # Forma pitónica
+    True    
 
 
 Dividir una cadena
