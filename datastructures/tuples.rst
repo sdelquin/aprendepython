@@ -140,7 +140,7 @@ Python proporciona la función "built-in" ``divmod()`` que devuelve el cociente 
 Intercambio de valores
 ======================
 
-A través del desempaquetado de variables podemos llevar a cabo *el intercambio de los valores de dos variables* de manera directa:
+A través del desempaquetado de tuplas podemos llevar a cabo *el intercambio de los valores de dos variables* de manera directa:
 
 .. code-block::
     :emphasize-lines: 4
@@ -179,6 +179,34 @@ Veamos un ejemplo:
 
     >>> tail
     'W'
+
+Desempaquetado genérico
+=======================
+
+El desempaquetado de tuplas es extensible a cualquier tipo de datos que sea **iterable**. Veamos algunos ejemplos de ello.
+
+Sobre cadenas de texto::
+
+    >>> oxygen = 'O2'
+    >>> first, last = oxygen
+    >>> first, last
+    ('O', '2')
+
+    >>> text = 'Hello, World!'
+    >>> head, *body, tail = text
+    >>> head, body, tail
+    ('H', ['e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd'], '!')
+
+Sobre listas::
+
+    >>> writer1, writer2, writer3 = ['Virginia Woolf', 'Jane Austen', 'Mary Shelley']
+    >>> writer1, writer2, writer3
+    ('Virginia Woolf', 'Jane Austen', 'Mary Shelley')
+
+    >>> text = 'Hello, World!'    
+    >>> word1, word2 = text.split()
+    >>> word1, word2
+    ('Hello,', 'World!')
 
 ************************
 ¿Tuplas por comprensión?
