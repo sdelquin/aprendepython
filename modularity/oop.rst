@@ -4,7 +4,7 @@ Objetos y Clases
 
 .. image:: img/rabie-madaci-skx1Rn6LW9I-unsplash.jpg
 
-Hasta ahora hemos estado usando objetos de forma totalmente transparente, casi sin ser conscientes de ello. Pero, en realidad, todo en Python es un objeto, desde números a funciones. El lenguaje provee ciertos mecanismos para no tener que usar explícitamente técnicas de orientación a objetos.
+Hasta ahora hemos estado usando objetos de forma totalmente transparente, casi sin ser conscientes de ello. Pero, en realidad, **todo en Python es un objeto**, desde números a funciones. El lenguaje provee ciertos mecanismos para no tener que usar explícitamente técnicas de orientación a objetos.
 
 Llegados a este punto, investigaremos en profundidad sobre la creación y manipulación de clases y objetos, y todas las operaciones que engloban este paradigma. [#things-unsplash]_
 
@@ -12,7 +12,7 @@ Llegados a este punto, investigaremos en profundidad sobre la creación y manipu
 Programación orientada a objetos
 ********************************
 
-La programación orientada a objetos (`POO`_) o en sus siglas inglesas **OOP** es una manera de programar que permite a las personas que desarrollan, pensar como si trabajaran con entidades de la vida real u objetos.
+La programación orientada a objetos (`POO`_) o en sus siglas inglesas **OOP** es una manera de programar que permite llevar al código mecanismos usados con entidades de la vida real.
 
 Sus **beneficios** son los siguientes:
 
@@ -32,14 +32,17 @@ Sus **beneficios** son los siguientes:
 ¿Qué es un objeto?
 ==================
 
-Un **objeto** es una **estructura de datos personalizada** que contiene:
+Un **objeto** es una **estructura de datos personalizada** que contiene **datos** y **código**:
 
-**Datos**
-    Vienen a ser *variables* con el nombre técnico de **atributos**.
-**Código**
-    Vienen a ser funciones con el nombre técnico de **métodos**.
++-----------+-----------+------------------+-----------------------+
+| Elementos | ¿Qué son? | ¿Cómo se llaman? | ¿Cómo se identifican? |
++===========+===========+==================+=======================+
+| Datos     | Variables | Atributos        | Nombres               |
++-----------+-----------+------------------+-----------------------+
+| Código    | Funciones | Métodos          | Verbos                |
++-----------+-----------+------------------+-----------------------+
 
-Se podría pensar en los **atributos** como **nombres** y en sus **métodos** como **verbos**. Un objeto representa una instancia única de alguna entidad y sus métodos definen cómo interactuan con otros objetos.
+Un objeto representa **una instancia única** de alguna entidad a través de los valores de sus atributos e interactuan con otros objetos (o consigo mismos) a través de sus métodos.
 
 .. figure:: img/bike-object.jpg
 
@@ -54,7 +57,7 @@ Para crear un objeto primero debemos definir la clase que lo contiene. Podemos p
 
    Ejemplificación de creación de objetos a partir de una clase
 
-En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los métodos que contenga estén enfocados a una objetivo único y bien definido.
+En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los atributos y los métodos que contenga estén enfocados a un objetivo único y bien definido.
 
 ***************
 Creando objetos
@@ -92,7 +95,7 @@ Añadiendo atributos
 
 Un **atributo** no es más que una variable, un nombre al que asignamos un valor, con la particularidad de vivir dentro de una clase o de un objeto.
 
-Los atributos se pueden asignar durante la creación de un objeto o incluso añadirlos a posteriori::
+Los atributos -- por lo general -- se suelen asignar durante la creación de un objeto, pero también es posible añadirlos a posteriori::
 
     >>> blue_droid = StarWarsDroid()
     >>> golden_droid = StarWarsDroid()
@@ -134,7 +137,7 @@ Un **método** es una función que forma parte de una clase o de un objeto. En s
 
 La definición de un método (de instancia) es análoga a la de una función ordinaria, pero incorporando un primer parámetro ``self`` que hace referencia a la instancia actual del objeto.
 
-Una de las acciones más sencillas que se puede hacer sobre un droide es encenderlo o apagarlo. Vamos a implementar estos dos métodos en nuestra clase::
+Una de las acciones más sencillas que se pueden hacer sobre un droide es encenderlo o apagarlo. Vamos a implementar estos dos métodos en nuestra clase::
 
     >>> class Droid:
     ...     def switch_on(self):
@@ -202,6 +205,8 @@ Veamos un ejemplo de este método con nuestros droides en el que únicamente gua
 
     Crear al menos una instancia (móvil) a partir de la clase creada y "jugar" con los métodos, visualizando cómo cambian sus atributos.
 
+    *¿Serías capaz de extender el método* ``install_app()`` *para instalar varias aplicaciones a la vez?*
+
     .. only:: html
     
         |solution| :download:`mobile.py <files/mobile.py>`
@@ -230,7 +235,7 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
 Propiedades
 ===========
 
-Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas desarrolladoras de otros lenguajes. En Python existe un cierto "sentido de responsabilidad" a la hora de programar, para manejar este tipo de situaciones.
+Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas desarrolladoras de otros lenguajes. En Python existe un cierto "sentido de responsabilidad" a la hora de programar y manejar este tipo de situaciones.
 
 Una posible solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <modularity/functions:Decoradores>`:
 
@@ -298,6 +303,9 @@ A modo de ejemplo, supongamos que la altura del periscopio de los droides astrom
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     AttributeError: can't set attribute
+
+.. hint:: La ventaja de usar valores calculados sobre simples atributos es que el cambio de valor en un atributo no asegura que actualicemos otro atributo, y además siempre podremos modificar directamente el valor del atributo, con lo que podríamos obtener efectos colaterales indeseados.
+
 
 Ocultando atributos
 ===================
@@ -430,11 +438,13 @@ Métodos mágicos
 
 |advlev|
 
-Cuando escribimos ``'hello' + 'world'`` ¿cómo sabe el objeto ``'hello'`` qué debe hacer para sumarse con la cadena de texto ``'world'``? O dicho de otra forma, ¿cuál es la implementación del operador ``+`` para "strings"? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos.
+Cuando escribimos ``'hello world' * 3`` ¿cómo sabe el objeto ``'hello world'`` lo que debe hacer para multiplicarse con el objeto entero ``3``? O dicho de otra forma, ¿cuál es la implementación del operador ``*`` para "strings" y enteros? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos.  La solución que proporciona Python para estas (y otras) situaciones son los **métodos mágicos**.
 
-La solución que proporciona Python para estas situaciones son los **métodos mágicos**, que permiten implementar operaciones entre objetos. Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ello que también se les conoce como "dunder-methods"). Uno de los "dunder-methods" más famosos es el constructor de una clase: ``__init__()``.
+Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ello que también se les conoce como "dunder-methods"). Uno de los "dunder-methods" más famosos es el constructor de una clase: ``__init__()``.
 
-Para cada operador, existe un método mágico asociado (que podemos personalizar). Por ejemplo la comparación de dos objetos se realiza con el método ``__eq__()``:
+.. important:: Digamos que los métodos mágicos se "disparan" de manera transparente cuando utilizamos ciertas estructuras y expresiones del lenguaje.
+
+Para el caso de los operadores, existe un método mágico asociado (que podemos personalizar). Por ejemplo la comparación de dos objetos se realiza con el método ``__eq__()``:
 
 .. figure:: img/magic-methods.png
 
@@ -479,8 +489,7 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     ...     def __add__(self, droid):
     ...         new_name = self.name + '-' + droid.name
     ...         new_power = self.power + droid.power
-    ...         new_droid = Droid(new_name, new_power)
-    ...         return new_droid  # Hay que devolver un objeto de tipo Droid
+    ...         return Droid(new_name, new_power)  # Hay que devolver un objeto de tipo Droid
     ...
 
     >>> droid1 = Droid('C3PO', 45)
@@ -574,10 +583,12 @@ Ahora podemos probar nuestro gestor de contexto con un ejemplo concreto. La form
     Execution time (seconds): 0.05283
 
     >>> with Timer():
+    ...     x = 0
     ...     for _ in range(1_000_000):
-    ...         x = 2 ** 20
+    ...         x += 2 ** 20
     ...
-    Execution time (seconds): 0.05477
+    Execution time (seconds): 0.08749
+
 
 ********
 Herencia
@@ -600,15 +611,13 @@ Para que una clase "herede" de otra, basta con indicar la clase base entre paré
 
 Sigamos con el ejemplo. Una de las grandes categorías de droides en StarWars es la de `droides de protocolo`_. Vamos a crear una herencia sobre esta idea::
 
-    >>> # Clase base
-    ...
-    ... class Droid:
+    >>> class Droid:
+    ...     ''' Clase Base '''
     ...     pass
     ...
 
-    >>> # Clase derivada
-    ...
-    ... class ProtocolDroid(Droid):
+    >>> class ProtocolDroid(Droid):
+    ...     ''' Clase Derivada '''
     ...     pass
     ...
 
@@ -694,6 +703,7 @@ La clase derivada también puede añadir métodos que no estaban presentes en su
     ...         print("Hi! I'm a PROTOCOL droid. Can I help you?")
     ...
     ...     def translate(self, msg, from_language):
+    ...         ''' Translate from language to Human understanding '''
     ...         print(f'{msg} means "ZASCA" in {from_language}')
 
     >>> r2d2 = Droid()
@@ -837,7 +847,7 @@ Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un o
 
     >>> class Instrospection:
     ...     def dig(self):
-    ...         print(vars(self))  ## vars devuelve las variables del argumento
+    ...         print(vars(self))  # vars devuelve las variables del argumento
     ...
     ... class Droid(Instrospection):
     ...     pass
@@ -884,7 +894,7 @@ Aunque la herencia de clases nos permite modelar una gran cantidad de casos de u
 
 Hay una sutil diferencia entre agregación y composición:
 
-- La **composición** implica que el objeto utilizado no puede "funcionar" sin la presencia de su propietario
+- La **composición** implica que el objeto utilizado no puede "funcionar" sin la presencia de su propietario.
 - La **agregación** implica que el objeto utilizado puede funcionar por sí mismo.
 
 .. figure:: img/aggregation-composition.jpg
