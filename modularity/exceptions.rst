@@ -73,7 +73,7 @@ Cubriendo más casos
 
 Python proporciona la cláusula ``else`` para saber que todo ha ido bien y que no se ha lanzado ninguna excepción. Esto es relevante a la hora de manejar los errores.
 
-De igual modo, tenemos a nuestra disposición la cláusula ``finally`` que se ejecuta siempre independientemente de si ha habido o no ha habido error.
+De igual modo, tenemos a nuestra disposición la cláusula ``finally`` que se ejecuta siempre, independientemente de si ha habido o no ha habido error.
 
 Veamos un ejemplo de ambos::
 
@@ -110,9 +110,9 @@ Veamos un ejemplo de ambos::
 .. admonition:: Ejercicio
     :class: exercise
 
-    Sabiendo que ``ValueError`` es la excepción que se lanza cuando no podemos convertir una cadena de texto en su valor numérico, escribe una función ``get_int()`` que lea un valor entero del usuario y lo devuelva, iterando mientras el valor no sea correcto.
+    Sabiendo que ``ValueError`` es la excepción que se lanza cuando no podemos convertir una cadena de texto en su valor numérico, escriba una función ``get_int()`` que lea un valor entero del usuario y lo devuelva, iterando mientras el valor no sea correcto.
 
-    .. code-block::
+    Ejecución a modo de ejemplo::
 
         Give me an integer number: ten
         Not a valid integer. Try it again!
