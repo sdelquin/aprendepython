@@ -215,12 +215,10 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     float
 
     >>> height = 3718
-
     >>> type(height)
     int
 
     >>> sound_speed = 343.2
-
     >>> type(sound_speed)
     float
 
@@ -268,7 +266,7 @@ La función ``id()`` nos permite conocer la dirección de memoria [#memory-addre
     >>> id(b)
     4445989712
 
-¿Y esto qué tiene que ver con la **mutabilidad**? Pues se dice, por ejemplo, que un **entero** es inmutable ya que a la hora de modificar su valor obtenemos una nueva *zona de memoria*, o lo que es lo mismo, un nuevo objeto::
+¿Y esto qué tiene que ver con la **mutabilidad**? Pues se dice, por ejemplo, que un **entero** es **inmutable** ya que a la hora de modificar su valor obtenemos una nueva *zona de memoria*, o lo que es lo mismo, un nuevo objeto::
 
     >>> a = 5
     >>> id(a)
@@ -278,18 +276,20 @@ La función ``id()`` nos permite conocer la dirección de memoria [#memory-addre
     >>> id(a)
     4310690288
 
-Sin embargo, si tratamos con **listas**, podemos ver que la modificación de alguno de sus valores no implica un cambio en la posición de memoria de la variable, por lo que se habla de objetos inmutables::
+Sin embargo, si tratamos con **listas**, podemos ver que la modificación de alguno de sus valores no implica un cambio en la posición de memoria de la variable, por lo que se habla de objetos **mutables**.
 
-    >>> v = [1, 2, 3]
-    >>> id(v)
-    4343530176
+Ejecución **paso a paso** a través de *Python Tutor*:
 
-    >>> v[0] = 5  # cambio del primer elemento de la lista
-    >>> v
-    [5, 2, 3]
+.. only:: latex
 
-    >>> id(v)
-    4343530176
+    https://cutt.ly/lvCyXeL
+
+.. only:: html
+
+    .. raw:: html
+
+        <iframe width="800" height="375" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=original%20%3D%20%5B1,%202,%203%5D%0Acopy%20%3D%20original%0A%0A%23%20Modify%20first%20element%0Aoriginal%5B0%5D%20%3D%2099%0A%0A%23%20Assign%20new%20object%0Aoriginal%20%3D%20%5B4,%205,%206%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
 
 La característica de que los nombres de variables sean referencias a objetos en memoria es la que hace posible diferenciar entre **objetos mutables e inmutables**:
 

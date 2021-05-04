@@ -22,6 +22,7 @@ Veamos un ejemplo de su uso::
     >>> is_opened = True
     >>> is_opened
     True
+
     >>> has_sugar = False
     >>> has_sugar
     False
@@ -263,7 +264,9 @@ Los números en **punto flotante** [#floating-point]_ tienen **parte decimal**. 
     4.0
     >>> 04.
     4.0
-    >>> 4e0
+    >>> 4.000_000
+    4.0
+    >>> 4e0  # 4.0 * (10 ** 0)
     4.0
 
 Conversión de tipos
@@ -337,7 +340,21 @@ Veamos algunos ejemplos de estas funciones::
     >>> float(False)
     0.0
 
-Para poder **comprobar el tipo** que tiene una variable podemos hacer uso de la función ``type()``::
+En el caso de que usemos la función ``int()`` sobre un valor flotante, nos retorna su **parte baja**:
+
+.. math::
+    int(x) = \big\lfloor x \big\rfloor
+
+Por ejemplo::
+
+    >>> int(3.1)
+    3
+    >>> int(3.5)
+    3
+    >>> int(3.9)
+    3
+
+Para **comprobar el tipo** que tiene una variable podemos hacer uso de la función ``type()``::
 
     >>> is_raining = False
     >>> type(is_raining)
@@ -388,6 +405,8 @@ Aunque existen distintas formas de solventar esta limitación, de momento veremo
 
     >>> pi = 3.14159265359
 
+    >>> round(pi)
+    3
     >>> round(pi, 1)
     3.1
     >>> round(pi, 2)
@@ -405,6 +424,8 @@ Para el caso del error de aproximación que nos ocupa::
 
     >>> round(result, 1)
     1.0
+
+.. caution:: ``round()`` aproxima al valor más cercano, mientras que ``int()`` obtiene siepre el entero "por abajo".
 
 *****
 Bases

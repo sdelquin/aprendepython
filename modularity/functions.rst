@@ -15,7 +15,7 @@ Una función viene *definida* por su *nombre*, sus *parámetros* y su *valor de 
 Definir una función
 *******************
 
-Para definir una función utilizamos la palabra reservada ``def`` seguida del **nombre** de la función. A continuación aparecerán 0 o más **parámetros** separados por comas (entre paréntesis), finalizando la línea con **dos puntos** ``:`` En la siguiente línea empezaría el **cuerpo** de la función que puede contener 1 o más **sentencias**, incluyendo (o no) una **sentencia de retorno** con el resultado mediante ``return``.
+Para definir una función utilizamos la palabra reservada ``def`` seguida del **nombre** [#naming-functions]_ de la función. A continuación aparecerán 0 o más **parámetros** separados por comas (entre paréntesis), finalizando la línea con **dos puntos** ``:`` En la siguiente línea empezaría el **cuerpo** de la función que puede contener 1 o más **sentencias**, incluyendo (o no) una **sentencia de retorno** con el resultado mediante ``return``.
 
 .. figure:: img/function-definition.jpg
 
@@ -59,6 +59,8 @@ Las funciones pueden retornar (o "devolver") un valor. Veamos un ejemplo muy sen
 
     >>> one()
     1
+
+.. important:: No confundir ``return`` con ``print()``. El valor de retorno de una función nos permite usarlo fuera de su contexto. El hecho de añadir ``print()`` al cuerpo de una función es algo "coyuntural" y no modifica el resultado de la lógica interna.
 
 .. note:: En la sentencia ``return`` podemos incluir variables y expresiones, no únicamente literales.
 
@@ -216,13 +218,17 @@ Los **argumentos posicionales** son aquellos argumentos que se copian en sus cor
 Vamos a mostrar un ejemplo definiendo una función que construye una "cpu" a partir de 3 parámetros::
 
     >>> def build_cpu(vendor, num_cores, freq):
-    ...     return f'{vendor} => {num_cores} cores x {freq}GHz'
+    ...     return dict(
+    ...         vendor=vendor,
+    ...         num_cores=num_cores,
+    ...         freq=freq
+    ...     )
     ...
 
 Una posible llamada a la función con argumentos posicionales sería la siguiente::
 
     >>> build_cpu('AMD', 8, 2.7)
-    'AMD => 8 cores x 2.7GHz'
+    {'vendor': 'AMD', 'num_cores': 8, 'freq': 2.7}
 
 Lo que ha sucedido es un **mapeo** directo entre argumentos y parámetros en el mismo orden que estaban definidos:
 
@@ -236,32 +242,35 @@ Lo que ha sucedido es un **mapeo** directo entre argumentos y parámetros en el 
 | ``freq``      | ``2.7``   |
 +---------------+-----------+
 
-.. note:: Una clara desventaja del uso de argumentos posicionales es que se necesita recordar el significado de cada posición.
+Pero es evidente que una clara desventaja del uso de argumentos posicionales es que se necesita **recordar el orden** de los argumentos. Un error en la posición de los argumentos puede causar resultados indeseados::
 
-Argumentos por nombre
-=====================
+    >>> build_cpu(8, 2.7, 'AMD')
+    {'vendor': 8, 'num_cores': 2.7, 'freq': 'AMD'}
+
+Argumentos nominales 
+====================
 
 En esta aproximación los argumentos no son copiados en un orden específico sino que **se asignan por nombre a cada parámetro**. Ello nos permite salvar el problema de conocer cuál es el orden de los parámetros en la definición de la función. Para utilizarlo, basta con realizar una asignación de cada argumento en la propia llamada a la función.
 
-Veamos la misma llamada que hemos hecho en el ejemplo de construcción de la "cpu" pero ahora utilizando paso de argumentos por nombre::
+Veamos la misma llamada que hemos hecho en el ejemplo de construcción de la "cpu" pero ahora utilizando paso de argumentos nominales::
 
     >>> build_cpu(vendor='AMD', num_cores=8, freq=2.7)
-    'AMD => 8 cores x 2.7GHz'
+    {'vendor': 'AMD', 'num_cores': 8, 'freq': 2.7}
 
 Se puede ver claramente que el orden de los argumentos no influye en el resultado final::
 
-    >>> build_cpu(num_cores=8, vendor='AMD', freq=2.7)
-    'AMD => 8 cores x 2.7GHz'
+    >>> build_cpu(num_cores=8, freq=2.7, vendor='AMD')
+    {'vendor': 'AMD', 'num_cores': 8, 'freq': 2.7}
 
-Argumentos posicionales y por nombre
-====================================
+Argumentos posicionales y nominales
+===================================
 
-Python permite mezclar argumentos posicionales y por nombre en la llamada a una función::
+Python permite mezclar argumentos posicionales y nominales en la llamada a una función::
 
     >>> build_cpu('INTEL', num_cores=4, freq=3.1)
-    'INTEL => 4 cores x 3.1GHz'
+    {'vendor': 'INTEL', 'num_cores': 4, 'freq': 3.1}
 
-Pero hay que tener en cuenta que, en este escenario, **los argumentos posicionales siempre deben ir antes** que los argumentos por nombre. Esto tiene mucho sentido ya que, de hacerlo así, Python no tendría forma de discernir a qué parámetro corresponde cada argumento::
+Pero hay que tener en cuenta que, en este escenario, **los argumentos posicionales siempre deben ir antes** que los argumentos nominales. Esto tiene mucho sentido ya que, de hacerlo así, Python no tendría forma de discernir a qué parámetro corresponde cada argumento::
 
     >>> build_cpu(num_cores=4, 'INTEL', freq=3.1)
       File "<stdin>", line 1
@@ -275,18 +284,22 @@ Es posible especificar **valores por defecto** en los parámetros de una funció
 Siguiendo con el ejemplo de la "cpu", podemos asignar *2.0GHz* como frecuencia por defecto. La definición de la función cambiaría ligeramente::
 
     >>> def build_cpu(vendor, num_cores, freq=2.0):
-    ...     return f'{vendor} => {num_cores} cores x {freq}GHz'
+    ...     return dict(
+    ...         vendor=vendor,
+    ...         num_cores=num_cores,
+    ...         freq=freq
+    ...     )
     ...
 
 Llamada a la función sin especificar frecuencia de "cpu"::
 
     >>> build_cpu('INTEL', 2)
-    'INTEL => 2 cores x 2.0GHz'
+    {'vendor': 'INTEL', 'num_cores': 2, 'freq': 2.0}
 
 Llamada a la función indicando una frecuencia concreta de "cpu"::
 
     >>> build_cpu('INTEL', 2, 3.4)
-    'INTEL => 2 cores x 3.4GHz'
+    {'vendor': 'INTEL', 'num_cores': 2, 'freq': 3.4}
 
 .. important:: Los valores por defecto en los parámetros se calculan cuando se **define** la función, no cuando se **ejecuta**.
 
@@ -313,12 +326,28 @@ Modificando parámetros mutables
 
 |advlev|
 
-Hay que tener cuidado a la hora de manejar los parámetros que pasamos una función ya que podemos obtener resultados indeseados, especialmente cuando trabajamos con *tipos de datos mutables*.
+Hay que tener cuidado a la hora de manejar los parámetros que pasamos a una función ya que podemos obtener resultados indeseados, especialmente cuando trabajamos con *tipos de datos mutables*.
 
-En la siguiente función, uno esperaría que ``result`` tuviera una lista vacía en cada ejecución, pero esto no sucede debido a dos razones:
+Supongamos una función que añade elementos a una lista que pasamos por parámetro. La idea es que si no pasamos la lista, ésta siempre empiece siendo vacía. Hagamos una serie de pruebas pasando alguna lista como segundo argumento::
 
-    1. El valor por defecto se establece cuando se define la función.
-    2. La variable ``result`` apunta a una zona de memoria en la que se modifican sus valores.
+    >>> def buggy(arg, result=[]):
+    ...     result.append(arg)
+    ...     print(result)
+    ...
+
+    >>> buggy('a', [])
+    ['a']
+
+    >>> buggy('b', [])
+    ['b']
+
+    >>> buggy('a', ['x', 'y', 'z'])
+    ['x', 'y', 'z', 'a']
+
+    >>> buggy('b', ['x', 'y', 'z'])
+    ['x', 'y', 'z', 'b']
+
+Aparentemente todo está funcionando de manera correcta, pero veamos qué ocurre en las siguientes llamadas:
 
 .. code-block::
 
@@ -332,6 +361,11 @@ En la siguiente función, uno esperaría que ``result`` tuviera una lista vacía
 
     >>> buggy('b')  # Se esperaría ['b']
     ['a', 'b']
+
+Obviamente algo no ha funcionado correctamente. Se esperaría que ``result`` tuviera una lista vacía en cada ejecución. Sin embargo esto no sucede por estas dos razones:
+
+1. El valor por defecto se establece cuando se define la función.
+2. La variable ``result`` apunta a una zona de memoria en la que se modifican sus valores.
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
@@ -375,12 +409,18 @@ La forma de arreglar el código anterior utilizando un parámetro con valor por 
     >>> nonbuggy('b')
     ['b']
 
+    >>> nonbuggy('a', ['x', 'y', 'z'])
+    ['x', 'y', 'z', 'a']
+
+    >>> nonbuggy('b', ['x', 'y', 'z'])
+    ['x', 'y', 'z', 'b']
+
 Empaquetar/Desempaquetar argumentos
 ===================================
 
 |advlev|
 
-Python nos ofrece la posibilidad de empaquetar y desempaquetar argumentos cuando estamos invocando a una función, tanto para **argumentos posicionales** como para **argumentos por nombre**.
+Python nos ofrece la posibilidad de empaquetar y desempaquetar argumentos cuando estamos invocando a una función, tanto para **argumentos posicionales** como para **argumentos nominales**.
 
 Y de este hecho se deriva que podamos utilizar un **número variable de argumentos** en una función, algo que puede ser muy interesante según el caso de uso que tengamos.
 
@@ -390,14 +430,14 @@ Empaquetar/Desempaquetar argumentos posicionales
 Si utilizamos el operador ``*`` delante del nombre de un parámetro posicional, estaremos indicando que los argumentos pasados a la función se empaqueten en una **tupla**::
 
     >>> def test_args(*args):
-    ...     print(f'Positional args: {args}')
+    ...     print(f'{args=}')
     ...
 
     >>> test_args()
-    Positional args: ()
+    args=()
 
     >>> test_args(1, 2, 3, 'pescado', 'salado', 'es')
-    Positional args: (1, 2, 3, 'pescado', 'salado', 'es')
+    args=(1, 2, 3, 'pescado', 'salado', 'es')
 
 .. note:: El hecho de llamar ``args`` al parámetro es una convención.
 
@@ -424,87 +464,144 @@ También podemos utilizar esta estrategia para establecer en una función una se
 Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función para **desempaquetar** los argumentos posicionales::
 
     >>> def test_args(*args):
-    ...     print(f'Positional args: {args}')
+    ...     print(f'{args=}')
     ...
 
-    >>> args = (4, 3, 7, 9)
+    >>> my_args = (4, 3, 7, 9)
 
-    >>> test_args(args)  # No existe desempaquetado!
-    Positional args: ((4, 3, 7, 9),)
+    >>> test_args(my_args)   # No existe desempaquetado!
+    args=((4, 3, 7, 9),)
 
-    >>> test_args(*args)  # Sí existe desempaquetado!
-    Positional args: (4, 3, 7, 9)
+    >>> test_args(*my_args)  # Sí existe desempaquetado!
+    args=(4, 3, 7, 9)
 
-Empaquetar/Desempaquetar argumentos por nombre
-----------------------------------------------
+Empaquetar/Desempaquetar argumentos nominales
+---------------------------------------------
 
-Si utilizamos el operador ``**`` delante del nombre de un parámetro por nombre, estaremos indicando que los argumentos pasados a la función se empaqueten en un **diccionario**::
+Si utilizamos el operador ``**`` delante del nombre de un parámetro nominal, estaremos indicando que los argumentos pasados a la función se empaqueten en un **diccionario**::
 
     >>> def test_kwargs(**kwargs):
-    ...     print(f'Keyword args: {kwargs}')
+    ...     print(f'{kwargs=}')
     ...
 
     >>> test_kwargs()
-    Keyword args: {}
+    kwargs={}
 
-    >>> test_kwargs(ram=4, os='ubuntu', cpu=3.4)
-    Keyword args: {'ram': 4, 'os': 'ubuntu', 'cpu': 3.4}
+    >>> test_kwargs(a=4, b=3, c=7, d=9)
+    kwargs={'a': 4, 'b': 3, 'c': 7, 'd': 9}
 
 .. note:: El hecho de llamar ``kwargs`` al parámetro es una convención.
 
-Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función, para **desempaquetar** los argumentos por nombre::
+Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función, para **desempaquetar** los argumentos nominales::
 
     >>> def test_kwargs(**kwargs):
-    ...     print(f'Keyword args: {kwargs}')
+    ...     print(f'{kwargs=}')
     ...
 
-    >>> kwargs = {'ram': 8, 'os': 'debian', 'cpu': 2.7}
+    >>> my_kwargs = {'a': 4, 'b': 3, 'c': 7, 'd': 9}
 
-    >>> test_kwargs(kwargs)  # No existe desempaquetado!
+    >>> test_kwargs(my_kwargs)   # No existe desempaquetado!
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: test_kwargs() takes 0 positional arguments but 1 was given
 
-    >>> test_kwargs(**kwargs)  # Sí existe desempaquetado!
-    Keyword args: {'ram': 8, 'os': 'debian', 'cpu': 2.7}
+    >>> test_kwargs(**my_kwargs)  # Sí existe desempaquetado!
+    kwargs={'a': 4, 'b': 3, 'c': 7, 'd': 9}
 
-Argumentos sólo por nombre
-==========================
+Forzando modo de paso de argumentos
+===================================
+
+Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo posicional o nominal, existen opciones para forzar a que dicho paso sea obligatorio en una determinada modalidad.
+
+Argumentos sólo posicionales
+----------------------------
 
 |advlev|
 
-A partir de Python 3 se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
+A partir de `Python 3.8 <https://www.python.org/dev/peps/pep-0570/>`_ se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por posición.
 
-Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros:
+Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``/`` que delimitará el tipo de parámetros. Así, todos los parámetros a la izquierda del delimitador estarán **obligados** a ser posicionales:
+
+.. figure:: img/position-only-params.png
+
+   Separador para especificar parámetros sólo posicionales
+
+Ejemplo::
+
+    >>> def sum_power(a, b, /, power=False):
+    ...     if power:
+    ...         a **= 2
+    ...         b **= 2
+    ...     return a + b
+    ...
+
+    >>> sum_power(3, 4)
+    7
+
+    >>> sum_power(3, 4, True)
+    25
+
+    >>> sum_power(3, 4, power=True)
+    25
+
+    >>> sum_power(a=3, b=4)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: sum_power() got some positional-only arguments passed as keyword arguments: 'a, b'
+
+Argumentos sólo nominales
+-------------------------
+
+|advlev|
+
+A partir de `Python 3 <https://www.python.org/dev/peps/pep-3102/>`_ se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
+
+Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros. Así, todos los parámetros a la derecha del separador estarán **obligados** a ser nominales:
 
 .. figure:: img/keyword-only-params.png
 
-   Separador para especificar parámetros sólo por nombre
+   Separador para especificar parámetros sólo nominales
 
-Veamos un ejemplo con una función que reemplaza subcadenas::
+Ejemplo::
 
-    >>> def custom_replace(text, *, to_replace='', replacement=''):
-    ...     return text.replace(to_replace, replacement)
+    >>> def sum_power(a, b, *, power=False):
+    ...     if power:
+    ...         a **= 2
+    ...         b **= 2
+    ...     return a + b
     ...
 
-    >>> custom_replace('good night and good luck')
-    'good night and good luck'
+    >>> sum_power(3, 4)
+    7
 
-    >>> custom_replace(text='good night and good luck')
-    'good night and good luck'
+    >>> sum_power(a=3, b=4)
+    7
 
-    >>> custom_replace('good night and good luck', to_replace='good')
-    ' night and  luck'
+    >>> sum_power(3, 4, power=True)
+    25
 
-    >>> custom_replace('good night and good luck', to_replace='good', replacement='awesome')
-    'awesome night and awesome luck'
-
-Hasta aquí no hay nada especialmente diferente, pero si intentamos llamar a la función ``custom_replace()`` pasando *argumentos posicionales* obtendremos un error::
-
-    >>> custom_replace('good night and good luck', 'good', 'awesome')
+    >>> sum_power(3, 4, True)
+    ---------------------------------------------------------------------------
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    TypeError: custom_replace() takes 1 positional argument but 3 were given
+    TypeError: sum_power() takes 2 positional arguments but 3 were given
+
+Fijando argumentos posicionales y nominales
+-------------------------------------------
+
+Si mezclamos las dos estrategias anteriores podemos forzar a que una función reciba argumentos de un modo concreto.
+
+Continuando con ejemplo anterior, podríamos hacer lo siguiente::
+
+    >>> def sum_power(a, b, /, *, power=False):
+    ...     if power:
+    ...         a **= 2
+    ...         b **= 2
+    ...     return a + b
+    ...
+
+    >>> sum_power(3, 4, power=True)  # Único modo posible de llamada
+    25
 
 Argumentos mutables e inmutables
 ================================
@@ -610,7 +707,24 @@ Para ver el ``docstring`` de una función, basta con utilizar ``help``::
             2. If distance less than a half, return floor.
                Otherwise, return ceil.
 
+También es posible extraer información usando el símbolo de interrogación::
+
+    >>> closest_int?
+    Signature: closest_int(value)
+    Docstring:
+    Returns the closest integer to the given value.
+    The operation is:
+        1. Compute distance to floor.
+        2. If distance less than a half, return floor.
+        Otherwise, return ceil.
+    File:      ~/aprendepython/<ipython-input-75-5dc166360da1>
+    Type:      function
+
+
+.. important:: Esto no sólo se aplica a funciones propias, sino a cualquier otra función definida en el lenguaje.
+
 .. note:: Si queremos ver el ``docstring`` de una función en "crudo" (sin formatear), podemos usar ``<function>.__doc__``.
+
 
 Explicación de parámetros
 =========================
@@ -667,7 +781,7 @@ Anotación de tipos
 
 |intlev|
 
-Las anotaciones de tipos [#type-hints]_ se introdujeron en Python 3.5 y permiten indicar tipos para los parámetros de una función así como su valor de retorno (aunque también funcionan en creación de variables).
+Las anotaciones de tipos [#type-hints]_ se introdujeron en `Python 3.5 <https://www.python.org/dev/peps/pep-0484/>`_ y permiten indicar tipos para los parámetros de una función así como su valor de retorno (aunque también funcionan en creación de variables).
 
 Veamos un ejemplo en el que creamos una función para dividir una cadena de texto por la posición especificada en el parámetro::
 
@@ -678,7 +792,7 @@ Veamos un ejemplo en el que creamos una función para dividir una cadena de text
     >>> ssplit('Always remember us this way', 15)
     ('Always remember', ' us this way')
 
-Como se puede observar, vamos añadiendo los tipos después de cada parámetro utilizando ``:`` como separador. En el caso del valor de retorno usamos ``->``
+Como se puede observar, vamos añadiendo los tipos después de cada parámetro utilizando ``:`` como separador. En el caso del valor de retorno usamos el símbolo ``->``
 
 Quizás la siguiente ejecución pueda sorprender::
 
@@ -1042,7 +1156,7 @@ Ahora aplicaremos el decorador definido previamente ``simple_logger()`` sobre la
 Usando ``@`` para decorar
 -------------------------
 
-Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los decoradores a través del operador ``@`` antes de la definición de la función que queremos decorar::
+Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los decoradores a través del operador ``@`` justo antes de la definición de la función que queremos decorar::
 
     >>> @simple_logger
     ... def hi(name):
@@ -1093,7 +1207,7 @@ Ahora aplicaremos ambos decoradores sobre una función que realiza el producto d
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba un decorador llamado ``fabs()`` que convierta a su valor absoluto los dos primeros parámetros de la función que decora y devuelva el resultado de aplicar dicha función a sus dos argumentos.
+    Escriba un decorador llamado ``fabs()`` que convierta a su valor absoluto los dos primeros parámetros de la función que decora y devuelva el resultado de aplicar dicha función a sus dos argumentos. *El valor absoluto de un número se obtiene con la función* ``abs()``.
 
     A continuación probar el decorador con una función ``fprod()`` que devuelva el producto de dos valores, jugando con números negativos y positivos.
     
@@ -1376,6 +1490,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. [#docstring-formats] Véase `Docstring Formats`_.
 .. [#functional-programming] Definición de `Programación funcional` en Wikipedia.
 .. [#type-hints] Conocidos como "type hints" en terminología inglesa.
+.. [#naming-functions] Las :ref:`reglas aplicadas a nombres de variables <datatypes/data:Reglas para nombrar variables>` también se aplican a nombres de funciones.
 
 .. --------------- Hyperlinks ---------------
 

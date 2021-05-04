@@ -61,12 +61,12 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
         >>> f.readlines()
         ['29 23\n', '31 23\n', '34 26\n', '33 23\n', '29 22\n', '28 22\n', '28 22\n']
 
-.. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello es posible utilizar :ref:`las funciones ya vistas de cadenas de texto <datatypes/strings:Limpiar cadenas>`.
+.. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello se recomienda utilizar :ref:`las funciones ya vistas de cadenas de texto <datatypes/strings:Limpiar cadenas>`.
 
 Lectura línea a línea
 =====================
 
-Hay situaciones en las que interesa leer el contenido del fichero línea a línea. Imaginemos un fichero de tamaño considerable (varios GB). Si intentamos leer completamente este fichero de una vez podríamos ocupar demasiada RAM y reducir el rendimiento de la máquina.
+Hay situaciones en las que interesa leer el contenido del fichero línea a línea. Imaginemos un fichero de tamaño considerable (varios GB). Si intentamos leer completamente este fichero de sola una vez podríamos ocupar demasiada RAM y reducir el rendimiento de nuestra máquina.
 
 Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros línea a línea. La más usada es **iterar** sobre el propio *manejador* del fichero:
 
@@ -102,9 +102,11 @@ Para escribir texto en un fichero hay que abrir dicho fichero en **modo escritur
 
     >>> f = open('files/canary-iata.dat', 'w')
 
-.. note:: Si bien el fichero en sí mismo se crea al abrirlo en modo escritura, la **ruta** hasta ese fichero no. Eso quiere decir que debemos asegurarnos que las carpetas hasta llegar a dicho fichero existen. En otro caso obtenemos un error de tipo ``FileNotFoundError``.
+.. note:: Si bien el fichero en sí mismo se crea al abrirlo en modo escritura, la **ruta** hasta ese fichero no. Eso quiere decir que debemos asegurarnos que **las carpetas hasta llegar a dicho fichero existen**. En otro caso obtenemos un error de tipo ``FileNotFoundError``.
 
-Ahora ya podemos hacer uso de la función ``write()`` para que enviar contenido al fichero abierto. Supongamos que queremos volcar el contenido de una lista en dicho fichero. En este caso partimos de los *códigos IATA* de aeropuertos de las Islas Canarias [#canary-iata]_.
+Ahora ya podemos hacer uso de la función ``write()`` para enviar contenido al fichero abierto.
+
+Supongamos que queremos volcar el contenido de una lista en dicho fichero. En este caso partimos de los *códigos IATA* de aeropuertos de las Islas Canarias [#canary-iata]_.
 
 .. code-block::
     :emphasize-lines: 4, 7
@@ -135,13 +137,15 @@ La única diferencia entre añadir información a un fichero y :ref:`escribir in
 
     >>> f = open('more-data.txt', 'a')
 
-En este caso el fichero ``more-data.txt`` se abrir en *modo añadir* con lo que las llamadas a la función ``write()`` hará que aparezcan nuevo contenido al final del contenido ya existente en dicho fichero.
+En este caso el fichero ``more-data.txt`` se abrirá en *modo añadir* con lo que las llamadas a la función ``write()`` hará que aparezcan nueva información al final del contenido ya existente en dicho fichero.
 
 *****************
 Usandos contextos
 *****************
 
-Python ofrece `gestores de contexto`_ que permiten establecer reglas de entrada y salida al contexto definido. En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se ocupará de cerrar adecuadamente el fichero que hemos abierto, liberando así sus recursos:
+Python ofrece `gestores de contexto`_ como una solución para establecer reglas de entrada y salida a un determinado bloque de código.
+
+En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se ocupará de cerrar adecuadamente el fichero que hemos abierto, liberando así sus recursos:
 
 .. code-block::
     :emphasize-lines: 1
@@ -194,6 +198,8 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
     2. Calcular la temperatura media de cada mes.
     3. Escribir un fichero de salida ``avgtemps.txt`` con 12 filas (*meses*) y la temperatura media de cada mes.
 
+    *Guarda el fichero en la misma carpeta en la que vas a escribir tu código. Así evitarás problemas de rutas relativas/absolutas.*
+    
     .. only:: html
     
         |solution| :download:`avgtemps.py <files/avgtemps.py>`

@@ -1,33 +1,31 @@
 class Fraction:
-    def __init__(self, numerator, denominator):
-        gcd = Fraction.gcd(numerator, denominator)
-        self.numerator = numerator // gcd
-        self.denominator = denominator // gcd
+    def __init__(self, num, den):
+        gcd = Fraction.gcd(num, den)
+        self.num = num // gcd
+        self.den = den // gcd
 
     def __add__(self, other):
-        new_numerator = (self.numerator * other.denominator +
-                         self.denominator * other.numerator)
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+        new_num = self.num * other.den + self.den * other.num
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
 
     def __sub__(self, other):
-        new_numerator = (self.numerator * other.denominator -
-                         self.denominator * other.numerator)
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+        new_num = self.num * other.den - self.den * other.num
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
 
     def __mul__(self, other):
-        new_numerator = self.numerator * other.numerator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+        new_num = self.num * other.num
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
 
     def __truediv__(self, other):
-        new_numerator = self.numerator * other.denominator
-        new_denominator = self.denominator * other.numerator
-        return Fraction(new_numerator, new_denominator)
+        new_num = self.num * other.den
+        new_den = self.den * other.num
+        return Fraction(new_num, new_den)
 
     def __str__(self):
-        return f'{self.numerator} / {self.denominator}'
+        return f'{self.num} / {self.den}'
 
     @staticmethod
     def gcd(a, b):

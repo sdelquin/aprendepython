@@ -15,7 +15,7 @@ Podemos trasladar el concepto de *diccionario* de la vida real al de *diccionari
 Los diccionarios en Python tienen las siguientes *características*:
 
 * Mantienen el **orden** en el que se insertan las claves. [#keep-order]_
-* Son **mutables** con lo que admiten añadir, borrar y modificar sus elementos.
+* Son **mutables**, con lo que admiten añadir, borrar y modificar sus elementos.
 * Las **claves** deben ser **únicas**. A menudo se utilizan las *cadenas de texto* como claves, pero en realidad podría ser cualquier tipo de datos inmutable: enteros, flotantes, tuplas (entre otros).
 * Tienen un **acceso muy rápido** a sus elementos, debido a la forma en la que están implementados internamente. [#time-complexity]_
 
@@ -76,10 +76,12 @@ Para convertir otros tipos de datos en un diccionario podemos usar la función `
     >>> dict([['a', 1], ['b', 2]])
     {'a': 1, 'b': 2}
 
+.. note:: Si nos fijamos bien, cualquier iterable que tenga una estructura interna de 2 elementos es susceptible de convertirse en un diccionario a través de la función ``dict()``.
+
 Diccionario vacío
 =================
 
-Existe una manera particular de usar ``dict()`` y es no pasarle ningún argumento. En este caso estaremos queriendo convertir el *vacío* en un diccionario, con lo que obtendremos un *diccionario vacío*::
+Existe una manera particular de usar ``dict()`` y es no pasarle ningún argumento. En este caso estaremos queriendo convertir el "vacío" en un diccionario, con lo que obtendremos un *diccionario vacío*::
 
     >>> dict()
     {}
@@ -241,13 +243,15 @@ Supongamos ahora que queremos **modificar** el significado de la palabra *enjuic
 Creando desde vacío
 -------------------
 
-Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir un diccionario donde las claves son las letras vocales y los valores son sus posiciones::
+Una forma muy habitual de trabajar con diccionarios es utilizar el **patrón creación** partiendo de uno vacío e ir añadiendo elementos poco a poco.
 
-    >>> vowels = 'aeiou'
+Supongamos un ejemplo en el que queremos construir un diccionario donde las claves son las letras vocales y los valores son sus posiciones::
+
+    >>> VOWELS = 'aeiou'
 
     >>> enum_vowels = {}
 
-    >>> for i, vowel in enumerate(vowels):
+    >>> for i, vowel in enumerate(VOWELS):
     ...     enum_vowels[vowel] = i + 1
     ...
 
@@ -265,6 +269,9 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
     True
 
     >>> 'almohada' in rae
+    False
+
+    >>> 'montuvio' not in rae
     False
 
 .. note:: El operador ``in`` siempre devuelve un valor booleano, es decir, verdadero o falso.
@@ -456,7 +463,7 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
         ...     'montuvio': 'Campesino de la costa'
         ... }
 
-        >>> del rae['bifronte']
+        >>> del(rae['bifronte'])
 
         >>> rae
         {'anarcoide': 'Que tiende al desorden', 'montuvio': 'Campesino de la costa'}
@@ -521,7 +528,7 @@ Cuidado con las copias
 
 |intlev|
 
-Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de *mutabilidad*. Veamos un ejemplo concreto:
+Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de ser *mutable*. Veamos un ejemplo concreto:
 
 .. code-block::
     :emphasize-lines: 12, 17
@@ -579,9 +586,9 @@ Diccionarios por comprensión
 
 |intlev|
 
-De forma análoga a como se escriben las :ref:`listas por comprensión <datastructures/lists:Listas por comprensión>`, podemos aplicar este método a los diccionarios usando llaves ``{`` ``}``.
+De forma análoga a cómo se escriben las :ref:`listas por comprensión <datastructures/lists:Listas por comprensión>`, podemos aplicar este método a los diccionarios usando llaves ``{`` ``}``.
 
-Veamos un ejemplo en el que creamos un **diccionario por comprensión** en el que las claves son palabras y los valores son sus longitudes:
+Veamos un ejemplo en el que creamos un **diccionario por comprensión** donde las claves son palabras y los valores son sus longitudes:
 
 .. code-block::
     :emphasize-lines: 3

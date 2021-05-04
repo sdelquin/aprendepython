@@ -40,7 +40,7 @@ La única opción que tenemos es utilizar la función ``set()``::
 Conversión
 **********
 
-Para convertir otros tipos de datos en un conjunto podemos usar la función ``set()``::
+Para convertir otros tipos de datos en un conjunto podemos usar la función ``set()`` sobre cualquier iterable::
 
     >>> set('aplatanada')
     {'a', 'd', 'l', 'n', 'p', 't'}
@@ -65,9 +65,9 @@ Operaciones con conjuntos
 Obtener un elemento
 ===================
 
-En un conjunto no existe un orden establecido para sus elementos, por lo cual **no podemos acceder a un elemento en concreto**. 
+En un conjunto no existe un orden establecido para sus elementos, por lo tanto **no podemos acceder a un elemento en concreto**. 
 
-De este hecho se deriva igualmente que *no podemos modificar un elemento existente*, ya que no podamos acceder a él. Python sí nos permite añadir o borrar elementos de un conjunto.
+De este hecho se deriva igualmente que **no podemos modificar un elemento existente**, ya que ni siquiera tenemos acceso al mismo. Python sí nos permite añadir o borrar elementos de un conjunto.
 
 Añadir un elemento
 ==================
@@ -79,6 +79,7 @@ A modo de ejemplo, vamos a partir de un conjunto que representa a los cuatro int
 .. code-block::
     :emphasize-lines: 3
 
+    >>> # John Lennon, Paul McCartney, George Harrison y Ringo Starr
     >>> beatles = set(['Lennon', 'McCartney', 'Harrison', 'Starr'])
 
     >>> beatles.add('Best')  # Pete Best
@@ -108,11 +109,11 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     **Ejemplo**
     
-    * Entrada: ``((4, 3), (3, 2), (7, 4), (8, 2), (9, 1))``
+    * Entrada: ``((4, 3), (8, 2), (7, 5), (8, 2), (9, 1))``
     * Salida::
 
-        {8, 3, 4, 7}
-        {1, 2, 3, 4}
+        {8, 9, 4, 7}
+        {1, 2, 3, 5}
     
     .. only:: html
     
@@ -233,9 +234,9 @@ Diferencia simétrica
 Conjuntos por comprensión
 *************************
 
-Los conjuntos, al igual que las listas y los diccionarios, también se pueden crear por comprensión.
+Los conjuntos, al igual que las :ref:`listas <datastructures/lists:Listas por comprensión>` y los :ref:`diccionarios <datastructures/dicts:Diccionarios por comprensión>`, también se pueden crear por comprensión.
 
-Veamos un ejemplo en el que creamos un conjunto por comprensión con los enteros múltiplos de 3 en el rango :math:`[0, 20)`::
+Veamos un ejemplo en el que construimos un conjunto por comprensión con los aquellos números enteros múltiplos de 3 en el rango :math:`[0, 20)`::
 
     >>> m3 = {number for number in range(0, 20) if number % 3 == 0}
 
@@ -247,7 +248,7 @@ Veamos un ejemplo en el que creamos un conjunto por comprensión con los enteros
 
     Dadas dos cadenas de texto, obtenga una nueva cadena de texto con las **letras consonantes** que se **repiten en ambas frases**. Ignore los espacios en blanco y muestre la cadena de salida con sus *letras ordenadas*.
 
-    *Use diccionarios por comprensión para el ejercicio.*
+    *Use conjuntos por comprensión para el ejercicio.*
 
     **Ejemplo**
     

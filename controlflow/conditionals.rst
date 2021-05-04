@@ -22,12 +22,12 @@ A diferencia de otros lenguajes que utilizan llaves para definir los bloques de 
 Comentarios
 ***********
 
-Los comentarios son anotaciones que podemos incluir en nuestros programa y que nos permiten aclarar ciertos aspectos del código. Estas indicaciones son ignoradas por el intérprete de Python.
+Los comentarios son anotaciones que podemos incluir en nuestro programa y que nos permiten aclarar ciertos aspectos del código. Estas indicaciones son ignoradas por el intérprete de Python.
 
 Los comentarios se incluyen usando el símbolo almohadilla ``#`` y comprenden hasta el final de la línea.
 
 .. code-block::
-    :caption: Comentario de bloque
+    :caption: Comentario en bloque
 
     # Universe age expressed in days
     universe_age = 13800 * (10 ** 6) * 365
@@ -47,8 +47,9 @@ Los programas suelen ser más legibles cuando las líneas no son excesivamente l
 
 Sin embargo, esto genera una cierta polémica hoy en día, ya que los tamaños de pantalla han aumentado y las resoluciones son mucho mayores que hace años. Así las líneas de más de 80 caracteres se siguen visualizando correctamente. Hay personas que son más estrictas en este límite y otras más flexibles.
 
-En caso de que queramos **romper una línea de código** demasiado larga, tenemos dos opciones: usar la *barra invertida* ``\`` o usar los *paréntesis* ``(...)``. Veamos un ejemplo::
+En caso de que queramos **romper una línea de código** demasiado larga, tenemos dos opciones:
 
+1. Usar la *barra invertida* ``\``::
 
     >>> factorial = 4 * 3 * 2 * 1
 
@@ -57,16 +58,22 @@ En caso de que queramos **romper una línea de código** demasiado larga, tenemo
     ...             2 * \
     ...             1
 
+2. Usar los *paréntesis* ``(...)``::
+
+    >>> factorial = 4 * 3 * 2 * 1
+
     >>> factorial = (4 *
     ...              3 *
     ...              2 *
     ...              1)
 
+.. _if-sentence:
+
 *******************
 La sentencia ``if``
 *******************
 
-Las sentencia condicional en Python (al igual que en muchos otros lenguajes de programación) es ``if``. En su escritura debemos añadir una **expresión de comparación** terminando con dos puntos al final de la línea. Veamos un ejemplo::
+La sentencia condicional en Python (al igual que en muchos otros lenguajes de programación) es ``if``. En su escritura debemos añadir una **expresión de comparación** terminando con dos puntos al final de la línea. Veamos un ejemplo::
 
     >>> temperature = 40
 
@@ -75,7 +82,7 @@ Las sentencia condicional en Python (al igual que en muchos otros lenguajes de p
     ...
     Aviso por alta temperatura
 
-.. note:: Nótese que en Python no es necesario incluir paréntesis ``(`` y ``)`` al escribir condiciones. Hay veces que es recomendable por claridad o por establecer prioridad.
+.. note:: Nótese que en Python no es necesario incluir paréntesis ``(`` y ``)`` al escribir condiciones. Hay veces que es recomendable por claridad o por establecer prioridades.
 
 En el caso anterior se puede ver claramente que la condición se cumple y por tanto se ejecuta la instrucción que tenemos dentro del cuerpo de la condición. Pero podría no ser así. Para controlar ese caso existe la sentencia ``else``. Veamos el mismo ejemplo anterior pero añadiendo esta variante::
 
@@ -105,7 +112,7 @@ Podríamos tener incluso condiciones dentro de condiciones, lo que se viene a ll
     ...
     Nivel naranja
 
-Python nos ofrece una mejora en la escritura de condiciones anidadas cuando nos aparecen juntos un ``else`` y un ``if``. Podemos sustituirlos por la sentencia ``elif``:
+Python nos ofrece una mejora en la escritura de condiciones anidadas cuando aparecen consecutivamente un ``else`` y un ``if``. Podemos sustituirlos por la sentencia ``elif``:
 
 .. figure:: img/elif.png
 
@@ -166,43 +173,56 @@ Cuando escribimos condiciones debemos incluir alguna expresión de comparación.
 
 A continuación vamos a ver una serie de ejemplos con expresiones de comparación. Téngase en cuenta que estas expresiones habría que incluirlas dentro de la sentencia condicional en el caso de que quisiéramos tomar una acción concreta::
 
+    # Asignación de valor inicial
     >>> value = 8
-
-    >>> value == 4
-    False
 
     >>> value == 8
     True
 
-    >>> 4 < value
+    >>> value != 8
+    False
+
+    >>> value < 12
     True
 
-    >>> value < 10
+    >>> value <= 7 
+    False
+
+    >>> value > 4
     True
+
+    >>> value >= 9
+    False
 
 Podemos escribir condiciones más complejas usando los **operadores lógicos**:
-
-.. hlist::
-    :columns: 3
-
-    * ``and``
-    * ``or``
-    * ``not``
+    - ``and``
+    - ``or``
+    - ``not``
 
 .. code-block::
 
-    >>> (4 < value) or (value > 9)
+    # Asignación de valor inicial
+    >>> x = 8
+
+    >>> x > 4 or x > 12  # True or False
     True
 
-    >>> (4 < value) and (not (value > 9))
+    >>> x < 4 or x > 12  # False or False
+    False
+
+    >>> x > 4 and x > 12  # True and False
+    False
+
+    >>> x > 4 and x < 12  # True and True
     True
 
-    >>> (4 > value) and (value < 9)
+    >>> not(x != 8)  # not False
     True
 
-Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa. Así, por ejemplo, para descubrir si ``value`` está entre *5* y *10* haríamos::
 
-    >>> 4 < value < 9
+Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa. Así, por ejemplo, para descubrir si ``value`` está entre *4* y *12* haríamos::
+
+    >>> 4 <= value <= 12
     True
 
 .. note::
@@ -227,7 +247,7 @@ Python ofrece la posibilidad de ver si un valor está entre dos límites de mane
 "Booleanos" en condiciones
 ==========================
 
-Cuando queremos preguntar por la *veracidad* de determinada variable "booleana" en una condición, la primera aproximación que parece razonable es la siguiente:
+Cuando queremos preguntar por la **veracidad** de una determinada variable "booleana" en una condición, la primera aproximación que parece razonable es la siguiente:
 
 .. code-block::
     :emphasize-lines: 3
@@ -256,11 +276,11 @@ Pero podemos *simplificar* esta condición tal que así:
 Hemos visto una comparación para un valor "booleano" verdadero (``True``). En el caso de que la comparación fuera para un valor falso lo haríamos así:
 
 .. code-block::
-    :emphasize-lines: 3
+    :emphasize-lines: 4
 
     >>> is_cold = False
 
-    >>> if not is_cold:
+    >>> if not is_cold:  # Equivalente a if is_cold == False
     ...     print('Usa camiseta')
     ... else:
     ...     print('Coge chaqueta')
@@ -305,6 +325,7 @@ Valor nulo
     >>> if value:
     ...     print('Value has some useful value')
     ... else:
+    ...     # value podría contener None, False (u otro)
     ...     print('Value seems to be void')
     ...
     Value seems to be void
@@ -317,13 +338,14 @@ Para distinguir ``None`` de los valores propiamente booleanos, se recomienda el 
     >>> value = None
 
     >>> if value is None:
-    ...     print('Value is clearly void')
+    ...     print('Value is clearly None')
     ... else:
+    ...     # value podría contener True, False (u otro)
     ...     print('Value has some useful value')
     ...
     Value is clearly void
 
-La forma "pitónica" de preguntar si algo **no es nulo** es la siguiente:
+De igual forma, podemos usar esta construcción para el caso contrario. La forma "pitónica" de preguntar si algo **no es nulo** es la siguiente:
 
 .. code-block::
     :emphasize-lines: 3

@@ -41,16 +41,15 @@ Conversión
 Para convertir otros tipos de datos en una lista podemos usar la función ``list()``::
 
     >>> # conversión desde una cadena de texto
-
     >>> list('Python')
     ['P', 'y', 't', 'h', 'o', 'n']
 
-Si nos fijamos en lo que ha pasado, al convertir la cadena de texto ``Python`` se ha creado una lista con *6* elementos, donde cada uno de ellos representa un caracter de la cadena. Podemos *extender* este comportamiento a cualquier otro tipo de datos que permita acceder a sus elementos (*iterables*).
+Si nos fijamos en lo que ha pasado, al convertir la cadena de texto ``Python`` se ha creado una lista con *6* elementos, donde cada uno de ellos representa un caracter de la cadena. Podemos *extender* este comportamiento a cualquier otro tipo de datos que permita ser iterado (*iterables*).
 
 Lista vacía
 ===========
 
-Existe una manera particular de usar ``list()`` y es no pasarle ningún argumento. En este caso estaremos queriendo convertir el *vacío* en una lista, con lo que obtendremos una *lista vacía*::
+Existe una manera particular de usar ``list()`` y es no pasarle ningún argumento. En este caso estaremos queriendo convertir el "vacío" en una lista, con lo que obtendremos una *lista vacía*::
 
     >>> list()
     []
@@ -117,7 +116,7 @@ El troceado de listas funciona de manera totalmente análoga al :ref:`troceado d
     >>> shopping[::-1]
     ['Limón', 'Sal', 'Aceite', 'Huevos', 'Agua']
 
-A diferencia de obtener elementos, donde sí que influye el índice especificado fuera de rango, en el caso del troceado no debemos preocuparnos por acceder a *índices inválidos* ya que Python los restringirá a los límites de la lista::
+En el troceado de listas, a diferencia de lo que ocurre al obtener elementos, no debemos preocuparnos por acceder a *índices inválidos* (fuera de rango) ya que Python los restringirá a los límites de la lista::
 
     >>> shopping
     ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
@@ -131,7 +130,7 @@ A diferencia de obtener elementos, donde sí que influye el índice especificado
     >>> shopping[2:100]
     ['Aceite', 'Sal', 'Limón']
 
-.. note:: Ninguna de las operaciones anteriores modifican la lista original, simplemente devuelven una lista nueva.
+.. important:: Ninguna de las operaciones anteriores modifican la lista original, simplemente devuelven una lista nueva.
 
 Invertir una lista
 ==================
@@ -182,7 +181,9 @@ Una de las operaciones más utilizadas en listas es añadir elementos al final d
 Creando desde vacío
 -------------------
 
-Una forma muy habitual de trabajar con listas es empezar con una vacía e ir añadiendo elementos poco a poco. Supongamos un ejemplo en el que queremos construir una lista con los números pares del 1 al 20::
+Una forma muy habitual de trabajar con listas es empezar con una vacía e ir añadiendo elementos poco a poco. Se podría hablar de un **patrón creación**.
+
+Supongamos un ejemplo en el que queremos construir una lista con los números pares del 1 al 20::
 
     >>> even_numbers = []
 
@@ -308,7 +309,7 @@ Hay que tener en cuenta que ``extend()`` funciona adecuadamente si pasamos una *
 
 El motivo es que ``extend()`` "recorre" (o itera) sobre cada uno de los elementos del objeto en cuestión. En el caso anterior, al ser una cadena de texto, está formada por caracteres. De ahí el resultado que obtenemos.
 
-Se podría pensar en el uso de ``append()`` para ampliar para combinar listas. La realidad es que no funciona exactamente como esperamos; la segunda lista se añadiría como una *sublista* de la principal::
+Se podría pensar en el uso de ``append()`` para combinar listas. La realidad es que no funciona exactamente como esperamos; la segunda lista se añadiría como una *sublista* de la principal::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -387,10 +388,10 @@ Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
         >>> shopping
         ['Agua', 'Huevos', 'Aceite', 'Limón']
 
-.. warning:: Si existen valores duplicados, la función ``remove()`` sólo borrará la primera ocurrencia.
+    .. warning:: Si existen valores duplicados, la función ``remove()`` sólo borrará la primera ocurrencia.
 
-**Por su índice (con extracción)**::
-    Las dos funciones anteriores ``del()`` y ``remove()`` efectivamente borran el elemento indicado de la lista, pero no "devuelven" [#return]_ nada. Sin embargo, Python nos ofrece la función ``pop()`` que además de borrar nos "recupera" el elemento; algo así como una *extracción*. Lo podemos ver como una combinación de *acceso* + *borrado*::
+**Por su índice (con extracción)**:
+    Las dos funciones anteriores ``del()`` y ``remove()`` efectivamente borran el elemento indicado de la lista, pero no "devuelven" [#return]_ nada. Sin embargo, Python nos ofrece la función ``pop()`` que además de borrar, nos "recupera" el elemento; algo así como una *extracción*. Lo podemos ver como una combinación de *acceso* + *borrado*::
 
         >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -406,7 +407,7 @@ Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
         >>> shopping
         ['Agua', 'Huevos', 'Sal']
 
-.. note:: Si usamos la función ``pop()`` sin pasarle ningún argumento, por defecto usará el índice *-1*, es decir, el último elemento de la lista. Pero también podemos indicarle el índice del elemento a extraer.
+    .. note:: Si usamos la función ``pop()`` sin pasarle ningún argumento, por defecto usará el índice *-1*, es decir, el último elemento de la lista. Pero también podemos indicarle el índice del elemento a extraer.
 
 **Por su rango**:
     Mediante troceado de listas::
@@ -427,7 +428,7 @@ Python nos ofrece, al menos, dos formas para borrar una lista por completo:
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
-    >>> shopping.clear()
+    >>> shopping.clear()  # Borrado in-situ
 
     >>> shopping
     []
@@ -436,7 +437,7 @@ Python nos ofrece, al menos, dos formas para borrar una lista por completo:
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
-    >>> shopping = []
+    >>> shopping = []  # Nueva zona de memoria
 
     >>> shopping
     []
@@ -573,7 +574,7 @@ Python proporciona, al menos, dos formas de ordenar los elementos de una lista:
         >>> shopping
         ['Aceite', 'Agua', 'Huevos', 'Limón', 'Sal']
 
-**Ambos métodos** admiten un *parámetro* "booleano" ``reverse`` para indicar si queremos que la ordenación se haga en **orden inverso**::
+**Ambos métodos** admiten un *parámetro* "booleano" ``reverse`` para indicar si queremos que la ordenación se haga en **sentido inverso**::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -593,7 +594,7 @@ Podemos conocer el número de elementos que tiene una lista con la función ``le
 Iterar sobre una lista
 ======================
 
-Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, también podemos *iterar* sobre los elementos de una lista a través de la sentencia ``for``::
+Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, también podemos *iterar* sobre los elementos de una lista utilizando la sentencia ``for``::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -803,7 +804,7 @@ Condiciones en comprensiones
 
 También existe la posibilidad de incluir condiciones en las **listas por comprensión**.
 
-En continuidad con el ejemplo anterior, supongamos que sólo queremos crear la lista con aquellos valores que empiecen por el dígito 4::
+Continuando con el ejemplo anterior, supongamos que sólo queremos crear la lista con aquellos valores que empiecen por el dígito 4::
 
     >>> values = '32,45,11,87,20,48'
 
@@ -855,6 +856,8 @@ Veamos un ejemplo en el que generamos todas las combinaciones de una serie de va
     
         |solution| :download:`comprehension.py <files/comprehension.py>`
 
+.. _sys-argv:
+
 ************
 ``sys.argv``
 ************
@@ -865,7 +868,7 @@ Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendre
 
     Acceso a parámetros en línea de comandos
 
-Veamos un ejemplo de código en el que simulamos el paso de parámetros recogido en la figura:
+Veamos un ejemplo de código en el que simulamos el paso de parámetros recogido en la figura anterior:
 
 :download:`get-args.py <files/get-args.py>`
 
@@ -913,10 +916,23 @@ Python nos ofrece, entre otras [#more-math]_, estas tres funciones matemáticas 
 .. admonition:: Ejercicio
     :class: exercise
 
-    Lea :ref:`desde teclado <datatypes/strings:Leer datos desde teclado>` una cadena de texto con números separados por comas. obtenga la media de dichos valores (*muestre el resultado con 2 decimales*).
+    Lea :ref:`desde línea de comandos <sys-argv>` una serie de números y obtenga la media de dichos valores (*muestre el resultado con 2 decimales*).
+
+    La llamada se haría de la siguiente manera::
+
+        $ python3 avg.py 32 56 21 99 12 17
+
+    Plantilla de código para el programa::
+
+        import sys
+
+        # En values tendremos una lista con los valores (como strings)
+        values = sys.argv[1:]
+
+        # Su código debajo de aquí
 
     **Ejemplo**
-        * Entrada: ``'32,56,21,99,12,17'``
+        * Entrada: ``32 56 21 99 12 17``
         * Salida: ``39.50``
     
     .. only:: html
@@ -929,9 +945,9 @@ Listas de listas
 
 |intlev|
 
-Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Una de la forma en las que podemos utilizarlas es usando listas como elementos.
+Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Estos elementos pueden ser a su vez listas.
 
-Veamos un ejemplo a través de un simil deportivo. Un equipo de fútbol suele tener una disposición en el campo organizado por líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
+A continuación planteamos un ejemplo del mundo deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
 
 .. figure:: img/world-champions.png
 
