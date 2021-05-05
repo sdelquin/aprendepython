@@ -1,3 +1,23 @@
+/* https://github.com/sdabhi23/furo/blob/main/src/furo/assets/styles/variables/_index.scss#L41 */
+@import "light-background.css";
+/* https://richleland.github.io/pygments-css/ */
+@import "pygments-light.css";
+
+/* Fix some issues with pygments styles */
+.highlight,
+.highlight .n,
+.highlight .p {
+  color: rgb(32, 32, 32);
+}
+.highlighttable td.linenos {
+  background-color: #e8e8e8;
+  color: #696969;
+  border-right: 1px solid lightgray;
+}
+.highlighttable .linenodiv {
+  box-shadow: none;
+}
+
 /* Footnotes section styling */
 dl.footnote {
   margin-top: 4rem;

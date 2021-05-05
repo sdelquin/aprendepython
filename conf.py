@@ -65,8 +65,8 @@ html_static_path = ['_static']
 html_show_sourcelink = False
 # html_show_sphinx = False
 
-html_css_files = ['custom.css']
-html_js_files = ['custom.js']
+html_css_files = ['css/custom.css']
+html_js_files = ['js/custom.js']
 
 html_title = description
 html_favicon = 'favicon.png'
