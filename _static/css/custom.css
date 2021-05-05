@@ -17,6 +17,9 @@
 .highlighttable .linenodiv {
   box-shadow: none;
 }
+.highlight .go {
+  color: #676767;
+}
 
 .sidebar-brand-text {
   display: none;

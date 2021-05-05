@@ -12,7 +12,7 @@ Los **módulos** son simplemente ficheros de texto que contienen código Python 
 Importar un módulo
 ******************
 
-Para hacer uso del código de otros módulos usaremos la sentencia ``import``. Esto permite importar el código y las variables de dicho módulo para que estén disponibles en tu programa.
+Para hacer uso del código de otros módulos usaremos la sentencia ``import``. Esto permite importar el código y las variables de dicho módulo para que estén disponibles en nuestro programa.
 
 La forma más sencilla de importar un módulo es ``import <module>`` donde ``module`` es el nombre de otro fichero Python, sin la extensión ``.py``.
 
@@ -41,6 +41,80 @@ Desde otro fichero haríamos lo siguiente para importar todo el contenido del m�
 
 .. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el :ref:`espacio de nombres <modularity/functions:Espacios de nombres>` que define el módulo ``arith``.
 
+Ruta de búsqueda de módulos
+---------------------------
+
+Python tiene 2 formas de encontrar un módulo:
+
+1. En la carpeta actual de trabajo.
+2. En las rutas definidas en la variable de entorno ``PYTHONPATH``.
+
+Para ver las rutas de búsqueda establecidas, podemos ejecutar lo siguiente en un intérprete de Python::
+
+    >>> import sys
+
+    >>> sys.path
+    ['/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+    '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
+    '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
+    '']
+
+La cadena vacía que existe al final de la lista hace referencia a la **carpeta actual**.
+
+Modificando la ruta de búsqueda
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Si queremos modificar la ruta de búsqueda, existen dos opciones:
+
+Modificando directamente la variable ``PYTHONPATH``
+    Para ello exportamos dicha variable de entorno desde una terminal:
+
+    .. code-block:: console
+
+        $ export PYTHONPATH=/tmp
+    
+    Y comprobamos que se ha modificado en ``sys.path``:
+
+    .. code-block:: pycon
+        :emphasize-lines: 3
+    
+        >>> sys.path
+        ['/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+         '/tmp',
+        '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
+        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
+        '']
+
+Modificando directamente la lista ``sys.path``
+    Para ello accedemos a lista que está en el módulo ``sys`` de la librería estandar:
+
+    .. code-block::
+        :emphasize-lines: 8
+    
+        >>> sys.path.append('/tmp')  # añadimos al final
+
+        >>> sys.path
+        ['/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+        '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
+        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
+        '',
+        '/tmp']
+
+    .. code-block::
+        :emphasize-lines: 4
+    
+        >>> sys.path.insert(0, '/tmp')  # insertamos por el principio
+
+        >>> sys.path
+        ['/tmp',
+        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+        '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
+        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
+        '']
+    
+    .. tip:: El hecho de poner nuestra ruta al principio o al final de ``sys.path`` influye en la búsqueda, ya que si existen dos (o más módulos) que se llaman igual en nuestra ruta de búsqueda, Python usará el primero que encuentre.
+    
+
 Importar partes de un módulo
 ============================
 
@@ -60,7 +134,7 @@ Es posible que no necesitemos todo aquello que está definido en ``arith.py``. S
 Importar usando un alias
 ========================
 
-Hay ocasiones en las que interesa, por colisión de otros nombres o por mejorar la legibilidad, usar un nombre diferente del módulo que estamos importando. Python nos ofrece esta posibilidad a través de la sentencias ``as``.
+Hay ocasiones en las que interesa, por colisión de otros nombres o por mejorar la legibilidad, usar un nombre diferente del módulo (u objeto) que estamos importando. Python nos ofrece esta posibilidad a través de la sentencia ``as``.
 
 Supongamos que queremos importar la función del ejemplo anterior pero con otro nombre:
 
@@ -76,7 +150,7 @@ Supongamos que queremos importar la función del ejemplo anterior pero con otro 
 Paquetes
 ********
 
-Un **paquete** es simplemente una carpeta que contiene ficheros ``.py``. Además permite tener una jerarquía con más de un nivel de subcarpetas anidadas.
+Un **paquete** es simplemente una **carpeta** que contiene ficheros ``.py``. Además permite tener una jerarquía con más de un nivel de subcarpetas anidadas.
 
 Para ejemplificar este modelo vamos a crear un paquete llamado ``mymath`` que contendrá 2 módulos:
 
@@ -168,8 +242,9 @@ La estructura que suele tener este *programa principal* es la siguiente::
 Esta condición permite, en el programa principal, diferenciar qué codigo se lanzará cuando el fichero se ejecuta directamente o cuando el fichero se importa desde otro lugar.
 
 .. figure:: img/if-name-main.jpg
+    :align: center
 
-   Comportamiento de un programa principal al importarlo o ejecutarlo
+    Comportamiento de un programa principal al importarlo o ejecutarlo
 
 :download:`hello.py <files/hello.py>`
 

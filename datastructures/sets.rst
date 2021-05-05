@@ -183,8 +183,9 @@ Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemp
     >>> B = {2, 3}
 
 .. figure:: img/venn-diagrams.png
+    :align: center
 
-   Diagramas de Venn
+    Diagramas de Venn
 
 Intersección
 ============

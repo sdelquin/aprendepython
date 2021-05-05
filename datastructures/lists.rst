@@ -515,8 +515,9 @@ Convertir lista a cadena de texto
 Dada una lista, podemos convetirla a una cadena de texto, uniendo todos sus elementos mediante algún **separador**. Para ello hacemos uso de la función ``join()`` con la siguiente estructura:
 
 .. figure:: img/join-list.jpg
+    :align: center
 
-   Estructura de llamada a la función ``join()``
+    Estructura de llamada a la función ``join()``
 
 ::
 
@@ -773,8 +774,9 @@ Listas por comprensión
 Las **listas por comprensión** establecen una técnica para crear listas de forma más **compacta** basándose en el concepto matemático de `conjuntos definidos por comprensión <http://recursostic.educacion.es/descartes/web/materiales_didacticos/conjuntos_y_operaciones_agsm/conjuntos_12.html>`_.
 
 .. figure:: img/list-comprehensions.png
+    :align: center
 
-   Estructura de una lista por comprensión
+    Estructura de una lista por comprensión
 
 En primer lugar veamos un ejemplo en el que convertimos una cadena de texto con valores numéricos en una lista con los mismos valores pero convertidos a enteros. En su **versión clásica** haríamos algo tal que así::
 
@@ -865,6 +867,7 @@ Veamos un ejemplo en el que generamos todas las combinaciones de una serie de va
 Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendremos la posibilidad de acceder a los argumentos de dicho programa. Para ello se utiliza una lista que la encontramos dentro del módulo ``sys`` y que se denomina ``argv``:
 
 .. figure:: img/sys-argv.png
+    :align: center
 
     Acceso a parámetros en línea de comandos
 
@@ -950,8 +953,9 @@ Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que
 A continuación planteamos un ejemplo del mundo deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
 
 .. figure:: img/world-champions.png
+    :align: center
 
-   Lista de listas (como equipo de fútbol)
+    Lista de listas (como equipo de fútbol)
 
 Veamos una posible representación de este equipo de fútbol usando una lista compuesta de listas. Primero definimos cada una de las líneas::
 

@@ -21,8 +21,9 @@ Para instalar Thonny debemos acceder a su `web <https://thonny.org>`_ y descarga
 Una vez terminada la instalación ya podemos lanzar la aplicación que se verá parecida a la siguiente imagen:
 
 .. figure:: img/thonny-empty.png
+    :align: center
 
-   Aspecto de Thonny al arrancarlo
+    Aspecto de Thonny al arrancarlo
 
 .. note:: Es posible que el aspecto del programa varíe ligeramente según el sistema operativo, configuración de escritorio, versión utilizada o idioma (*en mi caso está en inglés*), pero a efectos de funcionamiento no hay diferencia.
 
@@ -74,8 +75,9 @@ Probando el editor
 Ahora vamos a realizar la misma operación, pero en vez de ejecutar la instrucción directamente en el intérprete, vamos a crear un fichero y guardarlo con la sentencia que nos interesa. Para ello escribimos ``print('Hello, World')`` en el panel de edición (*superior*) y luego guardamos el archivo con el nombre ``helloworld.py`` [#save-file]_:
 
 .. figure:: img/thonny-save.png
+    :align: center
 
-   Guardando nuestro primer programa en Python
+    Guardando nuestro primer programa en Python
 
 .. important:: Los ficheros que contienen programas hechos en Python siempre deben tener la extensión ``.py``
 
@@ -105,8 +107,9 @@ Aunque ya lo veremos en profundidad, lo que hemos hecho es añadir una variable 
 También existe la posibilidad, a través del depurador, de ir ejecutando nuestro programa **paso a paso**. Para ello basta con pulsar en el botón que tiene un *insecto*. Ahí comienza la sesión de depuración y podemos avanzar instrucción por instrucción usando la tecla :kbd:`F7`:
 
 .. figure:: img/thonny-debug.png
+    :align: center
 
-   Depurando nuestro primer programa en Python
+    Depurando nuestro primer programa en Python
 
 
 

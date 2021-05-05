@@ -9,8 +9,9 @@ Podemos trasladar el concepto de *diccionario* de la vida real al de *diccionari
 
 
 .. figure:: img/dicts.jpg
+    :align: center
 
-   Analogía de un diccionario en Python
+    Analogía de un diccionario en Python
 
 Los diccionarios en Python tienen las siguientes *características*:
 
