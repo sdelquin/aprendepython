@@ -13,8 +13,9 @@ Definición de bloques
 A diferencia de otros lenguajes que utilizan llaves para definir los bloques de código, cuando Guido Van Rossum :ref:`creó el lenguaje <introduction/python:Python>` quiso evitar estos caracteres por considerarlos innecesarios. Es por ello que en Python los bloques de código se definen a través de **espacios en blanco, preferiblemente 4**. [#pep8]_ En términos técnicos se habla del **tamaño de indentación**.
 
 .. figure:: img/four-spaces.png
+    :align: center
 
-   Python recomienda 4 espacios en blanco para indentar
+    Python recomienda 4 espacios en blanco para indentar
 
 .. hint:: Esto puede resultar extraño e incómodo a personas que vienen de otros lenguajes de programación pero desaparece rápido y se siente natural a medida que se escribe código.
 
@@ -115,8 +116,9 @@ Podríamos tener incluso condiciones dentro de condiciones, lo que se viene a ll
 Python nos ofrece una mejora en la escritura de condiciones anidadas cuando aparecen consecutivamente un ``else`` y un ``if``. Podemos sustituirlos por la sentencia ``elif``:
 
 .. figure:: img/elif.png
+    :align: center
 
-   Construcción de la sentencia ``elif``
+    Construcción de la sentencia ``elif``
 
 Apliquemos esta mejora al código del ejemplo anterior:
 

@@ -21,6 +21,7 @@ La siguiente tabla es un resumen de los principales hitos en la historia de la c
 Luego los avances en las ciencias informáticas han sido muy acelerados, se reemplazaron los `tubos de vacío`_ por `transistores`_ en 1958 y en el mismo año, se sustituyeron por `circuitos integrados`_, y en 1961 se miniaturizaron en **chips de silicio**. En 1971 apareció el primer microprocesador de Intel; y en 1973 el primer sistema operativo CP/M.  El primer computador personal es comercializado por IBM en el año 1980.
 
 .. figure:: img/ada-lovelace.jpg
+    :align: center
 
     Ada Lovelace: primera programadora de la historia [#adalovelace]_
 
@@ -39,6 +40,7 @@ Cronología de lenguajes de programación
 Desde la década de 1950 se han sucedido multitud de lenguajes de programación que cada vez incorporan más funcionalidades destinadas a cubrir las necesidades del desarrollo de aplicaciones. A continuación se muestra una tabla con la historia de los lenguajes de programación más destacados:
 
 .. figure:: img/proglangs.png
+    :align: center
 
     Cronología de los lenguajes de programación más destacados
 

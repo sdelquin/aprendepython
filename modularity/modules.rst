@@ -242,8 +242,9 @@ La estructura que suele tener este *programa principal* es la siguiente::
 Esta condición permite, en el programa principal, diferenciar qué codigo se lanzará cuando el fichero se ejecuta directamente o cuando el fichero se importa desde otro lugar.
 
 .. figure:: img/if-name-main.jpg
+    :align: center
 
-   Comportamiento de un programa principal al importarlo o ejecutarlo
+    Comportamiento de un programa principal al importarlo o ejecutarlo
 
 :download:`hello.py <files/hello.py>`
 

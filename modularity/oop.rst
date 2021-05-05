@@ -26,8 +26,9 @@ Sus **beneficios** son los siguientes:
     Permite **crear** múltiples objetos a partir de una misma pieza flexible de código.
 
 .. figure:: img/oop.jpg
+    :align: center
 
-   Beneficios de la Programación Orientada a Objetos
+    Beneficios de la Programación Orientada a Objetos
 
 ¿Qué es un objeto?
 ==================
@@ -45,8 +46,9 @@ Un **objeto** es una **estructura de datos personalizada** que contiene **datos*
 Un objeto representa **una instancia única** de alguna entidad a través de los valores de sus atributos e interactuan con otros objetos (o consigo mismos) a través de sus métodos.
 
 .. figure:: img/bike-object.jpg
+    :align: center
 
-   Analogía de atributos y métodos en un objeto "bicicleta"
+    Analogía de atributos y métodos en un objeto "bicicleta"
 
 ¿Qué es una clase?
 ==================
@@ -54,8 +56,9 @@ Un objeto representa **una instancia única** de alguna entidad a través de los
 Para crear un objeto primero debemos definir la clase que lo contiene. Podemos pensar en la **clase** como el **molde** con el que crear nuevos objetos de ese tipo.
 
 .. figure:: img/mold.jpg
+    :align: center
 
-   Ejemplificación de creación de objetos a partir de una clase
+    Ejemplificación de creación de objetos a partir de una clase
 
 En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los atributos y los métodos que contenga estén enfocados a un objetivo único y bien definido.
 
@@ -66,8 +69,9 @@ Creando objetos
 Empecemos por crear nuestra **primera clase**. En este caso vamos a modelar algunos de los `droides de la saga StarWars`_:
 
 .. figure:: img/starwars-droids.jpg
+    :align: center
 
-   Droides de la saga StarWars [#starwars-droids]_
+    Droides de la saga StarWars [#starwars-droids]_
 
 Para ello usaremos la palabra reservada ``class`` seguido del nombre de la clase::
 
@@ -447,8 +451,9 @@ Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ell
 Para el caso de los operadores, existe un método mágico asociado (que podemos personalizar). Por ejemplo la comparación de dos objetos se realiza con el método ``__eq__()``:
 
 .. figure:: img/magic-methods.png
+    :align: center
 
-   Equivalencia entre operador y método mágico
+    Equivalencia entre operador y método mágico
 
 Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que dos droides son iguales si su nombre es igual, independientemente de que tengan distintos números de serie:
 
@@ -474,8 +479,9 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
     True
 
 .. figure:: img/magic-methods-list.jpg
+    :align: center
 
-   Métodos mágicos para comparaciones y operaciones matemáticas
+    Métodos mágicos para comparaciones y operaciones matemáticas
 
 .. note:: Los métodos mágicos no sólo están restringidos a operadores de comparación o matemáticos. Existen muchos otros en la documentación oficial de Python, donde son llamados `métodos especiales`_.
 
@@ -599,8 +605,9 @@ Herencia
 La **herencia** consiste en **crear una nueva clase partiendo de una clase existente**, pero que añade o modifica ciertos aspectos. Se considera una buena práctica tanto para *reutilizar código* como para *realizar generalizaciones*.
 
 .. figure:: img/inheritance.jpg
+    :align: center
 
-   Nomenclatura de clases en la herencia [#freepik-icons]_
+    Nomenclatura de clases en la herencia [#freepik-icons]_
 
 .. note:: Cuando se utiliza herencia, la clase derivada, de forma automática, puede usar todo el código de la clase base sin necesidad de copiar nada explícitamente.
 
@@ -760,6 +767,7 @@ Si en una clase se hace referencia a un método o atributo que no existe, Python
 Supongamos que queremos modelar la siguiente estructura de clases con *herencia múltiple*:
 
 .. figure:: img/multiple-inheritance.jpg
+    :align: center
 
     Ejemplo de herencia múltiple [#starwars-fandom]_
    
@@ -908,8 +916,9 @@ Hay una sutil diferencia entre agregación y composición:
 - La **agregación** implica que el objeto utilizado puede funcionar por sí mismo.
 
 .. figure:: img/aggregation-composition.jpg
+    :align: center
 
-   Agregación vs. Composición [#freepik-icons]_
+    Agregación vs. Composición [#freepik-icons]_
 
 Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un droide::
 

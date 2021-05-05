@@ -18,6 +18,7 @@ Definir una función
 Para definir una función utilizamos la palabra reservada ``def`` seguida del **nombre** [#naming-functions]_ de la función. A continuación aparecerán 0 o más **parámetros** separados por comas (entre paréntesis), finalizando la línea con **dos puntos** ``:`` En la siguiente línea empezaría el **cuerpo** de la función que puede contener 1 o más **sentencias**, incluyendo (o no) una **sentencia de retorno** con el resultado mediante ``return``.
 
 .. figure:: img/function-definition.jpg
+    :align: center
 
     Definición de una función en Python
    
@@ -176,8 +177,9 @@ En este caso escribiremos una función que recibe un valor numérico y devuelve 
 Cuando llamamos a una función con *argumentos*, los valores de estos argumentos se copian en los correspondientes *parámetros* dentro de la función:
 
 .. figure:: img/args-params.jpg
+    :align: center
 
-   Parámetros y argumentos de una función
+    Parámetros y argumentos de una función
 
 .. tip:: La sentencia ``pass`` permite "no hacer nada". Es una especie de "*placeholder*".
 
@@ -523,8 +525,9 @@ A partir de `Python 3.8 <https://www.python.org/dev/peps/pep-0570/>`_ se ofrece 
 Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``/`` que delimitará el tipo de parámetros. Así, todos los parámetros a la izquierda del delimitador estarán **obligados** a ser posicionales:
 
 .. figure:: img/position-only-params.png
+    :align: center
 
-   Separador para especificar parámetros sólo posicionales
+    Separador para especificar parámetros sólo posicionales
 
 Ejemplo::
 
@@ -559,8 +562,9 @@ A partir de `Python 3 <https://www.python.org/dev/peps/pep-3102/>`_ se ofrece la
 Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros. Así, todos los parámetros a la derecha del separador estarán **obligados** a ser nominales:
 
 .. figure:: img/keyword-only-params.png
+    :align: center
 
-   Separador para especificar parámetros sólo nominales
+    Separador para especificar parámetros sólo nominales
 
 Ejemplo::
 
@@ -950,6 +954,7 @@ Como se comentó en la :ref:`introducción <introduction/python:Características
 Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: ``map()``, ``filter()`` y ``reduce()``.
 
 .. figure:: img/map-filter-reduce.png
+    :align: center
 
     Rutinas muy enfocadas a programación funcional
 
@@ -1327,8 +1332,9 @@ Los espacios de nombres proporcionan un mecanismo de empaquetamiento, de tal for
 Cada *función* define su propio espacio de nombres y es diferente del espacio de nombres global aplicable a todo nuestro programa.
 
 .. figure:: img/namespaces.png
+    :align: center
 
-   Espacio de nombres global vs espacios de nombres de funciones
+    Espacio de nombres global vs espacios de nombres de funciones
 
 Acceso a variables globales
 ===========================

@@ -13,8 +13,9 @@ Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en
 * Un **valor** consistente con su tipo.
 
 .. figure:: img/object.jpg
+    :align: center
 
-   Esquema (*metadatos*) de un objeto en Python
+    Esquema (*metadatos*) de un objeto en Python
 
 
 **************
@@ -36,8 +37,9 @@ Variables
 Las **variables** son fundamentales ya que permiten definir **nombres** para los **valores** que tenemos en memoria y que vamos a usar en nuestro programa.
 
 .. figure:: img/name-variable.jpg
+    :align: center
 
-   Uso de un *nombre* de variable
+    Uso de un *nombre* de variable
 
 Reglas para nombrar variables
 =============================
@@ -116,8 +118,9 @@ Asignación
 En Python se usa el símbolo ``=`` para **asignar** un valor a una variable:
 
 .. figure:: img/assignment.jpg
+    :align: center
 
-   Asignación de *valor* a *nombre* de variable
+    Asignación de *valor* a *nombre* de variable
 
 .. note:: Hay que diferenciar la asignación en Python con la igualación en matemáticas. El símbolo ``=`` lo hemos aprendido desde siempre como una *equivalencia* entre dos *expresiones algebraicas*, sin embargo en Python nos indica una *sentencia de asignación*, del valor (en la derecha) al nombre (en la izquierda).
 
@@ -247,16 +250,18 @@ Si realizamos la asignación de una variable a un valor lo que está ocurriendo 
     >>> a = 5
 
 .. figure:: img/var-memory1.png
+    :align: center
 
-   Representación de la asignación de valor a variable
+    Representación de la asignación de valor a variable
 
 Si ahora "copiamos" el valor de ``a`` en otra variable ``b`` se podría esperar que hubiera otro espacio en memoria para dicho valor, pero como ya hemos dicho, son referencias a memoria::
 
     >>> b = a
 
 .. figure:: img/var-memory2.png
+    :align: center
 
-   Representación de la asignación de una variable a otra variable
+    Representación de la asignación de una variable a otra variable
 
 La función ``id()`` nos permite conocer la dirección de memoria [#memory-address]_ de un objeto en Python. A través de ella podemos comprobar que los dos objetos que hemos creado "apuntan" a la misma zona de memoria::
 
