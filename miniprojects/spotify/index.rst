@@ -4,7 +4,7 @@ Miniproyecto Spotify
 
 .. image:: img/spotify-logo.png
 
-El objetivo del miniproyecto es integrar la mayoría de los elementos del lenguaje de programación Python vistos hasta ahora e implementar un **Speed Changer** para canciones de **Spotify** utilizando el paradigma de orientación a objetos.
+El objetivo de este miniproyecto es integrar la mayoría de elementos del lenguaje de programación Python vistos hasta ahora e implementar un **Speed Changer** para canciones de **Spotify** utilizando el paradigma de orientación a objetos.
 
 *****************
 Ficheros de datos
@@ -22,7 +22,7 @@ He limpiado este fichero para quedarnos únicamente con los datos que nos intere
 - **Col. 5** ·️ Danceability: indica lo "bailable" que es la canción (valor entero).
 - **Col. 6** ·️ Length: duración de la canción (valor entero).
 
-Puedes descargar el fichero limpio en este enlace :download:`top50.csv <files/top50.csv>`. Para ello, pulsa con el botón derecho y "Guardar como..."
+Puede descargar el fichero limpio desde este enlace :download:`top50.csv <files/top50.csv>`.
 
 ***********************
 Requisitos del programa
@@ -49,22 +49,23 @@ Código a implementar
 .. code-block:: python
 
     class Song:
-        def __init__(self, track, artist, genre, bpm, energy, danceability, length):
+        def __init__(self, track: str, artist: str, genre: str, bpm: int,
+                     energy: int, danceability: int, length: int):
             # your code here
 
         def __str__(self):
             # your code here
 
-        def change_speed(self, relative_bpm):
+        def change_speed(self, relative_bpm: int) -> None:
             # your code here
 
         @staticmethod
-        def load_songs(path):
+        def load_songs(path: str) -> list[Song]:
             # your code here
             return songs
 
         @staticmethod
-        def save_songs(songs, path):
+        def save_songs(songs: list[Song], path: str) -> None:
             # your code here
 
 ``mod_bpm.py``
@@ -132,7 +133,7 @@ Métodos
 Apertura de ficheros
 ====================
 
-El fichero de entrada que se aporta :ref:`top50.csv <miniprojects/spotify/index:Ficheros de datos>` está codificado con utf-8. Si tuvieran problemas para abrirlo en su plataforma  puede que tenga que ver con la **codificación**. En ese caso pueden probar a añadir el parámetro ``encoding``:
+El fichero de entrada que se aporta :download:`top50.csv <files/top50.csv>` está codificado con *utf8*. Si tuviera problemas para abrirlo en su plataforma  puede que tenga que ver con la **codificación**. En ese caso puede probar a añadir el parámetro ``encoding``:
 
 .. code-block:: pycon
 
@@ -143,12 +144,12 @@ El fichero de entrada que se aporta :ref:`top50.csv <miniprojects/spotify/index:
 Comprobación de resultados
 **************************
 
-Para comprobar si tu programa está funcionando bien, te dejo la salida de dos ejecuciones:
+Para comprobar si su programa está funcionando bien, aquí se aporta la salida de dos ejecuciones:
     ``$ python mod_bpm.py 10``
         Salida esperada → :download:`top50_mod_plus10.csv <files/top50_mod_plus10.csv>` 
 
     ``$ python mod_bpm.py -5``
-        Salida esperada → :download:`top50_mod_plus10.csv <files/top50_mod_minus5.csv>` 
+        Salida esperada → :download:`top50_mod_minus10.csv <files/top50_mod_minus5.csv>` 
 
 La forma más sencilla es comparar el fichero de salida de tu programa ``top50_mod.csv`` con el correspondiente de los anteriores. La herramienta ``diff`` compara dos ficheros y nos dice si son exactamente iguales:
 
@@ -160,7 +161,7 @@ La forma más sencilla es comparar el fichero de salida de tu programa ``top50_m
     $ diff -s top50_mod.csv top50_mod_minus5.csv
     Files top50_mod.csv and top50_mod_minus5.csv are identical
 
-.. hint:: En Windows pueden utilizar el comando ``fc``.
+.. hint:: En Windows puede utilizar el comando ``fc``.
 
 *********************
 Rúbrica de evaluación
