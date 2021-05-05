@@ -72,8 +72,8 @@ html_title = description
 html_favicon = 'favicon.png'
 
 html_theme_options = {
-    'light_logo': 'logo-solo-aprendepython-S.png',
-    'dark_logo': 'logo-solo-aprendepython-mono-S.png',
+    'light_logo': 'img/logo-aprendepython-small.png',
+    'dark_logo': 'img/logo-aprendepython-small.png',
 }
 
 # -- Latex configuration ---------------------------------------------------
@@ -91,7 +91,7 @@ latex_elements = {
 ''',
 }
 
-latex_logo = '_static/logo-solo-aprendepython-S.png'
+latex_logo = '_static/img/logo-solo-aprendepython-small.png'
 
 latex_documents = [
     (

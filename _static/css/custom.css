@@ -18,6 +18,10 @@
   box-shadow: none;
 }
 
+.sidebar-brand-text {
+  display: none;
+}
+
 /* Footnotes section styling */
 dl.footnote {
   margin-top: 4rem;

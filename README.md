@@ -1,6 +1,6 @@
 # Aprende Python
 
-![Logo - AprendePython](_static/logo-solo-aprendepython.png)
+![Logo - AprendePython](_static/img/logo-solo-aprendepython-small.png)
 
 Curso gratuito para aprender el lenguaje de programación **Python** con un enfoque **práctico**, incluyendo **ejercicios** y cobertura para distintos **niveles de conocimiento**.
 
