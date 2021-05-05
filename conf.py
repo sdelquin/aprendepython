@@ -65,15 +65,15 @@ html_static_path = ['_static']
 html_show_sourcelink = False
 # html_show_sphinx = False
 
-html_css_files = ['custom.css']
-html_js_files = ['custom.js']
+html_css_files = ['css/custom.css']
+html_js_files = ['js/custom.js']
 
 html_title = description
 html_favicon = 'favicon.png'
 
 html_theme_options = {
-    'light_logo': 'logo-solo-aprendepython-S.png',
-    'dark_logo': 'logo-solo-aprendepython-mono-S.png',
+    'light_logo': 'img/logo-aprendepython-small.png',
+    'dark_logo': 'img/logo-aprendepython-small.png',
 }
 
 # -- Latex configuration ---------------------------------------------------
@@ -91,7 +91,7 @@ latex_elements = {
 ''',
 }
 
-latex_logo = '_static/logo-solo-aprendepython-S.png'
+latex_logo = '_static/img/logo-solo-aprendepython-small.png'
 
 latex_documents = [
     (
