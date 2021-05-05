@@ -879,9 +879,19 @@ Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un o
         - ``geoloc``: (23.5454, 31.4343)
         - ``duration``: 487
         - ``dimensions``: (1920, 1080)
-    3. Añadir el contenido hello al fichero.
-    4. Añadir el contenido world al fichero.
-    5. Imprimir por pantalla la ``info()`` de este objeto (el método ``info()`` debería retornar ``str`` y debería hacer uso de los métodos ``info()`` de las clases base).
+    3. Añada el contenido ``'audio/ogg'`` al fichero.
+    4. Añada el contenido ``'video/webm'`` al fichero.
+    5. Imprima por pantalla la ``info()`` de este objeto (el método ``info()`` debería retornar ``str`` y debería hacer uso de los métodos ``info()`` de las clases base).
+
+    Salida esperada::
+
+        /home/python/vanrossum.mp4 [size=19B]      # self.info() de File
+        Codec: h264                                # ┐ 
+        Geolocalization: (23.5454, 31.4343)        # ├ self.info() de MediaFile
+        Duration: 487s                             # ┘ 
+        Dimensions: (1920, 1080)                   # self.info() de VideoFile
+
+    ► El método ``size()`` debe devolver el número total de caracteres sumando las longitudes de los elementos del atributo ``contents``.
 
     .. only:: html
     

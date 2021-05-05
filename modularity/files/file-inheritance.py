@@ -6,22 +6,12 @@ class File:
     def add_content(self, content):
         self.contents.append(content)
 
-    def show(self):
-        print(self.contents)
-
-    def rename(self, new_path):
-        self.path = self.new_path
-
-    def remove(self):
-        self.path = None
-        self.contents = []
-
     def size(self):
-        sizes = [len(c) for c in self.contents]
+        sizes = (len(c) for c in self.contents)
         return sum(sizes)
 
     def info(self):
-        return f'{self.path} [size={self.size()}MB]'
+        return f'{self.path} [size={self.size()}B]'
 
 
 class MediaFile(File):
@@ -34,11 +24,10 @@ class MediaFile(File):
     def info(self):
         file_info = super().info()
         return f'''
-        {file_info}
-        Codec: {self.codec}
-        Geolocalization: {self.geoloc}
-        Duration: {self.duration}s
-        '''
+{file_info}
+Codec: {self.codec}
+Geolocalization: {self.geoloc}
+Duration: {self.duration}s'''
 
 
 class VideoFile(MediaFile):
@@ -49,13 +38,11 @@ class VideoFile(MediaFile):
     def info(self):
         media_info = super().info()
         return f'''
-        {media_info}
-        Dimensions: {self.dimensions}
-        '''
+{media_info}
+Dimensions: {self.dimensions}'''
 
 
-mp4 = VideoFile('/home/python/vanrossum.mp4', 'h264', (23.5454, 31.4343), 487,
-                (1920, 1080))
-mp4.add_content('hello')
-mp4.add_content('world')
+mp4 = VideoFile('/home/python/vanrossum.mp4', 'h264', (23.5454, 31.4343), 487, (1920, 1080))
+mp4.add_content('audio/ogg')
+mp4.add_content('video/webm')
 print(mp4.info())
