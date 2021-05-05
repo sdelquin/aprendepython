@@ -120,9 +120,11 @@ Veamos un ejemplo de ambos::
         Not a valid integer. Try it again!
         Give me an integer number: 10
 
+    *Trate de implementar tanto la versión recursiva como la versión iterativa*.
+
     .. only:: html
     
-        |solution| :download:`get_int.py <files/get_int.py>`
+        |solution| :download:`getint_recursive.py <files/getint_recursive.py>` | :download:`getint_iterative.py <files/getint_iterative.py>`
 
 *******************
 Excepciones propias
