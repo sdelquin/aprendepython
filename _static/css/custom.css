@@ -80,9 +80,3 @@ dl.footnote {
 .sidebar-brand {
   align-items: center;
 }
-
-/* Enlarge figures to full width */
-article .figure.align-default {
-  margin-left: 0;
-  transform: none;
-}
