@@ -893,6 +893,35 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
      'is_integer',
      'real']
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba un programa en Python que acepte el nombre y los apellidos de una persona y los imprima en orden inverso separados por una coma. Utilice *f-strings* para implementarlo (:download:`solución <files/inverse_str.py>`).
+
+    | Entrada: nombre=Sergio; apellidos=Delgado Quintero
+    | Salida: Delgado Quintero, Sergio
+
+2. Escriba un programa en Python que acepte un nombre de fichero e imprima sólo su extensión (:download:`solución <files/extension.py>`).
+
+    | Entrada: data.zip
+    | Salida: zip
+
+3. Escriba un programa en Python que acepte una ruta remota de recurso samba, y lo separe en nombre(IP) del equipo y ruta (:download:`solución <files/samba.py>`).
+
+    | Entrada: //1.1.1.1/eoi/python
+    | Salida: equipo=1.1.1.1; ruta=/eoi/python
+
+4. Escriba un programa en Python que acepte un entero ``n`` y compute el valor de ``n + nn + nnn`` (:download:`solución <files/n_sum.py>`).
+
+    | Entrada: 5
+    | Salida: 615
+
+5. Escriba un programa en Python que acepte una palabra en castellano y calcule una métrica que sea el número total de caracteres de la palabra multiplicado por el número total de vocales que contiene la palabra (:download:`solución <files/metric_str.py>`).
+
+    | Entrada: ordenador
+    | Salida: 36
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
