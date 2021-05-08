@@ -902,15 +902,15 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
     | Entrada: nombre=Sergio; apellidos=Delgado Quintero
     | Salida: Delgado Quintero, Sergio
 
-2. Escriba un programa en Python que acepte un nombre de fichero e imprima sólo su extensión (:download:`solución <files/extension.py>`).
-
-    | Entrada: data.zip
-    | Salida: zip
-
-3. Escriba un programa en Python que acepte una ruta remota de recurso samba, y lo separe en nombre(IP) del equipo y ruta (:download:`solución <files/samba.py>`).
+2. Escriba un programa en Python que acepte una ruta remota de recurso samba, y lo separe en nombre(IP) del equipo y ruta (:download:`solución <files/samba.py>`).
 
     | Entrada: //1.1.1.1/eoi/python
     | Salida: equipo=1.1.1.1; ruta=/eoi/python
+
+3. Escriba un programa en Python que acepte un "string" con los 8 dígitos de un NIF, y calcule su `dígito de control`_ (:download:`solución <files/nif_digit.py>`).
+   
+    | Entrada: 12345678
+    | Salida: 12345678Z
 
 4. Escriba un programa en Python que acepte un entero ``n`` y compute el valor de ``n + nn + nnn`` (:download:`solución <files/n_sum.py>`).
 
@@ -954,3 +954,4 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Mediterráneo: https://open.spotify.com/track/7Bewui7KtaMzROeteRitRz?si=NGwOUmwfRSuapY3JL7s1uQ
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
+.. _dígito de control: http://www.interior.gob.es/web/servicios-al-ciudadano/dni/calculo-del-digito-de-control-del-nif-nie
