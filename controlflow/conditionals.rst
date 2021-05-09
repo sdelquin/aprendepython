@@ -397,6 +397,15 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 
 .. hint:: Como hemos comprobado, el operador morsa permite realizar asignaciones dentro de expresiones, lo que, en muchas ocasiones, permite obtener un código más compacto. Sería conveniente encontrar un equilibrio entre la expresividad y la legibilidad.
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba un programa en Python que acepte la opción de dos jugadoras en `Piedra-Papel-Tijera`_ y decida el resultado.
+
+    | Entrada: persona1=piedra; persona2=papel
+    | Salida: Gana persona2: El papel envuelve a la piedra
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -420,3 +429,4 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _operador morsa: https://www.python.org/dev/peps/pep-0572/
 .. _Marvel: https://marvel.fandom.com/es/wiki/Categor%C3%ADa:Personajes
 .. _Akinator: https://es.akinator.com/
+.. _Piedra-Papel-Tijera: https://es.wikipedia.org/wiki/Piedra,_papel_o_tijera
