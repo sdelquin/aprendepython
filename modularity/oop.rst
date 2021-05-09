@@ -526,8 +526,11 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
     >>> print(droid)  # llamada a droid.__str__()
     🤖 Droid "K-2SO" serial-no 8403898409432
 
-    >>> droid.__str__()
+    >>> str(droid)
     '🤖 Droid "K-2SO" serial-no 8403898409432'
+
+    >>> f'Droid -> {droid}'
+    'Droid -> 🤖 Droid "K-2SO" serial-no 8403898409432'
 
 .. admonition:: Ejercicio
     :class: exercise
