@@ -80,3 +80,11 @@ dl.footnote {
 .sidebar-brand {
   align-items: center;
 }
+
+/* Custom style for rubrics */
+p.rubric {
+  font-size: 1.1rem;
+  font-weight: 400;
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+}
