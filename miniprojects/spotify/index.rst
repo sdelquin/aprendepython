@@ -60,12 +60,12 @@ Código a implementar
             # your code here
 
         @staticmethod
-        def load_songs(path: str) -> list[Song]:
+        def load_songs(path: str) -> list['Song']:
             # your code here
             return songs
 
         @staticmethod
-        def save_songs(songs: list[Song], path: str) -> None:
+        def save_songs(songs: list['Song'], path: str) -> None:
             # your code here
 
 ``mod_bpm.py``

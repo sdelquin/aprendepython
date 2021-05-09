@@ -3,3 +3,4 @@
 _build
 resources
 *.pyc
+miniprojects/**/solution
