@@ -765,6 +765,71 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. tip:: En el caso de que estemos trabajando con listas que contienen elementos mutables, debemos hacer uso de la función ``deepcopy()`` dentro del módulo ``copy`` de la librería estándar.
 
+******************
+Veracidad múltiple
+******************
+
+Si bien podemos usar :ref:`sentencias condicionales <controlflow/conditionals:Condicionales>` para comprobar la veracidad de determinadas expresiones, Python nos ofrece dos funciones "built-in" con las que podemos evaluar si se cumplen **todas** las condiciones ``all()`` o si se cumple **alguna** condición ``any()``. Estas funciones trabajan sobre iterables, y el caso más evidente es una **lista**.
+
+Supongamos un ejemplo en el que queremos comprobar si una determinada palabra cumple las siguientes condiciones:
+
+- Su longitud total es mayor que 4.
+- Empieza por "p".
+- Contiene, al menos, una "y".
+
+Veamos la **versión clásica**::
+
+    >>> word = 'python'
+
+    >>> if len(word) > 4 and word.startswith('p') and word.count('y') >= 1:
+    ...     print('Cool word!')
+    ... else:
+    ...     print('No thanks')
+    ...
+    Cool word!
+
+Veamos la **versión con veracidad múltiple** usando ``all()``, donde se comprueba que se cumplan **todas** las expresiones:
+
+.. code-block::
+    :emphasize-lines: 7
+
+    >>> word = 'python'
+
+    >>> enough_length = len(word) > 4            # True
+    >>> right_beginning = word.startswith('p')   # True
+    >>> min_ys = word.count('y') >= 1            # True
+
+    >>> is_cool_word = all([enough_length, right_beginning, min_ys])
+
+    >>> if is_cool_word:
+    ...     print('Cool word!')
+    ... else:
+    ...     print('No thanks')
+    ...
+    Cool word!
+
+Veamos la **versión con veracidad múltiple** usando ``any()``, donde se comprueba que se cumpla **alguna** expresión:
+
+.. code-block::
+    :emphasize-lines: 7
+
+    >>> word = 'yeah'
+
+    >>> enough_length = len(word) > 4            # False
+    >>> right_beginning = word.startswith('p')   # False
+    >>> min_ys = word.count('y') >= 1            # True
+
+    >>> is_fine_word = any([enough_length, right_beginning, min_ys])
+
+    >>> if is_fine_word:
+    ...     print('Fine word!')
+    ... else:
+    ...     print('No thanks')
+    ...
+    Fine word!
+
+.. hint:: Este enfoque puede ser interesante cuando se manejan muchas condiciones o bien cuando queremos separar las condiciones y agruparlas en una única lista.
+
 **********************
 Listas por comprensión
 **********************
