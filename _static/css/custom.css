@@ -88,3 +88,11 @@ p.rubric {
   border: 1px solid lightgray;
   padding: 0.5rem;
 }
+
+::selection {
+  background: #a8d1ff;
+}
+
+::-moz-selection {
+  background: #a8d1ff;
+}
