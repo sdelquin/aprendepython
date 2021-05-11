@@ -72,8 +72,8 @@ html_title = description
 html_favicon = 'favicon.png'
 
 html_theme_options = {
-    'light_logo': 'img/logo-aprendepython-small.png',
-    'dark_logo': 'img/logo-aprendepython-small.png',
+    'light_logo': 'img/logo-aprendepython.svg',
+    'dark_logo': 'img/logo-aprendepython.svg',
 }
 
 # -- Latex configuration ---------------------------------------------------
