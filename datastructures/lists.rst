@@ -1030,6 +1030,35 @@ Podemos comprobar el acceso a distintos elementos::
     
         · Solución generalizada para matrices de cualquier dimensión: :download:`matrix.py <files/matrix.py>`
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba un programa en Python que acepte una lista de valores numéricos y obtenga su valor máximo **sin utilizar** la función "built-in" ``max()`` (:download:`solución <files/max_value.py>`).
+
+    | Entrada: [6, 3, 9, 2, 10, 31, 15, 7]
+    | Salida: 2
+
+2. Escriba un programa en Python que acepte una lista y elimine sus elementos duplicados (:download:`solución <files/drop_dups.py>`).
+
+    | Entrada: ['this', 'is', 'a', 'real', 'real', 'real', 'story']
+    | Salida: ['this', 'is', 'a', 'real', 'story']
+
+3. Escriba un programa en Python que acepte una lista -- que puede contener sublistas (sólo en 1 nivel de anidamiento) -- y genere otra lista "aplanada" (:download:`solución <files/flatten_list.py>`).
+
+    | Entrada: [0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]
+    | Salida: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+
+4. Escriba un programa en Python que acepte una lista y genere otra lista eliminando los elementos duplicados consecutivos (:download:`solución <files/drop_consecutive_dups.py>`).
+
+    | Entrada: [0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]
+    | Salida: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]
+
+5. Escriba un programa en Python que acepte una lista de listas representando una matriz numérica y compute la suma de los elementos de la diagonal principal (:download:`solución <files/sum_diagonal.py>`).
+
+    | Entrada: [[4, 6, 1], [2, 9, 3], [1, 7, 7]]
+    | Salida: 20
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Linked Lists in Python: An Introduction <https://realpython.com/linked-lists-python/>`_
