@@ -232,6 +232,24 @@ Hecho en Python::
     
         |solution| :download:`quadratic.py <files/quadratic.py>`
 
+Valor absoluto
+--------------
+
+Python ofrece la función ``abs()`` para obtener el valor absoluto de un número::
+
+    >>> abs(-1)
+    1
+
+    >>> abs(1)
+    1
+
+    >>> abs(-3.14)
+    3.14
+
+    >>> abs(3.14)
+    3.14
+
+
 Límite de un entero
 ===================
 
@@ -356,9 +374,10 @@ Por ejemplo::
     >>> int(3.9)
     3
 
-Para **comprobar el tipo** que tiene una variable podemos hacer uso de la función ``type()``::
+Para **obtener el tipo** de una variable podemos hacer uso de la función ``type()``::
 
     >>> is_raining = False
+
     >>> type(is_raining)
     <class 'bool'>
 
@@ -369,6 +388,15 @@ Para **comprobar el tipo** que tiene una variable podemos hacer uso de la funci�
     >>> temperature = 36.6
     >>> type(temperature)
     <class 'float'>
+
+Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable mediante la función ``isinstance()``::
+
+    >>> isinstance(is_raining, bool)
+    True
+    >>> isinstance(sound_level, int)
+    True
+    >>> isinstance(temperature, float)
+    True
 
 .. admonition:: Ejercicio
     :class: exercise
