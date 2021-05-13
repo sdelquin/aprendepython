@@ -401,11 +401,30 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que acepte la opción de dos jugadoras en `Piedra-Papel-Tijera`_ y decida el resultado.
+1. Escriba un programa en Python que acepte la opción de dos jugadoras en `Piedra-Papel-Tijera`_ y decida el resultado (:download:`solución <files/pss.py>`).
 
     | Entrada: persona1=piedra; persona2=papel
     | Salida: Gana persona2: El papel envuelve a la piedra
 
+2. Escriba un programa en Python que acepte 3 números y calcule el mínimo (:download:`solución <files/min_values.py>`).
+
+    | Entrada: 7, 4, 9
+    | Salida: 4
+
+3. Escriba un programa en Python que acepte un país (como "string") y muestre por pantalla su bandera (como "emoji"). *Puede restringirlo a un conjunto limitado de países* (:download:`solución <files/countries.py>`).
+
+    | Entrada: Italia
+    | Salida: 🇮🇹
+
+4. Escriba un programa en Python que acepte 3 códigos de teclas y muestre por pantalla `la acción que se lleva a cabo en sistemas Ubuntu Linux`_ (:download:`solución <files/shortcuts.py>`).
+
+    | Entrada: tecla1=Ctrl; tecla2=Alt; tecla3=Del;
+    | Salida: Log out
+
+5. Escriba un programa en Python que acepte edad, peso, pulso y plaquetas, y determine si una persona cumple con `estos requisitos <http://www3.gobiernodecanarias.org/sanidad/ichh/donantes/requisitos.asp>`_ para donar sangre.
+
+    | Entrada: edad=34; peso=81; heartbeat=70; plaquetas=150000
+    | Salida: Apto para donar sangre
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -430,3 +449,4 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _Marvel: https://marvel.fandom.com/es/wiki/Categor%C3%ADa:Personajes
 .. _Akinator: https://es.akinator.com/
 .. _Piedra-Papel-Tijera: https://es.wikipedia.org/wiki/Piedra,_papel_o_tijera
+.. _la acción que se lleva a cabo en sistemas Ubuntu Linux: https://itsfoss.com/ubuntu-shortcuts/

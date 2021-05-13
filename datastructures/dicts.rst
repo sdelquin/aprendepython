@@ -651,6 +651,35 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
     >>> 'spiderman'.__hash__()
     -8105710090476541603
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba un programa en Python que acepte una lista de palabras y las agrupe por su letra inicial usando un diccionario (:download:`solución <files/group_words.py>`).
+
+    | Entrada: [ 'mesa', 'móvil', 'barco', 'coche', 'avión', 'bandeja', 'casa', 'monitor', 'carretera', 'arco']
+    | Salida: {'m': ['mesa', 'móvil', 'monitor'], 'b': ['barco', 'bandeja'], 'c': ['coche', 'casa', 'carretera'], 'a': ['avión', 'arco']}
+
+2. Escriba un programa en Python que acepte un diccionario y determine si todos los valores son iguales o no (:download:`solución <files/same_values.py>`).
+
+    | Entrada: {'Juan': 5, 'Antonio': 5, 'Inma': 5, 'Ana': 5, 'Esteban': 5}
+    | Salida: Same values
+
+3. Escriba un programa en Python que acepte una lista de listas con varios elementos y obtenga un diccionario donde las claves serán los primeros elementos de las sublistas y los valores serán los restantes -- como listas -- (:download:`solución <files/build_super_dict.py>`).
+
+    | Entrada: [['Episode IV - A New Hope', 'May 25', 1977], ['Episode V - The Empire Strikes Back', 'May 21', 1980], ['Episode VI - Return of the Jedi', 'May 25', 1983]]
+    | Salida: {'Episode IV - A New Hope': ['May 25', 1977], 'Episode V - The Empire Strikes Back': ['May 21', 1980], 'Episode VI - Return of the Jedi': ['May 25', 1983]}
+
+4. Escriba un programa en Python que acepte un diccionario cuyos valores son listas y borre el contenido de dichas listas (:download:`solución <files/clear_values.py>`).
+
+    | Entrada: {'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+    | Salida: {'C1': [], 'C2': [], 'C3': []}
+
+5. Escriba un programa en Python que acepte un diccionario y elimine los espacios de sus claves respetando los valores correspondientes (:download:`solución <files/fix_keys.py>`).
+
+    | Entrada: {'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}
+    | Salida: {'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Using the Python defaultdict Type for Handling Missing Keys <https://realpython.com/python-defaultdict/>`_
