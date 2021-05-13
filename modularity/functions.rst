@@ -1469,6 +1469,34 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
      '_i4': 'catalonia()',
      '_i5': 'globals()'}
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba una función en Python que indique si un número está en un determinado intervalo (:download:`solución <files/within_range.py>`).
+
+    | Entrada: valor=3; lim_inferior=2; lim_superior=5
+    | Salida: True
+
+2. Escriba una función en Python que reciba una lista de valores enteros y devuelva otra lista sólo con aquellos valores pares (:download:`solución <files/evens.py>`).
+
+    | Entrada: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    | Salida: [2, 4, 6, 8]
+
+3. Escriba una función en Python que indique si un número es `perfecto`_. *Utilice una función auxiliar que calcule los divisores propios* (:download:`solución <files/perfect.py>`).
+
+    | Entrada: 8128
+    | Salida: True
+
+4. Escriba una función en Python que determine si una cadena de texto es un `palíndromo`_ (:download:`solución <files/palindrome.py>`).
+
+    | Entrada: ana lava lana
+    | Salida: True
+
+5. Escriba una función en Python que determine si una cadena de texto es un `pangrama`_ (:download:`solución <files/pangram.py>`)
+
+    | Entrada: The quick brown fox jumps over the lazy dog
+    | Salida: True
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -1517,3 +1545,6 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _autodoc: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 .. _Read the Docs: https://readthedocs.org/
 .. _Napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
+.. _perfecto: <https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto
+.. _palíndromo: https://es.wikipedia.org/wiki/Pal%C3%ADndromo
+.. _pangrama: https://es.wikipedia.org/wiki/Pangrama
