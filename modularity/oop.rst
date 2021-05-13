@@ -948,6 +948,26 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
     >>> print(bb8)
     Droid BB-8 armed with a LIGHTER
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba una clase en Python para representar una secuencia de ADN. De momento, la clase sólo contendrá los siguientes elementos:
+
+    - 4 atributos de clase, cada uno representando una base nitrogenada con su valor como un carácter.
+    - Constructor que recibe una secuencia de caracteres (bases).
+    - Método para representar el objeto en formato "string".
+
+2. Continúe con el ejercicio anterior, y añada a la clase 4 propiedades que calculen el número total de cada una de las bases presentes en la secuencia.
+
+3. Continúe con el ejercicio anterior, y añada a la clase un método de instancia para sumar dos secuencias de ADN. La suma se hará base a base y el resultado será el máximo de cada letra(base).
+
+4. Continúe con el ejercicio anterior, y añada a la clase un método de instancia para obtener el porcentaje de aparición de cada base (usando las propiedades definidas en ejercicios anteriores).
+
+5. Continúe con el ejercicio anterior, y añada a la clase un método de instancia para multiplicar dos secuencias de ADN. La multiplicación consiste en dar como salida una nueva secuencia que contenga sólo aquellas bases que coincidan en posición en ambas secuencias de entrada.
+
+→ :download:`Solución a todos los ejercicios <files/dna.py>`
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 - `Supercharge Your Classes With Python super() <https://realpython.com/courses/python-super/>`_
