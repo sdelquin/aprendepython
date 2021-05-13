@@ -516,13 +516,11 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. math::
 
-    \begin{gather*}
-        1 \cdot 1\\
-        11 \cdot 11\\
-        111 \cdot 111\\
-        \vdots\\
-        111111111 \cdot 111111111
-    \end{gather*}
+    1 &\cdot 1\\
+    11 &\cdot 11\\
+    111 &\cdot 111\\
+    &\vdots\\
+    111111111 &\cdot 111111111
 
 2. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos (:download:`solución <files/alpha.py>`).
 
