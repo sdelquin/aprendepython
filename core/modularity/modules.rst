@@ -39,7 +39,7 @@ Desde otro fichero haríamos lo siguiente para importar todo el contenido del m�
     >>> arith.addere(3, 7)
     10
 
-.. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el :ref:`espacio de nombres <modularity/functions:Espacios de nombres>` que define el módulo ``arith``.
+.. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el :ref:`espacio de nombres <core/modularity/functions:Espacios de nombres>` que define el módulo ``arith``.
 
 Ruta de búsqueda de módulos
 ---------------------------
@@ -154,7 +154,7 @@ Un **paquete** es simplemente una **carpeta** que contiene ficheros ``.py``. Ade
 
 Para ejemplificar este modelo vamos a crear un paquete llamado ``mymath`` que contendrá 2 módulos:
 
-* :download:`arith.py <files/mymath/arith.py>` para operaciones aritméticas (ya visto :ref:`anteriormente <modularity/modules:Importar un módulo>`).
+* :download:`arith.py <files/mymath/arith.py>` para operaciones aritméticas (ya visto :ref:`anteriormente <core/modularity/modules:Importar un módulo>`).
 * :download:`logic.py <files/mymath/logic.py>` para operaciones lógicas.
 
 El código del módulo de operaciones lógicas es el siguiente:

@@ -5,7 +5,7 @@ Contexto real
 .. image:: img/spacex-uj3hvdfQujI-unsplash.jpg
 
 
-Hemos visto que :ref:`Thonny <devenv/thonny:Thonny>` es una herramienta especialmente diseñada para el aprendizaje de Python, integrando diferentes módulos que facilitan su gestión. Si bien lo podemos utilizar para un desarrollo más *"serio"*, se suele recurrir a un flujo de trabajo algo diferente en **contextos más reales**. [#rocket-unsplash]_
+Hemos visto que :ref:`Thonny <core/devenv/thonny:Thonny>` es una herramienta especialmente diseñada para el aprendizaje de Python, integrando diferentes módulos que facilitan su gestión. Si bien lo podemos utilizar para un desarrollo más *"serio"*, se suele recurrir a un flujo de trabajo algo diferente en **contextos más reales**. [#rocket-unsplash]_
 
 ******
 Python
@@ -111,7 +111,7 @@ pyenv
 
 pyenv permite cambiar fácilmente entre múltiples versiones de Python en un mismo sistema. Su instalación engloba varios pasos y está bien explicada en la `página del proyecto <https://github.com/pyenv/pyenv#installation>`_.
 
-La mayor diferencia con respecto a :ref:`virtualenv <devenv/real-context:virtualenv>` es que no instala las distintas versiones de Python a nivel global del sistema. En vez de eso, se suele crear una carpeta ``.pyenv`` en el HOME del usuario, donde todo está aislado sin generar intrusión en el sistema operativo.
+La mayor diferencia con respecto a :ref:`virtualenv <core/devenv/real-context:virtualenv>` es que no instala las distintas versiones de Python a nivel global del sistema. En vez de eso, se suele crear una carpeta ``.pyenv`` en el HOME del usuario, donde todo está aislado sin generar intrusión en el sistema operativo.
 
 Podemos hacer cosas como:
 
@@ -165,7 +165,7 @@ Editores
 
 Existen multitud de editores en el mercado que nos pueden servir perfectamente para escribir código Python. Algunos de ellos incorporan funcionalidades extra y otros simplemente nos permiten editar ficheros. Cabe destacar aquí el concepto de **Entorno de Desarrollo Integrado**, más conocido por sus siglas en inglés **IDE** [#ide]_. Se trata de una `aplicación informática <https://es.wikipedia.org/wiki/Entorno_de_desarrollo_integrado>`_ que proporciona servicios integrales para el desarrollo de software.
 
-Podríamos decir que :ref:`Thonny <devenv/thonny:Thonny>` es un IDE de aprendizaje, pero existen muchos otros. Veamos un listado de editores de código que se suelen utilizar para desarrollo en Python:
+Podríamos decir que :ref:`Thonny <core/devenv/thonny:Thonny>` es un IDE de aprendizaje, pero existen muchos otros. Veamos un listado de editores de código que se suelen utilizar para desarrollo en Python:
 
 * Editores generales o IDEs con soporte para Python:
     * `Eclipse`_ + `PyDev`_

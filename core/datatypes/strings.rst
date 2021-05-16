@@ -182,7 +182,7 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
     >>> type(age)
     str
 
-.. note:: La función ``input()`` siempre nos devuelve un objeto de tipo cadena de texto o ``str``. Tenerlo muy en cuenta a la hora de trabajar con números, ya que debemos realizar una :ref:`conversión explícita <datatypes/numbers:Conversión explícita>`.
+.. note:: La función ``input()`` siempre nos devuelve un objeto de tipo cadena de texto o ``str``. Tenerlo muy en cuenta a la hora de trabajar con números, ya que debemos realizar una :ref:`conversión explícita <core/datatypes/numbers:Conversión explícita>`.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -267,7 +267,7 @@ En caso de que intentemos acceder a un índice que no existe, obtendremos un err
 
 .. warning:: Téngase en cuenta que el indexado de una cadena de texto siempre empieza en **0** y termina en **una unidad menos de la longitud** de la cadena.
 
-Las cadenas de texto son tipos de datos :ref:`inmutables <datatypes/data:Mutabilidad>`. Es por ello que no podemos modificar un caracter directamente::
+Las cadenas de texto son tipos de datos :ref:`inmutables <core/datatypes/data:Mutabilidad>`. Es por ello que no podemos modificar un caracter directamente::
 
     >>> song = 'Hey Jude'
 
@@ -370,7 +370,7 @@ Una tarea muy común al trabajar con cadenas de texto es dividirlas por algún t
 
 .. note:: Si no se especifica un separador, ``split()`` usa por defecto cualquier secuencia de espacios en blanco, tabuladores y saltos de línea.
 
-Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <datastructures/lists:Listas>` (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original::
+Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <core/datastructures/lists:Listas>` (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original::
 
     >>> game = 'piedra-papel-tijera'
 
@@ -380,7 +380,7 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <d
 .. admonition:: Ejercicio
     :class: exercise
 
-    Sabiendo que la longitud de una lista se calcula igual que la :ref:`longitud de una cadena de texto <datatypes/strings:Longitud de una cadena>`, obtenga el número de palabras que contiene la siguiente cadena de texto::
+    Sabiendo que la longitud de una lista se calcula igual que la :ref:`longitud de una cadena de texto <core/datatypes/strings:Longitud de una cadena>`, obtenga el número de palabras que contiene la siguiente cadena de texto::
 
         quote = 'Before software can be reusable, it first has to be usable'
     
@@ -428,7 +428,7 @@ Como habíamos comentado, también existe la posibilidad de especificar los cara
 Realizar búsquedas
 ==================
 
-Aunque hemos visto que la forma pitónica de saber si una subcadena se encuentra dentro de otra es :ref:`a través del operador in <datatypes/strings:Pertenencia de un elemento>`, Python nos ofrece distintas alternativas para realizar búsquedas en cadenas de texto.
+Aunque hemos visto que la forma pitónica de saber si una subcadena se encuentra dentro de otra es :ref:`a través del operador in <core/datatypes/strings:Pertenencia de un elemento>`, Python nos ofrece distintas alternativas para realizar búsquedas en cadenas de texto.
 
 Vamos a partir de una variable que contiene un trozo de la canción `Mediterráneo`_ de *Joan Manuel Serrat* para ejemplificar las distintas opciones que tenemos::
 
@@ -785,7 +785,7 @@ Casos de uso
 
 Hemos estado usando muchas funciones de objetos tipo "string" (y de otros tipos previamente). Pero quizás no sabemos aún como podemos descubrir todo lo que podemos hacer con ellos y los **casos de uso** que nos ofrece.
 
-Python proporciona una :ref:`función "built-in" <datatypes/data:Funciones "built-in">` llamada ``dir()`` para inspeccionar un determinado tipo de objeto::
+Python proporciona una :ref:`función "built-in" <core/datatypes/data:Funciones "built-in">` llamada ``dir()`` para inspeccionar un determinado tipo de objeto::
 
     >>> text = 'This is it!'
 

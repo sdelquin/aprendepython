@@ -29,8 +29,8 @@ Hagamos una primera función sencilla que no recibe parámetros::
     def say_hello():
         print('Hello!')
 
-- Nótese la :ref:`indentación <controlflow/conditionals:Definición de bloques>` (sangrado) del *cuerpo* de la función.
-- Los *nombres de las funciones* siguen :ref:`las mismas reglas que las variables <datatypes/data:Variables>`.
+- Nótese la :ref:`indentación <core/controlflow/conditionals:Definición de bloques>` (sangrado) del *cuerpo* de la función.
+- Los *nombres de las funciones* siguen :ref:`las mismas reglas que las variables <core/datatypes/data:Variables>`.
 
 Invocar una función
 ===================
@@ -74,7 +74,7 @@ Pero no sólo podemos invocar a la función directamente, también la podemos in
     ...
     It works!
 
-Si una función no incluye un ``return`` de forma explícita, devolverá :ref:`None <controlflow/conditionals:Valor nulo>` de forma implícita::
+Si una función no incluye un ``return`` de forma explícita, devolverá :ref:`None <core/controlflow/conditionals:Valor nulo>` de forma implícita::
 
     >>> def empty():
     ...     x = 0
@@ -89,7 +89,7 @@ Veracidad
 
 |intlev|
 
-Ya hemos hablado ligeramente sobre la :ref:`comprobación de veracidad <controlflow/conditionals:"Booleanos" en condiciones>` en Python.
+Ya hemos hablado ligeramente sobre la :ref:`comprobación de veracidad <core/controlflow/conditionals:"Booleanos" en condiciones>` en Python.
 
 Vamos a crear una función propia para comprobar la veracidad de distintos objetos del lenguaje, y así hacernos una mejor idea de qué cosas **son evaluadas** a *verdadero* y cuáles a *falso*::
 
@@ -612,7 +612,7 @@ Argumentos mutables e inmutables
 
 |intlev|
 
-Igual que veíamos en la incidencia de :ref:`parámetros por defecto con valores mutables <modularity/functions:Modificando parámetros mutables>`, cuando realizamos modificaciones a los argumentos de una función es importante tener en cuenta si son **mutables** (listas, diccionarios, conjuntos, ...) o **inmutables** (tuplas, enteros, flotantes, cadenas de texto, ...) ya que podríamos obtener efectos colaterales no deseados::
+Igual que veíamos en la incidencia de :ref:`parámetros por defecto con valores mutables <core/modularity/functions:Modificando parámetros mutables>`, cuando realizamos modificaciones a los argumentos de una función es importante tener en cuenta si son **mutables** (listas, diccionarios, conjuntos, ...) o **inmutables** (tuplas, enteros, flotantes, cadenas de texto, ...) ya que podríamos obtener efectos colaterales no deseados::
 
     >>> fib = [1, 1, 2, 3, 5, 8, 13]
 
@@ -673,7 +673,7 @@ Veamos un segundo ejemplo en el que pasamos, no sólo una función como argument
 Documentación
 *************
 
-Ya hemos visto que en Python podemos incluir :ref:`comentarios <controlflow/conditionals:Comentarios>` para explicar mejor determinadas zonas de nuestro código.
+Ya hemos visto que en Python podemos incluir :ref:`comentarios <core/controlflow/conditionals:Comentarios>` para explicar mejor determinadas zonas de nuestro código.
 
 Del mismo modo podemos (y en muchos casos **debemos**) adjuntar **documentación** a la definición de una función incluyendo una cadena de texto (**docstring**) al comienzo de su cuerpo::
 
@@ -857,7 +857,7 @@ Está permitido definir una función dentro de otra función::
 Clausuras
 =========
 
-Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de los argumentos con los que fue creada::
+Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <core/modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de los argumentos con los que fue creada::
 
     >>> def make_multiplier_of(n):
     ...     def multiplier(x):
@@ -949,7 +949,7 @@ Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares
 Enfoque funcional
 =================
 
-Como se comentó en la :ref:`introducción <introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los paradigmas menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
+Como se comentó en la :ref:`introducción <core/introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los paradigmas menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
 
 Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: ``map()``, ``filter()`` y ``reduce()``.
 
@@ -983,7 +983,7 @@ Esta función **aplica otra función** sobre cada elemento de un iterable. Supon
     >>> list(map_gen)
     [0.5, 2.0, 4.5, 8.0, 12.5, 18.0, 24.5, 32.0, 40.5, 50.0]
 
-Aplicando una :ref:`función anónima "lambda" <modularity/functions:Funciones anónimas "lambda">`...
+Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`...
 
     >>> list(map(lambda x: x**2 / 2, data))
     [0.5, 2.0, 4.5, 8.0, 12.5, 18.0, 24.5, 32.0, 40.5, 50.0]
@@ -1009,7 +1009,7 @@ Esta función **selecciona** aquellos elementos de un iterable que cumplan una d
     >>> list(filter_gen)
     [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 
-Aplicando una :ref:`función anónima "lambda" <modularity/functions:Funciones anónimas "lambda">`...
+Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`...
 
     >>> list(filter(lambda x: x % 2 == 1, data))
     [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
@@ -1032,7 +1032,7 @@ Para poder usar esta función debemos usar el módulo ``functools``. Nos permite
     >>> reduce(mult_values, data)  # ((((1 * 2) * 3) * 4) * 5)
     120
 
-Aplicando una :ref:`función anónima "lambda" <modularity/functions:Funciones anónimas "lambda">`...
+Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`...
 
     >>> reduce(lambda x, y: x * y, data)
     120
@@ -1044,7 +1044,7 @@ Generadores
 
 Un **generador** es un objeto que nos permite iterar sobre una *secuencia de valores* con la particularidad de no tener que crear explícitamente dicha secuencia. Esta propiedad los hace idóneos para situaciones en las que el tamaño de las secuencias podría tener un impacto negativo en el consumo de memoria.
 
-De hecho ya hemos visto algunos generadores y los hemos usado de forma directa. Un ejemplo es ``range()`` que ofrece la posibilidad de crear :ref:`secuencias de números <controlflow/loops:Secuencias de números>`.
+De hecho ya hemos visto algunos generadores y los hemos usado de forma directa. Un ejemplo es ``range()`` que ofrece la posibilidad de crear :ref:`secuencias de números <core/controlflow/loops:Secuencias de números>`.
 
 Básicamente existen dos implementaciones de generadores:
 
@@ -1092,7 +1092,7 @@ Expresiones generadoras
 
 Una **expresión generadora** es sintácticamente muy similar a una *lista por comprensión*, pero utilizamos **paréntesis** en vez de corchetes. Se podría ver como una versión acortada de una función generadora.
 
-Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <modularity/functions:Funciones generadoras>` en el que creamos números pares hasta el 20::
+Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <core/modularity/functions:Funciones generadoras>` en el que creamos números pares hasta el 20::
 
     >>> evens_gen = (i for i in range(0, 20, 2))
 
@@ -1120,7 +1120,7 @@ Decoradores
 
 Hay situaciones en las que necesitamos modificar el comportamiento de funciones existentes pero sin alterar su código. Para estos casos es muy útil usar decoradores.
 
-Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de :ref:`clausura <modularity/functions:Clausuras>`.
+Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de :ref:`clausura <core/modularity/functions:Clausuras>`.
 
 Veamos un ejemplo en el que documentamos la ejecución de una función::
 
@@ -1265,7 +1265,7 @@ Veamos ahora un ejemplo más real en el que computar el enésimo término de la 
 Función generadora recursiva
 ----------------------------
 
-Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los términos de la sucesión hasta un límite, pero con la filosofía recursiva, podríamos plantear el uso de una :ref:`función generadora <modularity/functions:Funciones generadoras>`::
+Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los términos de la sucesión hasta un límite, pero con la filosofía recursiva, podríamos plantear el uso de una :ref:`función generadora <core/modularity/functions:Funciones generadoras>`::
 
     >>> def fibonacci():
     ...     def _fibonacci(n):
@@ -1321,7 +1321,7 @@ Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los 
 Espacios de nombres
 *******************
 
-Como bien indica el :ref:`Zen de Python <introduction/python:Zen de Python>`:
+Como bien indica el :ref:`Zen de Python <core/introduction/python:Zen de Python>`:
 
     *Namespaces are one honking great idea -- let's do more of those!*
 
@@ -1524,7 +1524,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. [#docstring-formats] Véase `Docstring Formats`_.
 .. [#functional-programming] Definición de `Programación funcional` en Wikipedia.
 .. [#type-hints] Conocidos como "type hints" en terminología inglesa.
-.. [#naming-functions] Las :ref:`reglas aplicadas a nombres de variables <datatypes/data:Reglas para nombrar variables>` también se aplican a nombres de funciones.
+.. [#naming-functions] Las :ref:`reglas aplicadas a nombres de variables <core/datatypes/data:Reglas para nombrar variables>` también se aplican a nombres de funciones.
 
 .. --------------- Hyperlinks ---------------
 

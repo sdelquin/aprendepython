@@ -241,7 +241,7 @@ Propiedades
 
 Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas desarrolladoras de otros lenguajes. En Python existe un cierto "sentido de responsabilidad" a la hora de programar y manejar este tipo de situaciones.
 
-Una posible solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <modularity/functions:Decoradores>`:
+Una posible solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <core/modularity/functions:Decoradores>`:
 
 - ``@property`` para leer el valor de un atributo.
 - ``@name.setter`` para escribir el valor de un atributo.

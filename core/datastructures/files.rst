@@ -61,7 +61,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
         >>> f.readlines()
         ['29 23\n', '31 23\n', '34 26\n', '33 23\n', '29 22\n', '28 22\n', '28 22\n']
 
-.. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello se recomienda utilizar :ref:`las funciones ya vistas de cadenas de texto <datatypes/strings:Limpiar cadenas>`.
+.. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello se recomienda utilizar :ref:`las funciones ya vistas de cadenas de texto <core/datatypes/strings:Limpiar cadenas>`.
 
 Lectura línea a línea
 =====================
@@ -133,7 +133,7 @@ Nótese:
 Añadido a un fichero
 ********************
 
-La única diferencia entre añadir información a un fichero y :ref:`escribir información en un fichero <datastructures/files:Escritura en un fichero>` es el modo de apertura del fichero. En este caso utilizamos ``'a'`` por "append"::
+La única diferencia entre añadir información a un fichero y :ref:`escribir información en un fichero <core/datastructures/files:Escritura en un fichero>` es el modo de apertura del fichero. En este caso utilizamos ``'a'`` por "append"::
 
     >>> f = open('more-data.txt', 'a')
 
@@ -169,7 +169,7 @@ En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se
 **Línea 2**
     Lectura del fichero línea a línea utilizando la iteración sobre el *manejador del fichero*.
 **Línea 3**
-    Limpieza de saltos de línea con ``strip()`` encadenando la función ``split()`` para separar las dos temperaturas por el caracter *espacio*. Ver :ref:`limpiar una cadena <datatypes/strings:Limpiar cadenas>` y :ref:`dividir una cadena <datatypes/strings:Dividir una cadena>`.
+    Limpieza de saltos de línea con ``strip()`` encadenando la función ``split()`` para separar las dos temperaturas por el caracter *espacio*. Ver :ref:`limpiar una cadena <core/datatypes/strings:Limpiar cadenas>` y :ref:`dividir una cadena <core/datatypes/strings:Dividir una cadena>`.
 **Línea 4**
     Imprimir por pantalla la temperatura mínima y la máxima.
 

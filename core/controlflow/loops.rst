@@ -240,7 +240,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Romper un bucle for
 ===================
 
-Una sentencia break dentro de un ``for`` rompe el bucle, :ref:`igual que veíamos <controlflow/loops:Romper un bucle while>` para los bucles ``while``. Veamos un ejemplo con el código anterior. En este caso vamos a recorrer una cadena de texto y pararemos el bucle cuando encontremos una letra *t* minúscula:
+Una sentencia break dentro de un ``for`` rompe el bucle, :ref:`igual que veíamos <core/controlflow/loops:Romper un bucle while>` para los bucles ``while``. Veamos un ejemplo con el código anterior. En este caso vamos a recorrer una cadena de texto y pararemos el bucle cuando encontremos una letra *t* minúscula:
 
 .. code-block::
     :emphasize-lines: 5
@@ -267,7 +267,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="350" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
-.. tip:: Tanto la :ref:`comprobación de rotura de un bucle <controlflow/loops:Comprobar la rotura>` como la :ref:`continuación a la siguiente iteración <controlflow/loops:Continuar un bucle>` se llevan a cabo del mismo modo que hemos visto con los bucles de tipo ``while``.
+.. tip:: Tanto la :ref:`comprobación de rotura de un bucle <core/controlflow/loops:Comprobar la rotura>` como la :ref:`continuación a la siguiente iteración <core/controlflow/loops:Continuar un bucle>` se llevan a cabo del mismo modo que hemos visto con los bucles de tipo ``while``.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -287,7 +287,7 @@ Secuencias de números
 
 Es muy habitual hacer uso de secuencias de números en bucles. Python no tiene una instrucción específica para ello. Lo que sí aporta es una función ``range()`` que devuelve un *flujo de números* en el rango especificado. Una de las grandes ventajas es que la "lista" generada no se construye explícitamente, sino que cada valor se genera bajo demanda. Esta técnica mejora el consumo de recursos, especialmente en términos de memoria.
 
-La técnica para la generación de secuencias de números es muy similar a la utilizada en los :ref:`"slices" <datatypes/strings:Trocear una cadena>` de cadenas de texto. En este caso disponemos de la función ``range(start, stop, step)``:
+La técnica para la generación de secuencias de números es muy similar a la utilizada en los :ref:`"slices" <core/datatypes/strings:Trocear una cadena>` de cadenas de texto. En este caso disponemos de la función ``range(start, stop, step)``:
 
 - **start**: Es *opcional* y tiene valor por defecto **0**.
 - **stop**: es *obligatorio* (siempre se llega a 1 menos que este valor).

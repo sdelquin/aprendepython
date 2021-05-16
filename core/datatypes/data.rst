@@ -88,7 +88,7 @@ Veamos a continuación una tabla con nombres de variables:
 Convenciones para nombres
 =========================
 
-Mientras se sigan las :ref:`reglas <datatypes/data:Reglas para nombrar variables>` que hemos visto para nombrar variables no hay problema en la forma en la que se escriban, pero sí existe una convención para la **nomenclatura de las variables**. Se utiliza el llamado ``snake_case`` en el que utilizamos **caracteres en minúsculas** (incluyendo dígitos si procede) junto con **guiones bajos** -- cuando sean necesarios para su legibilidad --. [#naming-pep8]_ Por ejemplo, para nombrar una variable que almacene el número de canciones en nuestro ordenador, podríamos usar ``num_songs``.
+Mientras se sigan las :ref:`reglas <core/datatypes/data:Reglas para nombrar variables>` que hemos visto para nombrar variables no hay problema en la forma en la que se escriban, pero sí existe una convención para la **nomenclatura de las variables**. Se utiliza el llamado ``snake_case`` en el que utilizamos **caracteres en minúsculas** (incluyendo dígitos si procede) junto con **guiones bajos** -- cuando sean necesarios para su legibilidad --. [#naming-pep8]_ Por ejemplo, para nombrar una variable que almacene el número de canciones en nuestro ordenador, podríamos usar ``num_songs``.
 
 Esta convención, y muchas otras, están definidas en un documento denominado `PEP 8`_. Se trata de una **guía de estilo** para escribir código en Python. Los `PEPs`_ [#peps-link]_ son las propuestas que se hacen para la mejora del lenguaje.
 
@@ -142,7 +142,7 @@ Python nos ofrece la posibilidad de hacer una **asignación múltiple** de la si
 
 En este caso las tres variables utilizadas en el "lado izquierdo" tomarán el valor ``3``.
 
-Recordemos que los nombres de variables deben seguir unas :ref:`reglas establecidas <datatypes/data:Reglas para nombrar variables>`, de lo contrario obtendremos un **error sintáctico** del intérprete de Python:
+Recordemos que los nombres de variables deben seguir unas :ref:`reglas establecidas <core/datatypes/data:Reglas para nombrar variables>`, de lo contrario obtendremos un **error sintáctico** del intérprete de Python:
 
 .. code-block::
     :emphasize-lines: 1, 7, 13
@@ -320,7 +320,7 @@ Funciones "built-in"
 
 |intlev|
 
-Hemos ido usando una serie de :ref:`funciones <modularity/functions:Funciones>` sin ser especialmente conscientes de ello. Esto se debe a que son funciones "built-in" o incorporadas por defecto en el propio lenguaje Python.
+Hemos ido usando una serie de :ref:`funciones <core/modularity/functions:Funciones>` sin ser especialmente conscientes de ello. Esto se debe a que son funciones "built-in" o incorporadas por defecto en el propio lenguaje Python.
 
 .. csv-table:: Funciones "built-in"
     :file: tables/builtin-functions.csv
