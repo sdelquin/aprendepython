@@ -36,6 +36,12 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
    core/datastructures
    core/modularity
 
+.. toctree::
+   :caption: Stdlib
+   :maxdepth: 2
+
+   stdlib/text_processing
+
 .. only:: html
 
    .. tip::
