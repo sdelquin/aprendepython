@@ -26,14 +26,15 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
    .. rubric:: **Contenidos**
 
 .. toctree::
+   :caption: Core
    :maxdepth: 2
 
-   introduction
-   devenv
-   datatypes
-   controlflow
-   datastructures
-   modularity
+   core/introduction
+   core/devenv
+   core/datatypes
+   core/controlflow
+   core/datastructures
+   core/modularity
 
 .. only:: html
 
