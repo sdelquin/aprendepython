@@ -4,7 +4,7 @@ Python
 
 .. image:: img/marketa-marcellova-Bjm9JmpNfd0-unsplash.jpg
 
-`Python <https://www.python.org/>`__ es un lenguaje de programación de :ref:`alto nivel <introduction/machine:Python>` creado a finales de los 80/principios de los 90 por `Guido van Rossum`_, holandés que trabajaba por aquella época en el *Centro para las Matemáticas y la Informática* de los Países Bajos. Sus instrucciones están muy cercanas al **lenguaje natural** en inglés y se hace hincapié en la **legibilidad** del código. Toma su nombre de los `Monty Python`_, grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje ``ABC``. [#python-unsplash]_
+`Python <https://www.python.org/>`__ es un lenguaje de programación de :ref:`alto nivel <core/introduction/machine:Python>` creado a finales de los 80/principios de los 90 por `Guido van Rossum`_, holandés que trabajaba por aquella época en el *Centro para las Matemáticas y la Informática* de los Países Bajos. Sus instrucciones están muy cercanas al **lenguaje natural** en inglés y se hace hincapié en la **legibilidad** del código. Toma su nombre de los `Monty Python`_, grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje ``ABC``. [#python-unsplash]_
 
 ****************************
 Características del lenguaje

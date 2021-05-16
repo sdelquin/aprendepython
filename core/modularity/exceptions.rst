@@ -38,7 +38,7 @@ Para manejar (capturar) las excepciones podemos usar un bloque de código con la
 
 Aquel código que se encuentre dentro del bloque ``try`` se ejecutará normalmente siempre y cuando no haya un error. Si se produce una excepción, ésta será capturada por el bloque ``except``, ejecutándose el código que contiene.
 
-.. hint:: No es una buena práctica usar un bloque ``except`` sin indicar el **tipo de excepción** que estamos gestionando, no sólo porque puedan existir varias excepciones que capturar sino porque, como dice el :ref:`Zen de Python <introduction/python:Zen de Python>`: "explícito" es mejor que "implícito".
+.. hint:: No es una buena práctica usar un bloque ``except`` sin indicar el **tipo de excepción** que estamos gestionando, no sólo porque puedan existir varias excepciones que capturar sino porque, como dice el :ref:`Zen de Python <core/introduction/python:Zen de Python>`: "explícito" es mejor que "implícito".
 
 Especificando excepciones
 =========================
@@ -132,7 +132,7 @@ Excepciones propias
 
 |advlev|
 
-Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello tendremos que crear una clase :ref:`heredando <modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
+Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello tendremos que crear una clase :ref:`heredando <core/modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
 
 Veamos un ejemplo en el que creamos una excepción propia controlando que el valor sea un número entero::
 

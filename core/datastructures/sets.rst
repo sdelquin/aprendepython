@@ -4,7 +4,7 @@ Conjuntos
 
 .. image:: img/duy-pham-Cecb0_8Hx-o-unsplash.jpg
 
-Un **conjunto** en Python representa una serie de **valores únicos** y **sin orden establecido**, con la única restricción de que sus elementos deben ser :ref:`"hashables" <datastructures/dicts:Objetos "hashables">`. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
+Un **conjunto** en Python representa una serie de **valores únicos** y **sin orden establecido**, con la única restricción de que sus elementos deben ser :ref:`"hashables" <core/datastructures/dicts:Objetos "hashables">`. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
 
 *****************
 Creando conjuntos
@@ -235,7 +235,7 @@ Diferencia simétrica
 Conjuntos por comprensión
 *************************
 
-Los conjuntos, al igual que las :ref:`listas <datastructures/lists:Listas por comprensión>` y los :ref:`diccionarios <datastructures/dicts:Diccionarios por comprensión>`, también se pueden crear por comprensión.
+Los conjuntos, al igual que las :ref:`listas <core/datastructures/lists:Listas por comprensión>` y los :ref:`diccionarios <core/datastructures/dicts:Diccionarios por comprensión>`, también se pueden crear por comprensión.
 
 Veamos un ejemplo en el que construimos un conjunto por comprensión con los aquellos números enteros múltiplos de 3 en el rango :math:`[0, 20)`::
 

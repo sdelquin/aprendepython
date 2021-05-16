@@ -63,7 +63,7 @@ Operaciones con listas
 Obtener un elemento
 ===================
 
-Igual que en el caso de las :ref:`cadenas de texto <datatypes/strings:Obtener un caracter>`, podemos obtener un elemento de una lista a través del **índice** (lugar) que ocupa. Veamos un ejemplo::
+Igual que en el caso de las :ref:`cadenas de texto <core/datatypes/strings:Obtener un caracter>`, podemos obtener un elemento de una lista a través del **índice** (lugar) que ocupa. Veamos un ejemplo::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -96,7 +96,7 @@ El *índice* que usemos para acceder a los elementos de una lista tiene que esta
 Trocear una lista
 =================
 
-El troceado de listas funciona de manera totalmente análoga al :ref:`troceado de cadenas <datatypes/strings:Trocear una cadena>`. Veamos algunos ejemplos::
+El troceado de listas funciona de manera totalmente análoga al :ref:`troceado de cadenas <core/datatypes/strings:Trocear una cadena>`. Veamos algunos ejemplos::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
@@ -138,7 +138,7 @@ Invertir una lista
 Python nos ofrece, al menos, tres mecanismos para invertir los elementos de una lista:
 
 **Conservando la lista original**:
-    Mediante :ref:`troceado <datastructures/lists:Trocear una lista>` de listas con *step* negativo::
+    Mediante :ref:`troceado <core/datastructures/lists:Trocear una lista>` de listas con *step* negativo::
 
         >>> shopping
         ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
@@ -226,7 +226,7 @@ Ya hemos visto cómo añadir elementos al final de una lista. Sin embargo, Pytho
 
 .. note:: El índice que especificamos en la función ``insert()`` lo podemos intepretar como la posición *delante* (a la izquierda) de la cual vamos a colocar el nuevo valor en la lista.
 
-Al igual que ocurría con el :ref:`troceado de listas <datastructures/lists:Trocear una lista>`, en este tipo de inserciones no obtendremos un error si especificamos índices fuera de los límites de la lista. Estos se ajustarán al principio o al final en función del valor que indiquemos::
+Al igual que ocurría con el :ref:`troceado de listas <core/datastructures/lists:Trocear una lista>`, en este tipo de inserciones no obtendremos un error si especificamos índices fuera de los límites de la lista. Estos se ajustarán al principio o al final en función del valor que indiquemos::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -258,7 +258,7 @@ Al igual que ocurría con el :ref:`troceado de listas <datastructures/lists:Troc
 Repetir elementos
 =================
 
-Al igual que con las :ref:`cadenas de texto <datatypes/strings:Repetir cadenas>`, el operador ``*`` nos permite repetir los elementos de una lista::
+Al igual que con las :ref:`cadenas de texto <core/datatypes/strings:Repetir cadenas>`, el operador ``*`` nos permite repetir los elementos de una lista::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -323,7 +323,7 @@ Se podría pensar en el uso de ``append()`` para combinar listas. La realidad es
 Modificar una lista
 ===================
 
-Del mismo modo que se :ref:`accede a un elemento <datastructures/lists:Obtener un elemento>` utilizando su índice, también podemos modificarlo:
+Del mismo modo que se :ref:`accede a un elemento <core/datastructures/lists:Obtener un elemento>` utilizando su índice, también podemos modificarlo:
 
 .. code-block::
     :emphasize-lines: 6
@@ -539,7 +539,7 @@ Hay que tener en cuenta que ``join()`` sólo funciona si *todos sus elementos so
       File "<stdin>", line 1, in <module>
     TypeError: sequence item 0: expected str instance, int found
 
-.. tip:: Esta función ``join()`` es realmente la **opuesta** a la de ``split()`` para :ref:`dividir una cadena <datatypes/strings:Dividir una cadena>`.
+.. tip:: Esta función ``join()`` es realmente la **opuesta** a la de ``split()`` para :ref:`dividir una cadena <core/datatypes/strings:Dividir una cadena>`.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -702,7 +702,7 @@ Cuidado con las copias
 
 |intlev|
 
-Las listas son estructuras de datos :ref:`mutables <datatypes/data:Mutabilidad>` y esta característica nos obliga a tener cuidado cuando realizamos copias de listas, ya que la modificación de una de ellas puede afectar a la otra.
+Las listas son estructuras de datos :ref:`mutables <core/datatypes/data:Mutabilidad>` y esta característica nos obliga a tener cuidado cuando realizamos copias de listas, ya que la modificación de una de ellas puede afectar a la otra.
 
 Veamos un ejemplo sencillo::
 
@@ -769,7 +769,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Veracidad múltiple
 ******************
 
-Si bien podemos usar :ref:`sentencias condicionales <controlflow/conditionals:Condicionales>` para comprobar la veracidad de determinadas expresiones, Python nos ofrece dos funciones "built-in" con las que podemos evaluar si se cumplen **todas** las condiciones ``all()`` o si se cumple **alguna** condición ``any()``. Estas funciones trabajan sobre iterables, y el caso más evidente es una **lista**.
+Si bien podemos usar :ref:`sentencias condicionales <core/controlflow/conditionals:Condicionales>` para comprobar la veracidad de determinadas expresiones, Python nos ofrece dos funciones "built-in" con las que podemos evaluar si se cumplen **todas** las condiciones ``all()`` o si se cumple **alguna** condición ``any()``. Estas funciones trabajan sobre iterables, y el caso más evidente es una **lista**.
 
 Supongamos un ejemplo en el que queremos comprobar si una determinada palabra cumple las siguientes condiciones:
 
@@ -885,7 +885,7 @@ Anidamiento en comprensiones
 
 |advlev|
 
-En la iteración que usamos dentro de la lista por comprensión es posible usar :ref:`bucles anidados <controlflow/loops:Bucles anidados>`.
+En la iteración que usamos dentro de la lista por comprensión es posible usar :ref:`bucles anidados <core/controlflow/loops:Bucles anidados>`.
 
 Veamos un ejemplo en el que generamos todas las combinaciones de una serie de valores::
 

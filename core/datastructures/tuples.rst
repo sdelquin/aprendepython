@@ -5,13 +5,13 @@ Tuplas
 .. image:: img/engin-akyurt-hdJYDQ9CUtQ-unsplash.jpg
 
 
-El concepto de **tupla** es muy similar al de :ref:`lista <datastructures/lists:Listas>`. Aunque hay algunas diferencias menores, lo fundamental es que, mientras una *lista* es mutable y se puede modificar, una *tupla* no admite cambios y por lo tanto, es **inmutable**. [#chain-unsplash]_
+El concepto de **tupla** es muy similar al de :ref:`lista <core/datastructures/lists:Listas>`. Aunque hay algunas diferencias menores, lo fundamental es que, mientras una *lista* es mutable y se puede modificar, una *tupla* no admite cambios y por lo tanto, es **inmutable**. [#chain-unsplash]_
 
 **************
 Creando tuplas
 **************
 
-Podemos pensar en crear tuplas tal y como :ref:`lo hacíamos con listas <datastructures/lists:Creando listas>`, pero usando **paréntesis** en lugar de *corchetes*::
+Podemos pensar en crear tuplas tal y como :ref:`lo hacíamos con listas <core/datastructures/lists:Creando listas>`, pero usando **paréntesis** en lugar de *corchetes*::
 
     >>> empty_tuple = ()
 
@@ -95,7 +95,7 @@ El uso de la función ``tuple()`` sin argumentos equivale a crear una tupla vac�
 Operaciones con tuplas
 **********************
 
-Con las tuplas podemos realizar :ref:`todas las operaciones que vimos con listas <datastructures/lists:Operaciones con listas>` **salvo las que conlleven una modificación** "in-situ" de la misma:
+Con las tuplas podemos realizar :ref:`todas las operaciones que vimos con listas <core/datastructures/lists:Operaciones con listas>` **salvo las que conlleven una modificación** "in-situ" de la misma:
 
 * ``reverse()``
 * ``append()``
@@ -232,7 +232,7 @@ Aunque puedan parecer estructuras de datos muy similares, sabemos que las tuplas
 
 1. Las tuplas ocupan **menos espacio** en memoria.
 2. En las tuplas existe **protección** frente a cambios indeseados.
-3. Las tuplas se pueden usar como **claves de diccionarios** (son :ref:`"hashables" <datastructures/dicts:Objetos "hashables">`).
+3. Las tuplas se pueden usar como **claves de diccionarios** (son :ref:`"hashables" <core/datastructures/dicts:Objetos "hashables">`).
 4. Las `namedtuples`_ son una alternativa sencilla a los objetos.
 
 

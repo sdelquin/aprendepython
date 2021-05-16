@@ -259,7 +259,7 @@ Supongamos un ejemplo en el que queremos construir un diccionario donde las clav
     >>> enum_vowels
     {'a': 1, 'e': 2, 'i': 3, 'o': 4, 'u': 5}
 
-.. note:: Hemos utilizando la función ``enumerate()`` que ya vimos para las listas en el apartado: :ref:`datastructures/lists:Iterar usando enumeración`.
+.. note:: Hemos utilizando la función ``enumerate()`` que ya vimos para las listas en el apartado: :ref:`core/datastructures/lists:Iterar usando enumeración`.
 
 Pertenencia de una clave
 ========================
@@ -348,7 +348,7 @@ Podemos conocer el número de elementos ("clave-valor") que tiene un diccionario
 Iterar sobre un diccionario
 ===========================
 
-En base a :ref:`los elementos que podemos obtener <datastructures/dicts:Obtener todos los elementos>`, Python nos proporciona tres maneras de iterar sobre un diccionario.
+En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obtener todos los elementos>`, Python nos proporciona tres maneras de iterar sobre un diccionario.
 
 **Iterar sobre claves**::
 
@@ -380,7 +380,7 @@ En base a :ref:`los elementos que podemos obtener <datastructures/dicts:Obtener 
     montuvio: Campesino de la costa
     enjuiciar: Instruir, juzgar o sentenciar una causa
 
-.. note:: En este último caso, recuerde el uso de los :ref:`datatypes/strings:"f-strings"` para formatear cadenas de texto.
+.. note:: En este último caso, recuerde el uso de los :ref:`core/datatypes/strings:"f-strings"` para formatear cadenas de texto.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -529,7 +529,7 @@ Cuidado con las copias
 
 |intlev|
 
-Al igual que ocurría con :ref:`las listas <datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de ser *mutable*. Veamos un ejemplo concreto:
+Al igual que ocurría con :ref:`las listas <core/datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de ser *mutable*. Veamos un ejemplo concreto:
 
 .. code-block::
     :emphasize-lines: 12, 17
@@ -587,7 +587,7 @@ Diccionarios por comprensión
 
 |intlev|
 
-De forma análoga a cómo se escriben las :ref:`listas por comprensión <datastructures/lists:Listas por comprensión>`, podemos aplicar este método a los diccionarios usando llaves ``{`` ``}``.
+De forma análoga a cómo se escriben las :ref:`listas por comprensión <core/datastructures/lists:Listas por comprensión>`, podemos aplicar este método a los diccionarios usando llaves ``{`` ``}``.
 
 Veamos un ejemplo en el que creamos un **diccionario por comprensión** donde las claves son palabras y los valores son sus longitudes:
 
