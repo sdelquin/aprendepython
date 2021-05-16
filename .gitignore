@@ -1,6 +1,6 @@
 .vscode
 .DS_Store
 _build
-resources
+.artwork
 *.pyc
 miniprojects/**/solution
