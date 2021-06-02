@@ -96,3 +96,9 @@ p.rubric {
 ::-moz-selection {
   background: #a8d1ff;
 }
+
+/* Disable anchor on figure captions */
+
+figcaption > p > a {
+  display: none;
+}
