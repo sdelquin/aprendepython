@@ -102,3 +102,7 @@ p.rubric {
 figcaption > p > a {
   display: none;
 }
+
+aside.toc-drawer div.toc-tree ul > li > ul > li > ul > li > ul {
+  display: none;
+}
