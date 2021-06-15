@@ -42,6 +42,12 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
 
    stdlib/text_processing
 
+.. toctree::
+   :caption: PyPI
+   :maxdepth: 2
+
+   pypi/datascience
+
 .. only:: html
 
    .. tip::
