@@ -9,6 +9,7 @@ Muchos de los paquetes que veremos en esta sección también vienen incluidos po
 .. toctree::
 
     datascience/jupyter
+    datascience/numpy
 
 .. --------------- Hyperlinks ---------------
 
