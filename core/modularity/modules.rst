@@ -75,7 +75,7 @@ Modificando directamente la variable ``PYTHONPATH``
     
     Y comprobamos que se ha modificado en ``sys.path``:
 
-    .. code-block:: pycon
+    .. code-block::
         :emphasize-lines: 3
     
         >>> sys.path

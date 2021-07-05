@@ -403,12 +403,12 @@ Comandos de shell
 
 Podemos ejecutar comandos de "shell" usando el prefijo exclamación ``!``
 
-.. code-block:: pycon
+.. code-block::
 
     >>> !date
     martes, 15 de junio de 2021, 09:13:25 WEST
 
-.. code-block:: pycon
+.. code-block::
 
     >>> !whoami
     sdelquin
@@ -433,7 +433,7 @@ Obteniendo ayuda
 
 Una de las formas más sencillas de obtener información de librerías, funciones o módulos es utilizar el sufijo interrogación ``?``
 
-.. code-block:: pycon
+.. code-block::
     :emphasize-lines: 3
 
     >>> import random

@@ -135,7 +135,7 @@ Apertura de ficheros
 
 El fichero de entrada que se aporta :download:`top50.csv <files/top50.csv>` está codificado con *utf8*. Si tuviera problemas para abrirlo en su plataforma  puede que tenga que ver con la **codificación**. En ese caso puede probar a añadir el parámetro ``encoding``:
 
-.. code-block:: pycon
+.. code-block::
 
     >>> open('top50.csv', encoding='utf8')           # lectura
     >>> open('top50_mod.csv', 'w', encoding='utf8')  # escritura
