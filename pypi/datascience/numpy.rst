@@ -1664,7 +1664,7 @@ Si bien hemos hablado del producto de arrays elemento a elemento, NumPy nos perm
 
     .. only:: html
     
-        |solution| :download:`identitiy_equation.py <files/identitiy_equation.py>`
+        |solution| :download:`identity_equation.py <files/identity_equation.py>`
 
 Determinante de una matriz
 ==========================
