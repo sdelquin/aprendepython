@@ -1,0 +1,21 @@
+Función,Resultado,Descripción
+``df['Revenue'].count()``,17,Número de observaciones no nulas
+``df['Revenue'].sum()``,1912895,Suma de los valores
+``df['Revenue'].mean()``,112523.23,Media de los valores
+``df['Revenue'].mad()``,51385.95,Desviación absoluta media
+``df['Revenue'].median()``,84893.0,Mediana de los valores
+``df['Revenue'].min()``,53625,Mínimo
+``df['Revenue'].max()``,274515,Máximo
+``df['Revenue'].mode()``,Múltiples valores,Moda
+``df['Revenue'].abs()``,Múltiples valores,Valor absoluto
+``df['Revenue'].prod()``,6758064777941221376,Producto de los valores
+``df['Revenue'].std()``,63236.95,Desviación típica
+``df['Revenue'].var()``,3998912818.06,Varianza
+``df['Revenue'].sem()``,15337.21,Error típico de la media
+``df['Revenue'].skew()``,1.33,Asimetría
+``df['Revenue'].kurt()``,1.13,Apuntamiento
+``df['Revenue'].quantile()``,84893.0,Cuantiles (por defecto 50%)
+``df['Revenue'].cumsum()``,Múltiples valores,Suma acumulativa
+``df['Revenue'].cumprod()``,Múltiples valores,Producto acumulativo
+``df['Revenue'].cummax()``,Múltiples valores,Máximo acumulativo
+``df['Revenue'].cummin()``,Múltiples valores,Mínimo acumulativo

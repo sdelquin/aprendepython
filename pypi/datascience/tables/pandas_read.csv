@@ -1,0 +1,24 @@
+Función,Explicación
+`read_pickle <https://pandas.pydata.org/docs/reference/api/pandas.read_pickle.html>`_,Lectura de datos en formato pickle (Python)
+`read_table <https://pandas.pydata.org/docs/reference/api/pandas.read_table.html>`_,Lectura de ficheros con delimitadores
+`read_csv <https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html>`_,Lectura de ficheros .csv
+`read_fwf <https://pandas.pydata.org/docs/reference/api/pandas.read_fwf.html>`_,Lectura de tablas con líneas de ancho fijo
+`read_clipboard <https://pandas.pydata.org/docs/reference/api/pandas.read_clipboard.html>`_,Lectura de texto del portapapeles
+`read_excel <https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html>`_,Lectura de ficheros excel
+`read_json <https://pandas.pydata.org/docs/reference/api/pandas.read_json.html>`_,Lectura de ficheros json
+`read_html <https://pandas.pydata.org/docs/reference/api/pandas.read_html.html>`_,Lectura de tablas HTML
+`read_html <https://pandas.pydata.org/docs/reference/api/pandas.read_html.html>`_,Lectura de tablas HTML
+`read_xml <https://pandas.pydata.org/docs/reference/api/pandas.read_xml.html>`_,Lectura de documentos XML
+`read_hdf <https://pandas.pydata.org/docs/reference/api/pandas.read_hdf.html>`_,Lectura de objetos pandas almacenados en fichero
+`read_feather <https://pandas.pydata.org/docs/reference/api/pandas.read_feather.html>`_,Lectura de objetos en formato "feather"
+`read_parquet <https://pandas.pydata.org/docs/reference/api/pandas.read_parquet.html>`_,Lectura de objetos en formato "parquet"
+`read_orc <https://pandas.pydata.org/docs/reference/api/pandas.read_orc.html>`_,Lectura de objetos en formato ORC
+`read_sas <https://pandas.pydata.org/docs/reference/api/pandas.read_sas.html>`_,Lectura de ficheros SAS
+`read_spss <https://pandas.pydata.org/docs/reference/api/pandas.read_spss.html>`_,Lectura de ficheros SPSS
+`read_sql_table <https://pandas.pydata.org/docs/reference/api/pandas.read_sql_table.html>`_,Lectura de tabla SQL
+`read_sql_query <https://pandas.pydata.org/docs/reference/api/pandas.read_sql_query.html>`_,Lectura de una consulta SQL
+`read_sql <https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html>`_,Wrapper para ``read_sql_table`` y ``read_sql_query``
+`read_gbq <https://pandas.pydata.org/docs/reference/api/pandas.read_gbq.html>`_,Lectura de datos desde Google BigQuery
+`read_stata <https://pandas.pydata.org/docs/reference/api/pandas.read_stata.html>`_,Lectura de ficheros Stata
+
+

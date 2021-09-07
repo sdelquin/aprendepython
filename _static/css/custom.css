@@ -103,6 +103,8 @@ figcaption > p > a {
   display: none;
 }
 
+/* Hide third level items (and beyond) on right hand side TOC */
+
 aside.toc-drawer div.toc-tree ul > li > ul > li > ul > li > ul {
   display: none;
 }

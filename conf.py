@@ -10,7 +10,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
+
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -67,6 +68,9 @@ html_show_sourcelink = False
 
 html_css_files = ['css/custom.css']
 html_js_files = ['js/custom.js']
+
+if os.environ.get('APRENDEPYTHON_DEV'):
+    html_css_files.append('css/dev.css')
 
 html_title = description
 html_favicon = 'favicon.png'
