@@ -492,7 +492,7 @@ Exportación de serie a ``pandas.DataFrame``:
     .. code-block::
 
         >>> employees.to_frame()
-                Tech Employees
+                   Tech Employees
         Apple              147000
         Samsung            267937
         Google             135301
@@ -692,7 +692,7 @@ Este fichero está delimitado por tabuladores, con lo que especificaremos esta c
     >>> df = pd.read_csv('tech.csv', delimiter='\t', index_col='Company')
 
     >>> df
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -733,7 +733,7 @@ Visualización de los datos
 Para "echar un vistazo" a los datos, existen dos funciones muy recurridas::
 
     >>> df.head()
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -775,7 +775,7 @@ Información sobre columnas::
 Descripción de las variables numéricas::
 
     >>> df.describe()
-                Revenue      Employees
+                 Revenue      Employees
     count      17.000000      17.000000
     mean   112523.235294  204125.470588
     std     63236.957691  198345.912495
@@ -852,7 +852,7 @@ Es fundamental conocer la estructura de un DataFrame para su adecuado manejo:
 Para todos los ejemplos subsiguientes continuamos utilizando el conjunto de datos de empresas tecnológicas cargado previamente::
 
     >>> df
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -892,7 +892,7 @@ Si queremos acceder a las filas de un conjunto de datos **mediante la posición 
     Name: LG Electronics, dtype: object
 
     >>> df.iloc[3:5]
-            Revenue  Employees             City        Country
+             Revenue  Employees             City        Country
     Company
     Foxconn     181945     878429  New Taipei City         Taiwan
     Microsoft   143015     163000       Washington  United States
@@ -916,7 +916,7 @@ Si queremos acceder a las filas de un conjunto de datos **mediante la etiqueta d
     Name: IBM, dtype: object
 
     >>> df.loc['Sony':'Intel']
-            Revenue  Employees        City        Country
+             Revenue  Employees        City        Country
     Company
     Sony       84893     109700       Tokyo          Japan
     Hitachi    82345     350864       Tokyo          Japan
@@ -955,7 +955,7 @@ El acceso a columnas se realiza directamente utilizando corchetes, como si fuera
 Se pueden seleccionar varias columnas a la vez pasando una lista::
 
     >>> df[['Employees', 'City']].head()
-                        Employees             City
+                         Employees             City
     Company
     Apple                   147000       California
     Samsung Electronics     267937            Suwon
@@ -969,7 +969,7 @@ Acceso a filas y columnas
 Si mezclamos los dos accesos anteriores podemos seleccionar datos de forma muy precisa. Como siempre, partimos del "dataset" de empresas tecnológicas::
 
     >>> df.head()
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -1059,7 +1059,7 @@ Supongamos que queremos seleccionar aquellas **empresas con base en Estados Unid
 Si aplicamos esta "máscara" al conjunto original de datos, obtendremos las empresas que estamos buscando::
 
     >>> df[df['Country'] == 'United States']
-                    Revenue  Employees        City        Country
+                       Revenue  Employees        City        Country
     Company
     Apple               274515     147000  California  United States
     Alphabet            182527     135301  California  United States
@@ -1079,7 +1079,7 @@ También es posible aplicar condiciones compuestas. Supongamos que necesitamos s
     >>> employees_condition = df['Employees'] > 100_000
 
     >>> df[revenue_condition & employees_condition]
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -1107,7 +1107,7 @@ Imaginemos ahora que estamos buscando aquellas **empresas establecidas en Califo
     >>> mask = df['City'].isin(['California', 'Tokyo'])
 
     >>> df[mask]
-            Revenue  Employees        City        Country
+              Revenue  Employees        City        Country
     Company
     Apple      274515     147000  California  United States
     Alphabet   182527     135301  California  United States
@@ -1120,7 +1120,7 @@ Imaginemos ahora que estamos buscando aquellas **empresas establecidas en Califo
 .. admonition:: Ejercicio
     :class: exercise
 
-    Obtenga los siguientes subconjuntos del "dataset" ``democan``:
+    Obtenga los siguientes subconjuntos del "dataset" :download:`democan <files/democan.csv>`:
 
     .. code-block::
 
@@ -1269,7 +1269,7 @@ Uno de los usos más habituales es la recodificación. Supongamos que queremos *
 .. admonition:: Ejercicio
     :class: exercise
 
-    Recodifique la columna *Province* del "dataset" ``democan`` de tal manera que aparezcan las provincias con el texto completo: *Santa Cruz de Tenerife* y *Las Palmas de Gran Canaria*.
+    Recodifique la columna *Province* del "dataset" :download:`democan <files/democan.csv>` de tal manera que aparezcan las provincias con el texto completo: *Santa Cruz de Tenerife* y *Las Palmas de Gran Canaria*.
 
     .. only:: html
     
@@ -1376,7 +1376,7 @@ Veamos un ejemplo con el borrado de columnas:
     :emphasize-lines: 10
 
     >>> df_mod.head()
-                        Revenue  Employees  City Country
+                          Revenue  Employees  City Country
     Company
     Apple                329418.0     137000  Vigo   Spain
     Samsung Electronics  240880.8     267937  Vigo   Spain
@@ -1387,7 +1387,7 @@ Veamos un ejemplo con el borrado de columnas:
     >>> df_mod.drop(labels=['City', 'Country'], axis=1, inplace=True)
 
     >>> df_mod.head()
-                        Revenue  Employees
+                          Revenue  Employees
     Company
     Apple                329418.0     137000
     Samsung Electronics  240880.8     267937
@@ -1398,7 +1398,7 @@ Veamos un ejemplo con el borrado de columnas:
 .. admonition:: Ejercicio
     :class: exercise
 
-    Añada una nueva columna *Density* a ``democan`` de tal manera que represente la densidad de población de cada isla del archipiélago canario.
+    Añada una nueva columna *Density* a :download:`democan <files/democan.csv>` de tal manera que represente la densidad de población de cada isla del archipiélago canario.
 
     .. only:: html
     
@@ -1465,7 +1465,7 @@ Incluso podemos recurrir a expresiones regulares. Supongamos que queremos **filt
     >>> mask = df.index.str.match(r'^[aeiou]', flags=re.IGNORECASE)
 
     >>> df[mask]
-            Revenue  Employees        City        Country
+              Revenue  Employees        City        Country
     Company
     Apple      274515     147000  California  United States
     Alphabet   182527     135301  California  United States
@@ -1510,7 +1510,7 @@ Vamos a aplicar las funciones estadísticas que proporciona pandas sobre la colu
 .. admonition:: Ejercicio
     :class: exercise
 
-    Partiendo del conjunto de datos ``democan``, obtenga aquellas islas cuya población está por encima de la media del archipiélago canario.
+    Partiendo del conjunto de datos :download:`democan <files/democan.csv>`, obtenga aquellas islas cuya población está por encima de la media del archipiélago canario.
 
     Resultado esperado: ``['Gran Canaria', 'Tenerife']``
 
@@ -1524,7 +1524,7 @@ Ordenando valores
 Una operación muy típica cuando trabajamos con datos es la de ordenarlos en base a ciertos criterios. Veamos cómo podemos hacerlo utilizando pandas. Volvemos a nuestro "dataset" tecnológico::
 
     >>> df
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -1547,7 +1547,7 @@ Una operación muy típica cuando trabajamos con datos es la de ordenarlos en ba
 Supongamos que queremos tener el conjunto de datos **ordenado por el nombre de empresa**. Como, en este caso, la columna Company constituye el índice, debemos ordenar por el índice::
 
     >>> df.sort_index()
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Alphabet              182527     135301       California  United States
     Apple                 274515     147000       California  United States
@@ -1570,7 +1570,7 @@ Supongamos que queremos tener el conjunto de datos **ordenado por el nombre de e
 Ahora imaginemos que necesitamos tener las **empresas ordenadas de mayor a menor número de ingresos**::
 
     >>> df.sort_values(by='Revenue', ascending=False)
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Apple                 274515     147000       California  United States
     Samsung Electronics   200734     267937            Suwon    South Korea
@@ -1593,7 +1593,7 @@ Ahora imaginemos que necesitamos tener las **empresas ordenadas de mayor a menor
 También es posible utilizar varias columnas en la ordenación. Pongamos que deseamos **ordenar los datos por país y por ciudad**. Veamos cómo afrontarlo::
 
     >>> df.sort_values(by=['Country', 'City'])
-                        Revenue  Employees             City        Country
+                         Revenue  Employees             City        Country
     Company
     Lenovo                 60742      71500        Hong Kong          China
     Huawei                129184     197000         Shenzhen          China
@@ -1694,7 +1694,7 @@ Si queremos acceder al registro completo, podemos aplicar estas funciones de otr
 .. admonition:: Ejercicio
     :class: exercise
 
-    Partiendo del conjunto de datos ``democan`` obtenga las 3 islas con menor densidad de población.
+    Partiendo del conjunto de datos :download:`democan <files/democan.csv>` obtenga las 3 islas con menor densidad de población.
 
     El resultado debería ser el siguiente::
 
@@ -1789,7 +1789,7 @@ También es posible realizar la agrupación en varios niveles. En el siguiente e
 Incluso podemos aplicar distintas funciones de agregación a cada columna. Supongamos que necesitamos calcular **la media de los ingresos y la mediana del número de empleados/as, con las empresas agrupadas por país**::
 
     >>> df.groupby('Country').agg({'Revenue': 'mean', 'Employees': 'median'})
-                        Revenue  Employees
+                         Revenue  Employees
     Country
     China           86596.666667    85858.0
     Japan           76809.666667   243540.0
@@ -1802,7 +1802,7 @@ Incluso podemos aplicar distintas funciones de agregación a cada columna. Supon
 .. admonition:: Ejercicio
     :class: exercise
 
-    Obtenga el porcentaje de población (en relación con el total) de cada provincia de las Islas Canarias en base al "dataset" ``democan``.
+    Obtenga el porcentaje de población (en relación con el total) de cada provincia de las Islas Canarias en base al "dataset" :download:`democan <files/democan.csv>`.
 
     El resultado debería ser similar a:
 
@@ -1893,7 +1893,7 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
     - Islas con menos de 1000 :math:`\text{km}^2`: ayuda del 30% de su población.
     - Islas con más de 1000 :math:`\text{km}^2`: ayuda del 20% de su población.
 
-    Añada una nueva columna *Grant* al "dataset" ``democan`` donde se contemplen estas ayudas. El DataFrame debería quedar así::
+    Añada una nueva columna *Grant* al "dataset" :download:`democan <files/democan.csv>` donde se contemplen estas ayudas. El DataFrame debería quedar así::
 
                        Population     Area Province     Grant
         Island
