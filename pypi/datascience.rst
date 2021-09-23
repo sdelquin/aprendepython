@@ -11,6 +11,7 @@ Muchos de los paquetes que veremos en esta sección también vienen incluidos po
     datascience/jupyter
     datascience/numpy
     datascience/pandas
+    datascience/matplotlib
 
 .. --------------- Hyperlinks ---------------
 
