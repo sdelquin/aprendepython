@@ -98,13 +98,27 @@ p.rubric {
 }
 
 /* Disable anchor on figure captions */
-
 figcaption > p > a {
   display: none;
 }
 
-/* Hide third level items (and beyond) on right hand side TOC */
+.toc-tree a:hover {
+  color: var(--color-toc-item-text--active);
+}
 
-aside.toc-drawer div.toc-tree ul > li > ul > li > ul > li > ul {
+/* Dynamic TOC (Gumshoe) */
+/* https://github.com/cferdinandi/gumshoe#nested-navigation */
+.toc-tree > ul > li > ul > li:not(.scroll-current) > ul,
+.toc-tree > ul > li > ul > li > ul > li:not(.scroll-current) > ul,
+.toc-tree
+  > ul
+  > li
+  > ul
+  > li
+  > ul
+  > li
+  > ul
+  > li:not(.parent-scroll-current)
+  > ul {
   display: none;
 }

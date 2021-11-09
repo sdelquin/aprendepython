@@ -56,4 +56,14 @@ $(document).ready(function () {
       button.data('hidden', 'false')
     }
   })
+
+  // Dynamic TOC (Gumshoe)
+  // https://github.com/cferdinandi/gumshoe#nested-navigation
+  new Gumshoe(".toc-tree a", {
+    reflow: true,
+    recursive: true,
+    navClass: "scroll-current",
+    nested: true,
+    nestedClass: 'scroll-current'
+  });
 })
