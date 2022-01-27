@@ -47,6 +47,7 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
    :maxdepth: 2
 
    pypi/datascience
+   pypi/scraping
 
 .. only:: html
 
