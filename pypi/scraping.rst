@@ -11,3 +11,4 @@ Los paquetes que veremos en este capítulo bien podrían estar incluidos en otra
 .. toctree::
 
     scraping/requests
+    scraping/beautifulsoup
