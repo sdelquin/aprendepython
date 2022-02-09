@@ -12,3 +12,4 @@ Los paquetes que veremos en este capítulo bien podrían estar incluidos en otra
 
     scraping/requests
     scraping/beautifulsoup
+    scraping/selenium

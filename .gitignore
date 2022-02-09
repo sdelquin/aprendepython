@@ -6,3 +6,4 @@ _build
 miniprojects/**/solution
 *checkpoint.ipynb
 sandbox.ipynb
+geckodriver.log
