@@ -1,0 +1,9 @@
+Acceso,Función,Localizador
+Clase,``find_elements_by_class_name()``,``By.CLASS_NAME``
+Selector CSS,``find_elements_by_css_selector()``,``By.CSS_SELECTOR``
+Atributo ID,``find_elements_by_id()``,``By.ID``
+Texto en enlace,``find_elements_by_link_text()``,``By.LINK_TEXT``
+Texto en enlace (parcial),``find_elements_by_partial_link_text()``,``By.PARTIAL_LINK_TEXT``
+Atributo NAME,``find_elements_by_name()``,``By.NAME``
+Nombre de etiqueta,``find_elements_by_tag_name()``,``By.TAG_NAME``
+XPath,``find_elements_by_xpath()``,``By.XPATH``
