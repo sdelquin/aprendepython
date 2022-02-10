@@ -897,6 +897,14 @@ Si queremos acceder a las filas de un conjunto de datos **mediante la posición 
     Foxconn     181945     878429  New Taipei City         Taiwan
     Microsoft   143015     163000       Washington  United States
 
+    >>> df.iloc[::5]  # Salto de 5 en 5 filas
+             Revenue  Employees        City        Country
+    Company
+    Apple     274515     147000  California  United States
+    Huawei    129184     197000    Shenzhen          China
+    Intel      77867     110600  California  United States
+    HP Inc.    56639      53000  California  United States
+
 .. note:: El acceso a un registro individual nos devuelve una serie.
 
 Si queremos acceder a las filas de un conjunto de datos **mediante la etiqueta del registro** usamos el atributo ``loc``::
@@ -1025,6 +1033,18 @@ Acceso a las **tres últimas filas (empresas) y a las dos primeras columnas**::
     Lenovo            60742      71500
     HP Inc.           56639      53000
     LG Electronics    53625      75000
+
+Acceso a **las filas que van desde "Apple" a "Huawei" y a las columnas que van desde "Revenue" hasta "City"**:
+
+    >>> df.loc['Apple':'Huawei', 'Revenue':'City']
+                         Revenue  Employees             City
+    Company
+    Apple                 274515     147000       California
+    Samsung Electronics   200734     267937            Suwon
+    Alphabet              182527     135301       California
+    Foxconn               181945     878429  New Taipei City
+    Microsoft             143015     163000       Washington
+    Huawei                129184     197000         Shenzhen
 
 .. tip:: Es posible usar "slicing" (troceado) en el acceso a registros y columnas.
 
