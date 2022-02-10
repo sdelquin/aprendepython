@@ -624,11 +624,124 @@ Su instalación es tan sencilla como:
 
     $ pip install jupyter_contrib_nbextensions
 
+**************
+Otros entornos
+**************
+
+El ecosistema de entornos para trabajos en ciencia de datos ha ido ampliándose durante estos últimos años con la explosión del "BigData" y la inteligencia artificial. En este apartado veremos otras plataformas que también nos permiten usar Python enfocado al análisis de datos.
+
+JupyterLab
+==========
+
+`JupyterLab <https://jupyterlab.readthedocs.io/en/stable/>`__ es una evolución de Jupyter Notebook. Entre sus mejoras podemos destacar:
+
+- Explorador de ficheros integrado en la barra lateral.
+- Posibilidad de abrir múltiples ``.ipynb`` al mismo tiempo usando pestañas.
+- Posibilidad de abrir múltiples terminales.
+- Editor integrado para cualquier fichero de texto.
+- Vista previa en tiempo real de documentos *markdown* o *csv*.
+
+.. figure:: img/jupyterlab.png
+    :align: center
+
+    Pantalla inicial de JupyterLab
+
+Su instalación se lleva a cabo como cualquier otro paquete Python:
+
+.. code-block:: console
+
+    $ pip install jupyterlab
+
+Para ejecutar la aplicación:
+
+.. code-block:: console
+
+    $ jupyter-lab
+
+Google Colab
+============
+
+`Google Colab <https://colab.research.google.com/>`__ es un entorno de computación científica creado por Google y disponible en su nube. Como era previsible, para su uso es necesario disponer de una cuenta en Google.
+
+.. figure:: img/google-colab.png
+    :align: center
+
+    Pantalla inicial de Google Colab
+
+**Características**:
+
+- Tiene un comportamiento totalmente análogo a Jupyter en cuanto a comportamiento y funcionalidades.
+- Completamente en la nube. No necesita instalación ni configuración.
+- Por defecto trae multitud de paquetes instalados, principalmente en el ámbito científico: 386 paquetes (febrero de 2022).
+- Versión de Python: 3.7.12 (febrero de 2022).
+- Espacio en disco sujeto a las características de Google Compute Engine: 107.72GB (febrero de 2022)
+- Memoria RAM sujeta a las características de Google Compute Engine: 12.69GB (febrero de 2022)
+- Acceso limitado al sistema operativo.
+- En cuentas gratuitas, los tiempos de cómputo son, por lo general, mayores que en una máquina local. [#local-machine]_
+- Previsualización *markdown* en tiempo real sobre cada celda.
+- Posibilidad de subir ficheros de datos propios en carpetas accesibles por el cuaderno.
+- Posibilidad de ejecutar Jupyter "notebooks" propios.
+- Posibilidad (limitada) de acelerar cálculos usando GPU [#gpu]_ o TPU [#tpu]_.
+- Posibilidad de descargar el cuaderno como Jupyter "notebook" o archivo de Python.
+- Índice de contenidos integrado en barra lateral.
+- Inspector de variables integrado en barra lateral.
+
+
+Kaggle
+======
+
+`Kaggle <https://www.kaggle.com/>`__ es una plataforma que no sólo ofrece un entorno de trabajo para cuadernos Jupyter sino también `una enorme colección de conjuntos de datos <https://www.kaggle.com/datasets>`__ de libre acceso. Para su uso es necesario disponer de una cuenta en el servicio.
+
+.. figure:: img/kaggle.png
+    :align: center
+
+    Pantalla inicial de Kaggle
+
+**Características:**
+
+- Tiene un comportamiento totalmente análogo a Jupyter en cuanto a comportamiento y funcionalidades.
+- Completamente en la nube. No necesita instalación ni configuración.
+- Por defecto trae multitud de paquetes instalados, principalmente en el ámbito científico: 792 paquetes (febrero de 2022).
+- Versión de Python: 3.7.12 (febrero de 2022).
+- Espacio en disco sujeto a las características de Kaggle: 73.1GB (febrero de 2022)
+- Memoria RAM sujeta a las características de Kaggle: 16GB (febrero de 2022)
+- Acceso limitado al sistema operativo.
+- En cuentas gratuitas, los tiempos de cómputo son, por lo general, mayores que en una máquina local. [#local-machine]_
+- Posibilidad de subir ficheros de datos propios sólo como "datasets" de Kaggle.
+- Posibilidad de ejecutar Jupyter "notebooks" propios.
+- Posibilidad (limitada) de acelerar cálculos usando GPU [#gpu]_ o TPU [#tpu]_.
+- Posibilidad de descargar el cuaderno como Jupyter "notebook".
+
+Comparativa
+===========
+
+Haremos una comparativa de tiempos de ejecución lanzando una FFT [#fft]_ sobre una matriz de 1 millón de elementos::
+
+    >>> import numpy as np
+
+    >>> bigdata = np.random.randint(1, 100, size=(1_000, 1_000))
+
+    >>> %timeit np.fft.fft(bigdata)
+    4.89 ms ± 5.78 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
++---------+--------+--------+
+| Jupyter | Colab  | Kaggle |
++=========+========+========+
+| 4.89ms  | 13.9ms | 12.8ms |
++---------+--------+--------+
+
+Obviamente se trata de una ejecución puntual y no podemos sacar conclusiones claras al respecto. Además de ello depende del "hardware" sobre el que estemos trabajando. En cualquier caso el propósito es únicamente tener una ligera idea de los órdenes de magnitud.
+
+
 .. --------------- Footnotes ---------------
 
 .. [#jupiter-unsplash] Foto original de portada por `NASA`_ en Unsplash.
 .. [#notebooks-note] Un "notebook" es el concepto de cuaderno (documento) científico que se maneja en Jupyter
 .. [#shortcut] Un "shortcut" es un "atajo de teclado" (combinación de teclas) para lanzar una determinada acción.
+.. [#local-machine] Todo estará en función de las características de la máquina con la que se esté trabajando.
+.. [#fft] Fast Fourier Transform (`Transformada rápida de Fourier`_).
+.. [#gpu] Graphics Processing Unit (`Unidad gráfica de procesamiento`_).
+.. [#tpu] Tensor Processing Unit (`Unidad de procesamiento tensorial`_).
 
 .. --------------- Hyperlinks ---------------
 
@@ -642,3 +755,6 @@ Su instalación es tan sencilla como:
 .. _shell script: http://trajano.us.es/~fjfj/shell/shellscript.htm
 .. _perl: https://perlenespanol.com/
 .. _Unofficial Jupyter Notebook Extensions: https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/
+.. _Transformada rápida de Fourier: https://es.wikipedia.org/wiki/Transformada_r%C3%A1pida_de_Fourier
+.. _Unidad gráfica de procesamiento: https://es.wikipedia.org/wiki/Unidad_de_procesamiento_gr%C3%A1fico
+.. _Unidad de procesamiento tensorial: https://es.wikipedia.org/wiki/Unidad_de_procesamiento_tensorial

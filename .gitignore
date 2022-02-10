@@ -4,6 +4,6 @@ _build
 .artwork
 *.pyc
 miniprojects/**/solution
-*checkpoint.ipynb
+.ipynb_checkpoints
 sandbox.ipynb
 geckodriver.log
