@@ -533,7 +533,7 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 1. Escriba un programa en Python que acepte el radio de un círculo y compute su área (:download:`solución <files/circle_area.py>`).
 
     | Entrada: 5
-    | Salida: 8.5
+    | Salida: 78.5
 
 2. Escriba un programa en Python que acepte el radio de una esfera y obtenga su volumen (:download:`solución <files/sphere_volume.py>`).
 
