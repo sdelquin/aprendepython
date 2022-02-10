@@ -59,6 +59,15 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="515" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_dict%20%3D%20%7B%7D%0A%0Arae%20%3D%20%7B%0A%20%20%20%20'bifronte'%3A%20'De%20dos%20frentes%20o%20dos%20caras',%0A%20%20%20%20'anarcoide'%3A%20'Que%20tiende%20al%20desorden',%0A%20%20%20%20'montuvio'%3A%20'Campesino%20de%20la%20costa'%0A%7D%0A%0Apopulation_can%20%3D%20%7B%0A%20%20%20%202015%3A%202_135_209,%0A%20%20%20%202016%3A%202_154_924,%0A%20%20%20%202017%3A%202_177_048,%0A%20%20%20%202018%3A%202_206_901,%0A%20%20%20%202019%3A%202_220_270%0A%7D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Cree un diccionario con los nombres de 5 personas de su familia y sus edades.
+
+    .. only:: html
+    
+        |solution| :download:`family_dict.py <files/family_dict.py>`
+
 **********
 Conversión
 **********
