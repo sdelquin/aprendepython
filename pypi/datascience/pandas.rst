@@ -1728,6 +1728,7 @@ Si queremos acceder al registro completo, podemos aplicar estas funciones de otr
     
         |solution| :download:`smallest_density.py <files/smallest_density.py>`
 
+
 Gestionando valores nulos
 -------------------------
 
@@ -1773,6 +1774,121 @@ Incluso podemos **aplicar interpolación para completar valores nulos**::
     1  2  5.0  8.0
     2  3  6.0  8.0
 
+Reformando datos
+-----------------
+
+En esta sección se verán las operaciones de **pivotar** y **apilar** que permiten reformar (remodelar) un DataFrame.
+
+Seguimos utilizando el conjunto de datos de empresas tecnológicas aunque nos quedaremos únicamente con las 3 primeras filas a efectos didácticos::
+
+    >>> df = df.reset_index()[:3]
+
+    >>> df
+                   Company  Revenue  Employees        City        Country
+    0                Apple   274515     147000  California  United States
+    1  Samsung Electronics   200734     267937       Suwon    South Korea
+    2             Alphabet   182527     135301  California  United States
+
+Ancho y Largo
+^^^^^^^^^^^^^
+
+Típicamente existen dos maneras de presentar datos tabulares: formato ancho y formato largo. En **formato ancho** cada fila tiene múltiples columnas representando todas las variables de una misma observación. En **formato largo** cada fila tiene básicamente tres columnas: una que identifica la observación, otra que identifica la variable y otra que contiene el valor.
+
+Para pasar de formato ancho a formato largo usamos la función `melt()`_::
+
+    >>> df.melt(id_vars='Company')
+                    Company   variable          value
+    0                 Apple    Revenue         274515
+    1   Samsung Electronics    Revenue         200734
+    2              Alphabet    Revenue         182527
+    3                 Apple  Employees         147000
+    4   Samsung Electronics  Employees         267937
+    5              Alphabet  Employees         135301
+    6                 Apple       City     California
+    7   Samsung Electronics       City          Suwon
+    8              Alphabet       City     California
+    9                 Apple    Country  United States
+    10  Samsung Electronics    Country    South Korea
+    11             Alphabet    Country  United States
+
+
+Para pasar de formato largo a formato ancho usamos la función `pivot()`_::
+
+    >>> df_long = df.melt(id_vars='Company')
+
+    >>> df_long.pivot(index='Company', columns='variable', values='value')
+    variable                   City        Country Employees Revenue
+    Company
+    Alphabet             California  United States    135301  182527
+    Apple                California  United States    147000  274515
+    Samsung Electronics       Suwon    South Korea    267937  200734
+
+.. tip::
+    Si queremos obtener el DataFrame en formato ancho tal y como estaba, tenemos que realizar un par de ajustes: ``df.rename_axis(columns = None).reset_index()``.
+
+Apilando datos
+^^^^^^^^^^^^^^
+
+Las operaciones de apilado trabajan sobre los índices del DataFrame. Para comprobar su aplicabilidad, vamos a añadir la columna "Company" como índice del "dataset" anterior::
+
+    >>> df.set_index('Company', inplace=True)
+
+    >>> df
+                         Revenue  Employees        City        Country
+    Company
+    Apple                 274515     147000  California  United States
+    Samsung Electronics   200734     267937       Suwon    South Korea
+    Alphabet              182527     135301  California  United States
+
+La función `stack()`_  nos permite obtener un DataFrame con **índice multinivel** que incluye las columnas del DataFrame de origen y los valores agrupados::
+
+    >>> df_stacked = df.stack()
+
+    >>> df_stacked
+    Company
+    Apple                Revenue             274515
+                         Employees           147000
+                         City            California
+                         Country      United States
+    Samsung Electronics  Revenue             200734
+                         Employees           267937
+                         City                 Suwon
+                         Country        South Korea
+    Alphabet             Revenue             182527
+                         Employees           135301
+                         City            California
+                         Country      United States
+    dtype: object
+
+    >>> df_stacked.index
+    MultiIndex([(              'Apple',   'Revenue'),
+                (              'Apple', 'Employees'),
+                (              'Apple',      'City'),
+                (              'Apple',   'Country'),
+                ('Samsung Electronics',   'Revenue'),
+                ('Samsung Electronics', 'Employees'),
+                ('Samsung Electronics',      'City'),
+                ('Samsung Electronics',   'Country'),
+                (           'Alphabet',   'Revenue'),
+                (           'Alphabet', 'Employees'),
+                (           'Alphabet',      'City'),
+                (           'Alphabet',   'Country')],
+               names=['Company', None])
+
+La función `unstack()`_ realiza justo la operación contraria: convertir un DataFrame con índice multinivel en un Dataframe en formato ancho con índice sencillo. Se podría ver como una manera de **aplanar** el "dataset"::
+
+    >>> df_flat = df_stacked.unstack()
+
+    >>> df_flat
+                        Revenue Employees        City        Country
+    Company
+    Apple                274515    147000  California  United States
+    Samsung Electronics  200734    267937       Suwon    South Korea
+    Alphabet             182527    135301  California  United States
+
+    >>> df_flat.index
+    Index(['Apple', 'Samsung Electronics', 'Alphabet'], dtype='object', name='Company')
+
 Agrupando datos
 ---------------
 
@@ -1805,6 +1921,9 @@ También es posible realizar la agrupación en varios niveles. En el siguiente e
                    Texas               92224
                    Washington         143015
     Name: Revenue, dtype: int64
+
+.. seealso::
+    Cuando realizamos una agrupación por varias columnas, el resultado contiene un índice de múltiples niveles. Podemos aplanar el DataFrame usando :ref:`unstack() <pypi/datascience/pandas:Reformando datos>`.
 
 Incluso podemos aplicar distintas funciones de agregación a cada columna. Supongamos que necesitamos calcular **la media de los ingresos y la mediana del número de empleados/as, con las empresas agrupadas por país**::
 
@@ -1937,9 +2056,14 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
 .. [#billions] Los datos de ingresos ("revenues") están en billones (americanos) de dólares.
 .. [#old-data] Datos del año 2020 según Wikipedia.
 .. [#wikipedia-canarias] Datos extraídos de `Wikipedia <https://es.wikipedia.org/wiki/Canarias>`__.
+.. [#usd-billions] Un billón de dólares americanos equivale a 1.000.000.000$
 
 .. --------------- Hyperlinks ---------------
 
 .. _Sid Balachandran: https://unsplash.com/@itookthose?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _series: https://pandas.pydata.org/docs/reference/api/pandas.Series.html
 .. _insert(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.insert.html
+.. _melt(): https://pandas.pydata.org/docs/reference/api/pandas.melt.html
+.. _pivot(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pivot.html
+.. _stack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.stack.html
+.. _unstack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html
