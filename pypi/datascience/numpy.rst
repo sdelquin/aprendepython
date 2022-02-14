@@ -1678,6 +1678,13 @@ Si bien hemos hablado del producto de arrays elemento a elemento, NumPy nos perm
            [72, 72, 72],
            [36, 49, 29]])
 
+En `Python 3.5 se introdujo el operador <https://docs.python.org/3/whatsnew/3.5.html#pep-465-a-dedicated-infix-operator-for-matrix-multiplication>`_ ``@`` que permitía implementar el :ref:`método especial <core/modularity/oop:Métodos mágicos>` ``__matmul__()`` de multiplicación de matrices. NumPy lo ha desarrollado y simplifica la multiplicación de matrices de la siguiente manera::
+
+    >>> m1 @ m2
+    array([[77, 53, 31],
+           [72, 72, 72],
+           [36, 49, 29]])
+
 .. admonition:: Ejercicio
     :class: exercise
 
