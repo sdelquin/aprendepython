@@ -7,7 +7,6 @@ Función,Explicación
 `read_excel <https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html>`_,Lectura de ficheros excel
 `read_json <https://pandas.pydata.org/docs/reference/api/pandas.read_json.html>`_,Lectura de ficheros json
 `read_html <https://pandas.pydata.org/docs/reference/api/pandas.read_html.html>`_,Lectura de tablas HTML
-`read_html <https://pandas.pydata.org/docs/reference/api/pandas.read_html.html>`_,Lectura de tablas HTML
 `read_xml <https://pandas.pydata.org/docs/reference/api/pandas.read_xml.html>`_,Lectura de documentos XML
 `read_hdf <https://pandas.pydata.org/docs/reference/api/pandas.read_hdf.html>`_,Lectura de objetos pandas almacenados en fichero
 `read_feather <https://pandas.pydata.org/docs/reference/api/pandas.read_feather.html>`_,Lectura de objetos en formato "feather"
