@@ -599,6 +599,9 @@ Muestra aleatoria sin reemplazo:
                'If the implementation is easy to explain, it may be a good idea.',
                'Complex is better than complicated.'], dtype='<U69')
 
+.. seealso::
+    `Listado de distribuciones aleatorias`_ que se pueden utilizar en NumPy.    
+
 .. admonition:: Ejercicio
     :class: exercise
 
@@ -611,7 +614,6 @@ Muestra aleatoria sin reemplazo:
     .. only:: html
     
         |solution| :download:`np_random.py <files/np_random.py>`
-
 
 *********************
 Manipulando elementos
@@ -1871,3 +1873,4 @@ La solución del sistema debe ser la misma que si obtenemos :math:`\mathcal{X} =
 .. _multiplicación clásica de matrices: https://es.wikipedia.org/wiki/Multiplicaci%C3%B3n_de_matrices
 .. _cálculo del determinante: https://es.wikipedia.org/wiki/Determinante_(matem%C3%A1tica)
 .. _inversa de una matriz: https://es.wikipedia.org/wiki/Matriz_invertible
+.. _Listado de distribuciones aleatorias: https://numpy.org/doc/stable/reference/random/generator.html#distributions
