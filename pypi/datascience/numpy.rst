@@ -615,6 +615,25 @@ Muestra aleatoria sin reemplazo:
     
         |solution| :download:`np_random.py <files/np_random.py>`
 
+Constantes
+==========
+
+Numpy proporciona una serie de `constantes predefinidas <https://numpy.org/doc/stable/reference/constants.html>`_ que facilitan su acceso y reutilización. Veamos algunas de ellas::
+
+    >>> import numpy as np
+
+    >>> np.Inf
+    inf
+
+    >>> np.nan
+    nan
+
+    >>> np.e
+    2.718281828459045
+
+    >>> np.pi
+    3.141592653589793
+
 *********************
 Manipulando elementos
 *********************
