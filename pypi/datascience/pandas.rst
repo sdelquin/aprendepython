@@ -1424,6 +1424,32 @@ Veamos un ejemplo con el borrado de columnas:
     
         |solution| :download:`pop_density.py <files/pop_density.py>`
 
+También es posible **renombrar columnas** utilizando la función `rename()`_ de Pandas.
+
+Supongamos un caso de uso en el que queremos **renombrar las columnas a sus tres primeras letras en minúsculas**. Tenemos dos maneras de hacerlo. La primera sería directamente creando un "mapping" entre los nombres de columna actuales y los nombres nuevos::
+
+    >>> new_columns = {'Revenue': 'rev', 'Employees': 'emp', 'City': 'cit', 'Country': 'cou'}
+
+    >>> df.rename(columns=new_columns).head(3)
+                            rev     emp         cit            cou
+    Company
+    Apple                274515  147000  California  United States
+    Samsung Electronics  200734  267937       Suwon    South Korea
+    Alphabet             182527  135301  California  United States
+
+Otro camino para conseguir el mismo resultado es aplicar una función que realice esta tarea de manera automatizada::
+
+    >>> df.rename(columns=lambda c: c.lower()[:3]).head(3)
+                            rev     emp         cit            cou
+    Company
+    Apple                274515  147000  California  United States
+    Samsung Electronics  200734  267937       Suwon    South Korea
+    Alphabet             182527  135301  California  United States
+
+.. seealso::
+    Si en vez del parámetro nominal ``columns`` utilizamos el parámetro ``index`` estaremos renombrando los valores del índice. Se aplica el mismo comportamiento ya visto.
+
+
 Otras operaciones con un DataFrame
 ==================================
 
@@ -2067,3 +2093,4 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
 .. _pivot(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pivot.html
 .. _stack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.stack.html
 .. _unstack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html
+.. _rename(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html
