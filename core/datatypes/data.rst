@@ -92,6 +92,8 @@ Mientras se sigan las :ref:`reglas <core/datatypes/data:Reglas para nombrar vari
 
 Esta convención, y muchas otras, están definidas en un documento denominado `PEP 8`_. Se trata de una **guía de estilo** para escribir código en Python. Los `PEPs`_ [#peps-link]_ son las propuestas que se hacen para la mejora del lenguaje.
 
+Aunque hay múltiples herramientas disponibles para la comprobación del estilo de código, una bastante accesible es http://pep8online.com/ ya que no necesita instalación, simplemente pegar nuestro código y verificar.
+
 Constantes
 ----------
 
