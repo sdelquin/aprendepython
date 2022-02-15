@@ -1517,7 +1517,16 @@ Otro supuesto sería el de **sustituir espacios por subguiones en los países de
     LG Electronics           South_Korea
     Name: Country, dtype: object
 
-Incluso podemos recurrir a expresiones regulares. Supongamos que queremos **filtrar las empresas y quedarnos con las que comienzan por vocal**::
+Expresiones regulares
+^^^^^^^^^^^^^^^^^^^^^
+
+El uso de expresiones regulares aporta una gran expresividad. Veamos su aplicación con tres casos de uso:
+
+- Filtrado de filas.
+- Reemplazo de valores.
+- Extracción de columnas.
+
+Supongamos que queremos **filtrar las empresas y quedarnos con las que comienzan por vocal**::
 
     >>> mask = df.index.str.match(r'^[aeiou]', flags=re.IGNORECASE)
 
@@ -1530,6 +1539,59 @@ Incluso podemos recurrir a expresiones regulares. Supongamos que queremos **filt
     IBM         73620     364800    New York  United States
 
 .. note:: Dado que el nombre de la empresa está actuando como índice del "dataset", hemos aplicado la búsqueda sobre ``.index``.
+
+Ahora imaginemos que vamos a **sustituir aquellas ciudades que empiezan con "S" o "T" por "Stanton"**::
+
+    >>> df['City'].str.replace(r'^[ST].*', 'Stanton', regex=True)
+    Company
+    Apple                   California
+    Samsung Electronics        Stanton
+    Alphabet                California
+    Foxconn                New Stanton
+    Microsoft               Washington
+    Huawei                     Stanton
+    Dell Technologies          Stanton
+    Facebook                California
+    Sony                       Stanton
+    Hitachi                    Stanton
+    Intel                   California
+    IBM                       New York
+    Tencent                    Stanton
+    Panasonic                    Osaka
+    Lenovo                   Hong Kong
+    HP Inc.                 California
+    LG Electronics             Stanton
+    Name: City, dtype: object
+
+Por último supongamos que queremos **dividir la columna "Country"** en dos columnas usando el espacio como separador::
+
+    >>> df['Country'].str.split(' ', expand=True)
+                              0       1
+    Company
+    Apple                United  States
+    Samsung Electronics   South   Korea
+    Alphabet             United  States
+    Foxconn              Taiwan    None
+    Microsoft            United  States
+    Huawei                China    None
+    Dell Technologies    United  States
+    Facebook             United  States
+    Sony                  Japan    None
+    Hitachi               Japan    None
+    Intel                United  States
+    IBM                  United  States
+    Tencent               China    None
+    Panasonic             Japan    None
+    Lenovo                China    None
+    HP Inc.              United  States
+    LG Electronics        South   Korea
+
+Existen otras funciones interesantes de Pandas que trabajan sobre expresiones regulares:
+
+- `count()`_ para contar el número de ocurrencias de un patrón.
+- `contains()`_ para comprobar si existe un determinado patrón.
+- `extract()`_ para extraer grupos de captura sobre un patrón.
+- `findall()`_ para encontrar todas las ocurrencias de un patrón.
 
 
 Usando funciones estadísticas
@@ -2165,3 +2227,7 @@ Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que perm
 .. _merge(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html
 .. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
 .. _concat(): https://pandas.pydata.org/docs/reference/api/pandas.concat.html
+.. _count(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.count.html
+.. _contains(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.contains.html
+.. _extract(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.extract.html
+.. _findall(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.findall.html
