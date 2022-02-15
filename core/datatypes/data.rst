@@ -111,6 +111,12 @@ Supongamos que queremos buscar un nombre de variable para almacenar el número d
 
 No existe una regla mágica que nos diga cuál es el nombre perfecto, pero podemos aplicar el *sentido común* y, a través de la experiencia, ir detectando aquellos nombres que sean más adecuados. En el ejemplo anterior, quizás podríamos descartar de principio la opción *1* y la *4* (por ser demasiado cortas o demasiado largas); nos quedaríamos con las otras dos. Si nos fijamos bien, casi no hay mucha información adicional de la opción *3* con respecto a la *2*. Así que podríamos concluir que la opción *2* es válida para nuestras necesidades. En cualquier caso esto dependerá siempre del contexto del problema que estemos tratando.
 
+Como regla general:
+
+- Usar **nombres** para :ref:`variables <core/datatypes/data:Variables>` (ejemplo ``article``).
+- Usar **verbos** para :ref:`funciones <core/modularity/functions:Funciones>` (ejemplo ``get_article()``).
+- Usar **adjetivos** para :ref:`booleanos <core/datatypes/numbers:Booleanos>` (ejemplo ``available``).
+
 **********
 Asignación
 **********
