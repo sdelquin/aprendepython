@@ -388,6 +388,16 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <c
     
         |solution| :download:`num_words.py <files/num_words.py>`
 
+Existe una forma algo más avanzada de dividir una cadena a través del **particionado**. Para ello podemos valernos de la función ``partition()`` que proporciona Python.
+
+Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes: lo que queda a la izquiera del separador, el separador en sí mismo y lo que queda a la derecha del separador::
+
+    >>> text = '3 + 4'
+
+    >>> text.partition('+')
+    ('3 ', '+', ' 4')
+
+
 Limpiar cadenas
 ===============
 
