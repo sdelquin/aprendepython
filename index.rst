@@ -16,7 +16,7 @@ Aprende Python
 Curso gratuito para aprender el lenguaje de programación **Python** con un enfoque **práctico**, incluyendo **ejercicios** y cobertura para distintos **niveles de conocimiento**. [#monty-python]_
 
 Licencia:
-   GNU General Public License v3.0 - `GPLv3`_.
+   GNU General Public License v3.0: `GPLv3`_.
 
 .. only:: html
 
