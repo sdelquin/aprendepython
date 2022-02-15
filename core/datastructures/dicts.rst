@@ -136,6 +136,16 @@ El inconveniente que tiene esta aproximación es que las **claves deben ser iden
               ^
     SyntaxError: invalid syntax
 
+|intlev|
+
+Es posible crear un diccionario especificando sus claves y un único valor de "relleno"::
+
+    >>> dict.fromkeys('aeiou', 0)
+    {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}
+
+.. note::
+    Es válido pasar cualquier "iterable" como referencia a las claves.
+
 ****************************
 Operaciones con diccionarios
 ****************************
