@@ -1370,7 +1370,7 @@ Supongamos que queremos **añadir una columna "Expenses" (gastos)**. No manejamo
 
 .. tip:: También existe la función `insert()`_ que nos permite insertar una columna en una posición determinada.
 
-En el caso de que no nos haga falta una columna podemos borrarla fácilmente. Una opción sería utilizar la función "built-in" ``del()``, pero seguiremos con el uso de funciones propias de pandas. Imaginemos que queremos **eliminar la columna Expenses**:
+En el caso de que no nos haga falta una columna podemos borrarla fácilmente. Una opción sería utilizar la función "built-in" ``del()``, pero seguiremos con el uso de funciones propias de pandas. Imaginemos que queremos **eliminar la columna "Expenses"**:
 
 .. code-block::
     :emphasize-lines: 4
@@ -1448,6 +1448,17 @@ Otro camino para conseguir el mismo resultado es aplicar una función que realic
 
 .. seealso::
     Si en vez del parámetro nominal ``columns`` utilizamos el parámetro ``index`` estaremos renombrando los valores del índice. Se aplica el mismo comportamiento ya visto.
+
+Nada impide **asignar directamente una lista (tupla) de nombres a las columnas** de un DataFrame::
+
+    >>> df.columns = ('Ingresos', 'Empleados', 'Ciudad', 'País')
+
+    >>> df.head(3)
+                         Ingresos  Empleados      Ciudad           País
+    Company
+    Apple                  274515     147000  California  United States
+    Samsung Electronics    200734     267937       Suwon    South Korea
+    Alphabet               182527     135301  California  United States
 
 
 Otras operaciones con un DataFrame
@@ -2074,6 +2085,63 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
     
         |solution| :download:`grants.py <files/grants.py>`
 
+Uniendo DataFrames
+------------------
+
+En esta sección veremos dos técnicas: Una de ellas "fusiona" dos DataFrames mientras que la otra los "concatena".
+
+Fusión de DataFrames
+^^^^^^^^^^^^^^^^^^^^
+
+Pandas proporciona la función `merge()`_ para mezclar dos DataFrames.  El comportamiento de la función viene definido, entre otros, por el parámetro ``how`` que establece el método de "fusión":
+
+.. figure:: img/pandas-merge.jpg
+    :align: center
+
+    Operaciones de mezcla con "merge"
+
+En principio, si no establecemos ningún argumento adicional, "merge" tratará de vincular aquellas filas con columnas homónimas en ambos conjuntos de datos. Si queremos especificar que la mezcla se dirija por determinadas columnas, tenemos a disposición los parámetros ``on``, ``left_on`` o ``right_on``.
+
+.. seealso::
+    Existe la posibilidad de generar un `producto cartesiano`_ entre las filas de ambos DataFrames. Para ello podemos usar ``pd.merge(df1, df2, how='cross')``.
+
+Concatenación de DataFrames
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que permite añadir las filas de un DataFrame a otro, o bien añadir las columnas de un DataFrame a otro.
+
+.. figure:: img/pandas-concat.jpg
+    :align: center
+
+    Operaciones de concatenación con "concat"
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Obtenga los datos de población y superficie de las comunidades autónomas españolas desde `esta url de Wikipedia <https://es.wikipedia.org/wiki/Comunidad_aut%C3%B3noma>`_ en un único DataFrame con la siguiente estructura::
+    
+                      Comunidad  Superficie  Población     Densidad
+        0       Castilla y León       94226    2407650    25.551865
+        1             Andalucía       87268    8379248    96.017418
+        2   Casstilla-La Mancha       79463    2025510    25.489976
+        ...
+        ...
+
+    Notas:
+
+    - Utilice la función ``pd.read_html()`` para acceder a las tablas. La tabla de superficie tiene el índice 3 y la tabla de población tiene el índice 4.
+    - Elimine la última fila de totales en cada DataFrame y quédese sólo con las columnas que interesen.
+    - Renombre las columnas según interese.
+    - Reemplace los valores de población y superficie para que sean números y convierta las columnas a entero.
+    - Realice la mezcla de población y superficie en un único DataFrame.
+    - Calcule la densidad de población de cada comunidad autónoma.
+
+    .. only:: html
+    
+        |solution| :download:`comunidades.py <files/comunidades.py>`
+
+
+
 
 .. --------------- Footnotes ---------------
 
@@ -2094,3 +2162,6 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
 .. _stack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.stack.html
 .. _unstack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html
 .. _rename(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html
+.. _merge(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html
+.. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
+.. _concat(): https://pandas.pydata.org/docs/reference/api/pandas.concat.html
