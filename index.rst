@@ -15,9 +15,13 @@ Aprende Python
 
 Curso gratuito para aprender el lenguaje de programación **Python** con un enfoque **práctico**, incluyendo **ejercicios** y cobertura para distintos **niveles de conocimiento**. [#monty-python]_
 
+Licencia:
+   GNU General Public License v3.0: `GPLv3`_.
+
 .. only:: html
 
-   :download:`Documentación en PDF <_build/latex/aprendepython.pdf>` 
+   Descarga PDF:
+      Toda la web está también disponible en formato libro: :download:`aprendepython.pdf <_build/latex/aprendepython.pdf>` 📘
 
 .. hint:: **"Programming is not about typing, it's about thinking."** -- Rich Hickey
 
@@ -64,3 +68,4 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
 .. --------------- Hyperlinks ---------------
 
 .. _noticiascyl: https://www.noticiascyl.com/t/1700231/monty-python-vuelven-leon
+.. _GPLv3: https://choosealicense.com/licenses/gpl-3.0/

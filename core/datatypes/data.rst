@@ -92,6 +92,8 @@ Mientras se sigan las :ref:`reglas <core/datatypes/data:Reglas para nombrar vari
 
 Esta convención, y muchas otras, están definidas en un documento denominado `PEP 8`_. Se trata de una **guía de estilo** para escribir código en Python. Los `PEPs`_ [#peps-link]_ son las propuestas que se hacen para la mejora del lenguaje.
 
+Aunque hay múltiples herramientas disponibles para la comprobación del estilo de código, una bastante accesible es http://pep8online.com/ ya que no necesita instalación, simplemente pegar nuestro código y verificar.
+
 Constantes
 ----------
 
@@ -110,6 +112,12 @@ Supongamos que queremos buscar un nombre de variable para almacenar el número d
 4. ``number_of_elements_to_be_handled``
 
 No existe una regla mágica que nos diga cuál es el nombre perfecto, pero podemos aplicar el *sentido común* y, a través de la experiencia, ir detectando aquellos nombres que sean más adecuados. En el ejemplo anterior, quizás podríamos descartar de principio la opción *1* y la *4* (por ser demasiado cortas o demasiado largas); nos quedaríamos con las otras dos. Si nos fijamos bien, casi no hay mucha información adicional de la opción *3* con respecto a la *2*. Así que podríamos concluir que la opción *2* es válida para nuestras necesidades. En cualquier caso esto dependerá siempre del contexto del problema que estemos tratando.
+
+Como regla general:
+
+- Usar **nombres** para :ref:`variables <core/datatypes/data:Variables>` (ejemplo ``article``).
+- Usar **verbos** para :ref:`funciones <core/modularity/functions:Funciones>` (ejemplo ``get_article()``).
+- Usar **adjetivos** para :ref:`booleanos <core/datatypes/numbers:Booleanos>` (ejemplo ``available``).
 
 **********
 Asignación
@@ -293,7 +301,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="375" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=original%20%3D%20%5B1,%202,%203%5D%0Acopy%20%3D%20original%0A%0A%23%20Modify%20first%20element%0Aoriginal%5B0%5D%20%3D%2099%0A%0A%23%20Assign%20new%20object%0Aoriginal%20%3D%20%5B4,%205,%206%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="375" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original%20%3D%20%5B1,%202,%203%5D%0Acopy%20%3D%20original%0A%0A%23%20Modify%20first%20element%0Aoriginal%5B0%5D%20%3D%2099%0A%0A%23%20Assign%20new%20object%0Aoriginal%20%3D%20%5B4,%205,%206%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 La característica de que los nombres de variables sean referencias a objetos en memoria es la que hace posible diferenciar entre **objetos mutables e inmutables**:

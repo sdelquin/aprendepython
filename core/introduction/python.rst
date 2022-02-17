@@ -84,7 +84,21 @@ De igual modo son muchas las empresas, instituciones y organismos que utilizan P
     
     Grandes empresas y organismos que usan Python
 
-Existen ránkings y estudios de mercado que sitúan a Python como uno de los lenguajes más *usados* y la vez, más *amados* dentro del mundo del desarrollo de software. En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *agosto de 2020* en la que Python ocupa el **tercer lugar de los lenguajes de programación más usados**, sólo por detrás de *C* y *Java*. Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ hecha en 2020, Python ocupa el **cuarto puesto de los lenguajes de programación más usados**, sólo por detrás de *Javascript*, *HTML/CSS* y *SQL*.
+Existen ránkings y estudios de mercado que sitúan a Python como uno de los lenguajes más *usados* y la vez, más *amados* dentro del mundo del desarrollo de software.
+
+En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *febrero de 2022* en el que Python ocupaba el **primer lugar de los lenguajes de programación más usados**, por delante de *C* y *Java*.
+
+.. figure:: img/tiobe.png
+    :align: center
+    
+    Índice TIOBE 2022
+
+Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ *hecha en 2021*, Python ocupaba el **tercer puesto de los lenguajes de programación más populares**, sólo por detrás de *Javascript* y *HTML/CSS*.
+
+.. figure:: img/stackoverflow-survey.png
+    :align: center
+    
+    Encuesta Stack Overflow 2021
 
 ******************
 Python2 vs Python3
@@ -174,4 +188,4 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 .. _Monty Python: https://es.wikipedia.org/wiki/Monty_Python
 .. _Tim Peters: https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)
 .. _Índice TIOBE: https://www.tiobe.com/tiobe-index/
-.. _encuesta a desarrolladores de Stack Overflow: https://insights.stackoverflow.com/survey/2020#most-popular-technologies
+.. _encuesta a desarrolladores de Stack Overflow: https://insights.stackoverflow.com/survey/2021#technology-most-popular-technologies

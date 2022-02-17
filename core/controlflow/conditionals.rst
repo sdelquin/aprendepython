@@ -4,7 +4,7 @@ Condicionales
 
 .. image:: img/ali-nafezarefi-62H_swdrc4A-unsplash.jpg
 
-En esta sección veremos la sentencia condicional ``if`` y las distintas variantes que puede asumir, pero antes de eso introduciremos algunas cuestiones generales de *escritura de código*. [#fork-unsplash]_
+En esta sección veremos las sentencias ``if`` y ``match-case`` junto a las distintas variantes que puede asumir, pero antes de eso introduciremos algunas cuestiones generales de *escritura de código*. [#fork-unsplash]_
 
 *********************
 Definición de bloques
@@ -359,6 +359,200 @@ De igual forma, podemos usar esta construcción para el caso contrario. La forma
     ...
     value=99
 
+************************
+Sentencia ``match-case``
+************************
+
+Una de las novedades más esperadas (y quizás controvertidas) de Python 3.10 fue el llamado `Structural Pattern Matching`_ que introdujo en el lenguaje una nueva sentencia condicional. Ésta se podría asemejar a la sentencia "switch" que ya existe en otros lenguajes de programación.
+
+Comparando valores
+==================
+
+En su versión más simple, el "pattern matching" permite comparar un valor de entrada con una serie de literales. Algo así como un conjunto de sentencias "if" encadenadas. Veamos esta aproximación mediante un ejemplo::
+
+    >>> color = '#FF0000'
+
+    >>> match color:
+    ...     case '#FF0000':
+    ...         print('🔴')
+    ...     case '#00FF00':
+    ...         print('🟢')
+    ...     case '#0000FF':
+    ...         print('🔵')
+    ...
+    🔴 
+
+¿Qué ocurre si el valor que comparamos no existe entre las opciones disponibles? Pues en principio, nada, ya que este caso no está cubierto. Si lo queremos controlar, hay que añadir una nueva regla utilizando el subguión ``_`` como patrón::
+
+    >>> color = '#AF549B'
+
+    >>> match color:
+    ...     case '#FF0000':
+    ...         print('🔴')
+    ...     case '#00FF00':
+    ...         print('🟢')
+    ...     case '#0000FF':
+    ...         print('🔵')
+    ...     case _:
+    ...         print('Unknown color!')
+    ...
+    Unknown color!
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Escriba un programa en Python que pida (por separado) dos valores numéricos y un operando (suma, resta, multiplicación, división) y calcule el resultado de la operación, usando para ello la sentencia ``match-case``.
+
+    Controlar que la operación no sea una de las cuatro predefinidas. En este caso dar un mensaje de error y no mostrar resultado final.
+
+    **Ejemplo**
+    
+    * Entrada: ``4``, ``3``, ``+``
+    * Salida: ``4+3=7``
+
+    .. only:: html
+    
+        |solution| :download:`calculator.py <files/calculator.py>`
+
+Patrones avanzados
+==================
+
+|advlev|
+
+La sentencia ``match-case`` va mucho más allá de una simple comparación de valores. Con ella podremos deconstruir estructuras de datos, capturar elementos o mapear valores.
+
+Para ejemplificar varias de sus funcionalidades, vamos a partir de una :ref:`tupla <core/datastructures/tuples:Tuplas>` que representará un punto en el plano (2 coordenadas) o en el espacio (3 coordenadas). Lo primero que vamos a hacer es detectar en qué dimensión se encuentra el punto::
+
+    >>> point = (2, 5)
+
+    >>> match point:
+    ...     case (x, y):
+    ...         print(f'({x},{y}) is in plane')
+    ...     case (x, y, z):
+    ...         print(f'({x},{y},{z}) is in space')
+    ...
+    (2,5) is in plane
+
+    >>> point = (3, 1, 7)
+
+    >>> match point:
+    ...     case (x, y):
+    ...         print(f'({x},{y}) is in plane')
+    ...     case (x, y, z):
+    ...         print(f'({x},{y},{z}) is in space')
+    ...
+    (3,1,7) is in space
+
+En cualquier caso, esta aproximación permitiría un punto formado por "strings"::
+
+    >>> point = ('2', '5')
+
+    >>> match point:
+    ...     case (x, y):
+    ...         print(f'({x},{y}) is in plane')
+    ...     case (x, y, z):
+    ...         print(f'({x},{y},{z}) is in space')
+    ...
+    (2,5) is in plane
+
+Por lo tanto, en un siguiente paso, podemos restringir nuestros patrones a valores enteros::
+
+    >>> point = ('2', '5')
+
+    >>> match point:
+    ...     case (int(), int()):
+    ...         print(f'{point} is in plane')
+    ...     case (int(), int(), int()):
+    ...         print(f'{point} is in space')
+    ...     case _:
+    ...         print('Unknown!')
+    ...
+    Unknown!
+
+    >>> point = (3, 9, 1)
+
+    >>> match point:
+    ...     case (int(), int()):
+    ...         print(f'{point} is in plane')
+    ...     case (int(), int(), int()):
+    ...         print(f'{point} is in space')
+    ...     case _:
+    ...         print('Unknown!')
+    ...
+    (3, 9, 1) is in space
+
+Imaginemos ahora que nos piden calcular la distancia del punto al origen. Debemos tener en cuenta que, a priori, desconocemos si el punto está en el plano o en el espacio::
+
+    >>> point = (8, 3, 5)
+
+    >>> match point:
+    ...     case (int(x), int(y)):
+    ...         dist_to_origin = (x ** 2 + y ** 2) ** (1 / 2)
+    ...     case (int(x), int(y), int(z)):
+    ...         dist_to_origin = (x ** 2 + y ** 2 + z ** 2) ** (1 / 2)
+    ...     case _:
+    ...         print('Unknown!')
+    ...
+
+    >>> dist_to_origin
+    9.899494936611665
+
+Con este enfoque, nos aseguramos que los puntos de entrada deben tener todas sus coordenadas como valores enteros::
+
+    >>> point = ('8', 3, 5)  # Nótese el 8 como "string"
+
+    >>> match point:
+    ...     case (int(x), int(y)):
+    ...         dist_to_origin = (x ** 2 + y ** 2) ** (1 / 2)
+    ...     case (int(x), int(y), int(z)):
+    ...         dist_to_origin = (x ** 2 + y ** 2 + z ** 2) ** (1 / 2)
+    ...     case _:
+    ...         print('Unknown!')
+    ...
+    Unknown!
+
+Cambiando de ejemplo, veamos un fragmento de código en el que tenemos que **comprobar la estructura de un bloque de autenticación** definido mediante un :ref:`diccionario <core/datastructures/dicts:Diccionarios>`. Los métodos válidos de autenticación son únicamente dos: bien usando nombre de usuario y contraseña, o bien usando correo electrónico y "token" de acceso. Además, los valores deben venir en formato cadena de texto:
+
+.. code-block::
+    :linenos:
+
+    >>> # Lista de diccionarios
+    >>> auths = [
+    ...     {'username': 'sdelquin', 'password': '1234'},
+    ...     {'email': 'sdelquin@gmail.com', 'token': '4321'},
+    ...     {'email': 'test@test.com', 'password': 'ABCD'},
+    ...     {'username': 'sdelquin', 'password': 1234}
+    ... ]
+
+    >>> for auth in auths:
+    ...     print(auth)
+    ...     match auth:
+    ...         case {'username': str(username), 'password': str(password)}:
+    ...             print('Authenticating with username and password')
+    ...             print(f'{username}: {password}')
+    ...         case {'email': str(email), 'token': str(token)}:
+    ...             print('Authenticating with email and token')
+    ...             print(f'{email}: {token}')
+    ...         case _:
+    ...             print('Authenticating method not valid!')
+    ...     print('---')
+    ...
+    {'username': 'sdelquin', 'password': '1234'}
+    Authenticating with username and password
+    sdelquin: 1234
+    ---
+    {'email': 'sdelquin@gmail.com', 'token': '4321'}
+    Authenticating with email and token
+    sdelquin@gmail.com: 4321
+    ---
+    {'email': 'test@test.com', 'password': 'ABCD'}
+    Authenticating method not valid!
+    ---
+    {'username': 'sdelquin', 'password': 1234}
+    Authenticating method not valid!
+    ---
+
+
 **************
 Operador morsa
 **************
@@ -450,3 +644,4 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _Akinator: https://es.akinator.com/
 .. _Piedra-Papel-Tijera: https://es.wikipedia.org/wiki/Piedra,_papel_o_tijera
 .. _la acción que se lleva a cabo en sistemas Ubuntu Linux: https://itsfoss.com/ubuntu-shortcuts/
+.. _Structural Pattern Matching: https://www.python.org/dev/peps/pep-0636/

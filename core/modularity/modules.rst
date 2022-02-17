@@ -276,6 +276,7 @@ Esta condición permite, en el programa principal, diferenciar qué codigo se la
 - `Running Python Scripts <https://realpython.com/courses/running-python-scripts/>`_
 - `Writing Beautiful Pythonic Code With PEP 8 <https://realpython.com/courses/writing-beautiful-python-code-pep-8/>`_
 - `Python Imports 101 <https://realpython.com/courses/python-imports-101/>`_
+- `Clean Code in Python <https://testdriven.io/blog/clean-code-python/>`_
 
 
 

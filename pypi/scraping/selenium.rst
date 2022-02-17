@@ -519,7 +519,7 @@ Cuando en la función ``execute_script()`` se hace referencia al array ``argumen
 
     Pasos a seguir:
 
-    1. Utilizar el siguiente :ref:`f-string <core/datatypes/strings.html:f-strings>` para obtener la url de acceso: ``f'https://info.mercadona.es/es/supermercados?coord={lat}%2C{lon}'``
+    1. Utilizar el siguiente :ref:`f-string <core/datatypes/strings:"f-strings">` para obtener la url de acceso: ``f'https://info.mercadona.es/es/supermercados?coord={lat}%2C{lon}'``
     2. Aceptar las cookies al acceder al sitio web.
     3. Hacer scroll hasta el final de la página para hacer visible el botón "Ver todos". Se recomienda usar javascript para ello.
     4. Localizar el botón "Ver todos" y hacer clic para mostrar todos los establecimientos (de la geolocalización). Se recomienda una espera explícita con acceso por "xpath".

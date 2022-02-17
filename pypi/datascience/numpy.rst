@@ -599,6 +599,9 @@ Muestra aleatoria sin reemplazo:
                'If the implementation is easy to explain, it may be a good idea.',
                'Complex is better than complicated.'], dtype='<U69')
 
+.. seealso::
+    `Listado de distribuciones aleatorias`_ que se pueden utilizar en NumPy.    
+
 .. admonition:: Ejercicio
     :class: exercise
 
@@ -612,6 +615,24 @@ Muestra aleatoria sin reemplazo:
     
         |solution| :download:`np_random.py <files/np_random.py>`
 
+Constantes
+==========
+
+Numpy proporciona una serie de `constantes predefinidas <https://numpy.org/doc/stable/reference/constants.html>`_ que facilitan su acceso y reutilización. Veamos algunas de ellas::
+
+    >>> import numpy as np
+
+    >>> np.Inf
+    inf
+
+    >>> np.nan
+    nan
+
+    >>> np.e
+    2.718281828459045
+
+    >>> np.pi
+    3.141592653589793
 
 *********************
 Manipulando elementos
@@ -1657,6 +1678,13 @@ Si bien hemos hablado del producto de arrays elemento a elemento, NumPy nos perm
            [72, 72, 72],
            [36, 49, 29]])
 
+En `Python 3.5 se introdujo el operador <https://docs.python.org/3/whatsnew/3.5.html#pep-465-a-dedicated-infix-operator-for-matrix-multiplication>`_ ``@`` que permitía implementar el :ref:`método especial <core/modularity/oop:Métodos mágicos>` ``__matmul__()`` de multiplicación de matrices. NumPy lo ha desarrollado y simplifica la multiplicación de matrices de la siguiente manera::
+
+    >>> m1 @ m2
+    array([[77, 53, 31],
+           [72, 72, 72],
+           [36, 49, 29]])
+
 .. admonition:: Ejercicio
     :class: exercise
 
@@ -1871,3 +1899,4 @@ La solución del sistema debe ser la misma que si obtenemos :math:`\mathcal{X} =
 .. _multiplicación clásica de matrices: https://es.wikipedia.org/wiki/Multiplicaci%C3%B3n_de_matrices
 .. _cálculo del determinante: https://es.wikipedia.org/wiki/Determinante_(matem%C3%A1tica)
 .. _inversa de una matriz: https://es.wikipedia.org/wiki/Matriz_invertible
+.. _Listado de distribuciones aleatorias: https://numpy.org/doc/stable/reference/random/generator.html#distributions

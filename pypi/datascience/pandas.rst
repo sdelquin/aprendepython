@@ -897,6 +897,14 @@ Si queremos acceder a las filas de un conjunto de datos **mediante la posición 
     Foxconn     181945     878429  New Taipei City         Taiwan
     Microsoft   143015     163000       Washington  United States
 
+    >>> df.iloc[::5]  # Salto de 5 en 5 filas
+             Revenue  Employees        City        Country
+    Company
+    Apple     274515     147000  California  United States
+    Huawei    129184     197000    Shenzhen          China
+    Intel      77867     110600  California  United States
+    HP Inc.    56639      53000  California  United States
+
 .. note:: El acceso a un registro individual nos devuelve una serie.
 
 Si queremos acceder a las filas de un conjunto de datos **mediante la etiqueta del registro** usamos el atributo ``loc``::
@@ -1025,6 +1033,18 @@ Acceso a las **tres últimas filas (empresas) y a las dos primeras columnas**::
     Lenovo            60742      71500
     HP Inc.           56639      53000
     LG Electronics    53625      75000
+
+Acceso a **las filas que van desde "Apple" a "Huawei" y a las columnas que van desde "Revenue" hasta "City"**:
+
+    >>> df.loc['Apple':'Huawei', 'Revenue':'City']
+                         Revenue  Employees             City
+    Company
+    Apple                 274515     147000       California
+    Samsung Electronics   200734     267937            Suwon
+    Alphabet              182527     135301       California
+    Foxconn               181945     878429  New Taipei City
+    Microsoft             143015     163000       Washington
+    Huawei                129184     197000         Shenzhen
 
 .. tip:: Es posible usar "slicing" (troceado) en el acceso a registros y columnas.
 
@@ -1350,7 +1370,7 @@ Supongamos que queremos **añadir una columna "Expenses" (gastos)**. No manejamo
 
 .. tip:: También existe la función `insert()`_ que nos permite insertar una columna en una posición determinada.
 
-En el caso de que no nos haga falta una columna podemos borrarla fácilmente. Una opción sería utilizar la función "built-in" ``del()``, pero seguiremos con el uso de funciones propias de pandas. Imaginemos que queremos **eliminar la columna Expenses**:
+En el caso de que no nos haga falta una columna podemos borrarla fácilmente. Una opción sería utilizar la función "built-in" ``del()``, pero seguiremos con el uso de funciones propias de pandas. Imaginemos que queremos **eliminar la columna "Expenses"**:
 
 .. code-block::
     :emphasize-lines: 4
@@ -1403,6 +1423,43 @@ Veamos un ejemplo con el borrado de columnas:
     .. only:: html
     
         |solution| :download:`pop_density.py <files/pop_density.py>`
+
+También es posible **renombrar columnas** utilizando la función `rename()`_ de Pandas.
+
+Supongamos un caso de uso en el que queremos **renombrar las columnas a sus tres primeras letras en minúsculas**. Tenemos dos maneras de hacerlo. La primera sería directamente creando un "mapping" entre los nombres de columna actuales y los nombres nuevos::
+
+    >>> new_columns = {'Revenue': 'rev', 'Employees': 'emp', 'City': 'cit', 'Country': 'cou'}
+
+    >>> df.rename(columns=new_columns).head(3)
+                            rev     emp         cit            cou
+    Company
+    Apple                274515  147000  California  United States
+    Samsung Electronics  200734  267937       Suwon    South Korea
+    Alphabet             182527  135301  California  United States
+
+Otro camino para conseguir el mismo resultado es aplicar una función que realice esta tarea de manera automatizada::
+
+    >>> df.rename(columns=lambda c: c.lower()[:3]).head(3)
+                            rev     emp         cit            cou
+    Company
+    Apple                274515  147000  California  United States
+    Samsung Electronics  200734  267937       Suwon    South Korea
+    Alphabet             182527  135301  California  United States
+
+.. seealso::
+    Si en vez del parámetro nominal ``columns`` utilizamos el parámetro ``index`` estaremos renombrando los valores del índice. Se aplica el mismo comportamiento ya visto.
+
+Nada impide **asignar directamente una lista (tupla) de nombres a las columnas** de un DataFrame::
+
+    >>> df.columns = ('Ingresos', 'Empleados', 'Ciudad', 'País')
+
+    >>> df.head(3)
+                         Ingresos  Empleados      Ciudad           País
+    Company
+    Apple                  274515     147000  California  United States
+    Samsung Electronics    200734     267937       Suwon    South Korea
+    Alphabet               182527     135301  California  United States
+
 
 Otras operaciones con un DataFrame
 ==================================
@@ -1460,7 +1517,16 @@ Otro supuesto sería el de **sustituir espacios por subguiones en los países de
     LG Electronics           South_Korea
     Name: Country, dtype: object
 
-Incluso podemos recurrir a expresiones regulares. Supongamos que queremos **filtrar las empresas y quedarnos con las que comienzan por vocal**::
+Expresiones regulares
+^^^^^^^^^^^^^^^^^^^^^
+
+El uso de expresiones regulares aporta una gran expresividad. Veamos su aplicación con tres casos de uso:
+
+- Filtrado de filas.
+- Reemplazo de valores.
+- Extracción de columnas.
+
+Supongamos que queremos **filtrar las empresas y quedarnos con las que comienzan por vocal**::
 
     >>> mask = df.index.str.match(r'^[aeiou]', flags=re.IGNORECASE)
 
@@ -1473,6 +1539,59 @@ Incluso podemos recurrir a expresiones regulares. Supongamos que queremos **filt
     IBM         73620     364800    New York  United States
 
 .. note:: Dado que el nombre de la empresa está actuando como índice del "dataset", hemos aplicado la búsqueda sobre ``.index``.
+
+Ahora imaginemos que vamos a **sustituir aquellas ciudades que empiezan con "S" o "T" por "Stanton"**::
+
+    >>> df['City'].str.replace(r'^[ST].*', 'Stanton', regex=True)
+    Company
+    Apple                   California
+    Samsung Electronics        Stanton
+    Alphabet                California
+    Foxconn                New Stanton
+    Microsoft               Washington
+    Huawei                     Stanton
+    Dell Technologies          Stanton
+    Facebook                California
+    Sony                       Stanton
+    Hitachi                    Stanton
+    Intel                   California
+    IBM                       New York
+    Tencent                    Stanton
+    Panasonic                    Osaka
+    Lenovo                   Hong Kong
+    HP Inc.                 California
+    LG Electronics             Stanton
+    Name: City, dtype: object
+
+Por último supongamos que queremos **dividir la columna "Country"** en dos columnas usando el espacio como separador::
+
+    >>> df['Country'].str.split(' ', expand=True)
+                              0       1
+    Company
+    Apple                United  States
+    Samsung Electronics   South   Korea
+    Alphabet             United  States
+    Foxconn              Taiwan    None
+    Microsoft            United  States
+    Huawei                China    None
+    Dell Technologies    United  States
+    Facebook             United  States
+    Sony                  Japan    None
+    Hitachi               Japan    None
+    Intel                United  States
+    IBM                  United  States
+    Tencent               China    None
+    Panasonic             Japan    None
+    Lenovo                China    None
+    HP Inc.              United  States
+    LG Electronics        South   Korea
+
+Existen otras funciones interesantes de Pandas que trabajan sobre expresiones regulares:
+
+- `count()`_ para contar el número de ocurrencias de un patrón.
+- `contains()`_ para comprobar si existe un determinado patrón.
+- `extract()`_ para extraer grupos de captura sobre un patrón.
+- `findall()`_ para encontrar todas las ocurrencias de un patrón.
 
 
 Usando funciones estadísticas
@@ -1708,6 +1827,7 @@ Si queremos acceder al registro completo, podemos aplicar estas funciones de otr
     
         |solution| :download:`smallest_density.py <files/smallest_density.py>`
 
+
 Gestionando valores nulos
 -------------------------
 
@@ -1753,6 +1873,121 @@ Incluso podemos **aplicar interpolación para completar valores nulos**::
     1  2  5.0  8.0
     2  3  6.0  8.0
 
+Reformando datos
+-----------------
+
+En esta sección se verán las operaciones de **pivotar** y **apilar** que permiten reformar (remodelar) un DataFrame.
+
+Seguimos utilizando el conjunto de datos de empresas tecnológicas aunque nos quedaremos únicamente con las 3 primeras filas a efectos didácticos::
+
+    >>> df = df.reset_index()[:3]
+
+    >>> df
+                   Company  Revenue  Employees        City        Country
+    0                Apple   274515     147000  California  United States
+    1  Samsung Electronics   200734     267937       Suwon    South Korea
+    2             Alphabet   182527     135301  California  United States
+
+Ancho y Largo
+^^^^^^^^^^^^^
+
+Típicamente existen dos maneras de presentar datos tabulares: formato ancho y formato largo. En **formato ancho** cada fila tiene múltiples columnas representando todas las variables de una misma observación. En **formato largo** cada fila tiene básicamente tres columnas: una que identifica la observación, otra que identifica la variable y otra que contiene el valor.
+
+Para pasar de formato ancho a formato largo usamos la función `melt()`_::
+
+    >>> df.melt(id_vars='Company')
+                    Company   variable          value
+    0                 Apple    Revenue         274515
+    1   Samsung Electronics    Revenue         200734
+    2              Alphabet    Revenue         182527
+    3                 Apple  Employees         147000
+    4   Samsung Electronics  Employees         267937
+    5              Alphabet  Employees         135301
+    6                 Apple       City     California
+    7   Samsung Electronics       City          Suwon
+    8              Alphabet       City     California
+    9                 Apple    Country  United States
+    10  Samsung Electronics    Country    South Korea
+    11             Alphabet    Country  United States
+
+
+Para pasar de formato largo a formato ancho usamos la función `pivot()`_::
+
+    >>> df_long = df.melt(id_vars='Company')
+
+    >>> df_long.pivot(index='Company', columns='variable', values='value')
+    variable                   City        Country Employees Revenue
+    Company
+    Alphabet             California  United States    135301  182527
+    Apple                California  United States    147000  274515
+    Samsung Electronics       Suwon    South Korea    267937  200734
+
+.. tip::
+    Si queremos obtener el DataFrame en formato ancho tal y como estaba, tenemos que realizar un par de ajustes: ``df.rename_axis(columns = None).reset_index()``.
+
+Apilando datos
+^^^^^^^^^^^^^^
+
+Las operaciones de apilado trabajan sobre los índices del DataFrame. Para comprobar su aplicabilidad, vamos a añadir la columna "Company" como índice del "dataset" anterior::
+
+    >>> df.set_index('Company', inplace=True)
+
+    >>> df
+                         Revenue  Employees        City        Country
+    Company
+    Apple                 274515     147000  California  United States
+    Samsung Electronics   200734     267937       Suwon    South Korea
+    Alphabet              182527     135301  California  United States
+
+La función `stack()`_  nos permite obtener un DataFrame con **índice multinivel** que incluye las columnas del DataFrame de origen y los valores agrupados::
+
+    >>> df_stacked = df.stack()
+
+    >>> df_stacked
+    Company
+    Apple                Revenue             274515
+                         Employees           147000
+                         City            California
+                         Country      United States
+    Samsung Electronics  Revenue             200734
+                         Employees           267937
+                         City                 Suwon
+                         Country        South Korea
+    Alphabet             Revenue             182527
+                         Employees           135301
+                         City            California
+                         Country      United States
+    dtype: object
+
+    >>> df_stacked.index
+    MultiIndex([(              'Apple',   'Revenue'),
+                (              'Apple', 'Employees'),
+                (              'Apple',      'City'),
+                (              'Apple',   'Country'),
+                ('Samsung Electronics',   'Revenue'),
+                ('Samsung Electronics', 'Employees'),
+                ('Samsung Electronics',      'City'),
+                ('Samsung Electronics',   'Country'),
+                (           'Alphabet',   'Revenue'),
+                (           'Alphabet', 'Employees'),
+                (           'Alphabet',      'City'),
+                (           'Alphabet',   'Country')],
+               names=['Company', None])
+
+La función `unstack()`_ realiza justo la operación contraria: convertir un DataFrame con índice multinivel en un Dataframe en formato ancho con índice sencillo. Se podría ver como una manera de **aplanar** el "dataset"::
+
+    >>> df_flat = df_stacked.unstack()
+
+    >>> df_flat
+                        Revenue Employees        City        Country
+    Company
+    Apple                274515    147000  California  United States
+    Samsung Electronics  200734    267937       Suwon    South Korea
+    Alphabet             182527    135301  California  United States
+
+    >>> df_flat.index
+    Index(['Apple', 'Samsung Electronics', 'Alphabet'], dtype='object', name='Company')
+
 Agrupando datos
 ---------------
 
@@ -1785,6 +2020,9 @@ También es posible realizar la agrupación en varios niveles. En el siguiente e
                    Texas               92224
                    Washington         143015
     Name: Revenue, dtype: int64
+
+.. seealso::
+    Cuando realizamos una agrupación por varias columnas, el resultado contiene un índice de múltiples niveles. Podemos aplanar el DataFrame usando :ref:`unstack() <pypi/datascience/pandas:Reformando datos>`.
 
 Incluso podemos aplicar distintas funciones de agregación a cada columna. Supongamos que necesitamos calcular **la media de los ingresos y la mediana del número de empleados/as, con las empresas agrupadas por país**::
 
@@ -1909,6 +2147,63 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
     
         |solution| :download:`grants.py <files/grants.py>`
 
+Uniendo DataFrames
+------------------
+
+En esta sección veremos dos técnicas: Una de ellas "fusiona" dos DataFrames mientras que la otra los "concatena".
+
+Fusión de DataFrames
+^^^^^^^^^^^^^^^^^^^^
+
+Pandas proporciona la función `merge()`_ para mezclar dos DataFrames.  El comportamiento de la función viene definido, entre otros, por el parámetro ``how`` que establece el método de "fusión":
+
+.. figure:: img/pandas-merge.jpg
+    :align: center
+
+    Operaciones de mezcla con "merge"
+
+En principio, si no establecemos ningún argumento adicional, "merge" tratará de vincular aquellas filas con columnas homónimas en ambos conjuntos de datos. Si queremos especificar que la mezcla se dirija por determinadas columnas, tenemos a disposición los parámetros ``on``, ``left_on`` o ``right_on``.
+
+.. seealso::
+    Existe la posibilidad de generar un `producto cartesiano`_ entre las filas de ambos DataFrames. Para ello podemos usar ``pd.merge(df1, df2, how='cross')``.
+
+Concatenación de DataFrames
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que permite añadir las filas de un DataFrame a otro, o bien añadir las columnas de un DataFrame a otro.
+
+.. figure:: img/pandas-concat.jpg
+    :align: center
+
+    Operaciones de concatenación con "concat"
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Obtenga los datos de población y superficie de las comunidades autónomas españolas desde `esta url de Wikipedia <https://es.wikipedia.org/wiki/Comunidad_aut%C3%B3noma>`_ en un único DataFrame con la siguiente estructura::
+    
+                      Comunidad  Superficie  Población     Densidad
+        0       Castilla y León       94226    2407650    25.551865
+        1             Andalucía       87268    8379248    96.017418
+        2   Casstilla-La Mancha       79463    2025510    25.489976
+        ...
+        ...
+
+    Notas:
+
+    - Utilice la función ``pd.read_html()`` para acceder a las tablas. La tabla de superficie tiene el índice 3 y la tabla de población tiene el índice 4.
+    - Elimine la última fila de totales en cada DataFrame y quédese sólo con las columnas que interesen.
+    - Renombre las columnas según interese.
+    - Reemplace los valores de población y superficie para que sean números y convierta las columnas a entero.
+    - Realice la mezcla de población y superficie en un único DataFrame.
+    - Calcule la densidad de población de cada comunidad autónoma.
+
+    .. only:: html
+    
+        |solution| :download:`comunidades.py <files/comunidades.py>`
+
+
+
 
 .. --------------- Footnotes ---------------
 
@@ -1917,9 +2212,22 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
 .. [#billions] Los datos de ingresos ("revenues") están en billones (americanos) de dólares.
 .. [#old-data] Datos del año 2020 según Wikipedia.
 .. [#wikipedia-canarias] Datos extraídos de `Wikipedia <https://es.wikipedia.org/wiki/Canarias>`__.
+.. [#usd-billions] Un billón de dólares americanos equivale a 1.000.000.000$
 
 .. --------------- Hyperlinks ---------------
 
 .. _Sid Balachandran: https://unsplash.com/@itookthose?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _series: https://pandas.pydata.org/docs/reference/api/pandas.Series.html
 .. _insert(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.insert.html
+.. _melt(): https://pandas.pydata.org/docs/reference/api/pandas.melt.html
+.. _pivot(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pivot.html
+.. _stack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.stack.html
+.. _unstack(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html
+.. _rename(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html
+.. _merge(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html
+.. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
+.. _concat(): https://pandas.pydata.org/docs/reference/api/pandas.concat.html
+.. _count(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.count.html
+.. _contains(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.contains.html
+.. _extract(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.extract.html
+.. _findall(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.findall.html

@@ -190,7 +190,36 @@ Jupyter Notebook
 
 Podemos verlo como un intérprete de Python (contiene un "kernel" [#kernel]_ que permite ejecutar código) con la capacidad de incluir documentación en formato `Markdown`_, lo que potencia sus funcionalidades y lo hace adecuado para preparar cualquier tipo de material vinculado con lenguajes de programación.
 
-.. note:: Aunque su uso está más extendido en el mundo Python, `existen muchos otros "kernels" <https://github.com/jupyter/jupyter/wiki/Jupyter-kernels>`_ sobre los que trabajar en Jupyter Notebook.
+Aunque su uso está más extendido en el mundo Python, `existen muchos otros "kernels" <https://github.com/jupyter/jupyter/wiki/Jupyter-kernels>`_ sobre los que trabajar en Jupyter Notebook.
+
+.. seealso::
+    Sección sobre :ref:`Jupyter <pypi/datascience/jupyter:jupyter>`.
+
+*******
+repl.it
+*******
+
+`repl.it <https://replit.com/>`__ es un **servicio web que ofrece un entorno de desarrollo integrado** para programar en más de 50 lenguajes (Python incluido).
+
+Es gratuito y de uso colaborativo. Se requiere una cuenta en el sistema para utilizarlo. El hecho de no requerir instalación ni configuración previa lo hace atractivo en determinadas circunstancias.
+
+.. figure:: img/replit.png
+    :align: center
+
+    repl.it
+
+En su versión gratuita ofrece:
+
+- Almacenamiento de 500MB.
+- Python 3.8.2 (febrero de 2022).
+- 117 paquetes preinstalados (febrero de 2022).
+- Navegador (y subida) de ficheros integrado.
+- Gestor de paquetes integrado.
+- Integración con GitHub.
+- Gestión de secretos (datos sensibles).
+- Base de datos clave-valor ya integrada.
+- Acceso (limitado) al sistema operativo y sistema de ficheros.
+
 
 ******
 WSL
