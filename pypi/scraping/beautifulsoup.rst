@@ -384,6 +384,43 @@ Ejemplos::
     >>> footer.span.string  # El "span" sólo contiene un elemento
     'This is span 1'
 
+Mostrando elementos
+-------------------
+
+Cualquier elemento del DOM que seleccionemos mediante este paquete se representa con el código HTML que contiene. Por ejemplo::
+
+    >>> data = soup.find(id='data')
+
+    >>> data
+    <ul id="data">
+    <li class="blue"><a href="https://example1.com">Example 1</a></li>
+    <li class="red"><a href="https://example2.com">Example 2</a></li>
+    <li class="gold"><a href="https://example3.com">Example 3</a></li>
+    </ul>
+
+Existe la posibilidad de mostrar el código HTML en formato "mejorado" a través de la función ``prettify()``::
+
+    >>> pretty_data = data.prettify()
+
+    >>> print(pretty_data)
+    <ul id="data">
+     <li class="blue">
+      <a href="https://example1.com">
+       Example 1
+      </a>
+     </li>
+     <li class="red">
+      <a href="https://example2.com">
+       Example 2
+      </a>
+     </li>
+     <li class="gold">
+      <a href="https://example3.com">
+       Example 3
+      </a>
+     </li>
+    </ul>
+
 ******************
 Navegar por el DOM
 ******************
