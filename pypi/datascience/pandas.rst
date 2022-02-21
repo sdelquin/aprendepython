@@ -2220,6 +2220,8 @@ Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que perm
 
     Operaciones de concatenación con "concat"
 
+Si queremos "reindexar" el DataFrame concatenado, la función ``concat()`` admite un parámetro ``ignore_index`` que podemos poner a ``True``. De esta forma tendremos un "dataset" resultante con índice desde 0 hasta N.
+
 .. admonition:: Ejercicio
     :class: exercise
 
