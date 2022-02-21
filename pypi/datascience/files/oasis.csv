@@ -1,0 +1,1007 @@
+album_release_date,album_release_year,danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,time_signature,disc_number,duration_ms,explicit,is_local,track_name,track_number,album_name,key_name,mode_name,key_mode
+2016-10-14,2016,0.297,0.861,11,-3.41,0,0.0448,0.000164,0.000211,0.112,0.226,80.013,4,1,463213,FALSE,FALSE,D'You Know What I Mean? - Remastered,1,Be Here Now(Remastered),B,minor,B minor
+2016-10-14,2016,0.354,0.971,9,-1.897,0,0.0705,0.00249,0.00545,0.673,0.226,135.174,4,1,311333,FALSE,FALSE,My Big Mouth - Remastered,2,Be Here Now(Remastered),A,minor,A minor
+2016-10-14,2016,0.3,0.879,0,-2.899,1,0.054,0.221,0.0332,0.262,0.258,148.323,4,1,430373,FALSE,FALSE,Magic Pie - Remastered,3,Be Here Now(Remastered),C,major,C major
+2016-10-14,2016,0.197,0.821,7,-2.596,1,0.0412,0.0822,0.00301,0.259,0.35,170.015,4,1,355866,FALSE,FALSE,Stand by Me - Remastered,4,Be Here Now(Remastered),G,major,G major
+2016-10-14,2016,0.342,0.977,2,-2.115,1,0.0571,0.00389,0.000393,0.628,0.197,137.402,4,1,262400,FALSE,FALSE,"I Hope, I Think, I Know - Remastered",5,Be Here Now(Remastered),D,major,D major
+2016-10-14,2016,0.344,0.911,7,-2.615,1,0.037,0.123,0,0.07,0.319,166.146,4,1,349640,FALSE,FALSE,The Girl in the Dirty Shirt - Remastered,6,Be Here Now(Remastered),G,major,G major
+2016-10-14,2016,0.382,0.781,7,-4.122,1,0.0425,0.0901,0.0198,0.416,0.195,86.21,4,1,411360,FALSE,FALSE,Fade In-Out - Remastered,7,Be Here Now(Remastered),G,major,G major
+2016-10-14,2016,0.399,0.826,0,-4.925,1,0.0369,0.0372,4.32e-05,0.0756,0.193,81.142,4,1,288666,FALSE,FALSE,Don't Go Away - Remastered,8,Be Here Now(Remastered),C,major,C major
+2016-10-14,2016,0.46,0.944,9,-1.945,1,0.0458,0.0795,0.477,0.546,0.287,112.201,4,1,312906,FALSE,FALSE,Be Here Now - Remastered,9,Be Here Now(Remastered),A,major,A major
+2016-10-14,2016,0.333,0.831,9,-3.149,1,0.0506,0.135,0.000478,0.696,0.326,82.101,4,1,559200,FALSE,FALSE,All Around the World - Remastered,10,Be Here Now(Remastered),A,major,A major
+2016-10-14,2016,0.323,0.775,2,-1.693,1,0.0652,0.00203,0.0189,0.898,0.204,126.251,4,1,423373,FALSE,FALSE,It's Gettin' Better (Man!!) - Remastered,11,Be Here Now(Remastered),D,major,D major
+2016-10-14,2016,0.303,0.823,2,-5.115,1,0.0499,0.00279,0.825,0.312,0.219,82.006,4,1,129639,FALSE,FALSE,All Around the World (Reprise) - Remastered,12,Be Here Now(Remastered),D,major,D major
+2016-10-05,2016,0.297,0.861,11,-3.41,0,0.0448,0.000164,0.000211,0.112,0.226,80.013,4,1,463213,FALSE,FALSE,D'You Know What I Mean? - Remastered,1,Be Here Now(Remastered)(Deluxe Edition),B,minor,B minor
+2016-10-05,2016,0.354,0.971,9,-1.897,0,0.0705,0.00249,0.00545,0.673,0.226,135.174,4,1,311333,FALSE,FALSE,My Big Mouth - Remastered,2,Be Here Now(Remastered)(Deluxe Edition),A,minor,A minor
+2016-10-05,2016,0.3,0.879,0,-2.899,1,0.054,0.221,0.0332,0.262,0.258,148.323,4,1,430373,FALSE,FALSE,Magic Pie - Remastered,3,Be Here Now(Remastered)(Deluxe Edition),C,major,C major
+2016-10-05,2016,0.197,0.821,7,-2.596,1,0.0412,0.0822,0.00301,0.259,0.35,170.015,4,1,355866,FALSE,FALSE,Stand by Me - Remastered,4,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.342,0.977,2,-2.115,1,0.0571,0.00389,0.000393,0.628,0.197,137.402,4,1,262400,FALSE,FALSE,"I Hope, I Think, I Know - Remastered",5,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.344,0.911,7,-2.615,1,0.037,0.123,0,0.07,0.319,166.146,4,1,349640,FALSE,FALSE,The Girl in the Dirty Shirt - Remastered,6,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.382,0.781,7,-4.122,1,0.0425,0.0901,0.0198,0.416,0.195,86.21,4,1,411360,FALSE,FALSE,Fade In-Out - Remastered,7,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.399,0.826,0,-4.925,1,0.0369,0.0372,4.32e-05,0.0756,0.193,81.142,4,1,288666,FALSE,FALSE,Don't Go Away - Remastered,8,Be Here Now(Remastered)(Deluxe Edition),C,major,C major
+2016-10-05,2016,0.46,0.944,9,-1.945,1,0.0458,0.0795,0.477,0.546,0.287,112.201,4,1,312906,FALSE,FALSE,Be Here Now - Remastered,9,Be Here Now(Remastered)(Deluxe Edition),A,major,A major
+2016-10-05,2016,0.333,0.831,9,-3.149,1,0.0506,0.135,0.000478,0.696,0.326,82.101,4,1,559200,FALSE,FALSE,All Around the World - Remastered,10,Be Here Now(Remastered)(Deluxe Edition),A,major,A major
+2016-10-05,2016,0.323,0.775,2,-1.693,1,0.0652,0.00203,0.0189,0.898,0.204,126.251,4,1,423373,FALSE,FALSE,It's Gettin' Better (Man!!) - Remastered,11,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.303,0.823,2,-5.115,1,0.0499,0.00279,0.825,0.312,0.219,82.006,4,1,129639,FALSE,FALSE,All Around the World (Reprise) - Remastered,12,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.372,0.981,2,-2.707,1,0.0757,0.00512,0.000921,0.337,0.225,126.032,4,1,308173,FALSE,FALSE,Stay Young - Remastered,13,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.363,0.938,2,-2.938,1,0.0535,5.67e-05,3.99e-05,0.485,0.464,135.01,4,1,275626,FALSE,FALSE,The Fame - Remastered,14,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.419,0.809,4,-3.283,1,0.0335,0.00712,2.94e-05,0.137,0.234,129.009,4,1,309413,FALSE,FALSE,Flashbax - Remastered,15,Be Here Now(Remastered)(Deluxe Edition),E,major,E major
+2016-10-05,2016,0.335,0.858,0,-2.032,1,0.0574,0.00589,0.0145,0.408,0.403,126.054,4,1,315026,FALSE,FALSE,(I Got) The Fever - Remastered,16,Be Here Now(Remastered)(Deluxe Edition),C,major,C major
+2016-10-05,2016,0.366,0.976,4,-2.468,1,0.0617,0.00313,0.00465,0.0756,0.222,134.079,4,1,359546,FALSE,FALSE,My Sister Lover - Remastered,17,Be Here Now(Remastered)(Deluxe Edition),E,major,E major
+2016-10-05,2016,0.482,0.735,2,-3.681,0,0.0303,0.279,0,0.263,0.117,107.06,4,1,281626,FALSE,FALSE,Going Nowhere - Remastered,18,Be Here Now(Remastered)(Deluxe Edition),D,minor,D minor
+2016-10-05,2016,0.576,0.543,9,-5.855,0,0.0259,0.229,0,0.114,0.644,81.074,4,1,362640,FALSE,FALSE,Stand by Me - Live at Bonehead's Outtake,19,Be Here Now(Remastered)(Deluxe Edition),A,minor,A minor
+2016-10-05,2016,0.516,0.368,2,-7.198,1,0.028,0.781,0.000175,0.147,0.41,100.511,4,1,277840,FALSE,FALSE,Untitled - Demo,20,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.39,0.307,11,-6.889,0,0.03,0.701,0,0.733,0.19,123.911,4,1,225040,FALSE,FALSE,Help! - Live in LA,21,Be Here Now(Remastered)(Deluxe Edition),B,minor,B minor
+2016-10-05,2016,0.567,0.373,7,-5.743,1,0.0251,0.439,0,0.0936,0.29,99.651,4,1,235853,FALSE,FALSE,Setting Sun - Live Radio Broadcast,22,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.422,0.258,9,-9.616,0,0.0261,0.741,0.000195,0.0737,0.269,141.461,4,1,293213,FALSE,FALSE,If We Shadows - Demo,23,Be Here Now(Remastered)(Deluxe Edition),A,minor,A minor
+2016-10-05,2016,0.482,0.526,0,-7.515,1,0.0308,0.781,0,0.174,0.513,84.75,4,1,222546,FALSE,FALSE,Don't Go Away - Demo,24,Be Here Now(Remastered)(Deluxe Edition),C,major,C major
+2016-10-05,2016,0.186,0.936,5,-5.386,1,0.0747,0.000131,0.186,0.907,0.361,140.254,4,1,322680,TRUE,FALSE,My Big Mouth - Live at Knebworth Park,25,Be Here Now(Remastered)(Deluxe Edition),F,major,F major
+2016-10-05,2016,0.321,0.832,4,-3.872,1,0.0384,0.000134,0.024,0.196,0.311,79.991,4,1,445466,FALSE,FALSE,D'You Know What I Mean? - NG's 2016 Rethink,26,Be Here Now(Remastered)(Deluxe Edition),E,major,E major
+2016-10-05,2016,0.451,0.63,11,-8.379,0,0.0294,0.00636,0.000697,0.174,0.146,79.997,4,1,436373,FALSE,FALSE,D'You Know What I Mean? - Mustique Demo,27,Be Here Now(Remastered)(Deluxe Edition),B,minor,B minor
+2016-10-05,2016,0.467,0.865,0,-7.625,1,0.047,9.78e-06,0.000287,0.171,0.695,134.005,4,1,317426,FALSE,FALSE,My Big Mouth - Mustique Demo,28,Be Here Now(Remastered)(Deluxe Edition),C,major,C major
+2016-10-05,2016,0.444,0.888,11,-7.18,0,0.0323,4.47e-05,0.000974,0.332,0.552,134.003,4,1,369040,FALSE,FALSE,My Sister Lover - Mustique Demo,29,Be Here Now(Remastered)(Deluxe Edition),B,minor,B minor
+2016-10-05,2016,0.364,0.801,7,-7.966,1,0.0319,0.00112,0.000471,0.607,0.454,168.017,4,1,360920,FALSE,FALSE,Stand by Me - Mustique Demo,30,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.405,0.922,2,-7.529,1,0.0466,5.21e-06,4.51e-05,0.72,0.564,136.98,4,1,250680,FALSE,FALSE,"I Hope, I Think, I Know - Mustique Demo",31,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.35,0.781,7,-8.019,1,0.0352,0.0183,3.52e-06,0.327,0.547,165.94,4,1,323266,FALSE,FALSE,The Girl in the Dirty Shirt - Mustique Demo,32,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.421,0.783,9,-8.846,0,0.0361,0.021,2.59e-06,0.124,0.536,161.772,4,1,258293,FALSE,FALSE,Don't Go Away - Mustique Demo,33,Be Here Now(Remastered)(Deluxe Edition),A,minor,A minor
+2016-10-05,2016,0.178,0.272,7,-20.608,1,0.0294,0.974,0.996,0.21,0.102,164.816,4,1,215000,FALSE,FALSE,Trip Inside (Be Here Now) - Mustique Demo,34,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.467,0.566,7,-10.033,1,0.0271,0.0755,0.00169,0.45,0.279,85.948,4,1,362880,FALSE,FALSE,Fade In-Out - Mustique Demo,35,Be Here Now(Remastered)(Deluxe Edition),G,major,G major
+2016-10-05,2016,0.381,0.832,2,-6.603,1,0.0423,5.56e-06,0.0118,0.574,0.383,128.956,4,1,296480,FALSE,FALSE,Stay Young - Mustique Demo,36,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.298,0.397,4,-12.687,0,0.0302,0.376,5.18e-06,0.171,0.181,96.021,4,1,268373,FALSE,FALSE,Angel Child - Mustique Demo,37,Be Here Now(Remastered)(Deluxe Edition),E,minor,E minor
+2016-10-05,2016,0.409,0.917,2,-6.864,1,0.043,2.7e-05,0.000437,0.192,0.666,134.959,4,1,285360,FALSE,FALSE,The Fame - Mustique Demo,38,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2016-10-05,2016,0.471,0.743,11,-7.96,1,0.0301,0.00594,0.0597,0.673,0.457,82.023,4,1,390893,FALSE,FALSE,All Around the World - Mustique Demo,39,Be Here Now(Remastered)(Deluxe Edition),B,major,B major
+2016-10-05,2016,0.438,0.926,2,-7.535,1,0.0437,9.66e-05,0.000404,0.204,0.378,125.005,4,1,399586,FALSE,FALSE,It's Gettin' Better (Man!!) - Mustique Demo,40,Be Here Now(Remastered)(Deluxe Edition),D,major,D major
+2014-09-24,2014,0.161,0.948,9,-3.174,0,0.113,0.0141,0.0433,0.166,0.0567,132.3,4,1,203186,FALSE,FALSE,Hello - Remastered,1,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.233,0.986,9,-1.896,0,0.0947,0.0325,0.000311,0.117,0.145,126.56,4,1,240093,FALSE,FALSE,Roll with It - Remastered,2,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.376,0.896,2,-4.065,1,0.0395,0.000452,0,0.194,0.472,174.379,4,1,258773,FALSE,FALSE,Wonderwall - Remastered,3,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.327,0.938,0,-3.237,1,0.0636,0.0707,3.79e-06,0.148,0.327,162.933,4,1,289560,FALSE,FALSE,Don't Look Back in Anger - Remastered,4,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.147,0.933,2,-2.478,1,0.0658,0.000305,0.00134,0.382,0.206,202.197,4,1,341906,FALSE,FALSE,Hey Now - Remastered,5,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.279,0.748,10,-5.655,1,0.0484,3.93e-05,0.92,0.254,0.201,143.121,4,1,44626,FALSE,FALSE,Untitled - Remastered,6,"(What's The Story) Morning Glory (Remastered, Deluxe)",A#,major,A# major
+2014-09-24,2014,0.262,0.932,0,-2.281,0,0.0925,0.173,0.0206,0.288,0.0733,110.129,4,1,327920,FALSE,FALSE,Some Might Say - Remastered,7,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,minor,C minor
+2014-09-24,2014,0.418,0.84,7,-4.321,1,0.0285,0.00192,0,0.163,0.627,158.373,4,1,294813,FALSE,FALSE,Cast No Shadow - Remastered,8,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.487,0.909,9,-3.484,1,0.0463,0.159,1.27e-06,0.304,0.51,125.422,4,1,220920,FALSE,FALSE,She's Electric - Remastered,9,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,major,A major
+2014-09-24,2014,0.33,0.983,0,-3.038,1,0.0932,0.0664,4.68e-05,0.491,0.0968,136.952,4,1,303320,FALSE,FALSE,Morning Glory - Remastered,10,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.154,0.991,5,-13.27,1,0.0791,0.849,0.92,0.721,0.0176,133.72,4,1,39360,FALSE,FALSE,Untitled - Remastered,11,"(What's The Story) Morning Glory (Remastered, Deluxe)",F,major,F major
+2014-09-24,2014,0.297,0.825,2,-3.771,1,0.0394,0.464,0.0833,0.358,0.123,150.339,4,1,454000,FALSE,FALSE,Champagne Supernova - Remastered,12,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.428,0.428,4,-8.405,0,0.0247,0.52,7.84e-06,0.365,0.319,84.612,4,1,263746,FALSE,FALSE,Talk Tonight - Remastered,13,"(What's The Story) Morning Glory (Remastered, Deluxe)",E,minor,E minor
+2014-09-24,2014,0.19,0.928,7,-3.274,1,0.0803,0.00978,0.000719,0.334,0.215,112.961,4,1,267986,FALSE,FALSE,Acquiesce - Remastered,14,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.202,0.875,7,-1.844,1,0.0571,0.00298,0.000336,0.368,0.273,78.882,4,1,281840,FALSE,FALSE,Headshrinker - Remastered,15,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.476,0.805,4,-6.126,1,0.0321,0.000461,3.99e-05,0.0983,0.881,101.378,4,1,240146,FALSE,FALSE,It's Better People - Remastered,16,"(What's The Story) Morning Glory (Remastered, Deluxe)",E,major,E major
+2014-09-24,2014,0.509,0.911,9,-4.121,0,0.0353,0.000589,8.21e-06,0.0384,0.278,126.425,4,1,279200,FALSE,FALSE,Rockin' Chair - Remastered,17,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.334,0.98,7,-1.874,1,0.0774,0.00982,0.00437,0.35,0.182,139.6,4,1,224426,FALSE,FALSE,Step Out - Remastered,18,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.442,0.955,11,-2.231,0,0.0519,0.00135,0,0.347,0.743,124.233,4,1,204653,FALSE,FALSE,Underneath the Sky - Remastered,19,"(What's The Story) Morning Glory (Remastered, Deluxe)",B,minor,B minor
+2014-09-24,2014,0.373,0.9,9,-1.578,0,0.046,1.49e-05,0.374,0.379,0.558,133.138,4,1,312160,FALSE,FALSE,Cum On Feel The Noize - Remastered,20,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.334,0.915,0,-2.1,1,0.0436,1.58e-05,0.000232,0.0748,0.38,138.026,4,1,344440,FALSE,FALSE,Round Are Way - Remastered,21,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.21,0.942,7,-2.865,0,0.0623,3.06e-05,0.945,0.106,0.196,142.872,4,1,262400,FALSE,FALSE,The Swamp Song - Remastered,22,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,minor,G minor
+2014-09-24,2014,0.383,0.584,7,-6.707,1,0.0294,0.013,8.46e-05,0.0725,0.145,148.508,4,1,325200,FALSE,FALSE,The Masterplan - Remastered,23,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.378,0.815,7,-3.987,1,0.106,0.296,0,0.336,0.501,166.582,4,1,242920,FALSE,FALSE,Bonehead's Bank Holiday - Remastered,24,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.477,0.785,2,-5.941,1,0.0315,0.0167,0.000676,0.103,0.417,150.661,4,1,417960,FALSE,FALSE,Champagne Supernova - Remastered,25,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.248,0.594,7,-7.74,1,0.0287,0.106,0,0.366,0.693,95.898,3,1,137200,FALSE,FALSE,You've Got to Hide Your Love Away - Remastered,26,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.321,0.832,0,-2.354,1,0.0567,4.96e-05,0.145,0.547,0.364,121.183,4,1,234440,FALSE,FALSE,Acquiesce - Live at Earls Court,27,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.594,0.681,2,-5.441,1,0.0284,0.79,2.28e-06,0.102,0.611,108.546,4,1,243866,FALSE,FALSE,Some Might Say - Demo,28,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.169,0.741,2,-2.652,1,0.062,0.00145,0.00291,0.38,0.374,122.687,4,1,306066,FALSE,FALSE,Some Might Say - Live at Roskilde,29,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.5,0.55,9,-6.195,1,0.0286,0.238,6.97e-06,0.0962,0.21,146.66,4,1,182906,FALSE,FALSE,She's Electric - Demo,30,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,major,A major
+2014-09-24,2014,0.284,0.588,0,-6.296,1,0.0282,0.227,0,0.136,0.428,92.74,4,1,222186,FALSE,FALSE,Talk Tonight - Live at Bath Pavilion,31,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.535,0.417,9,-6.654,0,0.026,0.11,0.00101,0.0968,0.193,129.215,4,1,244560,FALSE,FALSE,Rockin' Chair - Demo,32,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.131,0.859,2,-3.826,1,0.0954,0.000757,0.0234,0.614,0.123,144.245,4,1,203866,FALSE,FALSE,Hello - Live at Roskilde,33,"(What's The Story) Morning Glory (Remastered, Deluxe)",D,major,D major
+2014-09-24,2014,0.205,0.774,9,-3.728,0,0.0527,0.000115,0.667,0.378,0.376,127.703,4,1,247693,FALSE,FALSE,Roll with It - Live at Roskilde,34,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.183,0.812,0,-4.398,1,0.0703,5e-04,0.185,0.123,0.185,135.906,4,1,287253,FALSE,FALSE,Morning Glory - Live at Roskilde,35,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.556,0.613,7,-6.291,1,0.0291,0.871,0.000122,0.157,0.359,98.765,4,1,187920,FALSE,FALSE,Hey Now - Demo,36,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.52,0.672,7,-6.465,1,0.0264,0.749,0.00416,0.182,0.626,88.331,4,1,128705,FALSE,FALSE,Bonehead's Bank Holiday - Demo,37,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.376,0.889,7,-5.004,1,0.0899,0.0254,1.07e-05,0.732,0.369,145.986,4,1,291293,FALSE,FALSE,Round Are Way - MTV Unplugged,38,"(What's The Story) Morning Glory (Remastered, Deluxe)",G,major,G major
+2014-09-24,2014,0.308,0.842,0,-4.87,1,0.0412,0.00559,0,0.369,0.287,96.635,4,1,245506,FALSE,FALSE,Cast No Shadow - Live at Maine Road,39,"(What's The Story) Morning Glory (Remastered, Deluxe)",C,major,C major
+2014-09-24,2014,0.246,0.725,9,-4.436,0,0.0417,0.247,0.0148,0.894,0.288,82.859,4,1,295160,FALSE,FALSE,The Masterplan - Live at Knebworth Park,40,"(What's The Story) Morning Glory (Remastered, Deluxe)",A,minor,A minor
+2014-09-24,2014,0.161,0.948,9,-3.174,0,0.113,0.0141,0.0433,0.166,0.0567,132.3,4,1,203186,FALSE,FALSE,Hello - Remastered,1,(What's The Story) Morning Glory (Remastered),A,minor,A minor
+2014-09-24,2014,0.233,0.986,9,-1.896,0,0.0947,0.0325,0.000311,0.117,0.145,126.56,4,1,240093,FALSE,FALSE,Roll with It - Remastered,2,(What's The Story) Morning Glory (Remastered),A,minor,A minor
+2014-09-24,2014,0.376,0.896,2,-4.065,1,0.0395,0.000452,0,0.194,0.472,174.379,4,1,258773,FALSE,FALSE,Wonderwall - Remastered,3,(What's The Story) Morning Glory (Remastered),D,major,D major
+2014-09-24,2014,0.327,0.938,0,-3.237,1,0.0636,0.0707,3.79e-06,0.148,0.327,162.933,4,1,289560,FALSE,FALSE,Don't Look Back in Anger - Remastered,4,(What's The Story) Morning Glory (Remastered),C,major,C major
+2014-09-24,2014,0.147,0.933,2,-2.478,1,0.0658,0.000305,0.00134,0.382,0.206,202.197,4,1,341906,FALSE,FALSE,Hey Now - Remastered,5,(What's The Story) Morning Glory (Remastered),D,major,D major
+2014-09-24,2014,0.279,0.748,10,-5.655,1,0.0484,3.93e-05,0.92,0.254,0.201,143.121,4,1,44626,FALSE,FALSE,Untitled - Remastered,6,(What's The Story) Morning Glory (Remastered),A#,major,A# major
+2014-09-24,2014,0.262,0.932,0,-2.281,0,0.0925,0.173,0.0206,0.288,0.0733,110.129,4,1,327920,FALSE,FALSE,Some Might Say - Remastered,7,(What's The Story) Morning Glory (Remastered),C,minor,C minor
+2014-09-24,2014,0.418,0.84,7,-4.321,1,0.0285,0.00192,0,0.163,0.627,158.373,4,1,294813,FALSE,FALSE,Cast No Shadow - Remastered,8,(What's The Story) Morning Glory (Remastered),G,major,G major
+2014-09-24,2014,0.487,0.909,9,-3.484,1,0.0463,0.159,1.27e-06,0.304,0.51,125.422,4,1,220920,FALSE,FALSE,She's Electric - Remastered,9,(What's The Story) Morning Glory (Remastered),A,major,A major
+2014-09-24,2014,0.33,0.983,0,-3.038,1,0.0932,0.0664,4.68e-05,0.491,0.0968,136.952,4,1,303320,FALSE,FALSE,Morning Glory - Remastered,10,(What's The Story) Morning Glory (Remastered),C,major,C major
+2014-09-24,2014,0.154,0.991,5,-13.27,1,0.0791,0.849,0.92,0.721,0.0176,133.72,4,1,39360,FALSE,FALSE,Untitled - Remastered,11,(What's The Story) Morning Glory (Remastered),F,major,F major
+2014-09-24,2014,0.297,0.825,2,-3.771,1,0.0394,0.464,0.0833,0.358,0.123,150.339,4,1,454000,FALSE,FALSE,Champagne Supernova - Remastered,12,(What's The Story) Morning Glory (Remastered),D,major,D major
+2014-05-14,2014,0.315,0.975,4,-3.21,1,0.0685,0.000567,0.00137,0.467,0.436,138.197,4,1,322946,FALSE,FALSE,Rock 'n' Roll Star - Remastered,1,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.317,0.931,4,-2.661,1,0.0569,0.0136,0.12,0.687,0.16,95.919,4,1,308280,FALSE,FALSE,Shakermaker - Remastered,2,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.192,0.828,9,-3.382,0,0.0452,2.74e-05,1.97e-05,0.362,0.189,118.935,5,1,276666,FALSE,FALSE,Live Forever - Remastered,3,Definitely Maybe (Remastered),A,minor,A minor
+2014-05-14,2014,0.268,0.905,0,-3.543,1,0.0397,1.41e-05,0.0214,0.38,0.328,140.571,4,1,268000,FALSE,FALSE,Up in the Sky - Remastered,4,Definitely Maybe (Remastered),C,major,C major
+2014-05-14,2014,0.314,0.835,7,-5.106,1,0.0498,2.01e-06,0.617,0.392,0.0412,100.138,4,1,377400,FALSE,FALSE,Columbia - Remastered,5,Definitely Maybe (Remastered),G,major,G major
+2014-05-14,2014,0.361,0.911,9,-2.853,1,0.0405,6.06e-05,0.00752,0.0891,0.643,103.999,4,1,283786,FALSE,FALSE,Supersonic - Remastered,6,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.113,0.938,9,-2.741,1,0.0771,1.13e-05,0.801,0.446,0.192,153.625,4,1,257812,FALSE,FALSE,Bring It on Down - Remastered,7,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.292,0.759,2,-2.311,1,0.046,1.53e-05,0.037,0.16,0.451,114.758,4,1,289146,FALSE,FALSE,Cigarettes & Alcohol - Remastered,8,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.301,0.987,2,-2.865,1,0.111,0.000895,0.537,0.066,0.057,139.495,4,1,152266,FALSE,FALSE,Digsy's Dinner - Remastered,9,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.0668,0.941,8,-2.699,1,0.137,9.49e-05,0.000343,0.253,0.236,188.529,4,1,392306,FALSE,FALSE,Slide Away - Remastered,10,Definitely Maybe (Remastered),G#,major,G# major
+2014-05-14,2014,0.585,0.427,4,-10.907,1,0.0278,0.808,0,0.0984,0.313,87.615,4,1,196480,FALSE,FALSE,Married with Children - Remastered,11,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.116,0.89,2,-1.9,1,0.0504,0.00203,0.812,0.648,0.309,199.833,4,1,328666,FALSE,FALSE,Columbia - Remastered White Label Demo,12,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.361,0.932,9,-1.727,1,0.0449,0.000182,0.000252,0.0917,0.33,110.979,4,1,277986,FALSE,FALSE,Cigarettes & Alcohol - Remastered Demo,13,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.515,0.575,8,-6.36,0,0.0309,0.537,0,0.391,0.162,118.484,4,1,269213,FALSE,FALSE,Sad Song - Remastered,14,Definitely Maybe (Remastered),G#,minor,G# minor
+2014-05-14,2014,0.344,0.979,2,-3.294,1,0.0762,0.000615,1.37e-06,0.0872,0.53,128.608,4,1,228880,FALSE,FALSE,I Will Believe - Remastered Live,15,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.453,0.332,2,-10.886,1,0.0286,0.651,0,0.217,0.115,112.192,4,1,272773,FALSE,FALSE,Take Me Away - Remastered,16,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.257,0.912,9,-4.515,1,0.0488,7.29e-06,0.00418,0.144,0.219,147.711,4,1,238226,FALSE,FALSE,Alive - Remastered Demo,17,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.402,0.51,7,-9.073,1,0.0261,0.365,0,0.0866,0.611,139.168,4,1,161013,FALSE,FALSE,D'Yer Wanna Be a Spaceman? - Remastered,18,Definitely Maybe (Remastered),G,major,G major
+2014-05-14,2014,0.216,0.965,6,-3.494,0,0.0984,0.00269,0.44,0.685,0.118,108.737,4,1,315026,FALSE,FALSE,Supersonic - Remastered Live,19,Definitely Maybe (Remastered),F#,minor,F# minor
+2014-05-14,2014,0.164,0.784,0,-4.125,1,0.0392,0.172,0,0.0863,0.387,142.508,4,1,214320,FALSE,FALSE,Up in the Sky - Remastered Acoustic,20,Definitely Maybe (Remastered),C,major,C major
+2014-05-14,2014,0.297,0.876,9,-5.483,1,0.0489,2.85e-06,0.48,0.189,0.288,102.484,4,1,323146,FALSE,FALSE,Cloudburst - Remastered,21,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.101,0.593,2,-3.467,1,0.0481,1.5e-05,0.0655,0.391,0.336,91.34,5,1,256853,FALSE,FALSE,Fade Away - Remastered,22,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.136,0.833,9,-1.751,1,0.0701,0.0215,0.0746,0.379,0.372,101.241,4,1,402360,FALSE,FALSE,Listen Up - Remastered,23,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.08,0.975,4,-3.738,1,0.171,5.1e-06,0.743,0.417,0.0427,82.949,3,1,498333,FALSE,FALSE,I Am the Walrus - Remastered Live Glasgow Cathouse June '94,24,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.244,0.913,7,-2.437,1,0.0392,0.042,0.008,0.257,0.34,90.501,4,1,382266,FALSE,FALSE,Whatever - Remastered,25,Definitely Maybe (Remastered),G,major,G major
+2014-05-14,2014,0.303,0.901,4,-2.036,0,0.0511,0.00189,0.0117,0.379,0.305,98.127,5,1,263533,FALSE,FALSE,(It's Good) To Be Free - Remastered,26,Definitely Maybe (Remastered),E,minor,E minor
+2014-05-14,2014,0.338,0.459,0,-8.652,1,0.0305,0.305,0,0.0909,0.229,171.917,3,1,267333,FALSE,FALSE,Half the World Away - Remastered,27,Definitely Maybe (Remastered),C,major,C major
+2014-05-14,2014,0.161,0.929,4,-2.515,1,0.0749,0.000108,0.943,0.901,0.293,109.415,4,1,331360,FALSE,FALSE,Supersonic - Remastered Live At Glasgow Tramshed,28,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.31,0.915,4,-1.98,1,0.0534,0.000122,0.123,0.147,0.387,136.269,4,1,346226,FALSE,FALSE,Rock 'n' Roll Star - Remastered Demo,29,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.514,0.737,4,-5.371,1,0.0311,0.139,4.38e-05,0.128,0.254,104.601,4,1,245253,FALSE,FALSE,Shakermaker - Remastered Live Paris Instore,30,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.342,0.922,2,-2.111,1,0.0395,0.000264,0.599,0.403,0.523,99.152,4,1,337133,FALSE,FALSE,Columbia - Remastered Eden Studios Mix,31,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.408,0.958,9,-2.966,1,0.0439,0.000424,0.000243,0.0341,0.617,101.851,4,1,310373,FALSE,FALSE,Cloudburst - Remastered Demo,32,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.297,0.985,11,-1.874,0,0.0625,0.000277,0.0019,0.265,0.39,103.103,4,1,314866,FALSE,FALSE,Strange Thing - Remastered Demo,33,Definitely Maybe (Remastered),B,minor,B minor
+2014-05-14,2014,0.289,0.62,9,-4.808,0,0.0312,0.176,1.11e-05,0.142,0.277,172.305,4,1,282120,FALSE,FALSE,Live Forever - Remastered Live Paris Instore,34,Definitely Maybe (Remastered),A,minor,A minor
+2014-05-14,2014,0.346,0.998,2,-1.435,1,0.0887,0.0187,0.00107,0.396,0.0489,128.6,4,1,238560,FALSE,FALSE,Cigarettes & Alcohol - Remastered Live At Manchester Academy,35,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.297,0.636,7,-6.954,1,0.0318,0.697,0,0.923,0.542,142.86,4,1,166213,FALSE,FALSE,D'Yer Wanna Be a Spaceman? - Remastered Live At Manchester Academy,36,Definitely Maybe (Remastered),G,major,G major
+2014-05-14,2014,0.275,0.898,9,-2.288,1,0.0521,0.000159,0,0.316,0.396,143.309,4,1,263200,FALSE,FALSE,Fade Away - Remastered Demo,37,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.285,0.364,2,-7.235,1,0.0283,0.685,1.73e-05,0.785,0.168,111.15,4,1,255160,FALSE,FALSE,Take Me Away - Remastered Live At Manchester Academy,38,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.43,0.411,9,-8.817,0,0.0273,0.678,0,0.938,0.282,116.472,4,1,269280,FALSE,FALSE,Sad Song - Remastered Live At Manchester Academy,39,Definitely Maybe (Remastered),A,minor,A minor
+2014-05-14,2014,0.437,0.417,11,-6.651,1,0.0328,0.786,1.46e-05,0.167,0.155,111.477,4,1,233373,FALSE,FALSE,"Half the World Away - Remastered Live, Tokyo Hotel Room",40,Definitely Maybe (Remastered),B,major,B major
+2014-05-14,2014,0.458,0.5,9,-5.43,1,0.0276,0.133,0,0.113,0.541,134.402,4,1,156866,FALSE,FALSE,Digsy's Dinner - Remastered Live Paris Instore,41,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.621,0.477,4,-7.691,1,0.0252,0.647,0,0.104,0.55,87.684,4,1,196066,FALSE,FALSE,Married with Children - Remastered Demo,42,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.337,0.689,0,-5.993,1,0.0328,0.064,0,0.0951,0.55,134.825,4,1,199320,FALSE,FALSE,Up in the Sky - Remastered Live Paris Instore,43,Definitely Maybe (Remastered),C,major,C major
+2014-05-14,2014,0.559,0.323,7,-7.969,1,0.0297,0.923,0.95,0.312,0.723,92.838,4,1,293960,FALSE,FALSE,Whatever - Remastered Strings,44,Definitely Maybe (Remastered),G,major,G major
+2014-05-14,2014,0.315,0.975,4,-3.21,1,0.0685,0.000567,0.00137,0.467,0.436,138.197,4,1,322946,FALSE,FALSE,Rock 'n' Roll Star - Remastered,1,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.317,0.931,4,-2.661,1,0.0569,0.0136,0.12,0.687,0.16,95.919,4,1,308280,FALSE,FALSE,Shakermaker - Remastered,2,Definitely Maybe (Remastered),E,major,E major
+2014-05-14,2014,0.192,0.828,9,-3.382,0,0.0452,2.74e-05,1.97e-05,0.362,0.189,118.935,5,1,276666,FALSE,FALSE,Live Forever - Remastered,3,Definitely Maybe (Remastered),A,minor,A minor
+2014-05-14,2014,0.268,0.905,0,-3.543,1,0.0397,1.41e-05,0.0214,0.38,0.328,140.571,4,1,268000,FALSE,FALSE,Up in the Sky - Remastered,4,Definitely Maybe (Remastered),C,major,C major
+2014-05-14,2014,0.314,0.835,7,-5.106,1,0.0498,2.01e-06,0.617,0.392,0.0412,100.138,4,1,377400,FALSE,FALSE,Columbia - Remastered,5,Definitely Maybe (Remastered),G,major,G major
+2014-05-14,2014,0.361,0.911,9,-2.853,1,0.0405,6.06e-05,0.00752,0.0891,0.643,103.999,4,1,283786,FALSE,FALSE,Supersonic - Remastered,6,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.113,0.938,9,-2.741,1,0.0771,1.13e-05,0.801,0.446,0.192,153.625,4,1,257812,FALSE,FALSE,Bring It on Down - Remastered,7,Definitely Maybe (Remastered),A,major,A major
+2014-05-14,2014,0.292,0.759,2,-2.311,1,0.046,1.53e-05,0.037,0.16,0.451,114.758,4,1,289146,FALSE,FALSE,Cigarettes & Alcohol - Remastered,8,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.301,0.987,2,-2.865,1,0.111,0.000895,0.537,0.066,0.057,139.495,4,1,152266,FALSE,FALSE,Digsy's Dinner - Remastered,9,Definitely Maybe (Remastered),D,major,D major
+2014-05-14,2014,0.0668,0.941,8,-2.699,1,0.137,9.49e-05,0.000343,0.253,0.236,188.529,4,1,392306,FALSE,FALSE,Slide Away - Remastered,10,Definitely Maybe (Remastered),G#,major,G# major
+2014-05-14,2014,0.585,0.427,4,-10.907,1,0.0278,0.808,0,0.0984,0.313,87.615,4,1,196480,FALSE,FALSE,Married with Children - Remastered,11,Definitely Maybe (Remastered),E,major,E major
+2010-06-14,2010,0.39,0.877,9,-4.829,1,0.0347,4.9e-05,0.00241,0.265,0.689,103.94,4,1,283744,FALSE,FALSE,Supersonic,1,Time Flies… (1994 - 2009),A,major,A major
+2010-06-14,2010,0.244,0.985,9,-1.816,0,0.107,0.00302,0.000204,0.318,0.228,126.734,4,1,239826,FALSE,FALSE,Roll With It,2,Time Flies… (1994 - 2009),A,minor,A minor
+2010-06-14,2010,0.29,0.769,9,-5.578,0,0.0329,1.44e-05,8.35e-06,0.375,0.198,90.248,4,1,276866,FALSE,FALSE,Live Forever,3,Time Flies… (1994 - 2009),A,minor,A minor
+2010-06-14,2010,0.41,0.854,2,-5.609,1,0.0366,0.00236,0,0.133,0.456,174.584,4,1,258906,FALSE,FALSE,Wonderwall,4,Time Flies… (1994 - 2009),D,major,D major
+2010-06-14,2010,0.331,0.558,2,-5.506,1,0.031,0.0689,1.96e-06,0.124,0.0985,150.19,4,1,303120,FALSE,FALSE,Stop Crying Your Heart Out,5,Time Flies… (1994 - 2009),D,major,D major
+2010-06-14,2010,0.3,0.865,2,-2.473,1,0.0497,3.26e-05,0.055,0.162,0.466,114.661,4,1,289373,FALSE,FALSE,Cigarettes & Alcohol,6,Time Flies… (1994 - 2009),D,major,D major
+2010-06-14,2010,0.491,0.561,2,-6.396,1,0.0279,0.274,2.16e-06,0.23,0.543,134.881,4,1,127600,FALSE,FALSE,Songbird,7,Time Flies… (1994 - 2009),D,major,D major
+2010-06-14,2010,0.349,0.917,0,-3.645,1,0.071,0.026,7.25e-06,0.0968,0.206,164.036,4,1,287826,FALSE,FALSE,Don't Look Back In Anger,8,Time Flies… (1994 - 2009),C,major,C major
+2010-06-14,2010,0.416,0.939,11,-3.247,1,0.0473,1.09e-05,1.05e-05,0.753,0.36,113.926,4,1,226400,FALSE,FALSE,The Hindu Times,9,Time Flies… (1994 - 2009),B,major,B major
+2010-06-14,2010,0.229,0.848,7,-2.633,1,0.039,0.0126,1.7e-06,0.146,0.362,169.878,4,1,356626,FALSE,FALSE,Stand By Me,10,Time Flies… (1994 - 2009),G,major,G major
+2010-06-14,2010,0.479,0.87,6,-3.057,1,0.039,0.00423,0.000233,0.11,0.48,133.164,4,1,199960,FALSE,FALSE,Lord Don't Slow Me Down,11,Time Flies… (1994 - 2009),F#,major,F# major
+2010-06-14,2010,0.117,0.911,4,-5.951,1,0.067,0.00893,0.145,0.765,0.197,191.724,4,1,308453,FALSE,FALSE,Shakermaker,12,Time Flies… (1994 - 2009),E,major,E major
+2010-06-14,2010,0.365,0.842,6,-3.446,0,0.0425,0.0054,0.00114,0.422,0.377,82.038,4,1,560040,FALSE,FALSE,All Around the World,13,Time Flies… (1994 - 2009),F#,minor,F# minor
+2010-06-14,2010,0.263,0.935,0,-2.289,0,0.0933,0.181,0.013,0.331,0.0688,110.138,4,1,327920,FALSE,FALSE,Some Might Say,14,Time Flies… (1994 - 2009),C,minor,C minor
+2010-06-14,2010,0.568,0.87,9,-2.258,0,0.0332,0.0459,0,0.12,0.585,109.819,4,1,219826,FALSE,FALSE,The Importance Of Being Idle,15,Time Flies… (1994 - 2009),A,minor,A minor
+2010-06-14,2010,0.139,0.885,11,-3.247,0,0.0473,6.98e-05,0.000109,0.0972,0.216,80.063,4,1,462493,FALSE,FALSE,D'You Know What I Mean?,16,Time Flies… (1994 - 2009),B,minor,B minor
+2010-06-14,2010,0.401,0.951,11,-2.57,1,0.0483,0.00014,0.000117,0.147,0.332,120.879,4,1,310440,FALSE,FALSE,Lyla,17,Time Flies… (1994 - 2009),B,major,B major
+2010-06-14,2010,0.475,0.468,5,-4.774,1,0.0288,0.272,0,0.343,0.13,74.04,4,1,331693,FALSE,FALSE,Let There Be Love,18,Time Flies… (1994 - 2009),F,major,F major
+2010-06-14,2010,0.408,0.857,2,-5.71,1,0.034,0.0131,7.44e-05,0.528,0.622,84.197,4,1,278693,FALSE,FALSE,Go Let It Out,19,Time Flies… (1994 - 2009),D,major,D major
+2010-06-14,2010,0.31,0.801,0,-5.824,1,0.038,0.176,0.0797,0.182,0.312,153.088,4,1,344493,FALSE,FALSE,Who Feels Love?,20,Time Flies… (1994 - 2009),C,major,C major
+2010-06-14,2010,0.405,0.632,2,-5.132,1,0.0273,0.0316,0.00251,0.112,0.141,145.936,4,1,292853,FALSE,FALSE,Little By Little,21,Time Flies… (1994 - 2009),D,major,D major
+2010-06-14,2010,0.329,0.953,11,-2.416,0,0.0874,4.47e-05,0.558,0.302,0.0374,136.922,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,22,Time Flies… (1994 - 2009),B,minor,B minor
+2010-06-14,2010,0.463,0.642,0,-6.39,1,0.0299,0.43,1.31e-06,0.14,0.506,90.009,4,1,189373,FALSE,FALSE,She Is Love,23,Time Flies… (1994 - 2009),C,major,C major
+2010-06-14,2010,0.268,0.887,7,-3.056,1,0.0342,0.0125,0.0378,0.591,0.344,91.191,4,1,381266,FALSE,FALSE,Whatever,24,Time Flies… (1994 - 2009),G,major,G major
+2010-06-14,2010,0.428,0.618,4,-5.471,0,0.0276,0.000944,0.0232,0.435,0.0839,77.406,4,1,250013,FALSE,FALSE,I'm Outta Time,25,Time Flies… (1994 - 2009),E,minor,E minor
+2010-06-14,2010,0.437,0.964,6,-3.031,0,0.0597,0.00103,0.0733,0.149,0.236,130.963,4,1,260079,FALSE,FALSE,Falling Down,26,Time Flies… (1994 - 2009),F#,minor,F# minor
+2010,2010,0.39,0.88,9,-4.662,1,0.0358,3.67e-05,0.00799,0.0788,0.658,104.065,4,1,284693,FALSE,FALSE,Supersonic,1,Time Flies...1994-2009,A,major,A major
+2010,2010,0.248,0.984,9,-1.784,0,0.113,0.00336,0.000165,0.218,0.215,126.596,4,1,239746,FALSE,FALSE,Roll with It,2,Time Flies...1994-2009,A,minor,A minor
+2010,2010,0.107,0.862,5,-2.706,0,0.0448,8.82e-06,4.25e-05,0.325,0.139,91.54,4,1,276133,FALSE,FALSE,Live Forever,3,Time Flies...1994-2009,F,minor,F minor
+2010,2010,0.405,0.894,2,-4.336,1,0.0343,0.000801,0,0.226,0.642,174.502,4,1,259838,FALSE,FALSE,Wonderwall,4,Time Flies...1994-2009,D,major,D major
+2010,2010,0.38,0.589,2,-5.363,1,0.0298,0.0725,1.61e-06,0.122,0.0976,74.961,4,1,303026,FALSE,FALSE,Stop Crying Your Heart Out,5,Time Flies...1994-2009,D,major,D major
+2010,2010,0.302,0.866,2,-2.332,1,0.0477,2.79e-05,0.222,0.0882,0.47,114.736,4,1,291893,FALSE,FALSE,Cigarettes & Alcohol,6,Time Flies...1994-2009,D,major,D major
+2010,2010,0.485,0.571,2,-6.219,1,0.0284,0.263,2.44e-06,0.175,0.485,134.924,4,1,128919,FALSE,FALSE,Songbird,7,Time Flies...1994-2009,D,major,D major
+2010,2010,0.348,0.914,0,-3.586,1,0.0666,0.0301,7.68e-06,0.0955,0.231,163.98,4,1,290253,FALSE,FALSE,Don't Look Back in Anger,8,Time Flies...1994-2009,C,major,C major
+2010,2010,0.416,0.949,11,-3.051,1,0.0486,9.86e-06,1.94e-05,0.166,0.376,113.917,4,1,232786,FALSE,FALSE,The Hindu Times,9,Time Flies...1994-2009,B,major,B major
+2010,2010,0.222,0.817,7,-2.643,1,0.0368,0.0109,2.25e-06,0.143,0.436,169.84,4,1,359586,FALSE,FALSE,Stand by Me,10,Time Flies...1994-2009,G,major,G major
+2010,2010,0.481,0.873,6,-3.068,1,0.0384,0.00547,6.59e-05,0.116,0.46,133.156,4,1,199880,FALSE,FALSE,Lord Don't Slow Me Down,11,Time Flies...1994-2009,F#,major,F# major
+2010,2010,0.114,0.901,4,-5.734,1,0.0699,0.00717,0.148,0.428,0.193,191.919,4,1,310813,FALSE,FALSE,Shakermaker,12,Time Flies...1994-2009,E,major,E major
+2010,2010,0.119,0.838,6,-3.669,0,0.0508,0.0057,0.000984,0.0959,0.346,80.836,4,1,581120,FALSE,FALSE,All Around the World,13,Time Flies...1994-2009,F#,minor,F# minor
+2010,2010,0.239,0.935,0,-2.215,0,0.0829,0.0404,0.0272,0.122,0.132,110.248,4,1,329133,FALSE,FALSE,Some Might Say,14,Time Flies...1994-2009,C,minor,C minor
+2010,2010,0.578,0.87,9,-2.103,0,0.0322,0.0463,0,0.0609,0.592,109.873,4,1,222360,FALSE,FALSE,The Importance of Being Idle,15,Time Flies...1994-2009,A,minor,A minor
+2010,2010,0.318,0.878,4,-3.24,1,0.0418,6.85e-05,6.74e-05,0.11,0.253,80.02,4,1,464520,FALSE,FALSE,D'You Know What I Mean?,16,Time Flies...1994-2009,E,major,E major
+2010,2010,0.376,0.947,11,-1.649,1,0.0521,7.51e-05,0.00216,0.137,0.302,120.906,4,1,312026,FALSE,FALSE,Lyla,17,Time Flies...1994-2009,B,major,B major
+2010,2010,0.485,0.479,5,-4.593,1,0.0277,0.26,1.16e-06,0.382,0.134,74.056,4,1,326813,FALSE,FALSE,Let There Be Love,18,Time Flies...1994-2009,F,major,F major
+2010,2010,0.412,0.846,2,-5.617,1,0.0336,0.0118,3.03e-05,0.584,0.586,84.201,4,1,278893,FALSE,FALSE,Go Let It Out,19,Time Flies...1994-2009,D,major,D major
+2010,2010,0.365,0.802,0,-5.698,1,0.0361,0.196,0.0466,0.25,0.351,76.532,4,1,344626,FALSE,FALSE,Who Feels Love?,20,Time Flies...1994-2009,C,major,C major
+2010,2010,0.406,0.632,2,-4.903,1,0.027,0.0298,0.00331,0.121,0.0832,145.851,4,1,293746,FALSE,FALSE,Little By Little,21,Time Flies...1994-2009,D,major,D major
+2010,2010,0.331,0.953,11,-2.415,0,0.0853,4.48e-05,0.583,0.253,0.0393,136.913,4,1,304346,FALSE,FALSE,The Shock Of The Lightning,22,Time Flies...1994-2009,B,minor,B minor
+2010,2010,0.452,0.624,0,-6.529,1,0.0315,0.427,2.1e-06,0.117,0.514,89.841,4,1,193546,FALSE,FALSE,She Is Love,23,Time Flies...1994-2009,C,major,C major
+2010,2010,0.264,0.898,7,-2.911,1,0.0362,0.0135,0.0323,0.589,0.314,90.707,4,1,380480,FALSE,FALSE,Whatever,24,Time Flies...1994-2009,G,major,G major
+2010,2010,0.429,0.624,4,-5.39,0,0.0281,0.000892,0.0396,0.219,0.0928,77.405,4,1,248760,FALSE,FALSE,I'm Outta Time,25,Time Flies...1994-2009,E,minor,E minor
+2010,2010,0.445,0.96,1,-3.27,0,0.0698,0.00118,0.138,0.336,0.182,130.968,4,1,267586,FALSE,FALSE,Falling Down,26,Time Flies...1994-2009,C#,minor,C# minor
+2010,2010,0.201,0.178,0,-5.012,1,0.0355,0.0391,0.00045,0.139,0.222,77.994,4,1,723373,FALSE,FALSE,Don't Go Away,27,Time Flies...1994-2009,C,major,C major
+2008-10-06,2008,0.419,0.894,7,-2.677,1,0.0379,0.000381,0.0274,0.596,0.33,90.913,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.444,0.936,7,-3.239,1,0.0735,0.00872,0.0117,0.138,0.194,119.812,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.409,0.837,0,-3.676,1,0.0494,0.00798,0.0017,0.176,0.316,169.736,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.336,0.956,11,-2.38,0,0.0889,4.13e-05,0.598,0.374,0.0375,136.909,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-06,2008,0.427,0.622,4,-5.467,0,0.028,0.00107,0.0467,0.431,0.0775,77.407,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-06,2008,0.463,0.837,0,-5.207,1,0.0292,0.0298,0.442,0.605,0.499,78.054,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.442,0.965,6,-3.003,0,0.0598,0.00107,0.107,0.146,0.252,130.961,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-06,2008,0.49,0.849,7,-3.784,1,0.0329,0.000366,0.206,0.221,0.635,100.675,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.376,0.975,11,-3.504,1,0.0797,0.00382,0.00316,0.123,0.0847,112.759,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-06,2008,0.189,0.835,2,-5.285,1,0.0543,0.00132,0.00524,0.324,0.0542,104.459,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-06,2008,0.416,0.753,1,-4.413,0,0.0328,0.00102,0.715,0.12,0.654,75.926,4,1,290746,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-06,2008,0.482,0.942,11,-3.184,0,0.0304,0.000328,0.828,0.0966,0.309,130.943,4,1,268133,FALSE,FALSE,Falling Down - The Chemical Brothers remix,12,Dig Out Your Soul,B,minor,B minor
+2008-10-06,2008,0.419,0.894,7,-2.677,1,0.0379,0.000381,0.0274,0.596,0.33,90.913,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.444,0.936,7,-3.239,1,0.0735,0.00872,0.0117,0.138,0.194,119.812,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.409,0.837,0,-3.676,1,0.0494,0.00798,0.0017,0.176,0.316,169.736,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.336,0.956,11,-2.38,0,0.0889,4.13e-05,0.598,0.374,0.0375,136.909,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-06,2008,0.427,0.622,4,-5.467,0,0.028,0.00107,0.0467,0.431,0.0775,77.407,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-06,2008,0.463,0.837,0,-5.207,1,0.0292,0.0298,0.442,0.605,0.499,78.054,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.442,0.965,6,-3.003,0,0.0598,0.00107,0.107,0.146,0.252,130.961,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-06,2008,0.49,0.849,7,-3.784,1,0.0329,0.000366,0.206,0.221,0.635,100.675,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.376,0.975,11,-3.504,1,0.0797,0.00382,0.00316,0.123,0.0847,112.759,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-06,2008,0.189,0.835,2,-5.285,1,0.0543,0.00132,0.00524,0.324,0.0542,104.459,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-06,2008,0.416,0.753,1,-4.413,0,0.0328,0.00102,0.715,0.12,0.654,75.926,4,1,290746,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-06,2008,0.579,0.716,9,-6.704,0,0.031,2.25e-05,0.743,0.086,0.0703,126.019,4,1,266040,FALSE,FALSE,The Shock Of The Lightning - Primal Scream Remix,12,Dig Out Your Soul,A,minor,A minor
+2008-10-06,2008,0.419,0.893,7,-2.677,1,0.0378,0.000374,0.027,0.596,0.33,90.913,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.447,0.936,7,-3.239,1,0.0748,0.00888,0.0114,0.138,0.193,119.809,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.41,0.837,0,-3.676,1,0.0494,0.00798,0.00167,0.176,0.316,169.731,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.335,0.956,11,-2.375,0,0.089,4.13e-05,0.595,0.374,0.0375,136.904,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-06,2008,0.427,0.622,4,-5.467,0,0.028,0.00107,0.0458,0.431,0.0775,77.406,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-06,2008,0.464,0.837,0,-5.207,1,0.0286,0.0298,0.439,0.605,0.505,78.05,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.441,0.965,6,-3.003,0,0.0599,0.00105,0.108,0.146,0.253,130.959,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-06,2008,0.49,0.849,7,-3.785,1,0.0329,0.000366,0.199,0.221,0.635,100.674,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.378,0.975,11,-3.504,1,0.0797,0.00382,0.00316,0.123,0.0847,112.749,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-06,2008,0.281,0.835,2,-5.285,1,0.0522,0.00132,0.00524,0.324,0.0551,104.663,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-06,2008,0.416,0.753,1,-4.413,0,0.0328,0.00102,0.714,0.12,0.651,75.926,4,1,290746,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-06,2008,0.414,0.893,7,-2.69,1,0.0377,0.000356,0.0949,0.602,0.345,90.902,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.444,0.937,7,-3.259,1,0.0714,0.00898,0.00705,0.138,0.191,119.805,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.403,0.849,0,-3.688,1,0.0515,0.00975,0.0012,0.182,0.338,169.761,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-06,2008,0.329,0.953,11,-2.416,0,0.0874,4.47e-05,0.558,0.302,0.0374,136.922,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-06,2008,0.428,0.618,4,-5.471,0,0.0276,0.000944,0.0232,0.435,0.0839,77.406,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-06,2008,0.465,0.836,7,-5.172,1,0.028,0.033,0.478,0.593,0.476,78.051,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.437,0.964,6,-3.031,0,0.0597,0.00103,0.0733,0.149,0.236,130.963,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-06,2008,0.487,0.848,7,-3.808,1,0.0332,0.000411,0.244,0.214,0.623,100.729,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-06,2008,0.378,0.977,11,-3.518,1,0.0757,0.00352,0.00379,0.118,0.0893,112.782,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-06,2008,0.308,0.836,2,-5.215,1,0.0509,0.00178,0.0112,0.323,0.0529,104.742,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-06,2008,0.415,0.752,1,-4.442,0,0.0335,0.000857,0.725,0.126,0.633,75.918,4,1,290746,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-04,2008,0.419,0.894,7,-2.677,1,0.0379,0.000381,0.0274,0.596,0.33,90.913,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-04,2008,0.444,0.936,7,-3.239,1,0.0735,0.00872,0.0117,0.138,0.194,119.812,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-04,2008,0.409,0.837,0,-3.676,1,0.0494,0.00798,0.0017,0.176,0.316,169.736,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-04,2008,0.336,0.956,11,-2.38,0,0.0889,4.13e-05,0.598,0.374,0.0375,136.909,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-04,2008,0.427,0.622,4,-5.467,0,0.028,0.00107,0.0467,0.431,0.0775,77.407,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-04,2008,0.463,0.837,0,-5.207,1,0.0292,0.0298,0.442,0.605,0.499,78.054,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,C,major,C major
+2008-10-04,2008,0.442,0.965,6,-3.003,0,0.0598,0.00107,0.107,0.146,0.252,130.961,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-04,2008,0.49,0.849,7,-3.784,1,0.0329,0.000366,0.206,0.221,0.635,100.675,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-04,2008,0.376,0.975,11,-3.504,1,0.0797,0.00382,0.00316,0.123,0.0847,112.759,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-04,2008,0.189,0.835,2,-5.285,1,0.0543,0.00132,0.00524,0.324,0.0542,104.459,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-04,2008,0.416,0.753,1,-4.413,0,0.0328,0.00102,0.715,0.12,0.654,75.926,4,1,290746,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-03,2008,0.419,0.894,7,-2.677,1,0.0379,0.000381,0.0274,0.596,0.33,90.913,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-03,2008,0.444,0.936,7,-3.239,1,0.0735,0.00872,0.0117,0.138,0.194,119.812,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-03,2008,0.409,0.837,0,-3.676,1,0.0494,0.00798,0.0017,0.176,0.316,169.736,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-03,2008,0.336,0.956,11,-2.38,0,0.0889,4.13e-05,0.598,0.374,0.0375,136.909,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-03,2008,0.427,0.622,4,-5.467,0,0.028,0.00107,0.0467,0.431,0.0775,77.407,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-03,2008,0.463,0.837,0,-5.207,1,0.0292,0.0298,0.442,0.605,0.499,78.054,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,C,major,C major
+2008-10-03,2008,0.442,0.965,6,-3.003,0,0.0598,0.00107,0.107,0.146,0.252,130.961,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-03,2008,0.49,0.849,7,-3.784,1,0.0329,0.000366,0.206,0.221,0.635,100.675,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-03,2008,0.376,0.975,11,-3.504,1,0.0797,0.00382,0.00316,0.123,0.0847,112.759,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-03,2008,0.189,0.835,2,-5.285,1,0.0543,0.00132,0.00524,0.324,0.0542,104.459,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-03,2008,0.416,0.753,1,-4.413,0,0.0328,0.00102,0.715,0.12,0.654,75.926,4,1,290746,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-01,2008,0.419,0.893,7,-2.677,1,0.0378,0.000374,0.027,0.596,0.33,90.913,4,1,280413,FALSE,FALSE,Bag It Up,1,Dig Out Your Soul,G,major,G major
+2008-10-01,2008,0.447,0.936,7,-3.239,1,0.0748,0.00888,0.0114,0.138,0.193,119.809,4,1,304840,FALSE,FALSE,The Turning,2,Dig Out Your Soul,G,major,G major
+2008-10-01,2008,0.41,0.837,0,-3.676,1,0.0494,0.00798,0.00167,0.176,0.316,169.731,4,1,182986,FALSE,FALSE,Waiting For The Rapture,3,Dig Out Your Soul,C,major,C major
+2008-10-01,2008,0.335,0.956,11,-2.375,0,0.089,4.13e-05,0.595,0.374,0.0375,136.904,4,1,299946,FALSE,FALSE,The Shock Of The Lightning,4,Dig Out Your Soul,B,minor,B minor
+2008-10-01,2008,0.427,0.622,4,-5.467,0,0.028,0.00107,0.0458,0.431,0.0775,77.406,4,1,250013,FALSE,FALSE,I'm Outta Time,5,Dig Out Your Soul,E,minor,E minor
+2008-10-01,2008,0.464,0.837,0,-5.207,1,0.0286,0.0298,0.439,0.605,0.505,78.05,4,1,246786,FALSE,FALSE,(Get Off Your) High Horse Lady,6,Dig Out Your Soul,C,major,C major
+2008-10-01,2008,0.441,0.965,6,-3.003,0,0.0599,0.00105,0.108,0.146,0.253,130.959,4,1,260079,FALSE,FALSE,Falling Down,7,Dig Out Your Soul,F#,minor,F# minor
+2008-10-01,2008,0.49,0.849,7,-3.785,1,0.0329,0.000366,0.199,0.221,0.635,100.674,4,1,275746,FALSE,FALSE,To Be Where There's Life,8,Dig Out Your Soul,G,major,G major
+2008-10-01,2008,0.378,0.975,11,-3.504,1,0.0797,0.00382,0.00316,0.123,0.0847,112.749,3,1,134813,FALSE,FALSE,Ain't Got Nothin',9,Dig Out Your Soul,B,major,B major
+2008-10-01,2008,0.281,0.835,2,-5.285,1,0.0522,0.00132,0.00524,0.324,0.0551,104.663,4,1,227866,FALSE,FALSE,The Nature Of Reality,10,Dig Out Your Soul,D,major,D major
+2008-10-01,2008,0.416,0.753,1,-4.413,0,0.0328,0.00102,0.714,0.12,0.651,75.926,4,1,289026,FALSE,FALSE,Soldier On,11,Dig Out Your Soul,C#,minor,C# minor
+2008-10-01,2008,0.558,0.924,11,-2.928,0,0.0384,0.00135,0.00583,0.0888,0.884,97.07,4,1,163840,FALSE,FALSE,I Believe In All,12,Dig Out Your Soul,B,minor,B minor
+2008-10-01,2008,0.447,0.945,7,-2.809,1,0.0657,0.0054,0.107,0.0796,0.211,127.189,4,1,309080,FALSE,FALSE,The Turning (Alt Version # 4),13,Dig Out Your Soul,G,major,G major
+2006-11-20,2006,0.309,0.973,4,-2.664,1,0.0722,0.000652,0.00117,0.551,0.431,138.096,4,1,320920,FALSE,FALSE,Rock 'n' Roll Star,1,Stop The Clocks,E,major,E major
+2006-11-20,2006,0.277,0.96,0,-1.456,0,0.0953,0.183,0.0206,0.283,0.0498,110.299,4,1,310840,FALSE,FALSE,Some Might Say,2,Stop The Clocks,C,minor,C minor
+2006-11-20,2006,0.35,0.46,4,-8.397,0,0.0265,0.465,2.07e-05,0.361,0.354,84.559,4,1,259786,FALSE,FALSE,Talk Tonight,3,Stop The Clocks,E,minor,E minor
+2006-11-20,2006,0.379,0.947,11,-1.63,1,0.0505,0.000109,0.00227,0.131,0.288,120.876,4,1,311000,FALSE,FALSE,Lyla,4,Stop The Clocks,B,major,B major
+2006-11-20,2006,0.576,0.874,9,-2.13,0,0.0331,0.0473,0,0.0703,0.578,109.843,4,1,221386,FALSE,FALSE,The Importance Of Being Idle,5,Stop The Clocks,A,minor,A minor
+2006-11-20,2006,0.409,0.896,2,-4.36,1,0.0335,0.000785,0,0.209,0.678,174.624,4,1,258613,FALSE,FALSE,Wonderwall,6,Stop The Clocks,D,major,D major
+2006-11-20,2006,0.0664,0.947,5,-2.467,0,0.16,0.00163,0.000206,0.376,0.177,186.898,4,1,374333,FALSE,FALSE,Slide Away,7,Stop The Clocks,F,minor,F minor
+2006-11-20,2006,0.294,0.817,2,-2.33,1,0.0493,5.51e-05,0.0804,0.184,0.454,114.671,4,1,288093,FALSE,FALSE,Cigarettes & Alcohol,8,Stop The Clocks,D,major,D major
+2006-11-20,2006,0.349,0.633,7,-5.124,1,0.031,0.1,3.82e-05,0.115,0.187,149.707,4,1,320920,FALSE,FALSE,The Masterplan,9,Stop The Clocks,G,major,G major
+2006-11-20,2006,0.108,0.864,10,-2.711,1,0.0451,8.71e-06,7.96e-05,0.307,0.12,90.955,4,1,276666,FALSE,FALSE,Live Forever,10,Stop The Clocks,A#,major,A# major
+2006-11-20,2006,0.208,0.938,7,-1.806,1,0.0777,0.0206,0.00133,0.594,0.174,113.35,4,1,263640,FALSE,FALSE,Acquiesce,11,Stop The Clocks,G,major,G major
+2006-11-20,2006,0.381,0.915,9,-2.887,1,0.037,5.17e-05,0.00466,0.0873,0.641,103.925,4,1,275160,FALSE,FALSE,Supersonic,12,Stop The Clocks,A,major,A major
+2006-11-20,2006,0.337,0.438,0,-9.045,1,0.031,0.307,0,0.102,0.238,171.718,3,1,255080,FALSE,FALSE,Half The World Away,13,Stop The Clocks,C,major,C major
+2006-11-20,2006,0.381,0.916,2,-3.041,1,0.043,0.00849,7.06e-06,0.617,0.534,84.058,4,1,281640,FALSE,FALSE,Go Let It Out,14,Stop The Clocks,D,major,D major
+2006-11-20,2006,0.487,0.543,2,-7.066,1,0.0279,0.26,0,0.284,0.504,134.835,4,1,125986,FALSE,FALSE,Songbird,15,Stop The Clocks,D,major,D major
+2006-11-20,2006,0.33,0.99,0,-2.127,1,0.107,0.069,0.00118,0.686,0.0966,136.862,4,1,301933,FALSE,FALSE,Morning Glory,16,Stop The Clocks,C,major,C major
+2006-11-20,2006,0.304,0.867,2,-2.299,1,0.0398,0.202,0.00409,0.358,0.116,150.474,4,1,449333,FALSE,FALSE,Champagne Supernova,17,Stop The Clocks,D,major,D major
+2006-11-20,2006,0.32,0.94,0,-2.433,1,0.0556,0.0655,0,0.0845,0.311,162.844,4,1,293573,FALSE,FALSE,Don't Look Back In Anger,18,Stop The Clocks,C,major,C major
+2006,2006,0.312,0.977,4,-2.694,1,0.0644,0.000639,0.0026,0.579,0.444,138.04,4,1,320920,FALSE,FALSE,Rock 'n' Roll Star,1,Stop The Clocks,E,major,E major
+2006,2006,0.284,0.945,0,-1.408,0,0.094,0.179,0.013,0.334,0.0589,109.847,4,1,310840,FALSE,FALSE,Some Might Say,2,Stop The Clocks,C,minor,C minor
+2006,2006,0.442,0.448,4,-8.407,0,0.0262,0.448,3.15e-05,0.359,0.357,84.595,4,1,259786,FALSE,FALSE,Talk Tonight,3,Stop The Clocks,E,minor,E minor
+2006,2006,0.379,0.952,11,-1.648,1,0.0519,1e-04,0.0016,0.133,0.268,121.001,4,1,311000,FALSE,FALSE,Lyla,4,Stop The Clocks,B,major,B major
+2006,2006,0.575,0.869,9,-2.123,0,0.0325,0.0426,0,0.0767,0.599,109.838,4,1,221386,FALSE,FALSE,The Importance of Being Idle,5,Stop The Clocks,A,minor,A minor
+2006,2006,0.406,0.889,6,-4.364,0,0.0325,0.000682,0,0.205,0.706,174.593,4,1,258613,FALSE,FALSE,Wonderwall,6,Stop The Clocks,F#,minor,F# minor
+2006,2006,0.0662,0.949,5,-2.463,0,0.159,0.00198,0.000757,0.389,0.188,187.11,4,1,374333,FALSE,FALSE,Slide Away,7,Stop The Clocks,F,minor,F minor
+2006,2006,0.296,0.822,2,-2.337,1,0.0493,4.28e-05,0.0611,0.173,0.483,114.695,4,1,288093,FALSE,FALSE,Cigarettes & Alcohol,8,Stop The Clocks,D,major,D major
+2006,2006,0.363,0.633,7,-5.138,1,0.031,0.0881,2.96e-05,0.129,0.17,148.382,4,1,320920,FALSE,FALSE,The Masterplan,9,Stop The Clocks,G,major,G major
+2006,2006,0.211,0.856,10,-2.713,1,0.0432,7.21e-06,4.13e-05,0.341,0.115,125.521,5,1,275733,FALSE,FALSE,Live Forever,10,Stop The Clocks,A#,major,A# major
+2006,2006,0.191,0.936,7,-1.804,1,0.0726,0.025,0.000655,0.555,0.172,111.721,4,1,263680,FALSE,FALSE,Acquiesce,11,Stop The Clocks,G,major,G major
+2006,2006,0.381,0.912,9,-2.899,1,0.0376,5.04e-05,0.00292,0.082,0.581,103.971,4,1,275120,FALSE,FALSE,Supersonic,12,Stop The Clocks,A,major,A major
+2006,2006,0.342,0.434,0,-9.076,1,0.0325,0.289,0,0.113,0.233,172.165,3,1,255080,FALSE,FALSE,Half the World Away,13,Stop The Clocks,C,major,C major
+2006,2006,0.384,0.915,2,-3.037,1,0.0425,0.0075,9.06e-06,0.555,0.53,84.041,4,1,281640,FALSE,FALSE,Go Let It Out,14,Stop The Clocks,D,major,D major
+2006,2006,0.485,0.526,2,-7.04,1,0.0283,0.248,0,0.27,0.512,134.859,4,1,125986,FALSE,FALSE,Songbird,15,Stop The Clocks,D,major,D major
+2006,2006,0.322,0.986,0,-2.247,1,0.102,0.0716,0.000576,0.673,0.102,136.788,4,1,301933,FALSE,FALSE,Morning Glory,16,Stop The Clocks,C,major,C major
+2006,2006,0.301,0.863,2,-2.274,1,0.0392,0.222,0.00184,0.357,0.114,150.445,4,1,449333,FALSE,FALSE,Champagne Supernova,17,Stop The Clocks,D,major,D major
+2006,2006,0.321,0.936,0,-2.434,1,0.0578,0.0527,0,0.0776,0.306,162.692,4,1,306440,FALSE,FALSE,Don't Look Back in Anger,18,Stop The Clocks,C,major,C major
+2006,2006,0.246,0.982,9,-1.63,0,0.115,0.00349,0.000148,0.19,0.225,126.608,4,1,240533,FALSE,FALSE,Roll With It,19,Stop The Clocks,A,minor,A minor
+2006,2006,0.484,0.464,5,-4.628,1,0.0283,0.282,0,0.343,0.137,74.032,4,1,330080,FALSE,FALSE,Let There Be Love,20,Stop The Clocks,F,major,F major
+2005-05-31,2005,0.382,0.871,7,-2.983,1,0.0417,0.00413,0.664,0.0913,0.111,119.806,4,1,239240,FALSE,FALSE,Turn Up The Sun,1,Don't Believe The Truth,G,major,G major
+2005-05-31,2005,0.408,0.977,9,-1.631,1,0.05,0.000396,0.0455,0.248,0.238,110.735,4,1,235960,FALSE,FALSE,Mucky Fingers,2,Don't Believe The Truth,A,major,A major
+2005-05-31,2005,0.399,0.949,11,-2.431,1,0.0474,0.000153,0.000127,0.141,0.269,120.948,4,1,310440,FALSE,FALSE,Lyla,3,Don't Believe The Truth,B,major,B major
+2005-05-31,2005,0.283,0.918,9,-2.471,1,0.0464,0.00869,9.87e-05,0.153,0.667,176.834,3,1,172880,FALSE,FALSE,Love Like A Bomb,4,Don't Believe The Truth,A,major,A major
+2005-05-31,2005,0.593,0.88,9,-2.113,0,0.0311,0.0494,0,0.106,0.588,109.9,4,1,219826,FALSE,FALSE,The Importance of Being Idle,5,Don't Believe The Truth,A,minor,A minor
+2005-05-31,2005,0.413,0.999,9,-2.857,1,0.0499,0.0438,0.008,0.587,0.354,154.927,4,1,102826,FALSE,FALSE,The Meaning Of Soul,6,Don't Believe The Truth,A,major,A major
+2005-05-31,2005,0.605,0.707,6,-6.498,1,0.028,0.345,1.73e-05,0.389,0.206,103.832,4,1,204746,FALSE,FALSE,Guess God Thinks I'm Abel,7,Don't Believe The Truth,F#,major,F# major
+2005-05-31,2005,0.398,0.986,9,-2.821,0,0.0613,0.0254,0.00252,0.372,0.652,88.905,3,1,228120,FALSE,FALSE,Part Of The Queue,8,Don't Believe The Truth,A,minor,A minor
+2005-05-31,2005,0.147,0.853,4,-2.151,1,0.064,0.043,0.000647,0.22,0.132,191.793,4,1,345706,FALSE,FALSE,Keep The Dream Alive,9,Don't Believe The Truth,E,major,E major
+2005-05-31,2005,0.375,0.71,6,-2.024,1,0.0502,0.117,0.00639,0.244,0.231,114.937,4,1,187640,FALSE,FALSE,A Bell Will Ring,10,Don't Believe The Truth,F#,major,F# major
+2005-05-31,2005,0.442,0.477,5,-4.668,1,0.0292,0.28,0,0.344,0.147,148.006,4,1,331653,FALSE,FALSE,Let There Be Love,11,Don't Believe The Truth,F,major,F major
+2005-05-30,2005,0.386,0.864,7,-3.033,1,0.0417,0.00466,0.671,0.0911,0.113,119.8,4,1,239240,FALSE,FALSE,Turn Up The Sun,1,Don't Believe The Truth,G,major,G major
+2005-05-30,2005,0.412,0.977,9,-1.621,1,0.0503,0.000397,0.0501,0.262,0.235,110.729,4,1,235960,FALSE,FALSE,Mucky Fingers,2,Don't Believe The Truth,A,major,A major
+2005-05-30,2005,0.399,0.953,11,-2.424,1,0.0482,0.000176,0.000101,0.145,0.307,120.945,4,1,310440,FALSE,FALSE,Lyla,3,Don't Believe The Truth,B,major,B major
+2005-05-30,2005,0.36,0.921,9,-2.47,1,0.045,0.0069,9.65e-05,0.156,0.643,88.449,4,1,172880,FALSE,FALSE,Love Like A Bomb,4,Don't Believe The Truth,A,major,A major
+2005-05-30,2005,0.572,0.875,9,-2.111,0,0.0337,0.0517,0,0.111,0.595,109.851,4,1,219826,FALSE,FALSE,The Importance of Being Idle,5,Don't Believe The Truth,A,minor,A minor
+2005-05-30,2005,0.407,0.999,9,-2.851,1,0.0508,0.0423,0.019,0.548,0.325,154.891,4,1,102826,FALSE,FALSE,The Meaning Of Soul,6,Don't Believe The Truth,A,major,A major
+2005-05-30,2005,0.604,0.693,6,-6.53,1,0.0289,0.321,1.07e-05,0.456,0.207,103.833,4,1,204746,FALSE,FALSE,Guess God Thinks I'm Abel,7,Don't Believe The Truth,F#,major,F# major
+2005-05-30,2005,0.403,0.985,9,-2.836,0,0.0574,0.0213,0.00328,0.37,0.675,88.934,3,1,228120,FALSE,FALSE,Part Of The Queue,8,Don't Believe The Truth,A,minor,A minor
+2005-05-30,2005,0.15,0.871,4,-2.162,1,0.0686,0.048,0.00059,0.387,0.116,191.835,4,1,345706,FALSE,FALSE,Keep The Dream Alive,9,Don't Believe The Truth,E,major,E major
+2005-05-30,2005,0.373,0.778,11,-2.049,1,0.0517,0.148,0.00288,0.237,0.239,114.906,4,1,187640,FALSE,FALSE,A Bell Will Ring,10,Don't Believe The Truth,B,major,B major
+2005-05-30,2005,0.484,0.457,5,-4.684,1,0.0286,0.276,0,0.338,0.132,74.041,4,1,331653,FALSE,FALSE,Let There Be Love,11,Don't Believe The Truth,F,major,F major
+2005-05-30,2005,0.379,0.857,7,-3.169,1,0.0413,0.00519,0.729,0.089,0.123,119.814,4,1,239240,FALSE,FALSE,Turn Up The Sun,1,Don't Believe The Truth,G,major,G major
+2005-05-30,2005,0.404,0.974,9,-1.746,1,0.0497,0.000419,0.0417,0.268,0.234,110.733,4,1,235946,FALSE,FALSE,Mucky Fingers,2,Don't Believe The Truth,A,major,A major
+2005-05-30,2005,0.401,0.951,11,-2.57,1,0.0483,0.00014,0.000117,0.147,0.332,120.879,4,1,310440,FALSE,FALSE,Lyla,3,Don't Believe The Truth,B,major,B major
+2005-05-30,2005,0.105,0.929,9,-2.606,1,0.0581,0.00555,4.34e-05,0.139,0.632,176.945,3,1,172920,FALSE,FALSE,Love Like A Bomb,4,Don't Believe The Truth,A,major,A major
+2005-05-30,2005,0.568,0.87,9,-2.258,0,0.0332,0.0459,0,0.12,0.585,109.819,4,1,219826,FALSE,FALSE,The Importance Of Being Idle,5,Don't Believe The Truth,A,minor,A minor
+2005-05-30,2005,0.405,0.999,9,-3.07,1,0.0506,0.0531,0.00167,0.53,0.366,154.905,4,1,102813,FALSE,FALSE,The Meaning Of Soul,6,Don't Believe The Truth,A,major,A major
+2005-05-30,2005,0.603,0.684,6,-6.636,1,0.0276,0.326,1.79e-05,0.391,0.28,103.816,4,1,204733,FALSE,FALSE,Guess God Thinks I'm Abel,7,Don't Believe The Truth,F#,major,F# major
+2005-05-30,2005,0.403,0.987,9,-3.02,0,0.0613,0.0204,0.00144,0.373,0.599,88.94,3,1,228120,FALSE,FALSE,Part Of The Queue,8,Don't Believe The Truth,A,minor,A minor
+2005-05-30,2005,0.127,0.846,4,-2.297,1,0.0623,0.0494,0.000932,0.383,0.107,191.729,4,1,345706,FALSE,FALSE,Keep The Dream Alive,9,Don't Believe The Truth,E,major,E major
+2005-05-30,2005,0.371,0.706,6,-2.173,1,0.0497,0.16,0.00172,0.193,0.291,114.925,4,1,187626,FALSE,FALSE,A Bell Will Ring,10,Don't Believe The Truth,F#,major,F# major
+2005-05-30,2005,0.475,0.468,5,-4.774,1,0.0288,0.272,0,0.343,0.13,74.04,4,1,331693,FALSE,FALSE,Let There Be Love,11,Don't Believe The Truth,F,major,F major
+2005-05-25,2005,0.384,0.857,7,-3.015,1,0.0405,0.00362,0.721,0.092,0.116,119.822,4,1,239280,FALSE,FALSE,Turn Up The Sun,1,Don't Believe The Truth,G,major,G major
+2005-05-25,2005,0.416,0.979,9,-1.62,1,0.0501,0.000446,0.0458,0.261,0.242,110.722,4,1,236200,FALSE,FALSE,Mucky Fingers,2,Don't Believe The Truth,A,major,A major
+2005-05-25,2005,0.393,0.948,11,-2.397,1,0.0488,0.000148,8.54e-05,0.118,0.301,120.914,4,1,310213,FALSE,FALSE,Lyla,3,Don't Believe The Truth,B,major,B major
+2005-05-25,2005,0.278,0.923,9,-2.438,1,0.0455,0.00799,6.37e-05,0.144,0.69,176.629,3,1,172933,FALSE,FALSE,Love Like A Bomb,4,Don't Believe The Truth,A,major,A major
+2005-05-25,2005,0.583,0.877,9,-2.119,0,0.0334,0.049,0,0.118,0.606,109.927,4,1,219706,FALSE,FALSE,The Importance of Being Idle,5,Don't Believe The Truth,A,minor,A minor
+2005-05-25,2005,0.41,0.999,9,-2.884,1,0.0494,0.0524,0.0139,0.475,0.366,154.918,4,1,102960,FALSE,FALSE,The Meaning Of Soul,6,Don't Believe The Truth,A,major,A major
+2005-05-25,2005,0.602,0.708,6,-6.502,1,0.028,0.326,2.81e-05,0.411,0.181,103.839,4,1,204773,FALSE,FALSE,Guess God Thinks I'm Abel,7,Don't Believe The Truth,F#,major,F# major
+2005-05-25,2005,0.388,0.986,9,-2.821,0,0.0618,0.0222,0.00399,0.376,0.671,88.812,3,1,227973,FALSE,FALSE,Part Of The Queue,8,Don't Believe The Truth,A,minor,A minor
+2005-05-25,2005,0.142,0.879,4,-2.174,1,0.0686,0.0478,0.000594,0.353,0.126,191.852,4,1,345786,FALSE,FALSE,Keep The Dream Alive,9,Don't Believe The Truth,E,major,E major
+2005-05-25,2005,0.369,0.719,11,-1.991,1,0.0506,0.159,0.000995,0.173,0.282,114.856,4,1,187653,FALSE,FALSE,A Bell Will Ring,10,Don't Believe The Truth,B,major,B major
+2005-05-25,2005,0.48,0.463,5,-4.651,1,0.0278,0.308,0,0.342,0.134,74.06,4,1,336586,FALSE,FALSE,Let There Be Love,11,Don't Believe The Truth,F,major,F major
+2005-05-25,2005,0.295,0.603,9,-2.566,1,0.0389,0.00483,0.853,0.135,0.246,81.9,4,1,259359,FALSE,FALSE,Can Y'See It Now? (I Can See It Now!!),12,Don't Believe The Truth,A,major,A major
+2005-05-25,2005,0.523,0.434,7,-7.679,1,0.0321,0.409,0.0212,0.0694,0.308,62.429,3,1,120106,FALSE,FALSE,Sitting Here In Silence (On My Own),13,Don't Believe The Truth,G,major,G major
+2005-05-20,2005,0.386,0.864,7,-3.033,1,0.0417,0.00466,0.671,0.0911,0.113,119.8,4,1,239240,FALSE,FALSE,Turn Up The Sun,1,Don't Believe The Truth,G,major,G major
+2005-05-20,2005,0.412,0.977,9,-1.621,1,0.0503,0.000397,0.0501,0.262,0.235,110.729,4,1,235960,FALSE,FALSE,Mucky Fingers,2,Don't Believe The Truth,A,major,A major
+2005-05-20,2005,0.399,0.953,11,-2.424,1,0.0482,0.000176,0.000101,0.145,0.307,120.945,4,1,310440,FALSE,FALSE,Lyla,3,Don't Believe The Truth,B,major,B major
+2005-05-20,2005,0.36,0.921,9,-2.47,1,0.045,0.0069,9.65e-05,0.156,0.643,88.449,4,1,172880,FALSE,FALSE,Love Like A Bomb,4,Don't Believe The Truth,A,major,A major
+2005-05-20,2005,0.572,0.875,9,-2.111,0,0.0337,0.0517,0,0.111,0.595,109.851,4,1,219826,FALSE,FALSE,The Importance of Being Idle,5,Don't Believe The Truth,A,minor,A minor
+2005-05-20,2005,0.407,0.999,9,-2.851,1,0.0508,0.0423,0.019,0.548,0.325,154.891,4,1,102826,FALSE,FALSE,The Meaning Of Soul,6,Don't Believe The Truth,A,major,A major
+2005-05-20,2005,0.604,0.693,6,-6.53,1,0.0289,0.321,1.07e-05,0.456,0.207,103.833,4,1,204746,FALSE,FALSE,Guess God Thinks I'm Abel,7,Don't Believe The Truth,F#,major,F# major
+2005-05-20,2005,0.403,0.985,9,-2.836,0,0.0574,0.0213,0.00328,0.37,0.675,88.934,3,1,228120,FALSE,FALSE,Part Of The Queue,8,Don't Believe The Truth,A,minor,A minor
+2005-05-20,2005,0.15,0.871,4,-2.162,1,0.0686,0.048,0.00059,0.387,0.116,191.835,4,1,345706,FALSE,FALSE,Keep The Dream Alive,9,Don't Believe The Truth,E,major,E major
+2005-05-20,2005,0.373,0.778,11,-2.049,1,0.0517,0.148,0.00288,0.237,0.239,114.906,4,1,187640,FALSE,FALSE,A Bell Will Ring,10,Don't Believe The Truth,B,major,B major
+2005-05-20,2005,0.484,0.457,5,-4.684,1,0.0286,0.276,0,0.338,0.132,74.041,4,1,331653,FALSE,FALSE,Let There Be Love,11,Don't Believe The Truth,F,major,F major
+2002-07-01,2002,0.416,0.939,11,-3.247,1,0.0473,1.09e-05,1.05e-05,0.753,0.36,113.926,4,1,226400,FALSE,FALSE,The Hindu Times,1,Heathen Chemistry,B,major,B major
+2002-07-01,2002,0.48,0.791,11,-3.827,0,0.0364,0.000227,1.33e-06,0.328,0.626,104.001,4,1,291693,FALSE,FALSE,Force Of Nature,2,Heathen Chemistry,B,minor,B minor
+2002-07-01,2002,0.298,0.967,11,-2.589,1,0.0687,0.0109,0.000168,0.119,0.274,127.057,4,1,208666,FALSE,FALSE,Hung In A Bad Place,3,Heathen Chemistry,B,major,B major
+2002-07-01,2002,0.331,0.558,2,-5.506,1,0.031,0.0689,1.96e-06,0.124,0.0985,150.19,4,1,303120,FALSE,FALSE,Stop Crying Your Heart Out,4,Heathen Chemistry,D,major,D major
+2002-07-01,2002,0.491,0.561,2,-6.396,1,0.0279,0.274,2.16e-06,0.23,0.543,134.881,4,1,127600,FALSE,FALSE,Songbird,5,Heathen Chemistry,D,major,D major
+2002-07-01,2002,0.405,0.632,2,-5.132,1,0.0273,0.0316,0.00251,0.112,0.141,145.936,4,1,292853,FALSE,FALSE,Little By Little,6,Heathen Chemistry,D,major,D major
+2002-07-01,2002,0.4,0.738,7,-6.574,0,0.0332,0.000628,0.954,0.314,0.358,191.827,3,1,77333,FALSE,FALSE,A Quick Peep,7,Heathen Chemistry,G,minor,G minor
+2002-07-01,2002,0.365,0.737,7,-4.652,1,0.0421,0.00206,5.74e-05,0.71,0.214,114.929,4,1,242000,FALSE,FALSE,(Probably) All In My Mind,8,Heathen Chemistry,G,major,G major
+2002-07-01,2002,0.463,0.642,0,-6.39,1,0.0299,0.43,1.31e-06,0.14,0.506,90.009,4,1,189373,FALSE,FALSE,She Is Love,9,Heathen Chemistry,C,major,C major
+2002-07-01,2002,0.386,0.69,9,-6.363,0,0.0283,0.00171,0.00931,0.134,0.173,72.936,4,1,368973,FALSE,FALSE,Born On A Different Cloud,10,Heathen Chemistry,A,minor,A minor
+2002-07-01,2002,0.354,2.01e-05,6,-4.866,1,0.0506,0.00068,0.506,0.26,0.224,113.878,3,1,2282786,FALSE,FALSE,Better Man,11,Heathen Chemistry,F#,major,F# major
+2002-06-26,2002,0.418,0.954,11,-3.062,1,0.0501,9.58e-06,8.28e-06,0.776,0.336,113.923,4,1,226400,FALSE,FALSE,The Hindu Times,1,Heathen Chemistry,B,major,B major
+2002-06-26,2002,0.484,0.805,11,-3.689,0,0.0353,0.000207,0,0.363,0.571,103.965,4,1,291706,FALSE,FALSE,Force Of Nature,2,Heathen Chemistry,B,minor,B minor
+2002-06-26,2002,0.328,0.97,11,-2.452,1,0.0669,0.00875,0.000113,0.119,0.268,127.066,4,1,208626,FALSE,FALSE,Hung In A Bad Place,3,Heathen Chemistry,B,major,B major
+2002-06-26,2002,0.38,0.586,2,-5.324,1,0.0304,0.0754,0,0.0782,0.0804,74.95,4,1,303133,FALSE,FALSE,Stop Crying Your Heart Out,4,Heathen Chemistry,D,major,D major
+2002-06-26,2002,0.489,0.578,2,-6.199,1,0.0282,0.276,5.54e-06,0.228,0.561,134.906,4,1,127573,FALSE,FALSE,Songbird,5,Heathen Chemistry,D,major,D major
+2002-06-26,2002,0.41,0.655,2,-5.033,1,0.0271,0.0302,0.00203,0.12,0.114,145.902,4,1,292866,FALSE,FALSE,Little By Little,6,Heathen Chemistry,D,major,D major
+2002-06-26,2002,0.39,0.736,0,-6.359,1,0.0335,0.000316,0.926,0.308,0.354,191.593,3,1,77333,FALSE,FALSE,A Quick Peep,7,Heathen Chemistry,C,major,C major
+2002-06-26,2002,0.367,0.729,7,-4.51,1,0.0447,0.00181,2.24e-05,0.734,0.189,114.954,4,1,242000,FALSE,FALSE,(Probably) All In The Mind,8,Heathen Chemistry,G,major,G major
+2002-06-26,2002,0.49,0.654,0,-6.247,1,0.0288,0.416,1.19e-06,0.14,0.478,89.972,4,1,189360,FALSE,FALSE,She Is Love,9,Heathen Chemistry,C,major,C major
+2002-06-26,2002,0.381,0.701,9,-6.2,0,0.0281,0.00117,0.00597,0.137,0.192,145.996,4,1,368933,FALSE,FALSE,Born On A Different Cloud,10,Heathen Chemistry,A,minor,A minor
+2002-06-26,2002,0.241,0.927,1,-3.595,0,0.0565,0.00107,0.0502,0.282,0.44,183.911,4,1,267786,FALSE,FALSE,Better Man,11,Heathen Chemistry,C#,minor,C# minor
+2002-06-26,2002,0,2.01e-05,7,-5.835,1,0,0.0273,0.000229,0.103,0,0,0,1,2060679,FALSE,FALSE,You've Got the Heart of a Star,12,Heathen Chemistry,G,major,G major
+2002-06-20,2002,0.418,0.948,11,-3.077,1,0.0517,8.48e-06,7.27e-06,0.736,0.325,113.876,4,1,226733,FALSE,FALSE,The Hindu Times,1,Heathen Chemistry,B,major,B major
+2002-06-20,2002,0.477,0.793,11,-3.662,0,0.0352,0.000224,1.21e-06,0.342,0.559,104.014,4,1,291693,FALSE,FALSE,Force Of Nature,2,Heathen Chemistry,B,minor,B minor
+2002-06-20,2002,0.326,0.966,11,-2.524,1,0.0658,0.0092,0.000237,0.124,0.239,127.051,4,1,208640,FALSE,FALSE,Hung In A Bad Place,3,Heathen Chemistry,B,major,B major
+2002-06-20,2002,0.38,0.573,2,-5.334,1,0.03,0.077,2.38e-06,0.0776,0.0901,74.988,4,1,303133,FALSE,FALSE,Stop Crying Your Heart Out,4,Heathen Chemistry,D,major,D major
+2002-06-20,2002,0.491,0.566,2,-6.208,1,0.0285,0.266,1.1e-05,0.24,0.547,134.93,4,1,127560,FALSE,FALSE,Songbird,5,Heathen Chemistry,D,major,D major
+2002-06-20,2002,0.405,0.63,2,-4.996,1,0.0277,0.029,0.00321,0.117,0.136,145.91,4,1,292866,FALSE,FALSE,Little By Little,6,Heathen Chemistry,D,major,D major
+2002-06-20,2002,0.555,0.737,9,-6.374,0,0.0328,0.000533,0.933,0.356,0.382,127.558,4,1,77333,FALSE,FALSE,A Quick Peep,7,Heathen Chemistry,A,minor,A minor
+2002-06-20,2002,0.373,0.732,7,-4.529,1,0.0418,0.00259,5.39e-05,0.766,0.221,114.969,4,1,242000,FALSE,FALSE,(Probably) All In The Mind,8,Heathen Chemistry,G,major,G major
+2002-06-20,2002,0.476,0.654,0,-6.255,1,0.029,0.476,2e-06,0.14,0.48,89.91,4,1,189373,FALSE,FALSE,She Is Love,9,Heathen Chemistry,C,major,C major
+2002-06-20,2002,0.389,0.692,9,-6.136,0,0.0283,0.0012,0.0115,0.0876,0.158,72.967,4,1,368933,FALSE,FALSE,Born On A Different Cloud,10,Heathen Chemistry,A,minor,A minor
+2002-06-20,2002,0.218,0.934,1,-3.586,0,0.0547,0.000868,0.0835,0.347,0.431,90.843,4,1,260493,FALSE,FALSE,Better Man,11,Heathen Chemistry,C#,minor,C# minor
+2002-06-20,2002,0.4,0.521,7,-7.099,1,0.0351,0.000356,0.803,0.338,0.134,113.877,3,1,289093,FALSE,FALSE,The Cage,12,Heathen Chemistry,G,major,G major
+2002-02-03,2002,0.418,0.948,11,-3.077,1,0.0517,8.48e-06,7.27e-06,0.736,0.325,113.876,4,1,226733,FALSE,FALSE,The Hindu Times,1,Heathen Chemistry,B,major,B major
+2002-02-03,2002,0.477,0.793,11,-3.662,0,0.0352,0.000224,1.21e-06,0.342,0.559,104.014,4,1,291693,FALSE,FALSE,Force Of Nature,2,Heathen Chemistry,B,minor,B minor
+2002-02-03,2002,0.326,0.966,11,-2.524,1,0.0658,0.0092,0.000237,0.124,0.239,127.051,4,1,208640,FALSE,FALSE,Hung In A Bad Place,3,Heathen Chemistry,B,major,B major
+2002-02-03,2002,0.38,0.573,2,-5.334,1,0.03,0.077,2.38e-06,0.0776,0.0901,74.988,4,1,303133,FALSE,FALSE,Stop Crying Your Heart Out,4,Heathen Chemistry,D,major,D major
+2002-02-03,2002,0.491,0.566,2,-6.208,1,0.0285,0.266,1.1e-05,0.24,0.547,134.93,4,1,127560,FALSE,FALSE,Songbird,5,Heathen Chemistry,D,major,D major
+2002-02-03,2002,0.405,0.63,2,-4.996,1,0.0277,0.029,0.00321,0.117,0.136,145.91,4,1,292866,FALSE,FALSE,Little By Little,6,Heathen Chemistry,D,major,D major
+2002-02-03,2002,0.555,0.737,9,-6.374,0,0.0328,0.000533,0.933,0.356,0.382,127.558,4,1,77333,FALSE,FALSE,A Quick Peep,7,Heathen Chemistry,A,minor,A minor
+2002-02-03,2002,0.373,0.732,7,-4.529,1,0.0418,0.00259,5.39e-05,0.766,0.221,114.969,4,1,242000,FALSE,FALSE,(Probably) All In The Mind,8,Heathen Chemistry,G,major,G major
+2002-02-03,2002,0.476,0.654,0,-6.255,1,0.029,0.476,2e-06,0.14,0.48,89.91,4,1,189373,FALSE,FALSE,She Is Love,9,Heathen Chemistry,C,major,C major
+2002-02-03,2002,0.389,0.692,9,-6.136,0,0.0283,0.0012,0.0115,0.0876,0.158,72.967,4,1,368933,FALSE,FALSE,Born On A Different Cloud,10,Heathen Chemistry,A,minor,A minor
+2002-02-03,2002,0.218,0.934,1,-3.586,0,0.0547,0.000868,0.0835,0.347,0.431,90.843,4,1,260493,FALSE,FALSE,Better Man,11,Heathen Chemistry,C#,minor,C# minor
+2002-02-03,2002,0.4,0.521,7,-7.099,1,0.0351,0.000356,0.803,0.338,0.134,113.877,3,1,289093,FALSE,FALSE,The Cage,12,Heathen Chemistry,G,major,G major
+2000-11-14,2000,0.361,0.962,0,-6.427,1,0.09,0.00201,0.0318,0.982,0.131,100.421,4,1,184333,FALSE,FALSE,"Fuckin' In the Bushes - Live at Wembley Stadium, 2000",1,Familiar To Millions,C,major,C major
+2000-11-14,2000,0.293,0.931,2,-4.388,1,0.0447,0.000156,0.0526,0.899,0.488,85.175,4,1,332266,FALSE,FALSE,"Go Let It Out - Live from Wembley Stadium, 2000",2,Familiar To Millions,D,major,D major
+2000-11-14,2000,0.332,0.879,9,-5.393,0,0.0365,0.000917,0.00479,0.951,0.163,79.983,4,1,359760,FALSE,FALSE,"Who Feels Love? - Live at Wembley Stadium, 2000",3,Familiar To Millions,A,minor,A minor
+2000-11-14,2000,0.305,0.99,6,-4.479,0,0.0633,6.01e-05,0.289,0.988,0.199,119.466,4,1,270333,FALSE,FALSE,"Supersonic - Live at Wembley Stadium, 2000",4,Familiar To Millions,F#,minor,F# minor
+2000-11-14,2000,0.252,0.953,4,-4.393,1,0.0927,0.0043,0.0182,0.985,0.12,104.991,4,1,313000,FALSE,FALSE,"Shakermaker - Live at Wembley Stadium, 2000",5,Familiar To Millions,E,major,E major
+2000-11-14,2000,0.303,0.99,5,-4.1,1,0.146,0.000488,0.00976,0.975,0.109,125.21,4,1,258440,FALSE,FALSE,"Acquiesce - Live at Wembley Stadium, 2000",6,Familiar To Millions,F,major,F major
+2000-11-14,2000,0.259,0.98,4,-3.855,0,0.0768,0.000122,0.235,0.992,0.297,137.657,4,1,245493,FALSE,FALSE,"Step Out - Live at Wembley Stadium, 2000",7,Familiar To Millions,E,minor,E minor
+2000-11-14,2000,0.258,0.951,5,-3.893,0,0.0591,0.000593,0.117,0.986,0.37,148.105,4,1,481533,FALSE,FALSE,"Gas Panic! - Live at Wembley Stadium, 2000",8,Familiar To Millions,F,minor,F minor
+2000-11-14,2000,0.25,0.983,9,-4.454,0,0.0866,0.00201,3.47e-05,0.944,0.27,131.568,4,1,283706,FALSE,FALSE,"Roll With It - Live at Wembley Stadium, 2000",9,Familiar To Millions,A,minor,A minor
+2000-11-14,2000,0.275,0.904,7,-4.824,1,0.0404,0.000378,0.0161,0.991,0.221,91.673,4,1,349000,FALSE,FALSE,"Stand by Me - Live at Wembley Stadium, 2000",10,Familiar To Millions,G,major,G major
+2000-11-14,2000,0.146,0.924,6,-5.066,0,0.0524,0.0216,0.017,0.982,0.438,92.776,4,2,286466,FALSE,FALSE,"Wonderwall - Live at Wembley Stadium, 2000",1,Familiar To Millions,F#,minor,F# minor
+2000-11-14,2000,0.165,0.959,9,-4.082,1,0.07,0.000549,0.011,0.974,0.147,130.082,4,2,412026,FALSE,FALSE,"Cigarettes & Alcohol - Live at Wembley Stadium, 2000",2,Familiar To Millions,A,major,A major
+2000-11-14,2000,0.279,0.942,0,-5.115,1,0.0721,0.0235,0.0245,0.966,0.218,86.366,4,2,327600,FALSE,FALSE,"Don't Look Back In Anger - Live at Wembley Stadium, 2000",3,Familiar To Millions,C,major,C major
+2000-11-14,2000,0.232,0.946,9,-4.079,0,0.0781,0.0107,0.0681,0.983,0.196,90.387,4,2,309906,FALSE,FALSE,"Live Forever - Live at Wembley Stadium, 2000",4,Familiar To Millions,A,minor,A minor
+2000-11-14,2000,0.385,0.955,9,-5.254,0,0.0603,0.000676,0.645,0.984,0.229,128.439,4,2,225426,FALSE,FALSE,"Hey Hey, My, My (Into The Black) - Live at Wembley Stadium, 2000",5,Familiar To Millions,A,minor,A minor
+2000-11-14,2000,0.114,0.89,2,-4.645,1,0.0547,0.00394,0.00882,0.982,0.107,82.179,4,2,392066,FALSE,FALSE,"Champagne Supernova - Live at Wembley Stadium, 2000",6,Familiar To Millions,D,major,D major
+2000-11-14,2000,0.142,0.996,4,-3.444,1,0.262,0.00853,0.562,0.978,0.0772,140.109,4,2,446866,FALSE,FALSE,"Rock 'n' Roll Star - Live at Wembley Stadium, 2000",7,Familiar To Millions,E,major,E major
+2000-11-14,2000,0.0864,0.979,9,-3.934,0,0.12,0.000118,0.357,0.979,0.158,81.061,4,2,392573,FALSE,FALSE,"Helter Skelter - Live for SFX Radio, 2000",8,Familiar To Millions,A,minor,A minor
+2000-11-13,2000,0.337,0.926,2,-4.776,1,0.0424,0.00018,0.0434,0.921,0.56,85.183,4,1,350960,FALSE,FALSE,"Go Let It Out - Live from Wembley Stadium, 2000",1,Familiar To Millions - The Highlights,D,major,D major
+2000-11-13,2000,0.33,0.878,0,-5.529,1,0.0371,0.00131,0.0033,0.956,0.135,79.959,4,1,360266,FALSE,FALSE,"Who Feels Love? - Live at Wembley Stadium, 2000",2,Familiar To Millions - The Highlights,C,major,C major
+2000-11-13,2000,0.303,0.99,6,-4.516,0,0.0775,6.55e-05,0.208,0.99,0.196,119.477,4,1,269773,FALSE,FALSE,"Supersonic - Live at Wembley Stadium, 2000",3,Familiar To Millions - The Highlights,F#,minor,F# minor
+2000-11-13,2000,0.254,0.959,4,-4.507,1,0.0868,0.00416,0.0186,0.985,0.118,104.592,4,1,313226,FALSE,FALSE,"Shakermaker - Live at Wembley Stadium, 2000",4,Familiar To Millions - The Highlights,E,major,E major
+2000-11-13,2000,0.305,0.989,5,-4.159,1,0.161,0.00021,0.00218,0.981,0.118,125.352,4,1,246666,FALSE,FALSE,"Acquiesce - Live at Wembley Stadium, 2000",5,Familiar To Millions - The Highlights,F,major,F major
+2000-11-13,2000,0.263,0.943,5,-3.999,0,0.0597,0.000575,0.0752,0.986,0.348,147.876,4,1,481280,FALSE,FALSE,"Gas Panic! - Live at Wembley Stadium, 2000",6,Familiar To Millions - The Highlights,F,minor,F minor
+2000-11-13,2000,0.243,0.983,9,-4.504,0,0.101,0.00149,2.98e-05,0.938,0.284,131.639,4,1,283320,FALSE,FALSE,"Roll With It - Live at Wembley Stadium, 2000",7,Familiar To Millions - The Highlights,A,minor,A minor
+2000-11-13,2000,0.142,0.903,6,-4.806,0,0.05,0.018,0.00682,0.978,0.383,93.183,4,1,273920,FALSE,FALSE,"Wonderwall - Live at Wembley Stadium, 2000",8,Familiar To Millions - The Highlights,F#,minor,F# minor
+2000-11-13,2000,0.163,0.949,9,-4.117,1,0.0681,0.00055,0.0155,0.974,0.156,131.029,4,1,412546,FALSE,FALSE,"Cigarettes & Alcohol - Live at Wembley Stadium, 2000",9,Familiar To Millions - The Highlights,A,major,A major
+2000-11-13,2000,0.271,0.932,0,-4.892,1,0.0584,0.0209,0.011,0.977,0.245,85.267,4,1,309266,FALSE,FALSE,"Don't Look Back In Anger - Live at Wembley Stadium, 2000",10,Familiar To Millions - The Highlights,C,major,C major
+2000-11-13,2000,0.222,0.929,9,-4.051,0,0.063,0.00967,0.127,0.962,0.219,91.172,4,1,292600,FALSE,FALSE,"Live Forever - Live at Wembley Stadium, 2000",11,Familiar To Millions - The Highlights,A,minor,A minor
+2000-11-13,2000,0.164,0.894,2,-4.7,1,0.0494,0.00511,0.00219,0.986,0.127,82.707,4,1,391306,FALSE,FALSE,"Champagne Supernova - Live at Wembley Stadium, 2000",12,Familiar To Millions - The Highlights,D,major,D major
+2000-11-13,2000,0.146,0.989,4,-3.234,1,0.121,0.00289,0.427,0.955,0.136,138.856,4,1,384173,FALSE,FALSE,"Rock 'n' Roll Star - Live at Wembley Stadium, 2000",13,Familiar To Millions - The Highlights,E,major,E major
+2000-11-13,2000,0.328,0.939,2,-4.358,1,0.0447,0.000154,0.0464,0.886,0.511,85.163,4,1,332266,FALSE,FALSE,"Go Let It Out - Live at Wembley Stadium, July 2000",1,Familiar To Millions (Live),D,major,D major
+2000-11-13,2000,0.333,0.878,9,-5.403,0,0.039,0.00109,0.00335,0.945,0.158,79.987,4,1,359760,TRUE,FALSE,"Who Feels Love? - Live at Wembley Stadium, July 2000",2,Familiar To Millions (Live),A,minor,A minor
+2000-11-13,2000,0.305,0.99,6,-4.466,0,0.0638,7.08e-05,0.244,0.989,0.192,119.529,4,1,270333,FALSE,FALSE,"Supersonic - Live at Wembley Stadium, July 2000",3,Familiar To Millions (Live),F#,minor,F# minor
+2000-11-13,2000,0.226,0.951,4,-4.38,1,0.082,0.00383,0.052,0.985,0.147,104.883,4,1,313000,TRUE,FALSE,"Shakermaker - Live at Wembley Stadium, July 2000",4,Familiar To Millions (Live),E,major,E major
+2000-11-13,2000,0.28,0.991,5,-4.097,1,0.147,0.000419,0.0079,0.97,0.12,125.112,4,1,258440,FALSE,FALSE,"Acquiesce - Live at Wembley Stadium, July 2000",5,Familiar To Millions (Live),F,major,F major
+2000-11-13,2000,0.256,0.951,5,-3.914,0,0.0639,0.000605,0.0978,0.988,0.355,147.949,4,1,481533,FALSE,FALSE,"Gas Panic! - Live at Wembley Stadium, July 2000",6,Familiar To Millions (Live),F,minor,F minor
+2000-11-13,2000,0.228,0.987,9,-4.468,0,0.0867,0.0013,7.48e-05,0.953,0.282,131.554,4,1,283706,TRUE,FALSE,"Roll With It - Live at Wembley Stadium, July 2000",7,Familiar To Millions (Live),A,minor,A minor
+2000-11-13,2000,0.14,0.91,6,-5.096,0,0.0518,0.0216,0.0164,0.982,0.415,92.403,4,1,286466,FALSE,FALSE,"Wonderwall - Live at Wembley Stadium, July 2000",8,Familiar To Millions (Live),F#,minor,F# minor
+2000-11-13,2000,0.165,0.952,9,-4.08,1,0.0674,0.000618,0.00754,0.974,0.175,130.247,4,1,412026,TRUE,FALSE,"Cigarettes & Alcohol - Live at Wembley Stadium, July 2000",9,Familiar To Millions (Live),A,major,A major
+2000-11-13,2000,0.285,0.94,0,-5.137,1,0.0643,0.0321,0.00985,0.97,0.232,86.175,4,1,327600,TRUE,FALSE,"Don't Look Back In Anger - Live at Wembley Stadium, July 2000",10,Familiar To Millions (Live),C,major,C major
+2000-11-13,2000,0.112,0.946,9,-4.056,0,0.0773,0.0106,0.0428,0.982,0.223,91.862,4,1,309906,FALSE,FALSE,"Live Forever - Live at Wembley Stadium, July 2000",11,Familiar To Millions (Live),A,minor,A minor
+2000-11-13,2000,0.151,0.888,2,-4.648,1,0.0496,0.00385,0.00802,0.982,0.112,82.034,4,1,392066,FALSE,FALSE,"Champagne Supernova - Live at Wembley Stadium, July 2000",12,Familiar To Millions (Live),D,major,D major
+2000-11-13,2000,0.142,0.996,6,-3.431,0,0.268,0.00842,0.709,0.978,0.0643,140.205,4,1,446866,FALSE,FALSE,"Rock 'n' Roll Star - Live at Wembley Stadium, July 2000",13,Familiar To Millions (Live),F#,minor,F# minor
+2000-11-01,2000,0.361,0.962,0,-6.427,1,0.09,0.00201,0.0318,0.982,0.131,100.421,4,1,184333,FALSE,FALSE,"Fuckin' In the Bushes - Live at Wembley Stadium, 2000",1,Familiar To Millions,C,major,C major
+2000-11-01,2000,0.292,0.931,2,-4.388,1,0.0443,0.000155,0.0518,0.899,0.495,85.177,4,1,332266,FALSE,FALSE,"Go Let It Out - Live from Wembley Stadium, 2000",2,Familiar To Millions,D,major,D major
+2000-11-01,2000,0.332,0.879,9,-5.393,0,0.0364,0.000917,0.00479,0.951,0.163,79.983,4,1,359760,FALSE,FALSE,"Who Feels Love? - Live at Wembley Stadium, 2000",3,Familiar To Millions,A,minor,A minor
+2000-11-01,2000,0.307,0.99,6,-4.479,0,0.0619,5.9e-05,0.289,0.987,0.204,119.476,4,1,270333,FALSE,FALSE,"Supersonic - Live at Wembley Stadium, 2000",4,Familiar To Millions,F#,minor,F# minor
+2000-11-01,2000,0.245,0.952,4,-4.393,1,0.0833,0.0043,0.0182,0.984,0.123,104.983,4,1,313000,FALSE,FALSE,"Shakermaker - Live at Wembley Stadium, 2000",5,Familiar To Millions,E,major,E major
+2000-11-01,2000,0.301,0.99,5,-4.1,1,0.147,0.000488,0.00976,0.975,0.109,125.211,4,1,258440,FALSE,FALSE,"Acquiesce - Live at Wembley Stadium, 2000",6,Familiar To Millions,F,major,F major
+2000-11-01,2000,0.26,0.98,4,-3.855,0,0.0796,0.000122,0.241,0.992,0.293,137.657,4,1,245493,FALSE,FALSE,"Step Out - Live at Wembley Stadium, 2000",7,Familiar To Millions,E,minor,E minor
+2000-11-01,2000,0.257,0.951,5,-3.893,0,0.0589,0.000586,0.117,0.985,0.369,148.105,4,1,481533,FALSE,FALSE,"Gas Panic! - Live at Wembley Stadium, 2000",8,Familiar To Millions,F,minor,F minor
+2000-11-01,2000,0.25,0.983,9,-4.454,0,0.0881,0.00201,3.45e-05,0.943,0.269,131.568,4,1,283706,FALSE,FALSE,"Roll With It - Live at Wembley Stadium, 2000",9,Familiar To Millions,A,minor,A minor
+2000-11-01,2000,0.275,0.904,7,-4.824,1,0.0404,0.000378,0.0161,0.991,0.221,91.673,4,1,349000,FALSE,FALSE,"Stand by Me - Live at Wembley Stadium, 2000",10,Familiar To Millions,G,major,G major
+2000-11-01,2000,0.139,0.924,6,-5.066,0,0.0534,0.0216,0.0166,0.982,0.433,92.99,4,2,286466,FALSE,FALSE,"Wonderwall - Live at Wembley Stadium, 2000",1,Familiar To Millions,F#,minor,F# minor
+2000-11-01,2000,0.165,0.959,9,-4.077,1,0.0696,0.000542,0.0108,0.969,0.154,130.082,4,2,412026,FALSE,FALSE,"Cigarettes & Alcohol - Live at Wembley Stadium, 2000",2,Familiar To Millions,A,major,A major
+2000-11-01,2000,0.286,0.942,0,-5.115,1,0.0786,0.0235,0.0229,0.965,0.214,86.276,4,2,327600,FALSE,FALSE,"Don't Look Back In Anger - Live at Wembley Stadium, 2000",3,Familiar To Millions,C,major,C major
+2000-11-01,2000,0.232,0.946,9,-4.079,0,0.0773,0.0107,0.0681,0.983,0.196,90.387,4,2,309906,FALSE,FALSE,"Live Forever - Live at Wembley Stadium, 2000",4,Familiar To Millions,A,minor,A minor
+2000-11-01,2000,0.384,0.956,9,-5.247,0,0.0607,0.000661,0.646,0.982,0.23,128.431,4,2,225426,FALSE,FALSE,"Hey Hey, My, My (Into The Black) - Live at Wembley Stadium, 2000",5,Familiar To Millions,A,minor,A minor
+2000-11-01,2000,0.113,0.888,2,-4.645,1,0.0541,0.00388,0.00864,0.983,0.107,82.179,4,2,392066,FALSE,FALSE,"Champagne Supernova - Live at Wembley Stadium, 2000",6,Familiar To Millions,D,major,D major
+2000-11-01,2000,0.142,0.996,4,-3.444,1,0.262,0.00853,0.562,0.978,0.0772,140.109,4,2,446866,FALSE,FALSE,"Rock 'n' Roll Star - Live at Wembley Stadium, 2000",7,Familiar To Millions,E,major,E major
+2000-11-01,2000,0.111,0.979,9,-3.934,0,0.104,0.000118,0.357,0.98,0.156,89.353,4,2,392573,FALSE,FALSE,"Helter Skelter - Live for SFX Radio, 2000",8,Familiar To Millions,A,minor,A minor
+2000-02-28,2000,0.374,0.807,9,-8.645,0,0.0477,0.00134,0.0654,0.891,0.369,134.142,5,1,198466,TRUE,FALSE,Fuckin' In the Bushes,1,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.408,0.856,2,-5.614,1,0.0334,0.0107,5.51e-05,0.514,0.619,84.196,4,1,278400,FALSE,FALSE,Go Let It Out,2,Standing On The Shoulder Of Giants,D,major,D major
+2000-02-28,2000,0.322,0.801,0,-5.722,1,0.0382,0.185,0.0428,0.245,0.324,152.96,4,1,344226,FALSE,FALSE,Who Feels Love?,3,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.404,0.924,8,-4.248,1,0.0546,4.25e-06,2.84e-05,0.112,0.143,124.186,4,1,267160,FALSE,FALSE,Put Yer Money Where Yer Mouth Is,4,Standing On The Shoulder Of Giants,G#,major,G# major
+2000-02-28,2000,0.401,0.604,0,-7.009,1,0.0261,0.32,0.0381,0.275,0.141,82.026,4,1,255266,FALSE,FALSE,Little James,5,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.369,0.681,5,-6.006,0,0.042,0.0123,0.00389,0.356,0.233,147.795,4,1,368266,FALSE,FALSE,Gas Panic!,6,Standing On The Shoulder Of Giants,F,minor,F minor
+2000-02-28,2000,0.377,0.728,4,-5.07,0,0.0321,0.041,0,0.114,0.432,149.845,4,1,266600,FALSE,FALSE,Where Did It All Go Wrong?,7,Standing On The Shoulder Of Giants,E,minor,E minor
+2000-02-28,2000,0.296,0.59,7,-5.924,1,0.0304,0.0364,0.0658,0.162,0.195,156.1,4,1,312640,FALSE,FALSE,Sunday Morning Call,8,Standing On The Shoulder Of Giants,G,major,G major
+2000-02-28,2000,0.347,0.768,9,-5.713,0,0.0526,0.000397,0,0.384,0.318,128.038,4,1,192960,FALSE,FALSE,I Can See a Liar,9,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.271,0.627,9,-6.367,1,0.0373,0.011,9.63e-05,0.109,0.164,131.714,4,1,391106,FALSE,FALSE,Roll It Over,10,Standing On The Shoulder Of Giants,A,major,A major
+2000-02-28,2000,0.374,0.807,9,-8.645,0,0.0477,0.00134,0.0654,0.891,0.369,134.142,5,1,198466,TRUE,FALSE,Fuckin' In the Bushes,1,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.408,0.856,2,-5.614,1,0.0334,0.0107,5.51e-05,0.514,0.619,84.196,4,1,278400,FALSE,FALSE,Go Let It Out,2,Standing On The Shoulder Of Giants,D,major,D major
+2000-02-28,2000,0.322,0.801,0,-5.722,1,0.0382,0.185,0.0428,0.245,0.324,152.96,4,1,344226,FALSE,FALSE,Who Feels Love?,3,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.404,0.924,8,-4.248,1,0.0546,4.25e-06,2.84e-05,0.112,0.143,124.186,4,1,267160,FALSE,FALSE,Put Yer Money Where Yer Mouth Is,4,Standing On The Shoulder Of Giants,G#,major,G# major
+2000-02-28,2000,0.401,0.604,0,-7.009,1,0.0261,0.32,0.0381,0.275,0.141,82.026,4,1,255266,FALSE,FALSE,Little James,5,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.369,0.681,5,-6.006,0,0.042,0.0123,0.00389,0.356,0.233,147.795,4,1,368266,FALSE,FALSE,Gas Panic!,6,Standing On The Shoulder Of Giants,F,minor,F minor
+2000-02-28,2000,0.377,0.728,4,-5.07,0,0.0321,0.041,0,0.114,0.432,149.845,4,1,266600,FALSE,FALSE,Where Did It All Go Wrong?,7,Standing On The Shoulder Of Giants,E,minor,E minor
+2000-02-28,2000,0.296,0.59,7,-5.924,1,0.0304,0.0364,0.0658,0.162,0.195,156.1,4,1,312640,FALSE,FALSE,Sunday Morning Call,8,Standing On The Shoulder Of Giants,G,major,G major
+2000-02-28,2000,0.347,0.768,9,-5.713,0,0.0526,0.000397,0,0.384,0.318,128.038,4,1,192960,FALSE,FALSE,I Can See a Liar,9,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.271,0.627,9,-6.367,1,0.0373,0.011,9.63e-05,0.109,0.164,131.714,4,1,391106,FALSE,FALSE,Roll It Over,10,Standing On The Shoulder Of Giants,A,major,A major
+2000-02-28,2000,0.374,0.807,9,-8.645,0,0.0477,0.00134,0.0654,0.891,0.369,134.142,5,1,198466,TRUE,FALSE,Fuckin' In the Bushes,1,Standing on the Shoulder of Giants,A,minor,A minor
+2000-02-28,2000,0.408,0.856,2,-5.614,1,0.0334,0.0107,5.51e-05,0.514,0.619,84.196,4,1,278400,FALSE,FALSE,Go Let It Out,2,Standing on the Shoulder of Giants,D,major,D major
+2000-02-28,2000,0.322,0.801,0,-5.722,1,0.0382,0.185,0.0428,0.245,0.324,152.96,4,1,344226,FALSE,FALSE,Who Feels Love?,3,Standing on the Shoulder of Giants,C,major,C major
+2000-02-28,2000,0.404,0.924,8,-4.248,1,0.0546,4.25e-06,2.84e-05,0.112,0.143,124.186,4,1,267160,FALSE,FALSE,Put Yer Money Where Yer Mouth Is,4,Standing on the Shoulder of Giants,G#,major,G# major
+2000-02-28,2000,0.401,0.604,0,-7.009,1,0.0261,0.32,0.0381,0.275,0.141,82.026,4,1,255266,FALSE,FALSE,Little James,5,Standing on the Shoulder of Giants,C,major,C major
+2000-02-28,2000,0.369,0.681,5,-6.006,0,0.042,0.0123,0.00389,0.356,0.233,147.795,4,1,368266,FALSE,FALSE,Gas Panic!,6,Standing on the Shoulder of Giants,F,minor,F minor
+2000-02-28,2000,0.377,0.728,4,-5.07,0,0.0321,0.041,0,0.114,0.432,149.845,4,1,266600,FALSE,FALSE,Where Did It All Go Wrong?,7,Standing on the Shoulder of Giants,E,minor,E minor
+2000-02-28,2000,0.296,0.59,7,-5.924,1,0.0304,0.0364,0.0658,0.162,0.195,156.1,4,1,312640,FALSE,FALSE,Sunday Morning Call,8,Standing on the Shoulder of Giants,G,major,G major
+2000-02-28,2000,0.347,0.768,9,-5.713,0,0.0526,0.000397,0,0.384,0.318,128.038,4,1,192960,FALSE,FALSE,I Can See a Liar,9,Standing on the Shoulder of Giants,A,minor,A minor
+2000-02-28,2000,0.271,0.627,9,-6.367,1,0.0373,0.011,9.63e-05,0.109,0.164,131.714,4,1,391106,FALSE,FALSE,Roll It Over,10,Standing on the Shoulder of Giants,A,major,A major
+2000-02-28,2000,0.387,0.811,9,-8.923,0,0.0433,0.00133,0.0767,0.862,0.335,100.526,4,1,198800,FALSE,FALSE,Fuckin' In the Bushes - Clean Version - For use on Walmart product ONLY!,1,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.41,0.847,2,-5.644,1,0.0331,0.0129,4.97e-05,0.557,0.593,84.192,4,1,278533,FALSE,FALSE,Go Let It Out,2,Standing On The Shoulder Of Giants,D,major,D major
+2000-02-28,2000,0.362,0.801,0,-5.68,1,0.0362,0.188,0.0514,0.309,0.327,76.486,4,1,344466,FALSE,FALSE,Who Feels Love?,3,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.412,0.929,8,-4.224,1,0.055,3.92e-06,2.57e-05,0.103,0.143,124.178,4,1,267266,FALSE,FALSE,Put Yer Money Where Yer Mouth Is,4,Standing On The Shoulder Of Giants,G#,major,G# major
+2000-02-28,2000,0.398,0.618,0,-6.962,1,0.027,0.335,0.0178,0.226,0.119,82.014,4,1,255266,FALSE,FALSE,Little James,5,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.346,0.647,5,-6.028,0,0.0408,0.00924,0.00269,0.403,0.259,148.058,4,1,368266,FALSE,FALSE,Gas Panic!,6,Standing On The Shoulder Of Giants,F,minor,F minor
+2000-02-28,2000,0.373,0.703,4,-5.094,0,0.0323,0.0431,0,0.109,0.404,149.814,4,1,266706,FALSE,FALSE,Where Did It All Go Wrong?,7,Standing On The Shoulder Of Giants,E,minor,E minor
+2000-02-28,2000,0.351,0.589,7,-5.928,1,0.0297,0.041,0.0378,0.151,0.205,78.027,4,1,312733,FALSE,FALSE,Sunday Morning Call,8,Standing On The Shoulder Of Giants,G,major,G major
+2000-02-28,2000,0.351,0.76,9,-5.767,0,0.0526,0.000474,0,0.317,0.36,128.063,4,1,192960,FALSE,FALSE,I Can See a Liar,9,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.283,0.63,9,-6.324,1,0.0368,0.0123,8.9e-05,0.11,0.179,132.068,4,1,391240,FALSE,FALSE,Roll It Over,10,Standing On The Shoulder Of Giants,A,major,A major
+2000-02-28,2000,0.152,0.825,9,-8.545,0,0.0486,0.00142,0.0454,0.898,0.338,100.499,4,1,198533,TRUE,FALSE,Fuckin' in the Bushes,1,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.408,0.857,2,-5.71,1,0.034,0.0131,7.44e-05,0.528,0.622,84.197,4,1,278693,FALSE,FALSE,Go Let It Out,2,Standing On The Shoulder Of Giants,D,major,D major
+2000-02-28,2000,0.31,0.801,0,-5.824,1,0.038,0.176,0.0797,0.182,0.312,153.088,4,1,344493,FALSE,FALSE,Who Feels Love?,3,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.409,0.931,8,-4.338,1,0.0545,3.79e-06,1.72e-05,0.116,0.154,124.18,4,1,267160,FALSE,FALSE,Put Yer Money Where Yer Mouth Is,4,Standing On The Shoulder Of Giants,G#,major,G# major
+2000-02-28,2000,0.398,0.59,0,-7.118,1,0.0269,0.341,0.0305,0.331,0.113,82.004,4,1,255293,FALSE,FALSE,Little James,5,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-28,2000,0.349,0.664,5,-6.07,0,0.0408,0.0133,0.00257,0.39,0.287,148.059,4,1,368253,FALSE,FALSE,Gas Panic!,6,Standing On The Shoulder Of Giants,F,minor,F minor
+2000-02-28,2000,0.372,0.708,4,-5.202,0,0.0323,0.0417,0,0.116,0.39,149.804,4,1,266840,FALSE,FALSE,Where Did It All Go Wrong?,7,Standing On The Shoulder Of Giants,E,minor,E minor
+2000-02-28,2000,0.353,0.584,7,-6.066,1,0.0296,0.0512,0.142,0.153,0.212,77.989,4,1,312680,FALSE,FALSE,Sunday Morning Call,8,Standing On The Shoulder Of Giants,G,major,G major
+2000-02-28,2000,0.34,0.76,9,-5.896,0,0.0542,0.000363,0,0.375,0.342,128.069,4,1,192960,FALSE,FALSE,I Can See A Liar,9,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-28,2000,0.279,0.611,9,-6.429,1,0.036,0.0128,7e-05,0.113,0.219,132.135,4,1,391146,FALSE,FALSE,Roll It Over,10,Standing On The Shoulder Of Giants,A,major,A major
+2000-02-23,2000,0.165,0.82,9,-8.608,0,0.0524,0.00132,0.0691,0.871,0.401,133.648,5,1,198826,TRUE,FALSE,Fuckin' In the Bushes,1,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-23,2000,0.409,0.844,2,-5.604,1,0.0333,0.0143,5.97e-05,0.488,0.618,84.195,4,1,278666,FALSE,FALSE,Go Let It Out,2,Standing On The Shoulder Of Giants,D,major,D major
+2000-02-23,2000,0.318,0.793,0,-5.655,1,0.037,0.187,0.0494,0.24,0.335,152.764,4,1,344466,FALSE,FALSE,Who Feels Love?,3,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-23,2000,0.415,0.933,8,-4.192,1,0.0547,4.45e-06,3.65e-05,0.105,0.15,124.172,4,1,267133,FALSE,FALSE,Put Yer Money Where Yer Mouth Is,4,Standing On The Shoulder Of Giants,G#,major,G# major
+2000-02-23,2000,0.399,0.584,0,-6.927,1,0.0271,0.389,0.0398,0.208,0.106,82.019,4,1,255306,FALSE,FALSE,Little James,5,Standing On The Shoulder Of Giants,C,major,C major
+2000-02-23,2000,0.369,0.675,5,-6.022,0,0.0407,0.0114,0.0015,0.421,0.235,148.004,4,1,368266,FALSE,FALSE,Gas Panic!,6,Standing On The Shoulder Of Giants,F,minor,F minor
+2000-02-23,2000,0.384,0.72,2,-5.063,1,0.0329,0.034,0,0.114,0.441,75.035,4,1,266800,FALSE,FALSE,Where Did It All Go Wrong?,7,Standing On The Shoulder Of Giants,D,major,D major
+2000-02-23,2000,0.298,0.602,7,-5.931,1,0.0296,0.0386,0.0253,0.194,0.193,156.073,4,1,312626,FALSE,FALSE,Sunday Morning Call,8,Standing On The Shoulder Of Giants,G,major,G major
+2000-02-23,2000,0.347,0.779,9,-5.773,0,0.053,0.000398,0,0.257,0.348,128.062,4,1,192933,FALSE,FALSE,I Can See a Liar,9,Standing On The Shoulder Of Giants,A,minor,A minor
+2000-02-23,2000,0.281,0.635,9,-6.346,1,0.0357,0.00912,0.000153,0.109,0.184,132.081,4,1,396040,FALSE,FALSE,Roll It Over,10,Standing On The Shoulder Of Giants,A,major,A major
+2000-02-23,2000,0.193,0.637,2,-6.729,0,0.0365,0.751,0.0108,0.259,0.108,173.697,4,1,231093,FALSE,FALSE,Let's All Make Believe,11,Standing On The Shoulder Of Giants,D,minor,D minor
+2000,2000,0.137,0.965,9,-6.536,0,0.104,0.0015,0.0315,0.982,0.115,100.58,4,1,184573,FALSE,FALSE,"Fuckin' In the Bushes - Live at Wembley Stadium, 2000",1,Fmiliar to millions,A,minor,A minor
+2000,2000,0.328,0.938,2,-4.353,1,0.0445,0.000129,0.0635,0.918,0.542,85.167,4,1,331826,FALSE,FALSE,"Go Let It Out - Live from Wembley Stadium, 2000",2,Fmiliar to millions,D,major,D major
+2000,2000,0.332,0.883,9,-5.383,0,0.0364,0.000836,0.00639,0.961,0.207,79.989,4,1,360000,FALSE,FALSE,"Who Feels Love? - Live at Wembley Stadium, 2000",3,Fmiliar to millions,A,minor,A minor
+2000,2000,0.303,0.991,6,-4.495,0,0.0733,6.89e-05,0.227,0.989,0.182,119.347,4,1,272106,FALSE,FALSE,"Supersonic - Live at Wembley Stadium, 2000",4,Fmiliar to millions,F#,minor,F# minor
+2000,2000,0.258,0.95,4,-4.374,1,0.0736,0.00334,0.0153,0.972,0.111,104.85,4,1,310600,FALSE,FALSE,"Shakermaker - Live at Wembley Stadium, 2000",5,Fmiliar to millions,E,major,E major
+2000,2000,0.261,0.99,5,-4.124,1,0.168,0.00038,0.00737,0.969,0.125,125.137,4,1,259293,FALSE,FALSE,"Acquiesce - Live at Wembley Stadium, 2000",6,Fmiliar to millions,F,major,F major
+2000,2000,0.238,0.979,7,-3.802,1,0.0745,0.000105,0.258,0.987,0.309,137.661,4,1,244773,FALSE,FALSE,"Step Out - Live at Wembley Stadium, 2000",7,Fmiliar to millions,G,major,G major
+2000,2000,0.254,0.951,5,-3.927,0,0.0623,0.000576,0.0831,0.99,0.359,148.3,4,1,481600,FALSE,FALSE,"Gas Panic! - Live at Wembley Stadium, 2000",8,Fmiliar to millions,F,minor,F minor
+2000,2000,0.256,0.983,9,-4.444,0,0.0786,0.00187,4.85e-05,0.951,0.322,131.616,4,1,284026,FALSE,FALSE,"Roll With It - Live at Wembley Stadium, 2000",9,Fmiliar to millions,A,minor,A minor
+2000,2000,0.269,0.909,7,-4.804,1,0.0406,0.000293,0.0126,0.984,0.234,91.665,4,1,351213,FALSE,FALSE,"Stand by Me - Live at Wembley Stadium, 2000",10,Fmiliar to millions,G,major,G major
+2000,2000,0.15,0.912,6,-5.07,0,0.0501,0.0221,0.0154,0.982,0.391,94.592,4,1,286906,FALSE,FALSE,"Wonderwall - Live at Wembley Stadium, 2000",11,Fmiliar to millions,F#,minor,F# minor
+2000,2000,0.164,0.955,9,-4.132,1,0.0683,0.000551,0.00999,0.986,0.163,130.306,4,1,413666,FALSE,FALSE,"Cigarettes & Alcohol - Live at Wembley Stadium, 2000",12,Fmiliar to millions,A,major,A major
+2000,2000,0.105,0.94,0,-5.12,1,0.0799,0.0212,0.015,0.985,0.222,84.125,4,1,327600,FALSE,FALSE,"Don't Look Back In Anger - Live at Wembley Stadium, 2000",13,Fmiliar to millions,C,major,C major
+2000,2000,0.126,0.939,9,-3.979,0,0.0767,0.00791,0.116,0.99,0.192,89.758,4,1,307693,FALSE,FALSE,"Live Forever - Live at Wembley Stadium, 2000",14,Fmiliar to millions,A,minor,A minor
+2000,2000,0.387,0.955,9,-5.329,0,0.066,0.00212,0.738,0.988,0.213,128.486,4,1,226173,FALSE,FALSE,"Hey Hey, My, My (Into The Black) - Live at Wembley Stadium, 2000",15,Fmiliar to millions,A,minor,A minor
+2000,2000,0.122,0.892,2,-4.626,1,0.0508,0.00463,0.00584,0.987,0.137,80.594,4,1,391626,FALSE,FALSE,"Champagne Supernova - Live at Wembley Stadium, 2000",16,Fmiliar to millions,D,major,D major
+2000,2000,0.149,0.996,4,-3.423,1,0.26,0.00933,0.607,0.979,0.0676,136.633,4,1,447440,FALSE,FALSE,"Rock 'n' Roll Star - Live at Wembley Stadium, 2000",17,Fmiliar to millions,E,major,E major
+2000,2000,0.115,0.977,9,-3.893,0,0.0862,0.000131,0.284,0.966,0.169,89.167,4,1,393506,FALSE,FALSE,"Helter Skelter - Live for SFX Radio, 2000",18,Fmiliar to millions,A,minor,A minor
+1998-11-03,1998,0.199,0.952,0,-1.976,1,0.0694,0.00792,0.000355,0.437,0.244,111.521,4,1,264960,FALSE,FALSE,Acquiesce,1,The Masterplan,C,major,C major
+1998-11-03,1998,0.487,0.941,11,-3.779,0,0.0564,0.00195,0,0.745,0.797,123.992,4,1,201133,FALSE,FALSE,Underneath The Sky,2,The Masterplan,B,minor,B minor
+1998-11-03,1998,0.393,0.443,4,-8.484,0,0.0265,0.485,4.25e-05,0.371,0.353,84.966,4,1,261106,FALSE,FALSE,Talk Tonight,3,The Masterplan,E,minor,E minor
+1998-11-03,1998,0.5,0.722,5,-3.839,1,0.0304,0.282,0,0.325,0.126,107.026,4,1,279400,FALSE,FALSE,Going Nowhere,4,The Masterplan,F,major,F major
+1998-11-03,1998,0.111,0.679,2,-3.416,1,0.0482,3.41e-05,0.607,0.372,0.289,72.475,4,1,253040,FALSE,FALSE,Fade Away,5,The Masterplan,D,major,D major
+1998-11-03,1998,0.265,0.955,7,-2.185,0,0.0631,0.000874,0.977,0.152,0.178,142.714,4,1,259666,FALSE,FALSE,The Swamp Song,6,The Masterplan,G,minor,G minor
+1998-11-03,1998,0.154,0.981,4,-3.461,1,0.17,2.66e-05,0.729,0.395,0.0385,106.511,4,1,385333,FALSE,FALSE,I Am The Walrus - Live Glasgow Cathouse June '94,7,The Masterplan,E,major,E major
+1998-11-03,1998,0.132,0.901,9,-2.562,1,0.0678,0.0195,0.00721,0.369,0.346,99.209,4,1,381173,FALSE,FALSE,Listen Up,8,The Masterplan,A,major,A major
+1998-11-03,1998,0.519,0.903,9,-4.118,0,0.0332,0.00246,0,0.0621,0.363,125.934,4,1,275880,FALSE,FALSE,Rockin' Chair,9,The Masterplan,A,minor,A minor
+1998-11-03,1998,0.339,0.448,0,-8.866,1,0.0314,0.314,0,0.075,0.213,171.116,3,1,261853,FALSE,FALSE,Half The World Away,10,The Masterplan,C,major,C major
+1998-11-03,1998,0.323,0.9,0,-3.19,1,0.0577,0.00404,0.0125,0.752,0.348,98.365,5,1,258826,FALSE,FALSE,(It's Good) To Be Free,11,The Masterplan,C,major,C major
+1998-11-03,1998,0.396,0.983,2,-2.608,1,0.0764,0.00574,0.000947,0.322,0.223,126.008,4,1,305413,FALSE,FALSE,Stay Young,12,The Masterplan,D,major,D major
+1998-11-03,1998,0.198,0.892,7,-2.287,1,0.0569,0.0307,1.16e-05,0.371,0.235,80.02,4,1,278293,FALSE,FALSE,Headshrinker,13,The Masterplan,G,major,G major
+1998-11-03,1998,0.363,0.603,7,-6.525,1,0.0309,0.0966,3.71e-05,0.0799,0.197,149.631,4,1,322640,FALSE,FALSE,The Masterplan,14,The Masterplan,G,major,G major
+1997-08-21,1997,0.309,0.861,11,-3.41,0,0.0445,0.000164,0.000212,0.113,0.228,80.109,4,1,463213,FALSE,FALSE,D'You Know What I Mean? - Remastered,1,Be Here Now (Remastered),B,minor,B minor
+1997-08-21,1997,0.355,0.971,9,-1.898,0,0.0706,0.00249,0.00522,0.673,0.226,135.178,4,1,311333,FALSE,FALSE,My Big Mouth - Remastered,2,Be Here Now (Remastered),A,minor,A minor
+1997-08-21,1997,0.301,0.879,0,-2.899,1,0.0548,0.221,0.0334,0.262,0.255,148.48,4,1,430373,FALSE,FALSE,Magic Pie - Remastered,3,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.197,0.818,7,-2.596,1,0.045,0.0834,0.00307,0.259,0.337,170.069,4,1,355866,FALSE,FALSE,Stand by Me - Remastered,4,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.343,0.978,2,-2.116,1,0.0565,0.00386,0.000362,0.628,0.195,137.298,4,1,262400,FALSE,FALSE,"I Hope, I Think, I Know - Remastered",5,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.344,0.912,7,-2.615,1,0.0371,0.124,0,0.07,0.318,166.153,4,1,349640,FALSE,FALSE,The Girl in the Dirty Shirt - Remastered,6,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.383,0.783,7,-4.124,1,0.0425,0.091,0.0194,0.416,0.206,86.204,4,1,411360,FALSE,FALSE,Fade In-Out - Remastered,7,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.396,0.826,0,-4.925,1,0.0385,0.0372,4.3e-05,0.0756,0.19,81.107,4,1,288666,FALSE,FALSE,Don't Go Away - Remastered,8,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.46,0.944,9,-1.945,1,0.0461,0.0795,0.476,0.546,0.286,112.197,4,1,312906,FALSE,FALSE,Be Here Now - Remastered,9,Be Here Now (Remastered),A,major,A major
+1997-08-21,1997,0.333,0.831,9,-3.15,1,0.051,0.134,0.000456,0.696,0.333,82.054,4,1,559200,FALSE,FALSE,All Around the World - Remastered,10,Be Here Now (Remastered),A,major,A major
+1997-08-21,1997,0.322,0.776,2,-1.693,1,0.0651,0.00203,0.0189,0.898,0.205,126.253,4,1,423373,FALSE,FALSE,It's Gettin' Better (Man!!) - Remastered,11,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.303,0.823,2,-5.114,1,0.0499,0.00279,0.825,0.394,0.219,82.006,4,1,126853,FALSE,FALSE,All Around the World (Reprise) - Remastered,12,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.381,0.98,2,-2.706,1,0.0691,0.00509,0.00079,0.338,0.223,126.053,4,2,308173,FALSE,FALSE,Stay Young - Remastered,1,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.359,0.936,2,-2.951,1,0.0528,5.34e-05,5.42e-05,0.489,0.481,135.041,4,2,275626,FALSE,FALSE,The Fame - Remastered,2,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.42,0.825,11,-3.183,0,0.0346,0.00685,4.93e-05,0.115,0.266,128.99,4,2,308626,FALSE,FALSE,Flashbax - Remastered,3,Be Here Now (Remastered),B,minor,B minor
+1997-08-21,1997,0.337,0.845,0,-1.991,1,0.0571,0.00431,0.00363,0.475,0.423,125.948,4,2,314986,FALSE,FALSE,(I Got) The Fever - Remastered,4,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.357,0.973,4,-2.459,1,0.0615,0.0035,0.00309,0.0872,0.208,134.093,4,2,359413,FALSE,FALSE,My Sister Lover - Remastered,5,Be Here Now (Remastered),E,major,E major
+1997-08-21,1997,0.482,0.724,5,-3.705,1,0.0302,0.304,0,0.279,0.122,107.061,4,2,281800,FALSE,FALSE,Going Nowhere - Remastered,6,Be Here Now (Remastered),F,major,F major
+1997-08-21,1997,0.576,0.545,9,-5.84,0,0.0257,0.23,0,0.113,0.629,81.068,4,2,362640,FALSE,FALSE,Stand by Me - Live at Bonehead's Outtake,7,Be Here Now (Remastered),A,minor,A minor
+1997-08-21,1997,0.514,0.366,2,-7.109,1,0.0281,0.788,0.000124,0.147,0.411,100.807,4,2,277840,FALSE,FALSE,Untitled - Demo,8,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.395,0.31,11,-6.871,0,0.0298,0.72,0,0.726,0.195,123.538,4,2,224866,FALSE,FALSE,Help! - Live in LA,9,Be Here Now (Remastered),B,minor,B minor
+1997-08-21,1997,0.551,0.372,7,-5.762,1,0.025,0.414,0,0.0921,0.339,99.115,4,2,236026,FALSE,FALSE,Setting Sun - Live Radio Broadcast,10,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.366,0.263,9,-9.605,0,0.0254,0.754,0.000261,0.0735,0.242,75.093,4,2,293213,FALSE,FALSE,If We Shadows - Demo,11,Be Here Now (Remastered),A,minor,A minor
+1997-08-21,1997,0.488,0.529,0,-7.536,1,0.032,0.801,0,0.231,0.525,85.313,4,2,222546,FALSE,FALSE,Don't Go Away - Demo,12,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.181,0.935,5,-5.404,1,0.0729,0.000148,0.272,0.956,0.366,141.382,4,2,321466,TRUE,FALSE,My Big Mouth - Live at Knebworth Park,13,Be Here Now (Remastered),F,major,F major
+1997-08-21,1997,0.331,0.843,4,-3.273,1,0.0376,0.000126,0.0118,0.198,0.322,80.01,4,2,443495,FALSE,FALSE,D'You Know What I Mean? - NG's 2016 Rethink,14,Be Here Now (Remastered),E,major,E major
+1997-08-21,1997,0.447,0.633,6,-8.421,0,0.0298,0.00662,0.000893,0.127,0.155,80.013,4,3,435373,FALSE,FALSE,D'You Know What I Mean? - Mustique Demo,1,Be Here Now (Remastered),F#,minor,F# minor
+1997-08-21,1997,0.466,0.866,0,-7.625,1,0.047,9.79e-06,0.000285,0.171,0.696,134.001,4,3,317426,FALSE,FALSE,My Big Mouth - Mustique Demo,2,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.445,0.888,11,-7.18,0,0.0323,4.51e-05,0.000976,0.332,0.552,134,4,3,369040,FALSE,FALSE,My Sister Lover - Mustique Demo,3,Be Here Now (Remastered),B,minor,B minor
+1997-08-21,1997,0.364,0.801,7,-7.966,1,0.0319,0.00112,0.000471,0.607,0.455,168.024,4,3,360920,FALSE,FALSE,Stand by Me - Mustique Demo,4,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.406,0.922,2,-7.529,1,0.0466,5.22e-06,4.77e-05,0.72,0.55,136.984,4,3,250680,FALSE,FALSE,"I Hope, I Think, I Know - Mustique Demo",5,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.35,0.781,7,-8.019,1,0.0352,0.0181,3.52e-06,0.327,0.547,165.945,4,3,323266,FALSE,FALSE,The Girl in the Dirty Shirt - Mustique Demo,6,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.421,0.783,9,-8.846,0,0.0361,0.0207,2.48e-06,0.125,0.535,161.771,4,3,258293,FALSE,FALSE,Don't Go Away - Mustique Demo,7,Be Here Now (Remastered),A,minor,A minor
+1997-08-21,1997,0.178,0.272,7,-20.608,1,0.0294,0.974,0.996,0.21,0.102,164.818,4,3,215000,FALSE,FALSE,Trip Inside (Be Here Now) - Mustique Demo,8,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.468,0.566,7,-10.033,1,0.027,0.0755,0.00173,0.45,0.277,86.039,4,3,362880,FALSE,FALSE,Fade In-Out - Mustique Demo,9,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.381,0.832,2,-6.603,1,0.0423,5.64e-06,0.0114,0.575,0.383,128.959,4,3,296480,FALSE,FALSE,Stay Young - Mustique Demo,10,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.3,0.397,4,-12.688,0,0.0302,0.376,5.18e-06,0.171,0.182,95.689,4,3,268373,FALSE,FALSE,Angel Child - Mustique Demo,11,Be Here Now (Remastered),E,minor,E minor
+1997-08-21,1997,0.409,0.919,2,-6.865,1,0.0431,2.71e-05,0.000426,0.192,0.667,134.95,4,3,285360,FALSE,FALSE,The Fame - Mustique Demo,12,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.469,0.744,11,-7.959,1,0.0301,0.0059,0.062,0.673,0.457,81.997,4,3,390893,FALSE,FALSE,All Around the World - Mustique Demo,13,Be Here Now (Remastered),B,major,B major
+1997-08-21,1997,0.438,0.926,2,-7.535,1,0.0437,9.66e-05,0.000411,0.197,0.378,125.002,4,3,397586,FALSE,FALSE,It's Gettin' Better (Man!!) - Mustique Demo,14,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.312,0.886,11,-3.244,0,0.0427,7.32e-05,0.000161,0.0885,0.251,80.025,4,1,462226,FALSE,FALSE,D'You Know What I Mean?,1,Be Here Now,B,minor,B minor
+1997-08-21,1997,0.367,0.988,5,-1.071,1,0.0706,0.00425,7.58e-06,0.0486,0.327,135.043,4,1,302600,FALSE,FALSE,My Big Mouth,2,Be Here Now,F,major,F major
+1997-08-21,1997,0.327,0.895,0,-3.064,1,0.0476,0.134,0.00206,0.385,0.295,148.348,4,1,439373,FALSE,FALSE,Magic Pie,3,Be Here Now,C,major,C major
+1997-08-21,1997,0.214,0.828,7,-2.66,1,0.0383,0.0142,1.61e-06,0.161,0.388,169.876,4,1,356600,FALSE,FALSE,Stand by Me,4,Be Here Now,G,major,G major
+1997-08-21,1997,0.355,0.978,2,-2.331,1,0.0596,0.000657,0.00495,0.448,0.19,137.059,4,1,262426,FALSE,FALSE,"I Hope, I Think, I Know",5,Be Here Now,D,major,D major
+1997-08-21,1997,0.389,0.905,7,-3.126,1,0.0352,0.127,0,0.382,0.315,166.128,4,1,347400,FALSE,FALSE,The Girl in the Dirty Shirt,6,Be Here Now,G,major,G major
+1997-08-21,1997,0.399,0.729,7,-5.515,1,0.0333,0.0126,0.000324,0.368,0.181,85.993,4,1,412293,FALSE,FALSE,Fade In-Out,7,Be Here Now,G,major,G major
+1997-08-21,1997,0.426,0.838,0,-4.38,1,0.0362,0.0532,3.02e-06,0.0829,0.182,81.089,4,1,288600,FALSE,FALSE,Don't Go Away,8,Be Here Now,C,major,C major
+1997-08-21,1997,0.486,0.913,9,-2.175,1,0.0394,0.0122,0.498,0.446,0.308,112.07,4,1,313200,FALSE,FALSE,Be Here Now,9,Be Here Now,A,major,A major
+1997-08-21,1997,0.366,0.831,7,-3.449,1,0.0429,0.00572,0.00162,0.484,0.339,82.04,4,1,560000,FALSE,FALSE,All Around the World,10,Be Here Now,G,major,G major
+1997-08-21,1997,0.368,0.92,2,-1.931,1,0.0627,0.000201,0.167,0.418,0.151,126.133,4,1,419973,FALSE,FALSE,It's Gettin' Better (Man!!),11,Be Here Now,D,major,D major
+1997-08-21,1997,0.307,0.841,2,-5.759,1,0.0496,0.00035,0.866,0.477,0.183,81.944,4,1,128066,FALSE,FALSE,All Around the World - Reprise,12,Be Here Now,D,major,D major
+1997-08-21,1997,0.309,0.861,11,-3.41,0,0.0445,0.000164,0.000212,0.113,0.228,80.109,4,1,463213,FALSE,FALSE,D'You Know What I Mean? - Remastered,1,Be Here Now (Remastered),B,minor,B minor
+1997-08-21,1997,0.355,0.971,9,-1.898,0,0.0706,0.00249,0.00522,0.673,0.226,135.178,4,1,311333,FALSE,FALSE,My Big Mouth - Remastered,2,Be Here Now (Remastered),A,minor,A minor
+1997-08-21,1997,0.301,0.879,0,-2.899,1,0.0548,0.221,0.0334,0.262,0.255,148.48,4,1,430373,FALSE,FALSE,Magic Pie - Remastered,3,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.197,0.818,7,-2.596,1,0.045,0.0834,0.00307,0.259,0.337,170.069,4,1,355866,FALSE,FALSE,Stand by Me - Remastered,4,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.343,0.978,2,-2.116,1,0.0565,0.00386,0.000362,0.628,0.195,137.298,4,1,262400,FALSE,FALSE,"I Hope, I Think, I Know - Remastered",5,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.344,0.912,7,-2.615,1,0.0371,0.124,0,0.07,0.318,166.153,4,1,349640,FALSE,FALSE,The Girl in the Dirty Shirt - Remastered,6,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.383,0.783,7,-4.124,1,0.0425,0.091,0.0194,0.416,0.206,86.204,4,1,411360,FALSE,FALSE,Fade In-Out - Remastered,7,Be Here Now (Remastered),G,major,G major
+1997-08-21,1997,0.396,0.826,0,-4.925,1,0.0385,0.0372,4.3e-05,0.0756,0.19,81.107,4,1,288666,FALSE,FALSE,Don't Go Away - Remastered,8,Be Here Now (Remastered),C,major,C major
+1997-08-21,1997,0.46,0.944,9,-1.945,1,0.0461,0.0795,0.476,0.546,0.286,112.197,4,1,312906,FALSE,FALSE,Be Here Now - Remastered,9,Be Here Now (Remastered),A,major,A major
+1997-08-21,1997,0.333,0.831,9,-3.15,1,0.051,0.134,0.000456,0.696,0.333,82.054,4,1,559200,FALSE,FALSE,All Around the World - Remastered,10,Be Here Now (Remastered),A,major,A major
+1997-08-21,1997,0.322,0.776,2,-1.693,1,0.0651,0.00203,0.0189,0.898,0.205,126.253,4,1,423373,FALSE,FALSE,It's Gettin' Better (Man!!) - Remastered,11,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.303,0.823,2,-5.114,1,0.0499,0.00279,0.825,0.394,0.219,82.006,4,1,126853,FALSE,FALSE,All Around the World (Reprise) - Remastered,12,Be Here Now (Remastered),D,major,D major
+1997-08-21,1997,0.312,0.886,11,-3.244,0,0.0427,7.32e-05,0.000161,0.0885,0.251,80.025,4,1,462226,FALSE,FALSE,D'You Know What I Mean?,1,Be Here Now,B,minor,B minor
+1997-08-21,1997,0.367,0.988,5,-1.071,1,0.0706,0.00425,7.58e-06,0.0486,0.327,135.043,4,1,302600,FALSE,FALSE,My Big Mouth,2,Be Here Now,F,major,F major
+1997-08-21,1997,0.327,0.895,0,-3.064,1,0.0476,0.134,0.00206,0.385,0.295,148.348,4,1,439373,FALSE,FALSE,Magic Pie,3,Be Here Now,C,major,C major
+1997-08-21,1997,0.214,0.828,7,-2.66,1,0.0383,0.0142,1.61e-06,0.161,0.388,169.876,4,1,356600,FALSE,FALSE,Stand by Me,4,Be Here Now,G,major,G major
+1997-08-21,1997,0.355,0.978,2,-2.331,1,0.0596,0.000657,0.00495,0.448,0.19,137.059,4,1,262426,FALSE,FALSE,"I Hope, I Think, I Know",5,Be Here Now,D,major,D major
+1997-08-21,1997,0.389,0.905,7,-3.126,1,0.0352,0.127,0,0.382,0.315,166.128,4,1,347400,FALSE,FALSE,The Girl in the Dirty Shirt,6,Be Here Now,G,major,G major
+1997-08-21,1997,0.399,0.729,7,-5.515,1,0.0333,0.0126,0.000324,0.368,0.181,85.993,4,1,412293,FALSE,FALSE,Fade In-Out,7,Be Here Now,G,major,G major
+1997-08-21,1997,0.426,0.838,0,-4.38,1,0.0362,0.0532,3.02e-06,0.0829,0.182,81.089,4,1,288600,FALSE,FALSE,Don't Go Away,8,Be Here Now,C,major,C major
+1997-08-21,1997,0.486,0.913,9,-2.175,1,0.0394,0.0122,0.498,0.446,0.308,112.07,4,1,313200,FALSE,FALSE,Be Here Now,9,Be Here Now,A,major,A major
+1997-08-21,1997,0.366,0.831,7,-3.449,1,0.0429,0.00572,0.00162,0.484,0.339,82.04,4,1,560000,FALSE,FALSE,All Around the World,10,Be Here Now,G,major,G major
+1997-08-21,1997,0.368,0.92,2,-1.931,1,0.0627,0.000201,0.167,0.418,0.151,126.133,4,1,419973,FALSE,FALSE,It's Gettin' Better (Man!!),11,Be Here Now,D,major,D major
+1997-08-21,1997,0.307,0.841,2,-5.759,1,0.0496,0.00035,0.866,0.477,0.183,81.944,4,1,128066,FALSE,FALSE,All Around the World - Reprise,12,Be Here Now,D,major,D major
+1997-08-21,1997,0.139,0.885,11,-3.247,0,0.0473,6.98e-05,0.000109,0.0972,0.216,80.063,4,1,462493,FALSE,FALSE,D'You Know What I Mean?,1,Be Here Now,B,minor,B minor
+1997-08-21,1997,0.367,0.988,5,-1.077,1,0.0701,0.00373,6.93e-06,0.0462,0.327,135.042,4,1,302640,FALSE,FALSE,My Big Mouth,2,Be Here Now,F,major,F major
+1997-08-21,1997,0.325,0.904,0,-3.041,1,0.0513,0.145,0.00247,0.385,0.266,148.305,4,1,439400,FALSE,FALSE,Magic Pie,3,Be Here Now,C,major,C major
+1997-08-21,1997,0.229,0.848,7,-2.633,1,0.039,0.0126,1.7e-06,0.146,0.362,169.878,4,1,356626,FALSE,FALSE,Stand By Me,4,Be Here Now,G,major,G major
+1997-08-21,1997,0.357,0.975,2,-2.305,1,0.0594,0.000471,0.00559,0.446,0.199,137.067,4,1,262466,FALSE,FALSE,"I Hope, I Think, I Know",5,Be Here Now,D,major,D major
+1997-08-21,1997,0.393,0.905,7,-3.081,1,0.0349,0.13,0,0.0778,0.376,166.231,4,1,349773,FALSE,FALSE,The Girl In The Dirty Shirt,6,Be Here Now,G,major,G major
+1997-08-21,1997,0.295,0.731,7,-5.551,1,0.0376,0.0104,0.00026,0.351,0.195,171.828,4,1,412560,FALSE,FALSE,Fade In-Out,7,Be Here Now,G,major,G major
+1997-08-21,1997,0.342,0.844,0,-4.442,1,0.0425,0.054,2.55e-06,0.0718,0.19,162.285,4,1,288640,FALSE,FALSE,Don't Go Away,8,Be Here Now,C,major,C major
+1997-08-21,1997,0.483,0.921,9,-2.262,1,0.0361,0.0126,0.435,0.526,0.328,112.065,4,1,313226,FALSE,FALSE,Be Here Now,9,Be Here Now,A,major,A major
+1997-08-21,1997,0.365,0.842,6,-3.446,0,0.0425,0.0054,0.00114,0.422,0.377,82.038,4,1,560040,FALSE,FALSE,All Around The World,10,Be Here Now,F#,minor,F# minor
+1997-08-21,1997,0.376,0.921,2,-1.719,1,0.0613,0.000203,0.166,0.437,0.152,126.1,4,1,420000,FALSE,FALSE,It's Gettin' Better (Man!!),11,Be Here Now,D,major,D major
+1997-08-21,1997,0.0746,0.838,2,-5.771,1,0.0669,0.000315,0.929,0.371,0.144,79.32,4,1,128333,FALSE,FALSE,All Around The World - Reprise,12,Be Here Now,D,major,D major
+1997-07-08,1997,0.312,0.887,11,-3.244,0,0.0428,7.35e-05,0.000173,0.0885,0.253,80.05,4,1,462226,FALSE,FALSE,D'You Know What I Mean?,1,Be Here Now,B,minor,B minor
+1997-07-08,1997,0.367,0.987,5,-1.072,1,0.0707,0.00446,8.47e-06,0.0486,0.335,135.038,4,1,302600,FALSE,FALSE,My Big Mouth,2,Be Here Now,F,major,F major
+1997-07-08,1997,0.327,0.895,0,-3.064,1,0.0476,0.134,0.00209,0.385,0.295,148.362,4,1,439373,FALSE,FALSE,Magic Pie,3,Be Here Now,C,major,C major
+1997-07-08,1997,0.214,0.827,7,-2.661,1,0.038,0.0139,1.65e-06,0.162,0.384,169.96,4,1,356600,FALSE,FALSE,Stand by Me,4,Be Here Now,G,major,G major
+1997-07-08,1997,0.355,0.978,2,-2.331,1,0.0596,0.000657,0.00487,0.448,0.19,137.065,4,1,262426,FALSE,FALSE,"I Hope, I Think, I Know",5,Be Here Now,D,major,D major
+1997-07-08,1997,0.388,0.905,7,-3.126,1,0.0352,0.126,0,0.382,0.329,166.128,4,1,347400,FALSE,FALSE,The Girl in the Dirty Shirt,6,Be Here Now,G,major,G major
+1997-07-08,1997,0.398,0.729,7,-5.515,1,0.0334,0.0126,0.000326,0.368,0.181,85.985,4,1,412293,FALSE,FALSE,Fade In-Out,7,Be Here Now,G,major,G major
+1997-07-08,1997,0.426,0.838,0,-4.38,1,0.0362,0.0532,3.02e-06,0.0829,0.182,81.089,4,1,288600,FALSE,FALSE,Don't Go Away,8,Be Here Now,C,major,C major
+1997-07-08,1997,0.486,0.913,9,-2.174,1,0.0394,0.0122,0.498,0.446,0.308,112.064,4,1,313200,FALSE,FALSE,Be Here Now,9,Be Here Now,A,major,A major
+1997-07-08,1997,0.364,0.831,2,-3.449,1,0.0421,0.00553,0.00162,0.484,0.34,82.05,4,1,560000,FALSE,FALSE,All Around the World,10,Be Here Now,D,major,D major
+1997-07-08,1997,0.367,0.92,2,-1.931,1,0.0626,0.000201,0.167,0.418,0.151,126.132,4,1,419973,FALSE,FALSE,It's Gettin' Better (Man!!),11,Be Here Now,D,major,D major
+1997-07-08,1997,0.246,0.841,2,-5.759,1,0.0513,0.00035,0.862,0.477,0.181,82.026,4,1,128065,FALSE,FALSE,All Around the World - Reprise,12,Be Here Now,D,major,D major
+1997,1997,0.316,0.877,4,-3.187,1,0.0406,6.86e-05,8.67e-05,0.109,0.273,80.008,4,1,462533,FALSE,FALSE,D'You Know What I Mean?,1,BE HERE NOW,E,major,E major
+1997,1997,0.364,0.987,5,-1.067,1,0.0691,0.0035,7.56e-06,0.0494,0.322,135.025,4,1,302600,FALSE,FALSE,My Big Mouth,2,BE HERE NOW,F,major,F major
+1997,1997,0.326,0.895,0,-3.061,1,0.0483,0.134,0.00341,0.382,0.281,148.312,4,1,439400,FALSE,FALSE,Magic Pie,3,BE HERE NOW,C,major,C major
+1997,1997,0.22,0.831,7,-2.623,1,0.0377,0.0118,1.79e-06,0.135,0.393,169.916,4,1,356066,FALSE,FALSE,Stand by Me,4,BE HERE NOW,G,major,G major
+1997,1997,0.353,0.978,2,-2.311,1,0.0597,0.000478,0.00596,0.541,0.2,137.059,4,1,263026,FALSE,FALSE,"I Hope, I Think, I Know",5,BE HERE NOW,D,major,D major
+1997,1997,0.386,0.897,7,-3.134,1,0.0341,0.152,0,0.103,0.385,166.162,4,1,349733,FALSE,FALSE,The Girl in the Dirty Shirt,6,BE HERE NOW,G,major,G major
+1997,1997,0.396,0.738,7,-5.494,1,0.0333,0.0103,0.000641,0.368,0.205,86.002,4,1,412600,FALSE,FALSE,Fade In-Out,7,BE HERE NOW,G,major,G major
+1997,1997,0.425,0.847,0,-4.421,1,0.037,0.0536,1.89e-06,0.0799,0.185,81.136,4,1,288666,FALSE,FALSE,Don't Go Away,8,BE HERE NOW,C,major,C major
+1997,1997,0.486,0.914,9,-2.255,1,0.0364,0.0115,0.42,0.527,0.353,112.109,4,1,313240,FALSE,FALSE,Be Here Now,9,BE HERE NOW,A,major,A major
+1997,1997,0.366,0.851,2,-3.432,1,0.0404,0.00579,0.000981,0.388,0.414,81.985,4,1,560000,FALSE,FALSE,All Around the World,10,BE HERE NOW,D,major,D major
+1997,1997,0.375,0.936,2,-1.716,1,0.0611,0.000178,0.157,0.415,0.168,126.103,4,1,420000,FALSE,FALSE,It's Gettin' Better (Man!!),11,BE HERE NOW,D,major,D major
+1997,1997,0.25,0.834,2,-5.796,1,0.0523,0.000318,0.927,0.386,0.163,82.024,4,1,129199,FALSE,FALSE,All Around the World - Reprise,12,BE HERE NOW,D,major,D major
+1997,1997,0.299,0.861,11,-3.418,0,0.0442,0.000154,0.000985,0.114,0.229,80.208,4,1,463066,FALSE,FALSE,D'You Know What I Mean? - Remastered,1,Be Here Now (Deluxe Remastered Edition),B,minor,B minor
+1997,1997,0.355,0.979,2,-1.936,0,0.0712,0.00309,0.00925,0.675,0.219,135.172,4,1,311333,FALSE,FALSE,My Big Mouth - Remastered,2,Be Here Now (Deluxe Remastered Edition),D,minor,D minor
+1997,1997,0.301,0.884,0,-2.912,1,0.0555,0.231,0.0222,0.333,0.263,148.244,4,1,430373,FALSE,FALSE,Magic Pie - Remastered,3,Be Here Now (Deluxe Remastered Edition),C,major,C major
+1997,1997,0.194,0.825,7,-2.605,1,0.041,0.0864,0.00284,0.182,0.35,169.974,4,1,355866,FALSE,FALSE,Stand By Me - Remastered,4,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.341,0.976,2,-2.138,1,0.0553,0.00347,0.000519,0.68,0.187,137.38,4,1,262400,FALSE,FALSE,"I Hope, I Think, I Know - Remastered",5,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.344,0.919,7,-2.582,1,0.0371,0.116,0,0.0649,0.354,166.314,4,1,349640,FALSE,FALSE,The Girl In The Dirty Shirt - Remastered,6,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.389,0.784,7,-4.135,1,0.0417,0.0979,0.0171,0.399,0.188,86.106,4,1,411360,FALSE,FALSE,Fade In-Out - Remastered,7,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.396,0.831,0,-4.913,1,0.0359,0.0382,9.62e-05,0.0721,0.18,81.175,4,1,288666,FALSE,FALSE,Don't Go Away - Remastered,8,Be Here Now (Deluxe Remastered Edition),C,major,C major
+1997,1997,0.456,0.942,4,-1.944,1,0.0455,0.0653,0.472,0.493,0.322,112.194,4,1,312906,FALSE,FALSE,Be Here Now - Remastered,9,Be Here Now (Deluxe Remastered Edition),E,major,E major
+1997,1997,0.33,0.814,9,-3.138,1,0.0506,0.155,0.000291,0.701,0.297,82.131,4,1,559200,FALSE,FALSE,All Around The World - Remastered,10,Be Here Now (Deluxe Remastered Edition),A,major,A major
+1997,1997,0.328,0.74,2,-1.696,1,0.0658,0.00226,0.0183,0.877,0.24,126.208,4,1,423373,FALSE,FALSE,It's Gettin' Better (Man!!) - Remastered,11,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.294,0.835,2,-5.134,1,0.0489,0.00317,0.803,0.404,0.214,82.548,4,1,127000,FALSE,FALSE,All Around The World (Reprise) - Remastered,12,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.381,0.98,2,-2.742,1,0.0719,0.00519,0.000319,0.332,0.216,126.057,4,2,307333,FALSE,FALSE,Stay Young - Remastered,1,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.363,0.938,2,-2.938,1,0.0535,5.67e-05,3.99e-05,0.485,0.464,135.01,4,2,275626,FALSE,FALSE,The Fame - Remastered,2,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.419,0.809,4,-3.283,1,0.0335,0.00712,2.94e-05,0.137,0.234,129.009,4,2,309413,FALSE,FALSE,Flashbax - Remastered,3,Be Here Now (Deluxe Remastered Edition),E,major,E major
+1997,1997,0.335,0.858,0,-2.032,1,0.0574,0.00589,0.0145,0.408,0.403,126.054,4,2,315026,FALSE,FALSE,(I Got) The Fever - Remastered,4,Be Here Now (Deluxe Remastered Edition),C,major,C major
+1997,1997,0.366,0.976,4,-2.468,1,0.0617,0.00313,0.00465,0.0756,0.222,134.081,4,2,359546,FALSE,FALSE,My Sister Lover - Remastered,5,Be Here Now (Deluxe Remastered Edition),E,major,E major
+1997,1997,0.482,0.735,2,-3.681,0,0.0303,0.279,0,0.263,0.117,107.06,4,2,281626,FALSE,FALSE,Going Nowhere - Remastered,6,Be Here Now (Deluxe Remastered Edition),D,minor,D minor
+1997,1997,0.576,0.543,9,-5.855,0,0.0259,0.229,0,0.114,0.644,81.074,4,2,362640,FALSE,FALSE,Stand By Me - Live at Bonehead's Outtake,7,Be Here Now (Deluxe Remastered Edition),A,minor,A minor
+1997,1997,0.516,0.368,2,-7.198,1,0.028,0.781,0.000175,0.147,0.41,100.511,4,2,277840,FALSE,FALSE,Untitled - Demo,8,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.39,0.307,11,-6.889,0,0.03,0.701,0,0.733,0.19,123.911,4,2,225040,FALSE,FALSE,Help! - Live in LA,9,Be Here Now (Deluxe Remastered Edition),B,minor,B minor
+1997,1997,0.567,0.373,7,-5.743,1,0.0251,0.439,0,0.0936,0.29,99.651,4,2,235853,FALSE,FALSE,Setting Sun - Live Radio Broadcast,10,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.422,0.258,9,-9.616,0,0.0263,0.741,0.000195,0.0737,0.271,140.819,4,2,293213,FALSE,FALSE,If We Shadows - Demo,11,Be Here Now (Deluxe Remastered Edition),A,minor,A minor
+1997,1997,0.482,0.526,0,-7.515,1,0.0308,0.781,0,0.174,0.513,84.75,4,2,222546,FALSE,FALSE,Don't Go Away - Demo,12,Be Here Now (Deluxe Remastered Edition),C,major,C major
+1997,1997,0.186,0.936,5,-5.386,1,0.0747,0.000131,0.186,0.907,0.361,140.254,4,2,322680,TRUE,FALSE,My Big Mouth - Live at Knebworth Park,13,Be Here Now (Deluxe Remastered Edition),F,major,F major
+1997,1997,0.321,0.832,4,-3.872,1,0.0384,0.000134,0.024,0.201,0.311,79.991,4,2,443653,FALSE,FALSE,D'You Know What I Mean? - NG's 2016 Rethink,14,Be Here Now (Deluxe Remastered Edition),E,major,E major
+1997,1997,0.448,0.632,6,-8.421,0,0.0293,0.00662,0.000857,0.127,0.156,79.981,4,3,435373,FALSE,FALSE,D'You Know What I Mean? - Mustique Demo,1,Be Here Now (Deluxe Remastered Edition),F#,minor,F# minor
+1997,1997,0.467,0.867,0,-7.625,1,0.0469,9.68e-06,0.000281,0.171,0.696,134.005,4,3,317426,FALSE,FALSE,My Big Mouth - Mustique Demo,2,Be Here Now (Deluxe Remastered Edition),C,major,C major
+1997,1997,0.444,0.888,11,-7.18,0,0.0323,4.47e-05,0.00098,0.332,0.552,134.003,4,3,369040,FALSE,FALSE,My Sister Lover - Mustique Demo,3,Be Here Now (Deluxe Remastered Edition),B,minor,B minor
+1997,1997,0.364,0.801,7,-7.966,1,0.0319,0.00112,0.000471,0.607,0.454,168.018,4,3,360920,FALSE,FALSE,Stand By Me - Mustique Demo,4,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.405,0.922,2,-7.529,1,0.0466,5.21e-06,4.51e-05,0.72,0.564,136.98,4,3,250680,FALSE,FALSE,"I Hope, I Think, I Know - Mustique Demo",5,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.35,0.781,7,-8.019,1,0.0352,0.0183,3.52e-06,0.327,0.547,165.94,4,3,323266,FALSE,FALSE,The Girl In The Dirty Shirt - Mustique Demo,6,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.421,0.783,9,-8.846,0,0.0361,0.021,2.59e-06,0.124,0.536,161.772,4,3,258293,FALSE,FALSE,Don't Go Away - Mustique Demo,7,Be Here Now (Deluxe Remastered Edition),A,minor,A minor
+1997,1997,0.178,0.272,7,-20.608,1,0.0294,0.974,0.996,0.21,0.102,164.816,4,3,215000,FALSE,FALSE,Trip Inside (Be Here Now) - Mustique Demo,8,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.467,0.566,7,-10.033,1,0.0271,0.0755,0.00169,0.45,0.279,85.948,4,3,362880,FALSE,FALSE,Fade In-Out - Mustique Demo,9,Be Here Now (Deluxe Remastered Edition),G,major,G major
+1997,1997,0.38,0.832,2,-6.603,1,0.0423,5.56e-06,0.0118,0.574,0.383,128.956,4,3,296480,FALSE,FALSE,Stay Young - Mustique Demo,10,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.298,0.397,4,-12.687,0,0.0302,0.376,5.18e-06,0.171,0.181,96.021,4,3,268373,FALSE,FALSE,Angel Child - Mustique Demo,11,Be Here Now (Deluxe Remastered Edition),E,minor,E minor
+1997,1997,0.409,0.919,2,-6.864,1,0.0431,2.67e-05,0.000429,0.192,0.666,134.959,4,3,285360,FALSE,FALSE,The Fame - Mustique Demo,12,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1997,1997,0.471,0.743,11,-7.96,1,0.0297,0.00594,0.0597,0.673,0.46,82.023,4,3,390893,FALSE,FALSE,All Around The World - Mustique Demo,13,Be Here Now (Deluxe Remastered Edition),B,major,B major
+1997,1997,0.438,0.926,2,-7.535,1,0.0437,9.66e-05,0.000404,0.197,0.378,125.005,4,3,397586,FALSE,FALSE,It's Gettin' Better (Man!!) - Mustique Demo,14,Be Here Now (Deluxe Remastered Edition),D,major,D major
+1995-10-02,1995,0.162,0.947,9,-3.174,0,0.113,0.0142,0.0446,0.166,0.0563,132.31,4,1,203186,FALSE,FALSE,Hello - Remastered,1,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.232,0.986,9,-1.896,0,0.0947,0.0325,0.000311,0.117,0.145,126.555,4,1,240093,FALSE,FALSE,Roll with It - Remastered,2,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.378,0.896,2,-4.066,1,0.0407,0.000452,0,0.194,0.469,174.302,4,1,258773,FALSE,FALSE,Wonderwall - Remastered,3,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.327,0.938,0,-3.237,1,0.0645,0.0708,3.79e-06,0.148,0.326,162.937,4,1,289560,FALSE,FALSE,Don't Look Back in Anger - Remastered,4,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.148,0.933,2,-2.478,1,0.0658,0.000301,0.00139,0.382,0.205,202.196,4,1,341906,FALSE,FALSE,Hey Now - Remastered,5,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.279,0.742,10,-5.656,1,0.048,3.93e-05,0.92,0.258,0.21,143.155,4,1,44626,FALSE,FALSE,Untitled - Remastered,6,(What's The Story) Morning Glory? [Remastered],A#,major,A# major
+1995-10-02,1995,0.266,0.934,0,-2.28,0,0.0929,0.171,0.0223,0.288,0.07,110.268,4,1,327920,FALSE,FALSE,Some Might Say - Remastered,7,(What's The Story) Morning Glory? [Remastered],C,minor,C minor
+1995-10-02,1995,0.414,0.839,7,-4.321,1,0.0284,0.00194,0,0.163,0.631,158.389,4,1,294813,FALSE,FALSE,Cast No Shadow - Remastered,8,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.487,0.909,9,-3.484,1,0.0463,0.159,1.27e-06,0.303,0.51,125.418,4,1,220920,FALSE,FALSE,She's Electric - Remastered,9,(What's The Story) Morning Glory? [Remastered],A,major,A major
+1995-10-02,1995,0.327,0.982,0,-3.038,1,0.0937,0.0665,4.79e-05,0.491,0.1,136.96,4,1,303320,FALSE,FALSE,Morning Glory - Remastered,10,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.137,0.991,5,-13.27,1,0.0761,0.849,0.92,0.721,0.0176,141.688,4,1,39360,FALSE,FALSE,Untitled - Remastered,11,(What's The Story) Morning Glory? [Remastered],F,major,F major
+1995-10-02,1995,0.294,0.825,2,-3.771,1,0.0404,0.465,0.0841,0.354,0.122,150.338,4,1,451320,FALSE,FALSE,Champagne Supernova - Remastered,12,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.392,0.428,4,-8.405,0,0.0246,0.52,7.8e-06,0.365,0.317,84.505,4,2,263746,FALSE,FALSE,Talk Tonight - Remastered,1,(What's The Story) Morning Glory? [Remastered],E,minor,E minor
+1995-10-02,1995,0.204,0.928,7,-3.274,1,0.0795,0.00974,0.000746,0.334,0.209,112.864,4,2,267986,FALSE,FALSE,Acquiesce - Remastered,2,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.231,0.875,7,-1.844,1,0.0559,0.00323,0.000339,0.368,0.275,79.483,4,2,281840,FALSE,FALSE,Headshrinker - Remastered,3,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.472,0.789,4,-6.129,1,0.0319,0.000453,4.03e-05,0.101,0.902,101.377,4,2,240146,FALSE,FALSE,It's Better People - Remastered,4,(What's The Story) Morning Glory? [Remastered],E,major,E major
+1995-10-02,1995,0.509,0.911,9,-4.121,0,0.0353,0.000589,8.21e-06,0.0384,0.278,126.426,4,2,279200,FALSE,FALSE,Rockin' Chair - Remastered,5,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.328,0.98,7,-1.874,1,0.0791,0.00982,0.00399,0.35,0.179,139.623,4,2,224426,FALSE,FALSE,Step Out - Remastered,6,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.443,0.954,11,-2.23,0,0.0521,0.00134,0,0.347,0.735,124.224,4,2,204653,FALSE,FALSE,Underneath the Sky - Remastered,7,(What's The Story) Morning Glory? [Remastered],B,minor,B minor
+1995-10-02,1995,0.372,0.9,9,-1.578,0,0.046,1.49e-05,0.382,0.379,0.558,133.14,4,2,312160,FALSE,FALSE,Cum On Feel The Noize - Remastered,8,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.332,0.915,0,-2.1,1,0.0438,1.6e-05,0.000237,0.0748,0.379,137.965,4,2,344440,FALSE,FALSE,Round Are Way - Remastered,9,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.211,0.942,7,-2.865,0,0.0623,3.06e-05,0.945,0.106,0.196,142.847,4,2,262400,FALSE,FALSE,The Swamp Song - Remastered,10,(What's The Story) Morning Glory? [Remastered],G,minor,G minor
+1995-10-02,1995,0.382,0.585,7,-6.707,1,0.0294,0.0128,8.65e-05,0.0725,0.145,148.515,4,2,325200,FALSE,FALSE,The Masterplan - Remastered,11,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.35,0.812,7,-3.983,1,0.106,0.294,0,0.335,0.519,166.843,4,2,242920,FALSE,FALSE,Bonehead's Bank Holiday - Remastered,12,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.477,0.785,2,-5.941,1,0.0315,0.0167,0.000673,0.103,0.417,150.654,4,2,417960,FALSE,FALSE,Champagne Supernova - Remastered,13,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.248,0.594,7,-7.74,1,0.0287,0.106,0,0.366,0.692,95.886,3,2,137200,FALSE,FALSE,You've Got to Hide Your Love Away - Remastered,14,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.32,0.831,0,-2.355,1,0.0562,5.01e-05,0.173,0.547,0.377,121.716,4,3,234440,FALSE,FALSE,Acquiesce - Live at Earls Court,1,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.596,0.681,2,-5.441,1,0.0284,0.789,2.13e-06,0.102,0.61,108.525,4,3,243866,FALSE,FALSE,Some Might Say - Demo,2,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.169,0.744,2,-2.651,1,0.0619,0.00146,0.00306,0.38,0.364,122.772,4,3,306066,FALSE,FALSE,Some Might Say - Live at Roskilde,3,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.497,0.55,9,-6.195,1,0.0286,0.238,6.97e-06,0.0962,0.21,146.75,4,3,182906,FALSE,FALSE,She's Electric - Demo,4,(What's The Story) Morning Glory? [Remastered],A,major,A major
+1995-10-02,1995,0.277,0.589,0,-6.296,1,0.0283,0.227,0,0.136,0.43,92.89,4,3,222186,FALSE,FALSE,Talk Tonight - Live at Bath Pavilion,5,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.535,0.417,9,-6.654,0,0.026,0.11,0.000982,0.0968,0.193,129.211,4,3,244560,FALSE,FALSE,Rockin' Chair - Demo,6,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.133,0.858,2,-3.826,1,0.096,0.000779,0.0214,0.614,0.122,143.598,4,3,203866,FALSE,FALSE,Hello - Live at Roskilde,7,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.198,0.771,9,-3.728,0,0.0531,0.000115,0.667,0.378,0.376,127.526,4,3,247693,FALSE,FALSE,Roll with It - Live at Roskilde,8,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.185,0.81,0,-4.398,1,0.0709,0.000515,0.206,0.123,0.184,135.848,4,3,287253,FALSE,FALSE,Morning Glory - Live at Roskilde,9,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.556,0.613,7,-6.291,1,0.0291,0.871,0.000136,0.156,0.36,98.756,4,3,187920,FALSE,FALSE,Hey Now - Demo,10,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.535,0.672,7,-6.465,1,0.0261,0.749,0.00416,0.182,0.625,88.33,4,3,128706,FALSE,FALSE,Bonehead's Bank Holiday - Demo,11,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.375,0.889,7,-5.004,1,0.0899,0.0254,1.07e-05,0.732,0.37,145.985,4,3,291293,FALSE,FALSE,Round Are Way - MTV Unplugged,12,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.321,0.842,0,-4.87,1,0.0406,0.0056,0,0.369,0.287,95.838,4,3,245506,FALSE,FALSE,Cast No Shadow - Live at Maine Road,13,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.253,0.724,9,-4.436,0,0.0404,0.248,0.0145,0.894,0.286,82.116,4,3,295160,FALSE,FALSE,The Masterplan - Live at Knebworth Park,14,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.162,0.947,9,-3.174,0,0.113,0.0142,0.0446,0.166,0.0563,132.31,4,1,203186,FALSE,FALSE,Hello - Remastered,1,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.232,0.986,9,-1.896,0,0.0947,0.0325,0.000311,0.117,0.145,126.555,4,1,240093,FALSE,FALSE,Roll with It - Remastered,2,(What's The Story) Morning Glory? [Remastered],A,minor,A minor
+1995-10-02,1995,0.378,0.896,2,-4.066,1,0.0407,0.000452,0,0.194,0.469,174.302,4,1,258773,FALSE,FALSE,Wonderwall - Remastered,3,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.327,0.938,0,-3.237,1,0.0645,0.0708,3.79e-06,0.148,0.326,162.937,4,1,289560,FALSE,FALSE,Don't Look Back in Anger - Remastered,4,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.148,0.933,2,-2.478,1,0.0658,0.000301,0.00139,0.382,0.205,202.196,4,1,341906,FALSE,FALSE,Hey Now - Remastered,5,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.279,0.742,10,-5.656,1,0.048,3.93e-05,0.92,0.258,0.21,143.155,4,1,44626,FALSE,FALSE,Untitled - Remastered,6,(What's The Story) Morning Glory? [Remastered],A#,major,A# major
+1995-10-02,1995,0.266,0.934,0,-2.28,0,0.0929,0.171,0.0223,0.288,0.07,110.268,4,1,327920,FALSE,FALSE,Some Might Say - Remastered,7,(What's The Story) Morning Glory? [Remastered],C,minor,C minor
+1995-10-02,1995,0.414,0.839,7,-4.321,1,0.0284,0.00194,0,0.163,0.631,158.389,4,1,294813,FALSE,FALSE,Cast No Shadow - Remastered,8,(What's The Story) Morning Glory? [Remastered],G,major,G major
+1995-10-02,1995,0.487,0.909,9,-3.484,1,0.0463,0.159,1.27e-06,0.303,0.51,125.418,4,1,220920,FALSE,FALSE,She's Electric - Remastered,9,(What's The Story) Morning Glory? [Remastered],A,major,A major
+1995-10-02,1995,0.327,0.982,0,-3.038,1,0.0937,0.0665,4.79e-05,0.491,0.1,136.96,4,1,303320,FALSE,FALSE,Morning Glory - Remastered,10,(What's The Story) Morning Glory? [Remastered],C,major,C major
+1995-10-02,1995,0.137,0.991,5,-13.27,1,0.0761,0.849,0.92,0.721,0.0176,141.688,4,1,39360,FALSE,FALSE,Untitled - Remastered,11,(What's The Story) Morning Glory? [Remastered],F,major,F major
+1995-10-02,1995,0.294,0.825,2,-3.771,1,0.0404,0.465,0.0841,0.354,0.122,150.338,4,1,451320,FALSE,FALSE,Champagne Supernova - Remastered,12,(What's The Story) Morning Glory? [Remastered],D,major,D major
+1995-10-02,1995,0.318,0.952,9,-3.234,0,0.094,0.0136,0.0152,0.167,0.0537,132.191,4,1,203186,FALSE,FALSE,Hello,1,(What's The Story) Morning Glory?,A,minor,A minor
+1995-10-02,1995,0.244,0.985,9,-1.816,0,0.107,0.00302,0.000204,0.318,0.228,126.734,4,1,239826,FALSE,FALSE,Roll With It,2,(What's The Story) Morning Glory?,A,minor,A minor
+1995-10-02,1995,0.41,0.854,2,-5.609,1,0.0366,0.00236,0,0.133,0.456,174.584,4,1,258906,FALSE,FALSE,Wonderwall,3,(What's The Story) Morning Glory?,D,major,D major
+1995-10-02,1995,0.349,0.917,0,-3.645,1,0.071,0.026,7.25e-06,0.0968,0.206,164.036,4,1,287826,FALSE,FALSE,Don't Look Back In Anger,4,(What's The Story) Morning Glory?,C,major,C major
+1995-10-02,1995,0.145,0.938,2,-2.488,1,0.0627,0.000275,0.00187,0.38,0.204,202.403,4,1,341906,FALSE,FALSE,Hey Now!,5,(What's The Story) Morning Glory?,D,major,D major
+1995-10-02,1995,0.288,0.68,10,-5.711,1,0.0481,3.44e-05,0.876,0.268,0.149,143.019,4,1,44626,FALSE,FALSE,The Swamp Song - Version 1,6,(What's The Story) Morning Glory?,A#,major,A# major
+1995-10-02,1995,0.263,0.935,0,-2.289,0,0.0933,0.181,0.013,0.331,0.0688,110.138,4,1,327920,FALSE,FALSE,Some Might Say,7,(What's The Story) Morning Glory?,C,minor,C minor
+1995-10-02,1995,0.418,0.838,7,-4.306,1,0.0282,0.00181,0,0.153,0.628,158.304,4,1,294813,FALSE,FALSE,Cast No Shadow,8,(What's The Story) Morning Glory?,G,major,G major
+1995-10-02,1995,0.484,0.91,9,-3.499,1,0.0483,0.163,1.13e-06,0.315,0.501,125.364,4,1,220920,FALSE,FALSE,She's Electric,9,(What's The Story) Morning Glory?,A,major,A major
+1995-10-02,1995,0.334,0.986,2,-1.655,0,0.0932,0.00866,0.000354,0.466,0.136,137.031,4,1,303533,FALSE,FALSE,Morning Glory,10,(What's The Story) Morning Glory?,D,minor,D minor
+1995-10-02,1995,0.199,0.991,5,-12.953,1,0.0804,0.867,0.962,0.851,0.0185,106.717,4,1,39360,FALSE,FALSE,The Swamp Song - Version 2,11,(What's The Story) Morning Glory?,F,major,F major
+1995-10-02,1995,0.303,0.853,2,-2.26,1,0.0366,0.223,0.00159,0.361,0.119,150.381,4,1,450506,FALSE,FALSE,Champagne Supernova,12,(What's The Story) Morning Glory?,D,major,D major
+1995,1995,0.348,0.95,9,-3.577,0,0.0909,0.000431,0.0212,0.101,0.0968,132.44,4,1,201360,FALSE,FALSE,Hello,1,(WHAT'S THE STORY) MORNING GLORY?,A,minor,A minor
+1995,1995,0.25,0.981,9,-1.828,0,0.125,0.00333,0.000236,0.793,0.21,126.741,4,1,238266,FALSE,FALSE,Roll With It,2,(WHAT'S THE STORY) MORNING GLORY?,A,minor,A minor
+1995,1995,0.408,0.844,2,-5.63,1,0.0371,0.00214,0,0.205,0.452,174.358,4,1,260440,FALSE,FALSE,Wonderwall,3,(WHAT'S THE STORY) MORNING GLORY?,D,major,D major
+1995,1995,0.348,0.914,0,-3.6,1,0.0711,0.0262,7.7e-06,0.15,0.252,163.997,4,1,287893,FALSE,FALSE,Don't Look Back in Anger,4,(WHAT'S THE STORY) MORNING GLORY?,C,major,C major
+1995,1995,0.163,0.952,11,-1.627,0,0.0645,6.73e-05,0.0011,0.291,0.192,202.572,4,1,340533,FALSE,FALSE,Hey Now,5,(WHAT'S THE STORY) MORNING GLORY?,B,minor,B minor
+1995,1995,0.255,0.825,7,-5.906,0,0.0529,2.14e-05,0.788,0.785,0.164,142.817,4,1,45533,FALSE,FALSE,The Swamp Song - Version 1,6,(WHAT'S THE STORY) MORNING GLORY?,G,minor,G minor
+1995,1995,0.237,0.956,0,-2.336,0,0.0874,0.0434,0.0243,0.203,0.138,110.211,4,1,328533,FALSE,FALSE,Some Might Say,7,(WHAT'S THE STORY) MORNING GLORY?,C,minor,C minor
+1995,1995,0.437,0.797,7,-5.253,1,0.0297,0.00263,0,0.159,0.539,159.933,4,1,291840,FALSE,FALSE,Cast No Shadow,8,(WHAT'S THE STORY) MORNING GLORY?,G,major,G major
+1995,1995,0.539,0.912,9,-3.104,1,0.0407,0.182,0,0.686,0.515,125.522,4,1,219533,FALSE,FALSE,She's Electric,9,(WHAT'S THE STORY) MORNING GLORY?,A,major,A major
+1995,1995,0.325,0.986,0,-1.617,1,0.0928,0.00938,0.000671,0.431,0.12,136.99,4,1,304293,FALSE,FALSE,Morning Glory,10,(WHAT'S THE STORY) MORNING GLORY?,C,major,C major
+1995,1995,0.246,0.996,5,-10.8,1,0.0821,0.411,0.825,0.857,0.0153,107.201,1,1,39200,FALSE,FALSE,The Swamp Song - Version 2,11,(WHAT'S THE STORY) MORNING GLORY?,F,major,F major
+1995,1995,0.307,0.873,2,-2.309,1,0.0389,0.226,0.00496,0.365,0.12,150.397,4,1,449506,FALSE,FALSE,Champagne Supernova,12,(WHAT'S THE STORY) MORNING GLORY?,D,major,D major
+1995,1995,0.346,0.954,9,-3.185,0,0.0866,0.0131,0.0173,0.161,0.059,132.201,4,1,203186,FALSE,FALSE,Hello - Remastered,1,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.223,0.985,9,-1.909,0,0.0957,0.0298,0.000424,0.11,0.139,126.612,4,1,240093,FALSE,FALSE,Roll With It - Remastered,2,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.375,0.893,2,-4.097,1,0.0406,0.000509,0,0.187,0.434,174.323,4,1,258773,FALSE,FALSE,Wonderwall - Remastered,3,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.328,0.936,0,-3.254,1,0.0628,0.0665,2.61e-06,0.165,0.31,162.97,4,1,289560,FALSE,FALSE,Don't Look Back In Anger - Remastered,4,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.151,0.935,11,-2.461,0,0.0626,0.000235,0.000561,0.308,0.202,202.341,4,1,341906,FALSE,FALSE,Hey Now! - Remastered,5,(What's The Story) Morning Glory? (Deluxe Remastered Edition),B,minor,B minor
+1995,1995,0.278,0.702,10,-5.683,1,0.0474,6.93e-05,0.65,0.236,0.166,143.126,4,1,44626,FALSE,FALSE,The Swamp Song (Excerpt 1) - Remastered,6,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A#,major,A# major
+1995,1995,0.259,0.927,0,-2.277,0,0.092,0.165,0.013,0.287,0.0734,110.156,4,1,327920,FALSE,FALSE,Some Might Say - Remastered,7,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,minor,C minor
+1995,1995,0.421,0.846,7,-4.302,1,0.0283,0.00174,0,0.166,0.613,158.351,4,1,294813,FALSE,FALSE,Cast No Shadow - Remastered,8,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.484,0.905,9,-3.506,1,0.0481,0.146,1.13e-06,0.24,0.486,125.414,4,1,220920,FALSE,FALSE,She's Electric - Remastered,9,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,major,A major
+1995,1995,0.33,0.982,0,-3.045,1,0.0926,0.0588,4.74e-05,0.519,0.104,136.986,4,1,303320,FALSE,FALSE,Morning Glory - Remastered,10,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.179,0.989,2,-13.14,1,0.0903,0.849,0.954,0.76,0.0192,60.38,4,1,39360,FALSE,FALSE,The Swamp Song (Excerpt 2) - Remastered,11,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.293,0.817,2,-3.786,1,0.039,0.458,0.0509,0.355,0.138,150.249,4,1,451320,FALSE,FALSE,Champagne Supernova - Remastered,12,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.376,0.423,4,-8.499,0,0.0242,0.54,1.23e-05,0.361,0.299,85.213,4,2,263746,FALSE,FALSE,Talk Tonight - Remastered,1,(What's The Story) Morning Glory? (Deluxe Remastered Edition),E,minor,E minor
+1995,1995,0.178,0.931,7,-3.366,1,0.0831,0.0128,0.000714,0.334,0.184,112.447,4,2,267986,FALSE,FALSE,Acquiesce - Remastered,2,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.217,0.839,7,-1.954,1,0.0573,0.00297,7.37e-05,0.376,0.246,79.023,4,2,281840,FALSE,FALSE,Headshrinker - Remastered,3,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.471,0.797,4,-6.309,1,0.0326,0.000489,3.83e-05,0.102,0.872,101.315,4,2,240146,FALSE,FALSE,It's Better People - Remastered,4,(What's The Story) Morning Glory? (Deluxe Remastered Edition),E,major,E major
+1995,1995,0.509,0.896,9,-4.236,0,0.0356,0.000802,4.44e-06,0.0412,0.315,126.404,4,2,279200,FALSE,FALSE,Rockin' Chair - Remastered,5,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.334,0.983,7,-2.005,1,0.0802,0.00979,0.00677,0.35,0.169,139.589,4,2,224426,FALSE,FALSE,Step Out - Remastered,6,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.44,0.951,11,-2.356,0,0.0527,0.00131,0,0.36,0.72,124.134,4,2,204653,FALSE,FALSE,Underneath The Sky - Remastered,7,(What's The Story) Morning Glory? (Deluxe Remastered Edition),B,minor,B minor
+1995,1995,0.373,0.891,0,-1.724,1,0.0453,1.36e-05,0.303,0.37,0.539,133.123,4,2,312160,FALSE,FALSE,Cum On Feel The Noize - Remastered,8,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.316,0.909,0,-2.205,1,0.0449,1.63e-05,0.000586,0.0767,0.381,137.953,4,2,344440,FALSE,FALSE,Round Are Way - Remastered,9,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.238,0.933,7,-3.072,0,0.0576,3.3e-05,0.944,0.105,0.189,142.825,4,2,262400,FALSE,FALSE,The Swamp Song - Remastered,10,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,minor,G minor
+1995,1995,0.417,0.596,7,-6.82,1,0.0302,0.0145,9.22e-05,0.0725,0.156,73.958,4,2,325200,FALSE,FALSE,The Masterplan - Remastered,11,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.329,0.813,7,-4.159,1,0.123,0.294,0,0.369,0.526,166.114,4,2,242920,FALSE,FALSE,Bonehead's Bank Holiday - Remastered,12,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.477,0.781,2,-6.092,1,0.0327,0.018,0.000676,0.103,0.43,150.649,4,2,417960,FALSE,FALSE,Champagne Supernova (Brendan Lynch Mix) - Remastered,13,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.333,0.609,7,-7.86,1,0.0287,0.105,0,0.366,0.726,62.91,4,2,137200,FALSE,FALSE,You've Got To Hide Your Love Away - Remastered,14,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.328,0.854,0,-2.333,1,0.0607,5.2e-05,0.0424,0.613,0.349,121.191,4,3,234440,FALSE,FALSE,Acquiesce - Live at Earls Court,1,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.598,0.694,2,-5.457,1,0.0296,0.772,5.7e-06,0.0849,0.594,108.529,4,3,243866,FALSE,FALSE,Some Might Say - Demo,2,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.168,0.743,2,-2.652,1,0.0591,0.00135,0.00125,0.379,0.336,123.869,4,3,306066,FALSE,FALSE,Some Might Say - Live at Roskilde,3,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.501,0.552,9,-6.176,1,0.0281,0.248,1.17e-05,0.0941,0.212,146.635,4,3,182906,FALSE,FALSE,She's Electric - Demo,4,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,major,A major
+1995,1995,0.279,0.608,0,-6.283,1,0.0281,0.249,0,0.139,0.463,92.266,4,3,222186,FALSE,FALSE,Talk Tonight - Live at Bath Pavillion,5,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.534,0.414,9,-6.66,0,0.0257,0.103,0.00073,0.0942,0.182,129.036,4,3,244560,FALSE,FALSE,Rockin' Chair - Demo,6,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.129,0.901,2,-3.915,1,0.0967,0.000849,0.0278,0.454,0.13,145.582,4,3,203866,FALSE,FALSE,Hello - Live at Roskilde,7,(What's The Story) Morning Glory? (Deluxe Remastered Edition),D,major,D major
+1995,1995,0.207,0.777,9,-3.806,0,0.0538,0.000103,0.601,0.376,0.341,127.319,4,3,247693,FALSE,FALSE,Roll With It - Live at Roskilde,8,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.175,0.832,9,-4.399,0,0.0662,0.000428,0.239,0.11,0.215,136.043,4,3,287253,FALSE,FALSE,Morning Glory - Live at Roskilde,9,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.556,0.605,7,-6.321,1,0.0287,0.874,0.000128,0.146,0.375,98.945,4,3,187920,FALSE,FALSE,Hey Now - Demo,10,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.342,0.671,7,-6.398,1,0.0314,0.742,0.00247,0.169,0.581,173.979,4,3,128706,FALSE,FALSE,Bonehead's Bank Holiday - Demo,11,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.373,0.883,7,-5.024,1,0.0963,0.0184,1.25e-05,0.737,0.38,145.915,4,3,291293,FALSE,FALSE,Round Are Way - MTV Unplugged,12,(What's The Story) Morning Glory? (Deluxe Remastered Edition),G,major,G major
+1995,1995,0.108,0.85,0,-4.858,1,0.055,0.00453,0,0.366,0.307,193.989,4,3,245506,FALSE,FALSE,Cast No Shadow - Live at Maine Road,13,(What's The Story) Morning Glory? (Deluxe Remastered Edition),C,major,C major
+1995,1995,0.145,0.713,9,-4.438,0,0.0431,0.288,0.0147,0.92,0.314,85.341,4,3,295160,FALSE,FALSE,The Masterplan - Live at Knebworth Park,14,(What's The Story) Morning Glory? (Deluxe Remastered Edition),A,minor,A minor
+1995,1995,0.197,0.955,7,-1.782,1,0.075,0.00625,0.000215,0.438,0.223,111.795,4,1,265066,FALSE,FALSE,Acquiesce,1,The Masterplan,G,major,G major
+1995,1995,0.492,0.945,11,-3.606,0,0.0537,0.00165,0,0.743,0.841,124.04,4,1,201133,FALSE,FALSE,Underneath the Sky,2,The Masterplan,B,minor,B minor
+1995,1995,0.381,0.452,4,-8.445,0,0.0265,0.511,3.19e-05,0.371,0.324,85.14,4,1,261092,FALSE,FALSE,Talk Tonight,3,The Masterplan,E,minor,E minor
+1995,1995,0.501,0.738,5,-3.668,1,0.0303,0.282,0,0.345,0.128,107.028,4,1,279440,FALSE,FALSE,Going Nowhere,4,The Masterplan,F,major,F major
+1995,1995,0.152,0.673,2,-3.257,1,0.0499,2.81e-05,0.669,0.37,0.265,62.112,3,1,253066,FALSE,FALSE,Fade Away,5,The Masterplan,D,major,D major
+1995,1995,0.242,0.954,7,-1.91,0,0.0644,0.000768,0.96,0.179,0.187,142.881,4,1,259626,FALSE,FALSE,The Swamp Song,6,The Masterplan,G,minor,G minor
+1995,1995,0.155,0.986,4,-3.278,1,0.147,2.57e-05,0.645,0.368,0.0387,106.752,4,1,385306,FALSE,FALSE,"I Am the Walrus - Live Glasgow Cathouse, June '94",7,The Masterplan,E,major,E major
+1995,1995,0.0607,0.897,9,-2.416,1,0.0797,0.0178,0.0132,0.344,0.338,200.552,4,1,381133,FALSE,FALSE,Listen Up,8,The Masterplan,A,major,A major
+1995,1995,0.517,0.903,9,-3.951,0,0.0335,0.00302,0,0.0612,0.331,125.946,4,1,275826,FALSE,FALSE,Rockin' Chair,9,The Masterplan,A,minor,A minor
+1995,1995,0.431,0.454,0,-8.712,1,0.0323,0.301,0,0.0772,0.22,115.617,4,1,261799,FALSE,FALSE,Half the World Away,10,The Masterplan,C,major,C major
+1995,1995,0.321,0.914,4,-3.032,0,0.0531,0.00349,0.0107,0.667,0.318,97.772,5,1,258838,FALSE,FALSE,(It's Good) To Be Free,11,The Masterplan,E,minor,E minor
+1995,1995,0.402,0.987,2,-2.465,1,0.0714,0.00586,0.00166,0.332,0.232,125.963,4,1,305360,FALSE,FALSE,Stay Young,12,The Masterplan,D,major,D major
+1995,1995,0.15,0.904,7,-2.154,1,0.0565,0.028,4.02e-06,0.383,0.241,158.66,4,1,278306,FALSE,FALSE,Headshrinker,13,The Masterplan,G,major,G major
+1995,1995,0.369,0.616,7,-6.39,1,0.0304,0.103,4.88e-05,0.0793,0.156,147.697,4,1,322826,FALSE,FALSE,The Masterplan,14,The Masterplan,G,major,G major
+1994-08-29,1994,0.315,0.975,4,-3.21,1,0.0685,0.000567,0.00137,0.467,0.436,138.197,4,1,322946,FALSE,FALSE,Rock 'n' Roll Star - Remastered,1,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.297,0.93,4,-2.661,1,0.0583,0.0136,0.117,0.687,0.159,95.89,4,1,308280,FALSE,FALSE,Shakermaker - Remastered,2,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.191,0.829,9,-3.381,0,0.0447,2.72e-05,2.11e-05,0.362,0.191,116.007,5,1,276666,FALSE,FALSE,Live Forever - Remastered,3,Definitely Maybe (Remastered),A,minor,A minor
+1994-08-29,1994,0.263,0.905,0,-3.543,1,0.0398,1.41e-05,0.0214,0.38,0.328,140.557,4,1,268000,FALSE,FALSE,Up in the Sky - Remastered,4,Definitely Maybe (Remastered),C,major,C major
+1994-08-29,1994,0.314,0.835,7,-5.106,1,0.0498,2.01e-06,0.618,0.392,0.041,100.134,4,1,377400,FALSE,FALSE,Columbia - Remastered,5,Definitely Maybe (Remastered),G,major,G major
+1994-08-29,1994,0.361,0.905,9,-2.851,1,0.0405,5.86e-05,0.0094,0.089,0.635,103.997,4,1,283786,FALSE,FALSE,Supersonic - Remastered,6,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.114,0.938,9,-2.741,1,0.0776,1.13e-05,0.806,0.446,0.191,153.335,4,1,257813,FALSE,FALSE,Bring It on Down - Remastered,7,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.289,0.76,2,-2.31,1,0.0461,1.56e-05,0.0378,0.16,0.465,114.794,4,1,289146,FALSE,FALSE,Cigarettes & Alcohol - Remastered,8,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.303,0.987,2,-2.865,1,0.111,0.000895,0.537,0.0659,0.057,139.499,4,1,152266,FALSE,FALSE,Digsy's Dinner - Remastered,9,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.067,0.941,5,-2.7,0,0.137,9.68e-05,0.000359,0.253,0.236,187.874,4,1,392306,FALSE,FALSE,Slide Away - Remastered,10,Definitely Maybe (Remastered),F,minor,F minor
+1994-08-29,1994,0.585,0.427,4,-10.907,1,0.0278,0.806,0,0.0985,0.313,87.615,4,1,195000,FALSE,FALSE,Married with Children - Remastered,11,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.117,0.89,2,-1.9,1,0.0504,0.00203,0.812,0.647,0.309,199.838,4,2,328666,FALSE,FALSE,Columbia - Remastered White Label Demo,1,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.361,0.932,9,-1.727,1,0.0449,0.000182,0.000252,0.0917,0.33,110.946,4,2,277986,FALSE,FALSE,Cigarettes & Alcohol - Remastered Demo,2,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.527,0.575,8,-6.36,0,0.0309,0.538,0,0.391,0.162,118.465,4,2,269213,FALSE,FALSE,Sad Song - Remastered,3,Definitely Maybe (Remastered),G#,minor,G# minor
+1994-08-29,1994,0.347,0.979,2,-3.294,1,0.0754,0.000615,1.38e-06,0.0872,0.528,128.608,4,2,228880,FALSE,FALSE,I Will Believe - Remastered Live,4,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.454,0.332,2,-10.886,1,0.0286,0.655,0,0.235,0.115,112.186,4,2,272773,FALSE,FALSE,Take Me Away - Remastered,5,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.261,0.911,4,-4.515,1,0.0483,7.29e-06,0.00418,0.144,0.221,147.66,4,2,238226,FALSE,FALSE,Alive - Remastered Demo,6,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.402,0.51,7,-9.073,1,0.0261,0.365,0,0.0866,0.613,139.173,4,2,161013,FALSE,FALSE,D'Yer Wanna Be a Spaceman? - Remastered,7,Definitely Maybe (Remastered),G,major,G major
+1994-08-29,1994,0.226,0.965,6,-3.494,0,0.0985,0.00264,0.44,0.685,0.118,108.728,4,2,315026,FALSE,FALSE,Supersonic - Remastered Live,8,Definitely Maybe (Remastered),F#,minor,F# minor
+1994-08-29,1994,0.136,0.784,7,-4.125,1,0.0422,0.172,0,0.0862,0.378,95.29,3,2,214320,FALSE,FALSE,Up in the Sky - Remastered Acoustic,9,Definitely Maybe (Remastered),G,major,G major
+1994-08-29,1994,0.263,0.876,9,-5.483,1,0.0492,2.85e-06,0.481,0.189,0.288,101.846,4,2,323146,FALSE,FALSE,Cloudburst - Remastered,10,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.166,0.593,2,-3.467,1,0.0474,1.5e-05,0.0655,0.391,0.345,71.79,4,2,256853,FALSE,FALSE,Fade Away - Remastered,11,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.217,0.835,9,-1.751,1,0.0628,0.0208,0.0741,0.379,0.381,98.767,4,2,402360,FALSE,FALSE,Listen Up - Remastered,12,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.154,0.975,4,-3.738,1,0.135,5.11e-06,0.741,0.417,0.0399,106.566,4,2,498333,FALSE,FALSE,I Am the Walrus - Remastered Live Glasgow Cathouse June '94,13,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.247,0.913,7,-2.437,1,0.0388,0.0418,0.00839,0.257,0.34,91.157,4,2,382266,FALSE,FALSE,Whatever - Remastered,14,Definitely Maybe (Remastered),G,major,G major
+1994-08-29,1994,0.309,0.901,4,-2.036,0,0.0506,0.00189,0.0117,0.379,0.306,97.823,5,2,263533,FALSE,FALSE,(It's Good) To Be Free - Remastered,15,Definitely Maybe (Remastered),E,minor,E minor
+1994-08-29,1994,0.339,0.459,0,-8.652,1,0.0329,0.303,0,0.0909,0.22,171.95,3,2,267333,FALSE,FALSE,Half the World Away - Remastered,16,Definitely Maybe (Remastered),C,major,C major
+1994-08-29,1994,0.161,0.93,4,-2.515,1,0.0748,0.000108,0.944,0.901,0.293,109.319,4,3,331360,FALSE,FALSE,Supersonic - Remastered Live At Glasgow Tramshed,1,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.31,0.915,4,-1.98,1,0.0534,0.000122,0.123,0.147,0.387,136.269,4,3,346226,FALSE,FALSE,Rock 'n' Roll Star - Remastered Demo,2,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.515,0.737,4,-5.371,1,0.0311,0.139,4.38e-05,0.128,0.254,104.701,4,3,245253,FALSE,FALSE,Shakermaker - Remastered Live Paris Instore,3,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.346,0.922,2,-2.111,1,0.0394,0.00026,0.594,0.403,0.518,99.194,4,3,337133,FALSE,FALSE,Columbia - Remastered Eden Studios Mix,4,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.409,0.957,9,-2.964,1,0.0425,0.00042,0.000225,0.0341,0.633,102.127,4,3,310373,FALSE,FALSE,Cloudburst - Remastered Demo,5,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.297,0.985,11,-1.874,0,0.0631,0.000277,0.00189,0.265,0.391,103.106,4,3,314866,FALSE,FALSE,Strange Thing - Remastered Demo,6,Definitely Maybe (Remastered),B,minor,B minor
+1994-08-29,1994,0.295,0.619,9,-4.809,0,0.0312,0.176,1.09e-05,0.142,0.278,172.686,4,3,282120,FALSE,FALSE,Live Forever - Remastered Live Paris Instore,7,Definitely Maybe (Remastered),A,minor,A minor
+1994-08-29,1994,0.346,0.998,2,-1.435,1,0.0887,0.0191,0.00107,0.396,0.0489,128.6,4,3,238560,FALSE,FALSE,Cigarettes & Alcohol - Remastered Live At Manchester Academy,8,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.296,0.636,0,-6.955,1,0.0316,0.693,0,0.923,0.54,142.862,4,3,166213,FALSE,FALSE,D'Yer Wanna Be a Spaceman? - Remastered Live At Manchester Academy,9,Definitely Maybe (Remastered),C,major,C major
+1994-08-29,1994,0.277,0.898,9,-2.288,1,0.0522,0.000163,0,0.316,0.396,143.319,4,3,263200,FALSE,FALSE,Fade Away - Remastered Demo,10,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.285,0.364,2,-7.235,1,0.0284,0.685,1.73e-05,0.785,0.169,111.439,4,3,255160,FALSE,FALSE,Take Me Away - Remastered Live At Manchester Academy,11,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.431,0.411,9,-8.817,0,0.0273,0.68,0,0.938,0.281,116.436,4,3,269280,FALSE,FALSE,Sad Song - Remastered Live At Manchester Academy,12,Definitely Maybe (Remastered),A,minor,A minor
+1994-08-29,1994,0.438,0.417,11,-6.651,1,0.0336,0.788,1.6e-05,0.167,0.152,111.477,4,3,233373,FALSE,FALSE,"Half the World Away - Remastered Live, Tokyo Hotel Room",13,Definitely Maybe (Remastered),B,major,B major
+1994-08-29,1994,0.458,0.5,9,-5.43,1,0.0276,0.133,0,0.113,0.541,134.409,4,3,156866,FALSE,FALSE,Digsy's Dinner - Remastered Live Paris Instore,14,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.621,0.479,4,-7.693,1,0.0249,0.653,0,0.104,0.549,87.696,4,3,196066,FALSE,FALSE,Married with Children - Remastered Demo,15,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.338,0.689,0,-5.993,1,0.0328,0.064,0,0.0951,0.549,134.832,4,3,199320,FALSE,FALSE,Up in the Sky - Remastered Live Paris Instore,16,Definitely Maybe (Remastered),C,major,C major
+1994-08-29,1994,0.558,0.323,7,-7.969,1,0.0297,0.922,0.951,0.312,0.724,92.799,4,3,293960,FALSE,FALSE,Whatever - Remastered Strings,17,Definitely Maybe (Remastered),G,major,G major
+1994-08-29,1994,0.315,0.975,4,-3.21,1,0.0685,0.000567,0.00137,0.467,0.436,138.197,4,1,322946,FALSE,FALSE,Rock 'n' Roll Star - Remastered,1,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.297,0.93,4,-2.661,1,0.0583,0.0136,0.117,0.687,0.159,95.89,4,1,308280,FALSE,FALSE,Shakermaker - Remastered,2,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.191,0.829,9,-3.381,0,0.0447,2.72e-05,2.11e-05,0.362,0.191,116.007,5,1,276666,FALSE,FALSE,Live Forever - Remastered,3,Definitely Maybe (Remastered),A,minor,A minor
+1994-08-29,1994,0.263,0.905,0,-3.543,1,0.0398,1.41e-05,0.0214,0.38,0.328,140.557,4,1,268000,FALSE,FALSE,Up in the Sky - Remastered,4,Definitely Maybe (Remastered),C,major,C major
+1994-08-29,1994,0.314,0.835,7,-5.106,1,0.0498,2.01e-06,0.618,0.392,0.041,100.134,4,1,377400,FALSE,FALSE,Columbia - Remastered,5,Definitely Maybe (Remastered),G,major,G major
+1994-08-29,1994,0.361,0.905,9,-2.851,1,0.0405,5.86e-05,0.0094,0.089,0.635,103.997,4,1,283786,FALSE,FALSE,Supersonic - Remastered,6,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.114,0.938,9,-2.741,1,0.0776,1.13e-05,0.806,0.446,0.191,153.335,4,1,257813,FALSE,FALSE,Bring It on Down - Remastered,7,Definitely Maybe (Remastered),A,major,A major
+1994-08-29,1994,0.289,0.76,2,-2.31,1,0.0461,1.56e-05,0.0378,0.16,0.465,114.794,4,1,289146,FALSE,FALSE,Cigarettes & Alcohol - Remastered,8,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.303,0.987,2,-2.865,1,0.111,0.000895,0.537,0.0659,0.057,139.499,4,1,152266,FALSE,FALSE,Digsy's Dinner - Remastered,9,Definitely Maybe (Remastered),D,major,D major
+1994-08-29,1994,0.067,0.941,5,-2.7,0,0.137,9.68e-05,0.000359,0.253,0.236,187.874,4,1,392306,FALSE,FALSE,Slide Away - Remastered,10,Definitely Maybe (Remastered),F,minor,F minor
+1994-08-29,1994,0.585,0.427,4,-10.907,1,0.0278,0.806,0,0.0985,0.313,87.615,4,1,195000,FALSE,FALSE,Married with Children - Remastered,11,Definitely Maybe (Remastered),E,major,E major
+1994-08-29,1994,0.322,0.959,4,-4.766,1,0.0735,0.000135,1.73e-05,0.518,0.522,138.096,4,1,322426,FALSE,FALSE,Rock 'N' Roll Star,1,Definitely Maybe,E,major,E major
+1994-08-29,1994,0.119,0.879,4,-5.958,1,0.0645,0.00333,0.187,0.628,0.18,191.801,4,1,308400,FALSE,FALSE,Shakermaker,2,Definitely Maybe,E,major,E major
+1994-08-29,1994,0.335,0.776,9,-5.32,0,0.0325,9.27e-06,9.51e-06,0.369,0.219,90.59,4,1,276866,FALSE,FALSE,Live Forever,3,Definitely Maybe,A,minor,A minor
+1994-08-29,1994,0.285,0.879,0,-5.856,1,0.0374,2.92e-05,0.00526,0.308,0.322,140.503,4,1,268866,FALSE,FALSE,Up In The Sky,4,Definitely Maybe,C,major,C major
+1994-08-29,1994,0.324,0.836,7,-5.482,1,0.0468,1.78e-06,0.82,0.375,0.0452,100.104,4,1,376960,FALSE,FALSE,Columbia,5,Definitely Maybe,G,major,G major
+1994-08-29,1994,0.387,0.863,9,-5.285,1,0.0351,2.7e-05,0.0032,0.116,0.652,104.227,4,1,283533,FALSE,FALSE,Supersonic,6,Definitely Maybe,A,major,A major
+1994-08-29,1994,0.139,0.945,9,-3.821,1,0.0859,1.15e-05,0.884,0.41,0.205,150.42,4,1,257893,FALSE,FALSE,Bring It On Down,7,Definitely Maybe,A,major,A major
+1994-08-29,1994,0.296,0.803,2,-3.652,1,0.0476,2.76e-05,0.00449,0.112,0.463,114.684,4,1,289560,FALSE,FALSE,Cigarettes & Alcohol,8,Definitely Maybe,D,major,D major
+1994-08-29,1994,0.301,0.976,2,-5.24,1,0.108,0.000132,0.704,0.0638,0.0933,139.544,4,1,152293,FALSE,FALSE,Digsy's Dinner,9,Definitely Maybe,D,major,D major
+1994-08-29,1994,0.0701,0.926,5,-4.987,0,0.113,0.000579,4.62e-05,0.28,0.261,187.309,4,1,392160,FALSE,FALSE,Slide Away,10,Definitely Maybe,F,minor,F minor
+1994-08-29,1994,0.586,0.412,4,-11.608,1,0.0282,0.851,3.56e-06,0.281,0.31,87.645,4,1,191573,FALSE,FALSE,Married With Children,11,Definitely Maybe,E,major,E major
+1994-08-29,1994,0.322,0.973,4,-4.38,1,0.0766,0.000745,5.66e-05,0.525,0.468,138.14,4,1,323240,FALSE,FALSE,Rock 'n' Roll Star,1,Definitely Maybe,E,major,E major
+1994-08-29,1994,0.117,0.911,4,-5.951,1,0.067,0.00893,0.145,0.765,0.197,191.724,4,1,308453,FALSE,FALSE,Shakermaker,2,Definitely Maybe,E,major,E major
+1994-08-29,1994,0.29,0.769,9,-5.578,0,0.0329,1.44e-05,8.35e-06,0.375,0.198,90.248,4,1,276866,FALSE,FALSE,Live Forever,3,Definitely Maybe,A,minor,A minor
+1994-08-29,1994,0.299,0.894,0,-5.365,1,0.0378,3.81e-05,0.00944,0.316,0.324,140.624,4,1,268880,FALSE,FALSE,Up In The Sky,4,Definitely Maybe,C,major,C major
+1994-08-29,1994,0.329,0.855,7,-4.435,1,0.0493,1.91e-06,0.775,0.356,0.0485,100.104,4,1,377000,FALSE,FALSE,Columbia,5,Definitely Maybe,G,major,G major
+1994-08-29,1994,0.39,0.877,9,-4.829,1,0.0347,4.9e-05,0.00241,0.265,0.689,103.94,4,1,283744,FALSE,FALSE,Supersonic,6,Definitely Maybe,A,major,A major
+1994-08-29,1994,0.144,0.956,9,-3.411,1,0.0956,1.07e-05,0.833,0.397,0.19,151.308,4,1,257853,FALSE,FALSE,Bring It On Down,7,Definitely Maybe,A,major,A major
+1994-08-29,1994,0.3,0.865,2,-2.473,1,0.0497,3.26e-05,0.055,0.162,0.466,114.661,4,1,289373,TRUE,FALSE,Cigarettes & Alcohol,8,Definitely Maybe,D,major,D major
+1994-08-29,1994,0.305,0.977,2,-5.04,1,0.115,6.43e-05,0.724,0.067,0.0881,139.469,4,1,152293,FALSE,FALSE,Digsy's Dinner,9,Definitely Maybe,D,major,D major
+1994-08-29,1994,0.0807,0.952,5,-3.447,0,0.124,0.000986,2.57e-05,0.22,0.228,188.397,4,1,392773,FALSE,FALSE,Slide Away,10,Definitely Maybe,F,minor,F minor
+1994-08-29,1994,0.59,0.429,4,-11.7,1,0.0263,0.83,0,0.334,0.342,87.83,4,1,192546,TRUE,FALSE,Married With Children,11,Definitely Maybe,E,major,E major
+1994,1994,0.321,0.973,4,-4.375,1,0.0703,0.000953,3e-05,0.503,0.498,138.136,4,1,322226,FALSE,FALSE,Rock 'N' Roll Star,1,DEFINITELY MAYBE,E,major,E major
+1994,1994,0.12,0.894,4,-5.785,1,0.0731,0.00754,0.183,0.759,0.236,191.947,4,1,308466,FALSE,FALSE,Shakermaker,2,DEFINITELY MAYBE,E,major,E major
+1994,1994,0.147,0.782,9,-5.393,0,0.0367,1.37e-05,6.86e-06,0.369,0.182,90.896,4,1,276533,FALSE,FALSE,Live Forever,3,DEFINITELY MAYBE,A,minor,A minor
+1994,1994,0.335,0.819,9,-8.915,1,0.046,2.65e-06,0.28,0.261,0.282,102.268,4,1,320240,FALSE,FALSE,Cloudburst,4,DEFINITELY MAYBE,A,major,A major
+1994,1994,0.305,0.909,0,-5.242,1,0.0377,3.73e-05,0.00458,0.198,0.325,140.588,4,1,268866,FALSE,FALSE,Up In The Sky,5,DEFINITELY MAYBE,C,major,C major
+1994,1994,0.518,0.398,8,-12.455,0,0.0318,0.572,1.56e-06,0.382,0.174,118.269,4,1,267093,FALSE,FALSE,Sad Song,6,DEFINITELY MAYBE,G#,minor,G# minor
+1994,1994,0.323,0.867,7,-4.288,1,0.0527,1.93e-06,0.705,0.371,0.0434,100.07,4,1,377106,FALSE,FALSE,Columbia,7,DEFINITELY MAYBE,G,major,G major
+1994,1994,0.389,0.873,9,-4.707,1,0.0346,4.53e-05,0.00935,0.102,0.66,103.927,4,1,283760,FALSE,FALSE,Supersonic,8,DEFINITELY MAYBE,A,major,A major
+1994,1994,0.136,0.96,9,-3.229,1,0.0897,1.15e-05,0.845,0.414,0.185,154.319,4,1,257799,FALSE,FALSE,Bring It On Down,9,DEFINITELY MAYBE,A,major,A major
+1994,1994,0.299,0.856,2,-2.301,1,0.0479,2.17e-05,0.0688,0.145,0.509,114.75,4,1,289400,FALSE,FALSE,Cigarettes & Alcohol,10,DEFINITELY MAYBE,D,major,D major
+1994,1994,0.326,0.978,2,-4.928,1,0.1,6.09e-05,0.692,0.0663,0.109,139.374,4,1,152266,FALSE,FALSE,Digsy's Dinner,11,DEFINITELY MAYBE,D,major,D major
+1994,1994,0.0811,0.957,5,-3.299,0,0.144,0.000885,0.000202,0.236,0.252,188.063,4,1,392733,FALSE,FALSE,Slide Away,12,DEFINITELY MAYBE,F,minor,F minor
+1994,1994,0.577,0.407,4,-11.536,1,0.0286,0.801,0,0.0971,0.337,87.877,4,1,189973,FALSE,FALSE,Married With Children,13,DEFINITELY MAYBE,E,major,E major
+1994,1994,0.315,0.97,4,-3.245,1,0.068,0.000392,0.00255,0.435,0.481,138.206,4,1,322946,FALSE,FALSE,Rock 'n' Roll Star - Remastered,1,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.0839,0.929,4,-2.682,1,0.0732,0.0152,0.197,0.718,0.16,191.894,4,1,308280,FALSE,FALSE,Shakermaker - Remastered,2,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.286,0.822,9,-3.366,0,0.0381,2.31e-05,1.31e-05,0.353,0.19,90.96,4,1,276666,FALSE,FALSE,Live Forever - Remastered,3,Definitely Maybe (Deluxe Edition Remastered),A,minor,A minor
+1994,1994,0.256,0.908,0,-3.521,1,0.0398,1.53e-05,0.0193,0.354,0.341,140.533,4,1,268000,FALSE,FALSE,Up In The Sky - Remastered,4,Definitely Maybe (Deluxe Edition Remastered),C,major,C major
+1994,1994,0.314,0.824,7,-5.079,1,0.049,2.38e-06,0.673,0.384,0.0546,100.151,4,1,377400,FALSE,FALSE,Columbia - Remastered,5,Definitely Maybe (Deluxe Edition Remastered),G,major,G major
+1994,1994,0.359,0.913,9,-2.865,1,0.0391,6.31e-05,0.0121,0.0954,0.589,104.058,4,1,283786,FALSE,FALSE,Supersonic - Remastered,6,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.115,0.945,9,-2.8,1,0.075,1.21e-05,0.801,0.462,0.195,152.589,4,1,257813,FALSE,FALSE,Bring It On Down - Remastered,7,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.294,0.742,2,-2.334,1,0.0458,1.45e-05,0.0311,0.152,0.44,114.87,4,1,289146,TRUE,FALSE,Cigarettes & Alcohol - Remastered,8,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.305,0.988,2,-2.912,1,0.103,0.000824,0.837,0.0678,0.0513,139.353,4,1,152266,FALSE,FALSE,Digsy's Dinner - Remastered,9,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.0657,0.943,8,-2.71,1,0.138,0.000114,0.00016,0.313,0.264,190.555,4,1,392306,FALSE,FALSE,Slide Away - Remastered,10,Definitely Maybe (Deluxe Edition Remastered),G#,major,G# major
+1994,1994,0.588,0.435,4,-10.845,1,0.0268,0.787,0,0.0801,0.305,88.068,4,1,195000,TRUE,FALSE,Married With Children - Remastered,11,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.322,0.891,2,-1.882,1,0.0421,0.00235,0.782,0.701,0.295,100.999,4,2,328666,FALSE,FALSE,Columbia (White Label Demo) - Remastered,1,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.362,0.93,9,-1.709,1,0.0448,0.000218,8.11e-05,0.0883,0.338,110.968,4,2,277986,TRUE,FALSE,Cigarettes & Alcohol (Demo) - Remastered,2,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.528,0.578,8,-6.345,0,0.0308,0.529,0,0.392,0.161,118.427,4,2,269213,FALSE,FALSE,Sad Song - Remastered,3,Definitely Maybe (Deluxe Edition Remastered),G#,minor,G# minor
+1994,1994,0.342,0.98,2,-3.241,1,0.0733,0.000745,0,0.0889,0.555,128.631,4,2,228880,FALSE,FALSE,I Will Believe (Live) - Remastered,4,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.45,0.33,2,-10.919,1,0.0286,0.686,0,0.231,0.123,112.225,4,2,272773,FALSE,FALSE,Take Me Away - Remastered,5,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.262,0.905,4,-4.514,1,0.0447,7.27e-06,0.00635,0.153,0.252,147.631,4,2,238226,FALSE,FALSE,Alive (Demo) - Remastered,6,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.399,0.501,2,-9.077,1,0.0262,0.366,0,0.0888,0.622,138.087,4,2,161013,FALSE,FALSE,D'Yer Wanna Be A Spaceman? - Remastered,7,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.248,0.969,6,-3.502,0,0.0923,0.00245,0.452,0.686,0.112,109.245,4,2,315026,FALSE,FALSE,Supersonic (Live) - Remastered,8,Definitely Maybe (Deluxe Edition Remastered),F#,minor,F# minor
+1994,1994,0.153,0.782,0,-4.117,1,0.0427,0.147,0,0.132,0.341,141.712,4,2,214320,FALSE,FALSE,Up In The Sky (Acoustic) - Remastered,9,Definitely Maybe (Deluxe Edition Remastered),C,major,C major
+1994,1994,0.31,0.883,9,-5.516,1,0.0511,3.21e-06,0.371,0.237,0.289,102.705,4,2,323146,FALSE,FALSE,Cloudburst - Remastered,10,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.145,0.564,2,-3.486,1,0.0467,8.69e-06,0.218,0.384,0.351,72.65,4,2,256853,FALSE,FALSE,Fade Away - Remastered,11,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.154,0.861,9,-1.786,1,0.0697,0.0257,0.0862,0.373,0.335,133.412,5,2,402360,FALSE,FALSE,Listen Up - Remastered,12,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.129,0.977,4,-3.719,1,0.127,4.95e-06,0.795,0.419,0.04,98.681,4,2,498333,FALSE,FALSE,I Am The Walrus (Live Glasgow Cathouse June '94) - Remastered,13,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.252,0.902,7,-2.479,1,0.0392,0.0421,0.0148,0.309,0.306,91.474,4,2,382266,FALSE,FALSE,Whatever - Remastered,14,Definitely Maybe (Deluxe Edition Remastered),G,major,G major
+1994,1994,0.316,0.902,4,-2.061,0,0.0489,0.00207,0.00713,0.335,0.303,97.848,5,2,263533,FALSE,FALSE,(It's Good) To Be Free - Remastered,15,Definitely Maybe (Deluxe Edition Remastered),E,minor,E minor
+1994,1994,0.433,0.458,0,-8.666,1,0.0328,0.305,0,0.0863,0.23,115.213,4,2,267333,FALSE,FALSE,Half The World Away - Remastered,16,Definitely Maybe (Deluxe Edition Remastered),C,major,C major
+1994,1994,0.168,0.92,4,-2.503,1,0.0733,0.000104,0.93,0.847,0.278,113.048,4,3,331360,FALSE,FALSE,Supersonic - Live at Glasgow Tramshed,1,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.31,0.908,4,-1.973,1,0.053,0.000128,0.0413,0.188,0.43,136.283,4,3,346226,FALSE,FALSE,Rock 'n' Roll Star - Demo,2,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.518,0.733,4,-5.405,1,0.032,0.147,3.34e-05,0.0859,0.233,105,4,3,245253,FALSE,FALSE,Shakermaker - Live Paris In-Store,3,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.304,0.928,2,-2.086,1,0.0411,0.000293,0.677,0.384,0.523,98.922,4,3,337133,FALSE,FALSE,Columbia - Eden Studios Mix,4,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.406,0.955,9,-2.868,1,0.0416,0.000424,0.000359,0.039,0.602,101.896,4,3,310373,FALSE,FALSE,Cloudburst - Demo,5,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.296,0.981,9,-1.834,1,0.0635,0.000357,0.00111,0.305,0.406,103.165,4,3,314866,FALSE,FALSE,Strange Thing - Demo,6,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.288,0.633,9,-4.81,0,0.0327,0.137,5.76e-06,0.167,0.257,172.08,4,3,282120,FALSE,FALSE,Live Forever - Live Paris In-Store,7,Definitely Maybe (Deluxe Edition Remastered),A,minor,A minor
+1994,1994,0.345,0.998,9,-1.389,1,0.0885,0.0382,0.000801,0.414,0.05,128.587,4,3,238560,FALSE,FALSE,Cigarettes & Alcohol - Live at Manchester Academy,8,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.305,0.633,0,-6.996,1,0.0315,0.719,0,0.93,0.524,146.315,4,3,166213,FALSE,FALSE,D'Yer Wanna Be A Spaceman? - Live at Manchester Academy,9,Definitely Maybe (Deluxe Edition Remastered),C,major,C major
+1994,1994,0.278,0.901,9,-2.307,1,0.0531,0.000122,0,0.331,0.37,143.406,4,3,263200,FALSE,FALSE,Fade Away - Demo,10,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.296,0.371,2,-7.15,1,0.0293,0.655,1.56e-05,0.823,0.158,116.93,4,3,255160,FALSE,FALSE,Take Me Away - Live at Manchester Academy,11,Definitely Maybe (Deluxe Edition Remastered),D,major,D major
+1994,1994,0.437,0.419,9,-8.779,0,0.0275,0.638,0,0.953,0.262,116.511,4,3,269280,FALSE,FALSE,Sad Song - Live at Manchester Academy,12,Definitely Maybe (Deluxe Edition Remastered),A,minor,A minor
+1994,1994,0.44,0.415,11,-6.629,1,0.0306,0.776,1.77e-05,0.184,0.157,111.384,4,3,233373,FALSE,FALSE,"Half The World Away - Live, Tokyo Hotel Room",13,Definitely Maybe (Deluxe Edition Remastered),B,major,B major
+1994,1994,0.456,0.5,9,-5.422,1,0.0278,0.133,0,0.106,0.529,134.086,4,3,156866,FALSE,FALSE,Digsy's Dinner - Live Paris In-Store,14,Definitely Maybe (Deluxe Edition Remastered),A,major,A major
+1994,1994,0.624,0.466,4,-7.735,1,0.025,0.619,0,0.105,0.505,87.692,4,3,196066,FALSE,FALSE,Married With Children - Demo,15,Definitely Maybe (Deluxe Edition Remastered),E,major,E major
+1994,1994,0.378,0.687,0,-5.968,1,0.0308,0.055,0,0.13,0.548,135.035,4,3,199320,FALSE,FALSE,Up In The Sky - Live Paris In-Store,16,Definitely Maybe (Deluxe Edition Remastered),C,major,C major
+1994,1994,0.562,0.321,7,-7.981,1,0.0313,0.92,0.935,0.349,0.713,92.745,4,3,293960,FALSE,FALSE,Whatever - Strings,17,Definitely Maybe (Deluxe Edition Remastered),G,major,G major

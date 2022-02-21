@@ -1649,6 +1649,163 @@ Existen otras funciones interesantes de Pandas que trabajan sobre expresiones re
 - `extract()`_ para extraer grupos de captura sobre un patrón.
 - `findall()`_ para encontrar todas las ocurrencias de un patrón.
 
+Manejando fechas
+----------------
+
+Suele ser habitual tener que manejar datos en formato fecha (o fecha-hora). Pandas ofrece un amplio abanico de posibilidades para ello. Veamos algunas de las herramientas disponibles.
+
+Para ejemplificar este apartado hemos añadido al "dataset" de empresas tecnológicas una nueva columna con las fechas de fundación de las empresas (en formato "string")::
+
+    >>> df['Founded'] = ['1/4/1976',   '13/1/1969', '4/9/1998',  '20/2/1974',
+    ...                  '4/4/1975',   '15/9/1987', '1/2/1984',  '4/2/2004',
+    ...                  '7/5/1946',   '1/10/1962', '18/7/1968', '16/6/1911',
+    ...                  '11/11/1998', '13/3/1918', '1/11/1984', '1/1/1939',
+    ...                  '5/1/1947']
+
+    >>> df.head()
+                         Revenue  Employees             City        Country    Founded
+    Company
+    Apple                 274515     147000       California  United States   1/4/1976
+    Samsung Electronics   200734     267937            Suwon    South Korea  13/1/1969
+    Alphabet              182527     135301       California  United States   4/9/1998
+    Foxconn               181945     878429  New Taipei City         Taiwan  20/2/1974
+    Microsoft             143015     163000       Washington  United States   4/4/1975
+
+    >>> df['Founded'].dtype  # tipo "object"
+    dtype('O')
+
+Lo primero que deberíamos hacer es convertir la columna "Founded" al tipo "datetime" usando la función `to_datetime()`_::
+
+    >>> df['Founded'] = pd.to_datetime(df['Founded'])
+
+    >>> df['Founded'].head()
+    Company
+    Apple                 1976-01-04
+    Samsung Electronics   1969-01-13
+    Alphabet              1998-04-09
+    Foxconn               1974-02-20
+    Microsoft             1975-04-04
+    Name: Founded, dtype: datetime64[ns]
+
+Es posible acceder a cada elemento de la fecha::
+
+    >>> df['fyear'] = df['Founded'].dt.year
+    >>> df['fmonth'] = df['Founded'].dt.month
+    >>> df['fday'] = df['Founded'].dt.day
+
+    >>> df.loc[:, 'Founded':].head()
+                           Founded  fyear  fmonth  fday
+    Company
+    Apple               1976-01-04   1976       1     4
+    Samsung Electronics 1969-01-13   1969       1    13
+    Alphabet            1998-04-09   1998       4     9
+    Foxconn             1974-02-20   1974       2    20
+    Microsoft           1975-04-04   1975       4     4
+
+Por ejemplo, podríamos querer calcular el **número de años que llevan activas las empresas**::
+
+    >>> pd.to_datetime('today').year - df['Founded'].dt.year
+    Company
+    Apple                   46
+    Samsung Electronics     53
+    Alphabet                24
+    Foxconn                 48
+    Microsoft               47
+    Huawei                  35
+    Dell Technologies       38
+    Facebook                18
+    Sony                    76
+    Hitachi                 60
+    Intel                   54
+    IBM                    111
+    Tencent                 24
+    Panasonic              104
+    Lenovo                  38
+    HP Inc.                 83
+    LG Electronics          75
+    Name: Founded, dtype: int64
+
+Los tipos de datos "datetime" dan mucha flexibilidad a la hora de hacer consultas::
+
+    >>> # Empresas creadas antes de 1950
+    >>> df.query('Founded <= 1950')
+                    Revenue  Employees        City        Country    Founded
+    Company
+    Sony              84893     109700       Tokyo          Japan 1946-07-05
+    IBM               73620     364800    New York  United States 1911-06-16
+    Panasonic         63191     243540       Osaka          Japan 1918-03-13
+    HP Inc.           56639      53000  California  United States 1939-01-01
+    LG Electronics    53625      75000       Seoul    South Korea 1947-05-01
+
+    >>> # Empresas creadas en Enero
+    >>> df.query('Founded.dt.month == 1')
+                         Revenue  Employees        City        Country    Founded
+    Company
+    Apple                 274515     147000  California  United States 1976-01-04
+    Samsung Electronics   200734     267937       Suwon    South Korea 1969-01-13
+    Dell Technologies      92224     158000       Texas  United States 1984-01-02
+    Hitachi                82345     350864       Tokyo          Japan 1962-01-10
+    Lenovo                 60742      71500   Hong Kong          China 1984-01-11
+    HP Inc.                56639      53000  California  United States 1939-01-01
+
+    >>> # Empresas creadas en el último cuatrimestre del año
+    >>> df.query('9 <= Founded.dt.month <= 12')
+             Revenue  Employees      City Country    Founded
+    Company
+    Huawei    129184     197000  Shenzhen   China 1987-09-15
+    Tencent    69864      85858  Shenzhen   China 1998-11-11
+
+Hay ocasiones en las que necesitamos que la fecha se convierta en el índice del DataFrame::
+
+    >>> df = df.reset_index().set_index('Founded').sort_index()
+
+    >>> df.head()
+                       Company  Revenue  Employees        City        Country
+    Founded
+    1911-06-16             IBM    73620     364800    New York  United States
+    1918-03-13       Panasonic    63191     243540       Osaka          Japan
+    1939-01-01         HP Inc.    56639      53000  California  United States
+    1946-07-05            Sony    84893     109700       Tokyo          Japan
+    1947-05-01  LG Electronics    53625      75000       Seoul    South Korea
+
+Esto nos permite indexar de forma mucho más precisa::
+
+    >>> # Empresas creadas en 1988
+    >>> df.loc['1998']
+                 Company  Revenue  Employees        City        Country
+    Founded
+    1998-04-09  Alphabet   182527     135301  California  United States
+    1998-11-11   Tencent    69864      85858    Shenzhen          China
+
+    >>> # Empresas creadas entre 1970 y 1980
+    >>> df.loc['1970':'1980']
+                  Company  Revenue  Employees             City        Country
+    Founded
+    1974-02-20    Foxconn   181945     878429  New Taipei City         Taiwan
+    1975-04-04  Microsoft   143015     163000       Washington  United States
+    1976-01-04      Apple   274515     147000       California  United States
+
+    >>> # Empresas creadas entre enero de 1975 y marzo de 1984
+    >>> df.loc['1975-1':'1984-3']
+                          Company  Revenue  Employees        City        Country
+    Founded
+    1975-04-04          Microsoft   143015     163000  Washington  United States
+    1976-01-04              Apple   274515     147000  California  United States
+    1984-01-02  Dell Technologies    92224     158000       Texas  United States
+    1984-01-11             Lenovo    60742      71500   Hong Kong          China
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Partiendo del fichero :download:`oasis.csv <files/oasis.csv>` que contiene información sobre la discografía del grupo de pop británico `Oasis`_, se pide:
+
+    - Cargue el fichero en un DataFrame.
+    - Convierta la columna "album_release_date" a tipo "dataframe".
+    - Obtenga los nombres de los álbumes publicados entre 2000 y 2005.
+
+    .. only:: html
+    
+        |solution| :download:`oasis.py <files/oasis.py>`
 
 Usando funciones estadísticas
 -----------------------------
@@ -2290,3 +2447,5 @@ Si queremos "reindexar" el DataFrame concatenado, la función ``concat()`` admit
 .. _extract(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.extract.html
 .. _findall(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.findall.html
 .. _query(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html
+.. _to_datetime(): https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
+.. _Oasis: https://www.oasisinet.com/
