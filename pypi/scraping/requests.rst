@@ -206,6 +206,98 @@ Si una respuesta contiene "cookies"[#http-cookies]_ es posible acceder a ellas m
     
         |solution| :download:`req.py <files/req.py>`
 
+********************
+Descargar un fichero
+********************
+
+Hay ocasiones en las que usamos *requests* para descargar un fichero, bien sea en texto plano o binario. Veamos cómo proceder para cada tipo.
+
+Ficheros en texto plano
+=======================
+
+El procedimiento que utilizamos es descargar el contenido desde la url y :ref:`volcarlo a un fichero <core/datastructures/files:Escritura en un fichero>` de manera estándar::
+
+    >>> url = 'https://www.ine.es/jaxi/files/tpx/es/csv_bdsc/50155.csv'
+
+    >>> response = requests.get(url)
+
+    >>> response.status_code
+    200
+
+    >>> with open('data.csv', 'w') as f:
+    ...     f.write(response.text)
+    ...
+
+.. hint::
+    Usamos ``response.text`` para obtener el contenido ya que nos interesa en formato "unicode".
+
+Podemos comprobar que el fichero se ha creado satisfactoriamente:
+
+.. code-block:: console
+
+    $ file data.csv
+    plain_text.csv: UTF-8 Unicode text, with CRLF line terminators
+
+Ficheros binarios
+=================
+
+Para descargar ficheros binarios seguimos la misma estructura que para ficheros en texto plano, pero indicando el tipo binario a la hora de escribir en disco::
+
+    >>> url = 'https://www.ine.es/jaxi/files/tpx/es/xlsx/50155.xlsx'
+
+    >>> response = requests.get(url)
+
+    >>> response.status_code
+    200
+
+    >>> with open('data.xlsx', 'wb') as f:
+    ...     f.write(response.content)
+    ...
+
+.. hint::
+    Usamos ``response.content`` para obtener el contenido ya que nos interesa en formato "bytes".
+
+Podemos comprobar que el fichero se ha creado satisfactoriamente:
+
+.. code-block:: console
+
+    $ file data.xlsx
+    data.xlsx: Microsoft OOXML
+
+Nombre de fichero
+=================
+
+En los ejemplos anteriores hemos puesto el nombre de fichero "a mano". Pero podría darse la situación de necesitar el nombre de fichero que descargamos. Para ello existen dos aproximaciones en función de si aparece o no la clave "attachment" en las cabeceras de respuesta.
+
+Podemos escribir la siguiente función para ello::
+
+    >>> def get_filename(response):
+    ...     try:
+    ...         return response.headers['Content-Disposition'].split(';')[1].split('=')[1]
+    ...     except (KeyError, IndexError):
+    ...         return response.url.split('/')[-1]
+    ...
+
+Caso para el que no disponemos de la cabecera adecuada::
+
+    >>> url = 'https://media.readthedocs.org/pdf/pytest/latest/pytest.pdf'
+    >>> response = requests.get(url)
+    >>> 'attachment' in response.headers.get('Content-Disposition')
+    False
+
+    >>> get_filename(response)
+    'pytest.pdf'
+
+Caso para el que sí disponemos de la cabecera adecuada::
+
+    >>> url = 'https://www.ine.es/jaxi/files/tpx/es/csv_bdsc/45070.csv'
+    >>> response = requests.get(url)
+    >>> 'attachment' in response.headers.get('Content-Disposition')
+    True
+
+    >>> get_filename(response)
+    '45070.csv'
+
 
 
 .. --------------- Footnotes ---------------
