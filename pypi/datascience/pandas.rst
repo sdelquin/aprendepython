@@ -971,6 +971,19 @@ Se pueden seleccionar varias columnas a la vez pasando una lista::
     Foxconn                 878429  New Taipei City
     Microsoft               163000       Washington
 
+Esta misma sintaxis permite la **reordenación de las columnas** de un DataFrame, si asignamos el resultado a la misma (u otra) variable::
+
+    >>> df_reordered = df[['City', 'Country', 'Revenue', 'Employees']]
+
+    >>> df_reordered.head()
+                                    City        Country  Revenue  Employees
+    Company
+    Apple                     California  United States   274515     147000
+    Samsung Electronics            Suwon    South Korea   200734     267937
+    Alphabet                  California  United States   182527     135301
+    Foxconn              New Taipei City         Taiwan   181945     878429
+    Microsoft                 Washington  United States   143015     163000
+
 Acceso a filas y columnas
 -------------------------
 
