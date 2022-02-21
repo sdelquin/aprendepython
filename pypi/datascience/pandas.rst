@@ -1807,6 +1807,119 @@ Esto nos permite indexar de forma mucho más precisa::
     
         |solution| :download:`oasis.py <files/oasis.py>`
 
+Manejando categorías
+--------------------
+
+Hasta ahora hemos visto tipos de datos numéricos, cadenas de texto y fechas. ¿Pero qué ocurre con las categorías?
+
+Las categorías pueden ser tanto datos numéricos como textuales, con la característica de tener un número discreto (relativamente pequeño) de elementos y, en ciertas ocasiones, un orden preestablecido. Ejemplos de variables categóricas son: género, idioma, meses del año, color de ojos, nivel de estudios, grupo sanguíneo, valoración, etc.
+
+Pandas facilita el `tratamiento de datos categóricos`_ mediante un tipo específico ``Categorical``.
+
+Siguiendo con el "dataset" de empresas tecnológicas, vamos a añadir el continente al que pertenece cada empresa. En primera instancia mediante valores de texto habituales::
+
+    >>> df['Continent'] = ['America', 'Asia', 'America', 'Asia',
+    ...                    'America', 'Asia', 'America', 'America',
+    ...                    'Asia',    'Asia', 'America', 'America',
+    ...                    'Asia',    'Asia', 'Asia',    'America',
+    ...                    'Asia']
+
+    >>> df['Continent'].head()
+    Company
+    Apple                  America
+    Samsung Electronics       Asia
+    Alphabet               America
+    Foxconn                   Asia
+    Microsoft              America
+    Name: Continent, dtype: object
+
+Ahora podemos convertir esta columna a tipo categoría::
+
+    >>> df['Continent'].astype('category')
+    Company
+    Apple                  America
+    Samsung Electronics       Asia
+    Alphabet               America
+    Foxconn                   Asia
+    Microsoft              America
+    Huawei                    Asia
+    Dell Technologies      America
+    Facebook               America
+    Sony                      Asia
+    Hitachi                   Asia
+    Intel                  America
+    IBM                    America
+    Tencent                   Asia
+    Panasonic                 Asia
+    Lenovo                    Asia
+    HP Inc.                America
+    LG Electronics            Asia
+    Name: Continent, dtype: category
+    Categories (2, object): ['America', 'Asia']
+
+En este caso, al ser una conversión "automática", las categorías no han incluido ningún tipo de orden. Pero imaginemos que queremos establecer un orden para las categorías de continentes basadas, por ejemplo, en su población: Asia, África, Europa, América, Australia:
+
+.. code-block::
+    :emphasize-lines: 7, 27
+
+    >>> from pandas.api.types import CategoricalDtype
+
+    >>> continents = ('Asia', 'Africa', 'Europe', 'America', 'Australia')
+
+    >>> cat_continents = pd.api.types.CategoricalDtype(categories=continents, ordered=True)
+
+    >>> df['Continent'].astype(cat_continents)
+    Company
+    Apple                  America
+    Samsung Electronics       Asia
+    Alphabet               America
+    Foxconn                   Asia
+    Microsoft              America
+    Huawei                    Asia
+    Dell Technologies      America
+    Facebook               America
+    Sony                      Asia
+    Hitachi                   Asia
+    Intel                  America
+    IBM                    America
+    Tencent                   Asia
+    Panasonic                 Asia
+    Lenovo                    Asia
+    HP Inc.                America
+    LG Electronics            Asia
+    Name: Continent, dtype: category
+    Categories (5, object): ['Asia' < 'Africa' < 'Europe' < 'America' < 'Australia']
+
+El hecho de trabajar con **categorías ordenadas** permite (entre otras) estas operaciones::
+
+    >>> df['Continent'].min()
+    'Asia'
+    >>> df['Continent'].max()
+    'America'
+
+    >>> df['Continent'].sort_values()
+    Company
+    Sony                      Asia
+    Lenovo                    Asia
+    Panasonic                 Asia
+    Tencent                   Asia
+    Hitachi                   Asia
+    LG Electronics            Asia
+    Foxconn                   Asia
+    Samsung Electronics       Asia
+    Huawei                    Asia
+    Dell Technologies      America
+    Facebook               America
+    HP Inc.                America
+    Microsoft              America
+    Intel                  America
+    IBM                    America
+    Alphabet               America
+    Apple                  America
+    Name: Continent, dtype: category
+    Categories (5, object): ['Asia' < 'Africa' < 'Europe' < 'America' < 'Australia']
+
+
 Usando funciones estadísticas
 -----------------------------
 
@@ -2449,3 +2562,4 @@ Si queremos "reindexar" el DataFrame concatenado, la función ``concat()`` admit
 .. _query(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html
 .. _to_datetime(): https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
 .. _Oasis: https://www.oasisinet.com/
+.. _tratamiento de datos categóricos: https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html
