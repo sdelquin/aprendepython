@@ -195,6 +195,9 @@ Aunque su uso está más extendido en el mundo Python, `existen muchos otros "ke
 .. seealso::
     Sección sobre :ref:`Jupyter <pypi/datascience/jupyter:jupyter>`.
 
+.. tip::
+    Visual Studio Code también dispone de `integración con Jupyter Notebooks <https://code.visualstudio.com/docs/datascience/jupyter-notebooks>`_.
+
 *******
 repl.it
 *******

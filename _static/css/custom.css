@@ -122,3 +122,8 @@ figcaption > p > a {
   > ul {
   display: none;
 }
+
+/* Avoid Python prompt to be selected */
+.highlight span.gp {
+  user-select: none;
+}

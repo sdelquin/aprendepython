@@ -971,6 +971,19 @@ Se pueden seleccionar varias columnas a la vez pasando una lista::
     Foxconn                 878429  New Taipei City
     Microsoft               163000       Washington
 
+Esta misma sintaxis permite la **reordenación de las columnas** de un DataFrame, si asignamos el resultado a la misma (u otra) variable::
+
+    >>> df_reordered = df[['City', 'Country', 'Revenue', 'Employees']]
+
+    >>> df_reordered.head()
+                                    City        Country  Revenue  Employees
+    Company
+    Apple                     California  United States   274515     147000
+    Samsung Electronics            Suwon    South Korea   200734     267937
+    Alphabet                  California  United States   182527     135301
+    Foxconn              New Taipei City         Taiwan   181945     878429
+    Microsoft                 Washington  United States   143015     163000
+
 Acceso a filas y columnas
 -------------------------
 
@@ -1185,6 +1198,49 @@ Imaginemos ahora que estamos buscando aquellas **empresas establecidas en Califo
     .. only:: html
     
         |solution| :download:`df_access.py <files/df_access.py>`
+
+Seleción usando "query"
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Pandas provee una alternativa para la selección condicional de registros a través de la función `query()`_. Admite una sintaxis de consulta a través de expresiones de comparación.
+
+Veamos las mismas consultas de ejemplo que para el apartado anterior::
+
+    >>> df.query('Country == "United States"')
+                    Revenue  Employees        City        Country
+    Company
+    Apple               274515     147000  California  United States
+    Alphabet            182527     135301  California  United States
+    Microsoft           143015     163000  Washington  United States
+    Dell Technologies    92224     158000       Texas  United States
+    Facebook             85965      58604  California  United States
+    Intel                77867     110600  California  United States
+    IBM                  73620     364800    New York  United States
+    HP Inc.              56639      53000  California  United States
+
+    >>> df.query('Revenue > 100_000 & Employees > 100_000')
+                         Revenue  Employees             City        Country
+    Company
+    Apple                 274515     147000       California  United States
+    Samsung Electronics   200734     267937            Suwon    South Korea
+    Alphabet              182527     135301       California  United States
+    Foxconn               181945     878429  New Taipei City         Taiwan
+    Microsoft             143015     163000       Washington  United States
+    Huawei                129184     197000         Shenzhen          China
+
+    >>> df.query('City in ["California", "Tokyo"]')
+              Revenue  Employees        City        Country
+    Company
+    Apple      274515     147000  California  United States
+    Alphabet   182527     135301  California  United States
+    Facebook    85965      58604  California  United States
+    Sony        84893     109700       Tokyo          Japan
+    Hitachi     82345     350864       Tokyo          Japan
+    Intel       77867     110600  California  United States
+    HP Inc.     56639      53000  California  United States
+
+.. tip::
+    Si los nombres de columna contienen espacios, se puede hacer referencias a ellas con comillas invertidas. Por ejemplo: ```Total Stock```.
 
 Modificación de un DataFrame
 ============================
@@ -1592,6 +1648,276 @@ Existen otras funciones interesantes de Pandas que trabajan sobre expresiones re
 - `contains()`_ para comprobar si existe un determinado patrón.
 - `extract()`_ para extraer grupos de captura sobre un patrón.
 - `findall()`_ para encontrar todas las ocurrencias de un patrón.
+
+Manejando fechas
+----------------
+
+Suele ser habitual tener que manejar datos en formato fecha (o fecha-hora). Pandas ofrece un amplio abanico de posibilidades para ello. Veamos algunas de las herramientas disponibles.
+
+Para ejemplificar este apartado hemos añadido al "dataset" de empresas tecnológicas una nueva columna con las fechas de fundación de las empresas (en formato "string")::
+
+    >>> df['Founded'] = ['1/4/1976',   '13/1/1969', '4/9/1998',  '20/2/1974',
+    ...                  '4/4/1975',   '15/9/1987', '1/2/1984',  '4/2/2004',
+    ...                  '7/5/1946',   '1/10/1962', '18/7/1968', '16/6/1911',
+    ...                  '11/11/1998', '13/3/1918', '1/11/1984', '1/1/1939',
+    ...                  '5/1/1947']
+
+    >>> df.head()
+                         Revenue  Employees             City        Country    Founded
+    Company
+    Apple                 274515     147000       California  United States   1/4/1976
+    Samsung Electronics   200734     267937            Suwon    South Korea  13/1/1969
+    Alphabet              182527     135301       California  United States   4/9/1998
+    Foxconn               181945     878429  New Taipei City         Taiwan  20/2/1974
+    Microsoft             143015     163000       Washington  United States   4/4/1975
+
+    >>> df['Founded'].dtype  # tipo "object"
+    dtype('O')
+
+Lo primero que deberíamos hacer es convertir la columna "Founded" al tipo "datetime" usando la función `to_datetime()`_::
+
+    >>> df['Founded'] = pd.to_datetime(df['Founded'])
+
+    >>> df['Founded'].head()
+    Company
+    Apple                 1976-01-04
+    Samsung Electronics   1969-01-13
+    Alphabet              1998-04-09
+    Foxconn               1974-02-20
+    Microsoft             1975-04-04
+    Name: Founded, dtype: datetime64[ns]
+
+Es posible acceder a cada elemento de la fecha::
+
+    >>> df['fyear'] = df['Founded'].dt.year
+    >>> df['fmonth'] = df['Founded'].dt.month
+    >>> df['fday'] = df['Founded'].dt.day
+
+    >>> df.loc[:, 'Founded':].head()
+                           Founded  fyear  fmonth  fday
+    Company
+    Apple               1976-01-04   1976       1     4
+    Samsung Electronics 1969-01-13   1969       1    13
+    Alphabet            1998-04-09   1998       4     9
+    Foxconn             1974-02-20   1974       2    20
+    Microsoft           1975-04-04   1975       4     4
+
+Por ejemplo, podríamos querer calcular el **número de años que llevan activas las empresas**::
+
+    >>> pd.to_datetime('today').year - df['Founded'].dt.year
+    Company
+    Apple                   46
+    Samsung Electronics     53
+    Alphabet                24
+    Foxconn                 48
+    Microsoft               47
+    Huawei                  35
+    Dell Technologies       38
+    Facebook                18
+    Sony                    76
+    Hitachi                 60
+    Intel                   54
+    IBM                    111
+    Tencent                 24
+    Panasonic              104
+    Lenovo                  38
+    HP Inc.                 83
+    LG Electronics          75
+    Name: Founded, dtype: int64
+
+Los tipos de datos "datetime" dan mucha flexibilidad a la hora de hacer consultas::
+
+    >>> # Empresas creadas antes de 1950
+    >>> df.query('Founded <= 1950')
+                    Revenue  Employees        City        Country    Founded
+    Company
+    Sony              84893     109700       Tokyo          Japan 1946-07-05
+    IBM               73620     364800    New York  United States 1911-06-16
+    Panasonic         63191     243540       Osaka          Japan 1918-03-13
+    HP Inc.           56639      53000  California  United States 1939-01-01
+    LG Electronics    53625      75000       Seoul    South Korea 1947-05-01
+
+    >>> # Empresas creadas en Enero
+    >>> df.query('Founded.dt.month == 1')
+                         Revenue  Employees        City        Country    Founded
+    Company
+    Apple                 274515     147000  California  United States 1976-01-04
+    Samsung Electronics   200734     267937       Suwon    South Korea 1969-01-13
+    Dell Technologies      92224     158000       Texas  United States 1984-01-02
+    Hitachi                82345     350864       Tokyo          Japan 1962-01-10
+    Lenovo                 60742      71500   Hong Kong          China 1984-01-11
+    HP Inc.                56639      53000  California  United States 1939-01-01
+
+    >>> # Empresas creadas en el último cuatrimestre del año
+    >>> df.query('9 <= Founded.dt.month <= 12')
+             Revenue  Employees      City Country    Founded
+    Company
+    Huawei    129184     197000  Shenzhen   China 1987-09-15
+    Tencent    69864      85858  Shenzhen   China 1998-11-11
+
+Hay ocasiones en las que necesitamos que la fecha se convierta en el índice del DataFrame::
+
+    >>> df = df.reset_index().set_index('Founded').sort_index()
+
+    >>> df.head()
+                       Company  Revenue  Employees        City        Country
+    Founded
+    1911-06-16             IBM    73620     364800    New York  United States
+    1918-03-13       Panasonic    63191     243540       Osaka          Japan
+    1939-01-01         HP Inc.    56639      53000  California  United States
+    1946-07-05            Sony    84893     109700       Tokyo          Japan
+    1947-05-01  LG Electronics    53625      75000       Seoul    South Korea
+
+Esto nos permite indexar de forma mucho más precisa::
+
+    >>> # Empresas creadas en 1988
+    >>> df.loc['1998']
+                 Company  Revenue  Employees        City        Country
+    Founded
+    1998-04-09  Alphabet   182527     135301  California  United States
+    1998-11-11   Tencent    69864      85858    Shenzhen          China
+
+    >>> # Empresas creadas entre 1970 y 1980
+    >>> df.loc['1970':'1980']
+                  Company  Revenue  Employees             City        Country
+    Founded
+    1974-02-20    Foxconn   181945     878429  New Taipei City         Taiwan
+    1975-04-04  Microsoft   143015     163000       Washington  United States
+    1976-01-04      Apple   274515     147000       California  United States
+
+    >>> # Empresas creadas entre enero de 1975 y marzo de 1984
+    >>> df.loc['1975-1':'1984-3']
+                          Company  Revenue  Employees        City        Country
+    Founded
+    1975-04-04          Microsoft   143015     163000  Washington  United States
+    1976-01-04              Apple   274515     147000  California  United States
+    1984-01-02  Dell Technologies    92224     158000       Texas  United States
+    1984-01-11             Lenovo    60742      71500   Hong Kong          China
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Partiendo del fichero :download:`oasis.csv <files/oasis.csv>` que contiene información sobre la discografía del grupo de pop británico `Oasis`_, se pide:
+
+    - Cargue el fichero en un DataFrame.
+    - Convierta la columna "album_release_date" a tipo "dataframe".
+    - Obtenga los nombres de los álbumes publicados entre 2000 y 2005.
+
+    .. only:: html
+    
+        |solution| :download:`oasis.py <files/oasis.py>`
+
+Manejando categorías
+--------------------
+
+Hasta ahora hemos visto tipos de datos numéricos, cadenas de texto y fechas. ¿Pero qué ocurre con las categorías?
+
+Las categorías pueden ser tanto datos numéricos como textuales, con la característica de tener un número discreto (relativamente pequeño) de elementos y, en ciertas ocasiones, un orden preestablecido. Ejemplos de variables categóricas son: género, idioma, meses del año, color de ojos, nivel de estudios, grupo sanguíneo, valoración, etc.
+
+Pandas facilita el `tratamiento de datos categóricos`_ mediante un tipo específico ``Categorical``.
+
+Siguiendo con el "dataset" de empresas tecnológicas, vamos a añadir el continente al que pertenece cada empresa. En primera instancia mediante valores de texto habituales::
+
+    >>> df['Continent'] = ['America', 'Asia', 'America', 'Asia',
+    ...                    'America', 'Asia', 'America', 'America',
+    ...                    'Asia',    'Asia', 'America', 'America',
+    ...                    'Asia',    'Asia', 'Asia',    'America',
+    ...                    'Asia']
+
+    >>> df['Continent'].head()
+    Company
+    Apple                  America
+    Samsung Electronics       Asia
+    Alphabet               America
+    Foxconn                   Asia
+    Microsoft              America
+    Name: Continent, dtype: object
+
+Ahora podemos convertir esta columna a tipo categoría::
+
+    >>> df['Continent'].astype('category')
+    Company
+    Apple                  America
+    Samsung Electronics       Asia
+    Alphabet               America
+    Foxconn                   Asia
+    Microsoft              America
+    Huawei                    Asia
+    Dell Technologies      America
+    Facebook               America
+    Sony                      Asia
+    Hitachi                   Asia
+    Intel                  America
+    IBM                    America
+    Tencent                   Asia
+    Panasonic                 Asia
+    Lenovo                    Asia
+    HP Inc.                America
+    LG Electronics            Asia
+    Name: Continent, dtype: category
+    Categories (2, object): ['America', 'Asia']
+
+En este caso, al ser una conversión "automática", las categorías no han incluido ningún tipo de orden. Pero imaginemos que queremos establecer un orden para las categorías de continentes basadas, por ejemplo, en su población: Asia, África, Europa, América, Australia:
+
+.. code-block::
+    :emphasize-lines: 7, 27
+
+    >>> from pandas.api.types import CategoricalDtype
+
+    >>> continents = ('Asia', 'Africa', 'Europe', 'America', 'Australia')
+
+    >>> cat_continents = pd.api.types.CategoricalDtype(categories=continents, ordered=True)
+
+    >>> df['Continent'].astype(cat_continents)
+    Company
+    Apple                  America
+    Samsung Electronics       Asia
+    Alphabet               America
+    Foxconn                   Asia
+    Microsoft              America
+    Huawei                    Asia
+    Dell Technologies      America
+    Facebook               America
+    Sony                      Asia
+    Hitachi                   Asia
+    Intel                  America
+    IBM                    America
+    Tencent                   Asia
+    Panasonic                 Asia
+    Lenovo                    Asia
+    HP Inc.                America
+    LG Electronics            Asia
+    Name: Continent, dtype: category
+    Categories (5, object): ['Asia' < 'Africa' < 'Europe' < 'America' < 'Australia']
+
+El hecho de trabajar con **categorías ordenadas** permite (entre otras) estas operaciones::
+
+    >>> df['Continent'].min()
+    'Asia'
+    >>> df['Continent'].max()
+    'America'
+
+    >>> df['Continent'].sort_values()
+    Company
+    Sony                      Asia
+    Lenovo                    Asia
+    Panasonic                 Asia
+    Tencent                   Asia
+    Hitachi                   Asia
+    LG Electronics            Asia
+    Foxconn                   Asia
+    Samsung Electronics       Asia
+    Huawei                    Asia
+    Dell Technologies      America
+    Facebook               America
+    HP Inc.                America
+    Microsoft              America
+    Intel                  America
+    IBM                    America
+    Alphabet               America
+    Apple                  America
+    Name: Continent, dtype: category
+    Categories (5, object): ['Asia' < 'Africa' < 'Europe' < 'America' < 'Australia']
 
 
 Usando funciones estadísticas
@@ -2177,6 +2503,8 @@ Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que perm
 
     Operaciones de concatenación con "concat"
 
+Si queremos "reindexar" el DataFrame concatenado, la función ``concat()`` admite un parámetro ``ignore_index`` que podemos poner a ``True``. De esta forma tendremos un "dataset" resultante con índice desde 0 hasta N.
+
 .. admonition:: Ejercicio
     :class: exercise
 
@@ -2231,3 +2559,7 @@ Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que perm
 .. _contains(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.contains.html
 .. _extract(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.extract.html
 .. _findall(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.findall.html
+.. _query(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html
+.. _to_datetime(): https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
+.. _Oasis: https://www.oasisinet.com/
+.. _tratamiento de datos categóricos: https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html
