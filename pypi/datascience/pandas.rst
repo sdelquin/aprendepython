@@ -1186,6 +1186,49 @@ Imaginemos ahora que estamos buscando aquellas **empresas establecidas en Califo
     
         |solution| :download:`df_access.py <files/df_access.py>`
 
+Seleción usando "query"
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Pandas provee una alternativa para la selección condicional de registros a través de la función `query()`_. Admite una sintaxis de consulta a través de expresiones de comparación.
+
+Veamos las mismas consultas de ejemplo que para el apartado anterior::
+
+    >>> df.query('Country == "United States"')
+                    Revenue  Employees        City        Country
+    Company
+    Apple               274515     147000  California  United States
+    Alphabet            182527     135301  California  United States
+    Microsoft           143015     163000  Washington  United States
+    Dell Technologies    92224     158000       Texas  United States
+    Facebook             85965      58604  California  United States
+    Intel                77867     110600  California  United States
+    IBM                  73620     364800    New York  United States
+    HP Inc.              56639      53000  California  United States
+
+    >>> df.query('Revenue > 100_000 & Employees > 100_000')
+                         Revenue  Employees             City        Country
+    Company
+    Apple                 274515     147000       California  United States
+    Samsung Electronics   200734     267937            Suwon    South Korea
+    Alphabet              182527     135301       California  United States
+    Foxconn               181945     878429  New Taipei City         Taiwan
+    Microsoft             143015     163000       Washington  United States
+    Huawei                129184     197000         Shenzhen          China
+
+    >>> df.query('City in ["California", "Tokyo"]')
+              Revenue  Employees        City        Country
+    Company
+    Apple      274515     147000  California  United States
+    Alphabet   182527     135301  California  United States
+    Facebook    85965      58604  California  United States
+    Sony        84893     109700       Tokyo          Japan
+    Hitachi     82345     350864       Tokyo          Japan
+    Intel       77867     110600  California  United States
+    HP Inc.     56639      53000  California  United States
+
+.. tip::
+    Si los nombres de columna contienen espacios, se puede hacer referencias a ellas con comillas invertidas. Por ejemplo: ```Total Stock```.
+
 Modificación de un DataFrame
 ============================
 
@@ -2231,3 +2274,4 @@ Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que perm
 .. _contains(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.contains.html
 .. _extract(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.extract.html
 .. _findall(): https://pandas.pydata.org/docs/reference/api/pandas.Series.str.findall.html
+.. _query(): https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html
