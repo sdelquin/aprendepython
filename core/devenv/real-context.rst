@@ -17,6 +17,9 @@ La forma más habitual de instalar Python (junto con sus librerías) es descarga
 * `Versiones de Python para Mac`_
 * `Versiones de Python para Linux`_
 
+.. tip::
+    `Tutorial <https://www.freecodecamp.org/news/how-to-install-python-in-windows-operating-system/>`_ para instalar Python en Windows.
+
 Anaconda
 ========
 
