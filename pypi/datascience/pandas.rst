@@ -23,7 +23,7 @@ Si bien en :ref:`Numpy <pypi/datascience/numpy:numpy>` la estructura de datos fu
 Series
 ******
 
-Podríamos pensar en una **serie** como un :ref:`ndarray <pypi/datascience/numpy:ndarray>` en el que cada valor tiene asignada una etiqueta (índice) y además admite un título (nombre).
+Podríamos pensar en una **serie** como un :ref:`ndarray <pypi/datascience/numpy:ndarray>` en el que cada valor tiene asignado una etiqueta (índice) y además admite un título (nombre).
 
 Creación de una serie
 =====================
@@ -225,7 +225,7 @@ El atributo ``loc`` es un alias (algo más expresivo) que permite realizar las m
 Fragmentos de comienzo y fin
 ----------------------------
 
-A nivel exploratorio, es bastante cómodo acceder a una porción inicial (o final) de los datos que manejamos. Esto se puede hacer de forma muy sencillo con series::
+A nivel exploratorio, es bastante cómodo acceder a una porción inicial (o final) de los datos que manejamos. Esto se puede hacer de forma muy sencilla con series::
 
     >>> employees.head(3)
     Apple      147000
@@ -637,7 +637,10 @@ Si queremos convertir alguna columna en el índice de la tabla, podemos hacerlo 
     1  3
     2  4
 
-Podemos añadir un parámetro (en la creación) para especificar el índice que queremos incluir::
+.. note::
+    En el caso anterior se puede observar que el índice toma un nombre ``A``. Esto se puede conseguir directamente asignando un valor a ``df.index.name``.
+
+Podemos añadir un parámetro (en la creación) para especificar los valores que queremos incluir en el índice::
 
     >>> pd.DataFrame({'A': [1, 2], 'B': [3, 4]}, index=['R1', 'R2'])
         A  B
@@ -675,7 +678,7 @@ En aquellos DataFrames que disponen de un índice etiquetado, es posible resetea
 Lectura de fuentes externas
 ---------------------------
 
-Lo más habitual cuando se trabaja en ciencia de datos es tener la información en distintas fuentes auxiliares: bases de datos, ficheros, llamadas remotas a APIs, etc. pandas nos ofrece una variedad enorme de funciones para cargar datos desde, prácticamente, cualquier origen.
+Lo más habitual cuando se trabaja en ciencia de datos es tener la información en distintas fuentes auxiliares: bases de datos, ficheros, llamadas remotas a APIs, etc. Pandas nos ofrece una variedad enorme de funciones para cargar datos desde, prácticamente, cualquier origen.
 
 .. csv-table:: Funciones para lectura de datos en pandas
     :file: tables/pandas_read.csv
@@ -685,9 +688,9 @@ Lo más habitual cuando se trabaja en ciencia de datos es tener la información 
 
 .. note:: Todas estas funciones tienen su equivalente para escribir datos en los distintos formatos. En vez de ``read_`` habría que usar el prefijo ``to_``. Por ejemplo: ``.to_csv()``, ``.to_json()`` o ``.to_sql()``
 
-A modo de ilustración, vamos a leer el contenido del fichero :download:`tech.csv <files/tech.csv>` que contiene la lista de las mayores empresas tecnológicas por ingresos totales [#tech-employment]_.
+A modo de ilustración, vamos a leer el contenido del fichero :download:`tech.csv <files/tech.csv>` que contiene la lista de las mayores empresas tecnológicas por ingresos totales (en millones de dólares) [#tech-employment]_.
 
-Este fichero está delimitado por tabuladores, con lo que especificaremos esta circunstancia al usar la función correspondiente. Igualmente, vamos a indicar que se use la primera columna *Company* como índice del DataFrame::
+Usaremos la función ``read_csv()`` que espera la **coma** como separador de campos. Este fichero está delimitado por tabuladores, por lo que especificaremos esta circunstancia mediante el parámetro ``delimiter``. Igualmente, vamos a indicar que se use la primera columna *Company* como índice del DataFrame con el parámetro ``index_col``::
 
     >>> df = pd.read_csv('tech.csv', delimiter='\t', index_col='Company')
 
@@ -718,6 +721,8 @@ Este fichero está delimitado por tabuladores, con lo que especificaremos esta c
     :class: exercise
 
     Cargue el conjunto de datos ``democan`` desde :download:`democan.csv <files/democan.csv>` en un DataFrame ``df`` indicando que la columna *Island* es el índice.
+
+    *También es posible cargar el "dataset" a través de la URL que conseguimos con botón derecho: copiar enlace.*
 
     .. only:: html
     
@@ -795,6 +800,9 @@ Uso de memoria::
     Country      136
     dtype: int64
 
+.. tip::
+    El resultado de ``describe()`` es un DataFrame, mientras que el resultado de ``memory_usage()`` es Series. En cualquier caso, ambas estructuras son accesibles normalmente como tipos de datos Pandas.
+
 Atributos de un DataFrame
 -------------------------
 
@@ -813,31 +821,31 @@ Tamaños y dimensiones::
 
     >>> df.index
     Index(['Apple', 'Samsung Electronics', 'Alphabet', 'Foxconn', 'Microsoft',
-        'Huawei', 'Dell Technologies', 'Facebook', 'Sony', 'Hitachi', 'Intel',
-        'IBM', 'Tencent', 'Panasonic', 'Lenovo', 'HP Inc.', 'LG Electronics'],
-        dtype='object', name='Company')
+           'Huawei', 'Dell Technologies', 'Facebook', 'Sony', 'Hitachi', 'Intel',
+           'IBM', 'Tencent', 'Panasonic', 'Lenovo', 'HP Inc.', 'LG Electronics'],
+           dtype='object', name='Company')
 
     >>> df.columns
     Index(['Revenue', 'Employees', 'City', 'Country'], dtype='object')
 
     >>> df.values
     array([[274515, 147000, 'California', 'United States'],
-        [200734, 267937, 'Suwon', 'South Korea'],
-        [182527, 135301, 'California', 'United States'],
-        [181945, 878429, 'New Taipei City', 'Taiwan'],
-        [143015, 163000, 'Washington', 'United States'],
-        [129184, 197000, 'Shenzhen', 'China'],
-        [92224, 158000, 'Texas', 'United States'],
-        [85965, 58604, 'California', 'United States'],
-        [84893, 109700, 'Tokyo', 'Japan'],
-        [82345, 350864, 'Tokyo', 'Japan'],
-        [77867, 110600, 'California', 'United States'],
-        [73620, 364800, 'New York', 'United States'],
-        [69864, 85858, 'Shenzhen', 'China'],
-        [63191, 243540, 'Osaka', 'Japan'],
-        [60742, 71500, 'Hong Kong', 'China'],
-        [56639, 53000, 'California', 'United States'],
-        [53625, 75000, 'Seoul', 'South Korea']], dtype=object)
+           [200734, 267937, 'Suwon', 'South Korea'],
+           [182527, 135301, 'California', 'United States'],
+           [181945, 878429, 'New Taipei City', 'Taiwan'],
+           [143015, 163000, 'Washington', 'United States'],
+           [129184, 197000, 'Shenzhen', 'China'],
+           [92224, 158000, 'Texas', 'United States'],
+           [85965, 58604, 'California', 'United States'],
+           [84893, 109700, 'Tokyo', 'Japan'],
+           [82345, 350864, 'Tokyo', 'Japan'],
+           [77867, 110600, 'California', 'United States'],
+           [73620, 364800, 'New York', 'United States'],
+           [69864, 85858, 'Shenzhen', 'China'],
+           [63191, 243540, 'Osaka', 'Japan'],
+           [60742, 71500, 'Hong Kong', 'China'],
+           [56639, 53000, 'California', 'United States'],
+           [53625, 75000, 'Seoul', 'South Korea']], dtype=object)
 
 Acceso a un DataFrame
 =====================
@@ -1103,7 +1111,7 @@ Si aplicamos esta "máscara" al conjunto original de datos, obtendremos las empr
     IBM                  73620     364800    New York  United States
     HP Inc.              56639      53000  California  United States
 
-También es posible aplicar condiciones compuestas. Supongamos que necesitamos selecionar aquellas **empresas con más de 100000 billones de dólares de ingresos y más de 100000 empleados/as**:
+También es posible aplicar condiciones compuestas. Supongamos que necesitamos selecionar aquellas **empresas con más de 100000 millones de dólares de ingresos y más de 100000 empleados/as**:
 
 .. code-block::
     :emphasize-lines: 4
@@ -1202,7 +1210,7 @@ Imaginemos ahora que estamos buscando aquellas **empresas establecidas en Califo
 Seleción usando "query"
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Pandas provee una alternativa para la selección condicional de registros a través de la función `query()`_. Admite una sintaxis de consulta a través de expresiones de comparación.
+Pandas provee una alternativa para la selección condicional de registros a través de la función `query()`_. Admite una sintaxis de consulta mediante operadores de comparación.
 
 Veamos las mismas consultas de ejemplo que para el apartado anterior::
 
@@ -1241,6 +1249,36 @@ Veamos las mismas consultas de ejemplo que para el apartado anterior::
 
 .. tip::
     Si los nombres de columna contienen espacios, se puede hacer referencias a ellas con comillas invertidas. Por ejemplo: ```Total Stock```.
+
+Comparativa en consultas
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hemos visto dos métodos para realizar consultas (o filtrado) en un DataFrame: usando selección booleana con corchetes y usando la función ``query``. ¿Ambos métodos son igual de eficientes en términos de rendimiento?
+
+Haremos una comparativa muy simple para tener, al menos, una idea de sus órdenes de magnitud. En primer lugar creamos un DataFrame con 3 columnas y 1 millón de valores aleatorios enteros en cada una de ellas::
+
+    >>> size = 1_000_000
+
+    >>> data = {
+    ...     'A': np.random.randint(1, 100, size=size),
+    ...     'B': np.random.randint(1, 100, size=size),
+    ...     'C': np.random.randint(1, 100, size=size)
+    ... }
+
+    >>> df = pd.DataFrame(data)
+
+    >>> df.shape
+    (1000000, 3)
+
+Ahora realizaremos la misma consulta sobre el DataFrame aplicando los métodos ya vistos::
+
+    >>> %timeit df[(df['A'] > 50) & (df['B'] < 50)]
+    5.86 ms ± 28.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+    >>> %timeit df.query('A > 50 & B < 50')
+    7.54 ms ± 115 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+Sin que esto sea en modo alguna concluyente, da la sensación de que ``query()`` añade un cierto "overhead" [#overhead]_ al filtrado y aumentan los tiempos de cómputo.
 
 Modificación de un DataFrame
 ============================
@@ -1321,26 +1359,26 @@ Uno de los usos más habituales es la recodificación. Supongamos que queremos *
         'Japan': 'JPN'
     }
 
-    >>> df.replace(iso3166)
-                         Revenue  Employees             City Country
+    >>> df['Country'].replace(iso3166)
     Company
-    Apple                 274515     147000       California     USA
-    Samsung Electronics   200734     267937            Suwon     KOR
-    Alphabet              182527     135301       California     USA
-    Foxconn               181945     878429  New Taipei City     TWN
-    Microsoft             143015     163000       Washington     USA
-    Huawei                129184     197000         Shenzhen     CHN
-    Dell Technologies      92224     158000            Texas     USA
-    Facebook               85965      58604       California     USA
-    Sony                   84893     109700            Tokyo     JPN
-    Hitachi                82345     350864            Tokyo     JPN
-    Intel                  77867     110600       California     USA
-    IBM                    73620     364800         New York     USA
-    Tencent                69864      85858         Shenzhen     CHN
-    Panasonic              63191     243540            Osaka     JPN
-    Lenovo                 60742      71500        Hong Kong     CHN
-    HP Inc.                56639      53000       California     USA
-    LG Electronics         53625      75000            Seoul     KOR
+    Apple                  USA
+    Samsung Electronics    KOR
+    Alphabet               USA
+    Foxconn                TWN
+    Microsoft              USA
+    Huawei                 CHN
+    Dell Technologies      USA
+    Facebook               USA
+    Sony                   JPN
+    Hitachi                JPN
+    Intel                  USA
+    IBM                    USA
+    Tencent                CHN
+    Panasonic              JPN
+    Lenovo                 CHN
+    HP Inc.                USA
+    LG Electronics         KOR
+    Name: Country, dtype: object
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -1800,7 +1838,7 @@ Esto nos permite indexar de forma mucho más precisa::
     Partiendo del fichero :download:`oasis.csv <files/oasis.csv>` que contiene información sobre la discografía del grupo de pop británico `Oasis`_, se pide:
 
     - Cargue el fichero en un DataFrame.
-    - Convierta la columna "album_release_date" a tipo "dataframe".
+    - Convierta la columna "album_release_date" a tipo "datetime".
     - Obtenga los nombres de los álbumes publicados entre 2000 y 2005.
 
     .. only:: html
@@ -1866,7 +1904,7 @@ En este caso, al ser una conversión "automática", las categorías no han inclu
 
     >>> continents = ('Asia', 'Africa', 'Europe', 'America', 'Australia')
 
-    >>> cat_continents = pd.api.types.CategoricalDtype(categories=continents, ordered=True)
+    >>> cat_continents = CategoricalDtype(categories=continents, ordered=True)
 
     >>> df['Continent'].astype(cat_continents)
     Company
@@ -1918,6 +1956,9 @@ El hecho de trabajar con **categorías ordenadas** permite (entre otras) estas o
     Apple                  America
     Name: Continent, dtype: category
     Categories (5, object): ['Asia' < 'Africa' < 'Europe' < 'America' < 'Australia']
+
+.. attention::
+    En condiciones normales (categorías sin ordenar) el mínimo hubiera sido America y el máximo hubiera sido Asia ya que se habrían ordenado alfabéticamente.
 
 
 Usando funciones estadísticas
@@ -2249,7 +2290,9 @@ Para pasar de formato largo a formato ancho usamos la función `pivot()`_::
     Samsung Electronics       Suwon    South Korea    267937  200734
 
 .. tip::
-    Si queremos obtener el DataFrame en formato ancho tal y como estaba, tenemos que realizar un par de ajustes: ``df.rename_axis(columns = None).reset_index()``.
+    Nótese que las columnas tienen un nombre ``variable`` que se puede modificar mediante ``columns.name``.
+
+Si queremos obtener el DataFrame en formato ancho, tal y como estaba, tenemos que realizar alguna operación adicional: ``df.rename_axis(columns = None).reset_index()``.
 
 Apilando datos
 ^^^^^^^^^^^^^^
@@ -2416,7 +2459,7 @@ Podemos aplicar funciones sobre determinadas columnas. Supongamos que queremos o
     LG Electronics         10.889771
     Name: Revenue, dtype: float64
 
-Ahora imaginemos un escenario en el que **la normativa de Estados Unidos ha cambiado y se obliga a sus empresas tecnológicas a aumentar un 5% el número de empleados/as** que tienen. Esto lo podríamos abordar escribiendo una función propia que gestione cada fila del "dataset" y devuelva el valor adecuado de empleados/as según las características de cada empresa::
+Ahora imaginemos un escenario en el que **la normativa de Estados Unidos ha cambiado y obliga a sus empresas tecnológicas a aumentar un 5% el número de empleados/as** que tienen. Esto lo podríamos abordar escribiendo una función propia que gestione cada fila del "dataset" y devuelva el valor adecuado de empleados/as según las características de cada empresa::
 
     >>> def raise_employment(row):
     ...     num_employees = row['Employees']
@@ -2541,6 +2584,7 @@ Si queremos "reindexar" el DataFrame concatenado, la función ``concat()`` admit
 .. [#old-data] Datos del año 2020 según Wikipedia.
 .. [#wikipedia-canarias] Datos extraídos de `Wikipedia <https://es.wikipedia.org/wiki/Canarias>`__.
 .. [#usd-billions] Un billón de dólares americanos equivale a 1.000.000.000$
+.. [#overhead] Exceso de tiempo de cómputacion, memoria o ancho de banda que son necesarios para realizar una tarea específica.
 
 .. --------------- Hyperlinks ---------------
 

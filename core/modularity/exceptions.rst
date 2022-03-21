@@ -68,6 +68,9 @@ Veamos su implementación::
     >>> intdiv(3, '0')
     Check operands. Some of them seems strange...
 
+.. important::
+    Las `excepciones predefinidas`_ en Python no hace falta importarlas previamente. Se pueden usar directamente.
+
 Cubriendo más casos
 ===================
 
@@ -185,6 +188,46 @@ Podemos ir un paso más allá e incorporar en el mensaje el propio valor que est
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     __main__.NotIntError: 2.11 -> This module only works with integers. Sorry!
+
+**********
+Aserciones
+**********
+
+Si hablamos de control de errores hay que citar una sentencia en Python denominada ``assert``. Esta sentencia nos permite comprobar si se están cumpliendo las "expectativas" de nuestro programa, y en caso contrario, lanza una excepción informativa.
+
+Su sintaxis es muy simple. Únicamente tendremos que indicar una expresión de comparación después de la sentencia::
+
+    >>> result = 10
+
+    >>> assert result > 0
+
+    >>> print(result)
+    10
+
+En el caso de que la condición se cumpla, no sucede nada: el programa continúa con su flujo normal. Esto es indicativo de que las expectativas que teníamos se han satisfecho.
+
+Sin embargo, si la condición que fijamos no se cumpla, la aserción devuelve un error ``AssertionError`` y el programa interrupme su ejecución::
+
+    >>> result = -1
+
+    >>> assert result > 0
+    ---------------------------------------------------------------------------
+    AssertionError                            Traceback (most recent call last)
+    <ipython-input-29-e2efe60b0c46> in <module>
+    ----> 1 assert result > 0
+
+    AssertionError:
+
+Podemos observar que la excepción que se lanza no contiene ningún mensaje informativo. Es posible personalizar este mensaje añadiendo un segundo elemento en la :ref:`tupla <core/datastructures/tuples:tuplas>` de la aserción::
+
+    >>> assert result > 0, 'El resultado debe ser positivo'
+    ---------------------------------------------------------------------------
+    AssertionError                            Traceback (most recent call last)
+    <ipython-input-31-f58052ce672b> in <module>
+    ----> 1 assert result > 0, 'El resultado debe ser positivo'
+
+    AssertionError: El resultado debe ser positivo
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

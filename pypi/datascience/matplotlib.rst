@@ -699,7 +699,7 @@ A continuación montamos un gráfico en el que se representan todas las **medici
     >>> x = df.when
     >>> y = df.temp
 
-    >>> ax.plot(df.when, df.temp,
+    >>> ax.plot(x, y,
     ...         linestyle='None', marker='.', color='tomato',  # estilo de línea
     ...         zorder=2)  # orden para colocar sobre rejilla
 
@@ -830,6 +830,13 @@ Ahora ya podemos construir el mapa de calor usando el DataFrame ``ratings`` gene
 
 Diagramas de caja
 =================
+
+Un diagrama de caja permite visualizar la distribución de los valores de manera rápida y muy visual:
+
+.. figure:: img/boxplot-anatomy.jpg
+    :align: center
+
+    Anatomía de un diagrama de caja [#boxplot-anatomy]_
 
 Para mostrar el funcionamiento de los diagramas de caja en Matplotlib vamos a hacer uso de distintas distribuciones aleatorias que crearemos mediante funciones de Numpy::
 
@@ -998,6 +1005,7 @@ Ahora ya podemos montar el gráfico dedicando algo de esfuerzo a la parte estét
 .. [#kaggle-eurodollar] Datos extraídos desde `esta página de Kaggle <https://www.kaggle.com/lsind18/euro-exchange-daily-rates-19992020>`__.
 .. [#epdata-mwh] Datos extraídos desde `esta página de El País <https://www.epdata.es/datos/precio-factura-luz-datos-estadisticas/594>`__.
 .. [#mwh] Mega Watio Hora (medida de consumo de energía)
+.. [#boxplot-anatomy] Inspirado en `este artículo de Towards Data Science <https://towardsdatascience.com/how-to-fetch-the-exact-values-from-a-boxplot-python-8b8a648fc813>`__.
 
 .. --------------- Hyperlinks ---------------
 

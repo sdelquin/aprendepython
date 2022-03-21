@@ -457,6 +457,19 @@ Para el caso del error de aproximación que nos ocupa::
 
 .. caution:: ``round()`` aproxima al valor más cercano, mientras que ``int()`` obtiene siepre el entero "por abajo".
 
+Límite de un flotante
+=====================
+
+A diferencia de los :ref:`enteros <core/datatypes/numbers:límite de un entero>`, los números flotantes sí que tienen un límite en Python. Para descubrirlo podemos ejecutar el siguiente código::
+
+    >>> import sys
+
+    >>> sys.float_info.min
+    2.2250738585072014e-308
+
+    >>> sys.float_info.max
+    1.7976931348623157e+308
+
 *****
 Bases
 *****

@@ -10,6 +10,10 @@ numpy
 
     $ pip install numpy
 
+La forma más común de importar esta librería es usar el alias ``np``::
+
+    >>> import numpy as np
+
 *******
 ndarray
 *******
@@ -492,7 +496,7 @@ Especificando límite inferior, superior y total de elementos:
            34.42105263, 37.26315789, 40.10526316, 42.94736842, 45.78947368,
            48.63157895, 51.47368421, 54.31578947, 57.15789474, 60.        ])
 
-    .. important:: A diferencia de ``np.arange()``, la función ``np.linspace()`` incluye siempre entre los valores generados el límte superior especificado.
+    .. important:: A diferencia de ``np.arange()``, la función ``np.linspace()`` incluye "por defecto" el límte superior especificado.
 
 Especificando un intervalo abierto :math:`[a,b)`:
     >>> np.linspace(6, 60, 20, endpoint=False)  # [6, 60) con 20 elementos
@@ -777,8 +781,8 @@ Modificación de arrays multidimensionales
 
     >>> values
     array([[ 1,  2,  3,  4],
-        [ 5,  6,  7,  8],
-        [ 9, 10, 11, 12]])
+           [ 5,  6,  7,  8],
+           [ 9, 10, 11, 12]])
 
     >>> values[0, 0] = 100
 
@@ -788,8 +792,8 @@ Modificación de arrays multidimensionales
 
     >>> values
     array([[100,   2,  30,   4],
-        [ 55,  66,  70,  88],
-        [  9,  10, 110,  12]])
+           [ 55,  66,  70,  88],
+           [  9,  10, 110,  12]])
 
 Borrado en arrays multidimensionales
 ------------------------------------
@@ -942,7 +946,7 @@ Repetición por ejes:
                [3, 4],
                [5, 6]])
 
-        >>> np.tile(values, 3)  # x3 en filas y columnas
+        >>> np.tile(values, 3)  # x3 en columnas
         array([[1, 2, 1, 2, 1, 2],
                [3, 4, 3, 4, 3, 4],
                [5, 6, 5, 6, 5, 6]])
@@ -1813,7 +1817,7 @@ Veamos un ejemplo en el que queremos resolver el siguiente sistema de ecuaciones
 .. math::
 
     \begin{cases}
-        -x_1 + 2x_3 = 1\\
+        x_1 + 2x_3 = 1\\
         x_1 - x_2 = -2\\
         x_2 + x_3 = -1
     \end{cases}

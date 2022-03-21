@@ -23,11 +23,9 @@ La forma más habitual de instalar Python (junto con sus librerías) es descarga
 Anaconda
 ========
 
-Otra de las alternativas para disponer de Python es nuestro sistema y que además es muy utilizada, es **Anaconda**. Se trata de un *conjunto de herramientas*, orientadas en principio a la *ciencia de datos*, pero que podemos utilizarlas para desarrollo general en Python (junto con otras librerías adicionales). Existen versiones de pago, pero la distribución *Individual Edition* es "open-source" y gratuita. Se puede descargar desde los siguientes enlaces:
+Otra de las alternativas para disponer de Python en nuestro sistema y que además es muy utilizada, es **Anaconda**. Se trata de un *conjunto de herramientas*, orientadas en principio a la *ciencia de datos*, pero que podemos utilizarlas para desarrollo general en Python (junto con otras librerías adicionales).
 
-* `Anaconda 64-bits para Windows`_
-* `Anaconda 64-bits para Mac`_
-* `Anaconda 64-bits para Linux`_
+Existen versiones de pago, pero la distribución *Individual Edition* es "open-source" y gratuita. Se puede `descargar desde su página web <https://www.anaconda.com/products/individual>`_. Anaconda trae por defecto `una gran cantidad de paquetes Python <https://docs.anaconda.com/anaconda/packages/pkg-docs/>`_ en su distribución.
 
 .. seealso:: `Miniconda`_ es un instalador mínimo que trae por defecto Python y un pequeño número de paquetes útiles.
 
@@ -47,16 +45,34 @@ Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herrami
     $ pip uninstall pandas
     $ pip install pandas --upgrade
 
+.. hint::
+    Para el caso de :ref:`core/devenv/real-context:anaconda` usaríamos ``conda install pandas`` (aunque ya viene preinstalado).
+
 ******************
 Entornos virtuales
 ******************
 
+|intlev|
+
 Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (*a nivel de máquina*). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, y esto nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos.
+
+La manera más sencilla de `crear un entorno virtual`_ es la siguiente:
+
+.. code-block:: bash
+    :linenos:
+
+    $ cd myproject
+    $ python3 -m venv .venv
+    $ source .venv/bin/activate
+
+- *Línea 1*: Entrar en la carpeta de nuestro proyecto.
+- *Línea 2*: Crear una carpeta ``.venv`` con los ficheros que constituyen el entorno virtual.
+- *Línea 3*: Activar el entorno virtual. A partir de aquí todo lo que se instale quedará dentro del entorno virtual.
 
 virtualenv
 ==========
 
-El paquete "built-in" de Python que nos proporciona la funcionalidad de crear y gestionar entornos virtuales se denomina `virtualenv`_. Su instalación es sencilla a través del gestor de paquetes ``pip``::
+El paquete de Python que nos proporciona la funcionalidad de crear y gestionar entornos virtuales se denomina `virtualenv`_. Su instalación es sencilla a través del gestor de paquetes ``pip``::
 
     $ pip install virtualenv
 
@@ -291,3 +307,4 @@ En este punto, WSL debería estar instalado correctamente, y debería también a
 .. _Markdown: https://markdown.es/
 .. _Miniconda: https://docs.conda.io/en/latest/miniconda.html
 .. _pyenv-virtualenv: https://github.com/pyenv/pyenv-virtualenv
+.. _crear un entorno virtual: https://docs.python.org/es/3/library/venv.html#creating-virtual-environments
