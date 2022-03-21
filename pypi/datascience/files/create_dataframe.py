@@ -15,4 +15,4 @@ provinces = ['LPGC', 'SCTF', 'SCTF', 'LPGC', 'SCTF', 'SCTF', 'LPGC']
 
 data = dict(Island=islands, Population=populations, Area=areas, Province=provinces)
 
-df = pd.DataFrame(data)
+democan = pd.DataFrame(data)

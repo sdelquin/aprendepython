@@ -12,8 +12,8 @@ Características del lenguaje
 
 A partir de su `definición de la Wikipedia <https://es.wikipedia.org/wiki/Python>`_:
 
-* Python es un lenguaje de programación **interpretado** cuya filosofía hace hincapié en una sintaxis que favorezca un **código legible**.
-* Se trata de un lenguaje de programación **multiparadigma**, ya que soporta **orientación a objetos, programación imperativa** y, en menor medida, programación funcional. Usa **tipado dinámico** y es **multiplataforma**.
+* Python es un lenguaje de programación **interpretado** y **multiplataforma** cuya filosofía hace hincapié en una sintaxis que favorezca un **código legible**.
+* Se trata de un lenguaje de programación **multiparadigma**, ya que soporta **orientación a objetos, programación imperativa** y, en menor medida, programación funcional.
 * Añadiría, como característica destacada, que se trata de un lenguaje de **propósito general**.
 
 Ventajas
@@ -33,8 +33,9 @@ Ventajas
 * Extensible (C++, C, ...) y "embebible".
 * Gran comunidad, amplio soporte.
 * Interpretado.
-* Fuertemente tipado, tipado dinámico.
-* Hay diferentes implementaciones: CPython, PyPy, Jython, IronPython, MicroPython, ...
+* Tipado dinámico [#tipado-dinamico]_.
+* Fuertemente tipado [#tipado-fuerte]_.
+* Hay diferentes implementaciones: `CPython`_, `PyPy`_, `Jython`_, `IronPython`_, `MicroPython`_, ...
 
 Desventajas
 ===========
@@ -180,6 +181,8 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 .. [#pithonic] Dícese de algo/alguien que sigue las convenciones de Python.
 .. [#python-versions] Fuente: `python.org <https://www.python.org/doc/versions/>`_.
 .. [#core-developers] Término que se refiere a los/las desarrolladores/as principales del lenguaje de programación.
+.. [#tipado-dinamico] Tipado dinámico significa que una variable puede cambiar de tipo durante el tiempo de vida de un programa. C es un lenguaje de tipado estático.
+.. [#tipado-fuerte] Fuertemente tipado significa que, de manera nativa, no podemos operar con dos variables de tipos distintos, a menos que realice una conversión explícita. Javascript es un lenguaje débilmente tipado.
 
 .. --------------- Hyperlinks ---------------
 
@@ -189,3 +192,8 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 .. _Tim Peters: https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)
 .. _Índice TIOBE: https://www.tiobe.com/tiobe-index/
 .. _encuesta a desarrolladores de Stack Overflow: https://insights.stackoverflow.com/survey/2021#technology-most-popular-technologies
+.. _CPython: https://github.com/python/cpython
+.. _PyPy: https://www.pypy.org/
+.. _Jython: https://www.jython.org/
+.. _IronPython: https://ironpython.net/
+.. _MicroPython: https://micropython.org/

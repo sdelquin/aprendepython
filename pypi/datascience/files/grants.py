@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('democan.csv', index_col='Island')
+democan = pd.read_csv('democan.csv', index_col='Island')
 
 
 def handle_grants(row):
@@ -12,4 +12,4 @@ def handle_grants(row):
     return grant
 
 
-df['Grant'] = df.apply(handle_grants, axis=1)
+democan['Grant'] = democan.apply(handle_grants, axis=1)

@@ -249,7 +249,7 @@ Veamos un ejemplo en el que construimos un conjunto por comprensión con los aqu
 
     Dadas dos cadenas de texto, obtenga una nueva cadena de texto con las **letras consonantes** que se **repiten en ambas frases**. Ignore los espacios en blanco y muestre la cadena de salida con sus *letras ordenadas*.
 
-    *Use conjuntos por comprensión para el ejercicio.*
+    Resuelva el ejercicio mediante dos aproximaciones: Una de ellas usando conjuntos por comprensión y otra sin usar comprensiones.
 
     **Ejemplo**
     

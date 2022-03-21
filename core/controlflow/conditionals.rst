@@ -4,7 +4,7 @@ Condicionales
 
 .. image:: img/ali-nafezarefi-62H_swdrc4A-unsplash.jpg
 
-En esta sección veremos las sentencias ``if`` y ``match-case`` junto a las distintas variantes que puede asumir, pero antes de eso introduciremos algunas cuestiones generales de *escritura de código*. [#fork-unsplash]_
+En esta sección veremos las sentencias ``if`` y ``match-case`` junto a las distintas variantes que pueden asumir, pero antes de eso introduciremos algunas cuestiones generales de *escritura de código*. [#fork-unsplash]_
 
 *********************
 Definición de bloques

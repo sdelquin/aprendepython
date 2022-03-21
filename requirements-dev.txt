@@ -3,3 +3,4 @@ black
 rope
 rstcheck
 sphinx-autobuild
+esbonio

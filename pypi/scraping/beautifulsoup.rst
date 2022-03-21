@@ -107,13 +107,16 @@ A continuación se muestran, mediante ejemplos, distintas fórmulas para localiz
     >>> soup.find_all(type='text')
     [<input id="POST-name" name="name" type="text"/>]
 
-- Localizar todos los elementos de título ``h1, h2, h3, ...``::
+- Localizar todos los los ``h2`` que contengan el texto ``Formulario``::
+
+    >>> soup.find_all('h2', string='Formulario')
+    [<h2>Formulario</h2>]
+
+- Localizar todos los elementos de título ``h1, h2, h3, ...``. Esto lo podemos atacar usando *expresiones regulares*::
   
     >>> soup.find_all(re.compile(r'^h\d+.*'))
     [<h1>Just testing</h1>, <h2>Some links</h2>, <h2>Formulario</h2>]
   
-  Es posible incluir **expresiones regulares** a la hora de localizar elementos.
-
 - Localizar todos los "input" y todos los "span"::
 
     >>> soup.find_all(['input', 'span'])
@@ -130,6 +133,7 @@ A continuación se muestran, mediante ejemplos, distintas fórmulas para localiz
 
   .. note::
       En este caso se usa el método ``select()``.
+
 
 Localizar único elemento
 ========================

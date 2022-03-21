@@ -1,5 +1,5 @@
 import pandas as pd
 
-df = pd.read_csv('democan.csv', index_col='Island')
+democan = pd.read_csv('democan.csv', index_col='Island')
 
-df['Density'] = df['Population'] / df['Area']
+democan['Density'] = democan['Population'] / democan['Area']

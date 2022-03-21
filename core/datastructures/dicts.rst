@@ -253,7 +253,7 @@ Supongamos ahora que queremos **modificar** el significado de la palabra *enjuic
 
     **Ejemplo**
 
-    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000; Mumbai:21_357_000;São Paulo:21_297_000``
+    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000;Mumbai:21_357_000;São Paulo:21_297_000``
     * Salida: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
     
     .. only:: html
@@ -408,7 +408,7 @@ En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obt
 
     **Ejemplo**
 
-    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000; Mumbai:21_357_000;São Paulo:21_297_000``
+    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000;Mumbai:21_357_000;São Paulo:21_297_000``
     * Salida: ``{'Tokyo': 28.952722193544467, 'Delhi': 20.081680988673973, 'Shanghai': 18.58622050830474, 'Mumbai': 16.212461664591746, 'São Paulo': 16.16691464488507}``
     
     .. only:: html
