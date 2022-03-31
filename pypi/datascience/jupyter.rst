@@ -24,11 +24,19 @@ Notebooks
 
 Un "notebook" es un documento que está compuesto por **celdas** en las que podemos incluir:
 
-- Texto en formato `markdown`_ (incluyendo fórmulas).
+- Texto en formato `markdown`_ (incluyendo :ref:`fórmulas <pypi/datascience/jupyter:mathjax>`).
 - Elementos multimedia.
 - Código Python *ejecutable*.
 
-Los "notebooks" son archivos con extensión ``.ipynb`` (proviene de "IPython Notebook").
+.. figure:: img/jupyter-cells.jpg
+    :align: center
+
+    Ejecución de celdas en Jupyter Notebook
+
+En código "markdown", la salida de la celda es la renderización del texto. En código Python, la salida de la celda es el resultado de la última sentencia incluida en la celda.
+
+.. note::
+    Los "notebooks" o cuadernos son básicamente archivos de texto en formato *json* con extensión ``.ipynb`` (que proviene de "IPython Notebook").
 
 ********
 Interfaz
