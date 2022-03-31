@@ -552,6 +552,28 @@ Cambiando de ejemplo, veamos un fragmento de código en el que tenemos que **com
     Authenticating method not valid!
     ---
 
+Cambiando de ejemplo, a continuación veremos un código que nos indica si, dada la edad de una persona, puede beber alcohol:
+
+.. code-block::
+    :emphasize-lines: 4, 6, 8
+    :linenos:
+
+    >>> age = 21
+
+    >>> match age:
+    ...     case 0 | None:
+    ...         print('Not a person')
+    ...     case n if n < 17:
+    ...         print('Nope')
+    ...     case n if n < 22:
+    ...         print('Not in the US')
+    ...     case _:
+    ...         print('Yes')
+    ...
+    Not in the US
+    
+- En la **línea 4** podemos observar el uso del operador **OR**.
+- En las **líneas 6 y 8** podemos observar el uso de condiciones dando lugar a **cláusulas guarda**.
 
 **************
 Operador morsa
