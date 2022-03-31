@@ -40,6 +40,18 @@ Los comentarios también pueden aparecer en la misma línea de código, aunque `
 
     stock = 0   # Release additional articles
 
+Reglas para escribir buenos comentarios: [#good-comments]_
+
+1. Los comentarios no deberían duplicar el código.
+2. Los buenos comentarios no arreglan un código poco claro.
+3. Si no puedes escribir un comentario claro, puede haber un problema en el código.
+4. Los comentarios deberían evitar la confusión, no crearla.
+5. Usa comentarios para explicar código no idiomático.
+6. Proporciona enlaces a la fuente original del código copiado.
+7. Incluye enlaces a referencias externas que sean de ayuda.
+8. Añade comentarios cuando arregles errores.
+9. Usa comentarios para destacar implementaciones incompletas.
+
 ****************
 Ancho del código
 ****************
@@ -656,6 +668,7 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. [#nesting] El anidamiento (o "nesting") hace referencia a incorporar sentencias unas dentro de otras mediante la inclusión de diversos niveles de profunidad (indentación).
 .. [#none] Lo que en otros lenguajes se conoce como ``nil``, ``null``, ``nothing``.
 .. [#walrus-operator] Se denomina así porque el operador ``:=`` tiene similitud con los colmillos de una morsa.
+.. [#good-comments] Referencia: `Best practices for writing code comments`_
 
 .. --------------- Hyperlinks ---------------
 
@@ -667,3 +680,4 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _Piedra-Papel-Tijera: https://es.wikipedia.org/wiki/Piedra,_papel_o_tijera
 .. _la acción que se lleva a cabo en sistemas Ubuntu Linux: https://itsfoss.com/ubuntu-shortcuts/
 .. _Structural Pattern Matching: https://www.python.org/dev/peps/pep-0636/
+.. _Best practices for writing code comments: https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/
