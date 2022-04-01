@@ -128,3 +128,8 @@ figcaption > p > a {
 .highlight span.gp {
   user-select: none;
 }
+
+/* Background color when searching terms */
+.highlighted {
+  background-color: #ffdf00;
+}
