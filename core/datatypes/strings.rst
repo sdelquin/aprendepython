@@ -925,7 +925,7 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 4. Escriba un programa en Python que acepte un entero ``n`` y compute el valor de ``n + nn + nnn`` (:download:`solución <files/n_sum.py>`).
 
     | Entrada: 5
-    | Salida: 615
+    | Salida: 615 (5 + 55 + 555)
 
 5. Escriba un programa en Python que acepte una palabra en castellano y calcule una métrica que sea el número total de caracteres de la palabra multiplicado por el número total de vocales que contiene la palabra (:download:`solución <files/metric_str.py>`).
 
@@ -964,4 +964,4 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Mediterráneo: https://open.spotify.com/track/7Bewui7KtaMzROeteRitRz?si=NGwOUmwfRSuapY3JL7s1uQ
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
-.. _dígito de control: http://www.interior.gob.es/web/servicios-al-ciudadano/dni/calculo-del-digito-de-control-del-nif-nie
+.. _dígito de control: https://www.interior.gob.es/opencms/ca/servicios-al-ciudadano/tramites-y-gestiones/dni/calculo-del-digito-de-control-del-nif-nie/
