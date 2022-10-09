@@ -54,7 +54,7 @@ Para convertir otros tipos de datos en una lista podemos usar la función ``list
     >>> list('Python')
     ['P', 'y', 't', 'h', 'o', 'n']
 
-Si nos fijamos en lo que ha pasado, al convertir la cadena de texto ``Python`` se ha creado una lista con *6* elementos, donde cada uno de ellos representa un caracter de la cadena. Podemos *extender* este comportamiento a cualquier otro tipo de datos que permita ser iterado (*iterables*).
+Si nos fijamos en lo que ha pasado, al convertir la cadena de texto ``Python`` se ha creado una lista con *6* elementos, donde cada uno de ellos representa un carácter de la cadena. Podemos *extender* este comportamiento a cualquier otro tipo de datos que permita ser iterado (*iterables*).
 
 Lista vacía
 ===========
@@ -73,7 +73,7 @@ Operaciones con listas
 Obtener un elemento
 ===================
 
-Igual que en el caso de las :ref:`cadenas de texto <core/datatypes/strings:Obtener un caracter>`, podemos obtener un elemento de una lista a través del **índice** (lugar) que ocupa. Veamos un ejemplo::
+Igual que en el caso de las :ref:`cadenas de texto <core/datatypes/strings:Obtener un carácter>`, podemos obtener un elemento de una lista a través del **índice** (lugar) que ocupa. Veamos un ejemplo::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 

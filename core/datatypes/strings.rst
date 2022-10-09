@@ -53,7 +53,7 @@ Hay una forma alternativa de crear cadenas de texto utilizando *comillas triples
 Cadena vacía
 ============
 
-La cadena vacía es aquella que no contiene ningún caracter. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier código. Su representación en Python es la siguiente:
+La cadena vacía es aquella que no contiene ningún carácter. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier código. Su representación en Python es la siguiente:
 
     >>> ''
     ''
@@ -75,7 +75,7 @@ Podemos crear "strings" a partir de otros tipos de datos usando la función ``st
 Secuencias de escape
 ********************
 
-Python permite **escapar** el significado de algunos caracteres para conseguir otros resultados. Si escribimos una barra invertida ``\`` antes del caracter en cuestión, le otorgamos un significado especial.
+Python permite **escapar** el significado de algunos caracteres para conseguir otros resultados. Si escribimos una barra invertida ``\`` antes del carácter en cuestión, le otorgamos un significado especial.
 
 Quizás la *secuencia de escape* más conocida es ``\n`` que representa un *salto de línea*, pero existen muchas otras::
 
@@ -158,9 +158,9 @@ Hemos estado utilizando la función ``print()`` de forma sencilla, pero admite `
 *Línea 4:*
     Podemos imprimir todas las variables que queramos separándolas por comas.
 *Línea 7:*
-    El *separador por defecto* entre las variables es un *espacio*, podemos cambiar el caracter que se utiliza como separador entre cadenas.
+    El *separador por defecto* entre las variables es un *espacio*, podemos cambiar el carácter que se utiliza como separador entre cadenas.
 *Línea 10:*
-    El *carácter de final de texto* es un *salto de línea*, podemos cambiar el caracter que se utiliza como final de texto.
+    El *carácter de final de texto* es un *salto de línea*, podemos cambiar el carácter que se utiliza como final de texto.
 
 ************************
 Leer datos desde teclado
@@ -233,10 +233,10 @@ Podemos repetir dos o más cadenas de texto utilizando el operador ``*``::
     >>> reaction * 4
     'WowWowWowWow'
 
-Obtener un caracter
+Obtener un carácter
 ===================
 
-Los "strings" están **indexados** y cada caracter tiene su propia posición. Para obtener un único caracter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
+Los "strings" están **indexados** y cada carácter tiene su propia posición. Para obtener un único carácter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
 
 .. figure:: img/string-indexing.jpg
     :align: center
@@ -256,7 +256,7 @@ Veamos algunos ejemplos de acceso a caracteres::
     >>> sentence[-5]
     'M'
 
-.. tip:: Nótese que existen tanto **índices positivos** como **índices negativos** para acceder a cada caracter de la cadena de texto. A priori puede parecer redundante, pero es muy útil en determinados casos.
+.. tip:: Nótese que existen tanto **índices positivos** como **índices negativos** para acceder a cada carácter de la cadena de texto. A priori puede parecer redundante, pero es muy útil en determinados casos.
 
 En caso de que intentemos acceder a un índice que no existe, obtendremos un error por *fuera de rango*:
 
@@ -267,7 +267,7 @@ En caso de que intentemos acceder a un índice que no existe, obtendremos un err
 
 .. warning:: Téngase en cuenta que el indexado de una cadena de texto siempre empieza en **0** y termina en **una unidad menos de la longitud** de la cadena.
 
-Las cadenas de texto son tipos de datos :ref:`inmutables <core/datatypes/data:Mutabilidad>`. Es por ello que no podemos modificar un caracter directamente::
+Las cadenas de texto son tipos de datos :ref:`inmutables <core/datatypes/data:Mutabilidad>`. Es por ello que no podemos modificar un carácter directamente::
 
     >>> song = 'Hey Jude'
 
