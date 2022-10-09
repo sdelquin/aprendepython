@@ -64,7 +64,6 @@ Al ser un lenguaje de propósito general, podemos encontrar aplicaciones prácti
 * Desarrollo de aplicaciones multimedia.
 * Desarrollo de juegos.
 * Desarrollo en dispositivos embebidos.
-* Desarrollo móvil.
 * Desarrollo web.
 * DevOps / Administración de sistemas / Scripts de automatización.
 * Gráficos por ordenador.
