@@ -109,6 +109,24 @@ Veamos algunas pruebas de estos operadores::
 
 Es de buen estilo de programación **dejar un espacio** entre cada operador. Además hay que tener en cuenta que podemos obtener errores dependiendo de la operación (más bien de los *operandos*) que estemos utilizando, como es el caso de la *división por cero*.
 
+Igualmente es importante tener en cuenta la **prioridad** de los distintos operadores:
+
+.. csv-table::
+    :file: tables/priority-ops.csv
+    :header-rows: 1
+    :class: longtable
+
+Ejemplos de prioridad de operadores::
+
+    >>> 2 ** 2 + 4 / 2
+    6.0
+
+    >>> 2 ** (2 + 4) / 2
+    32.0
+
+    >>> 2 ** (2 + 4 / 2)
+    16.0
+
 Asignación aumentada
 --------------------
 
