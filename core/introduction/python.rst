@@ -93,12 +93,12 @@ En el momento de la escritura de este documento, la última actualización del `
     
     Índice TIOBE 2022
 
-Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ *hecha en 2021*, Python ocupaba el **tercer puesto de los lenguajes de programación más populares**, sólo por detrás de *Javascript* y *HTML/CSS*.
+Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ *hecha en 2022*, Python ocupaba el **cuarto puesto de los lenguajes de programación más populares**, sólo por detrás de *Javascript*, *HTML/CSS* y *SQL*:
 
 .. figure:: img/stackoverflow-survey.png
     :align: center
     
-    Encuesta Stack Overflow 2021
+    Encuesta Stack Overflow 2022
 
 ******************
 Python2 vs Python3
@@ -190,7 +190,7 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 .. _Monty Python: https://es.wikipedia.org/wiki/Monty_Python
 .. _Tim Peters: https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)
 .. _Índice TIOBE: https://www.tiobe.com/tiobe-index/
-.. _encuesta a desarrolladores de Stack Overflow: https://insights.stackoverflow.com/survey/2021#technology-most-popular-technologies
+.. _encuesta a desarrolladores de Stack Overflow: https://survey.stackoverflow.co/2022/#technology-most-popular-technologies
 .. _CPython: https://github.com/python/cpython
 .. _PyPy: https://www.pypy.org/
 .. _Jython: https://www.jython.org/
