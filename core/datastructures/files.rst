@@ -169,7 +169,7 @@ En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se
 **Línea 2**
     Lectura del fichero línea a línea utilizando la iteración sobre el *manejador del fichero*.
 **Línea 3**
-    Limpieza de saltos de línea con ``strip()`` encadenando la función ``split()`` para separar las dos temperaturas por el caracter *espacio*. Ver :ref:`limpiar una cadena <core/datatypes/strings:Limpiar cadenas>` y :ref:`dividir una cadena <core/datatypes/strings:Dividir una cadena>`.
+    Limpieza de saltos de línea con ``strip()`` encadenando la función ``split()`` para separar las dos temperaturas por el carácter *espacio*. Ver :ref:`limpiar una cadena <core/datatypes/strings:Limpiar cadenas>` y :ref:`dividir una cadena <core/datatypes/strings:Dividir una cadena>`.
 **Línea 4**
     Imprimir por pantalla la temperatura mínima y la máxima.
 

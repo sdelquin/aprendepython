@@ -1,6 +1,6 @@
 Válido,Inválido,Razón
  ``a``,``3``,Empieza por un dígito
  ``a3``,``3a``,Empieza por un dígito
- ``a_b_c___95``,``another-name``,Contiene un caracter no permitido
+ ``a_b_c___95``,``another-name``,Contiene un carácter no permitido
  ``_abc``,``with``,Es una palabra reservada del lenguaje 
  ``_3a``,``3_a``,Empieza por un dígito 

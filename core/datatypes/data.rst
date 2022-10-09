@@ -167,7 +167,7 @@ Recordemos que los nombres de variables deben seguir unas :ref:`reglas estableci
             ^
     SyntaxError: invalid syntax
 
-    >>> screen-size = 14  # el nombre usa un caracter no válido
+    >>> screen-size = 14  # el nombre usa un carácter no válido
       File "<stdin>", line 1
     SyntaxError: can't assign to operator
 
