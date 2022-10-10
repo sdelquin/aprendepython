@@ -4,13 +4,15 @@ Thonny
 
 .. image:: img/freddie-marriage-vSchPA-YA_A-unsplash.jpg
 
+`Thonny <https://thonny.org/>`__ es un programa muy interesante para empezar a aprender Python, ya que engloba tres de las herramientas fundamentales para trabajar con el lenguaje: **intérprete**, **editor** y **depurador**. [#thonny-unsplash]_
+
 Cuando vamos a trabajar con Python debemos tener instalado, como mínimo, un :ref:`intérprete <core/introduction/machine:Compiladores>` del lenguaje (para otros lenguajes sería un *compilador*). El **intérprete** nos permitirá *ejecutar* nuestro código para obtener los resultados deseados. La idea del intéprete es lanzar instrucciones "sueltas" para probar determinados aspectos.
 
 Pero normalmente queremos ir un poco más allá y poder escribir programas algo más largos, por lo que también necesitaremos un **editor**. Un editor es un programa que nos permite crear ficheros de código (en nuestro caso con extensión ``*.py``), que luego son ejecutados por el intérprete.
 
 Hay otra herramienta interesante dentro del entorno de desarrollo que sería el **depurador**. Lo podemos encontrar habitualmente en la bibliografía por su nombre inglés *debugger*. Es el módulo que nos permite ejecutar paso a paso nuestro código y visualizar qué está ocurriendo en cada momento. Se suele usar normalmente para encontrar fallos (*bugs*) en nuestros programas y poder solucionarlos (*debug*/*fix*).
 
-`Thonny <https://thonny.org/>`__ es un programa muy interesante para empezar a aprender Python ya que engloba estas tres herramientas: intérprete, editor y depurador. [#thonny-unsplash]_
+Cuando nos encontramos con un programa que proporciona estas funciones (e incluso otras adicionales) para el trabajo de programación, nos referimos a él como un *Entorno Integrado de Desarrollo*, conocido popularmente por sus siglas en inglés **IDE** (por Integrated Development Environment). Thonny es un IDE gratuito, sencillo y apto para principiantes.
 
 ***********
 Instalación
