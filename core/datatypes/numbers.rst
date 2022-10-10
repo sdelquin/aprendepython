@@ -395,17 +395,16 @@ Por ejemplo::
 Para **obtener el tipo** de una variable podemos hacer uso de la función ``type()``::
 
     >>> is_raining = False
-
     >>> type(is_raining)
-    <class 'bool'>
+    bool
 
     >>> sound_level = 35
     >>> type(sound_level)
-    <class 'int'>
+    int
 
     >>> temperature = 36.6
     >>> type(temperature)
-    <class 'float'>
+    float
 
 Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable mediante la función ``isinstance()``::
 
@@ -576,7 +575,7 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
     | Entrada: base=4; altura=5
     | Salida: 10.0
 
-4. Escriba un programa en Python que compute el futuro valor de una cantidad de dinero, a partir del capital inicial, el tipo de interés y el número de años (:download:`solución <files/interest_rate.py>`).
+4. Escriba un programa en Python que compute el futuro valor de una cantidad de dinero (capital final), a partir del capital inicial, el tipo de interés y el número de años (:download:`solución <files/interest_rate.py>`). Fórmula del interés compuesto: :math:`C_f = C_i (1 + i)^n`
 
     | Entrada: capital=10000; interés=3.5; años=7
     | Salida: 12722.792627665729

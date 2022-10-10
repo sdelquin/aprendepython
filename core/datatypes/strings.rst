@@ -380,7 +380,7 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <c
 .. admonition:: Ejercicio
     :class: exercise
 
-    Sabiendo que la longitud de una lista se calcula igual que la :ref:`longitud de una cadena de texto <core/datatypes/strings:Longitud de una cadena>`, obtenga el número de palabras que contiene la siguiente cadena de texto::
+    Sabiendo que la longitud de una lista se calcula igual que la :ref:`longitud de una cadena de texto <core/datatypes/strings:Longitud de una cadena>`, obtenga el **número de palabras** que contiene la siguiente cadena de texto::
 
         quote = 'Before software can be reusable, it first has to be usable'
     
