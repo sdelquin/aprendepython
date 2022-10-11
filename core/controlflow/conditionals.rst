@@ -208,6 +208,10 @@ A continuación vamos a ver una serie de ejemplos con expresiones de comparació
     >>> value >= 9
     False
 
+******************
+Operadores lógicos
+******************
+
 Podemos escribir condiciones más complejas usando los **operadores lógicos**:
     - ``and``
     - ``or``
@@ -233,6 +237,12 @@ Podemos escribir condiciones más complejas usando los **operadores lógicos**:
     >>> not(x != 8)  # not False
     True
 
+Véanse las **tablas de la verdad** para cada operador lógico:
+
+.. figure:: img/truth-tables.svg
+    :align: center
+
+    Resultados al aplicar operadores lógicos
 
 Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa. Así, por ejemplo, para descubrir si ``value`` está entre *4* y *12* haríamos::
 
