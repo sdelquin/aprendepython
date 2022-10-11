@@ -35,19 +35,6 @@ Podemos observar que la pantalla está dividida en 3 paneles:
 * *Panel inferior* con la etiqueta *Shell* que contiene el **intérprete** de Python. En el momento de la escritura del presente documento, Thonny incluye la versión de Python 3.7.7.
 * *Panel derecho* que contiene el **depurador**. Más concretamente se trata de la ventana de variables donde podemos *inspeccionar* el valor de las mismas.
 
-Versiones de Python
-===================
-
-Existen múltiples versiones de Python. Desde el lanzamiento de la versión 1.0 en 1994 se han ido liberando versiones, cada vez, con nuevas características que aportan riqueza al lenguaje:
-
-.. csv-table::
-    :file: ../introduction/tables/python_versions.csv
-    :widths: 15, 30
-    :header-rows: 1
-    :class: longtable
-
-.. note:: Para ser exactos, esta tabla (y en general todo este manual) versa sobre una implementación concreta de Python denominada ``CPython``, pero existen `otras implementaciones alternativas de Python <https://www.python.org/download/alternatives/>`_. A los efectos de aprendizaje del lenguaje podemos referirnos a *Python* (aunque realmente estaríamos hablando de *CPython*).
-
 **********************
 Probando el intérprete
 **********************
