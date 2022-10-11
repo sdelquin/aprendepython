@@ -35,7 +35,6 @@ Ventajas
 * Interpretado.
 * Tipado dinámico [#tipado-dinamico]_.
 * Fuertemente tipado [#tipado-fuerte]_.
-* Hay diferentes implementaciones: `CPython`_, `PyPy`_, `Jython`_, `IronPython`_, `MicroPython`_, ...
 
 Desventajas
 ===========
@@ -121,6 +120,32 @@ El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versi�
 
 .. important:: Únete a **Python 3** y aprovecha todas sus ventajas.
 
+*******
+CPython
+*******
+
+|advlev|
+
+Existen múltiples **implementaciones** de Python según el lenguaje de programación que se ha usado para desarrollarlo. Veamos algunas de ellas:
+
++----------------+--------------+
+| Implementación |   Lenguaje   |
++================+==============+
+| `CPython`_     | C            |
++----------------+--------------+
+| `Jython`_      | Java         |
++----------------+--------------+
+| `IronPython`_  | C#           |
++----------------+--------------+
+| `Brython`_     | JavaScript   |
++----------------+--------------+
+| `PyPy`_        | Python (JIT) |
++----------------+--------------+
+| `MicroPython`_ | C            |
++----------------+--------------+
+
+.. note:: Cuando hacemos referencia a Python hablamos (implícitamente) de CPython. Este manual versa exclusivamente sobre CPython.
+
 *************
 Zen de Python
 *************
@@ -192,7 +217,8 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 .. _Índice TIOBE: https://www.tiobe.com/tiobe-index/
 .. _encuesta a desarrolladores de Stack Overflow: https://survey.stackoverflow.co/2022/#technology-most-popular-technologies
 .. _CPython: https://github.com/python/cpython
-.. _PyPy: https://www.pypy.org/
+.. _Brython: https://brython.info/
 .. _Jython: https://www.jython.org/
 .. _IronPython: https://ironpython.net/
 .. _MicroPython: https://micropython.org/
+.. _PyPy: https://www.pypy.org/
