@@ -239,7 +239,7 @@ Podemos escribir condiciones más complejas usando los **operadores lógicos**:
 
 Véanse las **tablas de la verdad** para cada operador lógico:
 
-.. figure:: img/truth-tables.svg
+.. figure:: img/truth-tables.png
     :align: center
 
     Resultados al aplicar operadores lógicos
