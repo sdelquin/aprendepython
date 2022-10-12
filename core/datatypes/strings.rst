@@ -71,6 +71,21 @@ Podemos crear "strings" a partir de otros tipos de datos usando la función ``st
     >>> str(21.7)
     '21.7'
 
+Para el caso contrario de convertir un "string" a un valor numérico, tenemos a disposición las funciones ya vistas::
+
+    >>> int('10')
+    10
+    >>> float('21.7')
+    21.7
+
+Pero hay que tener en cuenta un detalle. La función ``int()`` también admite la **base** en la que se encuentra el número. Eso significa que podemos pasar un número, por ejemplo, en **hexadecimal** (como "string") y lo podríamos convertir a su valor entero::
+
+    >>> int('FF', 16)
+    255
+
+.. note::
+    La base por defecto que utiliza ``int()`` para convertir cadenas de texto es la **base decimal**.
+
 ********************
 Secuencias de escape
 ********************
