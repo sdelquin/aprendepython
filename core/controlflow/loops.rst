@@ -186,15 +186,15 @@ Una posible solución a este error es reescribir la condición de parada en el b
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud.
+    Escriba un programa que encuentre la mínima secuencia de múltiplos de 3 (distintos) cuya suma sea igual o superior a un valor dado.
 
     **Ejemplo**
-        * Entrada: ``0001010011101`` y ``0000110010001``
-        * Salida: ``4``
+        * Entrada: ``45``
+        * Salida: ``0, 3, 6, 9, 12, 15``
 
     .. only:: html
 
-        |solution| :download:`hamming.py <files/hamming.py>` 
+        |solution| :download:`multiples3_limit.py <files/multiples3_limit.py>` 
 
 .. _for-sentence:
 
@@ -305,7 +305,7 @@ La técnica para la generación de secuencias de números es muy similar a la ut
         1
         2
 
-        >>> for i in range(3):
+        >>> for i in range(3):  # No hace falta indicar el inicio si es 0
         ...     print(i)
         ...
         0
@@ -353,7 +353,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     *No es necesario implementar ningún algoritmo en concreto. La idea es probar los números menores al dado e ir viendo si las divisiones tienen resto cero o no*.
 
-    ¿Podrías optimizar tu código? ¿Realmente es necesario probar con tantos divisores?
+    ¿Podría optimizar su código? ¿Realmente es necesario probar con tantos divisores?
 
     **Ejemplo**
         * Entrada: ``11``
@@ -542,6 +542,12 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     | Entrada: objetivo_x=7; objetivo_y=8;
     | Salida: (0, 0) (1, 2) (3, 3) (4, 5) (6, 6) (7, 8)
+
+6. Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud (:download:`solución <files/hamming.py>`).
+
+    | Entrada: ``0001010011101`` y ``0000110010001``
+    | Salida: ``4``
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
