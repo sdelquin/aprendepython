@@ -456,7 +456,23 @@ Python nos ofrece, al menos, dos formas para borrar una lista por completo:
     >>> shopping
     []
     
-.. note:: La diferencia entre ambos métodos tiene que ver con cuestiones internas de gestión de memoria y de rendimiento.
+|advlev|
+
+La diferencia entre ambos métodos tiene que ver con cuestiones internas de gestión de memoria y de rendimiento::
+
+    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+    >>> id(shopping)
+    4416018560
+    >>> shopping.clear()
+    >>> id(shopping)  # se mantiene la misma "posición de memoria"
+    4416018560
+
+    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+    >>> id(shopping)
+    4458688576
+    >>> shopping = []
+    >>> id(shopping)  # se crea una nueva "posición de memoria"
+    4458851520
 
 Encontrar un elemento
 =====================
@@ -708,7 +724,7 @@ Dado que ``zip()`` produce un *iterador*, si queremos obtener una **lista explí
     
     .. only:: html
     
-        |solution| :download:`vect_prod.py <files/vect_prod.py>`
+        |solution| :download:`vect_prod.py <files/scalar_prod.py>`
 
 **********************
 Cuidado con las copias
@@ -950,23 +966,19 @@ Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendre
 
     Acceso a parámetros en línea de comandos
 
-Veamos un ejemplo de código en el que simulamos el paso de parámetros recogido en la figura anterior:
+Veamos una aplicación de lo anterior en un programa que convierte un número decimal a una determinada base, ambos argumentos pasados por línea de comandos:
 
-:download:`get-args.py <files/get-args.py>`
+:download:`dec2base.py <files/dec2base.py>`
 
-.. literalinclude:: files/get-args.py
+.. literalinclude:: files/dec2base.py
     :linenos:
 
 Si lo ejecutamos obtenemos lo siguiente:
 
 .. code-block:: console
 
-    $ python3 get-args.py hello 99.9 55 "a nice arg"
-
-    arg1='hello'
-    arg2=99.9
-    arg3=55
-    arg4='a nice arg'
+    $ python dec2base.py 65535 2
+    1111111111111111
 
 *********************
 Funciones matemáticas
@@ -1040,7 +1052,7 @@ Veamos una posible representación de este equipo de fútbol usando una lista co
 
     >>> goalkeeper = 'Casillas'
     >>> defenders = ['Capdevila', 'Piqué', 'Puyol', 'Ramos']
-    >>> midfielders = ['Xabi', 'Busquets', 'X. Alonso']
+    >>> midfielders = ['Xavi', 'Busquets', 'X. Alonso']
     >>> forwards = ['Iniesta', 'Villa', 'Pedro']
 
 Y ahora las juntamos en una única lista::
@@ -1050,7 +1062,7 @@ Y ahora las juntamos en una única lista::
     >>> team
     ['Casillas',
      ['Capdevila', 'Piqué', 'Puyol', 'Ramos'],
-     ['Xabi', 'Busquets', 'X. Alonso'],
+     ['Xavi', 'Busquets', 'X. Alonso'],
      ['Iniesta', 'Villa', 'Pedro']]
 
 Podemos comprobar el acceso a distintos elementos::
@@ -1062,7 +1074,7 @@ Podemos comprobar el acceso a distintos elementos::
     'Capdevila'
 
     >>> team[2]  # centrocampistas
-    ['Xabi', 'Busquets', 'X. Alonso']
+    ['Xavi', 'Busquets', 'X. Alonso']
 
     >>> team[3][1]  # delantero centro
     'Villa'
