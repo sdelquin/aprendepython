@@ -197,6 +197,40 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 * Si la implementación es fácil de explicar, puede que sea una buena idea.
 * Los espacios de nombres son una gran idea, ¡tengamos más de esos!
 
+***********************
+Consejos para programar
+***********************
+
+Un listado de consejos muy interesantes cuando nos enfrentamos a la programación, basados en la experiencia de `@codewithvoid`_:
+
+1. Escribir código es el último paso del proceso.
+2. Para resolver problemas: pizarra mejor que teclado.
+3. Escribir código sin planificar = estrés.
+4. Pareces más inteligente siendo claro, no siendo más listo.
+5. La consistencia a largo plazo es mejor que la intensidad a corto plazo.
+6. La solución primero. La optimización después.
+7. Gran parte de la programación es resolución de problemas.
+8. Piensa en múltiples soluciones antes de decidirte por una.
+9. Se aprende construyendo proyectos, no tomando cursos.
+10. Siempre elije simplicidad. Las soluciones simples son más fáciles de escribir.
+11. Los errores son inevitables al escribir código. Sólo te dicen lo que no hacer.
+12. Fallar es barato en programación. Aprende haciendo.
+13. Gran parte de la programación es investigación.
+14. La programación en pareja te enseñará mucho más que escribir código.
+15. Da un paseo cuando estés bloqueado con un error.
+16. Convierte en un hábito el hecho de pedir ayuda.
+17. Pierdes 0 credibilidad pidiendo ayuda.
+18. El tiempo gastado en entender el problema está bien invertido.
+19. Cuando estés bloqueado con un problema: sé curioso, no te frustres.
+20. Piensa en posibles escenarios y situaciones extremas antes de resolver.
+21. No te estreses con la sintaxis de programación. Entiende conceptos.
+22. Aprende a ser un buen corrector de errores. Esto se amortiza.
+23. Conoce pronto los atajos de teclado de un editor favorito.
+24. Tu código es tan claro como tu lo piensas.
+25. Gastarás el doble de tiempo en corregir errores que en escribir código.
+26. Saber buscar bien en google es una habilidad valiosa.
+27. Lee código de otras personas para inspirarte.
+28. Únete a `comunidades de desarrollo <https://pythoncanarias.es>`_ para aprender con otros/as programadores/as.
 
 
 .. --------------- Footnotes ---------------
@@ -222,3 +256,4 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 .. _IronPython: https://ironpython.net/
 .. _MicroPython: https://micropython.org/
 .. _PyPy: https://www.pypy.org/
+.. _@codewithvoid: https://twitter.com/codewithvoid
