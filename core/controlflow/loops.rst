@@ -523,9 +523,8 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     111111111 &\cdot 111111111
 
 2. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos (:download:`solución <files/alpha.py>`).
-
-    | Entrada: hello-world
-    | Salida: Se han encontrado caracteres no alfabéticos
+    - Entrada: ``hello-world``
+    - Salida: ``Se han encontrado caracteres no alfabéticos``
 
 3. Escriba un programa en Python que acepte un número entero :math:`n` y realice el siguiente cálculo de productos sucesivos (:download:`solución <files/products.py>`):
 
@@ -534,19 +533,16 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     \prod_{i=1}^n x_i^2 = x_0^2 \cdot x_1^2 \cdot x_2^2 \cdot \cdots \cdot x_n^2
 
 4. Escriba un programa en Python que acepte dos cadenas de texto y compute el `producto cartesiano`_ letra a letra entre ellas (:download:`solución <files/cproduct.py>`).
-
-    | Entrada: cadena1=abc; cadena2=123
-    | Salida: a1 a2 a3 b1 b2 b3 c1 c2 c3
+    - Entrada: ``str1=abc; str2=123``
+    - Salida: ``a1 a2 a3 b1 b2 b3 c1 c2 c3``
 
 5. Escriba un programa en Python que acepte dos valores enteros (:math:`x` e :math:`y`) que representarán un punto (objetivo) en el plano. El programa simulará el movimiento de un "caballo" de ajedrez moviéndose de forma alterna: 2 posiciones en :math:`x` + 1 posición en :math:`y`. El siguiente movimiento que toque sería para moverse 1 posición en :math:`x` + 2 posiciones en :math:`y`. El programa deberá ir mostrando los puntos por los que va pasando el "caballo" hasta llegar al punto objetivo (:download:`solución <files/horse.py>`).
-
-    | Entrada: objetivo_x=7; objetivo_y=8;
-    | Salida: (0, 0) (1, 2) (3, 3) (4, 5) (6, 6) (7, 8)
+    - Entrada: ``objetivo_x=7; objetivo_y=8;``
+    - Salida: ``(0, 0) (1, 2) (3, 3) (4, 5) (6, 6) (7, 8)``
 
 6. Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud (:download:`solución <files/hamming.py>`).
-
-    | Entrada: ``0001010011101`` y ``0000110010001``
-    | Salida: ``4``
+    - Entrada: ``0001010011101`` y ``0000110010001``
+    - Salida: ``4``
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS

@@ -561,29 +561,24 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 .. rubric:: EJERCICIOS DE REPASO
 
 1. Escriba un programa en Python que acepte el radio de un círculo y compute su área (:download:`solución <files/circle_area.py>`).
-
-    | Entrada: 5
-    | Salida: 78.5
+    - Entrada: ``5``
+    - Salida: ``78.5``
 
 2. Escriba un programa en Python que acepte el radio de una esfera y obtenga su volumen (:download:`solución <files/sphere_volume.py>`).
-
-    | Entrada: 5
-    | Salida: 523.3333333333334
+    - Entrada: ``5``
+    - Salida: ``523.3333333333334``
 
 3. Escriba un programa en Python que acepte la base y la altura de un triángulo y compute su área (:download:`solución <files/triangle_area.py>`).
+    - Entrada: ``base=4; height=5``
+    - Salida: ``10.0``
 
-    | Entrada: base=4; altura=5
-    | Salida: 10.0
-
-4. Escriba un programa en Python que compute el futuro valor de una cantidad de dinero (capital final), a partir del capital inicial, el tipo de interés y el número de años (:download:`solución <files/interest_rate.py>`). Fórmula del interés compuesto: :math:`C_f = C_i (1 + i)^n`
-
-    | Entrada: capital=10000; interés=3.5; años=7
-    | Salida: 12722.792627665729
+4. Escriba un programa en Python que compute el futuro valor de una cantidad de dinero (capital final), a partir del capital inicial, el tipo de interés y el número de años. Fórmula del interés compuesto: :math:`C_f = C_i (1 + i)^n` (:download:`solución <files/interest_rate.py>`).
+    - Entrada: ``capital=10000; interest_rate=3.5; years=7``
+    - Salida: ``12722.792627665729``
 
 5. Escriba un programa en Python que calcule la distancia euclídea entre dos puntos :math:`(x_1, y_1)` y :math:`(x_2, y_2)` (:download:`solución <files/euclid_distance.py>`).
-
-    | Entrada: :math:`(x_1=3, y_1=5)`; :math:`(x_2=-7, y_2=-4)` 
-    | Salida: 13.45362404707371
+    - Entrada: :math:`(x_1=3, y_1=5)`; :math:`(x_2=-7, y_2=-4)` 
+    - Salida: ``13.45362404707371``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

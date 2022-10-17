@@ -1474,29 +1474,24 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. rubric:: EJERCICIOS DE REPASO
 
 1. Escriba una función en Python que indique si un número está en un determinado intervalo (:download:`solución <files/within_range.py>`).
-
-    | Entrada: valor=3; lim_inferior=2; lim_superior=5
-    | Salida: True
+    - Entrada: ``valor=3; lim_inferior=2; lim_superior=5``
+    - Salida: ``True``
 
 2. Escriba una función en Python que reciba una lista de valores enteros y devuelva otra lista sólo con aquellos valores pares (:download:`solución <files/evens.py>`).
-
-    | Entrada: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    | Salida: [2, 4, 6, 8]
+    - Entrada: ``[1, 2, 3, 4, 5, 6, 7, 8, 9]``
+    - Salida: ``[2, 4, 6, 8]``
 
 3. Escriba una función en Python que indique si un número es `perfecto`_. *Utilice una función auxiliar que calcule los divisores propios* (:download:`solución <files/perfect.py>`).
-
-    | Entrada: 8128
-    | Salida: True
+    - Entrada: ``8128``
+    - Salida: ``True``
 
 4. Escriba una función en Python que determine si una cadena de texto es un `palíndromo`_ (:download:`solución <files/palindrome.py>`).
-
-    | Entrada: ana lava lana
-    | Salida: True
+    - Entrada: ``ana lava lana``
+    - Salida: ``True``
 
 5. Escriba una función en Python que determine si una cadena de texto es un `pangrama`_ (:download:`solución <files/pangram.py>`)
-
-    | Entrada: The quick brown fox jumps over the lazy dog
-    | Salida: True
+    - Entrada: ``The quick brown fox jumps over the lazy dog``
+    - Salida: ``True``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
