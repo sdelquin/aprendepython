@@ -1,6 +1,6 @@
 marks = {
     'John': 4,
-    'Mark': 7,
+    'Marc': 7,
     'Meryl': 2,
     'Anthony': 8,
     'Carol': 3,

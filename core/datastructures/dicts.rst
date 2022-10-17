@@ -639,10 +639,10 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 
     **Ejemplo**
 
-    * Entrada: ``{'John': 4, 'Mark': 7, 'Meryl': 2, 'Anthony': 8, 'Carol': 3, 'Andreas': 3, 'Sarah': 6}``
+    * Entrada: ``{'John': 4, 'Marc': 7, 'Meryl': 2, 'Anthony': 8, 'Carol': 3, 'Andreas': 3, 'Sarah': 6}``
     * Salida::
     
-        Aprobaron: {'MARK': 7, 'ANTHONY': 8, 'SARAH': 6}
+        Aprobaron: {'MARC': 7, 'ANTHONY': 8, 'SARAH': 6}
         Suspendieron: {'john': 4, 'meryl': 2, 'carol': 3}
 
     .. only:: html
