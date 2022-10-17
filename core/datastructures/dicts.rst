@@ -57,7 +57,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="515" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_dict%20%3D%20%7B%7D%0A%0Arae%20%3D%20%7B%0A%20%20%20%20'bifronte'%3A%20'De%20dos%20frentes%20o%20dos%20caras',%0A%20%20%20%20'anarcoide'%3A%20'Que%20tiende%20al%20desorden',%0A%20%20%20%20'montuvio'%3A%20'Campesino%20de%20la%20costa'%0A%7D%0A%0Apopulation_can%20%3D%20%7B%0A%20%20%20%202015%3A%202_135_209,%0A%20%20%20%202016%3A%202_154_924,%0A%20%20%20%202017%3A%202_177_048,%0A%20%20%20%202018%3A%202_206_901,%0A%20%20%20%202019%3A%202_220_270%0A%7D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="585" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_dict%20%3D%20%7B%7D%0A%0Arae%20%3D%20%7B%0A%20%20%20%20'bifronte'%3A%20'De%20dos%20frentes%20o%20dos%20caras',%0A%20%20%20%20'anarcoide'%3A%20'Que%20tiende%20al%20desorden',%0A%20%20%20%20'montuvio'%3A%20'Campesino%20de%20la%20costa'%0A%7D%0A%0Apopulation_can%20%3D%20%7B%0A%20%20%20%202015%3A%202_135_209,%0A%20%20%20%202016%3A%202_154_924,%0A%20%20%20%202017%3A%202_177_048,%0A%20%20%20%202018%3A%202_206_901,%0A%20%20%20%202019%3A%202_220_270%0A%7D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -241,25 +241,6 @@ Supongamos ahora que queremos **modificar** el significado de la palabra *enjuic
      'montuvio': 'Campesino de la costa',
      'enjuiciar': 'Instruir, juzgar o sentenciar una causa'}
 
-.. admonition:: Ejercicio
-    :class: exercise
-
-    Construya un diccionario partiendo de una cadena de texto con el siguiente formato:
-
-    ``<city>:<population>;<city>:<population>;<city>:<population>;....``
-
-    - Claves: **ciudades**.
-    - Valores: **habitantes** (*como enteros*).
-
-    **Ejemplo**
-
-    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000;Mumbai:21_357_000;São Paulo:21_297_000``
-    * Salida: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
-    
-    .. only:: html
-    
-        |solution| :download:`cities.py <files/cities.py>`
-
 Creando desde vacío
 -------------------
 
@@ -279,6 +260,26 @@ Supongamos un ejemplo en el que queremos construir un diccionario donde las clav
     {'a': 1, 'e': 2, 'i': 3, 'o': 4, 'u': 5}
 
 .. note:: Hemos utilizando la función ``enumerate()`` que ya vimos para las listas en el apartado: :ref:`core/datastructures/lists:Iterar usando enumeración`.
+
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Construya un diccionario partiendo de una cadena de texto con el siguiente formato:
+
+    ``<city>:<population>;<city>:<population>;<city>:<population>;....``
+
+    - Claves: **ciudades**.
+    - Valores: **habitantes** (*como enteros*).
+
+    **Ejemplo**
+
+    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000;Mumbai:21_357_000;São Paulo:21_297_000``
+    * Salida: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
+    
+    .. only:: html
+    
+        |solution| :download:`cities.py <files/cities.py>`
+
 
 Pertenencia de una clave
 ========================
@@ -408,7 +409,7 @@ En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obt
 
     **Ejemplo**
 
-    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000;Mumbai:21_357_000;São Paulo:21_297_000``
+    * Entrada: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
     * Salida: ``{'Tokyo': 28.952722193544467, 'Delhi': 20.081680988673973, 'Shanghai': 18.58622050830474, 'Mumbai': 16.212461664591746, 'São Paulo': 16.16691464488507}``
     
     .. only:: html

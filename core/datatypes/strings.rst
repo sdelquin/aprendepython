@@ -293,6 +293,8 @@ Las cadenas de texto son tipos de datos :ref:`inmutables <core/datatypes/data:Mu
 
 .. tip:: Existen formas de modificar una cadena de texto que veremos más adelante, aunque realmente no estemos transformando el original sino creando un nuevo objeto con las modificaciones.
 
+.. warning:: No hay que confundir las :ref:`constantes <core/datatypes/data:constantes>` con los tipos de datos inmutables. Es por ello que las variables que almacenan cadenas de texto, a pesar de ser inmutables, no se escriben en mayúsculas.
+
 Trocear una cadena
 ==================
 
