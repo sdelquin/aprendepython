@@ -632,6 +632,23 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 
 .. note:: Se puede consultar el `PEP-274`_ para ver más ejemplos sobre diccionarios por comprensión.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Tenemos almacenadas las notas de un examen en un diccionario. Es necesario separar al alumnado que aprobó y al que suspendió en dos diccionarios. Igualmente habrá que pasar a mayúsculas el nombre del alumnado que aprobó y a minúsculas el nombre del alumnado que suspendió. Escriba un programa en Python que realice esta operación usando *diccionarios por comprensión*.
+
+    **Ejemplo**
+
+    * Entrada: ``{'John': 4, 'Mark': 7, 'Meryl': 2, 'Anthony': 8, 'Carol': 3, 'Andreas': 3, 'Sarah': 6}``
+    * Salida::
+    
+        Aprobaron: {'MARK': 7, 'ANTHONY': 8, 'SARAH': 6}
+        Suspendieron: {'john': 4, 'meryl': 2, 'carol': 3}
+
+    .. only:: html
+    
+        |solution| :download:`fix_marks.py <files/fix_marks.py>`
+
 *******************
 Objetos "hashables"
 *******************
