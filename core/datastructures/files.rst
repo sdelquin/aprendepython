@@ -18,7 +18,7 @@ Python ofrece la función ``open()`` para "abrir" un fichero. Esta apertura se p
 * **Escritura** del contenido en un fichero nuevo.
 * **Añadido** al contenido de un fichero existente.
 
-Veamos un ejemplo para leer el contenido de un fichero en el que se encuentran las temperaturas máximas y mínimas de cada día de la última semana. El fichero está en la subcarpeta (*ruta relativa*) ``files/temps.dat`` y tiene el siguiente contenido:
+Veamos un ejemplo para leer el contenido de un fichero en el que se encuentran las temperaturas mínimas y máximas de cada día de la última semana. El fichero está en la subcarpeta (*ruta relativa*) ``files/temps.dat`` y tiene el siguiente contenido:
 
 .. include:: files/temps.dat
    :literal:
@@ -51,7 +51,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
         >>> f = open('files/temps.dat')
 
         >>> f.read()
-        '29 23\n31 23\n34 26\n33 23\n29 22\n28 22\n28 22\n'
+        '23 29\n23 31\n26 34\n23 33\n22 29\n22 28\n22 28\n'
 
 ``readlines()``
     Devuelve todo el contenido del fichero como una lista (``list``) donde cada elemento es una línea::
@@ -59,7 +59,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
         >>> f = open('files/temps.dat')
 
         >>> f.readlines()
-        ['29 23\n', '31 23\n', '34 26\n', '33 23\n', '29 22\n', '28 22\n', '28 22\n']
+        ['23 29\n', '23 31\n', '26 34\n', '23 33\n', '22 29\n', '22 28\n', '22 28\n']
 
 .. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello se recomienda utilizar :ref:`las funciones ya vistas de cadenas de texto <core/datatypes/strings:Limpiar cadenas>`.
 
@@ -78,19 +78,19 @@ Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros
     >>> for line in f:    # that easy!
     ...     print(line)
     ...
-    29 23
-
-    31 23
-
-    34 26
-
-    33 23
-
-    29 22
-
-    28 22
-
-    28 22
+    23 29
+    
+    23 31
+    
+    26 34
+    
+    23 33
+    
+    22 29
+    
+    22 28
+    
+    22 28
 
 .. tip:: Igual que pasaba anteriormente, la lectura línea por línea también incluye el **salto de línea** ``\n`` lo que provoca un "doble espacio" entre cada una de las salidas. Bastaría con aplicar ``line.split()`` para eliminarlo.
 
@@ -112,7 +112,7 @@ Supongamos que queremos volcar el contenido de una lista en dicho fichero. En es
     :emphasize-lines: 4, 7
     :linenos:
 
-    >>> canary_iata = ("GCFV", "GCHI", "GCLA", "GCLP", "GCGM", "GCRR", "GCTS", "GCXO")
+    >>> canary_iata = ('TFN', 'TFS', 'LPA', 'GMZ', 'VDE', 'SPC', 'ACE', 'FUE')
 
     >>> for code in canary_iata:
     ...     f.write(code + '\n')
@@ -185,9 +185,9 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
     ...
     Traceback (most recent call last):
       File "<stdin>", line 3, in <module>
-    TypeError: unsupported operand type(s) for +: 'int' and 'str'
+    TypeError: write() argument must be str, not int
 
-.. important:: Para evitar este tipo de **errores**, se debe convertir a ``str`` aquellos valores que queramos usar con la función ``write()`` para escribir información en un fichero de texto.
+.. important:: Para evitar este tipo de **errores**, se debe convertir a ``str`` aquellos valores que queramos usar con la función ``write()`` para escribir información en un fichero de texto. Los :ref:`f-strings <core/datatypes/strings:"f-strings">` son tu aliado.
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -196,13 +196,28 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
     1. Leer el fichero de datos.
     2. Calcular la temperatura media de cada mes.
-    3. Escribir un fichero de salida ``avgtemps.txt`` con 12 filas (*meses*) y la temperatura media de cada mes.
+    3. Escribir un fichero de salida ``avg_temps.txt`` con 12 filas (*meses*) y la temperatura media de cada mes con 2 decimales.
 
     *Guarda el fichero en la misma carpeta en la que vas a escribir tu código. Así evitarás problemas de rutas relativas/absolutas.*
+
+    Comprobación de resultados::
+
+        26.29
+        23.65
+        25.84
+        24.35
+        27.03
+        24.52
+        27.90
+        26.39
+        26.32
+        25.71
+        27.32
+        26.00
     
     .. only:: html
     
-        |solution| :download:`avgtemps.py <files/avgtemps.py>`
+        |solution| :download:`avg_temps.py <files/avg_temps.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
