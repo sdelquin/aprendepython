@@ -97,7 +97,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="365" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -135,7 +135,7 @@ Para borrar un elemento de un conjunto podemos utilizar la función ``remove()``
 Longitud de un conjunto
 =======================
 
-Podemos conocer el número de elementos que tiene un conjunto con la función ``len()``::
+Podemos conocer el número de elementos (*cardinalidad*) que tiene un conjunto con la función ``len()``::
 
     >>> beatles
     {'Harrison', 'Lennon', 'McCartney', 'Starr'}
@@ -230,6 +230,52 @@ Diferencia simétrica
 
     >>> A.symmetric_difference(B)
     {1, 3}
+
+Inclusión
+=========
+
+- Un conjunto :math:`B` es un **subconjunto** de otro conjunto :math:`A` si todos los elementos de :math:`B` están incluidos en :math:`A`.
+- Un conjunto :math:`A` es un **superconjunto** de otro conjunto :math:`B` si todos los elementos de :math:`B` están incluidos en :math:`A`.
+
+Veamos un ejemplo con los siguientes conjuntos::
+
+    >>> A = {2, 4, 6, 8, 10}
+    >>> B = {4, 6, 8}
+
+.. figure:: img/subset-superset.png
+    :align: center
+
+    Subconjuntos y Superconjuntos
+
+En Python podemos realizar comprobaciones de inclusión (subconjuntos y superconjuntos) utilizando operadores clásicos de comparación:
+
+:math:`B \subset A`
+
+.. code-block::
+    
+    >>> B < A  # subconjunto
+    True
+
+:math:`B \subseteq A`
+
+.. code-block::
+    
+    >>> B <= A
+    True
+
+:math:`A \supset B`
+
+.. code-block::
+    
+    >>> A > B  # superconjunto
+    True
+
+:math:`A \supseteq B`
+
+.. code-block::
+    
+    >>> B >= A
+    True
 
 *************************
 Conjuntos por comprensión

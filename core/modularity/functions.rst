@@ -308,17 +308,19 @@ Llamada a la función indicando una frecuencia concreta de "cpu"::
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba una función ``factorial`` que reciba un único parámetro ``n`` y devuelva su factorial.
+    Escriba una función ``factorial`` que reciba un único parámetro :math:`n` desde línea de comandos (``sys.argv``) y devuelva su factorial.
 
-    *El factorial de un número n se define como*:
+    El factorial de un número :math:`n` se define como:
     
     .. math:: 
         n! = n \cdot (n - 1) \cdot (n - 2) \cdot \ldots \cdot 1
     
+    → *Truco: El orden de los factores no altera el producto.*
+    
     **Ejemplo**
         * Entrada: ``5``
         * Salida: ``120``
-
+    
     .. only:: html
     
         |solution| :download:`factorial.py <files/factorial.py>`
@@ -373,13 +375,13 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/MgoQGU3
+    https://cutt.ly/sBNpVT2
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=def%20buggy%28arg,%20result%3D%5B%5D%29%3A%0A%20%20%20%20result.append%28arg%29%0A%20%20%20%20print%28result%29%0A%0Aprint%28buggy%28'a'%29%29%0A%0Aprint%28buggy%28'b'%29%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=def%20buggy%28arg,%20result%3D%5B%5D%29%3A%0A%20%20%20%20result.append%28arg%29%0A%20%20%20%20print%28result%29%0A%0Abuggy%28'a'%29%0A%0Abuggy%28'b'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 A riesgo de perder el *parámetro por defecto*, una posible solución sería la siguiente::
@@ -785,7 +787,7 @@ Anotación de tipos
 
 |intlev|
 
-Las anotaciones de tipos [#type-hints]_ se introdujeron en `Python 3.5 <https://www.python.org/dev/peps/pep-0484/>`_ y permiten indicar tipos para los parámetros de una función así como su valor de retorno (aunque también funcionan en creación de variables).
+Las anotaciones de tipos o **type-hints** [#type-hints]_ se introdujeron en `Python 3.5 <https://www.python.org/dev/peps/pep-0484/>`_ y permiten indicar tipos para los parámetros de una función así como su valor de retorno (aunque también funcionan en creación de variables).
 
 Veamos un ejemplo en el que creamos una función para dividir una cadena de texto por la posición especificada en el parámetro::
 
@@ -1540,6 +1542,6 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _autodoc: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 .. _Read the Docs: https://readthedocs.org/
 .. _Napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
-.. _perfecto: <https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto
+.. _perfecto: https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto
 .. _palíndromo: https://es.wikipedia.org/wiki/Pal%C3%ADndromo
 .. _pangrama: https://es.wikipedia.org/wiki/Pangrama
