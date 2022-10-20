@@ -431,86 +431,82 @@ Y de este hecho se deriva que podamos utilizar un **número variable de argument
 Empaquetar/Desempaquetar argumentos posicionales
 ------------------------------------------------
 
-Si utilizamos el operador ``*`` delante del nombre de un parámetro posicional, estaremos indicando que los argumentos pasados a la función se empaqueten en una **tupla**::
+Si utilizamos el operador ``*`` delante del nombre de un parámetro posicional, estaremos indicando que los argumentos pasados a la función se empaqueten en una **tupla**.
 
-    >>> def test_args(*args):
-    ...     print(f'{args=}')
-    ...
+Veamos un ejemplo en el que vamos a **implementar una función para sumar un número variable de valores**. La función que tenemos disponible en Python no cubre este caso::
 
-    >>> test_args()
-    args=()
-
-    >>> test_args(1, 2, 3, 'pescado', 'salado', 'es')
-    args=(1, 2, 3, 'pescado', 'salado', 'es')
-
-.. note:: El hecho de llamar ``args`` al parámetro es una convención.
-
-También podemos utilizar esta estrategia para establecer en una función una serie de parámetros como *requeridos* y recibir el resto de argumentos como *opcionales y empaquetados*::
-
-    >>> def sum_all(v1, v2, *args):
-    ...     total = 0
-    ...     for value in (v1, v2) + args:
-    ...         total += value
-    ...     return total
-    ...
-
-    >>> sum_all()
+    >>> sum(4, 3, 2, 1)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    TypeError: sum_all() missing 2 required positional arguments: 'v1' and 'v2'
+    TypeError: sum() takes at most 2 arguments (4 given)
 
-    >>> sum_all(1, 2)
-    3
+Para resolver esto, hacemos uso del ``*`` para empaquetar los argumentos posicionales::
 
-    >>> sum_all(5, 9, 3, 8, 11, 21)
-    57
+    >>> def _sum(*values):
+    ...     result = 0
+    ...     for value in values:  # values es una tupla
+    ...         result += arg
+    ...     return result
+    ...
+
+    >>> _sum(4, 3, 2, 1)
+    10
+
+.. note:: En muchas ocasiones se utiliza ``args`` como nombre del parámetro (es una convención).
 
 Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función para **desempaquetar** los argumentos posicionales::
 
-    >>> def test_args(*args):
-    ...     print(f'{args=}')
+    >>> def show_args(*args):
+    ...     for arg in args:
+    ...         print(f'{arg=}')
     ...
 
-    >>> my_args = (4, 3, 7, 9)
+    >>> my_args = (1, 2, 3, 4)
 
-    >>> test_args(my_args)   # No existe desempaquetado!
-    args=((4, 3, 7, 9),)
+    >>> show_args(my_args)   # sin desempaquetado
+    arg=(1, 2, 3, 4)
 
-    >>> test_args(*my_args)  # Sí existe desempaquetado!
-    args=(4, 3, 7, 9)
+    >>> show_args(*my_args)  # con desempaquetado
+    arg=1
+    arg=2
+    arg=3
+    arg=4
 
 Empaquetar/Desempaquetar argumentos nominales
 ---------------------------------------------
 
-Si utilizamos el operador ``**`` delante del nombre de un parámetro nominal, estaremos indicando que los argumentos pasados a la función se empaqueten en un **diccionario**::
+Si utilizamos el operador ``**`` delante del nombre de un parámetro nominal, estaremos indicando que los argumentos pasados a la función se empaqueten en un **diccionario**.
 
-    >>> def test_kwargs(**kwargs):
-    ...     print(f'{kwargs=}')
+Supongamos un ejemplo en el que queremos **encontrar la persona con mayor calificación de un examen**. hacemos uso del ``**`` para empaquetar los argumentos nominales::
+
+    >>> def best_student(**marks):
+    ...     max_mark = -1
+    ...     for student, mark in marks.items():  # marks es un diccionario
+    ...         if mark > max_mark:
+    ...             max_mark = mark
+    ...             best_student = student
+    ...     return best_student
     ...
 
-    >>> test_kwargs()
-    kwargs={}
+    >>> best_student(ana=8, antonio=6, inma=9, javier=7)
+    'inma'
 
-    >>> test_kwargs(a=4, b=3, c=7, d=9)
-    kwargs={'a': 4, 'b': 3, 'c': 7, 'd': 9}
-
-.. note:: El hecho de llamar ``kwargs`` al parámetro es una convención.
+.. note:: En muchas ocasiones se utiliza ``kwargs`` como nombre del parámetro (es una convención).
 
 Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función, para **desempaquetar** los argumentos nominales::
 
-    >>> def test_kwargs(**kwargs):
-    ...     print(f'{kwargs=}')
+    >>> def show_kwargs(**kwargs):
+    ...     for item in kwargs.items():
+    ...         print(f'{item=}')
     ...
 
-    >>> my_kwargs = {'a': 4, 'b': 3, 'c': 7, 'd': 9}
+    >>> my_kwargs = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 
-    >>> test_kwargs(my_kwargs)   # No existe desempaquetado!
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    TypeError: test_kwargs() takes 0 positional arguments but 1 was given
-
-    >>> test_kwargs(**my_kwargs)  # Sí existe desempaquetado!
-    kwargs={'a': 4, 'b': 3, 'c': 7, 'd': 9}
+    >>> show_kwargs(**my_kwargs)
+    item=('a', 1)
+    item=('b', 2)
+    item=('c', 3)
+    item=('d', 4)
 
 Forzando modo de paso de argumentos
 ===================================
@@ -1077,8 +1073,15 @@ Veamos un ejemplo en el que escribimos una función generadora de números pares
 
 Una vez creado el generador, ya podemos iterar sobre él::
 
-    >>> for i in evens_gen:
-    ...     print(i, end=' ')
+    >>> for even in evens_gen:
+    ...     print(even, end=' ')
+    ...
+    0 2 4 6 8 10 12 14 16 18 20
+
+De forma más "directa", podemos iterar sobre la propia llamada a la función generadora::
+
+    >>> for even in evens(20):
+    ...     print(even, end=' ')
     ...
     0 2 4 6 8 10 12 14 16 18 20
 
@@ -1124,60 +1127,77 @@ Hay situaciones en las que necesitamos modificar el comportamiento de funciones 
 
 Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de :ref:`clausura <core/modularity/functions:Clausuras>`.
 
-Veamos un ejemplo en el que documentamos la ejecución de una función::
+El *esqueleto básico* de un decorador es el siguiente::
 
-    >>> def simple_logger(func):
+    >>> def my_decorator(func):
     ...     def wrapper(*args, **kwargs):
-    ...         print(f'Running "{func.__name__}"...')
+    ...         # some code before calling func
     ...         return func(*args, **kwargs)
+    ...         # some code after calling func
     ...     return wrapper
     ...
 
-    >>> type(simple_logger)
-    function
++------------------+------------------------------------------------+
+|     Elemento     |                  Descripción                   |
++==================+================================================+
+| ``my_decorator`` | Nombre del decorador                           |
++------------------+------------------------------------------------+
+| ``wrapper``      | Función interior (convención de nombre)        |
++------------------+------------------------------------------------+
+| ``func``         | Función a decorar (convención de nombre)       |
++------------------+------------------------------------------------+
+| ``*args``        | Argumentos posicionales (convención de nombre) |
++------------------+------------------------------------------------+
+| ``**kwargs``     | Argumentos nominales (convención de nombre)    |
++------------------+------------------------------------------------+
 
-Ahora vamos a definir una función ordinaria (que usaremos más adelante)::
 
-    >>> def hi(name):
-    ...     return f'Hello {name}!'
+Veamos un ejemplo de **decorador que convierte el resultado de la función a binario**::
+
+    >>> def res2bin(func):
+    ...     def wrapper(*args, **kwargs):
+    ...         result = func(*args, **kwargs)
+    ...         return bin(result)
+    ...     return wrapper
     ...
 
-    >>> hi('Guido')
-    Hello Guido!
+Ahora definimos una función ordinaria (que usaremos más adelante) y que computa :math:`x^n`::
 
-    >>> hi('Lovelace')
-    Hello Lovelace!
+    >>> def power(x: int, n: int) -> int:
+    ...     return x ** n
+    ...
 
-Ahora aplicaremos el decorador definido previamente ``simple_logger()`` sobre la función ordinaria ``hi()``. Se dice que que ``simple_logger()`` es la **función decoradora** y que ``hi()`` es la **función decorada**. De esta forma obtendremos mensajes informativos adicionales. Además el decorador es aplicable a cualquier número y tipo de argumentos e incluso a cualquier otra función ordinaria::
+    >>> power(2, 3)
+    8
+    >>> power(4, 5)
+    1024
 
-    >>> decorated_hi = simple_logger(hi)
+Ahora aplicaremos el decorador definido previamente ``res2bin()`` sobre la función ordinaria ``power()``. Se dice que que ``res2bin()`` es la **función decoradora** y que ``power()`` es la **función decorada**::
 
-    >>> decorated_hi('Guido')
-    Running "hi"...
-    'Hello Guido!'
+    >>> decorated_power = res2bin(power)
 
-    >>> decorated_hi('Lovelace')
-    Running "hi"...
-    'Hello Lovelace!'
+    >>> decorated_power(2, 3)
+    '0b1000'
+    >>> decorated_power(4, 5)
+    '0b10000000000'
 
 Usando ``@`` para decorar
 -------------------------
 
 Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los decoradores a través del operador ``@`` justo antes de la definición de la función que queremos decorar::
 
-    >>> @simple_logger
-    ... def hi(name):
-    ...     return f'Hello {name}!'
+    >>> @res2bin
+    ... def power(x: int, n: int):
+    ...     return x ** n
     ...
-    ...
+    
+    >>> power(2, 3)
+    '0b1000'
+    >>> power(4, 5)
+    '0b10000000000'
 
-    >>> hi('Galindo')
-    Running "hi"...
-    'Hello Galindo!'
-
-    >>> hi('Terrón')
-    Running "hi"...
-    'Hello Terrón!'
+Múltiples decoradores
+---------------------
 
 Podemos aplicar más de un decorador a cada función. Para ejemplificarlo vamos a crear dos decoradores muy sencillos::
 
@@ -1209,7 +1229,35 @@ Ahora aplicaremos ambos decoradores sobre una función que realiza el producto d
     >>> ((4 * 3) // 2) + 5
     11
 
-.. important:: Cuando tenemos varios decoradores aplicados a una función, el orden de ejecución empieza por aquel decorador más "cercano" a la definición de la función.
+Cuando tenemos varios decoradores, **se aplican desde afuera hacia adentro** (modelo capa de cebolla). Eso sí, hay que tener en cuenta que la ejecución de un decorador puede depender de otro decorador.
+
+Si anotamos los decoradores podemos ver exactamente cuál es el orden de ejecución::
+
+    >>> def plus5(func):
+    ...     def wrapper(*args, **kwargs):
+    ...         print('plus5-A')
+    ...         result = func(*args, **kwargs)  # ——————┐
+    ...         print('plus5-B')                #       |
+    ...         return result + 5               #       |
+    ...     return wrapper                      #       |
+    ...                                         #       |
+    ...                                         #       |
+    ... def div2(func):                         #       |
+    ...     def wrapper(*args, **kwargs):       #       |
+    ...         print('div2-A')                 # ◄—————┘
+    ...         result = func(*args, **kwargs)
+    ...         print('div2-B')
+    ...         return result // 2
+    ...     return wrapper
+
+Ahora ejecutamos la función decorada::
+
+    >>> prod(4, 3)
+    plus5-A    # decorador plus5
+    div2-A     # decorador div2
+    div2-B     # decorador div2
+    plus5-B    # decorador plus5
+    11
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -1491,9 +1539,13 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
     - Entrada: ``ana lava lana``
     - Salida: ``True``
 
-5. Escriba una función en Python que determine si una cadena de texto es un `pangrama`_ (:download:`solución <files/pangram.py>`)
+5. Escriba una función en Python que determine si una cadena de texto es un `pangrama`_ (:download:`solución <files/pangram.py>`).
     - Entrada: ``The quick brown fox jumps over the lazy dog``
     - Salida: ``True``
+
+6. Escriba una función generadora en Python ``cycle_alphabet()`` que devuelva los caracteres del alfabeto de forma consecutiva y con desplazamiento circular, es decir, cuando se llegue al final del alfabeto que empiece por el principio. Pasar un parámetro ``max_letters`` que indique el número de caracteres a generar (:download:`solución <files/cycle_alphabet.py>`).
+    - Entrada: ``max_letters=43``
+    - Salida: ``abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
