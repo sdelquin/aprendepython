@@ -33,7 +33,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="330" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=value%20%3D%201%0A%0Awhile%20value%20%3C%3D%204%3A%0A%20%20%20%20print%28value%29%0A%20%20%20%20value%20%2B%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="365" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=value%20%3D%201%0A%0Awhile%20value%20%3C%3D%204%3A%0A%20%20%20%20print%28value%29%0A%20%20%20%20value%20%2B%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``value`` sea menor o igual que 4. Dentro del cuerpo del bucle estamos incrementando esa variable en 1 unidad.
@@ -66,7 +66,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2020%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="405" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2020%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos encontrado nuestro objetivo: el primer múltiplo de 3. Pero si no lo hubiéramos encontrado, el bucle habría seguido decrementando la variable ``num`` hasta valer 0, y la condición del bucle ``while`` hubiera resultado falsa.
 
@@ -104,7 +104,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="400" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%208%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%209%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum%7D%20is%20a%20multiple%20of%209!'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201%0Aelse%3A%0A%20%20%20%20print%28'No%20multiples%20of%209%20found!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="465" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%208%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%209%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum%7D%20is%20a%20multiple%20of%209!'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201%0Aelse%3A%0A%20%20%20%20print%28'No%20multiples%20of%209%20found!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Continuar un bucle
 ==================
@@ -138,7 +138,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2021%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20num%20-%3D%201%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20print%28num,%20end%3D',%20'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="415" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2021%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20num%20-%3D%201%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20print%28num,%20end%3D',%20'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Bucle infinito
 ==============
@@ -167,7 +167,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="250" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Una posible solución a este error es reescribir la condición de parada en el bucle:
 
@@ -233,7 +233,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="340" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. important:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
 
@@ -265,7 +265,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="350" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="390" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. tip:: Tanto la :ref:`comprobación de rotura de un bucle <core/controlflow/loops:Comprobar la rotura>` como la :ref:`continuación a la siguiente iteración <core/controlflow/loops:Continuar un bucle>` se llevan a cabo del mismo modo que hemos visto con los bucles de tipo ``while``.
 
@@ -342,7 +342,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="270" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
     
 .. tip:: Se suelen utilizar nombres de variables ``i``, ``j``, ``k`` para lo que se denominan **contadores**. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores. No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de asignar un nombre semánticamente más significativo. Esto viene de tiempos antiguos en FORTRAN donde ``i`` era la primera letra que tenía valor entero por defecto.
 
@@ -493,7 +493,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%281,%2010%29%3A%0A%20%20%20%20for%20j%20in%20range%281,%2010%29%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20i%20*%20j%0A%20%20%20%20%20%20%20%20print%28f'%7Bi%7D%20*%20%7Bj%7D%20%3D%20%7Bresult%7D'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="355" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%281,%2010%29%3A%0A%20%20%20%20for%20j%20in%20range%281,%2010%29%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20i%20*%20j%0A%20%20%20%20%20%20%20%20print%28f'%7Bi%7D%20*%20%7Bj%7D%20%3D%20%7Bresult%7D'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. note::
     * Podemos añadir todos los niveles de anidamiento que queramos. Eso sí, hay que tener en cuenta que cada nuevo nivel de anidamiento supone un importante aumento de la `complejidad ciclomática`_ de nuestro código, lo que se traduce en mayores tiempos de ejecución.
