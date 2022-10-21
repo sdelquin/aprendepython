@@ -164,7 +164,7 @@ Podemos personalizar la excepción añadiendo un mensaje más informativo. Sigui
 
     >>> class NotIntError(Exception):
     ...     def __init__(self, message='This module only works with integers. Sorry!'):
-    ...             super().__init__(message)
+    ...         super().__init__(message)
     ...
 
     >>> raise NotIntError()
