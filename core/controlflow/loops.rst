@@ -183,18 +183,35 @@ Una posible solución a este error es reescribir la condición de parada en el b
 
 .. tip:: Para abortar una situación de *bucle infinito* podemos pulsar en el teclado la combinación :kbd:`CTRL-C`. Se puede ver reflejado en el intérprete de Python por ``KeyboardInterrupt``.
 
+Hay veces que un **supuesto bucle "infinito"** puede ayudarnos a resolver un problema. Imaginemos que queremos escribir un programa que ayude al profesorado a introducir las notas de un examen. Si la nota no está en el intervalo :math:`[0, 10]` mostramos un mensaje de error, en otro caso seguimos pidiendo valores::
+
+    >>> while True:
+    ...     mark = float(input('Introduzca nueva nota: '))
+    ...     if not(0 <= mark <= 10):
+    ...         print('Nota fuera de rango')
+    ...         break
+    ...     print(mark)
+    ...
+    Introduzca nueva nota: 5
+    5.0
+    Introduzca nueva nota: 3
+    3.0
+    Introduzca nueva nota: 11
+    Nota fuera de rango
+
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba un programa que encuentre la mínima secuencia de múltiplos de 3 (distintos) cuya suma sea igual o superior a un valor dado.
+    Escriba un programa que encuentre todos los múltiplos de 5 menores que un valor dado:
 
     **Ejemplo**
-        * Entrada: ``45``
-        * Salida: ``0, 3, 6, 9, 12, 15``
+        * Entrada: ``36``
+        * Salida: ``5 10 15 20 25 30 35``
+    
 
     .. only:: html
 
-        |solution| :download:`multiples3_limit.py <files/multiples3_limit.py>` 
+        |solution| :download:`limit5.py <files/limit5.py>` 
 
 .. _for-sentence:
 
@@ -512,7 +529,24 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que realice las siguientes 9 multiplicaciones. ¿Nota algo raro? (:download:`solución <files/ones_product.py>`)
+
+1. Escriba un programa que encuentre la mínima secuencia de múltiplos de 3 (distintos) cuya suma sea igual o superior a un valor dado (:download:`solución <files/multiples3_limit.py>`).
+    - Entrada: ``45``
+    - Salida: ``0, 3, 6, 9, 12, 15``
+
+2. Escriba un programa que pida nombre y apellidos de una persona (único ``input``) y repita la pregunta mientras el nombre no esté en formato título (:download:`solución <files/repeat_please.py>`).
+
+.. code-block::
+
+    ¿Su nombre? ana torres blanco
+    Error. Debe escribirlo correctamente
+    ¿Su nombre? Ana torres blanco
+    Error. Debe escribirlo correctamente
+    ¿Su nombre? Ana Torres blanco
+    Error. Debe escribirlo correctamente
+    ¿Su nombre? Ana Torres Blanco
+
+3. Escriba un programa en Python que realice las siguientes 9 multiplicaciones. ¿Nota algo raro? (:download:`solución <files/ones_product.py>`)
 
 .. math::
 
@@ -522,25 +556,25 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     &\vdots\\
     111111111 &\cdot 111111111
 
-2. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos (:download:`solución <files/alpha.py>`).
+4. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos (:download:`solución <files/alpha.py>`).
     - Entrada: ``hello-world``
     - Salida: ``Se han encontrado caracteres no alfabéticos``
 
-3. Escriba un programa en Python que acepte un número entero :math:`n` y realice el siguiente cálculo de productos sucesivos (:download:`solución <files/products.py>`):
+5. Escriba un programa en Python que acepte un número entero :math:`n` y realice el siguiente cálculo de productos sucesivos (:download:`solución <files/products.py>`):
 
 .. math::
 
     \prod_{i=1}^n x_i^2 = x_0^2 \cdot x_1^2 \cdot x_2^2 \cdot \cdots \cdot x_n^2
 
-4. Escriba un programa en Python que acepte dos cadenas de texto y compute el `producto cartesiano`_ letra a letra entre ellas (:download:`solución <files/cproduct.py>`).
+6. Escriba un programa en Python que acepte dos cadenas de texto y compute el `producto cartesiano`_ letra a letra entre ellas (:download:`solución <files/cproduct.py>`).
     - Entrada: ``str1=abc; str2=123``
     - Salida: ``a1 a2 a3 b1 b2 b3 c1 c2 c3``
 
-5. Escriba un programa en Python que acepte dos valores enteros (:math:`x` e :math:`y`) que representarán un punto (objetivo) en el plano. El programa simulará el movimiento de un "caballo" de ajedrez moviéndose de forma alterna: 2 posiciones en :math:`x` + 1 posición en :math:`y`. El siguiente movimiento que toque sería para moverse 1 posición en :math:`x` + 2 posiciones en :math:`y`. El programa deberá ir mostrando los puntos por los que va pasando el "caballo" hasta llegar al punto objetivo (:download:`solución <files/horse.py>`).
+7. Escriba un programa en Python que acepte dos valores enteros (:math:`x` e :math:`y`) que representarán un punto (objetivo) en el plano. El programa simulará el movimiento de un "caballo" de ajedrez moviéndose de forma alterna: 2 posiciones en :math:`x` + 1 posición en :math:`y`. El siguiente movimiento que toque sería para moverse 1 posición en :math:`x` + 2 posiciones en :math:`y`. El programa deberá ir mostrando los puntos por los que va pasando el "caballo" hasta llegar al punto objetivo (:download:`solución <files/horse.py>`).
     - Entrada: ``objetivo_x=7; objetivo_y=8;``
     - Salida: ``(0, 0) (1, 2) (3, 3) (4, 5) (6, 6) (7, 8)``
 
-6. Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud (:download:`solución <files/hamming.py>`).
+8. Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud (:download:`solución <files/hamming.py>`).
     - Entrada: ``0001010011101`` y ``0000110010001``
     - Salida: ``4``
 

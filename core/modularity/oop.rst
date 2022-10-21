@@ -281,6 +281,14 @@ En cualquier caso, seguimos pudiendo acceder directamente a ``.hidden_name``::
     >>> droid.hidden_name
     'Nigel'
 
+Incluso cambiar su valor::
+
+    >>> droid.hidden_name = 'waka-waka'
+
+    >>> droid.name
+    inside the getter
+    'waka-waka'
+
 Valores calculados
 ------------------
 
@@ -539,9 +547,17 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
 
     Además de esto, necesitaremos:
 
-    - ``gcd(a, b)`` como **método estático** siguiendo el :download:`algoritmo de Euclides <img/euclides.png>` para calcular el máximo común divisor entre ``a`` y ``b``.
+    - ``gcd(a, b)`` como **método estático** siguiendo el *algoritmo de Euclides* para calcular el máximo común divisor entre ``a`` y ``b``.
     - ``__init__(self, num, den)`` para construir una fracción (incluyendo simplificación de sus términos mediante el método ``gcd()``.
     - ``__str__(self)`` para representar una fracción.
+
+    Algoritmo de Euclides::
+
+        def gcd(a, b):
+            ''' Algoritmo de Euclides '''
+            while b > 0:
+                a, b = b, a % b
+            return a
 
     Compruebe que se cumplen las siguientes igualdades:
 
