@@ -596,6 +596,10 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     - Entrada: ``0001010011101`` y ``0000110010001``
     - Salida: ``4``
 
+9. Escriba un programa que calcule el máximo común divisor entre dos números enteros. No utilice ningún algoritmo existente. Hágalo probando divisores (:download:`solución <files/mcd.py>`).
+    - Entrada: ``a=12; b=44``
+    - Salida: ``4``
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
