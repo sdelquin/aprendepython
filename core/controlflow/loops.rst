@@ -66,7 +66,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="405" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2020%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2020%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos encontrado nuestro objetivo: el primer múltiplo de 3. Pero si no lo hubiéramos encontrado, el bucle habría seguido decrementando la variable ``num`` hasta valer 0, y la condición del bucle ``while`` hubiera resultado falsa.
 
@@ -167,7 +167,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="435" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Una posible solución a este error es reescribir la condición de parada en el bucle:
 
@@ -250,7 +250,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="340" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="345" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. important:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
 
@@ -403,6 +403,15 @@ Para estos casos se suele recomendar usar el **guión bajo** ``_`` como **nombre
     Repeat me 10 times!
     Repeat me 10 times!
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Imprima los 100 primeros números de la `sucesión de Fibonacci`_: :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots` 
+
+    .. only:: html
+    
+        |solution| :download:`fibonacci.py <files/fibonacci.py>`
+
 ***************
 Bucles anidados
 ***************
@@ -519,11 +528,21 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. admonition:: Ejercicio
     :class: exercise
 
-    Imprima los 100 primeros números de la `sucesión de Fibonacci`_: :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots` 
+    Dado su tamaño, muestre por pantalla un mosaico donde la diagonal principal esté representada por ``X``, la parte inferior por ``D`` y la parte superior por ``U``.
+
+    **Ejemplo**
+        * Entrada: ``5``
+        * Salida::
+
+            X U U U U 
+            D X U U U 
+            D D X U U 
+            D D D X U 
+            D D D D X 
 
     .. only:: html
     
-        |solution| :download:`fibonacci.py <files/fibonacci.py>`
+        |solution| :download:`mosaic.py <files/mosaic.py>`
 
 ----
 
@@ -534,7 +553,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     - Entrada: ``45``
     - Salida: ``0, 3, 6, 9, 12, 15``
 
-2. Escriba un programa que pida nombre y apellidos de una persona (único ``input``) y repita la pregunta mientras el nombre no esté en formato título (:download:`solución <files/repeat_please.py>`).
+2. Escriba un programa que pida nombre y apellidos de una persona (usando un solo ``input``) y repita la pregunta mientras el nombre no esté en formato título (:download:`solución <files/repeat_please.py>`).
 
 .. code-block::
 
@@ -546,7 +565,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     Error. Debe escribirlo correctamente
     ¿Su nombre? Ana Torres Blanco
 
-3. Escriba un programa en Python que realice las siguientes 9 multiplicaciones. ¿Nota algo raro? (:download:`solución <files/ones_product.py>`)
+3. Escriba un programa en Python que realice las siguientes 9 multiplicaciones. ¿Nota algo raro en el resultado? (:download:`solución <files/ones_product.py>`)
 
 .. math::
 
@@ -556,15 +575,14 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     &\vdots\\
     111111111 &\cdot 111111111
 
-4. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos (:download:`solución <files/alpha.py>`).
+4. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos. No usar la función ``isalpha()`` sino una constante ``ALPHABET = 'abcdefghijklmnopqrstuvwxyz'`` (:download:`solución <files/alpha.py>`)
     - Entrada: ``hello-world``
     - Salida: ``Se han encontrado caracteres no alfabéticos``
 
 5. Escriba un programa en Python que acepte un número entero :math:`n` y realice el siguiente cálculo de productos sucesivos (:download:`solución <files/products.py>`):
 
 .. math::
-
-    \prod_{i=1}^n x_i^2 = x_0^2 \cdot x_1^2 \cdot x_2^2 \cdot \cdots \cdot x_n^2
+    \prod_{i=1}^n i^2 = 1^2 \cdot 2^2 \cdot 3^2 \cdot \cdots \cdot n^2
 
 6. Escriba un programa en Python que acepte dos cadenas de texto y compute el `producto cartesiano`_ letra a letra entre ellas (:download:`solución <files/cproduct.py>`).
     - Entrada: ``str1=abc; str2=123``
