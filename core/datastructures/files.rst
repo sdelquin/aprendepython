@@ -92,7 +92,7 @@ Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros
     
     22 28
 
-.. tip:: Igual que pasaba anteriormente, la lectura línea por línea también incluye el **salto de línea** ``\n`` lo que provoca un "doble espacio" entre cada una de las salidas. Bastaría con aplicar ``line.split()`` para eliminarlo.
+.. tip:: Igual que pasaba anteriormente, la lectura línea por línea también incluye el **salto de línea** ``\n`` lo que provoca un "doble espacio" entre cada una de las salidas. Bastaría con aplicar ``line.strip()`` para eliminarlo.
 
 ***********************
 Escritura en un fichero
