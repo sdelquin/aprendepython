@@ -10,65 +10,90 @@ Cuando queremos hacer algo más de una vez, necesitamos recurrir a un **bucle**.
 La sentencia ``while``
 **********************
 
-El primer mecanismo que existe en Python para repetir instrucciones es usar la sentencia ``while``. La semántica tras esta sentencia es: "Mientras se cumpla la condición haz algo". Veamos un sencillo bucle que muestra por pantalla los números del 1 al 4::
+El primer mecanismo que existe en Python para repetir instrucciones es usar la sentencia ``while``. La semántica tras esta sentencia es: "Mientras se cumpla la condición haz algo". 
 
-    >>> value = 1
+Veamos un sencillo bucle que repite una pregunta mientras la respuesta sea negativa::
 
-    >>> while value <= 4:
-    ...     print(value)
-    ...     value += 1
+    >>> want_exit = 'N'  # importante dar un valor antes de empezar el bucle
+
+    >>> while want_exit == 'N':
+    ...     print('Hola qué tal')
+    ...     want_exit = input('¿Quiere salir? [S/N] ')
     ...
-    1
-    2
-    3
-    4
+    ... print('Ciao!')
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Hola qué tal
+    ¿Quiere salir? [S/N] S
+    Ciao!
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/RgM2HYn
+    https://cutt.ly/cNg8dR0
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="365" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=value%20%3D%201%0A%0Awhile%20value%20%3C%3D%204%3A%0A%20%20%20%20print%28value%29%0A%20%20%20%20value%20%2B%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%0Aprint%28'Ciao!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22N%22,%22N%22,%22S%22%5D&textReferences=false"> </iframe>
 
 
-La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``value`` sea menor o igual que 4. Dentro del cuerpo del bucle estamos incrementando esa variable en 1 unidad.
+La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``want_exit`` sea igual a ``'N'``. Dentro del cuerpo del bucle estamos mostrando un mensaje y pidiendo la opción al usuario.
 
 Romper un bucle while
 =====================
 
-Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que se cumpla la condición de parada*. Supongamos un ejemplo en el que estamos buscando el primer número múltiplo de 3 yendo desde 20 hasta 1:
+Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que se cumpla la condición de parada*.
+
+Supongamos que en el ejemplo anterior, establecemos un máximo de 4 preguntas:
 
 .. code-block::
-    :emphasize-lines: 6
+    :emphasize-lines: 10
 
-    >>> num = 20
+    >>> want_exit = 'N'
+    >>> num_questions = 0
 
-    >>> while num >= 1:
-    ...     if num % 3 == 0:
-    ...         print(num)
+    >>> while want_exit == 'N':
+    ...     print('Hola qué tal')
+    ...     want_exit = input('¿Quiere salir? [S/N] ')
+    ...     num_questions += 1
+    ...     if num_questions == 4:
+    ...         print('Máximo número de preguntas alcanzado')
     ...         break
-    ...     num -= 1
-    ...
-    18
+    ... print('Ciao!')
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Máximo número de preguntas alcanzado
+    Ciao!
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/wfrKnHl
+    https://cutt.ly/xNhq3iI
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2020%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28num%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0Anum_questions%20%3D%200%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20num_questions%20%2B%3D%201%0A%20%20%20%20if%20num_questions%20%3D%3D%204%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20preguntas%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0Aprint%28'Ciao!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22N%22,%22N%22,%22N%22,%22N%22%5D&textReferences=false"> </iframe>
 
-Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos encontrado nuestro objetivo: el primer múltiplo de 3. Pero si no lo hubiéramos encontrado, el bucle habría seguido decrementando la variable ``num`` hasta valer 0, y la condición del bucle ``while`` hubiera resultado falsa.
+Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos llegado al máximo número de preguntas. Pero si no hubiéramos llegado a dicho límite, el bucle habría seguido hasta que el usuario indicara que quiere salir.
+
+Otra forma de resolver este ejercicio sería incorporar una condición al bucle::
+
+    while want_exit == 'N' and num_questions < 4:
+        ...
 
 Comprobar la rotura
 -------------------
@@ -77,34 +102,43 @@ Comprobar la rotura
 
 Python nos ofrece la posibilidad de **detectar si el bucle ha acabado de forma ordinaria**, esto es, ha finalizado por no cumplirse la condición establecida. Para ello podemos hacer uso de la sentencia ``else`` como parte del propio bucle. Si el bucle while finaliza normalmente (sin llamada a ``break``) el flujo de control pasa a la sentencia opcional ``else``.
 
-Veamos un ejemplo en el que tratamos de encontrar un múltiplo de 9 en el rango :math:`[1, 8]` (es obvio que no sucederá):
+Veamos su comportamiento siguiendo con el ejemplo que venimos trabajando:
 
 .. code-block::
-    :emphasize-lines: 8
+    :emphasize-lines: 11-12
 
-    >>> num = 8
+    >>> want_exit = 'N'
+    >>> num_questions = 0
 
-    >>> while num >= 1:
-    ...     if num % 9 == 0:
-    ...         print(f'{num} is a multiple of 9!')
+    >>> while want_exit == 'N':
+    ...     print('Hola qué tal')
+    ...     want_exit = input('¿Quiere salir? [S/N] ')
+    ...     num_questions += 1
+    ...     if num_questions == 4:
+    ...         print('Máximo número de preguntas alcanzado')
     ...         break
-    ...     num -= 1
     ... else:
-    ...     print('No multiples of 9 found!')
-    ...
-    No multiples of 9 found!
+    ...     print('Usted ha decidido salir')
+    ... print('Ciao')
+    Hola qué tal
+    ¿Quiere salir? [S/N] S
+    Usted ha decidido salir
+    Ciao
+
+.. important::
+    Si hubiéramos agotado el número de preguntas NO se habría ejecutado la cláusula ``else`` del bucle ya que habríamos roto el flujo con un ``break``.
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/CgYQFiA
+    https://cutt.ly/xNho3di
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="465" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%208%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20if%20num%20%25%209%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum%7D%20is%20a%20multiple%20of%209!'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20num%20-%3D%201%0Aelse%3A%0A%20%20%20%20print%28'No%20multiples%20of%209%20found!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="540" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0Anum_questions%20%3D%200%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20num_questions%20%2B%3D%201%0A%20%20%20%20if%20num_questions%20%3D%3D%204%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20preguntas%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0Aelse%3A%0A%20%20%20%20print%28'Usted%20ha%20decidido%20salir'%29%0Aprint%28'Ciao'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22S%22%5D&textReferences=false"> </iframe>
 
 Continuar un bucle
 ==================
@@ -113,32 +147,45 @@ Continuar un bucle
 
 Hay situaciones en las que, en vez de romper un bucle, nos interesa **saltar adelante hacia la siguiente repetición**. Para ello Python nos ofrece la sentencia ``continue`` que hace precisamente eso, descartar el resto del código del bucle y saltar a la siguiente iteración.
 
-Veamos un ejemplo en el que usaremos esta estrategia para mostrar todos los números en el rango :math:`[1, 20]` ignorando aquellos que sean múltiplos de 3:
+Continuamos con el ejemplo anterior y vamos a contar el número de respuestas válidas:
 
 .. code-block::
-    :emphasize-lines: 6
+    :emphasize-lines: 9
 
-    >>> num = 21
+    >>> want_exit = 'N'
+    >>> valid_options = 0
 
-    >>> while num >= 1:
-    ...     num -= 1
-    ...     if num % 3 == 0:
+    >>> while want_exit == 'N':
+    ...     print('Hola qué tal')
+    ...     want_exit = input('¿Quiere salir? [S/N] ')
+    ...     if want_exit not in 'SN':
+    ...         want_exit = 'N'
     ...         continue
-    ...     print(num, end=', ')  # Evitar salto de línea
-    ...
-    20, 19, 17, 16, 14, 13, 11, 10, 8, 7, 5, 4, 2, 1,
+    ...     valid_options += 1
+    ... print(f'{valid_options} respuestas válidas')
+    ... print('Ciao!')
+    Hola qué tal
+    ¿Quiere salir? [S/N] N
+    Hola qué tal
+    ¿Quiere salir? [S/N] X
+    Hola qué tal
+    ¿Quiere salir? [S/N] Z
+    Hola qué tal
+    ¿Quiere salir? [S/N] S
+    2 respuestas válidas
+    Ciao!
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/YgYQ3m6
+    https://cutt.ly/BNhkOhP
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="415" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%2021%0A%0Awhile%20num%20%3E%3D%201%3A%0A%20%20%20%20num%20-%3D%201%0A%20%20%20%20if%20num%20%25%203%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20print%28num,%20end%3D',%20'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="520" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0Avalid_options%20%3D%200%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20if%20want_exit%20not%20in%20'SN'%3A%0A%20%20%20%20%20%20%20%20want_exit%20%3D%20'N'%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20valid_options%20%2B%3D%201%0Aprint%28f'%7Bvalid_options%7D%20respuestas%20v%C3%A1lidas'%29%0Aprint%28'Ciao!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22N%22,%22X%22,%22Z%22,%22S%22%5D&textReferences=false"> </iframe>
 
 Bucle infinito
 ==============
@@ -600,6 +647,19 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     - Entrada: ``a=12; b=44``
     - Salida: ``4``
 
+10. Escriba un programa que muestre por pantalla todas las fichas del dominó. La ficha "en blanco" se puede representar con un 0 (:download:`solución <files/domino.py>`).
+
+.. image:: img/domino.jpg
+
+.. code-block::
+
+    0|0 0|1 0|2 0|3 0|4 0|5 0|6
+    1|1 1|2 1|3 1|4 1|5 1|6
+    2|2 2|3 2|4 2|5 2|6
+    3|3 3|4 3|5 3|6
+    4|4 4|5 4|6
+    5|5 5|6
+    6|6
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
