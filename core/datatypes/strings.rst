@@ -944,6 +944,9 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
     - Entrada: ``ordenador``
     - Salida: ``36``
 
+6. Escriba un programa en Python que transforme un título HTML ``<hx>...</hx>`` en su correspondiente versión de `Markdown`_ (:download:`solución <files/h2md.py>`).
+    - Entrada: ``<h3>Cadenas de texto</h3>``
+    - Salida: ``### Cadenas de texto``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -977,3 +980,4 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
 .. _dígito de control: https://www.interior.gob.es/opencms/ca/servicios-al-ciudadano/tramites-y-gestiones/dni/calculo-del-digito-de-control-del-nif-nie/
+.. _Markdown: https://markdown.es/
