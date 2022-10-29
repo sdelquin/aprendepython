@@ -661,6 +661,12 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     5|5 5|6
     6|6
 
+11. Escriba un programa que calcule el valor de :math:`x` para el que la función :math:`f(x) = x^2 - 6x + 3` obtiene su menor resultado. Centre la búsqueda en el rango :math:`[-9, 9]` sólo con valores enteros. 
+
+El resultado es: :math:`x = 3` y :math:`f(x) = -6`
+
+.. image:: img/fmin.png
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `The Python range() Function <https://realpython.com/courses/python-range-function/>`_
