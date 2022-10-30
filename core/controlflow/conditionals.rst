@@ -161,7 +161,37 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="440" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="495" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+
+**************************
+Asignaciones condicionales
+**************************
+
+|intlev|
+
+Supongamos que queremos asignar un nivel de riesgo de incendio en función de la temperatura. En su **versión clásica** escribiríamos::
+
+    >>> temperature = 35
+
+    >>> if temperature < 30:
+    ...     fire_risk = 'LOW'
+    ... else:
+    ...     fire_risk = 'HIGH'
+    ...
+
+    >>> fire_risk
+    'HIGH'
+
+Sin embargo, esto lo podríamos abreviar con una **asignación condicional de una única línea**:
+
+.. code-block::
+    :emphasize-lines: 1
+
+    >>> fire_risk = 'LOW' if temperature < 30 else 'HIGH'
+
+    >>> fire_risk
+    'HIGH'
 
 *************************
 Operadores de comparación
