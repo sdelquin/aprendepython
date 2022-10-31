@@ -948,6 +948,16 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
     - Entrada: ``<h3>Cadenas de texto</h3>``
     - Salida: ``### Cadenas de texto``
 
+.. rubric:: EJERCICIOS EXTERNOS
+
+1. `If you can't sleep, just count sheep!! <https://www.codewars.com/kata/5b077ebdaf15be5c7f000077>`_
+2. `Remove first and last character <https://www.codewars.com/kata/56bc28ad5bdaeb48760009b0>`_
+3. `Name shuffler <https://www.codewars.com/kata/559ac78160f0be07c200005a>`_
+4. `Double char <https://www.codewars.com/kata/56b1f01c247c01db92000076>`_
+5. `Find the position! <https://www.codewars.com/kata/5808e2006b65bff35500008f>`_
+6. `Find the integral <https://www.codewars.com/kata/59811fd8a070625d4c000013>`_
+7. `Multiply the number <https://www.codewars.com/kata/5708f682c69b48047b000e07>`_
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `A Guide to the Newer Python String Format Techniques <https://realpython.com/python-formatted-output/>`_

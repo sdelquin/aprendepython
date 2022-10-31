@@ -712,6 +712,10 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
     - Entrada: ``{'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}``
     - Salida: ``{'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}``
 
+.. rubric:: EJERCICIOS EXTERNOS
+
+1. `Dictionary drills: Order filler <https://www.codewars.com/kata/586ee462d0982081bf001f07>`_
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Using the Python defaultdict Type for Handling Missing Keys <https://realpython.com/python-defaultdict/>`_

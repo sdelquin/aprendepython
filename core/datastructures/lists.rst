@@ -1149,6 +1149,40 @@ Podemos comprobar el acceso a distintos elementos::
     - Entrada: ``[[4, 6, 1], [2, 9, 3], [1, 7, 7]]``
     - Salida: ``20``
 
+.. rubric:: EJERCICIOS EXTERNOS
+
+1. `Powers of 2 <https://www.codewars.com/kata/57a083a57cb1f31db7000028>`_
+2. `Convert to binary <https://www.codewars.com/kata/59fca81a5712f9fa4700159a>`_
+3. `Removing elements <https://www.codewars.com/kata/5769b3802ae6f8e4890009d2>`_
+4. `Abbreviate a two word name <https://www.codewars.com/kata/57eadb7ecd143f4c9c0000a3>`_
+5. `Find the first non-consecutive number <https://www.codewars.com/kata/58f8a3a27a5c28d92e000144>`_
+6. `Remove duplicates from list <https://www.codewars.com/kata/57a5b0dfcf1fa526bb000118>`_
+7. `N-th Power <https://www.codewars.com/kata/57d814e4950d8489720008db>`_
+8. `Beginner - Reduce but Grow <https://www.codewars.com/kata/57f780909f7e8e3183000078>`_
+9. `Count by X <https://www.codewars.com/kata/5513795bd3fafb56c200049e>`_
+10. `Convert number to reversed array of digits <https://www.codewars.com/kata/5583090cbe83f4fd8c000051>`_
+11. `Sum of positive <https://www.codewars.com/kata/5715eaedb436cf5606000381>`_
+12. `Invert values <https://www.codewars.com/kata/5899dc03bc95b1bf1b0000ad>`_
+13. `Reversed sequence <https://www.codewars.com/kata/5a00e05cc374cb34d100000d>`_
+14. `Sum mixed array <https://www.codewars.com/kata/57eaeb9578748ff92a000009>`_
+15. `Merge two sorted arrays into one <https://www.codewars.com/kata/5899642f6e1b25935d000161>`_
+16. `Find the smallest integer in the array <https://www.codewars.com/kata/55a2d7ebe362935a210000b2>`_
+17. `Sum without highest and lowest number <https://www.codewars.com/kata/576b93db1129fcf2200001e6>`_
+18. `A wolf in sheep's clothing <https://www.codewars.com/kata/5c8bfa44b9d1192e1ebd3d15>`_
+19. `Find maximum and minimum values of a list <https://www.codewars.com/kata/577a98a6ae28071780000989>`_
+20. `How many stairs will Suzuki climb in 20 years? <https://www.codewars.com/kata/56fc55cd1f5a93d68a001d4e>`_
+21. `Cascading subsets <https://www.codewars.com/kata/545af3d185166a3dec001190>`_
+22. `Difference of volumes of cuboids <https://www.codewars.com/kata/58cb43f4256836ed95000f97>`_
+23. `Remove first and last character part two <https://www.codewars.com/kata/570597e258b58f6edc00230d>`_
+24. `Logical calculator <https://www.codewars.com/kata/57096af70dad013aa200007b>`_
+25. `Smallest unused ID <https://www.codewars.com/kata/55eea63119278d571d00006a>`_
+26. `Are arrow functions odd? <https://www.codewars.com/kata/559f80b87fa8512e3e0000f5>`_
+27. `Reagent formula <https://www.codewars.com/kata/59c8b38423dacc7d95000008>`_
+28. `What's up next? <https://www.codewars.com/kata/542ebbdb494db239f8000046>`_
+29. `Split that array! <https://www.codewars.com/kata/545b342082e55dc9da000051>`_
+30. `Add length <https://www.codewars.com/kata/559d2284b5bb6799e9000047>`_
+31. `Reversing words in a string <https://www.codewars.com/kata/57a55c8b72292d057b000594>`_
+32. `Localize The barycenter of a triangle <https://www.codewars.com/kata/5601c5f6ba804403c7000004>`_
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

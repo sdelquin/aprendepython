@@ -667,6 +667,19 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 
 .. image:: img/fmin.png
 
+.. rubric:: EJERCICIOS EXTERNOS
+
+1. `Summation <https://www.codewars.com/kata/55d24f55d7dd296eb9000030>`_
+2. `Find nearest square number <https://www.codewars.com/kata/5a805d8cafa10f8b930005ba>`_
+3. `Bin to decimal <https://www.codewars.com/kata/57a5c31ce298a7e6b7000334>`_
+4. `altERnaTIng cAsE <https://www.codewars.com/kata/56efc695740d30f963000557>`_
+5. `Fake binary <https://www.codewars.com/kata/57eae65a4321032ce000002d>`_
+6. `Correct the mistakes of the character recognition software <https://www.codewars.com/kata/577bd026df78c19bca0002c0>`_
+7. `String cleaning <https://www.codewars.com/kata/57e1e61ba396b3727c000251>`_
+8. `Sum of multiples <https://www.codewars.com/kata/57241e0f440cd279b5000829>`_
+9. `ASCII Total <https://www.codewars.com/kata/572b6b2772a38bc1e700007a>`_
+10. `Collatz Conjecture (3n+1) <https://www.codewars.com/kata/577a6e90d48e51c55e000217>`_
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `The Python range() Function <https://realpython.com/courses/python-range-function/>`_

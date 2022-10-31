@@ -689,6 +689,36 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
     - Entrada: ``edad=34; peso=81; heartbeat=70; plaquetas=150000``
     - Salida: ``Apto para donar sangre``
 
+.. rubric:: EJERCICIOS EXTERNOS
+
+1. `Return the day <https://www.codewars.com/kata/59dd3ccdded72fc78b000b25>`_
+2. `Return negative <https://www.codewars.com/kata/55685cd7ad70877c23000102>`_
+3. `What's the real floor? <https://www.codewars.com/kata/574b3b1599d8f897470018f6>`_
+4. `Area or Perimeter <https://www.codewars.com/kata/5ab6538b379d20ad880000ab>`_
+5. `Check same case <https://www.codewars.com/kata/5dd462a573ee6d0014ce715b>`_
+6. `Simple multiplication <https://www.codewars.com/kata/583710ccaa6717322c000105>`_
+7. `Quarter of the year <https://www.codewars.com/kata/5ce9c1000bab0b001134f5af>`_
+8. `Grade book <https://www.codewars.com/kata/55cbd4ba903825f7970000f5>`_
+9. `Transportation on vacation <https://www.codewars.com/kata/568d0dd208ee69389d000016>`_
+10. `Safen User Input Part I - htmlspecialchars <https://www.codewars.com/kata/56bcaedfcf6b7f2125001118>`_
+11. `Remove an exclamation mark from the end of string <https://www.codewars.com/kata/57fae964d80daa229d000126>`_
+12. `Pythagorean triple <https://www.codewars.com/kata/5951d30ce99cf2467e000013>`_
+13. `How much water do I need? <https://www.codewars.com/kata/575fa9afee048b293e000287>`_
+14. `Set Alarm <https://www.codewars.com/kata/568dcc3c7f12767a62000038>`_
+15. `Compare within margin <https://www.codewars.com/kata/56453a12fcee9a6c4700009c>`_
+16. `Will you make it? <https://www.codewars.com/kata/5861d28f124b35723e00005e>`_
+17. `Plural <https://www.codewars.com/kata/52ceafd1f235ce81aa00073a>`_
+18. `Student's final grade <https://www.codewars.com/kata/5ad0d8356165e63c140014d4>`_
+19. `Drink about <https://www.codewars.com/kata/56170e844da7c6f647000063>`_
+20. `Switch it up! <https://www.codewars.com/kata/5808dcb8f0ed42ae34000031>`_
+21. `Floating point comparison <https://www.codewars.com/kata/5f9f43328a6bff002fa29eb8>`_
+22. `No zeros for heros <https://www.codewars.com/kata/570a6a46455d08ff8d001002>`_
+23. `Tip calculator <https://www.codewars.com/kata/56598d8076ee7a0759000087>`_
+24. `Grader <https://www.codewars.com/kata/53d16bd82578b1fb5b00128c>`_
+25. `Evil or Odious <https://www.codewars.com/kata/56fcfad9c7e1fa2472000034>`_
+26. `Validate code with simple regex <https://www.codewars.com/kata/56a25ba95df27b7743000016>`_
+27. `Fuel calculator <https://www.codewars.com/kata/57b58827d2a31c57720012e8>`_
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `How to Use the Python or Operator <https://realpython.com/python-or-operator/>`_

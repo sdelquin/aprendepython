@@ -580,6 +580,28 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
     - Entrada: :math:`(x_1=3, y_1=5)`; :math:`(x_2=-7, y_2=-4)` 
     - Salida: ``13.45362404707371``
 
+.. rubric:: EJERCICIOS EXTERNOS
+
+1. `Century from year <https://www.codewars.com/kata/5a3fe3dde1ce0e8ed6000097>`_
+2. `Area of a Square <https://www.codewars.com/kata/5748838ce2fab90b86001b1a>`_
+3. `Calculate price excluding VAT <https://www.codewars.com/kata/5890d8bc9f0f422cf200006b>`_
+4. `Cockroach <https://www.codewars.com/kata/55fab1ffda3e2e44f00000c6>`_
+5. `Terminal game move function <https://www.codewars.com/kata/563a631f7cbbc236cf0000c2>`_
+6. `Pillars <https://www.codewars.com/kata/5bb0c58f484fcd170700063d>`_
+7. `Opposite number <https://www.codewars.com/kata/56dec885c54a926dcd001095>`_
+8. `Clock <https://www.codewars.com/kata/55f9bca8ecaa9eac7100004a>`_
+9. `Exclusive "or" (xor) Logical Operator <https://www.codewars.com/kata/56fa3c5ce4d45d2a52001b3c>`_
+10. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
+11. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
+12. `USD => CNY <https://www.codewars.com/kata/5977618080ef220766000022>`_
+13. `Third angle of a triangle <https://www.codewars.com/kata/5a023c426975981341000014>`_
+14. `Keep hydrated! <https://www.codewars.com/kata/582cb0224e56e068d800003c>`_
+15. `Price of mangoes <https://www.codewars.com/kata/57a77726bb9944d000000b06>`_
+16. `Total pressure calculation <https://www.codewars.com/kata/5b7ea71db90cc0f17c000a5a>`_
+17. `NBA full 48 minutes average <https://www.codewars.com/kata/587c2d08bb65b5e8040004fd>`_
+18. `Age range compatibility equation <https://www.codewars.com/kata/5803956ddb07c5c74200144e>`_
+19. `Formatting decimal places <https://www.codewars.com/kata/5641a03210e973055a00000d>`_
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `The Python Square Root Function <https://realpython.com/python-square-root-function/>`_
