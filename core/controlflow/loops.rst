@@ -661,11 +661,35 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     5|5 5|6
     6|6
 
-11. Escriba un programa que calcule el valor de :math:`x` para el que la función :math:`f(x) = x^2 - 6x + 3` obtiene su menor resultado. Centre la búsqueda en el rango :math:`[-9, 9]` sólo con valores enteros. 
+11. Escriba un programa que calcule el valor de :math:`x` para el que la función :math:`f(x) = x^2 - 6x + 3` obtiene su menor resultado. Centre la búsqueda en el rango :math:`[-9, 9]` sólo con valores enteros (:download:`solución <files/fmin.py>`). 
 
 El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 
 .. image:: img/fmin.png
+
+12. Escriba un programa que muestre (por filas) la `Tabla ASCII`_, empezando con el código 33 y terminando con el 127 (:download:`solución <files/ascii_table.py>`):
+
+.. code-block::
+
+    033 !   034 "   035 #   036 $   037 %
+    038 &   039 '   040 (   041 )   042 *
+    043 +   044 ,   045 -   046 .   047 /
+    048 0   049 1   050 2   051 3   052 4
+    053 5   054 6   055 7   056 8   057 9
+    058 :   059 ;   060 <   061 =   062 >
+    063 ?   064 @   065 A   066 B   067 C
+    068 D   069 E   070 F   071 G   072 H
+    073 I   074 J   075 K   076 L   077 M
+    078 N   079 O   080 P   081 Q   082 R
+    083 S   084 T   085 U   086 V   087 W
+    088 X   089 Y   090 Z   091 [   092 \
+    093 ]   094 ^   095 _   096 `   097 a
+    098 b   099 c   100 d   101 e   102 f
+    103 g   104 h   105 i   106 j   107 k
+    108 l   109 m   110 n   111 o   112 p
+    113 q   114 r   115 s   116 t   117 u
+    118 v   119 w   120 x   121 y   122 z
+    123 {   124 |   125 }   126 ~   127 
 
 .. rubric:: EJERCICIOS EXTERNOS
 
@@ -703,3 +727,4 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 .. _número primo: https://es.wikipedia.org/wiki/N%C3%BAmero_primo
 .. _distancia hamming: https://es.wikipedia.org/wiki/Distancia_de_Hamming
 .. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
+.. _Tabla ASCII: https://www.asciitable.com/

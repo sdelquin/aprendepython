@@ -804,6 +804,9 @@ El modificador ``\N`` permite representar un carácter **a partir de su nombre**
     >>> '\N{ROCKET}'
     '🚀' 
 
+.. seealso::
+    `Tabla ASCII`_
+
 ************
 Casos de uso
 ************
@@ -991,3 +994,4 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
 .. _dígito de control: https://www.interior.gob.es/opencms/ca/servicios-al-ciudadano/tramites-y-gestiones/dni/calculo-del-digito-de-control-del-nif-nie/
 .. _Markdown: https://markdown.es/
+.. _Tabla ASCII: https://www.asciitable.com/
