@@ -691,6 +691,19 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
     118 v   119 w   120 x   121 y   122 z
     123 {   124 |   125 }   126 ~   127 
 
+13. Escriba un programa que permita al usuario adivinar un número. Indicar si el número buscado es menor o mayor que el que se está preguntando y mostrar igualmente el número de intentos hasta encontrar el número objetivo (:download:`solución <files/guess_number.py>`):
+
+.. code-block::
+
+    Introduzca número: 50
+    Mayor
+    Introduzca número: 100
+    Menor
+    Introduzca número: 90
+    Menor
+    Introduzca número: 87
+    ✅ ¡Enhorabuena! Has encontrado el número en 4 intentos
+
 .. rubric:: EJERCICIOS EXTERNOS
 
 1. `Summation <https://www.codewars.com/kata/55d24f55d7dd296eb9000030>`_
