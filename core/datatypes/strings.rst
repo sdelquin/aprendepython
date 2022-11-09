@@ -777,9 +777,9 @@ A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variab
 Caracteres Unicode
 ******************
 
-Python trabaja *por defecto* con caracteres **Unicode**. Eso significa que tenemos acceso a la `amplia carta de caracteres <https://www.unicode.org/charts/>`_ que nos ofrece este estándar de codificación.
+Python trabaja *por defecto* con caracteres **Unicode**. Eso significa que tenemos acceso a la `amplia carta de caracteres <https://unicode-table.com/en/blocks/>`_ que nos ofrece este estándar de codificación.
 
-Supongamos un ejemplo sobre el típico "emoji" de un **cohete** definido `en este cuadro <https://www.unicode.org/charts/PDF/U1F680.pdf>`_:
+Supongamos un ejemplo sobre el típico "emoji" de un **cohete** definido `en este cuadro <https://unicode-table.com/en/1F680/>`_:
 
 .. figure:: img/rocket-unicode.png
     :align: center
