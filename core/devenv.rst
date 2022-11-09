@@ -8,4 +8,5 @@ Para poder utilizar Python debemos preparar nuestra máquina con las herramienta
 
     devenv/thonny
     devenv/real-context
+    devenv/vscode
 
