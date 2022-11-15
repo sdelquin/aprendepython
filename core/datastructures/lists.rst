@@ -640,6 +640,11 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 
 .. note:: También es posible usar la sentencia ``break`` en este tipo de bucles para abortar su ejecución en algún momento que nos interese.
 
+.. admonition:: Ejercicio
+    :class: exercise
+
+    ``$ pycheck chars_list.py -g``
+
 Iterar usando enumeración
 -------------------------
 
