@@ -62,7 +62,7 @@ La manera más sencilla de `crear un entorno virtual`_ es la siguiente:
     :linenos:
 
     $ cd myproject
-    $ python3 -m venv .venv
+    $ python -m venv --prompt myproject .venv
     $ source .venv/bin/activate
 
 - *Línea 1*: Entrar en la carpeta de nuestro proyecto.

@@ -234,7 +234,7 @@ La estructura que suele tener este *programa principal* es la siguiente::
 
 .. important:: Si queremos ejecutar este fichero ``main.py`` desde línea de comandos, tendríamos que hacer::
 
-        $ python3 main.py
+        $ python main.py
 
 ``if __name__ == '__main__'``
 =============================
@@ -259,7 +259,7 @@ Esta condición permite, en el programa principal, diferenciar qué codigo se la
     * **Línea 9**: esta condición **no** se cumple, ya que estamos importando y la variable especial ``__name__`` no toma ese valor. Con lo cual finaliza la ejecución.
     * *No hay salida por pantalla*.
 
-``$ python3 hello.py``
+``$ python hello.py``
     El código se ejecuta siempre desde la primera instrucción a la última:
 
     * **Línea 1**: se importa el módulo ``blabla``.

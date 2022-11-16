@@ -39,8 +39,8 @@ Ejemplos de ejecución
 
 .. code-block:: console
 
-    $ python3 mod_bpm.py 10   # increase songs in 10bpm
-    $ python3 mod_bpm.py -25  # decrease songs in 25bpm
+    $ python mod_bpm.py 10   # increase songs in 10bpm
+    $ python mod_bpm.py -25  # decrease songs in 25bpm
 
 ********************
 Código a implementar

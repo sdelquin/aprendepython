@@ -725,11 +725,11 @@ Dado que ``zip()`` produce un *iterador*, si queremos obtener una **lista explí
 
         * Salida: ``101``
 
-        :math:`v1 \times v2 = [4 \cdot 9 + 3 \cdot 2 + 8 \cdot 7 + 1 \cdot 3] = 101`
+        :math:`v1 \cdot v2 = [4 \cdot 9 + 3 \cdot 2 + 8 \cdot 7 + 1 \cdot 3] = 101`
     
     .. only:: html
     
-        |solution| :download:`vect_prod.py <files/scalar_prod.py>`
+        |solution| :download:`scalar_prod.py <files/scalar_prod.py>`
 
 **********************
 Cuidado con las copias
@@ -1019,7 +1019,7 @@ Python nos ofrece, entre otras [#more-math]_, estas tres funciones matemáticas 
 
     La llamada se haría de la siguiente manera::
 
-        $ python3 avg.py 32 56 21 99 12 17
+        $ python avg.py 32 56 21 99 12 17
 
     Plantilla de código para el programa::
 
