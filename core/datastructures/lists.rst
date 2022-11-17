@@ -901,6 +901,12 @@ Ahora veamos el código utilizando una **lista por comprensión**::
     >>> int_values
     [32, 45, 11, 87, 20, 48]
 
+.. figure:: img/list-comprehensions-transformation.jpg
+    :align: center
+
+    Transformación de estructura clásica en lista por comprensión
+
+
 Condiciones en comprensiones
 ============================
 
