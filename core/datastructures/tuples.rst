@@ -53,6 +53,9 @@ Según el caso, hay veces que nos podemos encontrar con tuplas que no llevan par
 
     >>> tenerife_geoloc = 28.46824, -16.25462
 
+.. warning::
+    Aunque está permitido, **NUNCA** llames ``tuple`` a una variable porque destruirías la función que nos permite crear tuplas. Y tampoco uses nombres derivados como ``_tuple`` o ``tuple_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
+
 *******************
 Modificar una tupla
 *******************

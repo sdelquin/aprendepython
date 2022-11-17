@@ -34,15 +34,17 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="425" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_list%20%3D%20%5B%5D%0A%0Alanguages%20%3D%20%5B'Python',%20'Ruby',%20'Javascript'%5D%0A%0Afibonacci%20%3D%20%5B0,%201,%201,%202,%203,%205,%208,%2013%5D%0A%0Adata%20%3D%20%5B'Tenerife',%20%7B'cielo'%3A%20'limpio',%20'temp'%3A%2024%7D,%203718,%20%2828.2933947,%20-16.5226597%29%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
+.. warning::
+    Aunque está permitido, **NUNCA** llames ``list`` a una variable porque destruirías la función que nos permite crear listas. Y tampoco uses nombres derivados como ``_list`` o ``list_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
 
-    .. admonition:: Ejercicio
-        :class: exercise
+.. admonition:: Ejercicio
+    :class: exercise
+
+    Cree una lista con las 5 ciudades que más le gusten.
+
+    .. only:: html
     
-        Cree una lista con las 5 ciudades que más le gusten.
-
-        .. only:: html
-        
-            |solution| :download:`love_cities.py <files/love_cities.py>`
+        |solution| :download:`love_cities.py <files/love_cities.py>`
 
 **********
 Conversión

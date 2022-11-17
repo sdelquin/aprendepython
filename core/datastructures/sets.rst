@@ -36,6 +36,9 @@ La única opción que tenemos es utilizar la función ``set()``::
     >>> type(empty_set)
     set
 
+.. warning::
+    Aunque está permitido, **NUNCA** llames ``set`` a una variable porque destruirías la función que nos permite crear conjuntos. Y tampoco uses nombres derivados como ``_set`` o ``set_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
+
 **********
 Conversión
 **********
