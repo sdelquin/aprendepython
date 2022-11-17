@@ -337,6 +337,35 @@ Hemos ido usando una serie de :ref:`funciones <core/modularity/functions:Funcion
 
 Los detalles de estas funciones se puede consultar en la `documentación oficial de Python <https://docs.python.org/es/3/library/functions.html?highlight=built>`_.
 
+**************
+Pidiendo ayuda
+**************
+
+En Python podemos pedir ayuda con la función ``help()``.
+
+Supongamos que queremos obtener información sobre ``id``. Desde el intérprete de Python ejecutamos lo siguiente::
+
+    >>> help(id)
+    Help on built-in function id in module builtins:
+
+    id(obj, /)
+        Return the identity of an object.
+
+        This is guaranteed to be unique among simultaneously existing objects.
+        (CPython uses the object's memory address.)
+
+Existe una *forma alternativa* de obtener ayuda: añadiendo el signo de interrogación ``?`` al término de búsqueda::
+
+    >>> id?
+    Signature: id(obj, /)
+    Docstring:
+    Return the identity of an object.
+
+    This is guaranteed to be unique among simultaneously existing objects.
+    (CPython uses the object's memory address.)
+    Type:      builtin_function_or_method
+
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Basic Data Types in Python <https://realpython.com/courses/python-data-types/>`_
