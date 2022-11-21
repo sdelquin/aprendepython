@@ -219,6 +219,8 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
     
         |solution| :download:`calc.py <files/calc.py>`
     
+.. warning::
+    Aunque está permitido, **NUNCA** llames ``input`` a una variable porque destruirías la función que nos permite leer datos desde teclado. Y tampoco uses nombres derivados como ``_input`` o ``input_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
 
 *************************
 Operaciones con "strings"

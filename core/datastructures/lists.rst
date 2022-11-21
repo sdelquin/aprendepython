@@ -643,9 +643,8 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 .. note:: También es posible usar la sentencia ``break`` en este tipo de bucles para abortar su ejecución en algún momento que nos interese.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    ``$ pycheck chars_list.py -g``
+    ``$ pycheck -t chars_list.py``
 
 Iterar usando enumeración
 -------------------------
@@ -674,6 +673,9 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     .. raw:: html
 
         <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=shopping%20%3D%20%5B'Agua',%20'Huevos',%20'Aceite',%20'Sal',%20'Lim%C3%B3n'%5D%0A%0Afor%20i,%20product%20in%20enumerate%28shopping%29%3A%0A%20%20%20%20print%28i,%20product%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+.. tip::
+    Es posible utilizar el parámetro ``start`` con ``enumerate()`` para indicar el índice en el que queremos comenzar. Por defecto es 0.
 
 Iterar sobre múltiples listas
 -----------------------------
@@ -799,6 +801,18 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     .. raw:: html
 
         <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list.copy%28%29%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+Existe **otra aproximación** a este problema, y es utilizar un :ref:`troceado <core/datastructures/lists:trocear una lista>` completo de la lista, lo que nos devuelve una "copia desvinculada" de manera implícita:
+
+.. code-block::
+    :emphasize-lines: 3
+
+    >>> original_list = [4, 3, 7, 1]
+
+    >>> copy_list = original_list[:]
+
+    >>> id(original_list) != id(copy_list)
+    True
 
 .. tip:: En el caso de que estemos trabajando con listas que contienen elementos mutables, debemos hacer uso de la función ``deepcopy()`` dentro del módulo ``copy`` de la librería estándar.
 
