@@ -225,30 +225,8 @@ Hecho en Python::
     2.0
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Una ecuación de segundo grado se define como :math:`ax^2 + bx + c = 0`, y (en determinados casos) tiene dos soluciones:
-
-    .. math::
-
-        x_1 = \frac{-b + \sqrt{b^2 - 4ac}}{2a}
-
-        x_2 = \frac{-b - \sqrt{b^2 - 4ac}}{2a}
-
-    Dados los coeficientes ``a=4``, ``b=-6`` y ``c=2`` calcule sus dos soluciones. Tenga en cuenta subdividir los cálculos y reutilizar variables (por ejemplo el `discriminante`_).
-
-    La solución para los valores anteriores es:
-
-    - ``x1 = 1``
-    - ``x2 = 0.5``
-
-    Recuerde que la **raíz cuadrada** se puede calcular como la exponenciación a :math:`\frac{1}{2}`.
-
-    Puede comprobar los resultados para otros valores de entrada con esta `aplicación para resolver ecuaciones cuadráticas <https://www.mathsisfun.com/quadratic-equation-solver.html>`_.
-
-    .. only:: html
-    
-        |solution| :download:`quadratic.py <files/quadratic.py>`
+    ``$ pycheck -t quadratic.py``
 
 Valor absoluto
 --------------
@@ -416,25 +394,8 @@ Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable
     True
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Existe una aproximación al seno de un ángulo :math:`x` expresado en *grados*:
-
-    .. math:: 
-        sin(x) \approx \frac{4x(180 - x)}{40500 - x(180 - x)}
-
-    Calcule dicha aproximación utilizando operaciones en Python. Descomponga la expresión en subcálculos almacenados en variables. Tenga en cuenta aquellas expresiones comunes para no repetir cálculos y seguir el `principio DRY`_.
-
-    ¿Qué tal funciona la aproximación? Compare sus resultados con estos:
-
-    - :math:`sin(90) = 1.0`
-    - :math:`sin(45) = 0.7071067811865475`
-    - :math:`sin(50) = 0.766044443118978`
-
-    .. only:: html
-    
-        |solution| :download:`sin_approx.py <files/sin_approx.py>`
-
+    ``$ pycheck -t sin_approx.py``
 
 Errores de aproximación
 =======================
@@ -560,47 +521,33 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que acepte el radio de un círculo y compute su área (:download:`solución <files/circle_area.py>`).
-    - Entrada: ``5``
-    - Salida: ``78.5``
-
-2. Escriba un programa en Python que acepte el radio de una esfera y obtenga su volumen (:download:`solución <files/sphere_volume.py>`).
-    - Entrada: ``5``
-    - Salida: ``523.3333333333334``
-
-3. Escriba un programa en Python que acepte la base y la altura de un triángulo y compute su área (:download:`solución <files/triangle_area.py>`).
-    - Entrada: ``base=4; height=5``
-    - Salida: ``10.0``
-
-4. Escriba un programa en Python que compute el futuro valor de una cantidad de dinero (capital final), a partir del capital inicial, el tipo de interés y el número de años. Fórmula del interés compuesto: :math:`C_f = C_i (1 + i)^n` (:download:`solución <files/interest_rate.py>`).
-    - Entrada: ``capital=10000; interest_rate=3.5; years=7``
-    - Salida: ``12722.792627665729``
-
-5. Escriba un programa en Python que calcule la distancia euclídea entre dos puntos :math:`(x_1, y_1)` y :math:`(x_2, y_2)` (:download:`solución <files/euclid_distance.py>`).
-    - Entrada: :math:`(x_1=3, y_1=5)`; :math:`(x_2=-7, y_2=-4)` 
-    - Salida: ``13.45362404707371``
+1. ``pycheck -t circle_area.py``
+2. ``pycheck -t sphere_volume.py``
+3. ``pycheck -t triangle_area.py``
+4. ``pycheck -t interest_rate.py``
+5. ``pycheck -t euclid_distance.py``
+6. ``pycheck -t century_year.py``
+7. ``pycheck -t red_square.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 
-1. `Century from year <https://www.codewars.com/kata/5a3fe3dde1ce0e8ed6000097>`_
-2. `Area of a Square <https://www.codewars.com/kata/5748838ce2fab90b86001b1a>`_
-3. `Calculate price excluding VAT <https://www.codewars.com/kata/5890d8bc9f0f422cf200006b>`_
-4. `Cockroach <https://www.codewars.com/kata/55fab1ffda3e2e44f00000c6>`_
-5. `Terminal game move function <https://www.codewars.com/kata/563a631f7cbbc236cf0000c2>`_
-6. `Pillars <https://www.codewars.com/kata/5bb0c58f484fcd170700063d>`_
-7. `Opposite number <https://www.codewars.com/kata/56dec885c54a926dcd001095>`_
-8. `Clock <https://www.codewars.com/kata/55f9bca8ecaa9eac7100004a>`_
-9. `Exclusive "or" (xor) Logical Operator <https://www.codewars.com/kata/56fa3c5ce4d45d2a52001b3c>`_
-10. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
-11. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
-12. `USD => CNY <https://www.codewars.com/kata/5977618080ef220766000022>`_
-13. `Third angle of a triangle <https://www.codewars.com/kata/5a023c426975981341000014>`_
-14. `Keep hydrated! <https://www.codewars.com/kata/582cb0224e56e068d800003c>`_
-15. `Price of mangoes <https://www.codewars.com/kata/57a77726bb9944d000000b06>`_
-16. `Total pressure calculation <https://www.codewars.com/kata/5b7ea71db90cc0f17c000a5a>`_
-17. `NBA full 48 minutes average <https://www.codewars.com/kata/587c2d08bb65b5e8040004fd>`_
-18. `Age range compatibility equation <https://www.codewars.com/kata/5803956ddb07c5c74200144e>`_
-19. `Formatting decimal places <https://www.codewars.com/kata/5641a03210e973055a00000d>`_
+1. `Calculate price excluding VAT <https://www.codewars.com/kata/5890d8bc9f0f422cf200006b>`_
+2. `Cockroach <https://www.codewars.com/kata/55fab1ffda3e2e44f00000c6>`_
+3. `Terminal game move function <https://www.codewars.com/kata/563a631f7cbbc236cf0000c2>`_
+4. `Pillars <https://www.codewars.com/kata/5bb0c58f484fcd170700063d>`_
+5. `Opposite number <https://www.codewars.com/kata/56dec885c54a926dcd001095>`_
+6. `Clock <https://www.codewars.com/kata/55f9bca8ecaa9eac7100004a>`_
+7. `Exclusive "or" (xor) Logical Operator <https://www.codewars.com/kata/56fa3c5ce4d45d2a52001b3c>`_
+8. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
+9. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
+10. `USD => CNY <https://www.codewars.com/kata/5977618080ef220766000022>`_
+11. `Third angle of a triangle <https://www.codewars.com/kata/5a023c426975981341000014>`_
+12. `Keep hydrated! <https://www.codewars.com/kata/582cb0224e56e068d800003c>`_
+13. `Price of mangoes <https://www.codewars.com/kata/57a77726bb9944d000000b06>`_
+14. `Total pressure calculation <https://www.codewars.com/kata/5b7ea71db90cc0f17c000a5a>`_
+15. `NBA full 48 minutes average <https://www.codewars.com/kata/587c2d08bb65b5e8040004fd>`_
+16. `Age range compatibility equation <https://www.codewars.com/kata/5803956ddb07c5c74200144e>`_
+17. `Formatting decimal places <https://www.codewars.com/kata/5641a03210e973055a00000d>`_
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

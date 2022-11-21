@@ -689,6 +689,8 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
     - Entrada: ``edad=34; peso=81; heartbeat=70; plaquetas=150000``
     - Salida: ``Apto para donar sangre``
 
+6. ``pycheck -t red_square.py``
+
 .. rubric:: EJERCICIOS EXTERNOS
 
 1. `Return the day <https://www.codewars.com/kata/59dd3ccdded72fc78b000b25>`_
