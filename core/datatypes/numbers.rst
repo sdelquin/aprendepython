@@ -532,12 +532,11 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 9. ``pycheck -t super_fast.py``
 10. ``pycheck -t move_twice.py``
 11. ``pycheck -t pillars.py``
+12. ``pycheck -t clock_time.py``
+13. ``pycheck -t xor.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 
-5. `Opposite number <https://www.codewars.com/kata/56dec885c54a926dcd001095>`_
-6. `Clock <https://www.codewars.com/kata/55f9bca8ecaa9eac7100004a>`_
-7. `Exclusive "or" (xor) Logical Operator <https://www.codewars.com/kata/56fa3c5ce4d45d2a52001b3c>`_
 8. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
 9. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
 10. `USD => CNY <https://www.codewars.com/kata/5977618080ef220766000022>`_
