@@ -644,7 +644,7 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 
 .. admonition:: Ejercicio
 
-    ``$ pycheck -t chars_list.py``
+    ``pycheck show chars_list.py``
 
 Iterar usando enumeración
 -------------------------
