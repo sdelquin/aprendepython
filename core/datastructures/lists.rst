@@ -1152,64 +1152,46 @@ Podemos comprobar el acceso a distintos elementos::
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que acepte una lista de valores numéricos y obtenga su valor máximo **sin utilizar** la función "built-in" ``max()`` (:download:`solución <files/max_value.py>`).
-    - Entrada: ``[6, 3, 9, 2, 10, 31, 15, 7]``
-    - Salida: ``31``
-
-2. Escriba un programa en Python que acepte una lista y elimine sus elementos duplicados (:download:`solución <files/drop_dups.py>`).
-    - Entrada: ``['this', 'is', 'a', 'real', 'real', 'real', 'story']``
-    - Salida: ``['this', 'is', 'a', 'real', 'story']``
-
-3. Escriba un programa en Python que acepte una lista -- que puede contener sublistas (sólo en 1 nivel de anidamiento) -- y genere otra lista "aplanada" (:download:`solución <files/flatten_list.py>`).
-    - Entrada: ``[0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]``
-    - Salida: ``[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]``
-
-4. Escriba un programa en Python que acepte una lista y genere otra lista eliminando los elementos duplicados consecutivos (:download:`solución <files/drop_consecutive_dups.py>`).
-    - Entrada: ``[0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]``
-    - Salida: ``[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]``
-
-5. Escriba un programa en Python que acepte una lista de valores numéricos y devuelva ``Iguales`` si todos los valores son iguales o ``Distintos`` en otro caso.
-    - Entrada: ``[1, 1, 1, 1, 1, 1, 1]``
-    - Salida: ``Iguales``
-
-6. Escriba un programa en Python que acepte una lista de listas representando una matriz numérica y compute la suma de los elementos de la diagonal principal (:download:`solución <files/sum_diagonal.py>`).
-    - Entrada: ``[[4, 6, 1], [2, 9, 3], [1, 7, 7]]``
-    - Salida: ``20``
+1. ``pycheck show max_value.py``
+2. ``pycheck show remove_dups.py``
+3. ``pycheck show flatten_list.py``
+4. ``pycheck show remove_consecutive_dups.py``
+5. ``pycheck show all_same.py``
+6. ``pycheck show sum_diagonal.py``
+7. ``pycheck show powers2.py``
+8. ``pycheck show dec2bin.py``
+9. ``pycheck show sum_mixed.py``
+10. ``pycheck show n_mult.py``
+11. ``pycheck show remove_second.py``
+12. ``pycheck show nth_power.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 
-1. `Powers of 2 <https://www.codewars.com/kata/57a083a57cb1f31db7000028>`_
-2. `Convert to binary <https://www.codewars.com/kata/59fca81a5712f9fa4700159a>`_
-3. `Removing elements <https://www.codewars.com/kata/5769b3802ae6f8e4890009d2>`_
-4. `Abbreviate a two word name <https://www.codewars.com/kata/57eadb7ecd143f4c9c0000a3>`_
-5. `Find the first non-consecutive number <https://www.codewars.com/kata/58f8a3a27a5c28d92e000144>`_
-6. `Remove duplicates from list <https://www.codewars.com/kata/57a5b0dfcf1fa526bb000118>`_
-7. `N-th Power <https://www.codewars.com/kata/57d814e4950d8489720008db>`_
-8. `Beginner - Reduce but Grow <https://www.codewars.com/kata/57f780909f7e8e3183000078>`_
-9. `Count by X <https://www.codewars.com/kata/5513795bd3fafb56c200049e>`_
-10. `Convert number to reversed array of digits <https://www.codewars.com/kata/5583090cbe83f4fd8c000051>`_
-11. `Sum of positive <https://www.codewars.com/kata/5715eaedb436cf5606000381>`_
-12. `Invert values <https://www.codewars.com/kata/5899dc03bc95b1bf1b0000ad>`_
-13. `Reversed sequence <https://www.codewars.com/kata/5a00e05cc374cb34d100000d>`_
-14. `Sum mixed array <https://www.codewars.com/kata/57eaeb9578748ff92a000009>`_
-15. `Merge two sorted arrays into one <https://www.codewars.com/kata/5899642f6e1b25935d000161>`_
-16. `Find the smallest integer in the array <https://www.codewars.com/kata/55a2d7ebe362935a210000b2>`_
-17. `Sum without highest and lowest number <https://www.codewars.com/kata/576b93db1129fcf2200001e6>`_
-18. `A wolf in sheep's clothing <https://www.codewars.com/kata/5c8bfa44b9d1192e1ebd3d15>`_
-19. `Find maximum and minimum values of a list <https://www.codewars.com/kata/577a98a6ae28071780000989>`_
-20. `How many stairs will Suzuki climb in 20 years? <https://www.codewars.com/kata/56fc55cd1f5a93d68a001d4e>`_
-21. `Cascading subsets <https://www.codewars.com/kata/545af3d185166a3dec001190>`_
-22. `Difference of volumes of cuboids <https://www.codewars.com/kata/58cb43f4256836ed95000f97>`_
-23. `Remove first and last character part two <https://www.codewars.com/kata/570597e258b58f6edc00230d>`_
-24. `Logical calculator <https://www.codewars.com/kata/57096af70dad013aa200007b>`_
-25. `Smallest unused ID <https://www.codewars.com/kata/55eea63119278d571d00006a>`_
-26. `Are arrow functions odd? <https://www.codewars.com/kata/559f80b87fa8512e3e0000f5>`_
-27. `Reagent formula <https://www.codewars.com/kata/59c8b38423dacc7d95000008>`_
-28. `What's up next? <https://www.codewars.com/kata/542ebbdb494db239f8000046>`_
-29. `Split that array! <https://www.codewars.com/kata/545b342082e55dc9da000051>`_
-30. `Add length <https://www.codewars.com/kata/559d2284b5bb6799e9000047>`_
-31. `Reversing words in a string <https://www.codewars.com/kata/57a55c8b72292d057b000594>`_
-32. `Localize The barycenter of a triangle <https://www.codewars.com/kata/5601c5f6ba804403c7000004>`_
+- `Abbreviate a two word name <https://www.codewars.com/kata/57eadb7ecd143f4c9c0000a3>`_
+- `Find the first non-consecutive number <https://www.codewars.com/kata/58f8a3a27a5c28d92e000144>`_
+- `Beginner - Reduce but Grow <https://www.codewars.com/kata/57f780909f7e8e3183000078>`_
+- `Convert number to reversed array of digits <https://www.codewars.com/kata/5583090cbe83f4fd8c000051>`_
+- `Sum of positive <https://www.codewars.com/kata/5715eaedb436cf5606000381>`_
+- `Invert values <https://www.codewars.com/kata/5899dc03bc95b1bf1b0000ad>`_
+- `Reversed sequence <https://www.codewars.com/kata/5a00e05cc374cb34d100000d>`_
+- `Merge two sorted arrays into one <https://www.codewars.com/kata/5899642f6e1b25935d000161>`_
+- `Find the smallest integer in the array <https://www.codewars.com/kata/55a2d7ebe362935a210000b2>`_
+- `Sum without highest and lowest number <https://www.codewars.com/kata/576b93db1129fcf2200001e6>`_
+- `A wolf in sheep's clothing <https://www.codewars.com/kata/5c8bfa44b9d1192e1ebd3d15>`_
+- `Find maximum and minimum values of a list <https://www.codewars.com/kata/577a98a6ae28071780000989>`_
+- `How many stairs will Suzuki climb in 20 years? <https://www.codewars.com/kata/56fc55cd1f5a93d68a001d4e>`_
+- `Cascading subsets <https://www.codewars.com/kata/545af3d185166a3dec001190>`_
+- `Difference of volumes of cuboids <https://www.codewars.com/kata/58cb43f4256836ed95000f97>`_
+- `Remove first and last character part two <https://www.codewars.com/kata/570597e258b58f6edc00230d>`_
+- `Logical calculator <https://www.codewars.com/kata/57096af70dad013aa200007b>`_
+- `Smallest unused ID <https://www.codewars.com/kata/55eea63119278d571d00006a>`_
+- `Are arrow functions odd? <https://www.codewars.com/kata/559f80b87fa8512e3e0000f5>`_
+- `Reagent formula <https://www.codewars.com/kata/59c8b38423dacc7d95000008>`_
+- `What's up next? <https://www.codewars.com/kata/542ebbdb494db239f8000046>`_
+- `Split that array! <https://www.codewars.com/kata/545b342082e55dc9da000051>`_
+- `Add length <https://www.codewars.com/kata/559d2284b5bb6799e9000047>`_
+- `Reversing words in a string <https://www.codewars.com/kata/57a55c8b72292d057b000594>`_
+- `Localize The barycenter of a triangle <https://www.codewars.com/kata/5601c5f6ba804403c7000004>`_
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
