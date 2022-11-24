@@ -1173,17 +1173,16 @@ Podemos comprobar el acceso a distintos elementos::
 19. ``pycheck template add_inverse.py``
 20. ``pycheck template descending_numbers.py``
 21. ``pycheck template merge_sorted.py``
+22. ``pycheck template min_value.py``
+23. ``pycheck template trimmed_sum.py``
+24. ``pycheck template wolves.py``
+25. ``pycheck template maxmin_values.py``
+26. ``pycheck template cascading.py``
+27. ``pycheck template diff_cuboid.py``
+28. ``pycheck template fl_strip.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 
-- `Find the smallest integer in the array <https://www.codewars.com/kata/55a2d7ebe362935a210000b2>`_
-- `Sum without highest and lowest number <https://www.codewars.com/kata/576b93db1129fcf2200001e6>`_
-- `A wolf in sheep's clothing <https://www.codewars.com/kata/5c8bfa44b9d1192e1ebd3d15>`_
-- `Find maximum and minimum values of a list <https://www.codewars.com/kata/577a98a6ae28071780000989>`_
-- `How many stairs will Suzuki climb in 20 years? <https://www.codewars.com/kata/56fc55cd1f5a93d68a001d4e>`_
-- `Cascading subsets <https://www.codewars.com/kata/545af3d185166a3dec001190>`_
-- `Difference of volumes of cuboids <https://www.codewars.com/kata/58cb43f4256836ed95000f97>`_
-- `Remove first and last character part two <https://www.codewars.com/kata/570597e258b58f6edc00230d>`_
 - `Logical calculator <https://www.codewars.com/kata/57096af70dad013aa200007b>`_
 - `Smallest unused ID <https://www.codewars.com/kata/55eea63119278d571d00006a>`_
 - `Are arrow functions odd? <https://www.codewars.com/kata/559f80b87fa8512e3e0000f5>`_
