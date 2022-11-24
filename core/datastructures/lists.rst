@@ -1164,17 +1164,18 @@ Podemos comprobar el acceso a distintos elementos::
 10. ``pycheck template n_mult.py``
 11. ``pycheck template remove_second.py``
 12. ``pycheck template nth_power.py``
+13. ``pycheck template name_initials.py``
+14. ``pycheck template non_consecutive.py``
+15. ``pycheck template mult_reduce.py``
+16. ``pycheck template digit_rev_list.py``
+17. ``pycheck template time_plus_minutes.py``
+18. ``pycheck template sum_positive.py``
+19. ``pycheck template add_inverse.py``
+20. ``pycheck template descending_numbers.py``
+21. ``pycheck template merge_sorted.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 
-- `Abbreviate a two word name <https://www.codewars.com/kata/57eadb7ecd143f4c9c0000a3>`_
-- `Find the first non-consecutive number <https://www.codewars.com/kata/58f8a3a27a5c28d92e000144>`_
-- `Beginner - Reduce but Grow <https://www.codewars.com/kata/57f780909f7e8e3183000078>`_
-- `Convert number to reversed array of digits <https://www.codewars.com/kata/5583090cbe83f4fd8c000051>`_
-- `Sum of positive <https://www.codewars.com/kata/5715eaedb436cf5606000381>`_
-- `Invert values <https://www.codewars.com/kata/5899dc03bc95b1bf1b0000ad>`_
-- `Reversed sequence <https://www.codewars.com/kata/5a00e05cc374cb34d100000d>`_
-- `Merge two sorted arrays into one <https://www.codewars.com/kata/5899642f6e1b25935d000161>`_
 - `Find the smallest integer in the array <https://www.codewars.com/kata/55a2d7ebe362935a210000b2>`_
 - `Sum without highest and lowest number <https://www.codewars.com/kata/576b93db1129fcf2200001e6>`_
 - `A wolf in sheep's clothing <https://www.codewars.com/kata/5c8bfa44b9d1192e1ebd3d15>`_
