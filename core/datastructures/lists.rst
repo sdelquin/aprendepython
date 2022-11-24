@@ -644,7 +644,7 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 
 .. admonition:: Ejercicio
 
-    ``pycheck show chars_list.py``
+    ``pycheck template chars_list.py``
 
 Iterar usando enumeración
 -------------------------
@@ -1152,18 +1152,18 @@ Podemos comprobar el acceso a distintos elementos::
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck show max_value.py``
-2. ``pycheck show remove_dups.py``
-3. ``pycheck show flatten_list.py``
-4. ``pycheck show remove_consecutive_dups.py``
-5. ``pycheck show all_same.py``
-6. ``pycheck show sum_diagonal.py``
-7. ``pycheck show powers2.py``
-8. ``pycheck show dec2bin.py``
-9. ``pycheck show sum_mixed.py``
-10. ``pycheck show n_mult.py``
-11. ``pycheck show remove_second.py``
-12. ``pycheck show nth_power.py``
+1. ``pycheck template max_value.py``
+2. ``pycheck template remove_dups.py``
+3. ``pycheck template flatten_list.py``
+4. ``pycheck template remove_consecutive_dups.py``
+5. ``pycheck template all_same.py``
+6. ``pycheck template sum_diagonal.py``
+7. ``pycheck template powers2.py``
+8. ``pycheck template dec2bin.py``
+9. ``pycheck template sum_mixed.py``
+10. ``pycheck template n_mult.py``
+11. ``pycheck template remove_second.py``
+12. ``pycheck template nth_power.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 

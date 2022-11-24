@@ -226,7 +226,7 @@ Hecho en Python::
 
 .. admonition:: Ejercicio
 
-    ``pycheck show quadratic.py``
+    ``pycheck template quadratic.py``
 
 Valor absoluto
 --------------
@@ -395,7 +395,7 @@ Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable
 
 .. admonition:: Ejercicio
 
-    ``pycheck show sin_approx.py``
+    ``pycheck template sin_approx.py``
 
 Errores de aproximación
 =======================
@@ -521,19 +521,19 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck show circle_area.py``
-2. ``pycheck show sphere_volume.py``
-3. ``pycheck show triangle_area.py``
-4. ``pycheck show interest_rate.py``
-5. ``pycheck show euclid_distance.py``
-6. ``pycheck show century_year.py``
-7. ``pycheck show red_square.py``
-8. ``pycheck show igic.py``
-9. ``pycheck show super_fast.py``
-10. ``pycheck show move_twice.py``
-11. ``pycheck show pillars.py``
-12. ``pycheck show clock_time.py``
-13. ``pycheck show xor.py``
+1. ``pycheck template circle_area.py``
+2. ``pycheck template sphere_volume.py``
+3. ``pycheck template triangle_area.py``
+4. ``pycheck template interest_rate.py``
+5. ``pycheck template euclid_distance.py``
+6. ``pycheck template century_year.py``
+7. ``pycheck template red_square.py``
+8. ``pycheck template igic.py``
+9. ``pycheck template super_fast.py``
+10. ``pycheck template move_twice.py``
+11. ``pycheck template pillars.py``
+12. ``pycheck template clock_time.py``
+13. ``pycheck template xor.py``
 
 .. rubric:: EJERCICIOS EXTERNOS
 
