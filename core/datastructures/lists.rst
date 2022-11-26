@@ -1180,18 +1180,15 @@ Podemos comprobar el acceso a distintos elementos::
 26. ``pycheck template cascading.py``
 27. ``pycheck template diff_cuboid.py``
 28. ``pycheck template fl_strip.py``
-
-.. rubric:: EJERCICIOS EXTERNOS
-
-- `Logical calculator <https://www.codewars.com/kata/57096af70dad013aa200007b>`_
-- `Smallest unused ID <https://www.codewars.com/kata/55eea63119278d571d00006a>`_
-- `Are arrow functions odd? <https://www.codewars.com/kata/559f80b87fa8512e3e0000f5>`_
-- `Reagent formula <https://www.codewars.com/kata/59c8b38423dacc7d95000008>`_
-- `What's up next? <https://www.codewars.com/kata/542ebbdb494db239f8000046>`_
-- `Split that array! <https://www.codewars.com/kata/545b342082e55dc9da000051>`_
-- `Add length <https://www.codewars.com/kata/559d2284b5bb6799e9000047>`_
-- `Reversing words in a string <https://www.codewars.com/kata/57a55c8b72292d057b000594>`_
-- `Localize The barycenter of a triangle <https://www.codewars.com/kata/5601c5f6ba804403c7000004>`_
+29. ``pycheck template logical_chain.py``
+30. ``pycheck template smallest_unused_id.py``
+31. ``pycheck template find_odds.py``
+32. ``pycheck template reagent_formula.py``
+33. ``pycheck template whats_next.py``
+34. ``pycheck template npartition.py``
+35. ``pycheck template add_length.py``
+36. ``pycheck template reversing_words.py``
+37. ``pycheck template barycenter.py``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
