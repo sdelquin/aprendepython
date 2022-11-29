@@ -1177,7 +1177,7 @@ Podemos comprobar el acceso a distintos elementos::
 23. ``pycheck template trimmed_sum.py``
 24. ``pycheck template wolves.py``
 25. ``pycheck template maxmin_values.py``
-26. ``pycheck template cascading.py``
+26. ``pycheck template cascading_subsets.py``
 27. ``pycheck template diff_cuboid.py``
 28. ``pycheck template fl_strip.py``
 29. ``pycheck template logical_chain.py``
