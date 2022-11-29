@@ -226,7 +226,7 @@ Hecho en Python::
 
 .. admonition:: Ejercicio
 
-    ``pycheck template quadratic.py``
+    ``pycheck boot quadratic``
 
 Valor absoluto
 --------------
@@ -395,7 +395,7 @@ Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable
 
 .. admonition:: Ejercicio
 
-    ``pycheck template sin_approx.py``
+    ``pycheck boot sin_approx``
 
 Errores de aproximación
 =======================
@@ -521,19 +521,19 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck template circle_area.py``
-2. ``pycheck template sphere_volume.py``
-3. ``pycheck template triangle_area.py``
-4. ``pycheck template interest_rate.py``
-5. ``pycheck template euclid_distance.py``
-6. ``pycheck template century_year.py``
-7. ``pycheck template red_square.py``
-8. ``pycheck template igic.py``
-9. ``pycheck template super_fast.py``
-10. ``pycheck template move_twice.py``
-11. ``pycheck template pillars.py``
-12. ``pycheck template clock_time.py``
-13. ``pycheck template xor.py``
+1. ``pycheck boot circle_area``
+2. ``pycheck boot sphere_volume``
+3. ``pycheck boot triangle_area``
+4. ``pycheck boot interest_rate``
+5. ``pycheck boot euclid_distance``
+6. ``pycheck boot century_year``
+7. ``pycheck boot red_square``
+8. ``pycheck boot igic``
+9. ``pycheck boot super_fast``
+10. ``pycheck boot move_twice``
+11. ``pycheck boot pillars``
+12. ``pycheck boot clock_time``
+13. ``pycheck boot xor``
 
 .. rubric:: EJERCICIOS EXTERNOS
 

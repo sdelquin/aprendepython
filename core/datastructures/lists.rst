@@ -644,7 +644,7 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 
 .. admonition:: Ejercicio
 
-    ``pycheck template chars_list.py``
+    ``pycheck boot chars_list``
 
 Iterar usando enumeración
 -------------------------
@@ -1152,43 +1152,43 @@ Podemos comprobar el acceso a distintos elementos::
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck template max_value.py``
-2. ``pycheck template remove_dups.py``
-3. ``pycheck template flatten_list.py``
-4. ``pycheck template remove_consecutive_dups.py``
-5. ``pycheck template all_same.py``
-6. ``pycheck template sum_diagonal.py``
-7. ``pycheck template powers2.py``
-8. ``pycheck template dec2bin.py``
-9. ``pycheck template sum_mixed.py``
-10. ``pycheck template n_mult.py``
-11. ``pycheck template remove_second.py``
-12. ``pycheck template nth_power.py``
-13. ``pycheck template name_initials.py``
-14. ``pycheck template non_consecutive.py``
-15. ``pycheck template mult_reduce.py``
-16. ``pycheck template digit_rev_list.py``
-17. ``pycheck template time_plus_minutes.py``
-18. ``pycheck template sum_positive.py``
-19. ``pycheck template add_inverse.py``
-20. ``pycheck template descending_numbers.py``
-21. ``pycheck template merge_sorted.py``
-22. ``pycheck template min_value.py``
-23. ``pycheck template trimmed_sum.py``
-24. ``pycheck template wolves.py``
-25. ``pycheck template maxmin_values.py``
-26. ``pycheck template cascading_subsets.py``
-27. ``pycheck template diff_cuboid.py``
-28. ``pycheck template fl_strip.py``
-29. ``pycheck template logical_chain.py``
-30. ``pycheck template smallest_unused_id.py``
-31. ``pycheck template find_odds.py``
-32. ``pycheck template reagent_formula.py``
-33. ``pycheck template whats_next.py``
-34. ``pycheck template npartition.py``
-35. ``pycheck template add_length.py``
-36. ``pycheck template reversing_words.py``
-37. ``pycheck template barycenter.py``
+1. ``pycheck boot max_value``
+2. ``pycheck boot remove_dups``
+3. ``pycheck boot flatten_list``
+4. ``pycheck boot remove_consecutive_dups``
+5. ``pycheck boot all_same``
+6. ``pycheck boot sum_diagonal``
+7. ``pycheck boot powers2``
+8. ``pycheck boot dec2bin``
+9. ``pycheck boot sum_mixed``
+10. ``pycheck boot n_mult``
+11. ``pycheck boot remove_second``
+12. ``pycheck boot nth_power``
+13. ``pycheck boot name_initials``
+14. ``pycheck boot non_consecutive``
+15. ``pycheck boot mult_reduce``
+16. ``pycheck boot digit_rev_list``
+17. ``pycheck boot time_plus_minutes``
+18. ``pycheck boot sum_positive``
+19. ``pycheck boot add_inverse``
+20. ``pycheck boot descending_numbers``
+21. ``pycheck boot merge_sorted``
+22. ``pycheck boot min_value``
+23. ``pycheck boot trimmed_sum``
+24. ``pycheck boot wolves``
+25. ``pycheck boot maxmin_values``
+26. ``pycheck boot cascading_subsets``
+27. ``pycheck boot diff_cuboid``
+28. ``pycheck boot fl_strip``
+29. ``pycheck boot logical_chain``
+30. ``pycheck boot smallest_unused_id``
+31. ``pycheck boot find_odds``
+32. ``pycheck boot reagent_formula``
+33. ``pycheck boot whats_next``
+34. ``pycheck boot npartition``
+35. ``pycheck boot add_length``
+36. ``pycheck boot reversing_words``
+37. ``pycheck boot barycenter``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
