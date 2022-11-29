@@ -384,11 +384,11 @@ Borrar elementos
 Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
 
 **Por su índice**:
-    Mediante la función ``del()``::
+    Mediante la sentencia ``del``::
 
         >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
-        >>> del(shopping[3])
+        >>> del shopping[3]
 
         >>> shopping
         ['Agua', 'Huevos', 'Aceite', 'Limón']
@@ -407,7 +407,7 @@ Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
     .. warning:: Si existen valores duplicados, la función ``remove()`` sólo borrará la primera ocurrencia.
 
 **Por su índice (con extracción)**:
-    Las dos funciones anteriores ``del()`` y ``remove()`` efectivamente borran el elemento indicado de la lista, pero no "devuelven" [#return]_ nada. Sin embargo, Python nos ofrece la función ``pop()`` que además de borrar, nos "recupera" el elemento; algo así como una *extracción*. Lo podemos ver como una combinación de *acceso* + *borrado*::
+    La sentencia ``del`` y la función ``remove()`` efectivamente borran el elemento indicado de la lista, pero no "devuelven" [#return]_ nada. Sin embargo, Python nos ofrece la función ``pop()`` que además de borrar, nos "recupera" el elemento; algo así como una *extracción*. Lo podemos ver como una combinación de *acceso* + *borrado*::
 
         >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 

@@ -487,7 +487,7 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
         ...     'montuvio': 'Campesino de la costa'
         ... }
 
-        >>> del(rae['bifronte'])
+        >>> del rae['bifronte']
 
         >>> rae
         {'anarcoide': 'Que tiende al desorden', 'montuvio': 'Campesino de la costa'}

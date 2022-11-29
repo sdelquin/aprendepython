@@ -1464,7 +1464,7 @@ Supongamos que queremos **añadir una columna "Expenses" (gastos)**. No manejamo
 
 .. tip:: También existe la función `insert()`_ que nos permite insertar una columna en una posición determinada.
 
-En el caso de que no nos haga falta una columna podemos borrarla fácilmente. Una opción sería utilizar la función "built-in" ``del()``, pero seguiremos con el uso de funciones propias de pandas. Imaginemos que queremos **eliminar la columna "Expenses"**:
+En el caso de que no nos haga falta una columna podemos borrarla fácilmente. Una opción sería utilizar la sentencia ``del``, pero seguiremos con el uso de funciones propias de pandas. Imaginemos que queremos **eliminar la columna "Expenses"**:
 
 .. code-block::
     :emphasize-lines: 4
