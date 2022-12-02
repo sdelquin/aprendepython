@@ -67,10 +67,6 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     Cree un diccionario con los nombres de 5 personas de su familia y sus edades.
 
-    .. only:: html
-    
-        |solution| :download:`family_dict.py <files/family_dict.py>`
-
 **********
 Conversión
 **********
@@ -265,23 +261,8 @@ Supongamos un ejemplo en el que queremos construir un diccionario donde las clav
 .. note:: Hemos utilizando la función ``enumerate()`` que ya vimos para las listas en el apartado: :ref:`core/datastructures/lists:Iterar usando enumeración`.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Construya un diccionario partiendo de una cadena de texto con el siguiente formato:
-
-    ``<city>:<population>;<city>:<population>;<city>:<population>;....``
-
-    - Claves: **ciudades**.
-    - Valores: **habitantes** (*como enteros*).
-
-    **Ejemplo**
-
-    * Entrada: ``Tokyo:38_140_000;Delhi:26_454_000;Shanghai:24_484_000;Mumbai:21_357_000;São Paulo:21_297_000``
-    * Salida: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
-    
-    .. only:: html
-    
-        |solution| :download:`cities.py <files/cities.py>`
+    ``pycheck boot cities``
 
 
 Pertenencia de una clave
@@ -301,17 +282,8 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
 .. note:: El operador ``in`` siempre devuelve un valor booleano, es decir, verdadero o falso.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Usando un diccionario, cuente el número de veces que se repite cada letra en una cadena de texto dada.
-
-    **Ejemplo**
-        * Entrada: ``'boom'``
-        * Salida: ``{'b': 1, 'o': 2, 'm': 1}`` 
-
-    .. only:: html
-
-        |solution| :download:`counter.py <files/counter.py>`
+    ``pycheck boot count_letters``
 
 Obtener todos los elementos
 ===========================
@@ -406,18 +378,8 @@ En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obt
 .. note:: En este último caso, recuerde el uso de los :ref:`core/datatypes/strings:"f-strings"` para formatear cadenas de texto.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dado el diccionario de ciudades y poblaciones ya visto, y suponiendo que estas ciudades son las únicas que existen en el planeta, calcule el porcentaje de población relativo de cada una de ellas con respecto al total.
-
-    **Ejemplo**
-
-    * Entrada: ``{'Tokyo': 38140000, 'Delhi': 26454000, 'Shanghai': 24484000, 'Mumbai': 21357000, 'São Paulo': 21297000}``
-    * Salida: ``{'Tokyo': 28.952722193544467, 'Delhi': 20.081680988673973, 'Shanghai': 18.58622050830474, 'Mumbai': 16.212461664591746, 'São Paulo': 16.16691464488507}``
-    
-    .. only:: html
-    
-        |solution| :download:`population.py <files/population.py>`
+    ``pycheck boot avg_population``
 
 Combinar diccionarios
 =====================
@@ -636,21 +598,8 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 .. note:: Se puede consultar el `PEP-274`_ para ver más ejemplos sobre diccionarios por comprensión.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Tenemos almacenadas las notas de un examen en un diccionario. Es necesario separar al alumnado que aprobó y al que suspendió en dos diccionarios. Igualmente habrá que pasar a mayúsculas el nombre del alumnado que aprobó y a minúsculas el nombre del alumnado que suspendió. Escriba un programa en Python que realice esta operación usando *diccionarios por comprensión*.
-
-    **Ejemplo**
-
-    * Entrada: ``{'John': 4, 'Marc': 7, 'Meryl': 2, 'Anthony': 8, 'Carol': 3, 'Andreas': 3, 'Sarah': 6}``
-    * Salida::
-    
-        Aprobaron: {'MARC': 7, 'ANTHONY': 8, 'SARAH': 6}
-        Suspendieron: {'john': 4, 'meryl': 2, 'carol': 3}
-
-    .. only:: html
-    
-        |solution| :download:`fix_marks.py <files/fix_marks.py>`
+    ``pycheck boot split_marks``
 
 *******************
 Objetos "hashables"
@@ -695,13 +644,8 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que acepte una lista de palabras y las agrupe por su letra inicial usando un diccionario (:download:`solución <files/group_words.py>`).
-    - Entrada: ``[ 'mesa', 'móvil', 'barco', 'coche', 'avión', 'bandeja', 'casa', 'monitor', 'carretera', 'arco']``
-    - Salida: ``{'m': ['mesa', 'móvil', 'monitor'], 'b': ['barco', 'bandeja'], 'c': ['coche', 'casa', 'carretera'], 'a': ['avión', 'arco']}``
-
-2. Escriba un programa en Python que acepte un diccionario y determine si todos los valores son iguales o no (:download:`solución <files/same_values.py>`).
-    - Entrada: ``{'Juan': 5, 'Antonio': 5, 'Inma': 5, 'Ana': 5, 'Esteban': 5}``
-    - Salida: ``Same values``
+1. ``pycheck boot group_words``
+2. ``pycheck boot same_dict_values``
 
 3. Escriba un programa en Python que acepte una lista de listas con varios elementos y obtenga un diccionario donde las claves serán los primeros elementos de las sublistas y los valores serán los restantes -- como listas -- (:download:`solución <files/build_super_dict.py>`).
     - Entrada: ``[['Episode IV - A New Hope', 'May 25', 1977], ['Episode V - The Empire Strikes Back', 'May 21', 1980], ['Episode VI - Return of the Jedi', 'May 25', 1983]]``
