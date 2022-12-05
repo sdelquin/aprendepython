@@ -646,22 +646,10 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 
 1. ``pycheck boot group_words``
 2. ``pycheck boot same_dict_values``
-
-3. Escriba un programa en Python que acepte una lista de listas con varios elementos y obtenga un diccionario donde las claves serán los primeros elementos de las sublistas y los valores serán los restantes -- como listas -- (:download:`solución <files/build_super_dict.py>`).
-    - Entrada: ``[['Episode IV - A New Hope', 'May 25', 1977], ['Episode V - The Empire Strikes Back', 'May 21', 1980], ['Episode VI - Return of the Jedi', 'May 25', 1983]]``
-    - Salida: ``{'Episode IV - A New Hope': ['May 25', 1977], 'Episode V - The Empire Strikes Back': ['May 21', 1980], 'Episode VI - Return of the Jedi': ['May 25', 1983]}``
-
-4. Escriba un programa en Python que acepte un diccionario cuyos valores son listas y borre el contenido de dichas listas (:download:`solución <files/clear_values.py>`).
-    - Entrada: ``{'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}``
-    - Salida: ``{'C1': [], 'C2': [], 'C3': []}``
-
-5. Escriba un programa en Python que acepte un diccionario y elimine los espacios de sus claves respetando los valores correspondientes (:download:`solución <files/fix_keys.py>`).
-    - Entrada: ``{'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}``
-    - Salida: ``{'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}``
-
-.. rubric:: EJERCICIOS EXTERNOS
-
-1. `Dictionary drills: Order filler <https://www.codewars.com/kata/586ee462d0982081bf001f07>`_
+3. ``pycheck boot build_super_dict``
+4. ``pycheck boot clear_dict_values``
+5. ``pycheck boot fix_keys``
+6. ``pycheck boot order_stock``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
