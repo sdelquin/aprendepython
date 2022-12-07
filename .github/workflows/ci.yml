@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 jobs:
   deploy-documentation:
     name: Deploy documentation in html/pdf format
