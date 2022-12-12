@@ -19,6 +19,9 @@ Podemos pensar en crear tuplas tal y como :ref:`lo hacíamos con listas <core/da
 
     >>> three_wise_men = ('Melchor', 'Gaspar', 'Baltasar')
 
+.. tip::
+    Al igual que con las listas, las tuplas admiten diferentes tipos de datos: ``('a', 1, True)``
+
 Tuplas de un elemento
 =====================
 
@@ -106,6 +109,9 @@ Con las tuplas podemos realizar :ref:`todas las operaciones que vimos con listas
 * ``remove()``
 * ``clear()``
 * ``sort()``
+
+.. tip::
+    Sí es posible aplicar ``sorted()`` o ``reversed()`` sobre una tupla ya que no estamos modificando su valor sino creando un nuevo objeto.
 
 ************************
 Desempaquetado de tuplas
