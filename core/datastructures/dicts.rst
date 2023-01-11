@@ -262,7 +262,7 @@ Supongamos un ejemplo en el que queremos construir un diccionario donde las clav
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot cities``
+    pycheck_: **cities**
 
 
 Pertenencia de una clave
@@ -283,7 +283,7 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot count_letters``
+    pycheck_: **count_letters**
 
 Obtener todos los elementos
 ===========================
@@ -379,7 +379,7 @@ En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obt
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot avg_population``
+    pycheck_: **avg_population**
 
 Combinar diccionarios
 =====================
@@ -599,7 +599,7 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot split_marks``
+    pycheck_: **split_marks**
 
 *******************
 Objetos "hashables"
@@ -644,12 +644,12 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck boot group_words``
-2. ``pycheck boot same_dict_values``
-3. ``pycheck boot build_super_dict``
-4. ``pycheck boot clear_dict_values``
-5. ``pycheck boot fix_keys``
-6. ``pycheck boot order_stock``
+1. pycheck_: **group_words**
+2. pycheck_: **same_dict_values**
+3. pycheck_: **build_super_dict**
+4. pycheck_: **clear_dict_values**
+5. pycheck_: **fix_keys**
+6. pycheck_: **order_stock**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -676,3 +676,4 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 .. _Aaron Burden: https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _análisis de complejidad y rendimiento: https://wiki.python.org/moin/TimeComplexity
 .. _PEP-274: https://www.python.org/dev/peps/pep-0274/
+.. _pycheck: https://pycheck.es

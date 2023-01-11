@@ -644,7 +644,7 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot chars_list``
+    pycheck_: **chars_list**
 
 Iterar usando enumeración
 -------------------------
@@ -1152,43 +1152,43 @@ Podemos comprobar el acceso a distintos elementos::
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck boot max_value``
-2. ``pycheck boot remove_dups``
-3. ``pycheck boot flatten_list``
-4. ``pycheck boot remove_consecutive_dups``
-5. ``pycheck boot all_same``
-6. ``pycheck boot sum_diagonal``
-7. ``pycheck boot powers2``
-8. ``pycheck boot dec2bin``
-9. ``pycheck boot sum_mixed``
-10. ``pycheck boot n_mult``
-11. ``pycheck boot remove_second``
-12. ``pycheck boot nth_power``
-13. ``pycheck boot name_initials``
-14. ``pycheck boot non_consecutive``
-15. ``pycheck boot mult_reduce``
-16. ``pycheck boot digit_rev_list``
-17. ``pycheck boot time_plus_minutes``
-18. ``pycheck boot sum_positive``
-19. ``pycheck boot add_inverse``
-20. ``pycheck boot descending_numbers``
-21. ``pycheck boot merge_sorted``
-22. ``pycheck boot min_value``
-23. ``pycheck boot trimmed_sum``
-24. ``pycheck boot wolves``
-25. ``pycheck boot maxmin_values``
-26. ``pycheck boot cascading_subsets``
-27. ``pycheck boot diff_cuboid``
-28. ``pycheck boot fl_strip``
-29. ``pycheck boot logical_chain``
-30. ``pycheck boot smallest_unused_id``
-31. ``pycheck boot find_odds``
-32. ``pycheck boot reagent_formula``
-33. ``pycheck boot whats_next``
-34. ``pycheck boot npartition``
-35. ``pycheck boot add_length``
-36. ``pycheck boot reversing_words``
-37. ``pycheck boot barycenter``
+1. pycheck_: **max_value**
+2. pycheck_: **remove_dups**
+3. pycheck_: **flatten_list**
+4. pycheck_: **remove_consecutive_dups**
+5. pycheck_: **all_same**
+6. pycheck_: **sum_diagonal**
+7. pycheck_: **powers2**
+8. pycheck_: **dec2bin**
+9. pycheck_: **sum_mixed**
+10. pycheck_: **n_mult**
+11. pycheck_: **remove_second**
+12. pycheck_: **nth_power**
+13. pycheck_: **name_initials**
+14. pycheck_: **non_consecutive**
+15. pycheck_: **mult_reduce**
+16. pycheck_: **digit_rev_list**
+17. pycheck_: **time_plus_minutes**
+18. pycheck_: **sum_positive**
+19. pycheck_: **add_inverse**
+20. pycheck_: **descending_numbers**
+21. pycheck_: **merge_sorted**
+22. pycheck_: **min_value**
+23. pycheck_: **trimmed_sum**
+24. pycheck_: **wolves**
+25. pycheck_: **maxmin_values**
+26. pycheck_: **cascading_subsets**
+27. pycheck_: **diff_cuboid**
+28. pycheck_: **fl_strip**
+29. pycheck_: **logical_chain**
+30. pycheck_: **smallest_unused_id**
+31. pycheck_: **find_odds**
+32. pycheck_: **reagent_formula**
+33. pycheck_: **whats_next**
+34. pycheck_: **npartition**
+35. pycheck_: **add_length**
+36. pycheck_: **reversing_words**
+37. pycheck_: **barycenter**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -1214,3 +1214,4 @@ Podemos comprobar el acceso a distintos elementos::
 .. _Numpy: https://numpy.org/
 .. _producto escalar: https://es.wikipedia.org/wiki/Producto_escalar
 .. _multiplicación de matrices: https://www.superprof.es/apuntes/escolar/matematicas/algebralineal/matrices/producto-de-matrices.html
+.. _pycheck: https://pycheck.es

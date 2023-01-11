@@ -226,7 +226,7 @@ Hecho en Python::
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot quadratic``
+    pycheck_: **quadratic**
 
 Valor absoluto
 --------------
@@ -395,7 +395,7 @@ Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable
 
 .. admonition:: Ejercicio
 
-    ``pycheck boot sin_approx``
+    pycheck_: **sin_approx**
 
 Errores de aproximación
 =======================
@@ -521,19 +521,19 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. ``pycheck boot circle_area``
-2. ``pycheck boot sphere_volume``
-3. ``pycheck boot triangle_area``
-4. ``pycheck boot interest_rate``
-5. ``pycheck boot euclid_distance``
-6. ``pycheck boot century_year``
-7. ``pycheck boot red_square``
-8. ``pycheck boot igic``
-9. ``pycheck boot super_fast``
-10. ``pycheck boot move_twice``
-11. ``pycheck boot pillars``
-12. ``pycheck boot clock_time``
-13. ``pycheck boot xor``
+1. pycheck_: **circle_area**
+2. pycheck_: **sphere_volume**
+3. pycheck_: **triangle_area**
+4. pycheck_: **interest_rate**
+5. pycheck_: **euclid_distance**
+6. pycheck_: **century_year**
+7. pycheck_: **red_square**
+8. pycheck_: **igic**
+9. pycheck_: **super_fast**
+10. pycheck_: **move_twice**
+11. pycheck_: **pillars**
+12. pycheck_: **clock_time**
+13. pycheck_: **xor**
 
 .. rubric:: EJERCICIOS EXTERNOS
 
@@ -574,3 +574,4 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 .. _IEEE 754: https://es.wikipedia.org/wiki/IEEE_754
 .. _aritmética finita: https://www.unioviedo.es/compnum/laboratorios_py/Aritmetica_finita/Aritmetica_finita_y_error.html#Representaci%C3%B3n-de-los-n%C3%BAmeros-reales
 .. _round(): https://docs.python.org/es/3/library/functions.html#round
+.. _pycheck: https://pycheck.es

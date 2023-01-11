@@ -704,8 +704,8 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
     Introduzca número: 87
     ✅ ¡Enhorabuena! Has encontrado el número en 4 intentos
 
-14. pycheck_ boot tennis_game
-15. pycheck_ boot tennis_set
+14. pycheck_: **tennis_game**
+15. pycheck_: **tennis_set**
 
 .. rubric:: EJERCICIOS EXTERNOS
 

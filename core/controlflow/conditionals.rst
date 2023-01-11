@@ -689,7 +689,7 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
     - Entrada: ``edad=34; peso=81; heartbeat=70; plaquetas=150000``
     - Salida: ``Apto para donar sangre``
 
-6. ``pycheck boot red_square``
+6. pycheck_: **red_square**
 
 .. rubric:: EJERCICIOS EXTERNOS
 
@@ -748,3 +748,4 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _la acción que se lleva a cabo en sistemas Ubuntu Linux: https://itsfoss.com/ubuntu-shortcuts/
 .. _Structural Pattern Matching: https://www.python.org/dev/peps/pep-0636/
 .. _Best practices for writing code comments: https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/
+.. _pycheck: https://pycheck.es
