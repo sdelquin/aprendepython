@@ -704,6 +704,9 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
     Introduzca número: 87
     ✅ ¡Enhorabuena! Has encontrado el número en 4 intentos
 
+14. pycheck_ boot tennis_game
+15. pycheck_ boot tennis_set
+
 .. rubric:: EJERCICIOS EXTERNOS
 
 1. `Summation <https://www.codewars.com/kata/55d24f55d7dd296eb9000030>`_
@@ -741,3 +744,4 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 .. _distancia hamming: https://es.wikipedia.org/wiki/Distancia_de_Hamming
 .. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
 .. _Tabla ASCII: https://www.asciitable.com/
+.. _pycheck: https://pycheck.es
