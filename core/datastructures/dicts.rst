@@ -650,6 +650,7 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 4. pycheck_: **clear_dict_values**
 5. pycheck_: **fix_keys**
 6. pycheck_: **order_stock**
+7. pycheck_: **inventory_moves**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
