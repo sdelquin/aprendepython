@@ -298,6 +298,47 @@ Python ofrece la posibilidad de ver si un valor está entre dos límites de mane
     
         |solution| :download:`leap_year.py <files/leap_year.py>`
 
+
+Cortocircuito lógico
+====================
+
+Es interesante comprender que **las expresiones lógicas no se evalúan por completo si se dan una serie de circunstancias**. Aquí es donde entra el concepto de **cortocircuito** que no es más que una forma de denominar a este escenario.
+
+Supongamos un ejemplo en el que utilizamos un **teléfono móvil** que mide la batería por la variable ``power`` de 0 a 100% y la cobertura 4G por la variable ``signal_4g`` de 0 a 100%.
+
+Para poder **enviar un mensaje por Telegram** necesitamos tener al menos un 25% de batería y al menos un 10% de cobertura::
+
+    >>> power = 10
+    >>> signal_4g = 60
+
+    >>> power > 25 and signal_4g > 10
+    False
+
+.. figure:: img/shortcircuit-and.jpg
+    :align: center
+
+    Cortocircuito para expresión lógica "and"
+
+Dado que estamos en un ``and`` y la primera condición ``power > 25`` no se cumple, se produce un **cortocircuito** y no se sigue evaluando el resto de la expresión porque ya se sabe que va a dar ``False``.
+
+Otro ejemplo. Para poder **hacer una llamada VoIP** necesitamos tener al menos un 40% de batería o al menos un 30% de cobertura::
+
+    >>> power = 50
+    >>> signal_4g = 20
+
+    >>> power > 40 or signal_4g > 30
+    True
+
+.. figure:: img/shortcircuit-or.jpg
+    :align: center
+
+    Cortocircuito para expresión lógica "or"
+
+Dado que estamos en un ``or`` y la primera condición ``power > 40`` se cumple, se produce un **cortocircuito** y no se sigue evaluando el resto de la expresión porque ya se sabe que va a dar ``True``.
+
+.. note::
+    Si no se produjera un cortocircuito en la evaluación de la expresión, se seguiría comprobando todas las condiciones posteriores hasta llegar al final de la misma.
+
 "Booleanos" en condiciones
 ==========================
 
@@ -410,6 +451,99 @@ De igual forma, podemos usar esta construcción para el caso contrario. La forma
     ...     print(f'{value=}')
     ...
     value=99
+
+*********
+Veracidad
+*********
+
+|intlev|
+
+Cuando trabajamos con expresiones que incorporan valores booleanos, se produce una :ref:`conversión implícita <core/datatypes/numbers:conversión implícita>` que transforma los tipos de datos involucrados a valores ``True`` o ``False``.
+
+Lo primero que debemos entender de cara comprobar la **veracidad** son los valores que **evalúan a falso** o **evalúan a verdadero**.
+
+Veamos las únicas "cosas" que son evaluadas a ``False`` en Python::
+
+    >>> bool(False)
+    False
+
+    >>> bool(None)
+    False
+
+    >>> bool(0)
+    False
+
+    >>> bool(0.0)
+    False
+
+    >>> bool('')  # cadena vacía
+    False
+
+    >>> bool([])  # lista vacía
+    False
+
+    >>> bool(())  # tupla vacía
+    False
+
+    >>> bool({})  # diccionario vacío
+    False
+
+    >>> bool(set())  # conjunto vacío
+    False
+
+.. important:: El resto de objetos son evaluados a ``True`` en Python.
+
+Veamos algunos ejemplos que son evaluados a ``True`` en Python::
+
+    >>> bool('False')
+    True
+
+    >>> bool(' ')
+    True
+
+    >>> bool(1e-10)
+    True
+
+    >>> bool([0])
+    True
+
+    >>> bool('🦆')
+    True
+
+Asignación lógica
+=================
+
+Es posible utilizar :ref:`operadores lógicos <core/controlflow/conditionals:operadores lógicos>` en **sentencias de asignación** sacando partido de las tablas de la verdad que funcionan para estos casos.
+
+Veamos un ejemplo de **asignación lógica** utilizando el operador ``or``:
+
+.. code-block::
+    :emphasize-lines: 4
+
+    >>> b = 0
+    >>> c = 5
+
+    >>> a = b or c
+
+    >>> a
+    5
+
+En la línea resaltada podemos ver que se está aplicando una **expresión lógica**, por lo tanto se aplica una conversión implícita de los valores enteros a valores "booleanos". En este sentido el valor ``0`` se **evalúa a falso** y el valor ``5`` se evalúa a verdadero. Como estamos en un ``or`` el resultado será verdadero, que en este caso es el valor 5 asignado finalmente a la variable ``a``.
+
+Veamos **el mismo ejemplo de antes** pero utilizando el operador ``and``:
+
+.. code-block::
+    :emphasize-lines: 4
+
+    >>> b = 0
+    >>> c = 5
+
+    >>> a = b and c
+
+    >>> a
+    0
+
+En este caso, como estamos en un ``and`` el resultado será falso, por lo que el valor 0 es asignado finalmente a la variable ``a``.
 
 ************************
 Sentencia ``match-case``
