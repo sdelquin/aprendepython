@@ -103,24 +103,8 @@ Ejecución **paso a paso** a través de *Python Tutor*:
         <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dada una tupla de duplas (2 valores), cree dos conjuntos:
-
-    - Uno de ellos con los primeros valores de cada dupla.
-    - El otro con los segundos valores de cada dupla.
-
-    **Ejemplo**
-    
-    * Entrada: ``((4, 3), (8, 2), (7, 5), (8, 2), (9, 1))``
-    * Salida::
-
-        {8, 9, 4, 7}
-        {1, 2, 3, 5}
-    
-    .. only:: html
-    
-        |solution| :download:`tupleset.py <files/tupleset.py>`
+    pycheck_: **tupleset**
 
 Borrar elementos
 ================
@@ -294,20 +278,8 @@ Veamos un ejemplo en el que construimos un conjunto por comprensión con los aqu
     {0, 3, 6, 9, 12, 15, 18}
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dadas dos cadenas de texto, obtenga una nueva cadena de texto con las **letras consonantes** que se **repiten en ambas frases**. Ignore los espacios en blanco y muestre la cadena de salida con sus *letras ordenadas*.
-
-    Resuelva el ejercicio mediante dos aproximaciones: Una de ellas usando conjuntos por comprensión y otra sin usar comprensiones.
-
-    **Ejemplo**
-    
-    * Entrada: ``Flat is better than nested`` y ``Readability counts``
-    * Salida: ``bdlnst``
-
-    .. only:: html
-    
-        |solution| :download:`common.py <files/common.py>`
+    pycheck_: **common_consonants**
 
 ********************
 Conjuntos inmutables
@@ -348,3 +320,4 @@ Veamos qué ocurre si intentamos modificar este conjunto::
 .. _Duy Pham: https://unsplash.com/@miinyuii?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _concepto matemático de conjunto: https://es.wikipedia.org/wiki/Conjunto
 .. _Diagramas de Venn: https://es.wikipedia.org/wiki/Diagrama_de_Venn
+.. _pycheck: https://pycheck.es
