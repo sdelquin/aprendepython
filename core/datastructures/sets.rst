@@ -159,6 +159,27 @@ Al igual que con otros tipos de datos, Python nos ofrece el operador ``in`` para
     >>> 'Fari' in beatles
     False
 
+Ordenando un conjunto
+=====================
+
+Ya hemos comentado que los conjuntos **no mantienen un orden**. ¿Pero qué ocurre si intentamos ordenarlo?
+
+.. code-block::
+
+    >>> marks = {8, 4, 6, 2, 9, 5}
+
+    >>> sorted(marks)
+    [2, 4, 5, 6, 8, 9]
+
+Obtenemos **una lista con los elementos ordenados**.
+
+Hay que tener en cuenta que, lógicamente, no podremos hacer uso de la función ``sort()`` sobre un conjunto::
+
+    >>> marks.sort()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AttributeError: 'set' object has no attribute 'sort'
+
 *******************
 Teoría de conjuntos
 *******************
@@ -270,7 +291,7 @@ Conjuntos por comprensión
 
 Los conjuntos, al igual que las :ref:`listas <core/datastructures/lists:Listas por comprensión>` y los :ref:`diccionarios <core/datastructures/dicts:Diccionarios por comprensión>`, también se pueden crear por comprensión.
 
-Veamos un ejemplo en el que construimos un conjunto por comprensión con los aquellos números enteros múltiplos de 3 en el rango :math:`[0, 20)`::
+Veamos un ejemplo en el que construimos un conjunto por comprensión con aquellos números enteros múltiplos de 3 en el rango :math:`[0, 20)`::
 
     >>> m3 = {number for number in range(0, 20) if number % 3 == 0}
 
