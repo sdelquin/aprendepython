@@ -190,34 +190,9 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 .. important:: Para evitar este tipo de **errores**, se debe convertir a ``str`` aquellos valores que queramos usar con la función ``write()`` para escribir información en un fichero de texto. Los :ref:`f-strings <core/datatypes/strings:"f-strings">` son tu aliado.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dado el fichero :download:`temperatures.txt <files/temperatures.txt>` con 12 filas (meses) y 31 columnas (temperaturas de cada día), se pide:
+    pycheck_: **avg_temps**
 
-    1. Leer el fichero de datos.
-    2. Calcular la temperatura media de cada mes.
-    3. Escribir un fichero de salida ``avg_temps.txt`` con 12 filas (*meses*) y la temperatura media de cada mes con 2 decimales.
-
-    *Guarda el fichero en la misma carpeta en la que vas a escribir tu código. Así evitarás problemas de rutas relativas/absolutas.*
-
-    Comprobación de resultados::
-
-        26.29
-        23.65
-        25.84
-        24.35
-        27.03
-        24.52
-        27.90
-        26.39
-        26.32
-        25.71
-        27.32
-        26.00
-    
-    .. only:: html
-    
-        |solution| :download:`avg_temps.py <files/avg_temps.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -236,3 +211,4 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 .. _Maksym Kaharlytskyi: https://unsplash.com/@qwitka?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _Smart Drone: https://smart-drone.es/codigos-oaci-aeropuertos/
 .. _Gestores de contexto: https://docs.python.org/es/3/reference/datamodel.html#context-managers
+.. _pycheck: https://pycheck.es
