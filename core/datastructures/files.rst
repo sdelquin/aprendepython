@@ -189,9 +189,10 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 .. important:: Para evitar este tipo de **errores**, se debe convertir a ``str`` aquellos valores que queramos usar con la función ``write()`` para escribir información en un fichero de texto. Los :ref:`f-strings <core/datatypes/strings:"f-strings">` son tu aliado.
 
-.. admonition:: Ejercicio
+.. rubric:: EJERCICIOS DE REPASO
 
-    pycheck_: **avg_temps**
+1. pycheck_: **avg_temps**
+2. pycheck_: **wc**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
