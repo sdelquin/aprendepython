@@ -31,6 +31,14 @@ La función ``open()`` recibe como primer argumento la **ruta al fichero** que q
 
 .. note:: Es importante dominar los conceptos de **ruta relativa** y **ruta absoluta** para el trabajo con ficheros. Véase `este artículo de DeNovatoANovato <https://denovatoanovato.net/rutas-relativas-y-rutas-absolutas/>`_.
 
+El **manejador del fichero** se implementa mediante un `flujo de entrada/salida <https://docs.python.org/es/3/library/io.html#io.TextIOWrapper>`_ para las operaciones de lectura/escritura. Este objeto almacena, entre otras cosas, la *ruta al fichero*, el *modo de apertura* y la *codificación*::
+
+    >>> f
+    <_io.TextIOWrapper name='files/temps.dat' mode='r' encoding='UTF-8'>
+
+.. tip::
+    Existen muchas `codificaciones de caracteres`_ para ficheros, pero la más utilizada es `UTF-8`_ ya que es capaz de representar cualquier caracter `Unicode`_ al utilizar una longitud variable de 1 a 4 bytes.
+
 Hay que tener en cuenta que la ruta al fichero que abrimos (*en modo lectura*) **debe existir**, ya que de lo contrario obtendremos un error::
 
     >>> f = open('foo.txt')
@@ -153,16 +161,17 @@ En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se
 
     >>> with open('files/temps.dat') as f:
     ...     for line in f:
-    ...         max_temp, min_temp = line.strip().split()
-    ...         print(max_temp, min_temp)
+    ...         min_temp, max_temp = line.strip().split()
+    ...         print(min_temp, max_temp)
     ...
-    29 23
-    31 23
-    34 26
-    33 23
-    29 22
-    28 22
-    28 22
+    23 29
+    23 31
+    26 34
+    23 33
+    22 29
+    22 28
+    22 28
+
 
 **Línea 1**
     Apertura del fichero en *modo lectura* utilizando el gestor de contexto definido por la palabra reservada ``with``.
@@ -213,3 +222,6 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 .. _Smart Drone: https://smart-drone.es/codigos-oaci-aeropuertos/
 .. _Gestores de contexto: https://docs.python.org/es/3/reference/datamodel.html#context-managers
 .. _pycheck: https://pycheck.es
+.. _codificaciones de caracteres: https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres
+.. _UTF-8: https://es.wikipedia.org/wiki/UTF-8
+.. _Unicode: https://unicode-table.com/en/blocks/
