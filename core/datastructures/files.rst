@@ -202,6 +202,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 1. pycheck_: **avg_temps**
 2. pycheck_: **wc**
+3. pycheck_: **read_csv**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
