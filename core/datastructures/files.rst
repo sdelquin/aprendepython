@@ -6,7 +6,7 @@ Ficheros
 
 Aunque los ficheros encajarían más en un apartado de "*entrada/salida*" ya que representan un **medio de almacenamiento persistente**, también podrían ser vistos como *estructuras de datos*, puesto que nos permiten guardar la información y asignarles un cierto formato. [#file-unsplash]_
 
-Un **fichero** es un *conjunto de bytes* almacenados en algún *dispositivo*. El *sistema de ficheros* es la estructura lógica que alberga los ficheros y está jerarquizado a través de *directorios* (o carpetas). Cada fichero se identifica unívocamente a través de una *ruta* que nos permite acceder a él.
+Un **fichero** es un *conjunto de bytes* almacenados en algún *dispositivo*. El `sistema de ficheros`_ es la estructura lógica que alberga los ficheros y está jerarquizado a través de *directorios* (o carpetas). **Cada fichero se identifica unívocamente a través de una ruta que nos permite acceder a él**.
 
 *********************
 Lectura de un fichero
@@ -25,9 +25,9 @@ Veamos un ejemplo para leer el contenido de un fichero en el que se encuentran l
 
 Lo primero será abrir el fichero::
 
-    >>> f = open('files/temps.dat')
+    >>> f = open('files/temps.dat', 'r')
 
-La función ``open()`` recibe como primer argumento la **ruta al fichero** que queremos manejar (como un "string") y devuelve el manejador del fichero, que en este caso lo estamos asignando a una variable llamada ``f`` pero le podríamos haber puesto cualquier otro nombre.
+La función ``open()`` recibe como primer argumento la **ruta al fichero** que queremos manejar (como un "string") y como segundo argumento el **modo de apertura** (también como un "string"). Nos **devuelve el manejador del fichero**, que en este caso lo estamos asignando a una variable llamada ``f`` pero le podríamos haber puesto cualquier otro nombre.
 
 .. note:: Es importante dominar los conceptos de **ruta relativa** y **ruta absoluta** para el trabajo con ficheros. Véase `este artículo de DeNovatoANovato <https://denovatoanovato.net/rutas-relativas-y-rutas-absolutas/>`_.
 
@@ -41,7 +41,7 @@ El **manejador del fichero** se implementa mediante un `flujo de entrada/salida 
 
 Hay que tener en cuenta que la ruta al fichero que abrimos (*en modo lectura*) **debe existir**, ya que de lo contrario obtendremos un error::
 
-    >>> f = open('foo.txt')
+    >>> f = open('foo.txt', 'r')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     FileNotFoundError: [Errno 2] No such file or directory: 'foo.txt'
@@ -56,6 +56,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
 ``read()``
     Devuelve todo el contenido del fichero como una cadena de texto (``str``)::
 
+        >>> # Podemos obviar 'r' ya que es el modo por defecto!
         >>> f = open('files/temps.dat')
 
         >>> f.read()
@@ -76,7 +77,7 @@ Lectura línea a línea
 
 Hay situaciones en las que interesa leer el contenido del fichero línea a línea. Imaginemos un fichero de tamaño considerable (varios GB). Si intentamos leer completamente este fichero de sola una vez podríamos ocupar demasiada RAM y reducir el rendimiento de nuestra máquina.
 
-Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros línea a línea. La más usada es **iterar** sobre el propio *manejador* del fichero:
+Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros línea a línea. La más usada es iterar sobre el propio *manejador* del fichero, ya que los ficheros son estructuras de datos **iterables**:
 
 .. code-block::
     :emphasize-lines: 3
@@ -126,7 +127,7 @@ Pero Python también ofrece la función ``readline()`` que nos devuelve la sigui
 Escritura en un fichero
 ***********************
 
-Para escribir texto en un fichero hay que abrir dicho fichero en **modo escritura**. Para ello utilizamos un *argumento adicional* en la función ``open()`` que indica esta operación::
+Para escribir texto en un fichero hay que abrir dicho fichero en **modo escritura**. Para ello utilizamos el *argumento adicional* en la función ``open()`` que indica esta operación::
 
     >>> f = open('files/canary-iata.dat', 'w')
 
@@ -134,7 +135,7 @@ Para escribir texto en un fichero hay que abrir dicho fichero en **modo escritur
 
 Ahora ya podemos hacer uso de la función ``write()`` para enviar contenido al fichero abierto.
 
-Supongamos que queremos volcar el contenido de una lista en dicho fichero. En este caso partimos de los *códigos IATA* de aeropuertos de las Islas Canarias [#canary-iata]_.
+Supongamos que queremos volcar el contenido de una lista/tupla en dicho fichero. En este caso partimos de los *códigos IATA* de aeropuertos de las Islas Canarias [#canary-iata]_.
 
 .. code-block::
     :emphasize-lines: 4, 7
@@ -210,7 +211,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
     >>> with open('files/lottery.dat', 'w') as f:
     ...     for number in lottery:
-    ...             f.write(number + '\n')
+    ...         f.write(number + '\n')
     ...
     Traceback (most recent call last):
       File "<stdin>", line 3, in <module>
@@ -246,3 +247,4 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 .. _codificaciones de caracteres: https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres
 .. _UTF-8: https://es.wikipedia.org/wiki/UTF-8
 .. _Unicode: https://unicode-table.com/en/blocks/
+.. _sistema de ficheros: https://bit.ly/405ABbw
