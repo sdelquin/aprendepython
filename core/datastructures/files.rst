@@ -102,6 +102,26 @@ Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros
 
 .. tip:: Igual que pasaba anteriormente, la lectura línea por línea también incluye el **salto de línea** ``\n`` lo que provoca un "doble espacio" entre cada una de las salidas. Bastaría con aplicar ``line.strip()`` para eliminarlo.
 
+Lectura de una línea
+====================
+
+Hay ocasiones en las que nos interesa leer únicamente una sola línea. Es cierto que esto se puede conseguir mediante la aproximación anterior. Sería algo como::
+
+    >>> f = open('files/temps.dat')
+
+    >>> for line in f:
+    ...     print(line)
+    ...     break
+    ...
+    23 29
+
+Pero Python también ofrece la función ``readline()`` que nos devuelve la siguiente línea del fichero::
+
+    >>> f = open('files/temps.dat')
+
+    >>> f.readline()
+    '23 29\n'
+
 ***********************
 Escritura en un fichero
 ***********************
