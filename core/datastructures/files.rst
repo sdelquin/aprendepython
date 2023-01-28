@@ -158,6 +158,20 @@ Nótese:
 
 .. warning:: Siempre que se abre un fichero en **modo escritura** utilizando el argumento ``'w'``, el fichero se inicializa, borrando cualquier contenido que pudiera tener.
 
+Otra forma de **escribir la tupla "de una sola vez"** podría ser utilizar la función ``join()`` con el *salto de línea* como separador:
+
+.. code-block::
+    :emphasize-lines: 5
+
+    >>> canary_iata = ('TFN', 'TFS', 'LPA', 'GMZ', 'VDE', 'SPC', 'ACE', 'FUE')
+
+    >>> f = open('files/canary-iata.dat', 'w')
+
+    >>> f.write('\n'.join(canary_iata))
+
+    >>> f.close()
+
+
 ********************
 Añadido a un fichero
 ********************
