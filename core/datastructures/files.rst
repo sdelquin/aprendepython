@@ -262,6 +262,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 8. pycheck_: **word_freq**
 9. pycheck_: **get_line**
 10. pycheck_: **replace_chars**
+11. pycheck_: **histogram**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
