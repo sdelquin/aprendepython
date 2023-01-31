@@ -241,6 +241,10 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 4. pycheck_: **txt2md**
 5. pycheck_: **find_words**
 6. pycheck_: **sum_matrix**
+7. pycheck_: **longest_word**
+8. pycheck_: **word_freq**
+9. pycheck_: **get_line**
+10. pycheck_: **replace_chars**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
