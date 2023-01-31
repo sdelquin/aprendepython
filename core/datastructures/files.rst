@@ -158,7 +158,7 @@ Nótese:
 
 .. warning:: Siempre que se abre un fichero en **modo escritura** utilizando el argumento ``'w'``, el fichero se inicializa, borrando cualquier contenido que pudiera tener.
 
-Otra forma de **escribir la tupla "de una sola vez"** podría ser utilizar la función ``join()`` con el *salto de línea* como separador:
+Otra forma de **escribir la tupla "de una sola vez"** podría ser utilizando la función ``join()`` con el *salto de línea* como separador:
 
 .. code-block::
     :emphasize-lines: 5
@@ -171,6 +171,23 @@ Otra forma de **escribir la tupla "de una sola vez"** podría ser utilizar la fu
 
     >>> f.close()
 
+En el caso de que ya tengamos una **lista (iterable) cuyos elementos tengan el formato de salida que necesitamos** (incluyendo salto de línea si así fuera necesario) podemos utilizar la función ``writelines()`` que nos ofrece Python.
+
+Siguiendo con el ejemplo anterior, imaginemos un escenario en el que la tupla ya contiene los saltos de línea:
+
+.. code-block::
+    :emphasize-lines: 5
+
+    >>> canary_iata = ('TFN\n', 'TFS\n', 'LPA\n', 'GMZ\n', 'VDE\n', 'SPC\n', 'ACE\n', 'FUE\n')
+
+    >>> f = open('files/canary-iata.dat', 'w')
+
+    >>> f.writelines(canary_iata)
+
+    >>> f.close()
+
+.. tip::
+    Esta aproximación puede ser interesante cuando leemos de un fichero y escribimos en otro ya que las líneas "vienen" con el salto de línea ya incorporado.
 
 ********************
 Añadido a un fichero
