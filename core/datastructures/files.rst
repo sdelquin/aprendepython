@@ -307,6 +307,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 9. pycheck_: **get_line**
 10. pycheck_: **replace_chars**
 11. pycheck_: **histogram**
+12. pycheck_: **submarine**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
