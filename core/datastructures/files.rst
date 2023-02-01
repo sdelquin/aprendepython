@@ -123,6 +123,50 @@ Pero Python también ofrece la función ``readline()`` que nos devuelve la sigui
     >>> f.readline()
     '23 29\n'
 
+Es importante señalar que cuando utilizamos la función ``readline()`` **el "puntero de lectura" se desplaza a la siguiente línea del fichero**, con lo que podemos seguir cargando la información según nos interese::
+
+    >>> f = open('files/temps.dat')
+
+    >>> # Lectura de las 3 primeras líneas
+    >>> for _ in range(3):
+    ...     print(f.readline().strip())
+    ...
+    23 29
+    23 31
+    26 34
+
+    >>> # Lectura de las restantes líneas (4)
+    >>> for line in f:
+    ...     print(line.strip())
+    ...
+    23 33
+    22 29
+    22 28
+    22 28
+
+Los ficheros se agotan
+======================
+
+Hay que tener en cuenta que, una vez abierto el fichero, **la lectura de su contenido se puede realizar una única vez**. O dicho de otra manera, el iterable que lleva implícito  "se agota".
+
+Veamos este escenario con el ejemplo anterior::
+
+    >>> f = open('files/temps.dat')
+
+    >>> for line in f:
+    ...     print(line.strip(), end=' ')
+    ...
+    23 29 23 31 26 34 23 33 22 29 22 28 22 28
+
+    >>> for line in f:
+    ...     print(line.strip(), end=' ')
+    ... # No hay salida!!
+
+Esto mismo ocurre si utilizamos funciones como ``read()`` o ``readlines()``.
+
+.. warning::
+    Por este motivo y también por cuestiones de legibilidad del código, deberíamos abrir un fichero una única vez y realizar todas las operaciones de lectura necesarias, siempre que las circunstancias lo permitan.
+
 ***********************
 Escritura en un fichero
 ***********************
