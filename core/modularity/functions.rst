@@ -124,19 +124,8 @@ Veamos otra función con dos parámetros y algo más de lógica de negocio: [#bl
     7
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba una función en Python que reproduzca lo siguiente:
-
-    :math:`f(x, y) = x^2 + y^2`
-
-    **Ejemplo**
-        * Entrada: ``3`` y ``4``
-        * Salida: ``25``
-
-    .. only:: html
-    
-        |solution| :download:`square.py <files/square.py>`
+    pycheck_: **squared_sum**
 
 Argumentos posicionales
 =======================
@@ -198,7 +187,7 @@ Python permite mezclar argumentos posicionales y nominales en la llamada a una f
     >>> build_cpu('INTEL', num_cores=4, freq=3.1)
     {'vendor': 'INTEL', 'num_cores': 4, 'freq': 3.1}
 
-Pero hay que tener en cuenta que, en este escenario, **los argumentos posicionales siempre deben ir antes** que los argumentos nominales. Esto tiene mucho sentido ya que, de hacerlo así, Python no tendría forma de discernir a qué parámetro corresponde cada argumento::
+Pero hay que tener en cuenta que, en este escenario, **los argumentos posicionales siempre deben ir antes** que los argumentos nominales. Esto tiene mucho sentido ya que, de no hacerlo así, Python no tendría forma de discernir a qué parámetro corresponde cada argumento::
 
     >>> build_cpu(num_cores=4, 'INTEL', freq=3.1)
       File "<stdin>", line 1
@@ -232,24 +221,8 @@ Llamada a la función indicando una frecuencia concreta de "cpu"::
 .. important:: Los valores por defecto en los parámetros se calculan cuando se **define** la función, no cuando se **ejecuta**.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba una función ``factorial`` que reciba un único parámetro :math:`n` desde línea de comandos (``sys.argv``) y devuelva su factorial.
-
-    El factorial de un número :math:`n` se define como:
-    
-    .. math:: 
-        n! = n \cdot (n - 1) \cdot (n - 2) \cdot \ldots \cdot 1
-    
-    → *Truco: El orden de los factores no altera el producto.*
-    
-    **Ejemplo**
-        * Entrada: ``5``
-        * Salida: ``120``
-    
-    .. only:: html
-    
-        |solution| :download:`factorial.py <files/factorial.py>`
+    pycheck_: **factorial**
 
 Modificando parámetros mutables
 -------------------------------
@@ -1523,3 +1496,4 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _perfecto: https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto
 .. _palíndromo: https://es.wikipedia.org/wiki/Pal%C3%ADndromo
 .. _pangrama: https://es.wikipedia.org/wiki/Pangrama
+.. _pycheck: https://pycheck.es
