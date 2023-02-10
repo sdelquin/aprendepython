@@ -123,6 +123,9 @@ Veamos otra función con dos parámetros y algo más de lógica de negocio: [#bl
     >>> _min(7, 9)
     7
 
+.. attention::
+    Nótese que la sentencia ``return`` puede encontrarse en cualquier lugar de una función, no necesariamente al final del cuerpo. Esta técnica puede ser beneficiosa en múltiples escenarios.
+
 .. admonition:: Ejercicio
 
     pycheck_: **squared_sum**
@@ -159,7 +162,7 @@ Lo que ha sucedido es un **mapeo** directo entre argumentos y parámetros en el 
 | ``freq``      | ``2.7``   |
 +---------------+-----------+
 
-Pero es evidente que una clara desventaja del uso de argumentos posicionales es que se necesita **recordar el orden** de los argumentos. Un error en la posición de los argumentos puede causar resultados indeseados::
+Pero es evidente que una clara desventaja del uso de argumentos posicionales es que se necesita **recordar el orden** de los argumentos. Un error en la posición de los argumentos puede generar resultados indeseados::
 
     >>> build_cpu(8, 2.7, 'AMD')
     {'vendor': 8, 'num_cores': 2.7, 'freq': 'AMD'}
@@ -167,7 +170,7 @@ Pero es evidente que una clara desventaja del uso de argumentos posicionales es 
 Argumentos nominales 
 ====================
 
-En esta aproximación los argumentos no son copiados en un orden específico sino que **se asignan por nombre a cada parámetro**. Ello nos permite salvar el problema de conocer cuál es el orden de los parámetros en la definición de la función. Para utilizarlo, basta con realizar una asignación de cada argumento en la propia llamada a la función.
+En esta aproximación los argumentos no son copiados en un orden específico sino que **se asignan por nombre a cada parámetro**. Ello nos permite evitar el problema de conocer cuál es el orden de los parámetros en la definición de la función. Para utilizarlo, basta con realizar una asignación de cada argumento en la propia llamada a la función.
 
 Veamos la misma llamada que hemos hecho en el ejemplo de construcción de la "cpu" pero ahora utilizando paso de argumentos nominales::
 
@@ -182,7 +185,7 @@ Se puede ver claramente que el orden de los argumentos no influye en el resultad
 Argumentos posicionales y nominales
 ===================================
 
-Python permite mezclar argumentos posicionales y nominales en la llamada a una función::
+Python permite **mezclar argumentos posicionales y nominales** en la llamada a una función::
 
     >>> build_cpu('INTEL', num_cores=4, freq=3.1)
     {'vendor': 'INTEL', 'num_cores': 4, 'freq': 3.1}
@@ -192,6 +195,31 @@ Pero hay que tener en cuenta que, en este escenario, **los argumentos posicional
     >>> build_cpu(num_cores=4, 'INTEL', freq=3.1)
       File "<stdin>", line 1
     SyntaxError: positional argument follows keyword argument
+
+Argumentos mutables e inmutables
+================================
+
+|intlev|
+
+Cuando realizamos modificaciones a los argumentos de una función es importante tener en cuenta si son **mutables** (listas, diccionarios, conjuntos, ...) o **inmutables** (tuplas, enteros, flotantes, cadenas de texto, ...) ya que podríamos obtener efectos colaterales no deseados.
+
+Supongamos que nos piden escribir una función que recibe una lista y que devuelve sus valores elevados al cuadrado. Pero lo hacemos "malamente"::
+
+    >>> values = [2, 3, 4]
+
+    >>> def square_it(values):
+    ...     # NO HAGAS ESTO
+    ...     for i in range(len(values)):
+    ...         values[i] **= 2
+    ...     return values
+
+    >>> square_it(values)
+    [4, 9, 16]
+
+    >>> values  # ???
+    [4, 9, 16]
+
+.. warning:: Esto **no es una buena práctica**. O bien documentar que el argumento puede modificarse o bien retornar un nuevo valor. Por regla general, no se recomienda que las funciones modifiquen argumentos de entrada.
 
 Parámetros por defecto
 ======================
@@ -218,7 +246,27 @@ Llamada a la función indicando una frecuencia concreta de "cpu"::
     >>> build_cpu('INTEL', 2, 3.4)
     {'vendor': 'INTEL', 'num_cores': 2, 'freq': 3.4}
 
-.. important:: Los valores por defecto en los parámetros se calculan cuando se **define** la función, no cuando se **ejecuta**.
+|intlev|
+
+Es importante tener presente que los valores por defecto en los parámetros se calculan cuando se **define** la función, no cuando se **ejecuta**. Veamos un ejemplo siguiendo con el caso anterior::
+
+    >>> DEFAULT_FREQ = 2.0
+    
+    >>> def build_cpu(vendor, num_cores, freq=DEFAULT_FREQ):
+    ...     return dict(
+    ...         vendor=vendor,
+    ...         num_cores=num_cores,
+    ...         freq=freq
+    ...     )
+    ...
+    
+    >>> build_cpu('AMD', 4)
+    {'vendor': 'AMD', 'num_cores': 4, 'freq': 2.0}
+    
+    >>> DEFAULT_FREQ = 3.5
+    
+    >>> build_cpu('AMD', 4)
+    {'vendor': 'AMD', 'num_cores': 4, 'freq': 2.0}
 
 .. admonition:: Ejercicio
 
@@ -229,7 +277,7 @@ Modificando parámetros mutables
 
 |advlev|
 
-Hay que tener cuidado a la hora de manejar los parámetros que pasamos a una función ya que podemos obtener resultados indeseados, especialmente cuando trabajamos con *tipos de datos mutables*.
+Hay que tener cuidado a la hora de manejar los parámetros que pasamos a una función ya que :ref:`podemos obtener resultados indeseados <core/modularity/functions:argumentos mutables e inmutables>`, especialmente cuando trabajamos con *tipos de datos mutables*.
 
 Supongamos una función que añade elementos a una lista que pasamos por parámetro. La idea es que si no pasamos la lista, ésta siempre empiece siendo vacía. Hagamos una serie de pruebas pasando alguna lista como segundo argumento::
 
@@ -321,11 +369,11 @@ La forma de arreglar el código anterior utilizando un parámetro con valor por 
 Empaquetar/Desempaquetar argumentos
 ===================================
 
-|advlev|
+|intlev|
 
 Python nos ofrece la posibilidad de empaquetar y desempaquetar argumentos cuando estamos invocando a una función, tanto para **argumentos posicionales** como para **argumentos nominales**.
 
-Y de este hecho se deriva que podamos utilizar un **número variable de argumentos** en una función, algo que puede ser muy interesante según el caso de uso que tengamos.
+Y de esto se deriva el hecho de que podamos utilizar un **número variable de argumentos** en una función, algo que puede ser muy interesante según el caso de uso que tengamos.
 
 Empaquetar/Desempaquetar argumentos posicionales
 ------------------------------------------------
@@ -339,7 +387,7 @@ Veamos un ejemplo en el que vamos a **implementar una función para sumar un nú
       File "<stdin>", line 1, in <module>
     TypeError: sum() takes at most 2 arguments (4 given)
 
-Para resolver esto, hacemos uso del ``*`` para empaquetar los argumentos posicionales::
+Para superar esta "limitación" vamos a hacer uso del ``*`` para empaquetar los argumentos posicionales::
 
     >>> def _sum(*values):
     ...     result = 0
@@ -350,8 +398,6 @@ Para resolver esto, hacemos uso del ``*`` para empaquetar los argumentos posicio
 
     >>> _sum(4, 3, 2, 1)
     10
-
-.. note:: En muchas ocasiones se utiliza ``args`` como nombre del parámetro (es una convención).
 
 Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función para **desempaquetar** los argumentos posicionales::
 
@@ -371,12 +417,14 @@ Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función par
     arg=3
     arg=4
 
+.. note:: En muchas ocasiones se utiliza ``args`` como nombre del parámetro (es una convención).
+
 Empaquetar/Desempaquetar argumentos nominales
 ---------------------------------------------
 
 Si utilizamos el operador ``**`` delante del nombre de un parámetro nominal, estaremos indicando que los argumentos pasados a la función se empaqueten en un **diccionario**.
 
-Supongamos un ejemplo en el que queremos **encontrar la persona con mayor calificación de un examen**. hacemos uso del ``**`` para empaquetar los argumentos nominales::
+Supongamos un ejemplo en el que queremos **encontrar la persona con mayor calificación de un examen**. Haremos uso del ``**`` para empaquetar los argumentos nominales::
 
     >>> def best_student(**marks):
     ...     max_mark = -1
@@ -390,9 +438,7 @@ Supongamos un ejemplo en el que queremos **encontrar la persona con mayor califi
     >>> best_student(ana=8, antonio=6, inma=9, javier=7)
     'inma'
 
-.. note:: En muchas ocasiones se utiliza ``kwargs`` como nombre del parámetro (es una convención).
-
-Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función, para **desempaquetar** los argumentos nominales::
+Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función para **desempaquetar** los argumentos nominales::
 
     >>> def show_kwargs(**kwargs):
     ...     for item in kwargs.items():
@@ -407,10 +453,50 @@ Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco
     item=('c', 3)
     item=('d', 4)
 
+.. note:: En muchas ocasiones se utiliza ``kwargs`` como nombre del parámetro (es una convención).
+
 Forzando modo de paso de argumentos
 ===================================
 
-Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo posicional o nominal, existen opciones para forzar a que dicho paso sea obligatorio en una determinada modalidad.
+Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo nominal o posicional, existen opciones para forzar que dicho paso sea obligatorio en una determinada modalidad.
+
+Argumentos sólo nominales
+-------------------------
+
+|advlev|
+
+A partir de `Python 3.0 <https://www.python.org/dev/peps/pep-3102/>`_ se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
+
+Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros. Así, todos los parámetros a la derecha del separador estarán **obligados** a ser nominales:
+
+.. figure:: img/keyword-only-params.png
+    :align: center
+
+    Separador para especificar parámetros sólo nominales
+
+Ejemplo::
+
+    >>> def sum_power(a, b, *, power=False):
+    ...     if power:
+    ...         a **= 2
+    ...         b **= 2
+    ...     return a + b
+    ...
+
+    >>> sum_power(3, 4)
+    7
+
+    >>> sum_power(a=3, b=4)
+    7
+
+    >>> sum_power(3, 4, power=True)
+    25
+
+    >>> sum_power(3, 4, True)
+    ---------------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: sum_power() takes 2 positional arguments but 3 were given
 
 Argumentos sólo posicionales
 ----------------------------
@@ -449,50 +535,12 @@ Ejemplo::
       File "<stdin>", line 1, in <module>
     TypeError: sum_power() got some positional-only arguments passed as keyword arguments: 'a, b'
 
-Argumentos sólo nominales
--------------------------
-
-|advlev|
-
-A partir de `Python 3 <https://www.python.org/dev/peps/pep-3102/>`_ se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
-
-Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros. Así, todos los parámetros a la derecha del separador estarán **obligados** a ser nominales:
-
-.. figure:: img/keyword-only-params.png
-    :align: center
-
-    Separador para especificar parámetros sólo nominales
-
-Ejemplo::
-
-    >>> def sum_power(a, b, *, power=False):
-    ...     if power:
-    ...         a **= 2
-    ...         b **= 2
-    ...     return a + b
-    ...
-
-    >>> sum_power(3, 4)
-    7
-
-    >>> sum_power(a=3, b=4)
-    7
-
-    >>> sum_power(3, 4, power=True)
-    25
-
-    >>> sum_power(3, 4, True)
-    ---------------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    TypeError: sum_power() takes 2 positional arguments but 3 were given
-
 Fijando argumentos posicionales y nominales
 -------------------------------------------
 
 Si mezclamos las dos estrategias anteriores podemos forzar a que una función reciba argumentos de un modo concreto.
 
-Continuando con ejemplo anterior, podríamos hacer lo siguiente::
+Continuando con el ejemplo anterior, podríamos hacer lo siguiente::
 
     >>> def sum_power(a, b, /, *, power=False):
     ...     if power:
@@ -503,29 +551,6 @@ Continuando con ejemplo anterior, podríamos hacer lo siguiente::
 
     >>> sum_power(3, 4, power=True)  # Único modo posible de llamada
     25
-
-Argumentos mutables e inmutables
-================================
-
-|intlev|
-
-Igual que veíamos en la incidencia de :ref:`parámetros por defecto con valores mutables <core/modularity/functions:Modificando parámetros mutables>`, cuando realizamos modificaciones a los argumentos de una función es importante tener en cuenta si son **mutables** (listas, diccionarios, conjuntos, ...) o **inmutables** (tuplas, enteros, flotantes, cadenas de texto, ...) ya que podríamos obtener efectos colaterales no deseados::
-
-    >>> fib = [1, 1, 2, 3, 5, 8, 13]
-
-    >>> def square_it(values, *, index):
-    ...     values[index] **= 2
-    ...
-
-    >>> fib
-    [1, 1, 2, 3, 5, 8, 13]
-
-    >>> square_it(fib, index=4)
-
-    >>> fib  # 😱
-    [1, 1, 2, 3, 25, 8, 13]
-
-.. warning:: Esto **no es una buena práctica**. O bien documentar que el argumento puede modificarse o bien retornar un nuevo valor.
 
 Funciones como parámetros
 =========================
