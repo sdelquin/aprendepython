@@ -458,7 +458,7 @@ Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco
 Forzando modo de paso de argumentos
 ===================================
 
-Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo nominal o posicional, existen opciones para forzar que dicho paso sea obligatorio en una determinada modalidad.
+Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo nominal o posicional, existen opciones para forzar que dicho paso sea obligatorio para una determinada modalidad.
 
 Argumentos sólo nominales
 -------------------------
@@ -551,6 +551,11 @@ Continuando con el ejemplo anterior, podríamos hacer lo siguiente::
 
     >>> sum_power(3, 4, power=True)  # Único modo posible de llamada
     25
+
+.. admonition:: Ejercicio
+
+    pycheck_: **consecutive_freqs**
+    
 
 Funciones como parámetros
 =========================
@@ -657,8 +662,8 @@ Explicación de parámetros
 
 Como ya se ha visto, es posible documentar una función utilizando un ``docstring``. Pero la redacción y el formato de esta cadena de texto puede ser muy variada. Existen distintas formas de documentar una función (u otros objetos) [#docstring-formats]_:
 
-`Sphinx docstrings`_
-    Formato nativo de documentación `Sphinx`_.
+`reStructuredText docstrings`_
+    Formato de documentación recomendado por Python.
 `Google docstrings`_
     Formato de documentación recomendado por Google.
 `NumPy-SciPy docstrings`_
@@ -672,14 +677,17 @@ Aunque cada uno tienes sus particularidades, todos comparten una misma estructur
 * A continuación especificamos las características de los **parámetros** (incluyendo sus tipos).
 * Por último, indicamos si la función **retorna un valor** y sus características.
 
-Aunque todos los formatos son válidos, nos centraremos en **Sphinx docstrings** al ser el que viene mejor integrado con la documentación Sphinx. *Google docstrings* y *Numpy docstrings* también son ampliamente utilizados, lo único es que necesitan de un módulo externo denominado `Napoleon`_ para que se puedan incluir en la documentación *Sphinx*.
+Aunque todos los formatos son válidos, nos centraremos en **reStructuredText** por ser el estándar propuesto por Python para la documentación.
+
+.. seealso::
+    *Google docstrings* y *Numpy docstrings* también son ampliamente utilizados, lo único es que necesitan de un módulo externo denominado `Napoleon`_ para que se puedan incluir en la documentación *Sphinx*.
 
 Sphinx
 ------
 
-`Sphinx`_ es una herramienta para generar documentación e incluye un módulo "built-in" denominado `autodoc`_ el cual permite la autogeneración de documentación a partir de los "docstrings" definidos en el código.
+`Sphinx`_ es una herramienta para generar documentación usando el lenguaje reStructuredText_ o RST. Incluye un módulo "built-in" denominado `autodoc`_ el cual permite la autogeneración de documentación a partir de los "docstrings" definidos en el código.
 
-Veamos el uso de este formato en la documentación de la siguiente función "dummy"::
+Veamos el uso de este formato en la documentación de la siguiente función::
 
     >>> def my_power(x, n):
     ...     '''Calculate x raised to the power of n.
@@ -698,16 +706,16 @@ Veamos el uso de este formato en la documentación de la siguiente función "dum
     ...     return result
     ...
     
-Dentro del "docstring" podemos escribir con sintaxis `reStructured Text`_ -- véase por ejemplo la expresión matemática en el tag ``:return:`` -- lo que nos proporciona una gran flexibilidad.
+Dentro del "docstring" podemos escribir con sintaxis `reStructuredText`_ -- véase por ejemplo la expresión matemática en el tag ``:return:`` -- lo que nos proporciona una gran flexibilidad.
 
-.. note:: La plataforma `Read the Docs`_ aloja la documentación de gran cantidad de proyectos. En muchos de los casos se han usado "docstrings" con el formato Sphinx visto anteriormente.
+.. note:: La plataforma `Read the Docs`_ aloja la documentación de gran cantidad de proyectos. En muchos de los casos se han usado "docstrings" con el formato Sphinx visto anteriormente. Un ejemplo de ello es la popular librería de Python requests_.
 
 Anotación de tipos
 ==================
 
 |intlev|
 
-Las anotaciones de tipos o **type-hints** [#type-hints]_ se introdujeron en `Python 3.5 <https://www.python.org/dev/peps/pep-0484/>`_ y permiten indicar tipos para los parámetros de una función así como su valor de retorno (aunque también funcionan en creación de variables).
+Las anotaciones de tipos o **type-hints** [#type-hints]_ se introdujeron en `Python 3.5 <https://www.python.org/dev/peps/pep-0484/>`_ y permiten indicar tipos para los parámetros de una función y/o para su valor de retorno (*aunque también funcionan en creación de variables*).
 
 Veamos un ejemplo en el que creamos una función para dividir una cadena de texto por la posición especificada en el parámetro::
 
@@ -718,14 +726,14 @@ Veamos un ejemplo en el que creamos una función para dividir una cadena de text
     >>> ssplit('Always remember us this way', 15)
     ('Always remember', ' us this way')
 
-Como se puede observar, vamos añadiendo los tipos después de cada parámetro utilizando ``:`` como separador. En el caso del valor de retorno usamos el símbolo ``->``
+Como se puede observar, vamos añadiendo los tipos después de cada parámetro utilizando ``:`` como separador. En el caso del valor de retorno usamos la flecha ``->``
 
 Quizás la siguiente ejecución pueda sorprender::
 
     >>> ssplit([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5)
     ([1, 2, 3, 4, 5], [6, 7, 8, 9, 10])
 
-Efectivamente como habrás visto, **no hemos obtenido ningún error**, a pesar de que estamos pasando como primer argumento una lista en vez de una cadena de texto. Esto ocurre porque lo que hemos definido es una anotación de tipo, no una declaración de tipo. Existen herramientas como `mypy`_ que sí se encargan de chequear estas situaciones.
+Efectivamente como habrás visto, **no hemos obtenido ningún error**, a pesar de que estamos pasando como primer argumento una lista en vez de una cadena de texto. Esto ocurre porque lo que hemos definido es simplemente una anotación de tipo, no una declaración de tipo. Existen herramientas como `mypy`_ que sí se encarga de comprobar este escenario.
 
 Valores por defecto
 -------------------
@@ -745,7 +753,14 @@ Veamos la forma de hacerlo continuando con el ejemplo anterior::
 
 Simplemente añadimos el valor por defecto después de indicar el tipo.
 
-.. note:: Las **anotaciones de tipos** son una herramienta muy potente y que, usada de forma adecuada, permite complementar la documentación de nuestro código y aclarar ciertos aspectos, que a priori, pudieran parecer confusos. Su aplicación estará en función de la necesidad detectada por parte del equipo de desarrollo.
+Las **anotaciones de tipos** son una herramienta muy potente y que, usada de forma adecuada, permite complementar la documentación de nuestro código y aclarar ciertos aspectos, que a priori, pueden parecer confusos. Su aplicación estará en función de la necesidad detectada por parte del equipo de desarrollo.
+
+.. admonition:: Ejercicio
+
+    ¿Sería capaz de volver a resolver este ejercicio utilizando anotaciones de tipo y/o valores por defecto para los parámetros de la función principal?
+
+    pycheck_: **barycenter**
+
 
 ******************
 Tipos de funciones
@@ -758,22 +773,24 @@ Funciones interiores
 
 Está permitido definir una función dentro de otra función::
 
-    >>> def validation_test(text):
-    ...     def is_valid_char(char):
-    ...         return char in 'xyz'
-    ...     checklist = []
-    ...     for char in text:
-    ...         checklist.append(is_valid_char(char))
+    >>> VALID_CHARS = 'xyz'
+
+    >>> def validation_rate(text: str) -> float:
+    ...     '''Rate of valid chars in text.'''
+    ...     def is_valid_char(char: str) -> bool:
+    ...         return char in VALID_CHARS
+    ...
+    ...     checklist = [is_valid_char(c) for c in text]
     ...     return sum(checklist) / len(text)
     ...
 
-    >>> validation_test('zxyzxxyz')
+    >>> validation_rate('zxyzxxyz')
     1.0
 
-    >>> validation_test('abzxyabcdz')
+    >>> validation_rate('abzxyabcdz')
     0.4
 
-    >>> validation_test('abc')
+    >>> validation_rate('abc')
     0.0
 
 Clausuras
@@ -809,14 +826,14 @@ Funciones anónimas "lambda"
 ===========================
 
 Una **función lambda** tiene las siguientes propiedades:
-    1. Se escribe con una única sentencia.
+    1. Se escribe en una única sentencia (línea).
     2. No tiene nombre (anónima).
-    3. Su cuerpo tiene implícito un ``return``.
+    3. Su cuerpo conlleva un ``return`` implícito.
     4. Puede recibir cualquier número de parámetros.
 
 Veamos un primer ejemplo de función "lambda" que nos permite contar el número de palabras de una cadena de texto::
 
-    >>> num_words = lambda t: len(t.strip().split())
+    >>> num_words = lambda t: len(t.split())
 
     >>> type(num_words)
     function
@@ -840,9 +857,9 @@ Veamos otro ejemplo en el que mostramos una tabla con el resultado de aplicar el
     1 & 0 = 0
     1 & 1 = 1
 
-Las funciones "lambda" son bastante utilizadas como argumentos a otras funciones. Un ejemplo claro de ello es la función ``sorted`` que tiene un parámetro opcional ``key`` donde se define la clave de ordenación.
+Las funciones "lambda" son bastante utilizadas **como argumentos a otras funciones**. Un ejemplo claro de ello es la función ``sorted`` que recibe un parámetro opcional ``key`` donde se define la clave de ordenación.
 
-Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares *longitud*-*latitud*::
+Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares *longitud-latitud*::
 
     >>> geoloc = (
     ... (15.623037, 13.258358),
@@ -868,10 +885,16 @@ Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares
      (3.152857, 115.327724),
      (-40.454262, 172.318877)]
 
+.. admonition:: Ejercicio
+
+    ¿Podría resolver este ejercicio teniendo ahora conocimientos avanzados de la función ``sorted()``?
+
+    pycheck_: **sort_dict**
+
 Enfoque funcional
 =================
 
-Como se comentó en la :ref:`introducción <core/introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los paradigmas menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
+Como se comentó en la :ref:`introducción <core/introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los `paradigmas <https://es.wikipedia.org/wiki/Paradigma_de_programaci%C3%B3n>`_ menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
 
 Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: ``map()``, ``filter()`` y ``reduce()``.
 
@@ -905,12 +928,18 @@ Esta función **aplica otra función** sobre cada elemento de un iterable. Supon
     >>> list(map_gen)
     [0.5, 2.0, 4.5, 8.0, 12.5, 18.0, 24.5, 32.0, 40.5, 50.0]
 
-Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`...
+.. tip::
+    Hay que tener en cuenta que ``map()`` devuelve un :ref:`generador <core/modularity/functions:generadores>`, no directamente una lista.
+
+Podemos obtener el mismo resultado aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`::
 
     >>> list(map(lambda x: x**2 / 2, data))
     [0.5, 2.0, 4.5, 8.0, 12.5, 18.0, 24.5, 32.0, 40.5, 50.0]
 
-.. important:: ``map()`` devuelve un **generador**, no directamente una lista.
+En Python es posible "simular" un ``map()`` a través de una :ref:`lista por comprensión <core/datastructures/lists:listas por comprensión>`::
+
+    >>> [x**2 / 2 for x in data]
+    [0.5, 2.0, 4.5, 8.0, 12.5, 18.0, 24.5, 32.0, 40.5, 50.0]
 
 ``filter()``
 ------------
@@ -931,12 +960,18 @@ Esta función **selecciona** aquellos elementos de un iterable que cumplan una d
     >>> list(filter_gen)
     [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 
-Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`...
+.. tip::
+    Hay que tener en cuenta que ``filter()`` devuelve un :ref:`generador <core/modularity/functions:generadores>`, no directamente una lista.
+
+Podemos obtener el mismo resultado aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funciones anónimas "lambda">`::
 
     >>> list(filter(lambda x: x % 2 == 1, data))
     [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 
-.. important:: ``filter()`` devuelve un **generador**, no directamente una lista.
+En Python es posible "simular" un ``filter()`` a través de una :ref:`lista por comprensión <core/datastructures/lists:listas por comprensión>`::
+
+    >>> [x for x in data if x % 2 == 1]
+    [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 
 ``reduce()``
 ------------
@@ -959,12 +994,12 @@ Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funcio
     >>> reduce(lambda x, y: x * y, data)
     120
 
-.. hint:: Por cuestiones de legibilidad del código, se suelen preferir las **listas por comprensión** a funciones como ``map()`` o ``filter()``, aunque cada problema tiene sus propias características y sus soluciones más adecuadas.
+.. hint:: Por cuestiones de legibilidad del código, se suelen preferir las **listas por comprensión** a funciones como ``map()`` o ``filter()``, aunque cada problema tiene sus propias características y sus soluciones más adecuadas. Es un **enfoque "más pitónico"**.
 
 Generadores
 ===========
 
-Un **generador** es un objeto que nos permite iterar sobre una *secuencia de valores* con la particularidad de no tener que crear explícitamente dicha secuencia. Esta propiedad los hace idóneos para situaciones en las que el tamaño de las secuencias podría tener un impacto negativo en el consumo de memoria.
+Un **generador**, como su propio nombre indica, se encarga de generar "valores" sobre los que podemos iterar. Es decir, no construye una secuencia de forma explícita, sino que nos permite ir "consumiendo" un valor de cada vez. Esta propiedad los hace idóneos para situaciones en las que el tamaño de las secuencias podría tener un impacto negativo en el consumo de memoria.
 
 De hecho ya hemos visto algunos generadores y los hemos usado de forma directa. Un ejemplo es ``range()`` que ofrece la posibilidad de crear :ref:`secuencias de números <core/controlflow/loops:Secuencias de números>`.
 
@@ -973,14 +1008,14 @@ Básicamente existen dos implementaciones de generadores:
 - Funciones generadoras.
 - Expresiones generadoras.
 
-.. note:: A diferencia de las funciones ordinarias, los generadores tienen la capacidad de "recordar" su estado para recuperarlo en la siguiente iteración y continuar devolviendo nuevos valores.
+.. important:: A diferencia de las funciones ordinarias, los generadores tienen la capacidad de **"recordar" su estado** para recuperarlo en la siguiente iteración y continuar devolviendo nuevos valores.
 
 Funciones generadoras
 ---------------------
 
-Las funciones generadoras se escriben como funciones ordinarias con el matiz de incorporar la sentencia ``yield`` que sustituye, de alguna manera, a ``return``. Esta sentencia devuelve el valor indicado y, a la vez, "congela" el estado de la función para subsiguientes ejecuciones.
+Las funciones generadoras se escriben como funciones ordinarias con el matiz de incorporar la sentencia ``yield`` que sustituye, de alguna manera, a ``return``. Esta sentencia devuelve el valor indicado y, a la vez, "congela" el estado de la función hasta la siguiente llamada.
 
-Veamos un ejemplo en el que escribimos una función generadora de números pares::
+Veamos un ejemplo en el que escribimos una **función generadora de números pares**::
 
     >>> def evens(lim):
     ...     for i in range(0, lim + 1, 2):
@@ -990,7 +1025,7 @@ Veamos un ejemplo en el que escribimos una función generadora de números pares
     >>> type(evens)
     function
 
-    >>> evens_gen = evens(20)  # returns generator
+    >>> evens_gen = evens(20)  # retorna un generador
 
     >>> type(evens_gen)
     generator
@@ -1014,7 +1049,18 @@ Si queremos "explicitar" la lista de valores que contiene un generador, podemos 
     >>> list(evens(20))
     [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
-.. important:: Un detalle muy importante sobre los generadores es que "se agotan". Es decir, una vez que ya hemos consumido todos sus elementos ya no obtendremos nuevos valores.
+Un detalle muy importante es que **los generadores "se agotan"**. Es decir, una vez que ya hemos consumido todos sus elementos no obtendremos nuevos valores::
+
+    >>> evens_gen = evens(10)
+    
+    >>> for even in evens_gen:
+    ...     print(even, end=' ')
+    ...
+    0 2 4 6 8 10
+
+    >>> for even in evens_gen:
+    ...     print(even, end=' ')
+    ... # No sale nada... ¡Agotado!
 
 Expresiones generadoras
 -----------------------
@@ -1033,16 +1079,11 @@ Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <co
     ...
     0 2 4 6 8 10 12 14 16 18
 
-.. note:: Las expresiones generadoras admiten *condiciones* y *anidamiento de bucles*, tal y como se vio con las listas por comprensión.
+.. seealso:: Las expresiones generadoras admiten *condiciones* y *anidamiento de bucles*, tal y como se vio con las :ref:`listas por comprensión <core/datastructures/lists:listas por comprensión>`.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba una **función generadora** que devuelva los 100 primeros números enteros elevados al cuadrado.
-
-    .. only:: html
-    
-        |solution| :download:`gen_squared.py <files/gen_squared.py>`
+    pycheck_: **gen_squared**
 
 Decoradores
 ===========
@@ -1096,13 +1137,13 @@ Ahora definimos una función ordinaria (que usaremos más adelante) y que comput
     >>> power(4, 5)
     1024
 
-Ahora aplicaremos el decorador definido previamente ``res2bin()`` sobre la función ordinaria ``power()``. Se dice que que ``res2bin()`` es la **función decoradora** y que ``power()`` es la **función decorada**::
+Ahora aplicaremos el decorador definido previamente ``res2bin()`` sobre la función ordinaria ``power()``. Se dice que ``res2bin()`` es la **función decoradora** y que ``power()`` es la **función decorada**::
 
     >>> decorated_power = res2bin(power)
 
-    >>> decorated_power(2, 3)
+    >>> decorated_power(2, 3)  # 8
     '0b1000'
-    >>> decorated_power(4, 5)
+    >>> decorated_power(4, 5)  # 1024
     '0b10000000000'
 
 Usando ``@`` para decorar
@@ -1508,13 +1549,13 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _Sucesión de Fibonacci: https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci
 .. _mypy: http://mypy-lang.org/
 .. _syntactic sugar: https://es.wikipedia.org/wiki/Az%C3%BAcar_sint%C3%A1ctico
-.. _Sphinx docstrings: https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
+.. _reStructuredText docstrings: https://peps.python.org/pep-0287/
 .. _Google docstrings: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings
-.. _reStructured Text: https://www.sphinx-doc.org/es/master/usage/restructuredtext/index.html
+.. _reStructuredText: https://www.sphinx-doc.org/es/master/usage/restructuredtext/index.html
 .. _NumPy-SciPy docstrings: https://numpydoc.readthedocs.io/en/latest/format.html
 .. _Epytext: http://epydoc.sourceforge.net/epytext.html
 .. _NumPy: https://numpy.org/
-.. _Sphinx: https://www.sphinx-doc.org/en/master/
+.. _Sphinx: https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
 .. _autodoc: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
 .. _Read the Docs: https://readthedocs.org/
 .. _Napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
@@ -1522,3 +1563,4 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _palíndromo: https://es.wikipedia.org/wiki/Pal%C3%ADndromo
 .. _pangrama: https://es.wikipedia.org/wiki/Pangrama
 .. _pycheck: https://pycheck.es
+.. _requests: https://requests.readthedocs.io/en/latest/api/
