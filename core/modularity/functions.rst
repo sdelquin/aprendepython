@@ -47,7 +47,19 @@ Para invocar (o "llamar") a una función sólo tendremos que escribir su nombre 
     >>> say_hello()
     Hello!
 
-Como era de esperar, al invocar a esta función obtenemos un mensaje por pantalla, fruto de la ejecución del cuerpo de la función.
+.. note::
+    Como era de esperar, al invocar a esta función obtenemos un mensaje por pantalla, fruto de la ejecución del cuerpo de la función.
+
+Cuando queremos **invocar a una función dentro de un fichero ``*.py``** lo haremos del mismo modo que hemos visto en el intérprete interactivo:
+
+.. code-block::
+    :linenos:
+
+    def say_hello():
+        print('Hello!')
+    
+    # Llamada a la función (primer nivel de indentación)
+    say_hello()
 
 Retornar un valor
 =================
@@ -82,6 +94,18 @@ Si una función no incluye un ``return`` de forma explícita, devolverá :ref:`N
 
     >>> print(empty())
     None
+
+Existe la posibilidad de usar la sentencia ``return`` "a secas" (que también devuelve ``None``) y hace que "salgamos" inmediatamente de la función::
+
+    >>> def quick():
+    ...     return
+    ...
+
+    >>> print(quick())
+    None
+
+.. warning::
+    En general, esto **no se considera una buena práctica** salvo que sepamos lo que estamos haciendo. Si la función debe devolver ``None`` es preferible ser **explícito** y utilizar ``return None``. Aunque es posible que en ciertos escenarios nos interese dicha aproximación.
 
 ***********************
 Parámetros y argumentos
@@ -392,7 +416,7 @@ Para superar esta "limitación" vamos a hacer uso del ``*`` para empaquetar los 
     >>> def _sum(*values):
     ...     result = 0
     ...     for value in values:  # values es una tupla
-    ...         result += arg
+    ...         result += value
     ...     return result
     ...
 
@@ -401,23 +425,16 @@ Para superar esta "limitación" vamos a hacer uso del ``*`` para empaquetar los 
 
 Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función para **desempaquetar** los argumentos posicionales::
 
-    >>> def show_args(*args):
-    ...     for arg in args:
-    ...         print(f'{arg=}')
-    ...
-
-    >>> my_args = (1, 2, 3, 4)
-
-    >>> show_args(my_args)   # sin desempaquetado
-    arg=(1, 2, 3, 4)
-
-    >>> show_args(*my_args)  # con desempaquetado
-    arg=1
-    arg=2
-    arg=3
-    arg=4
-
-.. note:: En muchas ocasiones se utiliza ``args`` como nombre del parámetro (es una convención).
+    >>> values = (4, 3, 2, 1)
+    
+    >>> _sum(values)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 4, in _sum
+    TypeError: unsupported operand type(s) for +=: 'int' and 'tuple'
+    
+    >>> _sum(*values)  # Desempaquetado
+    10
 
 Empaquetar/Desempaquetar argumentos nominales
 ---------------------------------------------
@@ -440,20 +457,25 @@ Supongamos un ejemplo en el que queremos **encontrar la persona con mayor califi
 
 Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función para **desempaquetar** los argumentos nominales::
 
-    >>> def show_kwargs(**kwargs):
-    ...     for item in kwargs.items():
-    ...         print(f'{item=}')
+    >>> marks = dict(ana=8, antonio=6, inma=9, javier=7)
+
+    >>> best_student(marks)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: best_student() takes 0 positional arguments but 1 was given
+
+    >>> best_student(**marks)  # Desempaquetado
+    'inma'
+
+Convenciones
+------------
+
+En muchas ocasiones se utiliza ``args`` como nombre de parámetro para argumentos posicionales y ``kwargs`` como nombre de parámetro para argumentos nominales. Esto son únicamente **convenciones**, no hay obligación de utilizar estos nombres. Así, podemos encontrar funciones definidas de la siguiente manera:
+
+    >>> def func(*args, **kwargs):
+    ...     # TODO
+    ...     pass
     ...
-
-    >>> my_kwargs = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-
-    >>> show_kwargs(**my_kwargs)
-    item=('a', 1)
-    item=('b', 2)
-    item=('c', 3)
-    item=('d', 4)
-
-.. note:: En muchas ocasiones se utiliza ``kwargs`` como nombre del parámetro (es una convención).
 
 Forzando modo de paso de argumentos
 ===================================
@@ -667,9 +689,9 @@ Como ya se ha visto, es posible documentar una función utilizando un ``docstrin
 `Google docstrings`_
     Formato de documentación recomendado por Google.
 `NumPy-SciPy docstrings`_
-    Combinación de formatos reStructured y Google (usados por el proyecto `NumPy`_).
+    Combinación de formatos reStructuredText y Google (usados por el proyecto `NumPy`_).
 `Epytext`_
-    Una adaptación a Python de Epydoc(Java).
+    Formato utilizado por Epydoc_ (una adaptación de Javadoc).
 
 Aunque cada uno tienes sus particularidades, todos comparten una misma estructura:
 
@@ -820,7 +842,7 @@ Una **clausura** (del término inglés "*closure*") establece el uso de una :ref
     >>> m5(8)  # 8 * 5
     40
 
-.. important:: En una clausura retornamos una función, no una llamada a la función.
+.. important:: En una clausura retornamos una función, no una llamada a una función.
 
 Funciones anónimas "lambda"
 ===========================
@@ -1044,12 +1066,12 @@ De forma más "directa", podemos iterar sobre la propia llamada a la función ge
     ...
     0 2 4 6 8 10 12 14 16 18 20
 
-Si queremos "explicitar" la lista de valores que contiene un generador, podemos hacerlo de la siguiente manera::
+Si queremos "explicitar" la lista de valores que contiene un generador, podemos hacerlo convirtiendo a lista::
 
     >>> list(evens(20))
     [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
-Un detalle muy importante es que **los generadores "se agotan"**. Es decir, una vez que ya hemos consumido todos sus elementos no obtendremos nuevos valores::
+Un detalle muy importante es que **los generadores "se agotan"**. Es decir, una vez que ya hemos consumido todos sus elementos, no obtendremos nuevos valores::
 
     >>> evens_gen = evens(10)
     
@@ -1117,7 +1139,7 @@ El *esqueleto básico* de un decorador es el siguiente::
 +------------------+------------------------------------------------+
 
 
-Veamos un ejemplo de **decorador que convierte el resultado de la función a binario**::
+Veamos un ejemplo de **decorador que convierte el resultado numérico de una función a su representación binaria**::
 
     >>> def res2bin(func):
     ...     def wrapper(*args, **kwargs):
@@ -1200,46 +1222,33 @@ Si anotamos los decoradores podemos ver exactamente cuál es el orden de ejecuci
 
     >>> def plus5(func):
     ...     def wrapper(*args, **kwargs):
-    ...         print('plus5-A')
     ...         result = func(*args, **kwargs)  # ——————┐
-    ...         print('plus5-B')                #       |
+    ...         print(f'{result=}')             #       |
+    ...         print('plus5')                  #       |
     ...         return result + 5               #       |
     ...     return wrapper                      #       |
     ...                                         #       |
     ...                                         #       |
     ... def div2(func):                         #       |
     ...     def wrapper(*args, **kwargs):       #       |
-    ...         print('div2-A')                 # ◄—————┘
-    ...         result = func(*args, **kwargs)
-    ...         print('div2-B')
+    ...         result = func(*args, **kwargs)  # ◄—————┘
+    ...         print(f'{result=}')
+    ...         print('div2')
     ...         return result // 2
     ...     return wrapper
 
 Ahora ejecutamos la función decorada::
 
     >>> prod(4, 3)
-    plus5-A    # decorador plus5
-    div2-A     # decorador div2
-    div2-B     # decorador div2
-    plus5-B    # decorador plus5
-    11
+    result=12     # función prod "tal cual" (4*3)
+    div2          # decorador div2
+    result=6      # aplicación decorador div2 (12/2)
+    plus5         # decorador plus5
+    11            # aplicación decorador plus5 (6+5)
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba un decorador llamado ``fabs()`` que convierta a su valor absoluto los dos primeros parámetros de la función que decora y devuelva el resultado de aplicar dicha función a sus dos argumentos. *El valor absoluto de un número se obtiene con la función* ``abs()``.
-
-    A continuación probar el decorador con una función ``fprod()`` que devuelva el producto de dos valores, jugando con números negativos y positivos.
-    
-    *¿Podrías extender el decorador para que tuviera en cuenta un número indeterminado de argumentos posicionales?*
-
-    **Ejemplo**
-        * Entrada: ``-3`` y ``7``
-        * Salida: ``21``
-
-    .. only:: html
-    
-        |solution| :download:`decorator.py <files/decorator.py>`
+    pycheck_: **abs_decorator**
 
 Funciones recursivas
 ====================
@@ -1259,7 +1268,7 @@ La **recursividad** es el mecanismo por el cual una función se llama a sí mism
       [Previous line repeated 996 more times]
     RecursionError: maximum recursion depth exceeded
 
-.. warning:: Podemos observar que existe un número máximo de llamadas recursivas. Python controla esta situación por nosotros, ya que, de no ser así, podríamos llegar a consumir los recursos del sistema.
+.. warning:: Podemos observar que existe un número máximo de llamadas recursivas. Python controla esta situación por nosotros, ya que, de no ser así, podríamos llegar a consumir todos los recursos del sistema.
 
 Veamos ahora un ejemplo más real en el que computar el enésimo término de la `Sucesión de Fibonacci`_ utilizando una función recursiva::
 
@@ -1277,60 +1286,9 @@ Veamos ahora un ejemplo más real en el que computar el enésimo término de la 
     >>> fibonacci(20)
     6765
 
-Función generadora recursiva
-----------------------------
-
-Si tratamos de extender el ejemplo anterior de Fibonacci para obtener todos los términos de la sucesión hasta un límite, pero con la filosofía recursiva, podríamos plantear el uso de una :ref:`función generadora <core/modularity/functions:Funciones generadoras>`::
-
-    >>> def fibonacci():
-    ...     def _fibonacci(n):
-    ...         if n == 0:
-    ...             return 0
-    ...         if n == 1:
-    ...             return 1
-    ...         return _fibonacci(n - 1) + _fibonacci(n - 2)
-    ...
-    ...     n = 0
-    ...     while True:
-    ...         yield _fibonacci(n)
-    ...         n += 1
-    ...
-
-    >>> fib = fibonacci()
-
-    >>> type(fib)
-    generator
-
-    >>> for _ in range(10):
-    ...     print(next(fib))
-    ...
-    0
-    1
-    1
-    2
-    3
-    5
-    8
-    13
-    21
-    34
-
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba una función recursiva que calcule el factorial de un número:
-
-    .. math::
-
-        n! = n \cdot (n - 1) \cdot (n - 2) \cdot \ldots \cdot 1
-    
-    **Ejemplo**
-        * Entrada: ``5``
-        * Salida: ``120``
-
-    .. only:: html
-    
-        |solution| :download:`factorial_recursive.py <files/factorial_recursive.py>`
+    pycheck_: **factorial_recursive**
 
 *******************
 Espacios de nombres
@@ -1342,7 +1300,7 @@ Como bien indica el :ref:`Zen de Python <core/introduction/python:Zen de Python>
 
 Que vendría a traducirse como: "Los espacios de nombres son una gran idea -- hagamos más de eso". Los **espacios de nombres** permiten definir **ámbitos** o **contextos** en los que agrupar nombres de objetos.
 
-Los espacios de nombres proporcionan un mecanismo de empaquetamiento, de tal forma que podamos tener incluso nombres iguales que no hacen referencia al mismo objeto (siempre y cuando estén en ámbitos distintos).
+Los espacios de nombres proporcionan un mecanismo de empaquetado, de tal forma que podamos tener incluso nombres iguales que no hacen referencia al mismo objeto (siempre y cuando estén en ámbitos distintos).
 
 Cada *función* define su propio espacio de nombres y es diferente del espacio de nombres global aplicable a todo nuestro programa.
 
@@ -1419,70 +1377,65 @@ Contenido de los espacios de nombres
 Python proporciona dos funciones para acceder al contenido de los espacios de nombres:
 
 ``locals()``
-    Devuelve un diccionario con los contenidos del **espacio de nombres local**.
+    Devuelve un diccionario con los contenidos del **espacio de nombres local**::
+
+        >>> language = 'castellano'
+
+        >>> def catalonia():
+        ...     language  = 'catalan'
+        ...     print(f'{locals()=}')
+        ...
+
+        >>> catalonia()
+        locals()={'language': 'catalan'}
+
 ``globals()``
-    Devuelve un diccionario con los contenidos del **espacio de nombres global**.
+    Devuelve un diccionario con los contenidos del **espacio de nombres global**::
 
-.. code-block::
-    :emphasize-lines: 5, 14
-
-    >>> language = 'castellano'
-
-    >>> def catalonia():
-    ...     language  = 'catalan'
-    ...     print(f'{locals()=}')
-    ...
-
-    >>> language
-    'castellano'
-
-    >>> catalonia()
-    locals()={'language': 'catalan'}
-
-    >>> globals()
-    {'__name__': '__main__',
-     '__doc__': 'Automatically created module for IPython interactive environment',
-     '__package__': None,
-     '__loader__': None,
-     '__spec__': None,
-     '__builtin__': <module 'builtins' (built-in)>,
-     '__builtins__': <module 'builtins' (built-in)>,
-     '_ih': ['',
-      "language = 'castellano'",
-      "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
-      'language',
-      'catalonia()',
-      'globals()'],
-     '_oh': {3: 'castellano'},
-     '_dh': ['/Users/sdelquin'],
-     'In': ['',
-      "language = 'castellano'",
-      "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
-      'language',
-      'catalonia()',
-      'globals()'],
-     'Out': {3: 'castellano'},
-     'get_ipython': <bound method InteractiveShell.get_ipython of <IPython.terminal.interactiveshell.TerminalInteractiveShell object at 0x10e70c2e0>>,
-     'exit': <IPython.core.autocall.ExitAutocall at 0x10e761070>,
-     'quit': <IPython.core.autocall.ExitAutocall at 0x10e761070>,
-     '_': 'castellano',
-     '__': '',
-     '___': '',
-     'Prompts': IPython.terminal.prompts.Prompts,
-     'Token': Token,
-     'MyPrompt': __main__.MyPrompt,
-     'ip': <IPython.terminal.interactiveshell.TerminalInteractiveShell at 0x10e70c2e0>,
-     '_i': 'catalonia()',
-     '_ii': 'language',
-     '_iii': "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
-     '_i1': "language = 'castellano'",
-     'language': 'castellano',
-     '_i2': "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
-     'catalonia': <function __main__.catalonia()>,
-     '_i3': 'language',
-     '_3': 'castellano',
-     '_i4': 'catalonia()',
-     '_i5': 'globals()'}
+        >>> globals()
+        {'__name__': '__main__',
+        '__doc__': 'Automatically created module for IPython interactive environment',
+        '__package__': None,
+        '__loader__': None,
+        '__spec__': None,
+        '__builtin__': <module 'builtins' (built-in)>,
+        '__builtins__': <module 'builtins' (built-in)>,
+        '_ih': ['',
+        "language = 'castellano'",
+        "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
+        'language',
+        'catalonia()',
+        'globals()'],
+        '_oh': {3: 'castellano'},
+        '_dh': ['/Users/sdelquin'],
+        'In': ['',
+        "language = 'castellano'",
+        "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
+        'language',
+        'catalonia()',
+        'globals()'],
+        'Out': {3: 'castellano'},
+        'get_ipython': <bound method InteractiveShell.get_ipython of <IPython.terminal.interactiveshell.TerminalInteractiveShell object at 0x10e70c2e0>>,
+        'exit': <IPython.core.autocall.ExitAutocall at 0x10e761070>,
+        'quit': <IPython.core.autocall.ExitAutocall at 0x10e761070>,
+        '_': 'castellano',
+        '__': '',
+        '___': '',
+        'Prompts': IPython.terminal.prompts.Prompts,
+        'Token': Token,
+        'MyPrompt': __main__.MyPrompt,
+        'ip': <IPython.terminal.interactiveshell.TerminalInteractiveShell at 0x10e70c2e0>,
+        '_i': 'catalonia()',
+        '_ii': 'language',
+        '_iii': "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
+        '_i1': "language = 'castellano'",
+        'language': 'castellano',
+        '_i2': "def catalonia():\n    language  = 'catalan'\n    print(f'{locals()=}')\n    ",
+        'catalonia': <function __main__.catalonia()>,
+        '_i3': 'language',
+        '_3': 'castellano',
+        '_i4': 'catalonia()',
+        '_i5': 'globals()'}
 
 ----
 
@@ -1564,3 +1517,4 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _pangrama: https://es.wikipedia.org/wiki/Pangrama
 .. _pycheck: https://pycheck.es
 .. _requests: https://requests.readthedocs.io/en/latest/api/
+.. _Epydoc: https://epydoc.sourceforge.net/
