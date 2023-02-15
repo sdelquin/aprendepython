@@ -1441,29 +1441,12 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba una función en Python que indique si un número está en un determinado intervalo (:download:`solución <files/within_range.py>`).
-    - Entrada: ``valor=3; lim_inferior=2; lim_superior=5``
-    - Salida: ``True``
-
-2. Escriba una función en Python que reciba una lista de valores enteros y devuelva otra lista sólo con aquellos valores pares (:download:`solución <files/evens.py>`).
-    - Entrada: ``[1, 2, 3, 4, 5, 6, 7, 8, 9]``
-    - Salida: ``[2, 4, 6, 8]``
-
-3. Escriba una función en Python que indique si un número es `perfecto`_. *Utilice una función auxiliar que calcule los divisores propios* (:download:`solución <files/perfect.py>`).
-    - Entrada: ``8128``
-    - Salida: ``True``
-
-4. Escriba una función en Python que determine si una cadena de texto es un `palíndromo`_ (:download:`solución <files/palindrome.py>`).
-    - Entrada: ``ana lava lana``
-    - Salida: ``True``
-
-5. Escriba una función en Python que determine si una cadena de texto es un `pangrama`_ (:download:`solución <files/pangram.py>`).
-    - Entrada: ``The quick brown fox jumps over the lazy dog``
-    - Salida: ``True``
-
-6. Escriba una función generadora en Python ``cycle_alphabet()`` que devuelva los caracteres del alfabeto de forma consecutiva y con desplazamiento circular, es decir, cuando se llegue al final del alfabeto que empiece por el principio. Pasar un parámetro ``max_letters`` que indique el número de caracteres a generar (:download:`solución <files/cycle_alphabet.py>`).
-    - Entrada: ``max_letters=43``
-    - Salida: ``abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq``
+1. pycheck_: **num_in_interval**
+2. pycheck_: **extract_evens**
+3. pycheck_: **perfect**
+4. pycheck_: **palindrome**
+5. pycheck_: **pangram**
+6. pycheck_: **cycle_alphabet**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
