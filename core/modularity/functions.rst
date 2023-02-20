@@ -1448,6 +1448,8 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 5. pycheck_: **pangram**
 6. pycheck_: **cycle_alphabet**
 7. pycheck_: **bubble_sort**
+8. pycheck_: **consecutive_seq**
+9. pycheck_: **magic_square**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
