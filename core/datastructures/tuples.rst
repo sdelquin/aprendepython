@@ -113,6 +113,9 @@ Con las tuplas podemos realizar :ref:`todas las operaciones que vimos con listas
 .. tip::
     Sí es posible aplicar ``sorted()`` o ``reversed()`` sobre una tupla ya que no estamos modificando su valor sino creando un nuevo objeto.
 
+.. seealso::
+    La comparación de tuplas funciona exactamente igual que la :ref:`comparación de listas <core/datastructures/lists:comparar listas>`.
+
 ************************
 Desempaquetado de tuplas
 ************************

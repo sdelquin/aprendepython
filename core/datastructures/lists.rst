@@ -735,6 +735,25 @@ Dado que ``zip()`` produce un *iterador*, si queremos obtener una **lista explí
     
         |solution| :download:`scalar_prod.py <files/scalar_prod.py>`
 
+Comparar listas
+=================
+
+Supongamos este ejemplo::
+
+    >>> [1, 2, 3] < [1, 2, 4]
+    True
+
+Python llega a la conclusión de que la lista ``[1, 2, 3]`` es menor que ``[1, 2, 4]`` porque va comparando elemento a elemento:
+
+- El ``1`` es igual en ambas listas.
+- El ``2`` es igual en ambas litas.
+- El ``3`` es menor que el ``4``, por lo que la primera lista es menor que la segunda.
+
+Entender la forma en la que se comparan dos listas es importante para poder aplicar otras funciones y obtener los resultados deseados.
+
+.. seealso::
+    Esta comparación funciona de forma totalmente análoga a la :ref:`comparación de cadenas de texto <core/datatypes/strings:comparar cadenas>`.
+
 **********************
 Cuidado con las copias
 **********************

@@ -809,6 +809,43 @@ El modificador ``\N`` permite representar un carácter **a partir de su nombre**
 .. seealso::
     `Tabla ASCII`_
 
+Comparar cadenas
+================
+
+Cuando comparamos dos cadenas de texto lo hacemos en términos **lexicográficos**. Es decir, se van comparando los caracteres de ambas cadenas uno a uno y se va mirando cuál está "antes".
+
+Por ejemplo::
+
+    >>> 'arca' < 'arpa' # 'ar' es igual para ambas
+    True
+
+    >>> ord('c')
+    99
+    >>> ord('p')
+    112
+
+.. note::
+    Internamente se utiliza la función ``ord()`` para comparar qué carácter está "antes".
+
+Otros ejemplos::
+
+    >>> 'a' < 'antes'
+    True
+
+    >>> 'antes' < 'después'
+    True
+
+    >>> 'después' < 'ahora'
+    False
+
+    >>> 'ahora' < 'a'
+    False
+
+Tener en cuenta que en Python la letras mayúsculas van antes que las minúsculas::
+
+    >>> 'A' < 'a'
+    True
+
 ************
 Casos de uso
 ************
