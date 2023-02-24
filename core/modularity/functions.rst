@@ -777,12 +777,47 @@ Simplemente añadimos el valor por defecto después de indicar el tipo.
 
 Las **anotaciones de tipos** son una herramienta muy potente y que, usada de forma adecuada, permite complementar la documentación de nuestro código y aclarar ciertos aspectos, que a priori, pueden parecer confusos. Su aplicación estará en función de la necesidad detectada por parte del equipo de desarrollo.
 
+Tipos compuestos
+----------------
+
+Hay escenarios en los que necesitamos más expresividad de cara a la anotación de tipos. ¿Qué ocurre si queremos indicar una *lista de cadenas de texto* o un *conjunto de enteros*.
+
+Veamos algunos ejemplos válidos:
+
++----------------------+-------------------------------------------------------------------------------+
+|      Anotación       |                                  Significado                                  |
++======================+===============================================================================+
+| ``list[str]``        | Lista de cadenas de texto                                                     |
++----------------------+-------------------------------------------------------------------------------+
+| ``set[int]``         | Conjunto de enteros                                                           |
++----------------------+-------------------------------------------------------------------------------+
+| ``dict[str, float]`` | Diccionario donde las claves son cadenas de texto y los valores son flotantes |
++----------------------+-------------------------------------------------------------------------------+
+
+Múltiples tipos
+---------------
+
+En el caso de que queramos indicar que un determinado parámetro puede ser de un tipo o de otro hay que especificarlo utilizando el operador [#or-types]_ ``|``.
+
+Veamos algunos ejemplos válidos:
+
++--------------------+---------------------------------------+
+|     Anotación      |              Significado              |
++====================+=======================================+
++--------------------+---------------------------------------+
+| ``tuple❘dict``     | Tupla o diccionario                   |
++--------------------+---------------------------------------+
+| ``list[str❘int]``  | Lista de cadenas de texto y/o enteros |
++--------------------+---------------------------------------+
+| ``set[int❘float]`` | Conjunto de enteros y/o flotantes     |
++--------------------+---------------------------------------+
+
+.. seealso::
+    `Guía rápida para de anotación de tipos (mypy) <https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html>`_
+
 .. admonition:: Ejercicio
 
-    ¿Sería capaz de volver a resolver este ejercicio utilizando anotaciones de tipo y/o valores por defecto para los parámetros de la función principal?
-
-    pycheck_: **barycenter**
-
+    pycheck_: **mcount**
 
 ******************
 Tipos de funciones
@@ -909,9 +944,7 @@ Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares
 
 .. admonition:: Ejercicio
 
-    ¿Podría resolver este ejercicio teniendo ahora conocimientos avanzados de la función ``sorted()``?
-
-    pycheck_: **sort_dict**
+    pycheck_: **sort_ages**
 
 Enfoque funcional
 =================
@@ -1478,6 +1511,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. [#functional-programming] Definición de `Programación funcional` en Wikipedia.
 .. [#type-hints] Conocidos como "type hints" en terminología inglesa.
 .. [#naming-functions] Las :ref:`reglas aplicadas a nombres de variables <core/datatypes/data:Reglas para nombrar variables>` también se aplican a nombres de funciones.
+.. [#or-types] Disponible a partir de Python 3.10.
 
 .. --------------- Hyperlinks ---------------
 
