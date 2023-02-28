@@ -653,6 +653,8 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 7. pycheck_: **inventory_moves**
 8. pycheck_: **merge_dicts**
 9. pycheck_: **sort_dict**
+10. pycheck_: **money_back**
+11. pycheck_: **money_back_max**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

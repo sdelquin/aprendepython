@@ -7,3 +7,4 @@ miniprojects/**/solution
 .ipynb_checkpoints
 sandbox.ipynb
 geckodriver.log
+.python-version
