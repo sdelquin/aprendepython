@@ -755,6 +755,25 @@ A partir de Python 3.8, los "f-strings" permiten imprimir el nombre de la variab
     >>> f'{imdb_rating / num_seasons=}'
     'imdb_rating / num_seasons=0.29'
 
+Modo "representación"
+---------------------
+
+Si imprimimos el valor de una variable utilizando un "f-string", obviamente veremos ese valor tal y como esperaríamos::
+
+    >>> name = 'Steven Spielberg'
+
+    >>> print(f'{name}')
+    Steven Spielberg
+
+Pero si quisiéramos ver la **representación** del objeto, tal y como se almacena internamente, podríamos utilizar el modificador ``!r`` en el "f-string"::
+
+    >>> name = 'Steven Spielberg'
+
+    >>> print(f'{name!r}')
+    'Steven Spielberg'
+
+En este caso se han añadido las comillas denotando que es una cadena de texto. Este modificador se puede aplicar a cualquier otro tipo de dato.
+
 .. admonition:: Ejercicio
     :class: exercise
 
