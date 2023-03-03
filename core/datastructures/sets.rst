@@ -94,7 +94,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://tinyurl.com/9folv2v
+    https://cutt.ly/E8Q3p1m
 
 .. only:: html
 
