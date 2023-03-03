@@ -1051,12 +1051,25 @@ Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funcio
 
 .. hint:: Por cuestiones de legibilidad del código, se suelen preferir las **listas por comprensión** a funciones como ``map()`` o ``filter()``, aunque cada problema tiene sus propias características y sus soluciones más adecuadas. Es un **enfoque "más pitónico"**.
 
+Hazlo pitónico
+--------------
+
+`Trey Hunner <https://treyhunner.com/>`_ explica en una de sus "newsletters" lo que él entiende por **código pitónico**:
+
+"Pitónico es un término extraño que significa diferentes cosas para diferentes personas. Algunas personas piensan que código pitónico va sobre legibilidad. Otras personas piensan que va sobre adoptar características particulares de Python. Mucha gente tiene una definición difusa que no va sobre legibilidad ni sobre características del lenguaje.
+
+Yo normalmente uso el término código pitónico como un sinónimo de código idiomático o la forma en la que la comunidad de Python tiende a hacer las cosas cuando escribe Python. Eso deja mucho espacio a la interpretación, ya que lo que hace algo idiomático en Python no está particularmente bien definido.
+
+Yo argumento que código pitónico implica adoptar el :ref:`desempaquetado de tuplas <core/datastructures/tuples:desempaquetado de tuplas>`, usar :ref:`listas por comprensión <core/datastructures/lists:listas por comprensión>` cuando sea apropiado, usar :ref:`argumentos nominales <core/modularity/functions:argumentos nominales>` cuando tenga sentido, evitar el :ref:`uso excesivo de clases <core/modularity/oop:objetos y clases>`, usar las :ref:`estructuras de iteración <core/controlflow/loops:bucles>` adecuadas o evitar :ref:`recorrer mediante índices <core/datastructures/lists:iterar sobre una lista>`.
+
+Para mi código pitónico significa intentar ver el código desde la perspectiva de las herramientas específicas que Python nos proporciona, en oposición a la forma en la que resolveríamos el mismo problema usando las herramientas que nos proporciona JavaScript, Java, C, ..."
+
 Generadores
 ===========
 
 Un **generador**, como su propio nombre indica, se encarga de generar "valores" sobre los que podemos iterar. Es decir, no construye una secuencia de forma explícita, sino que nos permite ir "consumiendo" un valor de cada vez. Esta propiedad los hace idóneos para situaciones en las que el tamaño de las secuencias podría tener un impacto negativo en el consumo de memoria.
 
-De hecho ya hemos visto algunos generadores y los hemos usado de forma directa. Un ejemplo es ``range()`` que ofrece la posibilidad de crear :ref:`secuencias de números <core/controlflow/loops:Secuencias de números>`.
+De hecho ya hemos visto algunos generadores y los hemos usado sin ser del todo conscientes. Algo muy parecido [#range]_ a un generador es ``range()`` que ofrece la posibilidad de crear :ref:`secuencias de números <core/controlflow/loops:Secuencias de números>`.
 
 Básicamente existen dos implementaciones de generadores:
 
@@ -1068,7 +1081,7 @@ Básicamente existen dos implementaciones de generadores:
 Funciones generadoras
 ---------------------
 
-Las funciones generadoras se escriben como funciones ordinarias con el matiz de incorporar la sentencia ``yield`` que sustituye, de alguna manera, a ``return``. Esta sentencia devuelve el valor indicado y, a la vez, "congela" el estado de la función hasta la siguiente llamada.
+Las funciones generadoras [#yield]_ (o factorías de generadores) se escriben como funciones ordinarias con el matiz de incorporar la sentencia ``yield`` que sustituye, de alguna manera, a ``return``. Esta sentencia devuelve el valor indicado y, a la vez, "congela" el estado de la función hasta la siguiente llamada.
 
 Veamos un ejemplo en el que escribimos una **función generadora de números pares**::
 
@@ -1512,6 +1525,8 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. [#type-hints] Conocidos como "type hints" en terminología inglesa.
 .. [#naming-functions] Las :ref:`reglas aplicadas a nombres de variables <core/datatypes/data:Reglas para nombrar variables>` también se aplican a nombres de funciones.
 .. [#or-types] Disponible a partir de Python 3.10.
+.. [#range] La función ``range()`` es un tanto especial. Véase este artículo de `Trey Hunner <https://treyhunner.com/2018/02/python-range-is-not-an-iterator/>`_.
+.. [#yield] Para una explicación detallada sobre generadores e iteradores se recomienda la ponencia `Yield el amigo que no sabías que tenías`_ de Jacobo de Vera.
 
 .. --------------- Hyperlinks ---------------
 
@@ -1538,3 +1553,4 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _pycheck: https://pycheck.es
 .. _requests: https://requests.readthedocs.io/en/latest/api/
 .. _Epydoc: https://epydoc.sourceforge.net/
+.. _Yield el amigo que no sabías que tenías: https://www.youtube.com/watch?v=W-3wHM549gA

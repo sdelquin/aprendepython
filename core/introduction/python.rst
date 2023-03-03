@@ -197,6 +197,9 @@ En su `traducción de la Wikipedia <https://es.wikipedia.org/wiki/Zen_de_Python>
 * Si la implementación es fácil de explicar, puede que sea una buena idea.
 * Los espacios de nombres son una gran idea, ¡tengamos más de esos!
 
+.. seealso::
+    Si quieres darle un toque a tu escritorio, puedes descargar `este fondo de pantalla del Zen de Python <https://www.gnome-look.org/p/1042303>`_ que queda muy chulo.
+
 ***********************
 Consejos para programar
 ***********************
