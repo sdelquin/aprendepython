@@ -6,10 +6,10 @@ Funciones
 
 El concepto de **función** es básico en prácticamente cualquier lenguaje de programación. Se trata de una estructura que nos permite agrupar código. Persigue dos objetivos claros:
 
-1. **No repetir** trozos de código durante nuestro programa.
-2. **Reutilizar** el código para distintas situaciones.
+1. **No repetir** fragmentos de código en un programa.
+2. **Reutilizar** el código en distintos escenarios.
 
-Una función viene *definida* por su *nombre*, sus *parámetros* y su *valor de retorno*. Esta parametrización de las funciones las convierte en una poderosa herramienta ajustable a las circunstancias que tengamos. Al *invocarla* estaremos solicitando su ejecución y obtendremos unos resultados. [#brewery-unsplash]_
+Una función viene *definida* por su *nombre*, sus *parámetros* y su *valor de retorno*. Esta parametrización de las funciones las convierten en una poderosa herramienta ajustable a las circunstancias que tengamos. Al *invocarla* estaremos solicitando su ejecución y obtendremos unos resultados. [#brewery-unsplash]_
 
 *******************
 Definir una función
@@ -29,8 +29,10 @@ Hagamos una primera función sencilla que no recibe parámetros::
     def say_hello():
         print('Hello!')
 
-- Nótese la :ref:`indentación <core/controlflow/conditionals:Definición de bloques>` (sangrado) del *cuerpo* de la función.
-- Los *nombres de las funciones* siguen :ref:`las mismas reglas que las variables <core/datatypes/data:Variables>`.
+.. note::
+    Nótese la :ref:`indentación <core/controlflow/conditionals:Definición de bloques>` (sangrado) del *cuerpo* de la función.
+
+Los **nombres de las funciones** siguen :ref:`las mismas reglas que las variables <core/datatypes/data:Variables>` y, como norma general, se suelen utilizar **verbos en infinitivo** para su definición: ``load_data``, ``store_values``, ``reset_cart``, ``filter_results``, ``block_request``, ...
 
 Invocar una función
 ===================
@@ -50,7 +52,7 @@ Para invocar (o "llamar") a una función sólo tendremos que escribir su nombre 
 .. note::
     Como era de esperar, al invocar a esta función obtenemos un mensaje por pantalla, fruto de la ejecución del cuerpo de la función.
 
-Cuando queremos **invocar a una función dentro de un fichero ``*.py``** lo haremos del mismo modo que hemos visto en el intérprete interactivo:
+Cuando queremos **invocar a una función dentro de un fichero** ``*.py`` lo haremos del mismo modo que hemos visto en el intérprete interactivo:
 
 .. code-block::
     :linenos:
@@ -107,6 +109,35 @@ Existe la posibilidad de usar la sentencia ``return`` "a secas" (que también de
 .. warning::
     En general, esto **no se considera una buena práctica** salvo que sepamos lo que estamos haciendo. Si la función debe devolver ``None`` es preferible ser **explícito** y utilizar ``return None``. Aunque es posible que en ciertos escenarios nos interese dicha aproximación.
 
+Retornando múltiples valores
+----------------------------
+
+Una función puede retornar más de un valor. El "secreto" es hacerlo **mediante una tupla**::
+
+    >>> def multiple():
+    ...     return 0, 1  # es una tupla!
+    ...
+
+Veamos qué ocurre si invocamos a esta función::
+
+    >>> result = multiple()
+
+    >>> result
+    (0, 1)
+
+    >>> type(result)
+    tuple
+
+Por lo tanto, podremos aplicar el :ref:`desempaquetado de tuplas <core/datastructures/tuples:desempaquetado de tuplas>` sobre el valor retornado por la función::
+
+    >>> a, b = multiple()
+    
+    >>> a
+    0
+    
+    >>> b
+    1
+
 ***********************
 Parámetros y argumentos
 ***********************
@@ -147,8 +178,9 @@ Veamos otra función con dos parámetros y algo más de lógica de negocio: [#bl
     >>> _min(7, 9)
     7
 
-.. attention::
-    Nótese que la sentencia ``return`` puede encontrarse en cualquier lugar de una función, no necesariamente al final del cuerpo. Esta técnica puede ser beneficiosa en múltiples escenarios.
+Nótese que la sentencia ``return`` puede escribirse en **múltiples ocasiones** y puede encontrarse en **cualquier lugar** de la función, no necesariamente al final del cuerpo. Esta técnica puede ser beneficiosa en múltiples escenarios.
+
+Uno de esos escenarios se relaciona con el concepto de **cláusula guarda**: una pieza de código que normalmente está al comienzo de la función y comprueba una serie de condiciones para continuar con la ejecución o cortarla [#guarda]_.
 
 .. admonition:: Ejercicio
 
@@ -227,7 +259,7 @@ Argumentos mutables e inmutables
 
 Cuando realizamos modificaciones a los argumentos de una función es importante tener en cuenta si son **mutables** (listas, diccionarios, conjuntos, ...) o **inmutables** (tuplas, enteros, flotantes, cadenas de texto, ...) ya que podríamos obtener efectos colaterales no deseados.
 
-Supongamos que nos piden escribir una función que recibe una lista y que devuelve sus valores elevados al cuadrado. Pero lo hacemos "malamente"::
+Supongamos que nos piden escribir una función que reciba una lista y que devuelva sus valores elevados al cuadrado. Pero lo hacemos "malamente"::
 
     >>> values = [2, 3, 4]
 
@@ -243,7 +275,7 @@ Supongamos que nos piden escribir una función que recibe una lista y que devuel
     >>> values  # ???
     [4, 9, 16]
 
-.. warning:: Esto **no es una buena práctica**. O bien documentar que el argumento puede modificarse o bien retornar un nuevo valor. Por regla general, no se recomienda que las funciones modifiquen argumentos de entrada.
+.. warning:: Esto **no es una buena práctica**. O bien documentar que el argumento puede modificarse o bien retornar un nuevo valor. Por regla general, no se recomienda que las funciones modifiquen argumentos de entrada, salvo que sea específicamente lo que estamos buscando.
 
 Parámetros por defecto
 ======================
@@ -690,7 +722,7 @@ Como ya se ha visto, es posible documentar una función utilizando un ``docstrin
     Formato de documentación recomendado por Google.
 `NumPy-SciPy docstrings`_
     Combinación de formatos reStructuredText y Google (usados por el proyecto `NumPy`_).
-`Epytext`_
+`Epytext docstrings`_
     Formato utilizado por Epydoc_ (una adaptación de Javadoc).
 
 Aunque cada uno tienes sus particularidades, todos comparten una misma estructura:
@@ -849,6 +881,9 @@ Está permitido definir una función dentro de otra función::
 
     >>> validation_rate('abc')
     0.0
+
+.. tip::
+    Estas funciones pueden tener sentido cuando su ámbito de aplicación es muy concreto y no se pueden reutilizar fácilmente.
 
 Clausuras
 =========
@@ -1062,7 +1097,7 @@ Yo normalmente uso el término código pitónico como un sinónimo de código id
 
 Yo argumento que código pitónico implica adoptar el :ref:`desempaquetado de tuplas <core/datastructures/tuples:desempaquetado de tuplas>`, usar :ref:`listas por comprensión <core/datastructures/lists:listas por comprensión>` cuando sea apropiado, usar :ref:`argumentos nominales <core/modularity/functions:argumentos nominales>` cuando tenga sentido, evitar el :ref:`uso excesivo de clases <core/modularity/oop:objetos y clases>`, usar las :ref:`estructuras de iteración <core/controlflow/loops:bucles>` adecuadas o evitar :ref:`recorrer mediante índices <core/datastructures/lists:iterar sobre una lista>`.
 
-Para mi código pitónico significa intentar ver el código desde la perspectiva de las herramientas específicas que Python nos proporciona, en oposición a la forma en la que resolveríamos el mismo problema usando las herramientas que nos proporciona JavaScript, Java, C, ..."
+Para mí, código pitónico significa intentar ver el código desde la perspectiva de las herramientas específicas que Python nos proporciona, en oposición a la forma en la que resolveríamos el mismo problema usando las herramientas que nos proporciona JavaScript, Java, C, ..."
 
 Generadores
 ===========
@@ -1159,6 +1194,11 @@ Decoradores
 Hay situaciones en las que necesitamos modificar el comportamiento de funciones existentes pero sin alterar su código. Para estos casos es muy útil usar decoradores.
 
 Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de :ref:`clausura <core/modularity/functions:Clausuras>`.
+
+.. figure:: img/decorator-candy.png
+    :align: center
+
+    Esqueleto básico de un decorador
 
 El *esqueleto básico* de un decorador es el siguiente::
 
@@ -1525,8 +1565,9 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. [#type-hints] Conocidos como "type hints" en terminología inglesa.
 .. [#naming-functions] Las :ref:`reglas aplicadas a nombres de variables <core/datatypes/data:Reglas para nombrar variables>` también se aplican a nombres de funciones.
 .. [#or-types] Disponible a partir de Python 3.10.
-.. [#range] La función ``range()`` es un tanto especial. Véase este artículo de `Trey Hunner <https://treyhunner.com/2018/02/python-range-is-not-an-iterator/>`_.
+.. [#range] La función ``range()`` es un tanto especial. Véase `este artículo de Trey Hunner <https://treyhunner.com/2018/02/python-range-is-not-an-iterator/>`_.
 .. [#yield] Para una explicación detallada sobre generadores e iteradores se recomienda la ponencia `Yield el amigo que no sabías que tenías`_ de Jacobo de Vera.
+.. [#guarda] Para más información sobre las cláusulas guarda, véase `este artículo de Miguel G. Flores <https://www.miguelg.com/2019/05/clausulas-guarda-en-python.html>`_
 
 .. --------------- Hyperlinks ---------------
 
@@ -1541,7 +1582,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 .. _Google docstrings: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings
 .. _reStructuredText: https://www.sphinx-doc.org/es/master/usage/restructuredtext/index.html
 .. _NumPy-SciPy docstrings: https://numpydoc.readthedocs.io/en/latest/format.html
-.. _Epytext: http://epydoc.sourceforge.net/epytext.html
+.. _Epytext docstrings: http://epydoc.sourceforge.net/epytext.html
 .. _NumPy: https://numpy.org/
 .. _Sphinx: https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
 .. _autodoc: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
