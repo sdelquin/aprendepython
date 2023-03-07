@@ -912,6 +912,9 @@ Una **clausura** (del término inglés "*closure*") establece el uso de una :ref
     >>> m5(8)  # 8 * 5
     40
 
+    >>> make_multiplier_of(5)(8)  # Llamada directa!
+    40
+
 .. important:: En una clausura retornamos una función, no una llamada a una función.
 
 Funciones anónimas "lambda"
