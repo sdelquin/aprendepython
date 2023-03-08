@@ -1641,14 +1641,15 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 
 1. pycheck_: **num_in_interval**
 2. pycheck_: **extract_evens**
-3. pycheck_: **perfect**
-4. pycheck_: **palindrome**
-5. pycheck_: **count_vowels**
-6. pycheck_: **pangram**
-7. pycheck_: **cycle_alphabet**
-8. pycheck_: **bubble_sort**
-9. pycheck_: **consecutive_seq**
-10. pycheck_: **magic_square**
+3. pycheck_: **split_case**
+4. pycheck_: **perfect**
+5. pycheck_: **palindrome**
+6. pycheck_: **count_vowels**
+7. pycheck_: **pangram**
+8. pycheck_: **cycle_alphabet**
+9. pycheck_: **bubble_sort**
+10. pycheck_: **consecutive_seq**
+11. pycheck_: **magic_square**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
