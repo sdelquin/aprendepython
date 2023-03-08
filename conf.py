@@ -21,7 +21,7 @@ import os
 project = 'aprendepython'
 # Description just for Latex purposes
 description = 'Aprende Python'
-copyright = '2020, Sergio Delgado Quintero'
+copyright = 'Sergio Delgado Quintero'
 author = 'Sergio Delgado Quintero'
 
 

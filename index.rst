@@ -18,7 +18,7 @@ Curso gratuito para aprender el lenguaje de programación **Python** con un enfo
 Este proyecto va de la mano con pycheck_ una herramienta que permite **trabajar todos los ejercicios propuestos** con casos de prueba incluidos y verificación de los resultados.
 
 Licencia:
-   GNU General Public License v3.0: `GPLv3`_.
+   Creative Commons Reconocimiento 4.0 Internacional: `CC BY 4.0`_.
 
 .. only:: html
 
@@ -70,5 +70,5 @@ Licencia:
 .. --------------- Hyperlinks ---------------
 
 .. _noticiascyl: https://www.noticiascyl.com/t/1700231/monty-python-vuelven-leon
-.. _GPLv3: https://choosealicense.com/licenses/gpl-3.0/
+.. _CC BY 4.0: https://creativecommons.org/licenses/by/4.0/deed.es_ES
 .. _pycheck: https://pycheck.es
