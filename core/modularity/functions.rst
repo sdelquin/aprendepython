@@ -1272,6 +1272,49 @@ Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los
     >>> power(4, 5)
     '0b10000000000'
 
+.. admonition:: Ejercicio
+
+    pycheck_: **abs_decorator**
+
+Manipulando argumentos
+----------------------
+
+Hemos visto un ejemplo de decorador que trabaja sobre el resultado de la función decorada, pero nada impide que trabajemos sobre los argumentos que se le pasa a la función decorada.
+
+Supongamos un escenario en el que implementamos **funciones que trabajan con dos operandos** y queremos asegurarnos de que **esos operados son números enteros**. Lo primero será definir el decorador::
+
+    >>> def assert_int(func):
+    ...     def wrapper(value1: int, value2: int, /) -> int | float | None:
+    ...         if isinstance(value1, int) and isinstance(value2, int):
+    ...             return func(value1, value2)
+    ...         return None
+    ...     return wrapper
+    ...
+
+.. tip::
+    Dado que sabemos positivamente que las funciones a decorar trabajan con dos operados (dos parámetros) podemos definir la función interior ``wrapper(value1, value2)`` con dos parámetros, en vez de con un número indeterminado de parámetros.
+
+Ahora creamos una función sencilla que suma dos números y le aplicamos el decorador::
+
+    >>> @assert_int
+    ... def _sum(a, b):
+    ...     return a + b
+    ...
+
+Veamos el comportamiento para diferentes casos de uso::
+
+    >>> result = _sum(3, 4)
+    >>> print(result)
+    7
+
+    >>> result = _sum(5, 'a')
+    >>> print(result)
+    None
+
+    >>> result = _sum('a', 'b')
+    >>> print(result)
+    None
+
 Múltiples decoradores
 ---------------------
 
@@ -1335,9 +1378,75 @@ Ahora ejecutamos la función decorada::
     plus5         # decorador plus5
     11            # aplicación decorador plus5 (6+5)
 
-.. admonition:: Ejercicio
+Decoradores con parámetros
+--------------------------
 
-    pycheck_: **abs_decorator**
+El último "salto mortal" sería definir decoradores con parámetros. El *esqueleto básico* de un decorador con parámetros es el siguiente::
+
+    >>> def my_decorator_with_params(*args, **kwargs):
+    ...     def decorator(func):
+    ...         def wrapper(*args, **kwargs):
+    ...             return func(*args, **kwargs)
+    ...         return wrapper
+    ...     return decorator
+    ...
+
+Lo más sencillo es verlo con un ejemplo. Supongamos que queremos forzar a que los parámetros de entrada a la función sean de un tipo concreto pero parametrizable. Podríamos definir el decorador de la siguiente manera::
+
+    >>> def assert_type(atype):
+    ...     def decorator(func):
+    ...         def wrapper(*args, **kwargs):
+    ...             all_args_with_atype = all(isinstance(a, atype) for a in args)
+    ...             all_kwargs_with_atype = all(isinstance(a, atype) for a in kwargs.values())
+    ...             if all_args_with_atype and all_kwargs_with_atype:
+    ...                 return func(*args, **kwargs)
+    ...             return None
+    ...         return wrapper
+    ...     return decorator
+    ...
+
+Ahora creamos una función sencilla que suma dos números y le aplicamos el decorador::
+
+    >>> @assert_type(float)
+    ... def _sum(a, b):
+    ...     return a + b
+    ...
+
+Veamos el comportamiento para diferentes casos de uso::
+
+    >>> result = _sum(3, 4)
+    >>> print(result)
+    None
+
+    >>> result = _sum(3.0, 4.0)
+    >>> print(result)
+    7.0
+
+    >>> result = _sum(a=3.0, b=4.0)  # Llamada con kwargs
+    >>> print(result)
+    7.0
+
+La ventaja que tiene este enfoque es que podemos aplicar "distintos" decoradores modificando sus parámetros. Por ejemplo, supongamos que ahora queremos **asegurar que una función trabaja únicamente con cadenas de texto**::
+
+    >>> @assert_type(str)
+    ... def split(text):
+    ...     half_size = len(text) // 2
+    ...     return text[:half_size], text[half_size:]
+    ...
+
+Veamos su aplicación con distintos tipos de datos::
+
+    >>> result = split('bienvenida')
+    >>> print(result)
+    ('bienv', 'enida')
+
+    >>> result = split(256)
+    >>> print(result)
+    None
+
+    >>> result = split([10, 20, 30, 40])
+    >>> print(result)
+    None
 
 Funciones recursivas
 ====================
@@ -1534,11 +1643,12 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 2. pycheck_: **extract_evens**
 3. pycheck_: **perfect**
 4. pycheck_: **palindrome**
-5. pycheck_: **pangram**
-6. pycheck_: **cycle_alphabet**
-7. pycheck_: **bubble_sort**
-8. pycheck_: **consecutive_seq**
-9. pycheck_: **magic_square**
+5. pycheck_: **count_vowels**
+6. pycheck_: **pangram**
+7. pycheck_: **cycle_alphabet**
+8. pycheck_: **bubble_sort**
+9. pycheck_: **consecutive_seq**
+10. pycheck_: **magic_square**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
