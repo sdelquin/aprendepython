@@ -1448,6 +1448,10 @@ Veamos su aplicación con distintos tipos de datos::
     >>> print(result)
     None
 
+.. admonition:: Ejercicio
+
+    ¿Sabría implementar un decorador para ordenar el resultado de cualquier función tomando un parámetro opcional que indique si la ordenación es ascendente o descendente?
+
 Funciones recursivas
 ====================
 
