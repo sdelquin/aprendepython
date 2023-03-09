@@ -1187,6 +1187,20 @@ Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <co
 
 .. seealso:: Las expresiones generadoras admiten *condiciones* y *anidamiento de bucles*, tal y como se vio con las :ref:`listas por comprensión <core/datastructures/lists:listas por comprensión>`.
 
+Una expresión generadora se puede explicitar, sumar, buscar su máximo o su mínimo, o lo que queramos, tal y como lo haríamos con un iterable cualquiera::
+
+    >>> list(i for i in range(0, 20, 2))
+    [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
+    >>> sum(i for i in range(0, 20, 2))
+    90
+
+    >>> min(i for i in range(0, 20, 2))
+    0
+
+    >>> max(i for i in range(0, 20, 2))
+    18
+
 .. admonition:: Ejercicio
 
     pycheck_: **gen_squared**
@@ -1391,7 +1405,10 @@ El último "salto mortal" sería definir decoradores con parámetros. El *esquel
     ...     return decorator
     ...
 
-Lo más sencillo es verlo con un ejemplo. Supongamos que queremos forzar a que los parámetros de entrada a la función sean de un tipo concreto pero parametrizable. Podríamos definir el decorador de la siguiente manera::
+.. attention::
+    Nótese que ``my_decorator_with_params()`` no es exactamente un decorador sino que es una factoría de decoradores (:ref:`clausura <core/modularity/functions:clausuras>`) que devuelve un decorador según los argumentos pasados.    
+
+Lo más sencillo es verlo con un ejemplo. Supongamos que queremos forzar a que los parámetros de entrada a la función sean de un tipo concreto (pero parametrizable). Podríamos definir el decorador de la siguiente manera::
 
     >>> def assert_type(atype):
     ...     def decorator(func):
@@ -1422,7 +1439,7 @@ Veamos el comportamiento para diferentes casos de uso::
     >>> print(result)
     7.0
 
-    >>> result = _sum(a=3.0, b=4.0)  # Llamada con kwargs
+    >>> result = _sum(a=3.0, b=4.0)  # Funciona con kwargs!
     >>> print(result)
     7.0
 
@@ -1491,6 +1508,18 @@ Veamos ahora un ejemplo más real en el que computar el enésimo término de la 
 .. admonition:: Ejercicio
 
     pycheck_: **factorial_recursive**
+
+Otra aproximación a la recursividad se da en problemas donde tenemos que procesar una secuencia de elementos. Supongamos que nos piden **calcular la suma de las longitudes de una serie de palabras** definidas en una lista::
+
+    >>> def get_size(words: list[str]) -> int:
+    ...     if len(words) == 0:
+    ...         return 0
+    ...     return len(words[0]) + get_size(words[1:])
+    ...
+
+    >>> words = ['this', 'is', 'recursive']
+    >>> get_size(words)
+    15
 
 *******************
 Espacios de nombres
