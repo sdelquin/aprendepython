@@ -23,7 +23,7 @@ Licencia:
 .. only:: html
 
    Descarga PDF:
-      Toda la web está también disponible en formato libro: :download:`aprendepython.pdf <_build/latex/aprendepython.pdf>` 📘
+      Toda la web también está disponible en formato libro: :download:`aprendepython.pdf <_build/latex/aprendepython.pdf>` 📘
 
 .. hint:: **"Programming is not about typing, it's about thinking."** -- Rich Hickey
 
