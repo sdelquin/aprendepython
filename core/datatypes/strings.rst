@@ -397,15 +397,8 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <c
     list
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Sabiendo que la longitud de una lista se calcula igual que la :ref:`longitud de una cadena de texto <core/datatypes/strings:Longitud de una cadena>`, obtenga el **número de palabras** que contiene la siguiente cadena de texto::
-
-        quote = 'Before software can be reusable, it first has to be usable'
-    
-    .. only:: html
-    
-        |solution| :download:`num_words.py <files/num_words.py>`
+    pycheck_: **num_words**
 
 Existe una forma algo más avanzada de dividir una cadena a través del **particionado**. Para ello podemos valernos de la función ``partition()`` que proporciona Python.
 
@@ -506,24 +499,8 @@ Contabilizar el **número de veces que aparece** una subcadena::
     0
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dada la siguiente letra [#tenerife-sea]_, obtenga la misma pero sustituyendo la palabra ``voices`` por ``sounds``:
-
-        >>> song = '''You look so beautiful in this light
-        ... Your silhouette over me
-        ... The way it brings out the blue in your eyes
-        ... Is the Tenerife sea
-        ... And all of the voices surrounding us here
-        ... They just fade out when you take a breath
-        ... Just say the word and I will disappear
-        ... Into the wilderness'''
-
-    Utilice para ello únicamente búsqueda, concatenación y troceado de cadenas de texto.
-
-    .. only:: html
-    
-        |solution| :download:`replace.py <files/replace.py>`
+    pycheck_: **lost_word**
 
 Reemplazar elementos
 ====================
@@ -985,39 +962,17 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que acepte el nombre y los apellidos de una persona y los imprima en orden inverso separados por una coma. Utilice *f-strings* para implementarlo (:download:`solución <files/inverse_str.py>`).
-    - Entrada: ``name=Sergio; surname=Delgado Quintero``
-    - Salida: ``Delgado Quintero, Sergio``
-
-2. Escriba un programa en Python que acepte una ruta remota de recurso samba, y lo separe en nombre(IP) del equipo y ruta (:download:`solución <files/samba.py>`).
-    - Entrada: ``//1.1.1.1/eoi/python``
-    - Salida: ``host=1.1.1.1; path=/eoi/python``
-
-3. Escriba un programa en Python que acepte un "string" con los 8 dígitos de un NIF, y calcule su `dígito de control`_ (:download:`solución <files/nif_digit.py>`).
-    - Entrada: ``12345678``
-    - Salida: ``12345678Z``
-
-4. Escriba un programa en Python que acepte un entero ``n`` y compute el valor de ``n + nn + nnn`` (:download:`solución <files/n_sum.py>`).
-    - Entrada: ``5``
-    - Salida: ``615 (5 + 55 + 555)``
-
-5. Escriba un programa en Python que acepte una palabra en castellano y calcule una métrica que sea el número total de caracteres de la palabra multiplicado por el número total de vocales que contiene la palabra (:download:`solución <files/metric_str.py>`).
-    - Entrada: ``ordenador``
-    - Salida: ``36``
-
-6. Escriba un programa en Python que transforme un título HTML ``<hx>...</hx>`` en su correspondiente versión de `Markdown`_ (:download:`solución <files/h2md.py>`).
-    - Entrada: ``<h3>Cadenas de texto</h3>``
-    - Salida: ``### Cadenas de texto``
-
-.. rubric:: EJERCICIOS EXTERNOS
-
-1. `If you can't sleep, just count sheep!! <https://www.codewars.com/kata/5b077ebdaf15be5c7f000077>`_
-2. `Remove first and last character <https://www.codewars.com/kata/56bc28ad5bdaeb48760009b0>`_
-3. `Name shuffler <https://www.codewars.com/kata/559ac78160f0be07c200005a>`_
-4. `Double char <https://www.codewars.com/kata/56b1f01c247c01db92000076>`_
-5. `Find the position! <https://www.codewars.com/kata/5808e2006b65bff35500008f>`_
-6. `Find the integral <https://www.codewars.com/kata/59811fd8a070625d4c000013>`_
-7. `Multiply the number <https://www.codewars.com/kata/5708f682c69b48047b000e07>`_
+1. pycheck_: **switch_name**
+2. pycheck_: **samba_split**
+3. pycheck_: **nif_digit**
+4. pycheck_: **n_repeat**
+5. pycheck_: **str_metric**
+6. pycheck_: **h2md**
+7. pycheck_: **count_sheeps**
+8. pycheck_: **strip1**
+9. pycheck_: **swap_name**
+10. pycheck_: **find_integral**
+11. pycheck_: **multiply_jack**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
@@ -1050,6 +1005,5 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Mediterráneo: https://open.spotify.com/track/7Bewui7KtaMzROeteRitRz?si=NGwOUmwfRSuapY3JL7s1uQ
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
-.. _dígito de control: https://www.interior.gob.es/opencms/ca/servicios-al-ciudadano/tramites-y-gestiones/dni/calculo-del-digito-de-control-del-nif-nie/
-.. _Markdown: https://markdown.es/
 .. _Tabla ASCII: https://www.asciitable.com/
+.. _pycheck: https://pycheck.es
