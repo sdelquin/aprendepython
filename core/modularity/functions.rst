@@ -1684,6 +1684,7 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
 10. pycheck_: **consecutive_seq**
 11. pycheck_: **magic_square**
 12. pycheck_: **sum_nested**
+13. pycheck_: **power_recursive**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
