@@ -339,9 +339,9 @@ Longitud de una cadena
 
 Para obtener la longitud de una cadena podemos hacer uso de ``len()``, una función común a prácticamente todos los tipos y estructuras de datos en Python::
 
-    >>> proberb = 'Lo cortés no quita lo valiente'
+    >>> proverb = 'Lo cortés no quita lo valiente'
     >>> len(proverb)
-    27
+    30
 
     >>> empty = ''
     >>> len(empty)

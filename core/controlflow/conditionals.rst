@@ -438,7 +438,7 @@ Para distinguir ``None`` de los valores propiamente booleanos, se recomienda el 
     ...     # value podría contener True, False (u otro)
     ...     print('Value has some useful value')
     ...
-    Value is clearly void
+    Value is clearly None
 
 De igual forma, podemos usar esta construcción para el caso contrario. La forma "pitónica" de preguntar si algo **no es nulo** es la siguiente:
 
