@@ -1521,6 +1521,24 @@ Otra aproximación a la recursividad se da en problemas donde tenemos que proces
     >>> get_size(words)
     15
 
+Funcionitis
+===========
+
+La "funcionitis" es una "inflamación en la zona funcional" por querer aplicar funciones donde no es necesario. Un ejemplo vale más que mil explicaciones::
+
+    >>> def in_list(item: int, items: list[int]) -> bool:
+    ...     return item in items
+    ...
+
+    >>> in_list(1, [1, 2, 3])
+    True
+
+    >>> 1 in [1, 2, 3]  # That easy!
+    True
+
+.. tip::
+    La "funcionitis" es uno de los síntomas de la llamada "sobre-ingeniería" a la que tendemos muchas de las personas que hacemos programación. Hay que intentar evitarla en la medida de lo posible.
+
 *******************
 Espacios de nombres
 *******************
