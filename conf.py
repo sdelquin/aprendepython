@@ -95,7 +95,7 @@ latex_elements = {
 ''',
 }
 
-latex_logo = '_static/img/logo-solo-aprendepython-small.png'
+latex_logo = '_static/img/logo-solo-cc-aprendepython-small.png'
 
 latex_documents = [
     (
