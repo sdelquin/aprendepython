@@ -1724,6 +1724,7 @@ Consejos para programar
 11. pycheck_: **magic_square**
 12. pycheck_: **sum_nested**
 13. pycheck_: **power_recursive**
+14. pycheck_: **hyperfactorial**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
