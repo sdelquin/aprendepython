@@ -1686,6 +1686,27 @@ Python proporciona dos funciones para acceder al contenido de los espacios de no
         '_i4': 'catalonia()',
         '_i5': 'globals()'}
 
+***********************
+Consejos para programar
+***********************
+
+**Chris Staudinger** comparte `estos 7 consejos <https://twitter.com/chrisstaud/status/1631919411236831235>`_ para mejorar tu código:
+
+1. Las funciones deberían hacer una única cosa.
+    *Por ejemplo, un mal diseño sería tener una única función que calcule el total de una cesta de la compra, los impuestos y los gastos de envío. Sin embargo esto se debería hacer con tres funciones separadas. Así conseguimos que el código sea más fácil de matener, reutilizar y depurar.*
+2. Utiliza nombres descriptivos y con significado.
+    *Los nombres autoexplicativos de variables y funciones mejoran la legibilidad del código. Por ejemplo -- deberíamos llamar "total_cost" a una variable que se usa para almacenar el total de un carrito de la compra en vez de "x" ya que claramente explica su propósito.*
+3. No uses variables globales.
+    *Las variables globales pueden introducir muchos problemas, incluyendo efectos colaterales inesperados y errores de programación difíciles de trazar. Supongamos que tenemos dos funciones que comparten una variable global. Si una función cambia su valor la otra función podría no funcionar como se espera.*
+4. Refactorizar regularmente.
+    *El código inevitablemente cambia con el tiempo, lo que puede derivar en partes obsoletas, redundantes o desorganizadas. Trata de mantener la calidad del código revisando y refactorizando aquellas zonas que se editan.*
+5. No utilices "números mágicos" o valores "hard-codeados".
+    *No es lo mismo escribir "99 * 3" que "price * quantity". Esto último es más fácil de entender y usa variables con nombres descriptivos haciéndolo autoexplicativo. Trata de usar constantes o variables en vez de valores "hard-codeados".*
+6. Escribe lo que necesites ahora, no lo que pienses que podrías necesitar en el futuro.
+    *Los programas simples y centrados en el problema son más flexibles y menos complejos.*
+7. Usa comentarios para explicar el "por qué" y no el "qué".
+    *El código limpio es autoexplicativo y por lo tanto los comentarios no deberían usarse para explicar lo que hace el código. En cambio, los comentarios debería usarse para proporcionar contexto adicional, como por qué el código está diseñado de una cierta manera.*
+
 ----
 
 .. rubric:: EJERCICIOS DE REPASO
