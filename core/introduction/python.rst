@@ -85,12 +85,12 @@ De igual modo son muchas las empresas, instituciones y organismos que utilizan P
 
 Existen ránkings y estudios de mercado que sitúan a Python como uno de los lenguajes más *usados* y la vez, más *amados* dentro del mundo del desarrollo de software.
 
-En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *febrero de 2022* en el que Python ocupaba el **primer lugar de los lenguajes de programación más usados**, por delante de *C* y *Java*.
+En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *marzo de 2023* en el que Python ocupaba el **primer lugar de los lenguajes de programación más usados**, por delante de *C* y *Java*.
 
 .. figure:: img/tiobe.png
     :align: center
     
-    Índice TIOBE 2022
+    Índice TIOBE 2023
 
 Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ *hecha en 2022*, Python ocupaba el **cuarto puesto de los lenguajes de programación más populares**, sólo por detrás de *Javascript*, *HTML/CSS* y *SQL*:
 
