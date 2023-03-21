@@ -1,0 +1,12 @@
+Herramienta,Es iterable,Es iterador,Múltiples iteradores
+``enumerate()``,✓,✓,𐄂
+``reversed()``,✓,✓,𐄂
+``zip()``,✓,✓,𐄂
+``generator``,✓,✓,𐄂
+``file``,✓,✓,𐄂
+``list()``,✓,𐄂,𐄂
+``tuple()``,✓,𐄂,𐄂
+``str()``,✓,𐄂,𐄂
+``dict()``,✓,𐄂,✓
+``set()``,✓,𐄂,𐄂
+``range()``,✓,𐄂,𐄂

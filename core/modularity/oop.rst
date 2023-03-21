@@ -6,7 +6,7 @@ Objetos y Clases
 
 Hasta ahora hemos estado usando objetos de forma totalmente transparente, casi sin ser conscientes de ello. Pero, en realidad, **todo en Python es un objeto**, desde números a funciones. El lenguaje provee ciertos mecanismos para no tener que usar explícitamente técnicas de orientación a objetos.
 
-Llegados a este punto, investigaremos en profundidad sobre la creación y manipulación de clases y objetos, y todas las operaciones que engloban este paradigma. [#things-unsplash]_
+Llegados a este punto, investigaremos en profundidad la creación y la manipulación de clases y objetos, así como todas las técnicas y procedimientos que engloban este paradigma. [#things-unsplash]_
 
 ********************************
 Programación orientada a objetos
@@ -38,9 +38,9 @@ Un **objeto** es una **estructura de datos personalizada** que contiene **datos*
 +-----------+-----------+------------------+-----------------------+
 | Elementos | ¿Qué son? | ¿Cómo se llaman? | ¿Cómo se identifican? |
 +===========+===========+==================+=======================+
-| Datos     | Variables | Atributos        | Nombres               |
+| Datos     | Variables | Atributos        | Mediante sustantivos  |
 +-----------+-----------+------------------+-----------------------+
-| Código    | Funciones | Métodos          | Verbos                |
+| Código    | Funciones | Métodos          | Mediante verbos       |
 +-----------+-----------+------------------+-----------------------+
 
 Un objeto representa **una instancia única** de alguna entidad a través de los valores de sus atributos e interactuan con otros objetos (o consigo mismos) a través de sus métodos.
@@ -53,14 +53,14 @@ Un objeto representa **una instancia única** de alguna entidad a través de los
 ¿Qué es una clase?
 ==================
 
-Para crear un objeto primero debemos definir la clase que lo contiene. Podemos pensar en la **clase** como el **molde** con el que crear nuevos objetos de ese tipo.
+Para crear un objeto primero debemos definir la clase que lo contiene. Podemos pensar en la **clase** como el **molde** con el que se crean nuevos objetos de ese tipo.
 
-.. figure:: img/mold.jpg
+.. figure:: img/mold.png
     :align: center
 
     Ejemplificación de creación de objetos a partir de una clase
 
-En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los atributos y los métodos que contenga estén enfocados a un objetivo único y bien definido.
+En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los atributos y los métodos que contenga esa clase estén enfocados a un objetivo único bien definido.
 
 ***************
 Creando objetos
@@ -73,7 +73,7 @@ Empecemos por crear nuestra **primera clase**. En este caso vamos a modelar algu
 
     Droides de la saga StarWars [#starwars-droids]_
 
-Para ello usaremos la palabra reservada ``class`` seguido del nombre de la clase::
+Para ello usaremos la palabra reservada ``class`` seguida del nombre de la clase::
 
     >>> class StarWarsDroid:
     ...     pass
@@ -170,7 +170,7 @@ Veamos un ejemplo de este método con nuestros droides en el que únicamente gua
     :linenos:
 
     >>> class Droid:
-    ...     def __init__(self, name):
+    ...     def __init__(self, name: str):
     ...         self.name = name
     ...
 
@@ -225,7 +225,7 @@ Acceso directo
 En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en el constructor de la clase, también podemos modificarlo desde "fuera" con un acceso directo::
 
     >>> class Droid:
-    ...     def __init__(self, name):
+    ...     def __init__(self, name: str):
     ...         self.name = name
     ...
 
@@ -239,7 +239,7 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
 Propiedades
 ===========
 
-Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas desarrolladoras de otros lenguajes. En Python existe un cierto "sentido de responsabilidad" a la hora de programar y manejar este tipo de situaciones.
+Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas que vengan de otros lenguajes de programación (véase Java). En Python existe un cierto "sentido de la responsabilidad" a la hora de programar y manejar este tipo de situaciones: Casi todo es posible a priori pero se debe controlar explícitamente.
 
 Una posible solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <core/modularity/functions:Decoradores>`:
 
@@ -249,16 +249,16 @@ Una posible solución "pitónica" para la privacidad de los atributos es el uso 
 Veamos un ejemplo en el que estamos ofuscando el nombre del droide a través de propiedades::
 
     >>> class Droid:
-    ...     def __init__(self, name):
+    ...     def __init__(self, name: str):
     ...         self.hidden_name = name
     ...
     ...     @property
-    ...     def name(self):
+    ...     def name(self) -> str:
     ...         print('inside the getter')
     ...         return self.hidden_name
     ...
     ...     @name.setter
-    ...     def name(self, name):
+    ...     def name(self, name: str) -> None:
     ...         print('inside the setter')
     ...         self.hidden_name = name
     ...
@@ -281,7 +281,7 @@ En cualquier caso, seguimos pudiendo acceder directamente a ``.hidden_name``::
     >>> droid.hidden_name
     'Nigel'
 
-Incluso cambiar su valor::
+Incluso podemos cambiar su valor::
 
     >>> droid.hidden_name = 'waka-waka'
 
@@ -297,12 +297,12 @@ Una propiedad también se puede usar para devolver un **valor calculado** (o com
 A modo de ejemplo, supongamos que la altura del periscopio de los droides astromecánicos se calcula siempre como un porcentaje de su altura. Veamos cómo implementarlo::
 
     >>> class AstromechDroid:
-    ...     def __init__(self, name, height):
+    ...     def __init__(self, name: str, height: float):
     ...         self.name = name
     ...         self.height = height
     ...
     ...     @property
-    ...     def periscope_height(self):
+    ...     def periscope_height(self) -> float:
     ...         return 0.3 * self.height
     ...
 
@@ -327,7 +327,7 @@ Python tiene una convención sobre aquellos atributos que queremos hacer **"priv
 .. code-block::
 
     >>> class Droid:
-    ...     def __init__(self, name):
+    ...     def __init__(self, name: str):
     ...         self.__name = name
     ...
 
@@ -366,6 +366,9 @@ A modo de ejemplo, en un principio, todos los droides están diseñados para que
     >>> Droid.obeys_owner  # el cambio no afecta a nivel de clase
     True
 
+.. tip::
+    Los atributos de clase son accesibles tanto desde la clase como desde las instancias creadas.
+
 *******
 Métodos
 *******
@@ -373,7 +376,7 @@ Métodos
 Métodos de instancia
 ====================
 
-Un **método de instancia** es un método que modifica el comportamiento del objeto al que hace referencia. Recibe ``self`` como primer parámetro, el cual se convierte en el propio objeto sobre el que estamos trabajando. Python envía este argumento de forma transparente.
+Un **método de instancia** es un método que modifica el estado del objeto al que hace referencia. Recibe ``self`` como primer parámetro, el cual se convierte en el propio objeto sobre el que estamos trabajando. Python envía este argumento de forma transparente: no hay que pasarlo como argumento.
 
 Veamos un ejemplo en el que, además del constructor, creamos un método de instancia para desplazar un droide:
 
@@ -381,11 +384,11 @@ Veamos un ejemplo en el que, además del constructor, creamos un método de inst
     :emphasize-lines: 6
 
     >>> class Droid:
-    ...     def __init__(self, name):  # método de instancia -> constructor
+    ...     def __init__(self, name: str):  # método de instancia -> constructor
     ...         self.name = name
     ...         self.covered_distance = 0
     ...
-    ...     def move_up(self, steps):  # método de instancia
+    ...     def move_up(self, steps: int) -> None:  # método de instancia
     ...         self.covered_distance += steps
     ...         print(f'Moving {steps} steps')
     ...
@@ -398,9 +401,9 @@ Veamos un ejemplo en el que, además del constructor, creamos un método de inst
 Métodos de clase
 ================
 
-Un **método de clase** es un método que modifica el comportamiento de la clase a la que hace referencia. Recibe ``cls`` como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador ``@classmethod`` a la función.
+Un **método de clase** es un método que modifica el estado de la clase a la que hace referencia. Recibe ``cls`` como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador ``@classmethod`` a la función.
 
-Veamos un ejemplo en el que implementaremos un método de clase que lleva la cuenta de los droides que hemos creado:
+Veamos un ejemplo en el que implementamos un método de clase que indica el número de droides que hemos creado:
 
 .. code-block::
     :emphasize-lines: 7,8
@@ -412,7 +415,7 @@ Veamos un ejemplo en el que implementaremos un método de clase que lleva la cue
     ...         Droid.count += 1
     ...
     ...     @classmethod
-    ...     def total_droids(cls):
+    ...     def total_droids(cls: Droid) -> None:
     ...         print(f'{cls.count} droids built so far!')
     ...
 
@@ -423,10 +426,13 @@ Veamos un ejemplo en el que implementaremos un método de clase que lleva la cue
     >>> Droid.total_droids()
     3 droids built so far!
 
+.. hint::
+    El nombre ``cls`` es sólo una convención. Este parámetro puede llamarse de otra manera, pero seguir el estándar ayuda a la legibilidad.
+
 Métodos estáticos
 =================
 
-Un **método estático** es un método que no modifica el comportamiento del objeto ni de la clase. No recibe ningún parámetro especial. La identificación de estos métodos se completa aplicando el decorador ``@staticmethod`` a la función.
+Un **método estático** es un método que no "debería" modificar el estado del objeto ni de la clase. No recibe ningún parámetro especial. La identificación de estos métodos se completa aplicando el decorador ``@staticmethod`` a la función.
 
 Veamos un ejemplo en el que creamos un método estático para devolver las categorías de droides que existen en StarWars:
 
@@ -438,7 +444,7 @@ Veamos un ejemplo en el que creamos un método estático para devolver las categ
     ...         pass
     ...
     ...     @staticmethod
-    ...     def get_droids_categories():
+    ...     def get_droids_categories() -> list[str]:
     ...         return ['Messeger', 'Astromech', 'Power', 'Protocol']
     ...
 
@@ -450,7 +456,7 @@ Métodos mágicos
 
 |advlev|
 
-Cuando escribimos ``'hello world' * 3`` ¿cómo sabe el objeto ``'hello world'`` lo que debe hacer para multiplicarse con el objeto entero ``3``? O dicho de otra forma, ¿cuál es la implementación del operador ``*`` para "strings" y enteros? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos.  La solución que proporciona Python para estas (y otras) situaciones son los **métodos mágicos**.
+Cuando escribimos ``'hello world' * 3`` ¿cómo sabe el objeto ``'hello world'`` lo que debe hacer para multiplicarse con el objeto entero ``3``? O dicho de otra forma, ¿cuál es la implementación del operador ``*`` para "strings" e "int"? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos.  La solución que proporciona Python para estas (y otras) situaciones son los **métodos mágicos**.
 
 Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ello que también se les conoce como "dunder-methods"). Uno de los "dunder-methods" más famosos es el constructor de una clase: ``__init__()``.
 
@@ -469,11 +475,11 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
     :emphasize-lines: 6,7
 
     >>> class Droid:
-    ...     def __init__(self, name, serial_number):
+    ...     def __init__(self, name: str, serial_number: int):
     ...         self.serial_number = serial_number
     ...         self.name = name
     ...
-    ...     def __eq__(self, droid):
+    ...     def __eq__(self, droid: Droid) -> bool:
     ...         return self.name == droid.name
     ...
 
@@ -493,14 +499,14 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
 
 .. note:: Los métodos mágicos no sólo están restringidos a operadores de comparación o matemáticos. Existen muchos otros en la documentación oficial de Python, donde son llamados `métodos especiales`_.
 
-Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una fusión. Supongamos que la suma de dos droides implica: a) que el nombre del droide resultante es la concatenación de los nombres de los droides; b) que la energía del droide resultante es la suma de la energía de los droides::
+Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una fusión. Supongamos que la suma de dos droides implica: a) que el nombre del droide resultante es la concatenación de los nombres de los droides de entrada; b) que la energía del droide resultante es la suma de la energía de los droides de entrada::
 
     >>> class Droid:
-    ...     def __init__(self, name, power):
+    ...     def __init__(self, name: str, power: int):
     ...         self.name = name
     ...         self.power = power
     ...
-    ...     def __add__(self, droid):
+    ...     def __add__(self, droid: Droid) -> Droid:
     ...         new_name = self.name + '-' + droid.name
     ...         new_power = self.power + droid.power
     ...         return Droid(new_name, new_power)  # Hay que devolver un objeto de tipo Droid
@@ -518,14 +524,14 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
 ``__str__``
 -----------
 
-Uno de los métodos mágicos más utilizados es ``__str__`` que permite establecer la forma en la que un objeto es representado como *cadena de texto*::
+Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer la forma en la que un objeto es representado como *cadena de texto*::
 
     >>> class Droid:
-    ...     def __init__(self, name, serial_number):
+    ...     def __init__(self, name: str, serial_number: int):
     ...         self.serial_number = serial_number
     ...         self.name = name
     ...
-    ...     def __str__(self):
+    ...     def __str__(self) -> str:
     ...         return f'🤖 Droid "{self.name}" serial-no {self.serial_number}'
     ...
 
@@ -553,8 +559,8 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
 
     Algoritmo de Euclides::
 
-        def gcd(a, b):
-            ''' Algoritmo de Euclides '''
+        def gcd(a: int, b: int) -> int:
+            ''' Algoritmo de Euclides para el cálculo del Máximo Común Divisor. '''
             while b > 0:
                 a, b = b, a % b
             return a
@@ -575,7 +581,7 @@ Uno de los métodos mágicos más utilizados es ``__str__`` que permite establec
 Gestores de contexto
 --------------------
 
-Otra de las aplicaciones de los métodos mágicos (especiales) que puede ser interesante es la de **gestores de contexto**. Se trata de un bloque de código en Python que engloba una serie de acciones a la entrada y a la salida del mismo.
+Otra de las aplicaciones de los métodos mágicos (especiales) que puede ser interesante es la de los **gestores de contexto**. Se trata de un bloque de código en Python que engloba una serie de acciones a la entrada y a la salida del mismo.
 
 Hay dos métodos que son utilizados para implementar los gestores de contexto:
 
@@ -614,6 +620,41 @@ Ahora podemos probar nuestro gestor de contexto con un ejemplo concreto. La form
     ...
     Execution time (seconds): 0.08749
 
+Volviendo a los droides de la saga StarWars, vamos a crear un gestor de contexto que "congele" un droide para resetear su distancia recorrida::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str):
+    ...         self.name = name
+    ...         self.covered_distance = 0
+    ...
+    ...     def move_up(self, steps: int) -> None:
+    ...         self.covered_distance += steps
+    ...         print(f'Moving {steps} steps')
+    ...
+    
+    >>> class FrozenDroid:  # Gestor de contexto!
+    ...     def __enter__(self, name: str):
+    ...         self.droid = Droid(name)
+    ...         return self.droid
+    ...     def __exit__(self, *args):
+    ...         self.droid.covered_distance = 0
+    ...
+
+Veamos este gestor de contexto en acción::
+
+    >>> with FrozenDroid() as droid:
+    ...     droid.move_up(10)
+    ...     droid.move_up(20)
+    ...     droid.move_up(30)
+    ...     print(droid.covered_distance)
+    ...
+    Moving 10 steps
+    Moving 20 steps
+    Moving 30 steps
+    60
+
+    >>> droid.covered_distance  # Distancia reseteada!
+    0
 
 ********
 Herencia
@@ -621,7 +662,7 @@ Herencia
 
 |intlev|
 
-La **herencia** consiste en **crear una nueva clase partiendo de una clase existente**, pero que añade o modifica ciertos aspectos. Se considera una buena práctica tanto para *reutilizar código* como para *realizar generalizaciones*.
+La **herencia** consiste en **construir una nueva clase partiendo de una clase existente**, pero que añade o modifica ciertos aspectos. La herencia se considera una buena práctica de programación tanto para *reutilizar código* como para *realizar generalizaciones*.
 
 .. figure:: img/inheritance.jpg
     :align: center
@@ -635,7 +676,7 @@ Heredar desde una clase base
 
 Para que una clase "herede" de otra, basta con indicar la clase base entre paréntesis en la definición de la clase derivada.
 
-Sigamos con el ejemplo. Una de las grandes categorías de droides en StarWars es la de `droides de protocolo`_. Vamos a crear una herencia sobre esta idea::
+Sigamos con el ejemplo: Una de las grandes categorías de droides en StarWars es la de `droides de protocolo`_. Vamos a crear una herencia sobre esta idea::
 
     >>> class Droid:
     ...     ''' Clase Base '''
@@ -728,17 +769,17 @@ La clase derivada también puede añadir métodos que no estaban presentes en su
     ...     def switch_on(self):
     ...         print("Hi! I'm a PROTOCOL droid. Can I help you?")
     ...
-    ...     def translate(self, msg, from_language):
+    ...     def translate(self, msg: str, *, from_lang: str) -> str:
     ...         ''' Translate from language to Human understanding '''
-    ...         print(f'{msg} means "ZASCA" in {from_language}')
+    ...         return f'{msg} means "ZASCA" in {from_lang}'
 
     >>> r2d2 = Droid()
     >>> c3po = ProtocolDroid()
 
-    >>> c3po.translate('kiitos', 'Huttese')  # idioma de Watoo
+    >>> c3po.translate('kiitos', from_lang='Huttese')  # idioma de Watoo
     kiitos means "ZASCA" in Huttese
 
-    >>> r2d2.translate('kiitos', 'Huttese')  # droide genérico no puede traducir
+    >>> r2d2.translate('kiitos', from_lang='Huttese')  # droide genérico no puede traducir
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     AttributeError: 'Droid' object has no attribute 'translate'
@@ -756,12 +797,12 @@ Veamos un ejemplo más elaborado con nuestros droides:
     :emphasize-lines: 8
 
     >>> class Droid:
-    ...     def __init__(self, name):
+    ...     def __init__(self, name: str):
     ...         self.name = name
     ...
 
     >>> class ProtocolDroid(Droid):
-    ...     def __init__(self, name, languages):
+    ...     def __init__(self, name: str, languages: list[str]):
     ...         super().__init__(name)  # llamada al constructor de la clase base
     ...         self.languages = languages
     ...
@@ -779,7 +820,7 @@ Herencia múltiple
 
 |advlev|
 
-Aunque no está disponible en todos los lenguajes de programación, Python sí permite que los objetos pueden heredar de **múltiples clases base**.
+Aunque no está disponible en todos los lenguajes de programación, Python sí permite heredar de **múltiples clases base**.
 
 Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base. Es posible que exista una *colisión* en caso de que el método o el atributo buscado esté, a la vez, en varias clases base. En este caso, Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
 
@@ -816,7 +857,7 @@ Supongamos que queremos modelar la siguiente estructura de clases con *herencia 
     ...     pass
     
 
-Todas las clases en Python disponen de un método especial llamado ``mro()`` que devuelve una lista de las clases que se visitarían en caso de acceder a un método o un atributo. También existe el atributo ``__mro__`` como una tupla de esas clases::
+Todas las clases en Python disponen de un método especial llamado ``mro()`` que devuelve una lista de las clases que se visitarían en caso de acceder a un método o a un atributo. También existe el atributo ``__mro__`` como una tupla de esas mismas clases::
 
     >>> SuperDroid.mro()
     [__main__.SuperDroid,
@@ -843,27 +884,25 @@ Veamos el resultado de la llamada a los métodos definidos::
     >>> hyper_droid.greet()
     'Here an astromech droid'
 
-.. note:: Todos los objetos en Python heredan, en primera instancia, de ``object``. Esto se puede comprobar con el ``mro()`` correspondiente:
+Todos los objetos en Python heredan, en primera instancia, de ``object``. Esto se puede comprobar con el correspondiente ``mro()`` de cada objeto::
 
-    .. code-block::
+    >>> int.mro()
+    [int, object]
 
-        >>> int.mro()
-        [int, object]
+    >>> str.mro()
+    [str, object]
 
-        >>> str.mro()
-        [str, object]
+    >>> float.mro()
+    [float, object]
 
-        >>> float.mro()
-        [float, object]
+    >>> tuple.mro()
+    [tuple, object]
 
-        >>> tuple.mro()
-        [tuple, object]
+    >>> list.mro()
+    [list, object]
 
-        >>> list.mro()
-        [list, object]
-
-        >>> bool.mro()
-        [bool, int, object]
+    >>> bool.mro()  # Un booleano también es un entero!
+    [bool, int, object]
 
 Mixins
 ======
@@ -927,7 +966,7 @@ Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un o
 Agregación y composición
 ========================
 
-Aunque la herencia de clases nos permite modelar una gran cantidad de casos de uso en términos de "**is-a**" (*es un*), existen muchas otras situaciones en las que la agregación o la composición son una mejor opción. En este caso una clase se compone de otras cases: hablamos de una relación "**has-a**" (*tiene un*).
+Aunque la herencia de clases nos permite modelar una gran cantidad de casos de uso en términos de "**is-a**" (*es un*), existen muchas otras situaciones en las que la agregación o la composición son una mejor opción. En este caso una clase se compone de otras clases: hablamos de una relación "**has-a**" (*tiene un*).
 
 Hay una sutil diferencia entre agregación y composición:
 
@@ -942,14 +981,14 @@ Hay una sutil diferencia entre agregación y composición:
 Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un droide::
 
     >>> class Tool:
-    ...     def __init__(self, name):
+    ...     def __init__(self, name: str):
     ...         self.name = name
     ...
     ...     def __str__(self):
     ...         return self.name.upper()
     ...
     ... class Droid:
-    ...     def __init__(self, name, serial_number, tool):
+    ...     def __init__(self, name: str, serial_number: int, tool: Tool):
     ...         self.name = name
     ...         self.serial_number = serial_number
     ...         self.tool = tool  # agregación
@@ -963,6 +1002,472 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
 
     >>> print(bb8)
     Droid BB-8 armed with a LIGHTER
+
+*********
+Iterables
+*********
+
+|advlev|
+
+Un objeto en Python se dice **iterable** si implementa el **protocolo de iteración**. Este protocolo permite "entregar" un valor de cada vez en forma de secuencia.
+
+Hay muchos tipos de datos iterables en Python que ya hemos visto: cadenas de texto, listas, tuplas, conjuntos, diccionarios, etc.
+
+Para ser un **objeto iterable** sólo es necesario implementar el método mágico ``__iter__()``. Este método debe proporcionar una referencia al **objeto iterador** que es quien se encargará de desarrollar el protocolo de iteración a través del método mágico ``__next__()``.
+
+.. figure:: img/iterables.png
+    :align: center
+
+    Protocolo de iteración
+
+.. tip::
+    **Spoiler**: Un objeto iterable también puede ser su propio iterador.
+
+Veamos un ejemplo del universo StarWars. Vamos a partir de un modelo muy sencillo de droide::
+
+    >>> class Droid:
+    ...     def __init__(self, serial: str):
+    ...         self.serial = serial * 5  # just for fun!
+    ...
+    ...     def __repr__(self):
+    ...         return f'Droid: SN={self.serial}'
+
+Vamos a implementar una factoría de droides (`Geonosis`_) como un iterable::
+
+    >>> class Geonosis:
+    ...     def __init__(self, num_droids: int):
+    ...         self.droids = [Droid(str(i)) for i in range(num_droids)]
+    ...         self.num_droids = num_droids
+    ...         self.pointer = 0
+    ...
+    ...     def __iter__(self):
+    ...         # El iterador es el propio objeto!
+    ...         return self
+    ...
+    ...     def __next__(self):
+    ...         # Protocolo de iteración
+    ...         if self.pointer >= self.num_droids:
+    ...             raise StopIteration
+    ...         droid = self.droids[self.pointer]
+    ...         self.pointer += 1
+    ...         return droid
+    ...
+
+Ahora podemos recorrer el iterable y obtener los droides que genera la factoría::
+
+    >>> for droid in Geonosis(10):
+    ...     print(droid)
+    ...
+    Droid: SN=00000
+    Droid: SN=11111
+    Droid: SN=22222
+    Droid: SN=33333
+    Droid: SN=44444
+    Droid: SN=55555
+    Droid: SN=66666
+    Droid: SN=77777
+    Droid: SN=88888
+    Droid: SN=99999
+
+Cuando utilizamos un bucle ``for`` para recorrer los elementos de un iterable, ocurren varias cosas:
+
+1. Se obtiene el objeto iterador del iterable.
+2. Se hacen llamadas sucesivas a ``next()`` sobre dicho iterador para obtener cada elemento del iterable.
+3. Se para la iteración cuando el iterador lanza la excepción ``StopIteration``.
+
+Iterables desde fuera
+=====================
+
+Ahora que conocemos las interiodades de los iterables, podemos ver qué ocurre si los usamos desde un enfoque más funcional.
+
+En primer lugar hay que controlar el uso de los **métodos mágicos en el protocolo de iteración**:
+
+- ``__iter()__`` se invoca cuando se hace uso de la función ``iter()``.
+- ``__next()__`` se invoca cuando se hace uso de la función ``next()``.
+
+Si esto es así, podríamos generar droides de una forma algo "peculiar"::
+
+    >>> factory = Geonosis(3)
+
+    >>> factory_iterator = iter(factory)
+
+    >>> next(factory_iterator)
+    Droid: SN=00000
+    >>> next(factory_iterator)
+    Droid: SN=11111
+    >>> next(factory_iterator)
+    Droid: SN=22222
+
+    >>> next(factory_iterator)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Se da la circunstancia de que, en este caso, **no tenemos que crear el iterador** para poder obtener nuevos elementos::
+
+    >>> next(Geonosis(3))
+    Droid: SN=00000
+
+Esto básicamente se debe a que **el iterador es el propio iterable**::
+
+    >>> geon = Geonosis(3)
+    >>> geon == iter(geon)
+    True
+
+Otra característica importante es que **los iterables se agotan**. Lo podemos comprobar con el siguiente código::
+
+    >>> geon = Geonosis(3)
+
+    >>> for droid in geon:
+    ...     print(droid)
+    ...
+    Droid: SN=00000
+    Droid: SN=11111
+    Droid: SN=22222
+
+    >>> for droid in geon:
+    ...     print(droid)
+    ... # Salida vacía!
+
+.. admonition:: Ejercicio
+
+    pycheck_: **fibonacci_iterable**
+
+Ejemplos de iterables
+=====================
+
+Vamos a analizar herramientas ya vistas -- entendiendo mejor su funcionamiento interno -- en base a lo que ya sabemos sobre iterables.
+
+Enumeración
+-----------
+
+.. code-block::
+
+    >>> tool = enumerate([1, 2, 3])
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # es su propio iterador!
+    True
+
+    >>> next(tool)
+    (0, 1)
+    >>> next(tool)
+    (1, 2)
+    >>> next(tool)
+    (2, 3)
+
+    >>> next(tool)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Rangos
+------
+
+.. code-block::
+
+    >>> tool = range(1, 4)
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # usa otro iterador!
+    False
+
+    >>> tool_iterator = iter(tool)
+
+    >>> tool_iterator
+    <range_iterator at 0x1100e6d60>
+
+    >>> next(tool_iterator)
+    1
+    >>> next(tool_iterator)
+    2
+    >>> next(tool_iterator)
+    3
+
+    >>> next(tool_iterator)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+.. note::
+    Los objetos de tipo ``range`` representan una secuencia inmutable de números. La ventaja de usar este tipo de objetos es que siempre se usa una cantidad fija (y pequeña) de memoria, independientemente del rango que represente (ya que solamente necesita almacenar los valores para ``start``, ``stop`` y ``step``, y calcula los valores intermedios a medida que los va necesitando).
+
+Invertido
+---------
+
+.. code-block::
+
+    >>> tool = reversed([1, 2, 3])
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # es su propio iterador!
+    True
+
+    >>> next(tool)
+    3
+    >>> next(tool)
+    2
+    >>> next(tool)
+    1
+
+    >>> next(tool)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Comprimir
+---------
+
+.. code-block::
+
+    >>> tool = zip([1, 2], [3, 4])
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # es su propio iterador!
+    True
+
+    >>> next(tool)
+    (1, 3)
+    >>> next(tool)
+    (2, 4)
+
+    >>> next(tool)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Generadores
+-----------
+
+.. code-block::
+
+    >>> def seq(n):
+    ...     for i in range(1, n+1):
+    ...         yield i
+    ...
+
+    >>> tool = seq(3)
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # es su propio iterador!
+    True
+
+    >>> next(tool)
+    1
+    >>> next(tool)
+    2
+    >>> next(tool)
+    3
+
+    >>> next(tool)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+.. seealso::
+    Esto mismo se puede aplicar a expresiones generadoras.
+
+Listas
+------
+
+.. code-block::
+
+    >>> tool = [1, 2, 3]
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # usa otro iterador!
+    False
+
+    >>> tool_iterator = iter(tool)
+
+    >>> tool_iterator
+    <list_iterator at 0x1102492d0>
+
+    >>> next(tool_iterator)
+    1
+    >>> next(tool_iterator)
+    2
+    >>> next(tool_iterator)
+    3
+
+    >>> next(tool_iterator)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Tuplas
+------
+
+.. code-block::
+
+    >>> tool = tuple([1, 2, 3])
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # usa otro iterador!
+    False
+
+    >>> tool_iterator = iter(tool)
+
+    >>> tool_iterator
+    <tuple_iterator at 0x107255a50>
+
+    >>> next(tool_iterator)
+    1
+    >>> next(tool_iterator)
+    2
+    >>> next(tool_iterator)
+    3
+
+    >>> next(tool_iterator)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Cadenas de texto
+----------------
+
+.. code-block::
+
+    >>> tool = 'abc'
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # usa otro iterador!
+    False
+
+    >>> tool_iterator = iter(tool)
+
+    >>> tool_iterator
+    <str_ascii_iterator at 0x1078da7d0>
+
+    >>> next(tool_iterator)
+    'a'
+    >>> next(tool_iterator)
+    'b'
+    >>> next(tool_iterator)
+    'c'
+
+    >>> next(tool_iterator)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Diccionarios
+------------
+
+.. code-block::
+
+    >>> tool = dict(a=1, b=1)
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # usa otro iterador!
+    False
+
+    >>> tool_iterator = iter(tool)
+
+    >>> tool_iterator
+    <dict_keyiterator at 0x1070200e0>
+
+    >>> next(tool_iterator)
+    'a'
+    >>> next(tool_iterator)
+    'b'
+
+    >>> next(tool_iterator)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+En el caso de los diccionarios existen varios iteradores disponibles::
+
+    >>> iter(tool.keys())
+    <dict_keyiterator at 0x107849ad0>
+
+    >>> iter(tool.values())
+    <dict_valueiterator at 0x1102aab10>
+
+    >>> iter(tool.items())
+    <dict_itemiterator at 0x107df6ac0>
+
+Conjuntos
+---------
+
+.. code-block::
+
+    >>> tool = set([1, 2, 3])
+
+    >>> iter(tool) is not None  # es iterable!
+    True
+
+    >>> iter(tool) == tool  # usa otro iterador!
+    False
+
+    >>> tool_iterator = iter(tool)
+
+    >>> tool_iterator
+    <set_iterator at 0x10700e900>
+
+    >>> next(tool_iterator)
+    1
+    >>> next(tool_iterator)
+    2
+    >>> next(tool_iterator)
+    3
+
+    >>> next(tool_iterator)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Ficheros
+--------
+
+.. code-block::
+
+    >>> f = open('data.txt')
+
+    >>> iter(f) is not None  # es iterable!
+    True
+
+    >>> iter(f) == f  # es su propio iterador!
+    True
+
+    >>> next(f)
+    '1\n'
+    >>> next(f)
+    '2\n'
+    >>> next(f)
+    '3\n'
+
+    >>> next(f)  # protocolo de iteración!
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    StopIteration
+
+Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
+
+.. csv-table::
+    :file: tables/iterables.csv
+    :header-rows: 1
+    :widths: 30, 30, 30, 30
+    :class: longtable
 
 ----
 
@@ -1019,3 +1524,5 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
 .. _métodos especiales: https://docs.python.org/es/3/reference/datamodel.html#special-method-names
 .. _Freepik: https://www.flaticon.com/authors/freepik
 .. _SOLID: https://es.wikipedia.org/wiki/SOLID
+.. _Geonosis: https://starwars.fandom.com/es/wiki/F%C3%A1bricas_de_droides_de_Geonosis
+.. _pycheck: https://pycheck.es
