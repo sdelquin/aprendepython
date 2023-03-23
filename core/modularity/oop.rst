@@ -43,7 +43,7 @@ Un **objeto** es una **estructura de datos personalizada** que contiene **datos*
 | Código    | Funciones | Métodos          | Mediante verbos       |
 +-----------+-----------+------------------+-----------------------+
 
-Un objeto representa **una instancia única** de alguna entidad a través de los valores de sus atributos e interactuan con otros objetos (o consigo mismos) a través de sus métodos.
+Un objeto representa **una instancia única** de alguna entidad (a través de los valores de sus atributos) e interactúa con otros objetos (o consigo mismo) a través de sus métodos.
 
 .. figure:: img/bike-object.jpg
     :align: center
@@ -99,7 +99,7 @@ Añadiendo atributos
 
 Un **atributo** no es más que una variable, un nombre al que asignamos un valor, con la particularidad de vivir dentro de una clase o de un objeto.
 
-Los atributos -- por lo general -- se suelen asignar durante la creación de un objeto, pero también es posible añadirlos a posteriori::
+**Los atributos se suelen asignar durante la creación de un objeto**, pero también es posible añadirlos a posteriori::
 
     >>> blue_droid = StarWarsDroid()
     >>> golden_droid = StarWarsDroid()
@@ -109,7 +109,6 @@ Los atributos -- por lo general -- se suelen asignar durante la creación de un 
     >>> blue_droid.name = 'R2-D2'
     >>> blue_droid.height = 1.09
     >>> blue_droid.num_feet = 3
-    >>> blue_droid.partner_droid = golden_droid  # otro droide como atributo
 
 Una vez creados, es muy sencillo acceder a los atributos::
 
@@ -119,20 +118,8 @@ Una vez creados, es muy sencillo acceder a los atributos::
     >>> blue_droid.num_feet
     3
 
-Hemos definido un droide "socio". Veremos a continuación que podemos trabajar con él de una manera totalmente natural::
-
-    >>> type(blue_droid.partner_droid)
-    __main__.StarWarsDroid
-
-    >>> blue_droid.partner_droid.name  # acceso al nombre del droide socio
-    'C-3PO'
-
-    >>> blue_droid.partner_droid.num_feet  # aún sin definir!
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    AttributeError: 'StarWarsDroid' object has no attribute 'num_feet'
-
-    >>> blue_droid.partner_droid.num_feet = 2
+.. note::
+    Nótese el acceso a los atributos con ``obj.attribute`` en vez de lo que veníamos usando en :ref:`diccionarios <core/datastructures/dicts:diccionarios>` donde hay que escribir "un poco más" ``obj['attribute']``.
 
 Añadiendo métodos
 =================
@@ -185,6 +172,21 @@ Veamos un ejemplo de este método con nuestros droides en el que únicamente gua
     Creación del objeto (y llamada implícita al constructor)
 **Línea 9**
     Acceso al atributo ``name`` creado previamente en el constructor.
+
+Es importante tener en cuenta que si no usamos ``self`` estaremos creando una variable local en vez de un atributo del objeto::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str):
+    ...         name = name  # No lo hagas!
+    ...
+
+    >>> droid = Droid('BB-8')
+
+    >>> droid.name
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AttributeError: 'Droid' object has no attribute 'name'
+
 
 .. admonition:: Ejercicio
     :class: exercise
@@ -450,6 +452,47 @@ Veamos un ejemplo en el que creamos un método estático para devolver las categ
 
     >>> Droid.get_droids_categories()
     ['Messeger', 'Astromech', 'Power', 'Protocol']
+
+Métodos decorados
+-----------------
+
+Es posible que, según el escenario, queramos decorar ciertos métodos de nuestra clase. Esto es posible siguiendo la misma estructura de :ref:`decoradores <core/modularity/functions:decoradores>` que ya hemos visto, pero con ciertos matices.
+
+Veamos un ejemplo en el que creamos un decorador para auditar las acciones de un droide y saber quién ha hecho qué::
+
+    >>> class Droid:
+    ...     @staticmethod
+    ...     def audit(method):
+    ...         def wrapper(self, *args, **kwargs):
+    ...             print(f'Droid {self.name} running {method.__name__}')
+    ...             return method(self, *args, **kwargs)
+    ...         return wrapper
+    ...
+    ...     def __init__(self, name: str):
+    ...         self.name = name
+    ...         self.pos = [0, 0]
+    ...
+    ...     @audit
+    ...     def move(self, x: int, y: int):
+    ...         self.pos[0] += x
+    ...         self.pos[1] += y
+    ...
+    ...     @audit
+    ...     def reset(self):
+    ...         self.pos = [0, 0]
+    
+    >>> droid = Droid('B1')
+    
+    >>> droid.move(1, 1)
+    Droid B1 running move
+    
+    >>> droid.reset()
+    Droid B1 running reset
+
+El decorador se puede poner dentro o fuera de la clase. Por una cuestión de encapsulamiento podría tener sentido dejarlo dentro de la clase como método estático.
+
+.. tip::
+    También es posible aplicar esta misma técnica usando :ref:`decoradores con parámetros <core/modularity/functions:decoradores con parámetros>`.
 
 Métodos mágicos
 ===============
