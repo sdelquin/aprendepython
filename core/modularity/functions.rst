@@ -1362,7 +1362,7 @@ Ahora aplicaremos ambos decoradores sobre una función que realiza el producto d
     >>> ((4 * 3) // 2) + 5
     11
 
-Cuando tenemos varios decoradores, **se aplican desde afuera hacia adentro** (modelo capa de cebolla). Eso sí, hay que tener en cuenta que la ejecución de un decorador puede depender de otro decorador.
+Cuando tenemos varios decoradores **se aplican desde dentro hacia fuera** ya que la ejecución de un decorador depende de otro decorador.
 
 Si anotamos los decoradores podemos ver exactamente cuál es el orden de ejecución::
 
@@ -1391,6 +1391,20 @@ Ahora ejecutamos la función decorada::
     result=6      # aplicación decorador div2 (12/2)
     plus5         # decorador plus5
     11            # aplicación decorador plus5 (6+5)
+
+Una forma sencilla de entender el orden de ejecución de múltiples decoradores es aplicar las funciones decoradoras directamente sobre la función decorada.
+
+Esto::
+
+    >>> @plus5
+    ... @div2
+    ... def prod(a, b):
+    ...     return a * b
+    ...
+
+equivale a::
+
+    >>> plus5(div2(prod(4, 3)))
 
 Decoradores con parámetros
 --------------------------
