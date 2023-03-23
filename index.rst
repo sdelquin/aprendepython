@@ -20,6 +20,10 @@ Este proyecto va de la mano con pycheck_ una herramienta que permite **trabajar 
 Licencia:
    Creative Commons Reconocimiento 4.0 Internacional: `CC BY 4.0`_.
 
+   .. only:: html
+
+      .. image:: _static/img/ccby.png
+
 .. only:: html
 
    Descarga PDF:
