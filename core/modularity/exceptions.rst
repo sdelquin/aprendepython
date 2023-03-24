@@ -211,21 +211,15 @@ Sin embargo, si la condición que fijamos no se cumpla, la aserción devuelve un
     >>> result = -1
 
     >>> assert result > 0
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    <ipython-input-29-e2efe60b0c46> in <module>
-    ----> 1 assert result > 0
-
-    AssertionError:
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AssertionError
 
 Podemos observar que la excepción que se lanza no contiene ningún mensaje informativo. Es posible personalizar este mensaje añadiendo un segundo elemento en la :ref:`tupla <core/datastructures/tuples:tuplas>` de la aserción::
 
     >>> assert result > 0, 'El resultado debe ser positivo'
-    ---------------------------------------------------------------------------
-    AssertionError                            Traceback (most recent call last)
-    <ipython-input-31-f58052ce672b> in <module>
-    ----> 1 assert result > 0, 'El resultado debe ser positivo'
-
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
     AssertionError: El resultado debe ser positivo
 
 
@@ -234,7 +228,6 @@ Podemos observar que la excepción que se lanza no contiene ningún mensaje info
 - `Python Exceptions: An introduction <https://realpython.com/python-exceptions/>`_
 - `Python KeyError Exceptions and How to Handle Them <https://realpython.com/python-keyerror/>`_
 - `Understanding the Python Traceback <https://realpython.com/python-traceback/>`_
-
 
 
 .. --------------- Footnotes ---------------
