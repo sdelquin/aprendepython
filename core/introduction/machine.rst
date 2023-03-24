@@ -85,16 +85,33 @@ Los `compiladores <https://es.wikipedia.org/wiki/Compilador>`__ son programas qu
 
     Esquema de funcionamiento de un compilador [#compiler]_
 
+En el caso particular de Python el proceso de compilación genera un código intermedio denominado **bytecode**.
+
+Si partimos del ejemplo anterior::
+
+    print('Hello, World')
+
+el programa se compilaría [#bytecode]_ al siguiente "bytecode"::
+
+      0           0 RESUME                   0
+
+      1           2 PUSH_NULL
+                  4 LOAD_NAME                0 (print)
+                  6 LOAD_CONST               0 ('Hello, World')
+                  8 PRECALL                  1
+                 12 CALL                     1
+                 22 RETURN_VALUE
+
+A continuación estas instrucciones básicas son ejecutadas por el intérprete de "bytecode" de Python (o máquina virtual).
+
 .. note::
-
-    Para ser más exactos, en Python hablamos de un **intérprete** en vez de un compilador, pero a los efectos es prácticamente lo mismo. La diferencia está en que el intérprete realiza la "compilación" (*interpretación*) y la "ejecución" de una vez, mientras que el compilador genera un formato "ejecutable" (*código objeto*) que se ejecuta en otra fase posterior.
-
-
+    Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje "interpretado" como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un "bytecode" que se ejecuta (interpreta) de forma aparentemente simultánea.
 
 .. --------------- Footnotes ---------------
 
 .. [#machine-unsplash] Foto original por `Garett Mizunaka`_ en Unsplash.
 .. [#compiler] Iconos originales por `Flaticon`_.
+.. [#bytecode] Véase más información sobre `el intérprete de bytecode`_.
 
 .. --------------- Hyperlinks ---------------
 
@@ -103,3 +120,4 @@ Los `compiladores <https://es.wikipedia.org/wiki/Compilador>`__ son programas qu
 .. _arquitectura x86: https://es.wikipedia.org/wiki/X86
 .. _ejemplo de código en ensamblador: https://medium.com/nabucodonosor-editorial/hola-mundo-ensamblado-x86-ff62789ab9b0
 .. _sistema binario: https://es.wikipedia.org/wiki/Sistema_binario
+.. _el intérprete de bytecode: https://devguide.python.org/internals/interpreter/
