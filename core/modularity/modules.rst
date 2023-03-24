@@ -131,6 +131,13 @@ Es posible que no necesitemos todo aquello que está definido en ``arith.py``. S
 
 .. note:: Nótese que en la **línea 3** ya podemos hacer uso directamente de la función ``partitus()`` porque la hemos importado directamente. Este esquema tiene el inconveniente de la posible **colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando.
 
+Es posible hacer ``from arith import *`` pero estaríamos importando todos los componentes del módulo, cuando a lo mejor no es lo que necesitamos. A continuación una imagen que define bien este escenario:
+
+.. figure:: img/import.png
+    :align: center
+
+    Diferencia entre importar un módulo o su contenido [#import-reddit]_
+
 Importar usando un alias
 ========================
 
@@ -283,7 +290,9 @@ Esta condición permite, en el programa principal, diferenciar qué codigo se la
 .. --------------- Footnotes ---------------
 
 .. [#lego-unsplash] Foto original por `Xavi Cabrera`_ en Unsplash.
+.. [#import-reddit] Imagen de `ProgrammerHumor`_ en Reddit.
 
 .. --------------- Hyperlinks ---------------
 
 .. _Xavi Cabrera: https://unsplash.com/@xavi_cabrera?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+.. _ProgrammerHumor: https://www.reddit.com/r/ProgrammerHumor/comments/11zi2kv/wait_but_i_thought_they_were_the_same_thing/
