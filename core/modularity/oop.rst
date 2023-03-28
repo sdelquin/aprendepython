@@ -94,32 +94,6 @@ Existen multitud de droides en el universo StarWars. Una vez que hemos definido 
     >>> type(bb8)
     __main__.StarWarsDroid
 
-Añadiendo atributos
-===================
-
-Un **atributo** no es más que una variable, un nombre al que asignamos un valor, con la particularidad de vivir dentro de una clase o de un objeto.
-
-**Los atributos se suelen asignar durante la creación de un objeto**, pero también es posible añadirlos a posteriori::
-
-    >>> blue_droid = StarWarsDroid()
-    >>> golden_droid = StarWarsDroid()
-
-    >>> golden_droid.name = 'C-3PO'
-
-    >>> blue_droid.name = 'R2-D2'
-    >>> blue_droid.height = 1.09
-    >>> blue_droid.num_feet = 3
-
-Una vez creados, es muy sencillo acceder a los atributos::
-
-    >>> golden_droid.name
-    'C-3PO'
-
-    >>> blue_droid.num_feet
-    3
-
-.. note::
-    Nótese el acceso a los atributos con ``obj.attribute`` en vez de lo que veníamos usando en :ref:`diccionarios <core/datastructures/dicts:diccionarios>` donde hay que escribir "un poco más" ``obj['attribute']``.
 
 Añadiendo métodos
 =================
@@ -145,6 +119,37 @@ Una de las acciones más sencillas que se pueden hacer sobre un droide es encend
 
     >>> k2so.switch_off()
     Bye! I'm going to sleep
+
+Añadiendo atributos
+===================
+
+Un **atributo** no es más que una variable, un nombre al que asignamos un valor, con la particularidad de vivir dentro de una clase o de un objeto.
+
+Supongamos que, siguiendo con el ejemplo anterior, queremos guardar en un atributo el estado del droide (encendido/apagado)::
+
+    >>> class Droid:
+    ...     def switch_on(self):
+    ...         self.power_on = True
+    ...         print("Hi! I'm a droid. Can I help you?")
+    ...
+    ...     def switch_off(self):
+    ...         self.power_on = False
+    ...         print("Bye! I'm going to sleep")
+
+    >>> k2so = Droid()
+
+    >>> k2so.switch_on()
+    Hi! I'm a droid. Can I help you?
+    >>> k2so.power_on
+    True
+
+    >>> k2so.switch_off()
+    Bye! I'm going to sleep
+    >>> k2so.power_on
+    False
+
+.. important::
+    Siempre que queramos acceder a cualquier método o atributo del objeto habrá que utilizar la palabra ``self``.
 
 Inicialización
 ==============
@@ -237,6 +242,9 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
     'C-3PO'
 
     >>> droid.name = 'waka-waka'  # esto sería válido!
+
+.. note::
+    Nótese el acceso a los atributos con ``obj.attribute`` en vez de lo que veníamos usando en :ref:`diccionarios <core/datastructures/dicts:diccionarios>` donde hay que escribir "un poco más" ``obj['attribute']``.
 
 Propiedades
 ===========
@@ -360,8 +368,8 @@ A modo de ejemplo, en un principio, todos los droides están diseñados para que
     >>> good_droid.obeys_owner
     True
 
-    >>> t1000 = Droid()
-    >>> t1000.obeys_owner = False  # T-1000 (Terminator)
+    >>> t1000 = Droid()  # T-1000 (Terminator)
+    >>> t1000.obeys_owner = False
     >>> t1000.obeys_owner
     False
 
@@ -519,8 +527,8 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
 
     >>> class Droid:
     ...     def __init__(self, name: str, serial_number: int):
-    ...         self.serial_number = serial_number
     ...         self.name = name
+    ...         self.serial_number = serial_number
     ...
     ...     def __eq__(self, droid: Droid) -> bool:
     ...         return self.name == droid.name
@@ -549,9 +557,9 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     ...         self.name = name
     ...         self.power = power
     ...
-    ...     def __add__(self, droid: Droid) -> Droid:
-    ...         new_name = self.name + '-' + droid.name
-    ...         new_power = self.power + droid.power
+    ...     def __add__(self, other: Droid) -> Droid:
+    ...         new_name = self.name + '-' + other.name
+    ...         new_power = self.power + other.power
     ...         return Droid(new_name, new_power)  # Hay que devolver un objeto de tipo Droid
     ...
 
@@ -563,6 +571,9 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     >>> print(f'Fusion droid:\n{droid3.name} with power {droid3.power}')
     Fusion droid:
     C3PO-R2D2 with power 136
+
+.. tip::
+    En este tipo de métodos mágicos el parámetro suele llamarse ``other`` haciendo referencia al "otro" objeto que entra en la operación.
 
 ``__str__``
 -----------
