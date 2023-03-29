@@ -326,6 +326,31 @@ A modo de ejemplo, supongamos que la altura del periscopio de los droides astrom
       File "<stdin>", line 1, in <module>
     AttributeError: can't set attribute
 
+Las propiedades **no pueden recibir parámetros** ya que no tiene sentido semánticamente::
+
+    >>> class AstromechDroid:
+    ...     def __init__(self, name: str, height: float):
+    ...         self.name = name
+    ...         self.height = height
+    ...
+    ...     @property
+    ...     def periscope_height(self, from_ground: bool = False) -> float:
+    ...         height_factor = 1.3 if from_ground else 0.3
+    ...         return height_factor * self.height
+    ...
+
+    >>> droid = AstromechDroid('R2-D2', 1.05)
+
+    >>> droid.periscope_height
+    0.315
+
+    >>> droid.periscope_height(from_ground=True)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'float' object is not callable
+
+En este caso tendríamos que implementar un método para resolver el escenario planteado.
+
 .. hint:: La ventaja de usar valores calculados sobre simples atributos es que el cambio de valor en un atributo no asegura que actualicemos otro atributo, y además siempre podremos modificar directamente el valor del atributo, con lo que podríamos obtener efectos colaterales indeseados.
 
 
@@ -353,6 +378,9 @@ Lo que realmente ocurre tras el telón se conoce como "*name mangling*" y consis
     >>> droid._Droid__name
     'BC-44'
 
+.. note::
+    La filosofía de Python permite hacer casi cualquier cosa con los objetos que se manejan, eso sí, el sentido de la responsabilidad se traslada a la persona que desarrolla e incluso a la persona que hace uso del objeto.
+
 Atributos de clase
 ==================
 
@@ -379,6 +407,39 @@ A modo de ejemplo, en un principio, todos los droides están diseñados para que
 .. tip::
     Los atributos de clase son accesibles tanto desde la clase como desde las instancias creadas.
 
+A tener en cuenta lo siguiente:
+
+- Si modificamos un atributo de clase desde un objeto, sólo modificamos el valor en el objeto y no en la clase.
+- Si modificamos un atributo de clase desde una clase, **modificamos el valor en todos los objetos pasados y futuros**.
+
+Veamos un ejemplo de esto último:
+
+.. code-block::
+    :emphasize-lines: 13
+
+    >>> class Droid:
+    ...     obeys_owner = True
+    ...
+
+    >>> droid1 = Droid()
+    >>> droid1.obeys_owner
+    True
+
+    >>> droid2 = Droid()
+    >>> droid2.obeys_owner
+    True
+
+    >>> Droid.obeys_owner = False  # cambia pasado y futuro
+
+    >>> droid1.obeys_owner
+    False
+    >>> droid2.obeys_owner
+    False
+
+    >>> droid3 = Droid()
+    >>> droid3.obeys_owner
+    False
+
 *******
 Métodos
 *******
@@ -386,7 +447,7 @@ Métodos
 Métodos de instancia
 ====================
 
-Un **método de instancia** es un método que modifica el estado del objeto al que hace referencia. Recibe ``self`` como primer parámetro, el cual se convierte en el propio objeto sobre el que estamos trabajando. Python envía este argumento de forma transparente: no hay que pasarlo como argumento.
+Un **método de instancia** es un método que modifica o accede al estado del objeto al que hace referencia. Recibe ``self`` como primer parámetro, el cual se convierte en el propio objeto sobre el que estamos trabajando. Python envía este argumento de forma transparente: no hay que pasarlo como argumento.
 
 Veamos un ejemplo en el que, además del constructor, creamos un método de instancia para desplazar un droide:
 
@@ -411,7 +472,7 @@ Veamos un ejemplo en el que, además del constructor, creamos un método de inst
 Métodos de clase
 ================
 
-Un **método de clase** es un método que modifica el estado de la clase a la que hace referencia. Recibe ``cls`` como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador ``@classmethod`` a la función.
+Un **método de clase** es un método que modifica o accede al estado de la clase a la que hace referencia. Recibe ``cls`` como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador ``@classmethod`` a la función.
 
 Veamos un ejemplo en el que implementamos un método de clase que indica el número de droides que hemos creado:
 
@@ -425,7 +486,7 @@ Veamos un ejemplo en el que implementamos un método de clase que indica el núm
     ...         Droid.count += 1
     ...
     ...     @classmethod
-    ...     def total_droids(cls: Droid) -> None:
+    ...     def total_droids(cls) -> None:
     ...         print(f'{cls.count} droids built so far!')
     ...
 
@@ -466,7 +527,7 @@ Métodos decorados
 
 Es posible que, según el escenario, queramos decorar ciertos métodos de nuestra clase. Esto es posible siguiendo la misma estructura de :ref:`decoradores <core/modularity/functions:decoradores>` que ya hemos visto, pero con ciertos matices.
 
-Veamos un ejemplo en el que creamos un decorador para auditar las acciones de un droide y saber quién ha hecho qué::
+A continuación un ejemplo en el que creamos un decorador para auditar las acciones de un droide y saber quién ha hecho qué::
 
     >>> class Droid:
     ...     @staticmethod
@@ -530,7 +591,7 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
     ...         self.name = name
     ...         self.serial_number = serial_number
     ...
-    ...     def __eq__(self, droid: Droid) -> bool:
+    ...     def __eq__(self, droid) -> bool:
     ...         return self.name == droid.name
     ...
 
@@ -557,7 +618,7 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     ...         self.name = name
     ...         self.power = power
     ...
-    ...     def __add__(self, other: Droid) -> Droid:
+    ...     def __add__(self, other) -> Droid:
     ...         new_name = self.name + '-' + other.name
     ...         new_power = self.power + other.power
     ...         return Droid(new_name, new_power)  # Hay que devolver un objeto de tipo Droid
