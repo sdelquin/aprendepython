@@ -133,3 +133,7 @@ figcaption > p > a {
 .highlighted {
   background-color: #ffdf00;
 }
+
+#btn-hide-menu {
+  width: 1.5rem;
+}
