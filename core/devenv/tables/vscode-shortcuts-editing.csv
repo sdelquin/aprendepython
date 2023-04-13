@@ -1,0 +1,14 @@
+Acción                    ,Atajo
+Cortar linea              ,``Ctrl + X``
+Copiar linea              ,``Ctrl + C``
+Borrar linea              ,``Ctrl + Shift + K``
+Insertar linea abajo      ,``Enter``
+Insertar linea arriba     ,``Ctrl + Shift + Enter``
+Buscar en archivo abierto ,``Ctrl + F``
+Reemplazar                ,``Ctrl + H``
+Linea de comentario       ,``Ctrl + /``
+Bloque de comentario      ,``Shift + Alt + A``
+Salto de linea            ,``Alt + Z``
+Seleccionar lineas        ,``Alt + Click Mouse``
+Tabular linea             ,``Tab``
+Destabular linea          ,``Shift + Tab``

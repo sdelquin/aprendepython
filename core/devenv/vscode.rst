@@ -6,6 +6,52 @@ VSCode
 
 `Visual Studio Code <https://code.visualstudio.com/>`__ (VSCode) es un entorno de desarrollo integrado [#ide]_ gratuito y de código abierto que ha ganado mucha relevancia en los últimos años. Permite trabajar fácilmente con multitud de lenguajes de programación y dispone de una gran cantidad de plugins. [#vscode-unsplash]_
 
+*****************
+Atajos de teclado
+*****************
+
+Conocer los atajos de teclado de tu editor favorito es fundamental para mejorar el flujo de trabajo y ser más productivo.  Veamos los principales atajos de teclado de Visual Studio Code [#vscode-shortcuts]_.
+
+Ajustes generales
+=================
+
+.. csv-table::
+    :file: tables/vscode-shortcuts-global.csv
+    :widths: 30, 15
+    :header-rows: 1
+    :class: longtable
+
+Usabilidad
+==========
+
+.. csv-table::
+    :file: tables/vscode-shortcuts-usability.csv
+    :widths: 30, 15
+    :header-rows: 1
+    :class: longtable
+
+Edición básica
+==============
+
+.. csv-table::
+    :file: tables/vscode-shortcuts-editing.csv
+    :widths: 30, 15
+    :header-rows: 1
+    :class: longtable
+
+Pantalla
+========
+
+.. csv-table::
+    :file: tables/vscode-shortcuts-screen.csv
+    :widths: 30, 15
+    :header-rows: 1
+    :class: longtable
+
+.. tip::
+    En macOS sustituir ``Ctrl`` por ``Command``.
+
+
 ****************
 Depurando código
 ****************
@@ -105,8 +151,10 @@ Pero también es posible **añadir manualmente** el seguimiento de otras variabl
 
 .. [#ide] También conocido por IDE siglas en inglés de Integrated Development Environment.
 .. [#vscode-unsplash] Foto original de portada por `Kelly Sikkema`_ en Unsplash.
+.. [#vscode-shortcuts] Fuente: `Gastón Danielsen en Dev.To`_.
 
 .. --------------- Hyperlinks ---------------
 
 .. _Kelly Sikkema: https://unsplash.com/@kellysikkema?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _pdb: https://docs.python.org/3/library/pdb.html
+.. _Gastón Danielsen en Dev.To: https://dev.to/gdcodev/atajos-de-teclado-shortcuts-en-vscode-430a
