@@ -128,21 +128,21 @@ CPython
 
 Existen múltiples **implementaciones** de Python según el lenguaje de programación que se ha usado para desarrollarlo. Veamos algunas de ellas:
 
-+----------------+--------------+
-| Implementación |   Lenguaje   |
-+================+==============+
-| `CPython`_     | C            |
-+----------------+--------------+
-| `Jython`_      | Java         |
-+----------------+--------------+
-| `IronPython`_  | C#           |
-+----------------+--------------+
-| `Brython`_     | JavaScript   |
-+----------------+--------------+
-| `PyPy`_        | Python (JIT) |
-+----------------+--------------+
-| `MicroPython`_ | C            |
-+----------------+--------------+
++----------------+------------+
+| Implementación |  Lenguaje  |
++================+============+
+| `CPython`_     | C          |
++----------------+------------+
+| `Jython`_      | Java       |
++----------------+------------+
+| `IronPython`_  | C#         |
++----------------+------------+
+| `Brython`_     | JavaScript |
++----------------+------------+
+| `RustPython`_  | Rust       |
++----------------+------------+
+| `MicroPython`_ | C          |
++----------------+------------+
 
 .. note:: Cuando hacemos referencia a Python hablamos (implícitamente) de CPython. Este manual versa exclusivamente sobre CPython.
 
@@ -209,31 +209,30 @@ Un listado de consejos muy interesantes cuando nos enfrentamos a la programació
 1. Escribir código es el último paso del proceso.
 2. Para resolver problemas: pizarra mejor que teclado.
 3. Escribir código sin planificar = estrés.
-4. Pareces más inteligente siendo claro, no siendo más listo.
-5. La consistencia a largo plazo es mejor que la intensidad a corto plazo.
+4. Pareces más inteligente siendo claro, no siendo listo.
+5. La constancia a largo plazo es mejor que la intensidad a corto plazo.
 6. La solución primero. La optimización después.
 7. Gran parte de la programación es resolución de problemas.
 8. Piensa en múltiples soluciones antes de decidirte por una.
 9. Se aprende construyendo proyectos, no tomando cursos.
 10. Siempre elije simplicidad. Las soluciones simples son más fáciles de escribir.
-11. Los errores son inevitables al escribir código. Sólo te dicen lo que no hacer.
-12. Fallar es barato en programación. Aprende haciendo.
+11. Los errores son inevitables al escribir código. Sólo te informan sobre lo que no debes hacer.
+12. Fallar es barato en programación. Aprende mediante la práctica.
 13. Gran parte de la programación es investigación.
-14. La programación en pareja te enseñará mucho más que escribir código.
+14. La programación en pareja te enseñará mucho más que escribir código tu solo.
 15. Da un paseo cuando estés bloqueado con un error.
-16. Convierte en un hábito el hecho de pedir ayuda.
-17. Pierdes 0 credibilidad pidiendo ayuda.
-18. El tiempo gastado en entender el problema está bien invertido.
-19. Cuando estés bloqueado con un problema: sé curioso, no te frustres.
-20. Piensa en posibles escenarios y situaciones extremas antes de resolver.
-21. No te estreses con la sintaxis de programación. Entiende conceptos.
-22. Aprende a ser un buen corrector de errores. Esto se amortiza.
-23. Conoce pronto los atajos de teclado de un editor favorito.
-24. Tu código es tan claro como tu lo piensas.
-25. Gastarás el doble de tiempo en corregir errores que en escribir código.
-26. Saber buscar bien en google es una habilidad valiosa.
-27. Lee código de otras personas para inspirarte.
-28. Únete a `comunidades de desarrollo <https://pythoncanarias.es>`_ para aprender con otros/as programadores/as.
+16. Convierte en un hábito el hecho de pedir ayuda. Pierdes cero credibilidad pidiendo ayuda.
+17. El tiempo gastado en entender el problema está bien invertido.
+18. Cuando estés bloqueado con un problema: sé curioso, no te frustres.
+19. Piensa en posibles escenarios y situaciones extremas antes de resolver el problema.
+20. No te estreses con la sintaxis de lenguaje de programación. Entiende conceptos.
+21. Aprende a ser un buen corrector de errores. Esto se amortiza.
+22. Conoce pronto los atajos de teclado de tu editor favorito.
+23. Tu código será tan claro como lo tengas en tu cabeza.
+24. Gastarás el doble de tiempo en corregir errores que en escribir código.
+25. Saber buscar bien en Google es una habilidad valiosa.
+26. Lee código de otras personas para inspirarte.
+27. Únete a `comunidades de desarrollo <https://pythoncanarias.es>`_ para aprender con otros/as programadores/as.
 
 
 .. --------------- Footnotes ---------------
@@ -258,5 +257,5 @@ Un listado de consejos muy interesantes cuando nos enfrentamos a la programació
 .. _Jython: https://www.jython.org/
 .. _IronPython: https://ironpython.net/
 .. _MicroPython: https://micropython.org/
-.. _PyPy: https://www.pypy.org/
+.. _RustPython: https://rustpython.github.io/
 .. _@codewithvoid: https://twitter.com/codewithvoid
