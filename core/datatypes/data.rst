@@ -251,9 +251,7 @@ Mutabilidad
 
 |advlev|
 
-Las variables son nombres, no lugares. Detrás de esta frase se esconde la reflexión de que cuando asignamos un valor a una variable, lo que realmente está ocurriendo es que se hace **apuntar** el nombre de la variable a una zona de memoria en el que se representa el objeto (con su valor).
-
-Si realizamos la asignación de una variable a un valor lo que está ocurriendo es que el nombre de la variable es una **referencia** al valor, no el valor en sí mismo::
+Las variables son nombres, no lugares. Detrás de esta frase se esconde la reflexión de que cuando asignamos un valor a una variable, lo que realmente está ocurriendo es que se hace **apuntar** el nombre de la variable a una zona de memoria en el que se representa el objeto (con su valor)::
 
     >>> a = 5
 
@@ -279,7 +277,15 @@ La función ``id()`` nos permite conocer la dirección de memoria [#memory-addre
     >>> id(b)
     4445989712
 
-¿Y esto qué tiene que ver con la **mutabilidad**? Pues se dice, por ejemplo, que un **entero** es **inmutable** ya que a la hora de modificar su valor obtenemos una nueva *zona de memoria*, o lo que es lo mismo, un nuevo objeto::
+La prueba de que la zona de memoria no la ocupa el "nombre" de la variable, es que podemos ver cómo se asigna una dirección de memoria únicamente al "valor" literal::
+
+    >>> id(10)
+    4333546384
+
+    >>> id(20)
+    4333546704
+
+Cada vez que asignamos un nuevo valor a una variable, ésta apunta a una nueva zona de memoria::
 
     >>> a = 5
     >>> id(a)
@@ -289,7 +295,9 @@ La función ``id()`` nos permite conocer la dirección de memoria [#memory-addre
     >>> id(a)
     4310690288
 
-Sin embargo, si tratamos con **listas**, podemos ver que la modificación de alguno de sus valores no implica un cambio en la posición de memoria de la variable, por lo que se habla de objetos **mutables**.
+Cuando la zona de memoria que ocupa el objeto se puede modificar hablamos de tipos de datos **mutables**. En otro caso hablamos de tipos de datos **inmutables**.
+
+Por ejemplo, las **listas** son un tipo de dato mutable ya que podemos modificar su contenido (aunque la asignación de un nuevo valor sigue generando un nuevo espacio de memoria).
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
@@ -304,7 +312,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
         <iframe width="800" height="375" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original%20%3D%20%5B1,%202,%203%5D%0Acopy%20%3D%20original%0A%0A%23%20Modify%20first%20element%0Aoriginal%5B0%5D%20%3D%2099%0A%0A%23%20Assign%20new%20object%0Aoriginal%20%3D%20%5B4,%205,%206%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
-La característica de que los nombres de variables sean referencias a objetos en memoria es la que hace posible diferenciar entre **objetos mutables e inmutables**:
+Tipos de objetos en Python según su naturaleza de cambio:
 
 +-----------+----------+
 | Inmutable | Mutable  |
