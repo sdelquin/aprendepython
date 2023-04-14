@@ -262,6 +262,16 @@ Límite de un entero
 
 .. note:: En muchos lenguajes tratar con enteros tan largos causaría un "integer overflow". No es el caso de Python que puede manejar estos valores sin problema.
 
+¿Qué pasaría si quisiéramos "romper" todas las barreras? Pongamos 10.000 dígitos...
+
+.. code-block::
+
+    >>> 10 ** 10_000
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ValueError: Exceeds the limit (4300) for integer string conversion; use sys.set_int_max_str_digits() to increase the limit
+
+Obtenemos un error... pero subsanable, ya que hay forma de ampliar este **límite inicial de 4300 dígitos** usando la función ``sys.set_int_max_str_digits()``
 
 *********
 Flotantes
@@ -356,7 +366,7 @@ Veamos algunos ejemplos de estas funciones::
     >>> float(False)
     0.0
 
-En el caso de que usemos la función ``int()`` sobre un valor flotante, nos retorna su **parte baja**:
+En el caso de que usemos la función ``int()`` sobre un valor flotante nos retornará su **parte baja**:
 
 .. math::
     int(x) = \big\lfloor x \big\rfloor
@@ -370,7 +380,8 @@ Por ejemplo::
     >>> int(3.9)
     3
 
-Para **obtener el tipo** de una variable podemos hacer uso de la función ``type()``::
+
+Para **obtener el tipo** de una variable :ref:`ya hemos visto <core/datatypes/data:conocer el tipo de una variable>` la función ``type()``::
 
     >>> is_raining = False
     >>> type(is_raining)
@@ -384,7 +395,7 @@ Para **obtener el tipo** de una variable podemos hacer uso de la función ``type
     >>> type(temperature)
     float
 
-Igualmente existe la posibilidad de **comprobar el tipo** que tiene una variable mediante la función ``isinstance()``::
+Pero también existe la posibilidad seguimos **comprobar el tipo** que tiene una variable mediante la función ``isinstance()``::
 
     >>> isinstance(is_raining, bool)
     True
