@@ -49,7 +49,7 @@ Pantalla
     :class: longtable
 
 .. tip::
-    En macOS sustituir ``Ctrl`` por ``Command``.
+    En macOS 🍏 sustituir ``Ctrl`` por ``Command``.
 
 
 ****************
