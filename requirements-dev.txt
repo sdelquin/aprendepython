@@ -4,3 +4,4 @@ rope
 rstcheck
 sphinx-autobuild
 esbonio
+pytest
