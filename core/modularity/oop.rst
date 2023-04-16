@@ -204,7 +204,7 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
     - ``screen_size`` (flotante)
     - ``num_cores`` (entero)
     - ``apps`` (lista de cadenas de texto)
-    - ``status`` (0: apagado, 1: encendido)
+    - ``status`` (``False``: apagado, ``True``: encendido)
 
     Métodos:
 
@@ -214,13 +214,13 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
     - ``install_app(self, app)``
     - ``uninstall_app(self, app)``
 
-    Crear al menos una instancia (móvil) a partir de la clase creada y "jugar" con los métodos, visualizando cómo cambian sus atributos.
-
     *¿Serías capaz de extender el método* ``install_app()`` *para instalar varias aplicaciones a la vez?*
 
     .. only:: html
     
-        |solution| :download:`mobile.py <files/mobile.py>`
+        | Plantilla: :download:`mobile.py <files/mobile.py>`
+        | Tests: :download:`test_mobile.py <files/test_mobile.py>`
+        | Lanzar tests: ``pytest -xq test_mobile.py``
 
 *********
 Atributos
@@ -591,7 +591,7 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
     ...         self.name = name
     ...         self.serial_number = serial_number
     ...
-    ...     def __eq__(self, droid) -> bool:
+    ...     def __eq__(self, droid: Droid) -> bool:
     ...         return self.name == droid.name
     ...
 
@@ -603,6 +603,11 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
 
     >>> droid1.__eq__(droid2)
     True
+
+.. tip::
+    | Para poder utilizar la anotación de tipo ``Droid`` necesitamos añadir la siguiente línea al principio de nuestro código:  
+    | ``from __future__ import annotations``
+    
 
 .. figure:: img/magic-methods-list.jpg
     :align: center
@@ -618,7 +623,7 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     ...         self.name = name
     ...         self.power = power
     ...
-    ...     def __add__(self, other) -> Droid:
+    ...     def __add__(self, other: Droid) -> Droid:
     ...         new_name = self.name + '-' + other.name
     ...         new_power = self.power + other.power
     ...         return Droid(new_name, new_power)  # Hay que devolver un objeto de tipo Droid
@@ -634,7 +639,39 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     C3PO-R2D2 with power 136
 
 .. tip::
-    En este tipo de métodos mágicos el parámetro suele llamarse ``other`` haciendo referencia al "otro" objeto que entra en la operación.
+    En este tipo de métodos mágicos el parámetro suele llamarse ``other`` haciendo referencia al "otro" objeto que entra en la operación. Es una convención.
+
+Sobrecarga de operadores
+------------------------
+
+¿Y si sumamos un droide con un entero? Supongamos que nuestra semántica es que si sumamos un número entero a un droide, éste aumenta su energía en el valor sumado. ¿Podríamos añadir también este comportamiento al operador suma?
+
+Aunque en Python no existe técnicamente la "sobrecarga de funciones", sí que podemos simularla identificando el tipo del objeto que nos pasan y realizando acciones en base a ello:
+
+.. code-block::
+    :emphasize-lines: 7,10
+
+    >>> class Droid:
+    ...     def __init__(self, name: str, power: int):
+    ...         self.name = name
+    ...         self.power = power
+    ...
+    ...     def __add__(self, other: Droid | int) -> Droid:
+    ...         if isinstance(other, Droid):
+    ...             new_name = self.name + '-' + other.name
+    ...             new_power = self.power + other.power
+    ...         if isinstance(other, int):
+    ...             new_name = self.name
+    ...             new_power = self.power + other
+    ...         return Droid(new_name, new_power)
+    ...
+
+    >>> droid = Droid('L3-37', 75)
+
+    >>> powerful_droid = droid + 25
+
+    >>> powerful_droid.power
+    100
 
 ``__str__``
 -----------
@@ -691,7 +728,9 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
 
     .. only:: html
     
-        |solution| :download:`fraction.py <files/fraction.py>`
+        | Plantilla: :download:`fraction.py <files/fraction.py>`
+        | Tests: :download:`test_fraction.py <files/test_fraction.py>`
+        | Lanzar tests: ``pytest -xq test_fraction.py``
 
 Gestores de contexto
 --------------------
@@ -1587,6 +1626,14 @@ Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
 ----
 
 .. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba una clase ``Date`` que represente una fecha.
+
+.. only:: html
+
+    | Plantilla: :download:`date.py <files/date.py>`
+    | Tests: :download:`test_date.py <files/test_date.py>`
+    | Lanzar tests: ``pytest -xq test_date.py``
 
 1. Escriba una clase en Python para representar una secuencia de ADN. De momento, la clase sólo contendrá los siguientes elementos:
     - 4 atributos de clase, cada uno representando una base nitrogenada con su valor como un carácter.
