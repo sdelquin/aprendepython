@@ -8,3 +8,4 @@ miniprojects/**/solution
 sandbox.ipynb
 geckodriver.log
 .python-version
+future.txt
