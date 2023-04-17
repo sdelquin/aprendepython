@@ -1,0 +1,4 @@
+Anotación,Significado
+``list[str]``,Lista de cadenas de texto
+``set[int]``,Conjunto de enteros
+"``dict[str, float]``",Diccionario donde las claves son cadenas de texto y los valores son flotantes

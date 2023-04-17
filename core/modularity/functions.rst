@@ -816,15 +816,10 @@ Hay escenarios en los que necesitamos más expresividad de cara a la anotación 
 
 Veamos algunos ejemplos válidos:
 
-+----------------------+-------------------------------------------------------------------------------+
-|      Anotación       |                                  Significado                                  |
-+======================+===============================================================================+
-| ``list[str]``        | Lista de cadenas de texto                                                     |
-+----------------------+-------------------------------------------------------------------------------+
-| ``set[int]``         | Conjunto de enteros                                                           |
-+----------------------+-------------------------------------------------------------------------------+
-| ``dict[str, float]`` | Diccionario donde las claves son cadenas de texto y los valores son flotantes |
-+----------------------+-------------------------------------------------------------------------------+
+.. csv-table::
+    :file: tables/annotation-types.csv
+    :header-rows: 1
+    :widths: 15, 50
 
 Múltiples tipos
 ---------------
@@ -833,16 +828,10 @@ En el caso de que queramos indicar que un determinado parámetro puede ser de un
 
 Veamos algunos ejemplos válidos:
 
-+--------------------+---------------------------------------+
-|     Anotación      |              Significado              |
-+====================+=======================================+
-+--------------------+---------------------------------------+
-| ``tuple❘dict``     | Tupla o diccionario                   |
-+--------------------+---------------------------------------+
-| ``list[str❘int]``  | Lista de cadenas de texto y/o enteros |
-+--------------------+---------------------------------------+
-| ``set[int❘float]`` | Conjunto de enteros y/o flotantes     |
-+--------------------+---------------------------------------+
+.. csv-table::
+    :file: tables/annotation-mtypes.csv
+    :header-rows: 1
+    :widths: 20, 50
 
 .. seealso::
     `Guía rápida para de anotación de tipos (mypy) <https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html>`_
