@@ -27,9 +27,7 @@ class DNA:
         return self.sequence.count(DNA.THYMINE)
 
     def __add__(self, other):
-        new_sequence = ''.join(
-            [max(b1, b2) for b1, b2 in zip(self.sequence, other.sequence)]
-        )
+        new_sequence = ''.join([max(b1, b2) for b1, b2 in zip(self.sequence, other.sequence)])
         return DNA(new_sequence)
 
     def stats(self) -> tuple[float]:
@@ -41,9 +39,7 @@ class DNA:
         return adenines_rate, cytosines_rate, guanines_rate, thymines_rate
 
     def __mul__(self, other):
-        new_sequence = ''.join(
-            [b1 for b1, b2 in zip(self.sequence, other.sequence) if b1 == b2]
-        )
+        new_sequence = ''.join([b1 for b1, b2 in zip(self.sequence, other.sequence) if b1 == b2])
         return DNA(new_sequence)
 
 

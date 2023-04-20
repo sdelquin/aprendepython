@@ -6,4 +6,5 @@ Además de las herramientas que se han visto en :ref:`cadenas de texto <core/dat
 
 .. toctree::
 
+    text_processing/re
     text_processing/string
