@@ -4,11 +4,13 @@ from date import Date
 
 @pytest.fixture
 def date1():
+    # JUEVES
     return Date(day=1, month=3, year=1979)
 
 
 @pytest.fixture
 def date2():
+    # DOMINGO
     return Date(day=24, month=6, year=1984)
 
 
@@ -19,24 +21,24 @@ def test_build_date(date1: Date, date2: Date):
     assert date1.year == 1979
 
     assert isinstance(date2, Date)
-    assert date1.day == 24
-    assert date1.month == 6
-    assert date1.year == 1984
+    assert date2.day == 24
+    assert date2.month == 6
+    assert date2.year == 1984
 
 
 def test_build_date_when_out_of_range():
-    date = Date(days=40, month=1, year=2000)
-    assert date.days == 31
+    date = Date(day=40, month=1, year=2000)
+    assert date.day == 1
     assert date.month == 1
     assert date.year == 2000
 
-    date = Date(days=1, month=15, year=2000)
-    assert date.days == 1
+    date = Date(day=1, month=15, year=2000)
+    assert date.day == 1
     assert date.month == 1
     assert date.year == 2000
 
-    date = Date(days=1, month=1, year=1850)
-    assert date.days == 1
+    date = Date(day=1, month=1, year=1850)
+    assert date.day == 1
     assert date.month == 1
     assert date.year == 1900
 
@@ -49,14 +51,9 @@ def test_is_leap_year():
 
 
 def test_days_in_month():
-    date = Date(days=1, month=1, year=2005)
-    assert date.days == 31
-
-    date = Date(days=1, month=2, year=2005)
-    assert date.days == 28
-
-    date = Date(days=1, month=2, year=2004)
-    assert date.days == 29
+    assert Date.days_in_month(1, 2005) == 31
+    assert Date.days_in_month(2, 2005) == 28
+    assert Date.days_in_month(2, 2004) == 29
 
 
 def test_get_delta_days(date1: Date):
@@ -64,8 +61,8 @@ def test_get_delta_days(date1: Date):
 
 
 def test_weekday(date1: Date, date2: Date):
-    assert date1.weekday == 3
-    assert date2.weekday == 6
+    assert date1.weekday == 4  # jueves
+    assert date2.weekday == 0  # domingo
 
 
 def test_is_weekend(date1: Date, date2: Date):

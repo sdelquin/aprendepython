@@ -6,11 +6,17 @@ class Date:
         '''Validar día, mes y año. Se comprobará si la fecha es correcta
         (entre el 1-1-1900 y el 31-12-2050); si el día no es correcto, lo pondrá a 1;
         si el mes no es correcto, lo pondrá a 1; y si el año no es correcto, lo pondrá a 1900.
-        Ojo con los años bisiestos.'''
+        Ojo con los años bisiestos.
+        El 1-1-1900 fue lunes.
+        '''
         ...
 
     @staticmethod
     def is_leap_year(year: int) -> bool:
+        ...
+
+    @staticmethod
+    def days_in_month(month: int, year: int) -> int:
         ...
 
     def get_delta_days(self) -> int:
@@ -18,13 +24,8 @@ class Date:
         ...
 
     @property
-    def days_in_month(self) -> int:
-        '''Día de la semana de la fecha (0 para domingo, ..., 6 para sábado).
-        El 1-1-1900 fue domingo.'''
-        ...
-
-    @property
     def weekday(self) -> int:
+        '''Día de la semana de la fecha (0 para domingo, ..., 6 para sábado).'''
         ...
 
     @property
@@ -50,11 +51,11 @@ class Date:
         2) Restar un número de días la fecha -> Nueva fecha'''
         ...
 
-    def __eq__(self, other: Date) -> bool:
+    def __lt__(self, other) -> bool:
         ...
 
-    def __gt__(self, other: Date) -> bool:
+    def __gt__(self, other) -> bool:
         ...
 
-    def __lt__(self, other: Date) -> bool:
+    def __eq__(self, other) -> bool:
         ...

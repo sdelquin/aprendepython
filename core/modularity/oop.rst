@@ -943,7 +943,7 @@ Con esto ya hemos aportado una personalidad diferente a los droides de protocolo
 Accediendo a la clase base
 ==========================
 
-Puede darse la situación en la que tengamos que acceder desde la clase derivada a métodos o atributos de la clase base. Python ofrece ``super()`` como mecanismo para ello.
+Puede darse la situación en la que tengamos que **acceder desde la clase derivada a métodos o atributos de la clase base**. Python ofrece ``super()`` como mecanismo para ello.
 
 Veamos un ejemplo más elaborado con nuestros droides:
 
@@ -1008,24 +1008,15 @@ Supongamos que queremos modelar la siguiente estructura de clases con *herencia 
     >>> class HyperDroid(AstromechDroid, ProtocolDroid):
     ...     pass
     
+Podemos comprobar esta herencia múltiple de la siguiente manera::
 
-Todas las clases en Python disponen de un método especial llamado ``mro()`` que devuelve una lista de las clases que se visitarían en caso de acceder a un método o a un atributo. También existe el atributo ``__mro__`` como una tupla de esas mismas clases::
+    >>> issubclass(SuperDroid, (ProtocolDroid, AstromechDroid, Droid))
+    True
 
-    >>> SuperDroid.mro()
-    [__main__.SuperDroid,
-     __main__.ProtocolDroid,
-     __main__.AstromechDroid,
-     __main__.Droid,
-     object]
+    >>> issubclass(HyperDroid, (AstromechDroid, ProtocolDroid, Droid))
+    True
 
-    >>> HyperDroid.__mro__
-    (__main__.HyperDroid,
-     __main__.AstromechDroid,
-     __main__.ProtocolDroid,
-     __main__.Droid,
-     object)
-
-Veamos el resultado de la llamada a los métodos definidos::
+Veamos el resultado de la llamada a los métodos definidos para la jerarquía de droides::
 
     >>> super_droid = SuperDroid()
     >>> hyper_droid = HyperDroid()
@@ -1036,15 +1027,19 @@ Veamos el resultado de la llamada a los métodos definidos::
     >>> hyper_droid.greet()
     'Here an astromech droid'
 
-Podemos comprobar esta herencia múltiple de la siguiente manera::
+Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base. Pero es posible que exista una *colisión* en caso de que el método o el atributo buscado esté, a la vez, en varias clases base. En este caso, Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
 
-    >>> issubclass(SuperDroid, (ProtocolDroid, AstromechDroid, Droid))
-    True
+Todas las clases en Python disponen de un método especial llamado ``mro()`` "method resolution order" que devuelve una lista de las clases que se visitarían en caso de acceder a un método o a un atributo::
 
-    >>> issubclass(HyperDroid, (AstromechDroid, ProtocolDroid, Droid))
-    True
+    >>> SuperDroid.mro()
+    [__main__.SuperDroid,
+     __main__.ProtocolDroid,
+     __main__.AstromechDroid,
+     __main__.Droid,
+     object]
 
-Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base. Es posible que exista una *colisión* en caso de que el método o el atributo buscado esté, a la vez, en varias clases base. En este caso, Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
+.. seealso::
+    También se puede acceder a la misma información usando el atributo ``__mro__``
 
 Todos los objetos en Python heredan, en primera instancia, de ``object``. Esto se puede comprobar con el correspondiente ``mro()`` de cada objeto::
 
