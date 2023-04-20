@@ -735,7 +735,7 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
 Gestores de contexto
 --------------------
 
-Otra de las aplicaciones de los métodos mágicos (especiales) que puede ser interesante es la de los **gestores de contexto**. Se trata de un bloque de código en Python que engloba una serie de acciones a la entrada y a la salida del mismo.
+Otra de las aplicaciones interesantes de los métodos mágicos/especiales es la de los **gestores de contexto**. Un gestor de contexto permite aplicar una serie de *acciones a la entrada y a la salida* del contexto definido.
 
 Hay dos métodos que son utilizados para implementar los gestores de contexto:
 
@@ -744,7 +744,7 @@ Hay dos métodos que son utilizados para implementar los gestores de contexto:
 ``__exit__()``
     Acciones que se llevan a cabo al salir del contexto.
 
-Veamos un ejemplo en el que implementamos un gestor de contexto que mide tiempos de ejecución::
+Veamos un ejemplo en el que implementamos un gestor de contexto que **mide tiempos de ejecución**::
 
     >>> from time import time
 
@@ -830,7 +830,7 @@ Heredar desde una clase base
 
 Para que una clase "herede" de otra, basta con indicar la clase base entre paréntesis en la definición de la clase derivada.
 
-Sigamos con el ejemplo: Una de las grandes categorías de droides en StarWars es la de `droides de protocolo`_. Vamos a crear una herencia sobre esta idea::
+Sigamos con el ejemplo galáctico: Una de las grandes categorías de droides en StarWars es la de `droides de protocolo`_. Vamos a crear una herencia sobre esta idea::
 
     >>> class Droid:
     ...     ''' Clase Base '''
@@ -879,7 +879,7 @@ Sobreescribir un método
 
 Como hemos visto, una clase derivada hereda todo lo que tiene su clase base. Pero en muchas ocasiones nos interesa modificar el comportamiento de esta herencia.
 
-En el ejemplo vamos a modificar el comportamiento del método ``switch_on()`` para la clase derivada::
+En el ejemplo anterior vamos a modificar el comportamiento del método ``switch_on()`` para la clase derivada::
 
     >>> class Droid:
     ...     def switch_on(self):
@@ -906,7 +906,7 @@ En el ejemplo vamos a modificar el comportamiento del método ``switch_on()`` pa
 Añadir un método
 ================
 
-La clase derivada también puede añadir métodos que no estaban presentes en su clase base. En el siguiente ejemplo vamos a añadir un método ``translate()`` que permita a los *droides de protocolo* traducir cualquier mensaje:
+La clase derivada puede, como cualquier otra clase "normal",  añadir métodos que no estaban presentes en su clase base. En el siguiente ejemplo vamos a añadir un método ``translate()`` que permita a los *droides de protocolo* traducir cualquier mensaje:
 
 .. code-block::
     :emphasize-lines: 13
@@ -976,8 +976,6 @@ Herencia múltiple
 
 Aunque no está disponible en todos los lenguajes de programación, Python sí permite heredar de **múltiples clases base**.
 
-Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base. Es posible que exista una *colisión* en caso de que el método o el atributo buscado esté, a la vez, en varias clases base. En este caso, Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
-
 Supongamos que queremos modelar la siguiente estructura de clases con *herencia múltiple*:
 
 .. figure:: img/multiple-inheritance.jpg
@@ -1038,6 +1036,16 @@ Veamos el resultado de la llamada a los métodos definidos::
     >>> hyper_droid.greet()
     'Here an astromech droid'
 
+Podemos comprobar esta herencia múltiple de la siguiente manera::
+
+    >>> issubclass(SuperDroid, (ProtocolDroid, AstromechDroid, Droid))
+    True
+
+    >>> issubclass(HyperDroid, (AstromechDroid, ProtocolDroid, Droid))
+    True
+
+Si en una clase se hace referencia a un método o atributo que no existe, Python lo buscará en todas sus clases base. Es posible que exista una *colisión* en caso de que el método o el atributo buscado esté, a la vez, en varias clases base. En este caso, Python resuelve el conflicto a través del **orden de resolución de métodos** [#mro]_.
+
 Todos los objetos en Python heredan, en primera instancia, de ``object``. Esto se puede comprobar con el correspondiente ``mro()`` de cada objeto::
 
     >>> int.mro()
@@ -1058,12 +1066,18 @@ Todos los objetos en Python heredan, en primera instancia, de ``object``. Esto s
     >>> bool.mro()  # Un booleano también es un entero!
     [bool, int, object]
 
+Lo anteriormente dicho puede explicarse igualmente a través del siguiente código::
+
+    >>> PY_TYPES = (int, str, float, tuple, list, bool)
+    >>> all(issubclass(_type, object) for _type in PY_TYPES)
+    True
+
 Mixins
 ======
 
-Hay situaciones en la que nos interesa incorporar una clase base "independiente" de la jerarquía establecida, y sólo a efectos de **tareas auxiliares**. Esta aproximación podría ayudar a evitar *colisiones* en métodos o atributos reduciendo la ambigüedad que añade la herencia múltiple. Estas clases auxiliares reciben el nombre de **"mixins"**.
+Hay situaciones en las que nos interesa incorporar una clase base "independiente" de la jerarquía establecida, y sólo a efectos de **tareas auxiliares o transversales**. Esta aproximación podría ayudar a evitar *colisiones* en métodos o atributos reduciendo la ambigüedad que añade la herencia múltiple. A estas clases auxiliares se las conoce como **"mixins"**.
 
-Veamos un ejemplo en el que usamos un "mixin" para mostrar las variables de un objeto::
+Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
 
     >>> class Instrospection:
     ...     def dig(self):
