@@ -185,7 +185,7 @@ Python nos ofrece, al menos, tres mecanismos para invertir los elementos de una 
 Añadir al final de la lista
 ===========================
 
-Una de las operaciones más utilizadas en listas es añadir elementos al final de las mismas. Para ello Python nos ofrece la función ``append()``. Se trata de un método *destructivo* que modifica la lista original::
+Una de las operaciones más utilizadas en listas es añadir elementos al final de las mismas. Para ello Python nos ofrece la función ``append()``. Se trata de un método "destructivo" que modifica la lista original::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
@@ -328,7 +328,6 @@ El motivo es que ``extend()`` "recorre" (o itera) sobre cada uno de los elemento
 Se podría pensar en el uso de ``append()`` para combinar listas. La realidad es que no funciona exactamente como esperamos; la segunda lista se añadiría como una *sublista* de la principal::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite']
-
     >>> fruitshop = ['Naranja', 'Manzana', 'Piña']
 
     >>> shopping.append(fruitshop)
@@ -411,13 +410,15 @@ Python nos ofrece, al menos, cuatro formas para borrar elementos en una lista:
 
         >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
-        >>> shopping.pop()
+        >>> product = shopping.pop()  # shopping.pop(-1)
+        >>> product
         'Limón'
 
         >>> shopping
         ['Agua', 'Huevos', 'Aceite', 'Sal']
 
-        >>> shopping.pop(2)
+        >>> product = shopping.pop(2)
+        >>> product
         'Aceite'
 
         >>> shopping
@@ -476,6 +477,9 @@ La diferencia entre ambos métodos tiene que ver con cuestiones internas de gest
     >>> id(shopping)  # se crea una nueva "posición de memoria"
     4458851520
 
+.. seealso::
+    La memoria que queda "en el limbo" después de asignar un nuevo valor a la lista es detectada por el **recolector de basura** de Python, quien se encarga de liberar aquellos datos que no están referenciados por ninguna variable.
+
 Encontrar un elemento
 =====================
 
@@ -496,6 +500,9 @@ Tener en cuenta que si el elemento que buscamos no está en la lista, obtendremo
     ValueError: 'Pollo' is not in list
 
 .. note:: Si buscamos un valor que existe más de una vez en una lista, la función ``index()`` sólo nos devolverá el índice de la primera ocurrencia.
+
+.. warning::
+    En listas no disponemos de la función ``find()`` que sí estaba disponible para :ref:`cadenas de texto <core/datatypes/strings:realizar búsquedas>`.
 
 Pertenencia de un elemento
 ==========================
@@ -680,7 +687,14 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Iterar sobre múltiples listas
 -----------------------------
 
-Python ofrece la posibilidad de iterar sobre **múltiples listas en paralelo** utilizando la función ``zip()``::
+Python ofrece la posibilidad de iterar sobre **múltiples listas en paralelo** utilizando la función ``zip()``. Se basa en ir "juntando" ambas listas elemento a elemento:
+
+.. figure:: img/zip.png
+    :align: center
+
+    Funcionamiento de ``zip()``
+
+Veamos un ejemplo en el que añadimos ciertos detalles a nuestra lista de la compra::
 
     >>> shopping = ['Agua', 'Aceite', 'Arroz']
     >>> details = ['mineral natural', 'de oliva virgen', 'basmati']
@@ -907,6 +921,8 @@ Listas por comprensión
 |intlev|
 
 Las **listas por comprensión** establecen una técnica para crear listas de forma más **compacta** basándose en el concepto matemático de `conjuntos definidos por comprensión <http://recursostic.educacion.es/descartes/web/materiales_didacticos/conjuntos_y_operaciones_agsm/conjuntos_12.html>`_.
+
+Podríamos decir que su sintaxis sigue un modelo **VLC (Value-Loop-Condition)** tal y como se muestra en la siguiente figura:
 
 .. figure:: img/list-comprehensions.png
     :align: center

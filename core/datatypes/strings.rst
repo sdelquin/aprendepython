@@ -199,6 +199,9 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
 
 .. note:: La función ``input()`` siempre nos devuelve un objeto de tipo cadena de texto o ``str``. Tenerlo muy en cuenta a la hora de trabajar con números, ya que debemos realizar una :ref:`conversión explícita <core/datatypes/numbers:Conversión explícita>`.
 
+.. warning::
+    Aunque está permitido, **NUNCA** llames ``input`` a una variable porque destruirías la función que nos permite leer datos desde teclado. Y tampoco uses nombres derivados como ``_input`` o ``input_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
+
 .. admonition:: Ejercicio
     :class: exercise
 
@@ -219,9 +222,6 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
     
         |solution| :download:`calc.py <files/calc.py>`
     
-.. warning::
-    Aunque está permitido, **NUNCA** llames ``input`` a una variable porque destruirías la función que nos permite leer datos desde teclado. Y tampoco uses nombres derivados como ``_input`` o ``input_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
-
 *************************
 Operaciones con "strings"
 *************************
@@ -402,7 +402,7 @@ Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <c
 
 Existe una forma algo más avanzada de dividir una cadena a través del **particionado**. Para ello podemos valernos de la función ``partition()`` que proporciona Python.
 
-Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes: lo que queda a la izquiera del separador, el separador en sí mismo y lo que queda a la derecha del separador::
+Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes: lo que queda a la izquierda del separador, el separador en sí mismo y lo que queda a la derecha del separador::
 
     >>> text = '3 + 4'
 
@@ -841,6 +841,11 @@ Tener en cuenta que en Python la letras mayúsculas van antes que las minúscula
 
     >>> 'A' < 'a'
     True
+
+    >>> ord('A')
+    65
+    >>> ord('a')
+    97
 
 ************
 Casos de uso

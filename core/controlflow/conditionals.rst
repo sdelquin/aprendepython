@@ -238,6 +238,11 @@ A continuación vamos a ver una serie de ejemplos con expresiones de comparació
     >>> value >= 9
     False
 
+Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa. Así, por ejemplo, para descubrir si ``x`` está entre *4* y *12* haríamos::
+
+    >>> 4 <= x <= 12
+    True
+
 ******************
 Operadores lógicos
 ******************
@@ -273,11 +278,6 @@ Véanse las **tablas de la verdad** para cada operador lógico:
     :align: center
 
     Resultados al aplicar operadores lógicos
-
-Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa. Así, por ejemplo, para descubrir si ``value`` está entre *4* y *12* haríamos::
-
-    >>> 4 <= value <= 12
-    True
 
 .. note::
     1. Una expresión de comparación siempre devuelve un valor *booleano*, es decir ``True`` o ``False``.
@@ -390,7 +390,7 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba un programa que permita adivinar un personaje de `Marvel`_ en base a las tres preguntas siguientes:
+    Implemente un "clon" de `Akinator`_ que permita adivinar un personaje de `Marvel`_ en base a las tres preguntas siguientes:
 
     1. ¿Puede volar?
     2. ¿Es humano?
@@ -402,7 +402,7 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
         * Entrada: ``can_fly = True``, ``is_human = True`` y ``has_mask = True``
         * Salida: ``Ironman``
     
-    Es una especie de `Akinator`_ para personajes de Marvel...
+    No use ``input()`` ya que puede complicar la gestión de los valores booleanos.
        
     .. only:: html
     
@@ -451,6 +451,44 @@ De igual forma, podemos usar esta construcción para el caso contrario. La forma
     ...     print(f'{value=}')
     ...
     value=99
+
+|advlev|
+
+Cabe preguntarse por qué utilizamos ``is`` en vez del operador ``==`` al comprobar si un valor es nulo, ya que ambas aproximaciones nos dan el mismo resultado [#is_none]_::
+
+    >>> value = None
+
+    >>> value is None
+    True
+
+    >>> value == None
+    True
+
+La respuesta es que el operador ``is`` comprueba únicamente si los identificadores (posiciones en memoria) de dos objetos son iguales, mientras que la comparación ``==`` puede englobar :ref:`muchas otras acciones <core/modularity/oop:métodos mágicos>`. De este hecho se deriva que su ejecución sea mucho más rápida y que se eviten "falsos positivos".
+
+Cuando ejecutamos un programa Python existe una serie de objetos precargados en memoria. Uno de ellos es ``None``::
+
+    >>> id(None)
+    4314501456
+
+Cualquier variable que igualemos al valor nulo, únicamente será una referencia al mismo objeto ``None`` en memoria::
+
+    >>> value = None
+
+    >>> id(value)
+    4314501456
+
+Por lo tanto, ver si un objeto es ``None`` es simplemente comprobar que su identificador coincida con el de ``None``, que es exactamente el cometido de la función ``is()``::
+
+    >>> id(value) == id(None)
+    True
+
+    >>> value is None
+    True
+
+.. tip::
+    Python carga inicialmente en memoria objetos como ``True`` o ``False``, pero también los números enteros que van desde el -5 hasta el 256. Se entiende que tiene que ver con optimizaciones a nivel de rendimiento.
+
 
 *********
 Veracidad
@@ -870,6 +908,7 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. [#none] Lo que en otros lenguajes se conoce como ``nil``, ``null``, ``nothing``.
 .. [#walrus-operator] Se denomina así porque el operador ``:=`` tiene similitud con los colmillos de una morsa.
 .. [#good-comments] Referencia: `Best practices for writing code comments`_
+.. [#is_none] Uso de ``is`` en comparación de valores nulos explicada `aquí <https://jaredgrubb.blogspot.com/2009/04/python-is-none-vs-none.html>`_ por Jared Grubb.
 
 .. --------------- Hyperlinks ---------------
 

@@ -111,6 +111,14 @@ En el momento de la escritura de este material, se muestra a continuación la ev
     :header-rows: 1
     :class: longtable
 
+Un dato curioso, o directamente un "frikismo": Desde Python 3.8, cada nueva versión estable sale a la luz en el mes de **Octubre**. En este escenario de Python *3.version* se cumplen las siguientes igualdades:
+
+.. math::
+
+    version = year - 2011
+
+    year = version + 2011
+
 El cambio de **Python 2** a **Python 3** fue bastante "traumático" ya que se **perdió la compatibilidad** en muchas de las estructuras del lenguaje. Los "*core-developers*" [#core-developers]_, con *Guido van Rossum* a la cabeza, vieron la necesidad de aplicar estas modificaciones en beneficio del rendimiento y expresividad del lenguaje de programación. Este cambio implicaba que el código escrito en Python 2 no funcionaría (de manera inmediata) en Python 3.
 
 El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versión 2.7** del lenguaje de programación Python. Es por ello que se recomienda lo siguiente:

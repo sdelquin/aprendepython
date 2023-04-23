@@ -246,6 +246,18 @@ Hay veces que un **supuesto bucle "infinito"** puede ayudarnos a resolver un pro
     Introduzca nueva nota: 11
     Nota fuera de rango
 
+El código anterior se podría enfocar haciendo uso del :ref:`operador morsa <core/controlflow/conditionals:operador morsa>`::
+
+    >>> while 0 <= (mark := float(input('Introduzca una nueva nota: '))) <= 10:
+    ...     print(mark)
+    ... print('Nota fuera de rango')
+    Introduzca una nueva nota: 5
+    5.0
+    Introduzca una nueva nota: 3
+    3.0
+    Introduzca una nueva nota: 11
+    Nota fuera de rango
+
 .. admonition:: Ejercicio
     :class: exercise
 
@@ -464,6 +476,11 @@ Bucles anidados
 ***************
 
 Como ya vimos en las :ref:`sentencias condicionales <if-sentence>`, el *anidamiento* es una técnica por la que incluimos distintos niveles de encapsulamiento de sentencias, unas dentro de otras, con mayor nivel de profundidad. En el caso de los bucles también es posible hacer anidamiento.
+
+.. figure:: img/matrioskas.jpg
+    :align: center
+
+    Muñecas rusas Matrioskas para ejemplificar el anidamiento [#matrioskas]_
 
 Veamos un ejemplo de 2 bucles anidados en el que generamos todas las tablas de multiplicar::
 
@@ -734,6 +751,7 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 .. [#wheel-unsplash] Foto original de portada por `Gary Lopater`_ en Unsplash.
 .. [#iterate] Realizar cierta acción varias veces. En este caso la acción es tomar cada elemento.
 .. [#convert-list] O convertir el objeto a una secuencia como una lista.
+.. [#matrioskas] Foto de Matrioskas por `Marina Yufereva`_`` en Escáner Cultural.
 
 .. --------------- Hyperlinks ---------------
 
@@ -745,3 +763,4 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 .. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
 .. _Tabla ASCII: https://www.asciitable.com/
 .. _pycheck: https://pycheck.es
+.. _Marina Yufereva: https://www.revista.escaner.cl/node/7197
