@@ -353,6 +353,51 @@ En este caso tendríamos que implementar un método para resolver el escenario p
 
 .. hint:: La ventaja de usar valores calculados sobre simples atributos es que el cambio de valor en un atributo no asegura que actualicemos otro atributo, y además siempre podremos modificar directamente el valor del atributo, con lo que podríamos obtener efectos colaterales indeseados.
 
+Cacheando propiedades
+---------------------
+
+En los ejemplos anteriores hemos creado una propiedad que calcula el alto del periscopio de un droide astromecánico a partir de su altura. El "coste" de este cálculo es bajo, pero imaginemos por un momento que fuera muy alto.
+
+Si cada vez que accedemos a dicha propiedad tenemos que realizar ese cálculo, estaríamos siendo muy ineficientes (en el caso de que la altura del droide no cambiara). Veamos una aproximación a este escenario usando el cacheado de propiedades::
+
+    >>> class AstromechDroid:
+    ...     def __init__(self, name: str, height: float):
+    ...         self.name = name
+    ...         self.height = height
+    ...
+    ...     @property
+    ...     def height(self) -> float:
+    ...         return self._height
+    ...
+    ...     @height.setter
+    ...     def height(self, height: float) -> None:
+    ...         self._periscope_height = None
+    ...         self._height = height
+    ...
+    ...     @property
+    ...     def periscope_height(self) -> float:
+    ...         if self._periscope_height is None:
+    ...             print('Calculating periscope height...')
+    ...             self._periscope_height = 0.3 * self.height
+    ...         return self._periscope_height
+
+Probamos ahora la implementación diseñada, modificando la altura del droide::
+
+    >>> droid = AstromechDroid('R2-D2', 1.05)
+
+    >>> droid.periscope_height
+    Calculating periscope height...
+    0.315
+    >>> droid.periscope_height  # Cacheado!
+    0.315
+
+    >>> droid.height = 1.15
+
+    >>> droid.periscope_height
+    Calculating periscope height...
+    0.345
+    >>> droid.periscope_height  # Cacheado!
+    0.345
 
 Ocultando atributos
 ===================
@@ -468,6 +513,21 @@ Veamos un ejemplo en el que, además del constructor, creamos un método de inst
 
     >>> droid.move_up(10)
     Moving 10 steps
+
+Propiedades vs Métodos
+----------------------
+
+Es razonable plantearse cuándo usar :ref:`propiedades <core/modularity/oop:propiedades>` o cuándo usar :ref:`métodos de instancia <core/modularity/oop:métodos de instancia>`.
+
+Si la implementación requiere de parámetros, no hay confusión, necesitamos usar métodos.
+
+Pero más allá de esto, no existe una respuesta clara y concisa a la pregunta. Aunque sí podemos dar algunas "pistas" para saber cuándo usar propiedades o cuándo usar métodos:
+
+.. figure:: img/properties-vs-methods.png
+    :align: center
+
+    ¿Cuándo usar propiedades vs métodos?
+
 
 Métodos de clase
 ================
@@ -1166,9 +1226,112 @@ Veamos un ejemplo de **agregación** en el que añadimos una herramienta a un dr
     >>> print(bb8)
     Droid BB-8 armed with a LIGHTER
 
-*********
+*******************
+Estructuras mágicas
+*******************
+
+Obviamente no existen estructuras mágicas, pero sí que hay estructuras de datos que deben implementar ciertos métodos mágicos (o especiales) para desarrollar su comportamiento.
+
+En este apartado veremos algunos de ellos.
+
+Secuencias
+==========
+
+Una **secuencia** en Python es un objeto en el que podemos acceder a cada uno de sus elementos a través de un índice, así como calcular su longitud total.
+
+.. figure:: img/sequences-magic.png
+    :align: center
+
+    Métodos mágicos asociados con las secuencias
+
+Como ejemplo, podemos asumir que los droides de StarWars están ensamblados con distintas partes/componentes. Veamos una implementación de este escenario::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str, parts: list[str]):
+    ...         self.name = name
+    ...         self.parts = parts
+    ...
+    ...     def __setitem__(self, index: int, part: str) -> None:
+    ...         self.parts[index] = part
+    ...
+    ...     def __getitem__(self, index: int) -> str:
+    ...         return self.parts[index]
+    ...
+    ...     def __len__(self):
+    ...         return len(self.parts)
+    ...
+
+Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
+
+    >>> droid = Droid('R2-D2', ['Radar Eye', 'Pocket Vent', 'Battery Box'])
+    
+    >>> droid.parts
+    ['Radar Eye', 'Pocket Vent', 'Battery Box']
+
+    >>> droid[0]  # __getitem__(0)
+    'Radar Eye'
+    >>> droid[1]  # __getitem__(1)
+    'Pocket Vent'
+    >>> droid[2]  # __getitem__(2)
+    'Battery Box'
+    
+    >>> droid[1] = 'Holographic Projector'  # __setitem__()
+    
+    >>> droid.parts
+    ['Radar Eye', 'Holographic Projector', 'Battery Box']
+
+    >>> len(droid)  # __len__()
+    3
+
+.. admonition:: Ejercicio
+
+    Cree una clase ``InfiniteList`` que permita utilizar una lista sin tener límites, es decir, evitando un ``IndexError``. Por ejemplo, si la lista tiene 10 elementos, y asignamos un valor al elemento en el índice 20, esto no daría un error, sino que haría ampliar la lista hasta el valor 20, rellenando los valores en blanco con el valor ``None``.
+
+Diccionarios
+============
+
+Los métodos ``__getitem__()`` y ``__setitem()__`` se pueden aplicar igualmente para obtener o fijar valores en un estructura tipo **diccionario**. La diferencia es que en vez de manejar un índice manejamos una clave.
+
+Continuando con el ejemplo anterior de las partes de un droide::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str, parts: dict[str, float]):
+    ...         self.name = name
+    ...         self.parts = parts
+    ...
+    ...     def __setitem__(self, part: str, version: float) -> None:
+    ...         self.parts[part] = version
+    ...
+    ...     def __getitem__(self, key: str) -> float:
+    ...         return self.parts.get(key)
+    ...
+    ...     def __len__(self):
+    ...         return len(self.parts)
+
+Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
+
+    >>> droid = Droid('R2-D2', {'Radar Eye': 1.1, 'Pocket Vent': 3.0, 'Battery Box': 2.8})
+
+    >>> droid.parts
+    {'Radar Eye': 1.1, 'Pocket Vent': 3.0, 'Battery Box': 2.8}
+
+    >>> droid['Radar Eye']
+    1.1
+    >>> droid['Pocket Vent']
+    3.0
+    >>> droid['Battery Box']
+    2.8
+
+    >>> droid['Pocket Vent'] = 3.1
+
+    >>> droid.parts
+    {'Radar Eye': 1.1, 'Pocket Vent': 3.1, 'Battery Box': 2.8}
+
+    >>> len(droid)
+    3
+
 Iterables
-*********
+=========
 
 |advlev|
 
@@ -1239,7 +1402,7 @@ Cuando utilizamos un bucle ``for`` para recorrer los elementos de un iterable, o
 3. Se para la iteración cuando el iterador lanza la excepción ``StopIteration``.
 
 Iterables desde fuera
-=====================
+---------------------
 
 Ahora que conocemos las interiodades de los iterables, podemos ver qué ocurre si los usamos desde un enfoque más funcional.
 
@@ -1297,14 +1460,11 @@ Otra característica importante es que **los iterables se agotan**. Lo podemos c
     pycheck_: **fibonacci_iterable**
 
 Ejemplos de iterables
-=====================
+---------------------
 
 Vamos a analizar herramientas ya vistas -- entendiendo mejor su funcionamiento interno -- en base a lo que ya sabemos sobre iterables.
 
-Enumeración
------------
-
-.. code-block::
+**Enumeración**::
 
     >>> tool = enumerate([1, 2, 3])
 
@@ -1326,10 +1486,7 @@ Enumeración
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Rangos
-------
-
-.. code-block::
+**Rangos**::
 
     >>> tool = range(1, 4)
 
@@ -1359,10 +1516,7 @@ Rangos
 .. note::
     Los objetos de tipo ``range`` representan una secuencia inmutable de números. La ventaja de usar este tipo de objetos es que siempre se usa una cantidad fija (y pequeña) de memoria, independientemente del rango que represente (ya que solamente necesita almacenar los valores para ``start``, ``stop`` y ``step``, y calcula los valores intermedios a medida que los va necesitando).
 
-Invertido
----------
-
-.. code-block::
+**Invertido**:
 
     >>> tool = reversed([1, 2, 3])
 
@@ -1384,10 +1538,7 @@ Invertido
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Comprimir
----------
-
-.. code-block::
+**Comprimir**::
 
     >>> tool = zip([1, 2], [3, 4])
 
@@ -1407,10 +1558,7 @@ Comprimir
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Generadores
------------
-
-.. code-block::
+**Generadores**::
 
     >>> def seq(n):
     ...     for i in range(1, n+1):
@@ -1440,10 +1588,7 @@ Generadores
 .. seealso::
     Esto mismo se puede aplicar a expresiones generadoras.
 
-Listas
-------
-
-.. code-block::
+**Listas**::
 
     >>> tool = [1, 2, 3]
 
@@ -1470,10 +1615,7 @@ Listas
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Tuplas
-------
-
-.. code-block::
+**Tuplas**::
 
     >>> tool = tuple([1, 2, 3])
 
@@ -1500,10 +1642,7 @@ Tuplas
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Cadenas de texto
-----------------
-
-.. code-block::
+**Cadenas de texto**::
 
     >>> tool = 'abc'
 
@@ -1530,10 +1669,7 @@ Cadenas de texto
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Diccionarios
-------------
-
-.. code-block::
+**Diccionarios**::
 
     >>> tool = dict(a=1, b=1)
 
@@ -1569,10 +1705,7 @@ En el caso de los diccionarios existen varios iteradores disponibles::
     >>> iter(tool.items())
     <dict_itemiterator at 0x107df6ac0>
 
-Conjuntos
----------
-
-.. code-block::
+**Conjuntos**::
 
     >>> tool = set([1, 2, 3])
 
@@ -1599,10 +1732,7 @@ Conjuntos
       File "<stdin>", line 1, in <module>
     StopIteration
 
-Ficheros
---------
-
-.. code-block::
+**Ficheros**::
 
     >>> f = open('data.txt')
 
