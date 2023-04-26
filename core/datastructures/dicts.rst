@@ -251,8 +251,8 @@ Supongamos un ejemplo en el que queremos construir un diccionario donde las clav
 
     >>> enum_vowels = {}
 
-    >>> for i, vowel in enumerate(VOWELS):
-    ...     enum_vowels[vowel] = i + 1
+    >>> for i, vowel in enumerate(VOWELS, start=1):
+    ...     enum_vowels[vowel] = i
     ...
 
     >>> enum_vowels

@@ -1285,14 +1285,14 @@ Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
 
 .. admonition:: Ejercicio
 
-    Cree una clase ``InfiniteList`` que permita utilizar una lista sin tener límites, es decir, evitando un ``IndexError``. Por ejemplo, si la lista tiene 10 elementos, y asignamos un valor al elemento en el índice 20, esto no daría un error, sino que haría ampliar la lista hasta el valor 20, rellenando los valores en blanco con el valor ``None``.
+    Cree una clase ``InfiniteList`` que permita utilizar una lista sin tener límites, es decir, evitando un ``IndexError``. Por ejemplo, si la lista tiene 10 elementos, y asignamos un valor al elemento en el índice 20, esto no daría un error, sino que haría ampliar la lista hasta el valor 20, rellenando los valores en blanco con un valor de relleno que por defecto es ``None``.
 
 Diccionarios
 ============
 
-Los métodos ``__getitem__()`` y ``__setitem()__`` se pueden aplicar igualmente para obtener o fijar valores en un estructura tipo **diccionario**. La diferencia es que en vez de manejar un índice manejamos una clave.
+Los métodos ``__getitem__()`` y ``__setitem()__`` también se pueden aplicar para obtener o fijar valores en un estructura tipo **diccionario**. La diferencia es que en vez de manejar un índice manejamos una clave.
 
-Continuando con el ejemplo anterior de las partes de un droide::
+Retomando el ejemplo anterior de las partes de un droide vamos a plantear que **cada componente tiene asociado una versión**, lo que nos proporciona una estructura de tipo diccionario con clave (nombre de la parte) y valor (versión de la parte)::
 
     >>> class Droid:
     ...     def __init__(self, name: str, parts: dict[str, float]):
@@ -1302,15 +1302,22 @@ Continuando con el ejemplo anterior de las partes de un droide::
     ...     def __setitem__(self, part: str, version: float) -> None:
     ...         self.parts[part] = version
     ...
-    ...     def __getitem__(self, key: str) -> float:
-    ...         return self.parts.get(key)
+    ...     def __getitem__(self, part: str) -> float:
+    ...         return self.parts.get(part)
     ...
     ...     def __len__(self):
     ...         return len(self.parts)
 
-Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
+Ahora podremos instanciar la clase anterior y comprobar su comportamiento::
 
-    >>> droid = Droid('R2-D2', {'Radar Eye': 1.1, 'Pocket Vent': 3.0, 'Battery Box': 2.8})
+    >>> droid = Droid(
+    ...     'R2-D2',
+    ...     {
+    ...         'Radar Eye': 1.1,
+    ...         'Pocket Vent': 3.0,
+    ...         'Battery Box': 2.8
+    ...     }
+    ... )
 
     >>> droid.parts
     {'Radar Eye': 1.1, 'Pocket Vent': 3.0, 'Battery Box': 2.8}
@@ -1355,14 +1362,13 @@ Veamos un ejemplo del universo StarWars. Vamos a partir de un modelo muy sencill
     ...     def __init__(self, serial: str):
     ...         self.serial = serial * 5  # just for fun!
     ...
-    ...     def __repr__(self):
+    ...     def __str__(self):
     ...         return f'Droid: SN={self.serial}'
 
 Vamos a implementar una factoría de droides (`Geonosis`_) como un iterable::
 
     >>> class Geonosis:
     ...     def __init__(self, num_droids: int):
-    ...         self.droids = [Droid(str(i)) for i in range(num_droids)]
     ...         self.num_droids = num_droids
     ...         self.pointer = 0
     ...
@@ -1374,7 +1380,7 @@ Vamos a implementar una factoría de droides (`Geonosis`_) como un iterable::
     ...         # Protocolo de iteración
     ...         if self.pointer >= self.num_droids:
     ...             raise StopIteration
-    ...         droid = self.droids[self.pointer]
+    ...         droid = Droid(str(self.pointer))
     ...         self.pointer += 1
     ...         return droid
     ...
@@ -1436,8 +1442,10 @@ Se da la circunstancia de que, en este caso, **no tenemos que crear el iterador*
 
 Esto básicamente se debe a que **el iterador es el propio iterable**::
 
-    >>> geon = Geonosis(3)
-    >>> geon == iter(geon)
+    >>> geon_iterable = Geonosis(3)
+    >>> geon_iterator = iter(geon_iterable)
+
+    >>> geon_iterable is geon_iterator
     True
 
 Otra característica importante es que **los iterables se agotan**. Lo podemos comprobar con el siguiente código::

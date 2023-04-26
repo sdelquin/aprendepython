@@ -247,7 +247,7 @@ En este caso el fichero ``more-data.txt`` se abrirá en *modo añadir* con lo qu
 Usandos contextos
 *****************
 
-Python ofrece `gestores de contexto`_ como una solución para establecer reglas de entrada y salida a un determinado bloque de código.
+Python ofrece :ref:`gestores de contexto <core/modularity/oop:gestores de contexto>` como una solución para establecer reglas de entrada y salida a un determinado bloque de código.
 
 En el caso que nos ocupa, usaremos la sentencia ``with`` y el contexto creado se ocupará de cerrar adecuadamente el fichero que hemos abierto, liberando así sus recursos:
 
@@ -326,7 +326,6 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 .. _Maksym Kaharlytskyi: https://unsplash.com/@qwitka?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _Smart Drone: https://smart-drone.es/codigos-oaci-aeropuertos/
-.. _Gestores de contexto: https://docs.python.org/es/3/reference/datamodel.html#context-managers
 .. _pycheck: https://pycheck.es
 .. _codificaciones de caracteres: https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres
 .. _UTF-8: https://es.wikipedia.org/wiki/UTF-8

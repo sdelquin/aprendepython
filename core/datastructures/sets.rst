@@ -102,6 +102,9 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
         <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
+.. tip::
+    Una pequeña **regla mnemotécnica** para diferenciar ``add()`` de ``append()`` es que la función ``append()`` significa añadir al final, y como los conjuntos no mantienen un orden, esta función se aplica únicamente a listas. Por descarte, la función ``add()`` se aplica sobre conjuntos.
+
 .. admonition:: Ejercicio
 
     pycheck_: **tupleset**
@@ -190,7 +193,7 @@ Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemp
 
     >>> B = {2, 3}
 
-.. figure:: img/venn-diagrams.png
+.. figure:: img/venn.png
     :align: center
 
     Diagramas de Venn
@@ -220,7 +223,7 @@ Unión
 Diferencia
 ==========
 
-:math:`A - B` -- Elementos que están en :math:`A` y no están en :math:`B`::
+:math:`A \setminus B` -- Elementos que están en :math:`A` y no están en :math:`B`::
 
     >>> A - B
     {1}
@@ -231,13 +234,18 @@ Diferencia
 Diferencia simétrica
 ====================
 
-:math:`\overline{A \cap B}` -- Elementos que están en :math:`A` o en :math:`B` pero no en ambos conjuntos::
+:math:`A \triangle B` -- Elementos que están en :math:`A` o en :math:`B` pero no en ambos conjuntos::
 
     >>> A ^ B
     {1, 3}
 
     >>> A.symmetric_difference(B)
     {1, 3}
+
+Podemos comprobar que se cumple la siguiente igualdad matemática :math:`A \triangle B = (A \setminus B) \cup (B \setminus A)`::
+
+    >>> A ^ B == (A - B) | (B - A)
+    True
 
 Inclusión
 =========
