@@ -1524,7 +1524,7 @@ Vamos a analizar herramientas ya vistas -- entendiendo mejor su funcionamiento i
 .. note::
     Los objetos de tipo ``range`` representan una secuencia inmutable de números. La ventaja de usar este tipo de objetos es que siempre se usa una cantidad fija (y pequeña) de memoria, independientemente del rango que represente (ya que solamente necesita almacenar los valores para ``start``, ``stop`` y ``step``, y calcula los valores intermedios a medida que los va necesitando).
 
-**Invertido**:
+**Invertido**::
 
     >>> tool = reversed([1, 2, 3])
 
