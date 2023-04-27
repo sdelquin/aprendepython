@@ -92,7 +92,7 @@ Si una función no incluye un ``return`` de forma explícita, devolverá :ref:`N
 
     >>> def empty():
     ...     x = 0
-    ...
+    ...     # return None
 
     >>> print(empty())
     None
@@ -181,6 +181,16 @@ Veamos otra función con dos parámetros y algo más de lógica de negocio: [#bl
 Nótese que la sentencia ``return`` puede escribirse en **múltiples ocasiones** y puede encontrarse en **cualquier lugar** de la función, no necesariamente al final del cuerpo. Esta técnica puede ser beneficiosa en múltiples escenarios.
 
 Uno de esos escenarios se relaciona con el concepto de **cláusula guarda**: una pieza de código que normalmente está al comienzo de la función y comprueba una serie de condiciones para continuar con la ejecución o cortarla [#guarda]_.
+
+Teniendo en cuenta que la sentencia ``return`` finaliza la ejecución de una función, es viable **eliminar la sentencia** ``else`` del ejemplo visto anteriormente::
+
+    >>> def _min(a, b):
+    ...     if a < b:
+    ...         return a
+    ...     return b
+
+    >>> _min(7, 9)
+    7
 
 .. admonition:: Ejercicio
 
@@ -445,7 +455,8 @@ Veamos un ejemplo en el que vamos a **implementar una función para sumar un nú
 
 Para superar esta "limitación" vamos a hacer uso del ``*`` para empaquetar los argumentos posicionales::
 
-    >>> def _sum(*values):
+    >>> def _sum(*values: int) -> int:
+    ...     print(f'{values=}')
     ...     result = 0
     ...     for value in values:  # values es una tupla
     ...         result += value
@@ -453,6 +464,7 @@ Para superar esta "limitación" vamos a hacer uso del ``*`` para empaquetar los 
     ...
 
     >>> _sum(4, 3, 2, 1)
+    values=(4, 3, 2, 1)
     10
 
 Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función para **desempaquetar** los argumentos posicionales::
@@ -465,7 +477,9 @@ Existe la posibilidad de usar el asterisco ``*`` en la llamada a la función par
       File "<stdin>", line 4, in _sum
     TypeError: unsupported operand type(s) for +=: 'int' and 'tuple'
     
-    >>> _sum(*values)  # Desempaquetado
+    >>> # Desempaquetado: _sum(4, 3, 2, 1)
+    >>> _sum(*values)
+    values=(4, 3, 2, 1)
     10
 
 Empaquetar/Desempaquetar argumentos nominales
@@ -475,7 +489,8 @@ Si utilizamos el operador ``**`` delante del nombre de un parámetro nominal, es
 
 Supongamos un ejemplo en el que queremos **encontrar la persona con mayor calificación de un examen**. Haremos uso del ``**`` para empaquetar los argumentos nominales::
 
-    >>> def best_student(**marks):
+    >>> def best_student(**marks: int) -> str:
+    ...     print(f'{marks=}')
     ...     max_mark = -1
     ...     for student, mark in marks.items():  # marks es un diccionario
     ...         if mark > max_mark:
@@ -483,8 +498,9 @@ Supongamos un ejemplo en el que queremos **encontrar la persona con mayor califi
     ...             best_student = student
     ...     return best_student
     ...
-
+    
     >>> best_student(ana=8, antonio=6, inma=9, javier=7)
+    marks={'ana': 8, 'antonio': 6, 'inma': 9, 'javier': 7}
     'inma'
 
 Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco ``**`` en la llamada a la función para **desempaquetar** los argumentos nominales::
@@ -496,7 +512,9 @@ Al igual que veíamos previamente, existe la posibilidad de usar doble asterisco
       File "<stdin>", line 1, in <module>
     TypeError: best_student() takes 0 positional arguments but 1 was given
 
-    >>> best_student(**marks)  # Desempaquetado
+    >>> # Desempaquetado: best_student(ana=8, antonio=6, inma=9, javier=7)
+    >>> best_student(**marks)
+    marks={'ana': 8, 'antonio': 6, 'inma': 9, 'javier': 7}
     'inma'
 
 Convenciones
@@ -915,7 +933,17 @@ Una **función lambda** tiene las siguientes propiedades:
     3. Su cuerpo conlleva un ``return`` implícito.
     4. Puede recibir cualquier número de parámetros.
 
-Veamos un primer ejemplo de función "lambda" que nos permite contar el número de palabras de una cadena de texto::
+Veamos un primer ejemplo de función "lambda" que nos permite **contar el número de palabras en una cadena de texto** dada. La **transformación de su versión clásica en su versión anónima** sería la siguiente:
+
+.. figure:: img/lambda.png
+    :align: center
+
+    Transformación en función "lambda"
+
+.. caution::
+    Aunque en muchas ocasiones se suelen "abreviar" los nombres de las variables en una función "lambda" no es obligatorio, y en muchos casos, puede que sea hasta contraproducente.
+
+A continuación probamos el comportamiento de la función anónima "lambda"::
 
     >>> num_words = lambda t: len(t.split())
 
@@ -940,6 +968,9 @@ Veamos otro ejemplo en el que mostramos una tabla con el resultado de aplicar el
     0 & 1 = 0
     1 & 0 = 0
     1 & 1 = 1
+
+Lambdas como argumentos
+-----------------------
 
 Las funciones "lambda" son bastante utilizadas **como argumentos a otras funciones**. Un ejemplo claro de ello es la función ``sorted`` que recibe un parámetro opcional ``key`` donde se define la clave de ordenación.
 
@@ -1112,7 +1143,7 @@ Las funciones generadoras [#yield]_ (o factorías de generadores) se escriben co
 
 Veamos un ejemplo en el que escribimos una **función generadora de números pares**::
 
-    >>> def evens(lim):
+    >>> def evens(lim: int) -> int:
     ...     for i in range(0, lim + 1, 2):
     ...         yield i
     ...
@@ -1266,7 +1297,7 @@ Usando ``@`` para decorar
 Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los decoradores a través del operador ``@`` justo antes de la definición de la función que queremos decorar::
 
     >>> @res2bin
-    ... def power(x: int, n: int):
+    ... def power(x: int, n: int) -> int:
     ...     return x ** n
     ...
     
@@ -1494,7 +1525,7 @@ La **recursividad** es el mecanismo por el cual una función se llama a sí mism
 
 Veamos ahora un ejemplo más real en el que computar el enésimo término de la `Sucesión de Fibonacci`_ utilizando una función recursiva::
 
-    >>> def fibonacci(n):
+    >>> def fibonacci(n: int) -> int:
     ...     if n == 0:
     ...         return 0
     ...     if n == 1:
