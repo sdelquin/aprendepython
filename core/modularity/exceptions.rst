@@ -14,7 +14,7 @@ Manejando errores
 
 Si una excepción ocurre en algún lugar de nuestro programa y no es capturada en ese punto, va subiendo (burbujeando) hasta que es capturada en alguna función que ha hecho la llamada. Si en toda la "pila" de llamadas no existe un control de la excepción, Python muestra un mensaje de error con información adicional::
 
-    >>> def intdiv(a, b):
+    >>> def intdiv(a: int, b: int) -> int:
     ...     return a // b
     ...
 
@@ -26,7 +26,7 @@ Si una excepción ocurre en algún lugar de nuestro programa y no es capturada e
 
 Para manejar (capturar) las excepciones podemos usar un bloque de código con las palabras reservadas ``try`` and ``except``::
 
-    >>> def intdiv(a, b):
+    >>> def intdiv(a: int, b: int) -> int:
     ...     try:
     ...         return a // b
     ...     except:
@@ -43,7 +43,7 @@ Aquel código que se encuentre dentro del bloque ``try`` se ejecutará normalmen
 Especificando excepciones
 =========================
 
-En el siguiente ejemplo mejoraremos el código anterior, capturando distintos tipos de excepciones:
+En el siguiente ejemplo mejoraremos el código anterior, capturando distintos tipos de `excepciones predefinidas`_:
 
 - ``TypeError`` por si los operandos no permiten la división.
 - ``ZeroDivisionError`` por si el denominador es cero.
@@ -69,7 +69,7 @@ Veamos su implementación::
     Check operands. Some of them seems strange...
 
 .. important::
-    Las `excepciones predefinidas`_ en Python no hace falta importarlas previamente. Se pueden usar directamente.
+    Las `excepciones predefinidas`_ en Python cubren un amplio rango de posibilidades y no hace falta importarlas previamente. Se pueden usar directamente.
 
 Cubriendo más casos
 ===================
@@ -82,10 +82,8 @@ Veamos un ejemplo de ambos::
 
     >>> values = [4, 2, 7]
 
-    >>> user_index = 3
-
     >>> try:
-    ...     r = values[user_index]
+    ...     r = values[3]
     ... except IndexError:
     ...     print('Error: Index not in list')
     ... else:
@@ -96,10 +94,8 @@ Veamos un ejemplo de ambos::
     Error: Index not in list
     Have a good day!
 
-    >>> user_index = 2
-
     >>> try:
-    ...     r = values[user_index]
+    ...     r = values[2]
     ... except IndexError:
     ...     print('Error: Index not in list')
     ... else:
@@ -113,7 +109,7 @@ Veamos un ejemplo de ambos::
 .. admonition:: Ejercicio
     :class: exercise
 
-    Sabiendo que ``ValueError`` es la excepción que se lanza cuando no podemos convertir una cadena de texto en su valor numérico, escriba una función ``get_int()`` que lea un valor entero del usuario y lo devuelva, iterando mientras el valor no sea correcto.
+    Sabiendo que ``ValueError`` es la excepción que se lanza cuando no podemos convertir una cadena de texto en su valor numérico, escriba una función ``getint()`` que lea un valor entero del usuario y lo devuelva, iterando mientras el valor no sea correcto.
 
     Ejecución a modo de ejemplo::
 
@@ -125,9 +121,74 @@ Veamos un ejemplo de ambos::
 
     *Trate de implementar tanto la versión recursiva como la versión iterativa*.
 
-    .. only:: html
-    
-        |solution| :download:`getint_recursive.py <files/getint_recursive.py>` | :download:`getint_iterative.py <files/getint_iterative.py>`
+Mostrando los errores
+=====================
+
+Además de capturar las excepciones podemos mostrar sus mensajes de error asociados. Para ello tendremos que usar la palabra reservada ``as`` junto a un nombre de variable.
+
+Veamos este comportamiento siguiendo con el ejemplo anterior::
+
+    >>> try:
+    ...     print(values[3])
+    ... except IndexError as err:
+    ...     print(err)
+    ...
+    list index out of range
+
+Una vez con la excepción capturada, ya podemos "elaborar" un poco más el mensaje de salida::
+
+    >>> try:
+    ...     print(values[3])
+    ... except IndexError as err:
+    ...     print(f'Something went wrong: {err}')
+    ...
+    Something went wrong: list index out of range
+
+Elevando excepciones
+====================
+
+Es habitual que nuestro programa tenga que lanzar (elevar o levantar) una excepción (predefinida o propia). Para ello tendremos que usar la sentencia ``raise``.
+
+Supongamos una función que suma dos valores enteros. En el caso de que alguno de los operandos no sea entero, elevaremos una excepción indicando esta circunstancia:
+
+.. code-block::
+    :emphasize-lines: 4, 14
+
+    >>> def _sum(a: int, b: int) -> int:
+    ...     if isinstance(a, int) and isinstance(b, int):
+    ...         return a + b
+    ...     raise ValueError('Operands must be integers')
+    ...
+
+    >>> _sum(4, 3)  # todo normal
+    7
+
+    >>> _sum('x', 'y')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 4, in _sum
+    ValueError: Operands must be integers
+
+Jerarquía de excepciones
+========================
+
+Todas las excepciones predefinidas en Python heredan de la clase ``Exception`` y de la clase ``BaseException``.
+
+Podemos visitar algunas `excepciones predefinidas`_ y comprobar este comportamiento::
+
+    >>> TypeError.mro()
+    [TypeError, Exception, BaseException, object]
+
+    >>> ZeroDivisionError.mro()
+    [ZeroDivisionError, ArithmeticError, Exception, BaseException, object]
+
+    >>> ValueError.mro()
+    [ValueError, Exception, BaseException, object]
+
+    >>> IndexError.mro()
+    [IndexError, LookupError, Exception, BaseException, object]
+
+
 
 *******************
 Excepciones propias
@@ -137,7 +198,10 @@ Excepciones propias
 
 Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello tendremos que crear una clase :ref:`heredando <core/modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
 
-Veamos un ejemplo en el que creamos una excepción propia controlando que el valor sea un número entero::
+Veamos un ejemplo en el que creamos una excepción propia controlando que el valor sea un número entero:
+
+.. code-block::
+    :emphasize-lines: 9, 13
 
     >>> class NotIntError(Exception):
     ...     pass
@@ -151,16 +215,19 @@ Veamos un ejemplo en el que creamos una excepción propia controlando que el val
     ...
     Traceback (most recent call last):
       File "<stdin>", line 3, in <module>
-    __main__.NotIntError: 2.11
+    NotIntError: 2.11
 
-Hemos usado la sentencia ``raise`` para "elevar" esta excepción, que podría ser controlada en un nivel superior mediante un bloque ``try`` - ``except``.
+Hemos usado la sentencia ``raise`` para :ref:`elevar esta excepción <core/modularity/exceptions:elevando excepciones>`, que podría ser controlada en un nivel superior mediante un bloque ``try`` - ``except``.
 
 .. note:: Para crear una excepción propia basta con crear una clase vacía. No es necesario incluir código más allá de un ``pass``.
 
 Mensaje personalizado
 =====================
 
-Podemos personalizar la excepción añadiendo un mensaje más informativo. Siguiendo el ejemplo anterior, veamos cómo introducimos esta información::
+Podemos personalizar la excepción propia añadiendo un mensaje como **valor por defecto**. Siguiendo el ejemplo anterior, veamos cómo introducimos esta información:
+
+.. code-block::
+    :emphasize-lines: 6,9
 
     >>> class NotIntError(Exception):
     ...     def __init__(self, message='This module only works with integers. Sorry!'):
@@ -170,12 +237,15 @@ Podemos personalizar la excepción añadiendo un mensaje más informativo. Sigui
     >>> raise NotIntError()
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    __main__.NotIntError: This module only works with integers. Sorry!
+    NotIntError: This module only works with integers. Sorry!
 
-Podemos ir un paso más allá e incorporar en el mensaje el propio valor que está generando el error::
+Supongamos que queremos ir un paso más allá e **incorporar en el mensaje de la excepción el propio valor** que está generando el error:
+
+.. code-block::
+    :emphasize-lines: 14
 
     >>> class NotIntError(Exception):
-    ...     def __init__(self, value, message='This module only works with integers. Sorry!'):
+    ...     def __init__(self, value, *, message='This module only works with integers. Sorry!'):
     ...         self.value = value
     ...         self.message = message
     ...         super().__init__(self.message)
@@ -187,7 +257,20 @@ Podemos ir un paso más allá e incorporar en el mensaje el propio valor que est
     >>> raise NotIntError(2.11)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    __main__.NotIntError: 2.11 -> This module only works with integers. Sorry!
+    NotIntError: 2.11 -> This module only works with integers. Sorry!
+
+Y con esta misma configuración podemos **modificar el mensaje por defecto**:
+
+.. code-block::
+    :emphasize-lines: 4
+
+    >>> raise NotIntError(2.11, message='Please use integers!')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    NotIntError: 2.11 -> Please use integers!
+
+.. note::
+    Una excepción propia no es más que una clase ordinaria y, por tanto, admite cualquier tipo de parámetro en su constructor y resto de métodos. Si se usa con sentido puede ser una poderosa herramienta.
 
 **********
 Aserciones
@@ -237,4 +320,4 @@ Podemos observar que la excepción que se lanza no contiene ningún mensaje info
 .. --------------- Hyperlinks ---------------
 
 .. _Sarah Kilian: https://unsplash.com/@rojekilian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
-.. _excepciones predefinidas: https://docs.python.org/es/3/library/exceptions.html
+.. _excepciones predefinidas: https://docs.python.org/es/3/library/exceptions.html#concrete-exceptions
