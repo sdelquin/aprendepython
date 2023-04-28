@@ -211,14 +211,14 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
     - ``__init__(self, manufacturer, screen_size, num_cores)``
     - ``power_on(self)``
     - ``power_off(self)``
-    - ``install_app(self, app)``
-    - ``uninstall_app(self, app)``
+    - ``install_app(self, app)`` *(no instalar la app si ya existe)*
+    - ``uninstall_app(self, app)``  *(no borrar la app si no existe)*
 
     *¿Serías capaz de extender el método* ``install_app()`` *para instalar varias aplicaciones a la vez?*
 
     .. only:: html
     
-        | Plantilla: :download:`mobile.py <files/mobile.py>`
+        | Plantilla: :download:`mobile.py <files/templates/mobile.py>`
         | Tests: :download:`test_mobile.py <files/test_mobile.py>`
         | Lanzar tests: ``pytest -xq test_mobile.py``
 
@@ -242,6 +242,11 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
     'C-3PO'
 
     >>> droid.name = 'waka-waka'  # esto sería válido!
+
+Python incluso nos permite **añadir atributos dinámicamente** a un objeto, incluso después de su creación::
+
+    >>> droid.manufacturer = 'Cybot Galactica'
+    >>> droid.height = 1.77
 
 .. note::
     Nótese el acceso a los atributos con ``obj.attribute`` en vez de lo que veníamos usando en :ref:`diccionarios <core/datastructures/dicts:diccionarios>` donde hay que escribir "un poco más" ``obj['attribute']``.
@@ -575,12 +580,12 @@ Veamos un ejemplo en el que creamos un método estático para devolver las categ
     ...         pass
     ...
     ...     @staticmethod
-    ...     def get_droids_categories() -> list[str]:
-    ...         return ['Messeger', 'Astromech', 'Power', 'Protocol']
+    ...     def get_droids_categories() -> tuple[str]:
+    ...         return ('Messeger', 'Astromech', 'Power', 'Protocol')
     ...
 
     >>> Droid.get_droids_categories()
-    ['Messeger', 'Astromech', 'Power', 'Protocol']
+    ('Messeger', 'Astromech', 'Power', 'Protocol')
 
 Métodos decorados
 -----------------
@@ -720,7 +725,7 @@ Aunque en Python no existe técnicamente la "sobrecarga de funciones", sí que p
     ...         if isinstance(other, Droid):
     ...             new_name = self.name + '-' + other.name
     ...             new_power = self.power + other.power
-    ...         if isinstance(other, int):
+    ...         elif isinstance(other, int):
     ...             new_name = self.name
     ...             new_power = self.power + other
     ...         return Droid(new_name, new_power)
@@ -788,7 +793,7 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
 
     .. only:: html
     
-        | Plantilla: :download:`fraction.py <files/fraction.py>`
+        | Plantilla: :download:`fraction.py <files/templates/fraction.py>`
         | Tests: :download:`test_fraction.py <files/test_fraction.py>`
         | Lanzar tests: ``pytest -xq test_fraction.py``
 
@@ -1154,37 +1159,20 @@ Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
 .. admonition:: Ejercicio
     :class: exercise
 
-    Dada la siguiente estructura/herencia que representa diferentes clases de ficheros:
+    Cree el siguiente escenario de herencia de clases en Python que representa distintos tipos de ficheros en un sistema:
 
     .. image:: img/files-inheritance.jpg
 
-    Se pide lo siguiente:
+    Notas:
 
-    1. Cree las **3 clases** de la imagen anterior con la herencia señalada.
-    2. Cree un objeto de tipo ``VideoFile`` con las siguientes características:
-
-        - ``path``: /home/python/vanrossum.mp4
-        - ``codec``: h264
-        - ``geoloc``: (23.5454, 31.4343)
-        - ``duration``: 487
-        - ``dimensions``: (1920, 1080)
-    3. Añada el contenido ``'audio/ogg'`` al fichero.
-    4. Añada el contenido ``'video/webm'`` al fichero.
-    5. Imprima por pantalla la ``info()`` de este objeto (el método ``info()`` debería retornar ``str`` y debería hacer uso de los métodos ``info()`` de las clases base).
-
-    Salida esperada::
-
-        /home/python/vanrossum.mp4 [size=19B]      # self.info() de File
-        Codec: h264                                # ┐ 
-        Geolocalization: (23.5454, 31.4343)        # ├ self.info() de MediaFile
-        Duration: 487s                             # ┘ 
-        Dimensions: (1920, 1080)                   # self.info() de VideoFile
-
-    ► El método ``size()`` debe devolver el número total de caracteres sumando las longitudes de los elementos del atributo ``contents``.
+    - El atributo ``size`` debe devolver el número total de caracteres sumando las longitudes de los elementos del atributo ``contents``.
+    - El atributo ``info`` de cada clase debe hacer uso del atributo ``info`` de su clase base para conformar las salida final.
 
     .. only:: html
     
-        |solution| :download:`file-inheritance.py <files/file-inheritance.py>`
+        | Plantilla: :download:`file_inheritance.py <files/templates/file_inheritance.py>`
+        | Tests: :download:`test_file_inheritance.py <files/test_file_inheritance.py>`
+        | Lanzar tests: ``pytest -xq test_file_inheritance.py``
 
 Agregación y composición
 ========================
@@ -1286,6 +1274,12 @@ Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
 .. admonition:: Ejercicio
 
     Cree una clase ``InfiniteList`` que permita utilizar una lista sin tener límites, es decir, evitando un ``IndexError``. Por ejemplo, si la lista tiene 10 elementos, y asignamos un valor al elemento en el índice 20, esto no daría un error, sino que haría ampliar la lista hasta el valor 20, rellenando los valores en blanco con un valor de relleno que por defecto es ``None``.
+
+    .. only:: html
+    
+        | Plantilla: :download:`infinite_list.py <files/templates/infinite_list.py>`
+        | Tests: :download:`test_infinite_list.py <files/test_infinite_list.py>`
+        | Lanzar tests: ``pytest -xq test_infinite_list.py``
 
 Diccionarios
 ============
@@ -1782,20 +1776,14 @@ Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
     | Tests: :download:`test_date.py <files/test_date.py>`
     | Lanzar tests: ``pytest -xq test_date.py``
 
-1. Escriba una clase en Python para representar una secuencia de ADN. De momento, la clase sólo contendrá los siguientes elementos:
-    - 4 atributos de clase, cada uno representando una base nitrogenada con su valor como un carácter.
-    - Constructor que recibe una secuencia de caracteres (bases).
-    - Método para representar el objeto en formato "string".
+2. Escriba una clase ``DNA`` que represente una secuencia de ADN.
 
-2. Continúe con el ejercicio anterior, y añada a la clase 4 propiedades que calculen el número total de cada una de las bases presentes en la secuencia.
+.. only:: html
 
-3. Continúe con el ejercicio anterior, y añada a la clase un método de instancia para sumar dos secuencias de ADN. La suma se hará base a base y el resultado será el máximo de cada letra(base).
+    | Plantilla: :download:`dna.py <files/templates/dna.py>`
+    | Tests: :download:`test_dna.py <files/test_dna.py>`
+    | Lanzar tests: ``pytest -xq test_dna.py``
 
-4. Continúe con el ejercicio anterior, y añada a la clase un método de instancia para obtener el porcentaje de aparición de cada base (usando las propiedades definidas en ejercicios anteriores).
-
-5. Continúe con el ejercicio anterior, y añada a la clase un método de instancia para multiplicar dos secuencias de ADN. La multiplicación consiste en dar como salida una nueva secuencia que contenga sólo aquellas bases que coincidan en posición en ambas secuencias de entrada.
-
-→ :download:`Solución a todos los ejercicios <files/dna.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
