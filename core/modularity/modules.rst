@@ -4,62 +4,71 @@ Módulos
 
 .. image:: img/xavi-cabrera-kn-UmDZQDjM-unsplash.jpg
 
-Escribir pequeños trozos de código puede resultar interesante para realizar determinadas pruebas. Pero a la larga, nuestros programas tenderán a crecer y será necesario agrupar el código en unidades manejables.
+Escribir pequeños trozos de código puede resultar interesante para realizar determinadas pruebas. Pero a la larga, nuestros programas tenderán a crecer y será necesario agrupar el código en unidades manejables. [#lego-unsplash]_
 
-Los **módulos** son simplemente ficheros de texto que contienen código Python y representan unidades con las que *evitar la repetición* y *favorecer la reutilización*. [#lego-unsplash]_
+************
+Organización
+************
+
+Los **módulos** son simplemente ficheros de texto que contienen código Python y representan unidades con las que *evitar la repetición* y *favorecer la reutilización*.
+
+Los módulos pueden agruparse en carpetas denominadas **paquetes** mientras que estas carpetas, a su vez, pueden dar lugar a **librerías**.
+
+.. figure:: img/library-package-module.png
+    :align: center
+
+    Concepto de módulo, paquete y librería
 
 ******************
 Importar un módulo
 ******************
 
-Para hacer uso del código de otros módulos usaremos la sentencia ``import``. Esto permite importar el código y las variables de dicho módulo para que estén disponibles en nuestro programa.
+Para hacer uso del código de otros módulos usaremos la sentencia ``import``. Esto permite importar el código y las variables de dicho módulo para tenerlas disponibles en nuestro programa.
 
 La forma más sencilla de importar un módulo es ``import <module>`` donde ``module`` es el nombre de otro fichero Python, sin la extensión ``.py``.
 
-Supongamos que partimos del siguiente fichero (*módulo*):
+Supongamos que partimos del siguiente fichero (*módulo*) ``stats.py``:
 
-:download:`arith.py <files/mymath/arith.py>`
-
-.. literalinclude:: files/mymath/arith.py
+.. literalinclude:: files/extramath/stats.py
     :linenos:
 
-Desde otro fichero - en principio en la misma carpeta - podríamos hacer uso de las funciones definidas en ``arith.py``. 
+Desde otro fichero podríamos hacer uso de las funciones definidas en ``stats.py``. 
 
 Importar módulo completo
 ========================
 
-Desde otro fichero haríamos lo siguiente para importar todo el contenido del módulo ``arith.py``:
+Desde otro fichero (en principio en la misma carpeta) haríamos lo siguiente para importar todo el contenido del módulo ``stats.py``:
 
 .. code-block::
     :emphasize-lines: 1
     :linenos:
 
-    >>> import arith
+    >>> import stats
 
-    >>> arith.addere(3, 7)
-    10
+    >>> stats.mean(6, 3, 9, 5)
+    5.75
+    >>> stats.std(6, 3, 9, 5)
+    2.5
 
-.. note:: Nótese que en la **línea 3** debemos anteponer a la función ``addere()`` el :ref:`espacio de nombres <core/modularity/functions:Espacios de nombres>` que define el módulo ``arith``.
+.. note:: Nótese que en la **línea 3** debemos anteponer a la función ``mean()`` el :ref:`espacio de nombres <core/modularity/functions:Espacios de nombres>` que define el módulo ``stats``.
 
 Ruta de búsqueda de módulos
 ---------------------------
 
-Python tiene 2 formas de encontrar un módulo:
-
-1. En la carpeta actual de trabajo.
-2. En las rutas definidas en la variable de entorno ``PYTHONPATH``.
-
-Para ver las rutas de búsqueda establecidas, podemos ejecutar lo siguiente en un intérprete de Python::
+Cuando importamos un módulo en Python el intérprete trata de encontrarlo (por orden) en las rutas definidas en la variable ``sys.path``. Veamos su contenido (para mi caso concreto)::
 
     >>> import sys
 
     >>> sys.path
-    ['/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
-    '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
-    '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
-    '']
+    ['/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+     '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python39.zip',
+     '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9',
+     '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9/lib-dynload',
+     '',
+     '/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages']
 
-La cadena vacía que existe al final de la lista hace referencia a la **carpeta actual**.
+.. important::
+    La **cadena vacía** ``''`` en la lista ``sys.path`` hace referencia a la **carpeta actual** de trabajo.
 
 Modificando la ruta de búsqueda
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -79,26 +88,30 @@ Modificando directamente la variable ``PYTHONPATH``
         :emphasize-lines: 3
     
         >>> sys.path
-        ['/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+        ['/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/bin',
          '/tmp',
-        '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
-        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
-        '']
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python39.zip',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9/lib-dynload',
+         '',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages']
 
 Modificando directamente la lista ``sys.path``
     Para ello accedemos a lista que está en el módulo ``sys`` de la librería estandar:
 
     .. code-block::
-        :emphasize-lines: 8
+        :emphasize-lines: 10
     
         >>> sys.path.append('/tmp')  # añadimos al final
 
         >>> sys.path
-        ['/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
-        '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
-        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
-        '',
-        '/tmp']
+        ['/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python39.zip',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9/lib-dynload',
+         '',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
+         '/tmp']
 
     .. code-block::
         :emphasize-lines: 4
@@ -107,10 +120,12 @@ Modificando directamente la lista ``sys.path``
 
         >>> sys.path
         ['/tmp',
-        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/bin',
-        '/path/to/.pyenv/versions/3.9.1/lib/python3.9',
-        '/path/to/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages',
-        '']
+         '/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/bin',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python39.zip',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/lib/python3.9/lib-dynload',
+         '',
+         '/Users/sdelquin/.pyenv/versions/3.9.1/envs/aprendepython/lib/python3.9/site-packages']
     
     .. tip:: El hecho de poner nuestra ruta al principio o al final de ``sys.path`` influye en la búsqueda, ya que si existen dos (o más módulos) que se llaman igual en nuestra ruta de búsqueda, Python usará el primero que encuentre.
     
@@ -118,20 +133,20 @@ Modificando directamente la lista ``sys.path``
 Importar partes de un módulo
 ============================
 
-Es posible que no necesitemos todo aquello que está definido en ``arith.py``. Supongamos que sólo vamos a realizar divisiones. Para ello haremos lo siguiente:
+Es posible que no necesitemos todo aquello que está definido en ``stats.py``. Supongamos que sólo vamos a calcular medias. Para ello haremos lo siguiente:
 
 .. code-block::
     :emphasize-lines: 1
     :linenos:
 
-    >>> from arith import partitus
+    >>> from stats import mean
 
-    >>> partitus(5, 2)
-    2.5
+    >>> mean(6, 3, 9, 5)
+    5.75
 
-.. note:: Nótese que en la **línea 3** ya podemos hacer uso directamente de la función ``partitus()`` porque la hemos importado directamente. Este esquema tiene el inconveniente de la posible **colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando.
+.. note:: Nótese que en la **línea 3** ya podemos hacer uso directamente de la función ``mean()`` porque la hemos importado directamente. Este esquema tiene el inconveniente de la posible **colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando.
 
-Es posible hacer ``from arith import *`` pero estaríamos importando todos los componentes del módulo, cuando a lo mejor no es lo que necesitamos. A continuación una imagen que define bien este escenario:
+Es posible hacer ``from stats import *`` pero estaríamos importando todos los componentes del módulo, cuando a lo mejor no es lo que necesitamos. A continuación una imagen que define bien este escenario:
 
 .. figure:: img/import.png
     :align: center
@@ -148,10 +163,10 @@ Supongamos que queremos importar la función del ejemplo anterior pero con otro 
 .. code-block::
     :emphasize-lines: 1
 
-    >>> from arith import partitus as mydivision
+    >>> from stats import mean as avg
 
-    >>> mydivision(5, 2)
-    2.5
+    >>> avg(6, 3, 9, 5)
+    5.75
 
 ********
 Paquetes
@@ -159,16 +174,14 @@ Paquetes
 
 Un **paquete** es simplemente una **carpeta** que contiene ficheros ``.py``. Además permite tener una jerarquía con más de un nivel de subcarpetas anidadas.
 
-Para ejemplificar este modelo vamos a crear un paquete llamado ``mymath`` que contendrá 2 módulos:
+Para ejemplificar este modelo vamos a crear un paquete llamado ``extramath`` que contendrá 2 módulos:
 
-* :download:`arith.py <files/mymath/arith.py>` para operaciones aritméticas (ya visto :ref:`anteriormente <core/modularity/modules:Importar un módulo>`).
-* :download:`logic.py <files/mymath/logic.py>` para operaciones lógicas.
+* :download:`stats.py <files/extramath/stats.py>` para cálculos estadísticos.
+* :download:`frac.py <files/extramath/frac.py>` para operaciones auxiliares de fracciones.
 
-El código del módulo de operaciones lógicas es el siguiente:
+El código del módulo de operaciones auxiliares de fracciones ``frac.py`` es el siguiente:
 
-:download:`logic.py <files/mymath/logic.py>`
-
-.. literalinclude:: files/mymath/logic.py
+.. literalinclude:: files/extramath/frac.py
     :linenos:
 
 Si nuestro código principal va a estar en un fichero ``main.py`` (*a primer nivel*), la estructura de ficheros nos quedaría tal que así:
@@ -179,20 +192,20 @@ Si nuestro código principal va a estar en un fichero ``main.py`` (*a primer niv
 
     .
     ├── main.py
-    └── mymath
-        ├── arith.py
-        └── logic.py
+    └── extramath
+        ├── frac.py
+        └── stats.py
 
     1 directory, 3 files
 
 **Línea 2**
     Punto de entrada de nuestro programa a partir del fichero ``main.py``
 **Línea 3**
-    Carpeta que define el paquete ``mymath``.
+    Carpeta que define el paquete ``extramath``.
 **Línea 4**
-    Módulo para operaciones aritméticas.
+    Módulo para operaciones auxiliares de fracciones.
 **Línea 5**
-    Módulo para operaciones lógicas.
+    Módulo para cálculos estadísticos.
 
 Importar desde un paquete
 =========================
@@ -203,20 +216,20 @@ Si ya estamos en el fichero ``main.py`` (o a ese nivel) podremos hacer uso de nu
     :emphasize-lines: 1
     :linenos:
 
-    >>> from mymath import arith, logic
+    >>> from extramath import frac, stats
 
-    >>> arith.pullulate(4, 7)
-    28
+    >>> frac.gcd(21, 35)
+    7
 
-    >>> logic.et(1, 0)
-    0
+    >>> stats.mean(6, 3, 9, 5)
+    5.75
 
 **Línea 1**
-    Importar los módulos ``arith`` y ``logic`` del paquete ``mymath``
+    Importar los módulos ``frac`` y ``stats`` del paquete ``extramath``
 **Línea 3**
-    Uso de la función ``pullulate`` que está definida en el módulo ``arith``
+    Uso de la función ``gcd`` que está definida en el módulo ``frac``
 **Línea 5**
-    Uso de la función ``et`` que está definida en el módulo ``logic``
+    Uso de la función ``mean`` que está definida en el módulo ``stats``
 
 ******************
 Programa principal
@@ -248,15 +261,15 @@ La estructura que suele tener este *programa principal* es la siguiente::
 
 Esta condición permite, en el programa principal, diferenciar qué codigo se lanzará cuando el fichero se ejecuta directamente o cuando el fichero se importa desde otro lugar.
 
+Supongamos el siguiente programa ``hello.py`` y veamos cuál es el comportamiento según el escenario escogido:
+
+.. literalinclude:: files/hello.py
+    :linenos:
+
 .. figure:: img/if-name-main.jpg
     :align: center
 
     Comportamiento de un programa principal al importarlo o ejecutarlo
-
-:download:`hello.py <files/hello.py>`
-
-.. literalinclude:: files/hello.py
-    :linenos:
 
 ``import hello``
     El código se ejecuta siempre desde la primera instrucción a la última:
