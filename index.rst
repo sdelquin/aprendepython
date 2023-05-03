@@ -51,6 +51,7 @@ Licencia:
    :maxdepth: 2
 
    stdlib/text_processing
+   stdlib/data_access
 
 .. toctree::
    :caption: PyPI

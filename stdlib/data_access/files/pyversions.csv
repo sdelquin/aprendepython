@@ -1,0 +1,16 @@
+branch,year,month,manager
+2.6,2008,10,Barry Warsaw
+2.7,2010,7,Benjamin Peterson
+3.0,2008,12,Barry Warsaw
+3.1,2009,6,Benjamin Peterson
+3.2,2011,2,Georg Brandl
+3.3,2012,9,Georg Brandl
+3.4,2014,3,Larry Hastings
+3.5,2015,9,Larry Hastings
+3.6,2016,12,Ned Deily
+3.7,2018,6,Ned Deily
+3.8,2019,10,Łukasz Langa
+3.9,2020,10,Łukasz Langa
+3.10,2021,10,Pablo Galindo Salgado
+3.11,2022,10,Pablo Galindo Salgado
+3.12,2023,10,Thomas Wouters
