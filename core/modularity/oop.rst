@@ -1784,6 +1784,13 @@ Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
     | Tests: :download:`test_dna.py <files/test_dna.py>`
     | Lanzar tests: ``pytest -xq test_dna.py``
 
+3. Escriba una clase ``IntegerStack`` que represente una pila de valores enteros.
+
+.. only:: html
+
+    | Plantilla: :download:`stack.py <files/templates/stack.py>`
+    | Tests: :download:`test_stack.py <files/test_stack.py>`
+    | Lanzar tests: ``pytest -xq test_stack.py``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
