@@ -14,7 +14,8 @@ class IntegerQueue:
         ...
 
     def enqueue(self, item: int) -> bool:
-        '''Si la cola está llena retornar False, en otro caso retornar True'''
+        '''Añade item a la cola.
+        Si la cola está llena retornar False, en otro caso retornar True'''
         ...
 
     def dequeue(self) -> int:

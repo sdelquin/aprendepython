@@ -15,7 +15,8 @@ class IntegerQueue:
         self.max_size = max_size
 
     def enqueue(self, item: int) -> bool:
-        '''Si la cola está llena retornar False, en otro caso retornar True'''
+        '''Añade item a la cola.
+        Si la cola está llena retornar False, en otro caso retornar True'''
         if self.is_full():
             return False
         self.items.append(item)
@@ -55,14 +56,14 @@ class IntegerQueue:
         - El primer elemento del fichero corresponde con el HEAD de la cola.
         - Si la cola se llena al ir añadiendo elementos habrá que expandir con los valores
         por defecto'''
-        stack = cls()
+        queue = cls()
         with open(path) as f:
             items = (int(item) for item in f.readline().strip().split(','))
             for item in items:
-                if stack.is_full():
-                    stack.expand()
-                stack.items.append(item)
-        return stack
+                if queue.is_full():
+                    queue.expand()
+                queue.enqueue(item)
+        return queue
 
     def __getitem__(self, index: int) -> int:
         '''Devuelve el elemento de la cola en el índice indicado'''
@@ -85,10 +86,8 @@ class IntegerQueue:
         - La segunda cola va "detrás" de la primera
         - El tamaño máximo de la cola resultante es la suma de los tamaños
         máximos de cada cola.'''
-        new_max_size = self.max_size + other.max_size
-        new_items = self.items + other.items
-        queue = IntegerQueue(max_size=new_max_size)
-        queue.items = new_items
+        queue = IntegerQueue(max_size=self.max_size + other.max_size)
+        queue.items = self.items + other.items
         return queue
 
     def __iter__(self) -> IntegerQueueIterator:

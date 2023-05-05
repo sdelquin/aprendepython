@@ -20,7 +20,8 @@ class IntegerStack:
         self.max_size = max_size
 
     def push(self, item: int) -> bool:
-        '''Si la pila está llena retornar False, en otro caso retornar True'''
+        '''Añade item a la pila.
+        Si la pila está llena retornar False, en otro caso retornar True'''
         if self.is_full():
             return False
         self.items.insert(0, item)
@@ -62,11 +63,11 @@ class IntegerStack:
         por defecto'''
         stack = cls()
         with open(path) as f:
-            for line in f:
+            items = [int(item) for item in f.read().split('\n')]
+            for item in items[::-1]:
                 if stack.is_full():
                     stack.expand()
-                item = int(line.strip())
-                stack.items.append(item)
+                stack.push(item)
         return stack
 
     def __getitem__(self, index: int) -> int:
@@ -90,10 +91,8 @@ class IntegerStack:
         - La segunda pila va "encima" de la primera
         - El tamaño máximo de la pila resultante es la suma de los tamaños
         máximos de cada pila.'''
-        new_max_size = self.max_size + other.max_size
-        new_items = other.items + self.items
-        stack = IntegerStack(max_size=new_max_size)
-        stack.items = new_items
+        stack = IntegerStack(max_size=self.max_size + other.max_size)
+        stack.items = other.items + self.items
         return stack
 
     def __iter__(self) -> IntegerStackIterator:

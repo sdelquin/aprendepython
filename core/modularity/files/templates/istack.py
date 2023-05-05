@@ -19,7 +19,8 @@ class IntegerStack:
         ...
 
     def push(self, item: int) -> bool:
-        '''Si la pila está llena retornar False, en otro caso retornar True'''
+        '''Añade item a la pila.
+        Si la pila está llena retornar False, en otro caso retornar True'''
         ...
 
     def pop(self) -> int:
