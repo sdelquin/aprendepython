@@ -1788,9 +1788,17 @@ Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
 
 .. only:: html
 
-    | Plantilla: :download:`stack.py <files/templates/stack.py>`
-    | Tests: :download:`test_stack.py <files/test_stack.py>`
-    | Lanzar tests: ``pytest -xq test_stack.py``
+    | Plantilla: :download:`istack.py <files/templates/istack.py>`
+    | Tests: :download:`test_istack.py <files/test_istack.py>`
+    | Lanzar tests: ``pytest -xq test_istack.py``
+
+3. Escriba una clase ``IntegerQueue`` que represente una cola de valores enteros.
+
+.. only:: html
+
+    | Plantilla: :download:`iqueue.py <files/templates/iqueue.py>`
+    | Tests: :download:`test_iqueue.py <files/test_iqueue.py>`
+    | Lanzar tests: ``pytest -xq test_iqueue.py``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from stack import IntegerStack, IntegerStackIterator
+from istack import IntegerStack, IntegerStackIterator
 
 
 @pytest.fixture
