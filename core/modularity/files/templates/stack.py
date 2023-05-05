@@ -2,7 +2,20 @@ from __future__ import annotations
 
 
 class IntegerStack:
+    '''
+    Pila de enteros:
+    ╔═════╗
+    ║ TOP ║
+    ╠═════╣
+    ║   4 ║
+    ║   3 ║
+    ║   5 ║
+    ║   7 ║
+    ╚═════╝
+    '''
+
     def __init__(self, *, max_size: int = 10):
+        '''Utilizar atributo items para guardar los elementos'''
         ...
 
     def push(self, item: int) -> bool:
@@ -30,13 +43,18 @@ class IntegerStack:
         ...
 
     def dump_to_file(self, path: str) -> None:
-        '''Vuelca la pila a un fichero. Cada item en una línea'''
+        '''Vuelca la pila a un fichero.
+        - Cada item en una línea.
+        - El primer elemento del fichero corresponde con el TOP de la pila.'''
         ...
 
     @classmethod
     def load_from_file(cls, path: str) -> IntegerStack:
-        '''Crea una pila desde un fichero. Si la pila se llena al ir añadiendo elementos
-        habrá que expandir con los valores por defecto'''
+        '''Crea una pila desde un fichero.
+        - Un item por línea.
+        - El primer elemento del fichero corresponde con el TOP de la pila.
+        - Si la pila se llena al ir añadiendo elementos habrá que expandir con los valores
+        por defecto'''
         ...
 
     def __getitem__(self, index: int) -> int:
@@ -56,7 +74,10 @@ class IntegerStack:
         ...
 
     def __add__(self, other: IntegerStack) -> IntegerStack:
-        '''La segunda pila va "encima" de la primera'''
+        '''Sumar dos pilas.
+        - La segunda pila va "encima" de la primera
+        - El tamaño máximo de la pila resultante es la suma de los tamaños
+        máximos de cada pila.'''
         ...
 
     def __iter__(self) -> IntegerStackIterator:
