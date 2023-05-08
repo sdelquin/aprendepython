@@ -738,6 +738,38 @@ Aunque en Python no existe técnicamente la "sobrecarga de funciones", sí que p
     >>> powerful_droid.power
     100
 
+Esto mismo se puede aplicar al **operador de igualdad** dado que es muy habitual en nuestro código. Deberíamos tener en cuenta el hecho de que se quisiera comparar dos objetos de distinta naturaleza.
+
+Retomando el caso ya visto... **¿qué pasaría si comparamos un droide con una cadena de texto?**
+
+.. code-block::
+
+    >>> droid == 'C-3PO'
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 6, in __eq__
+    AttributeError: 'str' object has no attribute 'name'
+
+No funciona. Debemos contemplar el caso de que nos venga un objeto "cualquiera" a la hora de comparar. Veamos una posible implementación del operador de igualdad::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str, serial_number: int):
+    ...         self.name = name
+    ...         self.serial_number = serial_number
+    ...
+    ...     def __eq__(self, other: Droid | object) -> bool:
+    ...         if isinstance(other, Droid):
+    ...             return self.name == droid.name
+    ...         return False
+    ...
+
+Ahora podemos comprobar que todo funciona como esperaríamos::
+
+    >>> droid = Droid('C-3PO', 43974973242)
+
+    >>> droid == 'C-3PO'
+    False
+
 ``__str__``
 -----------
 
@@ -796,6 +828,58 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
         | Plantilla: :download:`fraction.py <files/templates/fraction.py>`
         | Tests: :download:`test_fraction.py <files/test_fraction.py>`
         | Lanzar tests: ``pytest -xq test_fraction.py``
+
+``__repr__``
+------------
+
+En ausencia del método ``__str__()`` se usará por defecto el método ``__repr__()``. La diferencia entre ambos métodos es que el primero está más pensado para una representación del objeto de cara al usuario mientras que el segundo está más orientado al desarrollador.
+
+El método ``__repr()__`` **se invoca automáticamente** en los dos siguientes escenarios:
+
+1. Cuando no existe el método ``__str__()`` en el objeto y tratamos de encontrar su representación en cadena de texto con ``str()`` o ``print()``.
+2. Cuando utilizamos el intérprete interactivo de Python y pedimos el "valor" del objeto.
+
+Veamos un ejemplo. En primer lugar un droide que sólo implementa el método ``__str__()``::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str):
+    ...         self.name = name
+    ...
+    ...     def __str__(self):
+    ...         return f"Hi there! I'm {self.name}"
+    ...
+
+    >>> c14 = Droid('C-14')
+
+    >>> print(c14)  # __str()__
+    Hi there! I'm C-14
+
+    >>> c14  # __repr()__
+    <__main__.Droid at 0x103d7cc10>
+
+Ahora implementamos también el método ``__repr__()``::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str):
+    ...         self.name = name
+    ...
+    ...     def __str__(self):
+    ...         return f"Hi there! I'm {self.name}"
+    ...
+    ...     def __repr__(self):
+    ...         return f"[Droid] '{self.name}' @ {hex(id(self))}"
+    ...
+
+    >>> c14 = Droid('C-14')
+
+    >>> print(c14)
+    Hi there! I'm C-14
+
+    >>> c14  # __repr__()
+    [Droid] 'C-14' @ 0x103e4e350
+
+.. attention::
+    El hecho de incorporar la dirección de memoria del objeto en el método ``__repr__()`` no es en absoluto obligatorio, ni siquiera necesario. Todo depende de los requerimientos que tengamos en el proyecto.
 
 Gestores de contexto
 --------------------
@@ -1763,6 +1847,34 @@ Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
     :header-rows: 1
     :widths: 30, 30, 30, 30
     :class: longtable
+
+***********************
+Estructura de una clase
+***********************
+
+Durante toda la sección hemos analizado con detalle los distintos componentes que forman una clase en Python. Pero cuando todo esto lo ponemos junto puede suponer un pequeño caos organizativo.
+
+Aunque no existe ninguna indicación formal de la estructura de una clase, podríamos establecer el siguiente formato como guía de estilo::
+
+    >>> class OrganizedClass:
+    ...     '''Descripción de la clase'''
+    ...
+    ...     # Constructor
+    ...
+    ...     # Métodos de instancia
+    ...
+    ...     # Propiedades
+    ...
+    ...     # Métodos mágicos
+    ...
+    ...     # Decoradores
+    ...
+    ...     # Métodos de clase
+    ...
+    ...     # Métodos estáticos
+    ...
+    ...     ...
+    ...
 
 ----
 
