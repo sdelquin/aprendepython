@@ -1772,7 +1772,7 @@ Todos las herramientas anteriores las podemos resumir en la siguiente tabla:
 
 .. only:: html
 
-    | Plantilla: :download:`date.py <files/date.py>`
+    | Plantilla: :download:`date.py <files/templates/date.py>`
     | Tests: :download:`test_date.py <files/test_date.py>`
     | Lanzar tests: ``pytest -xq test_date.py``
 
