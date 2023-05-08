@@ -6,13 +6,13 @@ Objetos y Clases
 
 Hasta ahora hemos estado usando objetos de forma totalmente transparente, casi sin ser conscientes de ello. Pero, en realidad, **todo en Python es un objeto**, desde números a funciones. El lenguaje provee ciertos mecanismos para no tener que usar explícitamente técnicas de orientación a objetos.
 
-Llegados a este punto, investigaremos en profundidad la creación y la manipulación de clases y objetos, así como todas las técnicas y procedimientos que engloban este paradigma. [#things-unsplash]_
+Llegados a este punto, investigaremos en profundidad la creación y manipulación de clases y objetos, así como todas las técnicas y procedimientos que engloban este paradigma. [#things-unsplash]_
 
 ********************************
 Programación orientada a objetos
 ********************************
 
-La programación orientada a objetos (`POO`_) o en sus siglas inglesas **OOP** es una manera de programar que permite llevar al código mecanismos usados con entidades de la vida real.
+La programación orientada a objetos (`POO`_) o en sus siglas inglesas **OOP** es una manera de programar (paradigma) que permite llevar al código mecanismos usados con entidades de la vida real.
 
 Sus **beneficios** son los siguientes:
 
@@ -60,7 +60,7 @@ Para crear un objeto primero debemos definir la clase que lo contiene. Podemos p
 
     Ejemplificación de creación de objetos a partir de una clase
 
-En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los atributos y los métodos que contenga esa clase estén enfocados a un objetivo único bien definido.
+En el **proceso de diseño** de una clase hay que tener en cuenta -- entre otros -- el **principio de responsabilidad única** [#solid-principles]_, intentando que los atributos y los métodos que contenga esa clase estén enfocados a un *objetivo único y bien definido*.
 
 ***************
 Creando objetos
@@ -119,6 +119,9 @@ Una de las acciones más sencillas que se pueden hacer sobre un droide es encend
 
     >>> k2so.switch_off()
     Bye! I'm going to sleep
+
+.. hint::
+    El nombre ``self`` es sólo una convención. Este parámetro puede llamarse de otra manera, pero seguir el estándar ayuda a la legibilidad.
 
 Añadiendo atributos
 ===================
@@ -243,7 +246,7 @@ En el siguiente ejemplo vemos que, aunque el atributo ``name`` se ha creado en e
 
     >>> droid.name = 'waka-waka'  # esto sería válido!
 
-Python incluso nos permite **añadir atributos dinámicamente** a un objeto, incluso después de su creación::
+Python nos permite **añadir atributos dinámicamente** a un objeto incluso después de su creación::
 
     >>> droid.manufacturer = 'Cybot Galactica'
     >>> droid.height = 1.77
@@ -256,9 +259,9 @@ Propiedades
 
 Como hemos visto previamente, los atributos definidos en un objeto son accesibles públicamente. Esto puede parecer extraño a personas que vengan de otros lenguajes de programación (véase Java). En Python existe un cierto "sentido de la responsabilidad" a la hora de programar y manejar este tipo de situaciones: Casi todo es posible a priori pero se debe controlar explícitamente.
 
-Una posible solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <core/modularity/functions:Decoradores>`:
+Una primera solución "pitónica" para la privacidad de los atributos es el uso de **propiedades**. La forma más común de aplicar propiedades es mediante el uso de :ref:`decoradores <core/modularity/functions:Decoradores>`:
 
-- ``@property`` para leer el valor de un atributo.
+- ``@property`` para leer el valor de un atributo ("getter").
 - ``@name.setter`` para escribir el valor de un atributo.
 
 Veamos un ejemplo en el que estamos ofuscando el nombre del droide a través de propiedades::
@@ -363,7 +366,7 @@ Cacheando propiedades
 
 En los ejemplos anteriores hemos creado una propiedad que calcula el alto del periscopio de un droide astromecánico a partir de su altura. El "coste" de este cálculo es bajo, pero imaginemos por un momento que fuera muy alto.
 
-Si cada vez que accedemos a dicha propiedad tenemos que realizar ese cálculo, estaríamos siendo muy ineficientes (en el caso de que la altura del droide no cambiara). Veamos una aproximación a este escenario usando el cacheado de propiedades::
+Si cada vez que accedemos a dicha propiedad tenemos que realizar ese cálculo, estaríamos siendo muy ineficientes (en el caso de que la altura del droide no cambiara). Veamos una aproximación a este escenario usando el **cacheado de propiedades**::
 
     >>> class AstromechDroid:
     ...     def __init__(self, name: str, height: float):
@@ -434,7 +437,7 @@ Lo que realmente ocurre tras el telón se conoce como "*name mangling*" y consis
 Atributos de clase
 ==================
 
-Podemos asignar atributos a las clases y serán heredados por todos los objetos instanciados de esa clase.
+Podemos asignar atributos a una clase y serán asumidos por todos los objetos instanciados de esa clase.
 
 A modo de ejemplo, en un principio, todos los droides están diseñados para que obedezcan a su dueño. Esto lo conseguiremos a nivel de clase, salvo que ese comportamiento se sobreescriba::
 
@@ -457,7 +460,7 @@ A modo de ejemplo, en un principio, todos los droides están diseñados para que
 .. tip::
     Los atributos de clase son accesibles tanto desde la clase como desde las instancias creadas.
 
-A tener en cuenta lo siguiente:
+Hay que tener en cuenta lo siguiente:
 
 - Si modificamos un atributo de clase desde un objeto, sólo modificamos el valor en el objeto y no en la clase.
 - Si modificamos un atributo de clase desde una clase, **modificamos el valor en todos los objetos pasados y futuros**.
@@ -499,7 +502,7 @@ Métodos de instancia
 
 Un **método de instancia** es un método que modifica o accede al estado del objeto al que hace referencia. Recibe ``self`` como primer parámetro, el cual se convierte en el propio objeto sobre el que estamos trabajando. Python envía este argumento de forma transparente: no hay que pasarlo como argumento.
 
-Veamos un ejemplo en el que, además del constructor, creamos un método de instancia para desplazar un droide:
+Veamos un ejemplo en el que, además del constructor, creamos un método de instancia para hacer que un droide se mueva:
 
 .. code-block::
     :emphasize-lines: 6
@@ -539,10 +542,10 @@ Métodos de clase
 
 Un **método de clase** es un método que modifica o accede al estado de la clase a la que hace referencia. Recibe ``cls`` como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador ``@classmethod`` a la función.
 
-Veamos un ejemplo en el que implementamos un método de clase que indica el número de droides que hemos creado:
+Veamos un ejemplo en el que implementamos un método de clase que **muestra el número de droides creados**:
 
 .. code-block::
-    :emphasize-lines: 7,8
+    :emphasize-lines: 7-8
 
     >>> class Droid:
     ...     count = 0
@@ -590,16 +593,19 @@ Veamos un ejemplo en el que creamos un método estático para devolver las categ
 Métodos decorados
 -----------------
 
-Es posible que, según el escenario, queramos decorar ciertos métodos de nuestra clase. Esto es posible siguiendo la misma estructura de :ref:`decoradores <core/modularity/functions:decoradores>` que ya hemos visto, pero con ciertos matices.
+Es posible que, según el escenario, queramos **decorar ciertos métodos** de nuestra clase. Esto lo conseguiremos siguiendo la misma estructura de :ref:`decoradores <core/modularity/functions:decoradores>` que ya hemos visto, pero con ciertos matices.
 
-A continuación un ejemplo en el que creamos un decorador para auditar las acciones de un droide y saber quién ha hecho qué::
+A continuación veremos un ejemplo en el que creamos un decorador para auditar las acciones de un droide y saber quién ha hecho qué:
+
+.. code-block::
+    :emphasize-lines: 2-7
 
     >>> class Droid:
     ...     @staticmethod
     ...     def audit(method):
     ...         def wrapper(self, *args, **kwargs):
     ...             print(f'Droid {self.name} running {method.__name__}')
-    ...             return method(self, *args, **kwargs)
+    ...             return method(self, *args, **kwargs)  # Ojo llamada!
     ...         return wrapper
     ...
     ...     def __init__(self, name: str):
@@ -623,9 +629,13 @@ A continuación un ejemplo en el que creamos un decorador para auditar las accio
     >>> droid.reset()
     Droid B1 running reset
 
-El decorador se puede poner dentro o fuera de la clase. Por una cuestión de encapsulamiento podría tener sentido dejarlo dentro de la clase como método estático.
+A tener en cuenta la llamada al método dentro del decorador::
 
-.. tip::
+    >>> method(self, *args, **kwargs) == self.method(*args, **kwargs)
+
+El decorador se puede poner dentro o fuera de la clase. Por una cuestión de encapsulamiento podría tener sentido dejarlo **dentro de la clase como método estático**.
+
+.. seealso::
     También es posible aplicar esta misma técnica usando :ref:`decoradores con parámetros <core/modularity/functions:decoradores con parámetros>`.
 
 Métodos mágicos
@@ -681,7 +691,7 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
 
 .. note:: Los métodos mágicos no sólo están restringidos a operadores de comparación o matemáticos. Existen muchos otros en la documentación oficial de Python, donde son llamados `métodos especiales`_.
 
-Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una fusión. Supongamos que la suma de dos droides implica: a) que el nombre del droide resultante es la concatenación de los nombres de los droides de entrada; b) que la energía del droide resultante es la suma de la energía de los droides de entrada::
+Veamos un ejemplo en el que **"sumamos" dos droides** (*esto se podría ver como una fusión*). Supongamos que la suma de dos droides implica: a) que el nombre del droide resultante es la concatenación de los nombres de los droides de entrada; b) que la energía del droide resultante es la suma de la energía de los droides de entrada::
 
     >>> class Droid:
     ...     def __init__(self, name: str, power: int):
@@ -703,13 +713,16 @@ Veamos un ejemplo en el que "sumamos" dos droides. Esto se podría ver como una 
     Fusion droid:
     C3PO-R2D2 with power 136
 
+.. important::
+    Este tipo de operaciones debe **devolver un objeto** de la clase con la que estamos trabajando.
+
 .. tip::
     En este tipo de métodos mágicos el parámetro suele llamarse ``other`` haciendo referencia al "otro" objeto que entra en la operación. Es una convención.
 
 Sobrecarga de operadores
 ------------------------
 
-¿Y si sumamos un droide con un entero? Supongamos que nuestra semántica es que si sumamos un número entero a un droide, éste aumenta su energía en el valor sumado. ¿Podríamos añadir también este comportamiento al operador suma?
+¿Qué ocurriría si sumamos un número entero a un droide? De primeras nada, porque no lo tenemos contemplado, pero podríamos establecer un significado: Si sumamos un número entero a un droide éste aumenta su energía en el valor indicado. Vamos a intentar añadir también este comportamiento al operador suma ya implementado.
 
 Aunque en Python no existe técnicamente la "sobrecarga de funciones", sí que podemos simularla identificando el tipo del objeto que nos pasan y realizando acciones en base a ello:
 
@@ -738,7 +751,7 @@ Aunque en Python no existe técnicamente la "sobrecarga de funciones", sí que p
     >>> powerful_droid.power
     100
 
-Esto mismo se puede aplicar al **operador de igualdad** dado que es muy habitual en nuestro código. Deberíamos tener en cuenta el hecho de que se quisiera comparar dos objetos de distinta naturaleza.
+Esta misma estrategia se puede aplicar al **operador de igualdad** ya que es muy habitual encontrar comparaciones de objetos en nuestro código. Por ello, deberíamos tener en cuenta si se van a comparar dos objetos de distinta naturaleza.
 
 Retomando el caso ya visto... **¿qué pasaría si comparamos un droide con una cadena de texto?**
 
@@ -750,7 +763,7 @@ Retomando el caso ya visto... **¿qué pasaría si comparamos un droide con una 
       File "<stdin>", line 6, in __eq__
     AttributeError: 'str' object has no attribute 'name'
 
-No funciona. Debemos contemplar el caso de que nos venga un objeto "cualquiera" a la hora de comparar. Veamos una posible implementación del operador de igualdad::
+No funciona. Debemos contemplar el caso donde recibimos un objeto "cualquiera" a la hora de comparar. Veamos una posible implementación del operador de igualdad::
 
     >>> class Droid:
     ...     def __init__(self, name: str, serial_number: int):
@@ -884,7 +897,7 @@ Ahora implementamos también el método ``__repr__()``::
 Gestores de contexto
 --------------------
 
-Otra de las aplicaciones interesantes de los métodos mágicos/especiales es la de los **gestores de contexto**. Un gestor de contexto permite aplicar una serie de *acciones a la entrada y a la salida* del contexto definido.
+Otra de las aplicaciones interesantes de los métodos mágicos/especiales es la de los **gestores de contexto**. Un gestor de contexto permite aplicar una serie de *acciones a la entrada y a la salida* del bloque de código que engloba.
 
 Hay dos métodos que son utilizados para implementar los gestores de contexto:
 
@@ -908,6 +921,12 @@ Veamos un ejemplo en el que implementamos un gestor de contexto que **mide tiemp
     ...         print(f'Execution time (seconds): {exec_time:.5f}')
     ...
 
+Aunque en este caso no estamos haciendo uso de los parámetros en la función ``__exit__()``, hacen referencia a una **posible excepción (error)** que se produzca en la ejecución del bloque de código que engloba el contexto. Los tres parámetros son:
+
+1. ``exc_type`` indicando el tipo de la excepción.
+2. ``exc_value`` indicando el valor (mensaje) de la excepción.
+3. ``exc_traceback`` indicando la "traza" (pila) de llamadas que llevaron hasta la excepción.
+
 Ahora podemos probar nuestro gestor de contexto con un ejemplo concreto. La forma de "activar" el contexto es usar la sentencia ``with`` seguida del símbolo que lo gestiona::
 
     >>> with Timer():
@@ -923,7 +942,7 @@ Ahora podemos probar nuestro gestor de contexto con un ejemplo concreto. La form
     ...
     Execution time (seconds): 0.08749
 
-Volviendo a los droides de la saga StarWars, vamos a crear un gestor de contexto que "congele" un droide para resetear su distancia recorrida::
+Volviendo a nuestro ejemplo de los droides de StarWars, vamos a crear un gestor de contexto que "congele" un droide para resetear su distancia recorrida::
 
     >>> class Droid:
     ...     def __init__(self, name: str):
@@ -939,7 +958,8 @@ Volviendo a los droides de la saga StarWars, vamos a crear un gestor de contexto
     ...     def __enter__(self, name: str):
     ...         self.droid = Droid(name)
     ...         return self.droid
-    ...     def __exit__(self, *args):
+    ...
+    ...     def __exit__(self, *err):
     ...         self.droid.covered_distance = 0
     ...
 
@@ -1092,7 +1112,11 @@ Con esto ya hemos aportado una personalidad diferente a los droides de protocolo
 Accediendo a la clase base
 ==========================
 
-Puede darse la situación en la que tengamos que **acceder desde la clase derivada a métodos o atributos de la clase base**. Python ofrece ``super()`` como mecanismo para ello.
+Cuando tenemos métodos (o atributos) definidos **con el mismo nombre** en la clase base y en la clase derivada debe existir un mecanismo para diferenciarlos.
+
+Para estas ocasiones Python nos ofrece ``super()`` como función para **acceder a métodos (o atributos) de la clase base**.
+
+Este escenario es especialmente recurrente en el constructor de aquellas clases que heredan de otras y necesitan inicializar la clase base.
 
 Veamos un ejemplo más elaborado con nuestros droides:
 
@@ -1157,6 +1181,9 @@ Supongamos que queremos modelar la siguiente estructura de clases con *herencia 
     >>> class HyperDroid(AstromechDroid, ProtocolDroid):
     ...     pass
     
+.. caution::
+    El orden en el que especificamos varias clases base es importante.
+
 Podemos comprobar esta herencia múltiple de la siguiente manera::
 
     >>> issubclass(SuperDroid, (ProtocolDroid, AstromechDroid, Droid))
