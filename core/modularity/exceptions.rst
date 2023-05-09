@@ -68,11 +68,41 @@ Veamos su implementación::
     >>> intdiv(3, '0')
     Check operands. Some of them seems strange...
 
-.. important::
-    Las `excepciones predefinidas`_ en Python cubren un amplio rango de posibilidades y no hace falta importarlas previamente. Se pueden usar directamente.
+Excepciones predefinidas
+------------------------
 
-Cubriendo más casos
-===================
+Las `excepciones predefinidas`_ en Python cubren un amplio rango de posibilidades y *no hace falta importarlas previamente*. Se pueden usar directamente.
+
+Conocerlas es importante ya que nos permitirá gestionar mejor los posibles errores y dar respuesta a situaciones inesperadas. Veamos a continuación algunas de las más relevantes:
+
+.. csv-table::
+    :file: tables/exceptions.csv
+    :widths: 20, 80
+    :header-rows: 1
+    :class: longtable
+
+Agrupando excepciones
+---------------------
+
+Si nos interesa tratar distintas excepciones con el mismo comportamiento, es posible agruparlas en una única línea:
+
+.. code-block::
+    :emphasize-lines: 4
+
+    >>> def intdiv(a, b):
+    ...     try:
+    ...         result = a // b
+    ...     except (TypeError, ZeroDivisionError):
+    ...         print('Check operands: Some of them caused errors...')
+    ...     except Exception:
+    ...         print('Ups. Something went wrong...')
+    ...
+
+    >>> intdiv(3, 0)
+    Check operands: Some of them caused errors...
+
+Variantes en el tratamiento
+===========================
 
 Python proporciona la cláusula ``else`` para saber que todo ha ido bien y que no se ha lanzado ninguna excepción. Esto es relevante a la hora de manejar los errores.
 
@@ -124,7 +154,7 @@ Veamos un ejemplo de ambos::
 Mostrando los errores
 =====================
 
-Además de capturar las excepciones podemos mostrar sus mensajes de error asociados. Para ello tendremos que usar la palabra reservada ``as`` junto a un nombre de variable.
+Además de capturar las excepciones podemos mostrar sus mensajes de error asociados. Para ello tendremos que hacer uso de la palabra reservada ``as`` junto a un nombre de variable.
 
 Veamos este comportamiento siguiendo con el ejemplo anterior::
 
@@ -144,10 +174,13 @@ Una vez con la excepción capturada, ya podemos "elaborar" un poco más el mensa
     ...
     Something went wrong: list index out of range
 
+.. seealso::
+    Este "alias" también es posible aplicarlo cuando :ref:`agrupamos excepciones <core/modularity/exceptions:agrupando excepciones>`.
+
 Elevando excepciones
 ====================
 
-Es habitual que nuestro programa tenga que lanzar (elevar o levantar) una excepción (predefinida o propia). Para ello tendremos que usar la sentencia ``raise``.
+Es habitual que nuestro programa tenga que lanzar (elevar o levantar) una excepción (predefinida o propia). Para ello tendremos que hacer uso de la sentencia ``raise``.
 
 Supongamos una función que suma dos valores enteros. En el caso de que alguno de los operandos no sea entero, elevaremos una excepción indicando esta circunstancia:
 
@@ -157,7 +190,7 @@ Supongamos una función que suma dos valores enteros. En el caso de que alguno d
     >>> def _sum(a: int, b: int) -> int:
     ...     if isinstance(a, int) and isinstance(b, int):
     ...         return a + b
-    ...     raise ValueError('Operands must be integers')
+    ...     raise TypeError('Operands must be integers')
     ...
 
     >>> _sum(4, 3)  # todo normal
@@ -167,14 +200,14 @@ Supongamos una función que suma dos valores enteros. En el caso de que alguno d
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
       File "<stdin>", line 4, in _sum
-    ValueError: Operands must be integers
+    TypeError: Operands must be integers
 
 Jerarquía de excepciones
 ========================
 
-Todas las excepciones predefinidas en Python heredan de la clase ``Exception`` y de la clase ``BaseException``.
+Todas las excepciones predefinidas en Python heredan de la clase ``Exception`` y de la clase ``BaseException`` (más allá de heredar, obviamente, de ``object``).
 
-Podemos visitar algunas `excepciones predefinidas`_ y comprobar este comportamiento::
+Podemos visitar algunas :ref:`excepciones predefinidas <core/modularity/exceptions:excepciones predefinidas>` y comprobar este comportamiento::
 
     >>> TypeError.mro()
     [TypeError, Exception, BaseException, object]
@@ -187,8 +220,6 @@ Podemos visitar algunas `excepciones predefinidas`_ y comprobar este comportamie
 
     >>> IndexError.mro()
     [IndexError, LookupError, Exception, BaseException, object]
-
-
 
 *******************
 Excepciones propias

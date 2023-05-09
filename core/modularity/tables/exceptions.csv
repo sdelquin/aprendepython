@@ -1,0 +1,11 @@
+``Excepción``,Significado
+``AttributeError``,Referencia de atributo inexistente
+``IndexError``,Subíndice de secuencia fuera de rango
+``KeyError``,Clave de diccionario no encontrada
+``NotImplementedError``,La operación debe ser implementada
+``OSError``,Error al usar una función del sistema operativo (E/S)
+``RecursionError``,Alcanzado el máximo nivel de recursión
+``StopIteration``,Fin del protocolo de iteración
+``TypeError``,Operación aplicada sobre un objeto de tipo inapropiado
+``ValueError``,Operación aplicada sobre un objeto de tipo correcto pero valor inapropiado
+``ZeroDivisionError``,Segundo argumento de división o módulo es cero
