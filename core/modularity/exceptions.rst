@@ -336,6 +336,16 @@ Podemos observar que la excepción que se lanza no contiene ningún mensaje info
       File "<stdin>", line 1, in <module>
     AssertionError: El resultado debe ser positivo
 
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba una clase ``Card`` que represente una carta de poker y una clase ``InvalidCardError`` que represente un error propio indicando que la carta no es válida.
+
+.. only:: html
+
+    | Plantilla: :download:`poker.py <files/templates/poker.py>`
+    | Glifos de cartas: :download:`cards.dat <files/cards.dat>`
+    | Tests: :download:`test_poker.py <files/test_poker.py>`
+    | Lanzar tests: ``pytest -xq test_poker.py``
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
