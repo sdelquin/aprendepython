@@ -371,7 +371,7 @@ Si cada vez que accedemos a dicha propiedad tenemos que realizar ese cálculo, e
     >>> class AstromechDroid:
     ...     def __init__(self, name: str, height: float):
     ...         self.name = name
-    ...         self.height = height
+    ...         self.height = height  # llamada al setter
     ...
     ...     @property
     ...     def height(self) -> float:
@@ -379,8 +379,8 @@ Si cada vez que accedemos a dicha propiedad tenemos que realizar ese cálculo, e
     ...
     ...     @height.setter
     ...     def height(self, height: float) -> None:
-    ...         self._periscope_height = None
     ...         self._height = height
+    ...         self._periscope_height = None  # invalidar caché
     ...
     ...     @property
     ...     def periscope_height(self) -> float:
@@ -629,7 +629,7 @@ A continuación veremos un ejemplo en el que creamos un decorador para auditar l
     >>> droid.reset()
     Droid B1 running reset
 
-A tener en cuenta la llamada al método dentro del decorador::
+A tener en cuenta la llamada al método de instancia dentro del decorador::
 
     >>> method(self, *args, **kwargs) == self.method(*args, **kwargs)
 
@@ -756,6 +756,18 @@ Esta misma estrategia se puede aplicar al **operador de igualdad** ya que es muy
 Retomando el caso ya visto... **¿qué pasaría si comparamos un droide con una cadena de texto?**
 
 .. code-block::
+    :emphasize-lines: 7,12,16
+
+    >>> class Droid:
+    ...     def __init__(self, name: str, serial_number: int):
+    ...         self.name = name
+    ...         self.serial_number = serial_number
+    ...
+    ...     def __eq__(self, droid: Droid) -> bool:
+    ...         return self.name == droid.name
+    ...
+
+    >>> droid = Droid('C-3PO', 43974973242)
 
     >>> droid == 'C-3PO'
     Traceback (most recent call last):
@@ -921,7 +933,7 @@ Veamos un ejemplo en el que implementamos un gestor de contexto que **mide tiemp
     ...         print(f'Execution time (seconds): {exec_time:.5f}')
     ...
 
-Aunque en este caso no estamos haciendo uso de los parámetros en la función ``__exit__()``, hacen referencia a una **posible excepción (error)** que se produzca en la ejecución del bloque de código que engloba el contexto. Los tres parámetros son:
+Aunque en este caso no estamos haciendo uso de los parámetros en la función ``__exit__()``, hacen referencia a una posible :ref:`excepción <core/modularity/exceptions:excepciones>` (error) que se produzca en la ejecución del bloque de código que engloba el contexto. Los tres parámetros son:
 
 1. ``exc_type`` indicando el tipo de la excepción.
 2. ``exc_value`` indicando el valor (mensaje) de la excepción.
@@ -1112,7 +1124,7 @@ Con esto ya hemos aportado una personalidad diferente a los droides de protocolo
 Accediendo a la clase base
 ==========================
 
-Cuando tenemos métodos (o atributos) definidos **con el mismo nombre** en la clase base y en la clase derivada debe existir un mecanismo para diferenciarlos.
+Cuando tenemos métodos (o atributos) definidos **con el mismo nombre** en la clase base y en la clase derivada (**colisión**) debe existir un mecanismo para diferenciarlos.
 
 Para estas ocasiones Python nos ofrece ``super()`` como función para **acceder a métodos (o atributos) de la clase base**.
 

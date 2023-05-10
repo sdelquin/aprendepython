@@ -40,6 +40,30 @@ Aquel código que se encuentre dentro del bloque ``try`` se ejecutará normalmen
 
 .. hint:: No es una buena práctica usar un bloque ``except`` sin indicar el **tipo de excepción** que estamos gestionando, no sólo porque puedan existir varias excepciones que capturar sino porque, como dice el :ref:`Zen de Python <core/introduction/python:Zen de Python>`: "explícito" es mejor que "implícito".
 
+La traza o **pila de llamadas** ("Traceback" en inglés) se muestra cada vez que se produce una excepción en nuestro programa y contiene todas las llamadas que han intervenido en el proceso. Dependiendo de lo anidado que esté el error, tendremos una traza más o menos grande::
+
+    >>> def intdiv(a: int, b: int) -> int:
+    ...     return a // b
+    ...
+    >>> def arithmetics():
+    ...     return intdiv(3, 0)
+    ...
+    >>> def manage():
+    ...     return arithmetics()
+    ...
+    >>> def main():
+    ...     return manage()
+    ...
+
+    >>> main()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "<stdin>", line 2, in main
+      File "<stdin>", line 2, in manage
+      File "<stdin>", line 2, in arithmetics
+      File "<stdin>", line 2, in intdiv
+    ZeroDivisionError: integer division or modulo by zero
+
 Especificando excepciones
 =========================
 
@@ -77,7 +101,7 @@ Conocerlas es importante ya que nos permitirá gestionar mejor los posibles erro
 
 .. csv-table::
     :file: tables/exceptions.csv
-    :widths: 20, 80
+    :widths: 20, 60, 20
     :header-rows: 1
     :class: longtable
 
@@ -154,7 +178,7 @@ Veamos un ejemplo de ambos::
 Mostrando los errores
 =====================
 
-Además de capturar las excepciones podemos mostrar sus mensajes de error asociados. Para ello tendremos que hacer uso de la palabra reservada ``as`` junto a un nombre de variable.
+Además de capturar las excepciones podemos mostrar sus mensajes de error asociados. Para ello tendremos que hacer uso de la palabra reservada ``as`` junto a un nombre de variable que contendrá el objeto de la excepción.
 
 Veamos este comportamiento siguiendo con el ejemplo anterior::
 
@@ -215,11 +239,84 @@ Podemos visitar algunas :ref:`excepciones predefinidas <core/modularity/exceptio
     >>> ZeroDivisionError.mro()
     [ZeroDivisionError, ArithmeticError, Exception, BaseException, object]
 
-    >>> ValueError.mro()
-    [ValueError, Exception, BaseException, object]
-
     >>> IndexError.mro()
     [IndexError, LookupError, Exception, BaseException, object]
+
+    >>> FileNotFoundError.mro()
+    [FileNotFoundError, OSError, Exception, BaseException, object]
+
+A continuación se detalla la **jerarquía completa de excepciones predefinidas** en Python::
+
+    BaseException
+    ├── BaseExceptionGroup
+    ├── GeneratorExit
+    ├── KeyboardInterrupt
+    ├── SystemExit
+    └── Exception
+        ├── ArithmeticError
+        │    ├── FloatingPointError
+        │    ├── OverflowError
+        │    └── ZeroDivisionError
+        ├── AssertionError
+        ├── AttributeError
+        ├── BufferError
+        ├── EOFError
+        ├── ExceptionGroup [BaseExceptionGroup]
+        ├── ImportError
+        │    └── ModuleNotFoundError
+        ├── LookupError
+        │    ├── IndexError
+        │    └── KeyError
+        ├── MemoryError
+        ├── NameError
+        │    └── UnboundLocalError
+        ├── OSError
+        │    ├── BlockingIOError
+        │    ├── ChildProcessError
+        │    ├── ConnectionError
+        │    │    ├── BrokenPipeError
+        │    │    ├── ConnectionAbortedError
+        │    │    ├── ConnectionRefusedError
+        │    │    └── ConnectionResetError
+        │    ├── FileExistsError
+        │    ├── FileNotFoundError
+        │    ├── InterruptedError
+        │    ├── IsADirectoryError
+        │    ├── NotADirectoryError
+        │    ├── PermissionError
+        │    ├── ProcessLookupError
+        │    └── TimeoutError
+        ├── ReferenceError
+        ├── RuntimeError
+        │    ├── NotImplementedError
+        │    └── RecursionError
+        ├── StopAsyncIteration
+        ├── StopIteration
+        ├── SyntaxError
+        │    └── IndentationError
+        │         └── TabError
+        ├── SystemError
+        ├── TypeError
+        ├── ValueError
+        │    └── UnicodeError
+        │         ├── UnicodeDecodeError
+        │         ├── UnicodeEncodeError
+        │         └── UnicodeTranslateError
+        └── Warning
+            ├── BytesWarning
+            ├── DeprecationWarning
+            ├── EncodingWarning
+            ├── FutureWarning
+            ├── ImportWarning
+            ├── PendingDeprecationWarning
+            ├── ResourceWarning
+            ├── RuntimeWarning
+            ├── SyntaxWarning
+            ├── UnicodeWarning
+            └── UserWarning
+
+.. tip::
+    Si capturamos una clase base estaremos capturando todas sus clases derivadas. Esto no es cierto a la inversa.
 
 *******************
 Excepciones propias
@@ -227,7 +324,7 @@ Excepciones propias
 
 |advlev|
 
-Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello tendremos que crear una clase :ref:`heredando <core/modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
+Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello simplemente tendremos que crear una clase :ref:`heredando <core/modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
 
 Veamos un ejemplo en el que creamos una excepción propia controlando que el valor sea un número entero:
 
