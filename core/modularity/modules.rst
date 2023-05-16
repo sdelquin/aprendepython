@@ -4,7 +4,7 @@ Módulos
 
 .. image:: img/xavi-cabrera-kn-UmDZQDjM-unsplash.jpg
 
-Escribir pequeños trozos de código puede resultar interesante para realizar determinadas pruebas. Pero a la larga, nuestros programas tenderán a crecer y será necesario agrupar el código en unidades manejables. [#lego-unsplash]_
+Escribir pequeños trozos de código puede resultar interesante para realizar determinadas pruebas o funcionalidades sencillas. Pero a la larga, nuestros programas tenderán a crecer y será necesario agrupar el código en piezas más manejables. [#lego-unsplash]_
 
 ************
 Organización
@@ -18,6 +18,13 @@ Los módulos pueden agruparse en carpetas denominadas **paquetes** mientras que 
     :align: center
 
     Concepto de módulo, paquete y librería
+
+Un ejemplo de todo ello lo encontramos en la `librería estándar`_. Se trata de una librería que ya viene incorporada en Python y que, a su vez, dispone de una serie de paquetes que incluyen distintos módulos.
+
+.. figure:: img/stdlib-package-module.png
+    :align: center
+
+    Ejemplo de paquete y módulos en la librería estándar
 
 ******************
 Importar un módulo
@@ -51,6 +58,10 @@ Desde otro fichero (en principio en la misma carpeta) haríamos lo siguiente par
     2.5
 
 .. note:: Nótese que en la **línea 3** debemos anteponer a la función ``mean()`` el :ref:`espacio de nombres <core/modularity/functions:Espacios de nombres>` que define el módulo ``stats``.
+
+En el caso de utilizar un **módulo de la librería estándar**, basta con saber su nombre e importarlo directamente::
+
+    >>> import os
 
 Ruta de búsqueda de módulos
 ---------------------------
@@ -309,3 +320,4 @@ Supongamos el siguiente programa ``hello.py`` y veamos cuál es el comportamient
 
 .. _Xavi Cabrera: https://unsplash.com/@xavi_cabrera?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _ProgrammerHumor: https://www.reddit.com/r/ProgrammerHumor/comments/11zi2kv/wait_but_i_thought_they_were_the_same_thing/
+.. _librería estándar: https://docs.python.org/es/3/library/

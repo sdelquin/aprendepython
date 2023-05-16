@@ -858,6 +858,17 @@ Veamos algunos ejemplos válidos:
 
     pycheck_: **mcount**
 
+Número indefinido
+-----------------
+
+Cuando trabajamos con **parámetros que representan un número indefinido de valores**, las anotaciones de tipo sólo hacen referencia al tipo que contiene la tupla, no es necesario indicar que es una tupla.
+
+En el siguiente ejemplo hay una función que calcula el máximo de una serie de valores enteros o flotantes, pero no indicamos que se reciben como tupla::
+
+    >>> def _max(*args: int | float):
+    ...     ...
+    ...
+
 ******************
 Tipos de funciones
 ******************
