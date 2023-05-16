@@ -400,6 +400,26 @@ Y con esta misma configuración podemos **modificar el mensaje por defecto**:
 .. note::
     Una excepción propia no es más que una clase ordinaria y, por tanto, admite cualquier tipo de parámetro en su constructor y resto de métodos. Si se usa con sentido puede ser una poderosa herramienta.
 
+**No siempre es necesario** implementar el método ``__str__()``. Veamos una reescritura del código anterior::
+
+    >>> class NotIntError(Exception):
+    ...     def __init__(self, value, *, message='This module only works with integers. Sorry!'):
+    ...         err_info = f'{value} -> {message}'
+    ...         super().__init__(err_info)
+    ...
+
+Nos estamos apoyando en el hecho de que ``NotIntError`` hereda de ``Exception`` y esta clase base ya dispone de un método ``__str__()``. Podemos comprobar que su comportamiento es igual que antes::
+
+    >>> raise NotIntError(2.11)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    NotIntError: 2.11 -> This module only works with integers. Sorry!
+
+    >>> raise NotIntError(2.11, message='Please use integers!')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    NotIntError: 2.11 -> Please use integers!
+
 **********
 Aserciones
 **********
