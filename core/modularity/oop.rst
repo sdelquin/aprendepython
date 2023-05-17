@@ -1461,7 +1461,7 @@ Iterables
 
 Un objeto en Python se dice **iterable** si implementa el **protocolo de iteración**. Este protocolo permite "entregar" un valor de cada vez en forma de secuencia.
 
-Hay muchos tipos de datos iterables en Python que ya hemos visto: cadenas de texto, listas, tuplas, conjuntos, diccionarios, etc.
+Hay muchos tipos de datos iterables en Python que ya hemos visto: *cadenas de texto, listas, tuplas, conjuntos, diccionarios, etc.*
 
 Para ser un **objeto iterable** sólo es necesario implementar el método mágico ``__iter__()``. Este método debe proporcionar una referencia al **objeto iterador** que es quien se encargará de desarrollar el protocolo de iteración a través del método mágico ``__next__()``.
 
@@ -1583,6 +1583,63 @@ Otra característica importante es que **los iterables se agotan**. Lo podemos c
 .. admonition:: Ejercicio
 
     pycheck_: **fibonacci_iterable**
+
+Usando un iterador externo
+--------------------------
+
+Hasta ahora hemos analizado el escenario en el que el objeto iterable coincide con el objeto iterador, pero esto no tiene por qué ser siempre así.
+
+Supongamos ahora que queremos implementar un **mercado de droides de protocolo** que debe ser un iterable y devolver cada vez un droide de protocolo. Veamos esta aproximación **usando un iterador externo**::
+
+    >>> class Droid:
+    ...     def __init__(self, name: str):
+    ...         self.name = name
+    ...
+    ...     def __repr__(self):
+    ...         return f'Droid: {self.name}'
+    ...
+
+    >>> class ProtocolDroidMarket:
+    ...     DROID_MODELS = ('C-3PO', 'K-3PO', 'R-3PO', 'RA-7',
+    ...                     'TC-14', 'TC-4', '4-LOM')
+    ...
+    ...     def __init__(self):
+    ...         self.droids = [Droid(name) for name in ProtocolDroidMarket.DROID_MODELS]
+    ...
+    ...     def __iter__(self):
+    ...         return ProtocolDroidMarketIterator(self)
+    ...
+
+    >>> class ProtocolDroidMarketIterator:
+    ...     def __init__(self, market: ProtocolDroidMarket):
+    ...         self.market = market
+    ...         self.pointer = 0
+    ...
+    ...     def __next__(self):
+    ...         if self.pointer >= len(self.market.droids):
+    ...             raise StopIteration
+    ...         droid = self.market.droids[self.pointer]
+    ...         self.pointer += 1
+    ...         return droid
+    ...
+
+Probamos ahora el código anterior recorriendo todos los droides que están disponibles en el mercado::
+
+    >>> market = ProtocolDroidMarket()
+
+    >>> for droid in market:
+    ...     print(droid)
+    ...
+    Droid: C-3PO
+    Droid: K-3PO
+    Droid: R-3PO
+    Droid: RA-7
+    Droid: TC-14
+    Droid: TC-4
+    Droid: 4-LOM
+
+.. hint::
+    Esta aproximación puede ser interesante cuando no queremos mezclar el código del iterador con la lógica del objeto principal.
 
 Ejemplos de iterables
 ---------------------

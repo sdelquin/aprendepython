@@ -13,7 +13,7 @@ El módulo `re`_ permite trabajar con `expresiones regulares`_. [#regex-unsplash
 ¿Qué es una expresión regular?
 ******************************
 
-Una **expresión regular** (también conocida como **regex** o **regexp** por su contracción anglosajona **reg**-ular **exp**-ression) es una cadena de texto que conforma un patrón de búsqueda. Se utilizan principalmente para la *búsqueda de patrones* de cadenas de caracteres u *operaciones de sustituciones*.
+Una **expresión regular** (también conocida como **regex** o **regexp** por su contracción anglosajona **reg**-ular **exp**-ression) es una cadena de texto que conforma un **patrón de búsqueda**. Se utilizan principalmente para la *búsqueda de patrones* en cadenas de caracteres u *operaciones de sustituciones*.
 
 Se trata de una herramienta ampliamente utilizada en las ciencias de la computación y necesaria para multitud de aplicaciones que traten con información textual.
 
@@ -50,7 +50,7 @@ Existen una serie de caracteres que tienen un significado especial dentro de una
 Expresiones en crudo
 ====================
 
-Cuando definimos una expresión regular es conveniente utilizar el :ref:`formato raw <core/datatypes/strings:expresiones literales>` para que los caracteres especiales no pierdan su semántica.
+Cuando definimos una expresión regular es conveniente utilizar el :ref:`formato raw <core/datatypes/strings:expresiones literales>` en las cadenas de texto para que los caracteres especiales no pierdan su semántica.
 
 Veamos un ejemplo con el tabulador::
 
@@ -93,7 +93,7 @@ En el ejemplo anterior estamos buscando un solo elemento. Imaginemos un caso en 
     >>> re.findall(r'\d+€', text)
     ['36€', '40€']
 
-    >>> re.findall(r'(\d+)€', text)
+    >>> re.findall(r'(\d+)€', text)  # grupo de captura
     ['36', '40']
 
 .. attention::
@@ -135,14 +135,11 @@ Incluso hay una manera de acceder a estos índices por separado::
     >>> m.end()
     36
 
-Si hubiera algún subgrupo de búsqueda podríamos acceder con los índices subsiguientes. Para ejemplificar este comportamiento vamos a modificar ligeramente la expresión regular original y capturar también el prefijo y el propio número de teléfono::
+Si hubiera algún **subgrupo de búsqueda** podríamos acceder con los índices subsiguientes. Para ejemplificar este comportamiento vamos a modificar ligeramente la expresión regular original y capturar también el prefijo y el propio número de teléfono::
 
     >>> m = re.search(r'\+?(\d{2})(\d{9})', text) 
 
 Ahora podemos acceder a los grupos capturados de distintas maneras::
-
-    >>> m.groups()
-    ('34', '755142009')
 
     >>> m.groups()
     ('34', '755142009')
@@ -182,7 +179,7 @@ Por tanto, se cumple lo siguiente::
     34
     755142009
 
-Ahora vamos a añadir nombres a los grupos de captura para poder explicar otras funcionalidades de este objeto ``Match``::
+Ahora vamos a **añadir nombres** a los **grupos de captura** para poder explicar otras funcionalidades de este objeto ``Match``::
 
 >>> regex = r'\+?(?P<prefix>\d{2})(?P<number>\d{9})'
 >>> m = re.search(regex, text)
@@ -228,7 +225,7 @@ Supongamos que debemos encontrar todas las vocales que hay en un determinado nom
 
 Aparentemente está bien pero nos damos cuenta de que la primera ``A`` mayúscula no está entre los resultados.
 
-El módulo de expresiones regulares establece una serie de "flags" que podemos pasar a las distintas funciones para modificar su comportamiento. Uno de los más importantes es el que nos permite ignorar mayúsculas y minúsculas ``re.IGNORECASE``.
+Este módulo de expresiones regulares establece una serie de "flags" que podemos pasar a las distintas funciones para modificar su comportamiento. Uno de los más importantes es el que nos permite ignorar mayúsculas y minúsculas: ``re.IGNORECASE``.
 
 Veamos su aplicación con el ejemplo anterior::
 
@@ -245,14 +242,11 @@ Separar
 
 Otras de las operaciones más usadas con expresiones regulares es la separación o división de una cadena de texto mediante un separador.
 
-En su momento vimos el uso de la función :ref:`split() <core/datatypes/strings:dividir una cadena>` para cadenas de texto, pero era muy limitada en cuanto a indicar patrones avanzados.  Veamos el uso de la función ``re.split()`` dentro de este módulo de expresiones regulares.
+En su momento vimos el uso de la función :ref:`split() <core/datatypes/strings:dividir una cadena>` para cadenas de texto, pero era muy limitada al especificar patrones avanzados.  Veamos el uso de la función ``re.split()`` dentro de este módulo de expresiones regulares.
 
 Un ejemplo muy sencillo sería **separar la parte entera de la parte decimal** en un determinado número flotante::
 
     >>> regex = r'[.,]'
-
-    >>> re.split(regex, number)
-    ['3', '14']
 
     >>> re.split(regex, '3.14')
     ['3', '14']
@@ -268,9 +262,9 @@ Vemos que la función devuelve una lista con los distintos elementos separados.
 Reemplazar
 ==========
 
-Este módulo también nos ofrece la posibilidad de reemplazar ocurrencias dentro de un texto.
+Este módulo de expresions regulares también nos ofrece la posibilidad de reemplazar ocurrencias dentro de un texto.
 
-A vueltas con el ejemplo del nombre de una persona, supongamos que recibimos la información en formato ``<nombre> <apellidos>`` y que lo necesitamos en formato ``<apellidos>, <nombre>``. Veamos cómo resolver este problema con la operación de reemplazar::
+A vueltas con el ejemplo del nombre de una persona, supongamos que recibimos la información en formato ``<nombre> <apellidos>`` y que la necesitamos en formato ``<apellidos>, <nombre>``. Veamos cómo resolver este problema con la operación de reemplazar::
 
     >>> name = 'Alan Turing'
 
@@ -328,34 +322,30 @@ Veamos un ejemplo en el que comprobamos si un texto dado es un DNI válido::
     >>> re.match(regex, text)  # devuelve un objeto Match
     <re.Match object; span=(0, 9), match='54632178Y'>
 
-En el caso de que no casara, la función devuelve ``None``::
+Si el patrón no casa la función devuelve ``None``::
 
     >>> text = '87896532$'
 
     >>> re.match(regex, text)  # devuelve None
 
+    >>> re.match(regex, text) is None
+    True
+
 Todo esto lo podemos poner dentro una sentencia condicional haciendo uso además del :ref:`operador morsa <core/controlflow/conditionals:operador morsa>` para aprovechar la variable creada::
 
-    >>> text = '54632178Y'
-
-    >>> if m := re.match(regex, text):
-    ...     print(f'{text} es un DNI válido')
-    ...     print(m.span())
-    ... else:
-    ...     print(f'{text} no es un DNI válido')
+    >>> def check_id_card(id_card: text) -> None:
+    ...     if m := re.match(regex, id_card):
+    ...         print(f'{text} es un DNI válido')
+    ...         print(m.span())
+    ...     else:
+    ...         print(f'{text} no es un DNI válido')
     ...
-    54632178Y es un DNI válido
-    (0, 9)
-
-
-    >>> text = '87896532$'
     
-    >>> if m := re.match(regex, text):
-    ...     print(f'{text} es un DNI válido')
-    ...     print(m.span())
-    ... else:
-    ...     print(f'{text} no es un DNI válido')
-    ...
+    >>> check_id_card('54632178Y')
+    87896532$ es un DNI válido
+    (0, 9)
+    
+    >>> check_id_card('87896532$')
     87896532$ no es un DNI válido
 
 .. note::

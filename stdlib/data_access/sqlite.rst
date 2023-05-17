@@ -18,7 +18,7 @@ A continuación se muestran algunas de sus **principales características**:
 - Hasta 32K columnas en una tabla y filas ilimitadas.
 - Índices multi-columna.
 - Restricciones de tipo ``CHECK``, ``UNIQUE``, ``NOT NULL`` y ``FOREIGN KEY``.
-- Transacciones ACID usando ``BEGIN``, ``COMMIT`` y ``ROLLBACK``
+- Transacciones planas usando ``BEGIN``, ``COMMIT`` y ``ROLLBACK``
 - Transacciones anidadas usando ``SAVEPOINT``, ``RELEASE`` y ``ROLLBACK TO``.
 - Subconsultas.
 - "Joins" de hasta 64 relaciones.
@@ -40,7 +40,7 @@ Conexión a la base de datos
 
 Una base de datos SQLite no es más que un fichero binario, habitualmente con extensión ``.db`` o ``.sqlite``.
 
-La **conexión a la base de datos** se realiza a través de la función `connect()`_ que espera recibir la ruta al fichero de base de datos y devuelve un objeto `Connection`_::
+La **conexión a la base de datos** se realiza a través de la función `connect()`_ que espera recibir la ruta al fichero de base de datos y devuelve un objeto de tipo `Connection`_::
 
     >>> import sqlite3
     
@@ -48,6 +48,9 @@ La **conexión a la base de datos** se realiza a través de la función `connect
     
     >>> con
     <sqlite3.Connection at 0x106ea8210>
+
+.. warning::
+    El módulo se llama **sqlite3** (no olvidarse del 3 al final).
 
 La función ``connect()`` creará el fichero ``python.db`` si es que no existe. De momento se ha creado pero sin contenido::
 
@@ -65,7 +68,7 @@ Una vez que disponemos de la conexión ya podemos obtener un `Cursor`_ mediante 
 Creación de tablas
 ******************
 
-Durante toda esta sección vamos a trabajar con una tabla que refleje las `distintas versiones de Python`_ que han sido liberadas.
+Durante toda esta sección vamos a trabajar con una tabla de ejemplo que represente las `distintas versiones de Python`_ que han sido liberadas.
 
 Lo primero de todo será crear la tabla ``pyversions`` -- teniendo en cuenta los `tipos de datos SQLite`_ -- con un código similar al siguiente:
 
@@ -91,9 +94,9 @@ Haremos uso del cursor creado para **ejecutar** estas instrucciones::
     <sqlite3.Cursor at 0x106a63960>
 
 .. hint::
-    Una :ref:`cadena multilínea <core/datatypes/strings:comillas triples>` es una aliada a la hora de escribir sentencias SQL.
+    Las :ref:`cadenas multilínea <core/datatypes/strings:comillas triples>` son grandes aliadas a la hora de escribir sentencias SQL.
 
-En teoría, ya hemos creado la tabla ``pyversions`` de manera satisfactoria. Si comprobamos el tipo de fichero ``python.db`` podemos observar que concuerda con lo esperado::
+En teoría, ya hemos creado la tabla ``pyversions`` de manera satisfactoria. Si comprobamos el tipo del fichero ``python.db`` podemos observar que concuerda con lo esperado::
 
     >>> !file python.db
     python.db: SQLite 3.x database, last written using SQLite version 3032003
@@ -102,7 +105,7 @@ En teoría, ya hemos creado la tabla ``pyversions`` de manera satisfactoria. Si 
 Añadiendo datos
 ***************
 
-Para poder tener contenido sobre el que trabajar, vamos primeramente a añadir algunos datos a la tabla. Como finalmente estamos lanzando sentencias SQL podemos seguir haciendo uso de la función `execute()`_::
+Para poder tener contenido sobre el que trabajar, vamos primeramente a añadir ciertos datos a la tabla. Como básicamente seguimos ejecutando sentencias SQL (en este caso de inserción) podemos volver a hacer uso de la función `execute()`_::
 
     >>> sql = 'INSERT INTO pyversions VALUES("2.6", 2008, 10, "Barry Warsaw")'
     
@@ -114,11 +117,14 @@ Aparentemente todo ha ido bien. Vamos a usar -- temporalmente -- la herramienta 
 .. code-block:: console
 
     $ sqlite3 python.db "select * from pyversions"
-    $
+    $ # Vacío
 
-Resulta que no obtenemos ningún registro. ¿Por qué ocurre esto? Se debe a que la transacción está pendiente de confirmar. Para ello tendremos que hacer uso de la función `commit()`_::
+Resulta que no obtenemos ningún registro. ¿Por qué ocurre esto? Se debe a que la transacción está aún pendiente de confirmar. Para consolidarla tendremos que hacer uso de la función `commit()`_::
 
     >>> con.commit()
+
+.. note::
+    La función ``commit()`` pertenece al objeto de conexión, no al objeto de cursor.
 
 Ahora podemos comprobar que sí se han guardado los datos correctamente:
 
@@ -137,7 +143,7 @@ Supongamos que disponemos del siguiente fichero ``pyversions.csv``:
 .. literalinclude:: files/pyversions.csv
    :linenos:
 
-Queremos procesar cada línea e insertarla en la tabla como un registro::
+Queremos procesar cada línea e insertarla en la tabla como un nuevo registro. Veamos una primera aproximación::
 
     >>> with open('pyversions.csv') as f:
     ...     f.readline()  # ignore headers
@@ -148,7 +154,7 @@ Queremos procesar cada línea e insertarla en la tabla como un registro::
     ...     con.commit()
     ...
 
-Otra forma de hacer esto mismo es utilizando la función `executemany()`_ en la que podemos indicar los parámetros a utilizar si partimos de un **iterable** de iterables (con el mismo número de campos que la tabla):
+Otra forma de hacer esto mismo sería utilizar la función `executemany()`_ en la que podemos indicar los parámetros a utilizar si partimos de un **iterable** de iterables (con el mismo número de campos que la tabla):
 
 .. code-block::
     :emphasize-lines: 20
@@ -177,7 +183,7 @@ Otra forma de hacer esto mismo es utilizando la función `executemany()`_ en la 
     
     >>> con.commit()
 
-Si dispusiéramos de un **diccionario** podríamos indicar el nombre de los campos:
+Si dispusiéramos de un **diccionario** podríamos indicar incluso el nombre de los campos:
 
 .. code-block::
     :emphasize-lines: 22
@@ -208,7 +214,7 @@ Si dispusiéramos de un **diccionario** podríamos indicar el nombre de los camp
 
     >>> con.commit()
 
-En cualquiera de estos tres casos el resultado es el mismo y los registros quedan correctamente insertados en la base de datos:
+En cualquiera de los tres casos anteriores el resultado es el mismo y los registros quedan correctamente insertados en la base de datos:
 
 .. code-block:: console
 
@@ -239,7 +245,7 @@ La forma más directa de hacer esto sería::
     >>> con.close()
 
 .. attention::
-    Si hay alguna transacción pendiente, esta no será guardada al cerrar la conexión con la base de datos.
+    Si hay alguna transacción pendiente, esta no será guardada al cerrar la conexión con la base de datos, si no se consolidan los cambios previamente.
 
 Confirmar cambios
 =================
@@ -247,7 +253,7 @@ Confirmar cambios
 En SQLite también es posible utilizar un :ref:`gestor de contexto <core/modularity/oop:gestores de contexto>` sobre la conexión que funciona de la siguiente manera:
 
 - Si todo ha ido bien ejecutará un "commit" al final del bloque.
-- Si ha habido alguna excepción ejecutará un "rollback" para que todo quede como al principio y deshacer los posibles cambios hechos.
+- Si ha habido alguna excepción ejecutará un "rollback" para que todo quede como al principio y deshacer los posibles cambios efectuados.
 
 Ejemplo en el que todo va bien::
 
@@ -277,16 +283,18 @@ Nótese que en ambos casos **debemos cerrar la conexión**. Esto no se realiza d
 .. seealso::
     Existe la función `rollback()`_ que restaura a su comienzo cualquier transacción pendiente.
 
+Es interesante conocer las distintas `excepciones`_ que pueden producirse al trabajar con este módulo a la hora del control de errores y de plantear posibles escenarios de mejora.
+
 *********
 Consultas
 *********
 
 La manera más sencilla de hacer una consulta es utilizar un cursor. Existen dos aproximaciones en el tratamiento de los resultados de la consulta:
 
-1. Como tuplas.
-2. Como diccionarios.
+1. Registros como tuplas.
+2. Registros como diccionarios.
 
-Consultas como tuplas
+Registros como tuplas
 =====================
 
 Cuando ejecutamos una consulta **el resultado es un objeto iterable** que podemos recorrer de la misma manera que hemos hecho hasta ahora. Los datos nos vienen en forma de **tuplas**::
@@ -338,7 +346,7 @@ También tenemos la opción de utilizar las funciones `fetchone()`_ y `fetchall(
 .. caution::
     Nótese que la llamada a ``fetchone()`` hace que quede "una fila menos" que recorrer. Es un comportamiento totalmente análogo a la :ref:`lectura de una línea <core/datastructures/files:lectura de una línea>` en un fichero. 
 
-Consultas como diccionarios
+Registros como diccionarios
 ===========================
 
 Este módulo también nos permite obtener los resultados de una consulta como un **iterable de diccionarios**. Esto ayuda a **acceder a los valores de cada registro por el nombre de la columna**.
@@ -532,3 +540,4 @@ Cuando insertamos un registro en la base de datos podemos obtener cuál es el **
 .. _fetchone(): https://docs.python.org/es/3/library/sqlite3.html#sqlite3.Cursor.fetchone
 .. _fetchall(): https://docs.python.org/es/3/library/sqlite3.html#sqlite3.Cursor.fetchall
 .. _rollback(): https://docs.python.org/es/3/library/sqlite3.html#sqlite3.Connection.rollback
+.. _excepciones: https://docs.python.org/es/3/library/sqlite3.html#exceptions
