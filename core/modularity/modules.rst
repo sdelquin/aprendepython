@@ -21,6 +21,8 @@ Los módulos pueden agruparse en carpetas denominadas **paquetes** mientras que 
 
 Un ejemplo de todo ello lo encontramos en la `librería estándar`_. Se trata de una librería que ya viene incorporada en Python y que, a su vez, dispone de una serie de paquetes que incluyen distintos módulos.
 
+Un caso concreto dentro de la ``stdlib`` (libería estándar) podría ser el del paquete ``urllib`` -- para operaciones con URLs -- que dispone de 5 módulos:
+
 .. figure:: img/stdlib-package-module.png
     :align: center
 
@@ -157,6 +159,10 @@ Es posible que no necesitemos todo aquello que está definido en ``stats.py``. S
 
 .. note:: Nótese que en la **línea 3** ya podemos hacer uso directamente de la función ``mean()`` porque la hemos importado directamente. Este esquema tiene el inconveniente de la posible **colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando.
 
+Para **importar varios objetos** (funciones en este caso) desde un mismo módulo, podemos especificarlos separados por comas en la misma línea::
+
+    >>> from stats import mean, std
+
 Es posible hacer ``from stats import *`` pero estaríamos importando todos los componentes del módulo, cuando a lo mejor no es lo que necesitamos. A continuación una imagen que define bien este escenario:
 
 .. figure:: img/import.png
@@ -272,7 +278,12 @@ La estructura que suele tener este *programa principal* es la siguiente::
 
 Esta condición permite, en el programa principal, diferenciar qué codigo se lanzará cuando el fichero se ejecuta directamente o cuando el fichero se importa desde otro lugar.
 
-Supongamos el siguiente programa ``hello.py`` y veamos cuál es el comportamiento según el escenario escogido:
+La variable ``__name__`` toma los siguientes valores:
+
+- El nombre del módulo (o paquete) al **importar** el fichero.
+- El valor ``'__main__'`` al **ejecutar** el fichero.
+
+Supongamos el siguiente programa ``hello.py`` y analizemos cuál es el comportamiento según el escenario escogido:
 
 .. literalinclude:: files/hello.py
     :linenos:
