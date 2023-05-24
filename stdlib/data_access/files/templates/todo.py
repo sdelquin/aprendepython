@@ -9,7 +9,7 @@ TASK_PENDING_SYMBOL = '⎕'
 
 class Task:
     '''Crear atributos de clase:
-    - con: para la conexión a la base de datos.
+    - con: para la conexión a la base de datos. Establecer consultas como diccionarios.
     - cur: para el cursor de manejo.'''
 
     pass
@@ -54,12 +54,10 @@ class Task:
 
 class ToDo:
     '''Crear atributos de clase:
-    - con: para la conexión a la base de datos.
+    - con: para la conexión a la base de datos. Establecer consultas como diccionarios.
     - cur: para el cursor de manejo.'''
 
-    con = sqlite3.connect(DB_PATH)
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
+    pass
 
     def create_db(self):
         '''Crea la base de datos con los campos "id", "name" y "done"'''
