@@ -124,7 +124,7 @@ Resulta que no obtenemos ningún registro. ¿Por qué ocurre esto? Se debe a que
     >>> con.commit()
 
 .. note::
-    La función ``commit()`` pertenece al objeto de conexión, no al objeto de cursor.
+    La función ``commit()`` pertenece al objeto conexión, no al objeto cursor.
 
 Ahora podemos comprobar que sí se han guardado los datos correctamente:
 
@@ -132,6 +132,50 @@ Ahora podemos comprobar que sí se han guardado los datos correctamente:
 
     $ sqlite3 python.db "select * from pyversions"
     2.6|2008|10|Barry Warsaw
+
+Inserciones parametrizadas
+==========================
+
+Supongamos que no sabemos, a priori, los datos que vamos a insertar en la tabla puesto que provienen del usuario o de otra fuente externa. En este caso cabría plantearse cuál es la mejor opción para parametrizar la consulta.
+
+Una primera aproximación podrían ser los :ref:`f-strings <core/datatypes/strings:"f-strings">`::
+
+    >>> branch = 3.9
+    >>> released_at_year = 2020
+    >>> released_at_month = 10
+    >>> release_manager = 'Łukasz Langa'
+
+    >>> sql = f'INSERT INTO pyversions VALUES({branch}, {released_at_year}, {released_at_month}, {release_manager})'
+    >>> sql
+    'INSERT INTO pyversions VALUES(3.9, 2020, 10, Łukasz Langa)'
+
+    >>> cur.execute(sql)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    OperationalError: near "Langa": syntax error
+
+Obtenemos un error porque el contenido de "release manager" **es una cadena de texto y no puede contener espacios**. Una solución a este problema sería detectar qué campos necesitan comillas e incorporarlas de forma manual.
+
+Pero existe otra aproximación y es **usar los "placeholders" que ofrece SQLite** al ejecutar sentencias. Estos "placeholders" se representan por el **símbolo de interrogación** ``?`` y se sustituyen por el **valor correspondiente en una tupla** que pasamos a posteriori.
+
+Veamos cómo sería esta reimplementación::
+
+    >>> sql = 'INSERT INTO pyversions VALUES(?, ?, ?, ?)'
+
+    >>> cur.execute(sql, (branch, released_at_year, released_at_month, release_manager))
+    <sqlite3.Cursor at 0x107426c40>
+
+Ahora sí que todo ha ido bien y **no nos hemos tenido que preocupar del tipo de los campos**. Ya sólo por esto valdría la pena utilizar esta aproximación pero también sirve para evitar ataques por inyección SQL [#inyeccion-sql]_.
+
+Este módulo también nos ofrece la posibilidad de usar **parámetros nominales a través de un diccionario** especificando los campos con dos puntos ``:field``. Veamos cómo sería esta aproximación::
+
+    >>> sql = 'INSERT INTO pyversions VALUES(:branch, :year, :month, :manager)'
+
+    >>> cur.execute(sql, dict(year=2020, month=10, branch=3.9, manager='Łukasz Langa'))
+    <sqlite3.Cursor at 0x107426c40>
+
+.. tip::
+    Nótese que no es necesario usar el mismo orden de los parámetros cuando utilizamos esta aproximación nominal ya que el diccionario incluye las claves.
 
 Inserciones en lote
 ===================
@@ -391,9 +435,104 @@ Vemos que esta aproximación nos permite usar nombres de columnas pero también 
     >>> row[3]
     'Barry Warsaw'
 
+Número de filas
+===============
+
+Hay ocasiones en las que lo que necesitamos obtener no es el dato en sí mismo, sino el **número de filas vinculadas a una determinada consulta**. En este sentido hay varias alternativas.
+
+La primera aproximación es **mediante la sentencia SQL para contar**: ``COUNT()`` y obtener su resultado::
+
+    >>> result = cur.execute('SELECT COUNT(*) FROM pyversions')
+
+    >>> rows = result.fetchone()
+
+    >>> rows[0]
+    15
+
+La segunda aproximación es **utilizar herramientas Python** para obtener la longitud del resultado de la consulta::
+
+    >>> result = cur.execute('SELECT * FROM pyversions')
+
+    >>> rows = result.fetchall()
+
+    >>> len(rows)
+    15
+
 *********************
 Otras funcionalidades
 *********************
+
+Tablas en memoria
+=================
+
+Existe la posibilidad de trabajar con tablas en memoria sin necesidad de tener un fichero en disco.
+
+Veamos un ejemplo muy sencillo:
+
+.. code-block::
+    :emphasize-lines: 1
+
+    >>> con = sqlite3.connect(':memory:')
+
+    >>> cur = con.cursor()
+
+    >>> cur.execute('CREATE TABLE temp (id INTEGER PRIMARY KEY, value CHAR)')
+    <sqlite3.Cursor at 0x107884ea0>
+
+    >>> cur.execute('INSERT INTO temp VALUES (1, "X")')
+    <sqlite3.Cursor at 0x107884ea0>
+
+    >>> for row in cur.execute('SELECT * FROM temp'):
+    ...     print(row)
+    ...
+    (1, 'X')
+
+.. caution::
+    Obviamente si no guardamos estos datos los perderemos al no disponer de persistencia.
+
+
+Claves autoincrementales
+========================
+
+Es muy habitual encontrar en la definición de una tabla un **campo identificador numérico entero** con el modificador ``AUTOINCREMENT`` de tal forma que actúe como clave primaria.
+
+Existe una `forma sencilla de aplicar este escenario en SQLite <https://www.sqlite.org/autoinc.html>`_:
+
+1. Definimos una columna de tipo ``INTEGER PRIMARY KEY``.
+2. En cualquier operación de inserción, si no especificamos un valor explícito para dicha columna, se rellenará automáticamente con un entero sin usar, típicamente uno más que el último valor generado.
+
+Veamos un ejemplo de aplicación con una tabla en memoria que almacena **ciudades y sus geolocalizaciones**:
+
+.. code-block::
+    :emphasize-lines: 5, 12, 18, 21, 27
+
+    >>> con = sqlite3.connect(':memory:')
+    >>> cur = con.cursor()
+
+    >>> cur.execute('''CREATE TABLE cities (
+    ... id INTEGER PRIMARY KEY,
+    ... city CHAR UNIQUE,
+    ... latitude REAL,
+    ... longitude REAL)''')
+    <sqlite3.Cursor at 0x107139bc0>
+
+    >>> cur.execute('''INSERT INTO
+    ... cities(city, latitude, longitude)  # Obviamos "id"
+    ... VALUES("Tokyo", 35.652832, 139.839478)''')
+    <sqlite3.Cursor at 0x107139bc0>
+
+    >>> result = cur.execute('SELECT * FROM cities')
+    >>> result.fetchall()
+    [(1, 'Tokyo', 35.652832, 139.839478)]
+
+    >>> cur.execute('''INSERT INTO
+    ... cities(city, latitude, longitude)  # Obviamos "id"
+    ... VALUES("Barcelona", 41.390205, 2.154007)''')
+    <sqlite3.Cursor at 0x107139bc0>
+
+    >>> result = cur.execute('SELECT * FROM cities')
+    >>> result.fetchall()
+    [(1, 'Tokyo', 35.652832, 139.839478), (2, 'Barcelona', 41.390205, 2.154007)]
 
 Copias de seguridad
 ===================
@@ -435,34 +574,6 @@ Podemos comprobar que ambas bases de datos tienen el mismo contenido::
     ...         print('Contents from both DBs are the same!')
     ...
     Contents from both DBs are the same!
-
-Tablas en memoria
-=================
-
-Existe la posibilidad de trabajar con tablas en memoria sin necesidad de tener un fichero en disco.
-
-Veamos un ejemplo muy sencillo:
-
-.. code-block::
-    :emphasize-lines: 1
-
-    >>> con = sqlite3.connect(':memory:')
-
-    >>> cur = con.cursor()
-
-    >>> cur.execute('CREATE TABLE temp (id INTEGER PRIMARY KEY, value CHAR)')
-    <sqlite3.Cursor at 0x107884ea0>
-
-    >>> cur.execute('INSERT INTO temp VALUES (1, "X")')
-    <sqlite3.Cursor at 0x107884ea0>
-
-    >>> for row in cur.execute('SELECT * FROM temp'):
-    ...     print(row)
-    ...
-    (1, 'X')
-
-.. caution::
-    Obviamente si no guardamos estos datos los perderemos al no disponer de persistencia.
 
 Información de filas
 ====================
@@ -510,12 +621,22 @@ Cuando insertamos un registro en la base de datos podemos obtener cuál es el **
     >>> cur.lastrowid
     17
 
+.. rubric:: EJERCICIOS DE REPASO
+
+1. Escriba una clase ``ToDo`` y una clase ``Task`` que permita implementar una aplicación de gestión de tareas.
+
+.. only:: html
+
+    | Plantilla: :download:`todo.py <files/templates/todo.py>`
+    | Tests: :download:`test_todo.py <files/test_todo.py>`
+    | Lanzar tests: ``pytest -xq test_todo.py``
 
 .. --------------- Footnotes ---------------
 
 .. [#sqlite-unsplash] Foto original de portada por `Jandira Sonnendeck`_ en Unsplash.
 .. [#sqlite-cli] `Herramienta cliente de sqlite`_ para terminal.
 .. [#backup-example] Ejemplo tomado de la documentación oficial de Python.
+.. [#inyeccion-sql] `Inyección SQL`_ es un método de infiltración de código intruso que se vale de una vulnerabilidad informática presente en una aplicación en el nivel de validación de las entradas para realizar operaciones sobre una base de datos.
 
 .. --------------- Hyperlinks ---------------
 
@@ -541,3 +662,4 @@ Cuando insertamos un registro en la base de datos podemos obtener cuál es el **
 .. _fetchall(): https://docs.python.org/es/3/library/sqlite3.html#sqlite3.Cursor.fetchall
 .. _rollback(): https://docs.python.org/es/3/library/sqlite3.html#sqlite3.Connection.rollback
 .. _excepciones: https://docs.python.org/es/3/library/sqlite3.html#exceptions
+.. _Inyección SQL: https://es.wikipedia.org/wiki/Inyecci%C3%B3n_SQL
