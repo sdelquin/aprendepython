@@ -93,8 +93,13 @@ En el ejemplo anterior estamos buscando un solo elemento. Imaginemos un caso en 
     >>> re.findall(r'\d+€', text)
     ['36€', '40€']
 
-    >>> re.findall(r'(\d+)€', text)  # grupo de captura
+Si utilizamos un **grupo de captura** (paréntesis) la función ``findall()`` sólo nos devolverá aquellas coincidencias del grupo de captura::
+
+    >>> re.findall(r'(\d+)€', text)
     ['36', '40']
+
+En el caso de que queramos agrupar expresiones regulares con ``findall()`` sin que se capturen estos grupos debemos utilizar la sintaxis: ``(?:...)``
+
 
 .. attention::
     La función ``findall()`` no devuelve un objeto ``Match`` sino que retorna una lista con las cadenas de texto coincidentes.
@@ -342,7 +347,7 @@ Todo esto lo podemos poner dentro una sentencia condicional haciendo uso además
     ...
     
     >>> check_id_card('54632178Y')
-    87896532$ es un DNI válido
+    54632178Y es un DNI válido
     (0, 9)
     
     >>> check_id_card('87896532$')
@@ -374,11 +379,11 @@ Si vamos a utilizar una expresión regular una única vez entonces no debemos pr
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que encuentre todas las palabras que comiencen por vocal en un texto dado.
-2. Escriba un programa en Python que encuentre todas las URLs en un texto dado.
-3. Escriba un programa en Python que indique si un determinado número es o no un :ref:`flotante válido en Python <core/datatypes/numbers:flotantes>`.
-4. Escriba un programa en Python que determine si un email dado tiene el formato correcto.
-5. Escriba un programa en Python que obtenga el resultado de una operación entre números enteros positivos. Las operación puede ser suma, resta, multiplicación o división, y puede haber espacios (o no) entre los operandos y el operador.
+1. Escriba un programa en Python que encuentre todas las palabras que comiencen por vocal en un texto dado: ``vowel_words.py``
+2. Escriba un programa en Python que indique si una URL dada es válida o no: ``valid_url.py``
+3. Escriba un programa en Python que indique si un determinado número es o no un :ref:`flotante válido en Python <core/datatypes/numbers:flotantes>`: ``valid_float.py``
+4. Escriba un programa en Python que determine si un email dado tiene el formato correcto: ``valid_email.py``
+5. Escriba un programa en Python que obtenga el resultado de una operación entre números enteros positivos. Las operación puede ser suma, resta, multiplicación o división, y puede haber espacios (o no) entre los operandos y el operador: ``eval_str_op.py``
 
 
 
