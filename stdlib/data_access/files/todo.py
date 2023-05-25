@@ -95,8 +95,8 @@ class ToDo:
     cur = con.cursor()
     # </hide>
 
-    def create_db(self):
-        '''Crea la base de datos con los campos "id", "name" y "done"'''
+    def create_table_tasks(self):
+        '''Crea la tabla "tasks" con los campos "id", "name" y "done"'''
         # <hide>
         sql = '''CREATE TABLE tasks (
             id INTEGER PRIMARY KEY,

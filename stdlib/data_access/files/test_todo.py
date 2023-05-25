@@ -189,24 +189,26 @@ def test_get_all_tasks(task1: Task, task2: Task, task3: Task, todo: ToDo):
 
 
 def test_get_done_tasks(task1: Task, task2: Task, task3: Task, todo: ToDo):
-    TASKS = (task1,)
+    TASKS = (task1, task2, task3)
     for task in TASKS:
         task.save()
+    DONE_TASKS = (task2, task3)
     all_tasks = todo.get_tasks(done=1)
     assert isinstance(all_tasks, typing.Generator)
-    for task, tested_task in zip(TASKS, all_tasks):
+    for task, tested_task in zip(DONE_TASKS, all_tasks):
         assert task.name == tested_task.name
         assert task.done == tested_task.done
         assert task.id == tested_task.id
 
 
 def test_get_pending_tasks(task1: Task, task2: Task, task3: Task, todo: ToDo):
-    TASKS = (task2, task3)
+    TASKS = (task1, task2, task3)
     for task in TASKS:
         task.save()
+    PENDING_TASKS = (task1,)
     all_tasks = todo.get_tasks(done=0)
     assert isinstance(all_tasks, typing.Generator)
-    for task, tested_task in zip(TASKS, all_tasks):
+    for task, tested_task in zip(PENDING_TASKS, all_tasks):
         assert task.name == tested_task.name
         assert task.done == tested_task.done
         assert task.id == tested_task.id
@@ -219,14 +221,16 @@ def test_add_task(todo: ToDo, db_con: sqlite3.Connection):
 
 
 def test_complete_task(todo: ToDo, task1: Task, db_con: sqlite3.Connection):
+    assert task1.done is False
     task1.save()
     todo.complete_task(1)
     result = db_con.cursor().execute('SELECT * FROM tasks WHERE id=1')
     assert result.fetchone()['done'] == 1
 
 
-def test_reopen_task(todo: ToDo, task1: Task, db_con: sqlite3.Connection):
-    task1.save()
+def test_reopen_task(todo: ToDo, task2: Task, db_con: sqlite3.Connection):
+    assert task2.done is True
+    task2.save()
     todo.reopen_task(1)
     result = db_con.cursor().execute('SELECT * FROM tasks WHERE id=1')
     assert result.fetchone()['done'] == 0

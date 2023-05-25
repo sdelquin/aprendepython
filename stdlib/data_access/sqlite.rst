@@ -167,7 +167,7 @@ Obtenemos un error porque el contenido de "release manager" **es una cadena de t
 Usando placeholders SQLite
 --------------------------
 
-Pero existe otra aproximación y es **usar los "placeholders" que ofrece SQLite** al ejecutar sentencias. Estos "placeholders" se representan por el **símbolo de interrogación** ``?`` y se sustituyen por el **valor correspondiente en una tupla** que pasamos como parámetro a posteriori.
+Pero existe otra aproximación y es **usar los "placeholders" que ofrece SQLite** al ejecutar sentencias. Estos "placeholders" se representan por el **símbolo de interrogación** ``?`` y se sustituyen por el **valor correspondiente en una tupla (o iterable)** que pasamos como parámetro a posteriori.
 
 Veamos cómo sería esta reimplementación::
 
@@ -180,6 +180,8 @@ Ahora sí que todo ha ido bien y **no nos hemos tenido que preocupar del tipo de
 
 .. caution::
     Cuando sólo haya un "placeholder" hay que recordar que las :ref:`tuplas de un único elemento <core/datastructures/tuples:tuplas de un elemento>` necesitan una coma al final: ``cur.execute('INSERT INTO table (column) VALUES (?)', (value,))``
+
+    En estos casos quizás sea incluso más sencillo pasar una lista de un elemento: ``[value]``
 
 Este módulo nos ofrece igualmente la posibilidad de usar **parámetros nominales a través de un diccionario** especificando los campos con dos puntos ``:field``. Veamos cómo sería esta aproximación::
 
