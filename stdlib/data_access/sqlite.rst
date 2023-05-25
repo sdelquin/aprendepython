@@ -178,6 +178,9 @@ Veamos cómo sería esta reimplementación::
 
 Ahora sí que todo ha ido bien y **no nos hemos tenido que preocupar del tipo de los campos**. Ya sólo por esto valdría la pena utilizar esta aproximación pero también ayuda a evitar ataques por inyección SQL [#inyeccion-sql]_.
 
+.. caution::
+    Cuando sólo haya un "placeholder" hay que recordar que las :ref:`tuplas de un único elemento <core/datastructures/tuples:tuplas de un elemento>` necesitan una coma al final: ``cur.execute('INSERT INTO table (column) VALUES (?)', (value,))``
+
 Este módulo nos ofrece igualmente la posibilidad de usar **parámetros nominales a través de un diccionario** especificando los campos con dos puntos ``:field``. Veamos cómo sería esta aproximación::
 
     >>> sql = 'INSERT INTO pyversions VALUES (:branch, :year, :month, :manager)'
