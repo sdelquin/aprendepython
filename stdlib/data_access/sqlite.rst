@@ -38,7 +38,7 @@ Y muchas otras que se pueden consultar en la `página del proyecto <https://sqli
 Conexión a la base de datos
 ****************************
 
-Una base de datos SQLite no es más que un fichero binario, habitualmente con extensión ``.db`` o ``.sqlite``.
+Una base de datos SQLite no es más que un fichero binario, habitualmente con extensión ``.db`` o ``.sqlite``. Antes de realizar cualquier operación es necesario "conectar" con este fichero.
 
 La **conexión a la base de datos** se realiza a través de la función `connect()`_ que espera recibir la ruta al fichero de base de datos y devuelve un objeto de tipo `Connection`_::
 
@@ -52,7 +52,7 @@ La **conexión a la base de datos** se realiza a través de la función `connect
 .. warning::
     El módulo se llama **sqlite3** (no olvidarse del 3 al final).
 
-La función ``connect()`` creará el fichero ``python.db`` si es que no existe. De momento se ha creado pero sin contenido::
+La función ``connect()`` creará el fichero ``python.db`` (si es que no existe ya). En un principio no tiene contenido alguno::
 
     >>> !file python.db
     python.db: empty
@@ -96,7 +96,9 @@ Haremos uso del cursor creado para **ejecutar** estas instrucciones::
 .. hint::
     Las :ref:`cadenas multilínea <core/datatypes/strings:comillas triples>` son grandes aliadas a la hora de escribir sentencias SQL.
 
-En teoría, ya hemos creado la tabla ``pyversions`` de manera satisfactoria. Si comprobamos el tipo del fichero ``python.db`` podemos observar que concuerda con lo esperado::
+Ya hemos creado la tabla ``pyversions`` de manera satisfactoria.
+
+Si comprobamos ahora el contenido del fichero ``python.db`` podemos observar que nos indica la versión de SQLite y la última escritura::
 
     >>> !file python.db
     python.db: SQLite 3.x database, last written using SQLite version 3032003
@@ -105,9 +107,9 @@ En teoría, ya hemos creado la tabla ``pyversions`` de manera satisfactoria. Si 
 Añadiendo datos
 ***************
 
-Para poder tener contenido sobre el que trabajar, vamos primeramente a añadir ciertos datos a la tabla. Como básicamente seguimos ejecutando sentencias SQL (en este caso de inserción) podemos volver a hacer uso de la función `execute()`_::
+Para tener contenido sobre el que trabajar, vamos primeramente a añadir ciertos datos a la tabla. Como básicamente seguimos ejecutando sentencias SQL (en este caso de inserción) podemos volver a hacer uso de la función `execute()`_::
 
-    >>> sql = 'INSERT INTO pyversions VALUES("2.6", 2008, 10, "Barry Warsaw")'
+    >>> sql = 'INSERT INTO pyversions VALUES ("2.6", 2008, 10, "Barry Warsaw")'
     
     >>> cur.execute(sql)
     <sqlite3.Cursor at 0x106a63960>
@@ -123,8 +125,8 @@ Resulta que no obtenemos ningún registro. ¿Por qué ocurre esto? Se debe a que
 
     >>> con.commit()
 
-.. note::
-    La función ``commit()`` pertenece al objeto conexión, no al objeto cursor.
+.. seealso::
+    Cada vez que usamos la función ``execute()`` comienza una **nueva transacción** a la base de datos que debe confirmarse con ``commit()`` o bien deshacerse con `rollback()`_.
 
 Ahora podemos comprobar que sí se han guardado los datos correctamente:
 
@@ -133,21 +135,27 @@ Ahora podemos comprobar que sí se han guardado los datos correctamente:
     $ sqlite3 python.db "select * from pyversions"
     2.6|2008|10|Barry Warsaw
 
+.. note::
+    La función ``commit()`` pertenece al objeto conexión, no al objeto cursor.
+
 Inserciones parametrizadas
 ==========================
 
 Supongamos que no sabemos, a priori, los datos que vamos a insertar en la tabla puesto que provienen del usuario o de otra fuente externa. En este caso cabría plantearse cuál es la mejor opción para parametrizar la consulta.
 
-Una primera aproximación podrían ser los :ref:`f-strings <core/datatypes/strings:"f-strings">`::
+Usando f-strings
+----------------
+
+Una primera aproximación podrían ser los :ref:`f-strings <core/datatypes/strings:"f-strings">` a través de una simple interpolación de variables. Veamos un ejemplo de ello::
 
     >>> branch = 3.9
     >>> released_at_year = 2020
     >>> released_at_month = 10
     >>> release_manager = 'Łukasz Langa'
 
-    >>> sql = f'INSERT INTO pyversions VALUES({branch}, {released_at_year}, {released_at_month}, {release_manager})'
+    >>> sql = f'INSERT INTO pyversions VALUES ({branch}, {released_at_year}, {released_at_month}, {release_manager})'
     >>> sql
-    'INSERT INTO pyversions VALUES(3.9, 2020, 10, Łukasz Langa)'
+    'INSERT INTO pyversions VALUES (3.9, 2020, 10, Łukasz Langa)'
 
     >>> cur.execute(sql)
     Traceback (most recent call last):
@@ -156,20 +164,23 @@ Una primera aproximación podrían ser los :ref:`f-strings <core/datatypes/strin
 
 Obtenemos un error porque el contenido de "release manager" **es una cadena de texto y no puede contener espacios**. Una solución a este problema sería detectar qué campos necesitan comillas e incorporarlas de forma manual.
 
-Pero existe otra aproximación y es **usar los "placeholders" que ofrece SQLite** al ejecutar sentencias. Estos "placeholders" se representan por el **símbolo de interrogación** ``?`` y se sustituyen por el **valor correspondiente en una tupla** que pasamos a posteriori.
+Usando placeholders SQLite
+--------------------------
+
+Pero existe otra aproximación y es **usar los "placeholders" que ofrece SQLite** al ejecutar sentencias. Estos "placeholders" se representan por el **símbolo de interrogación** ``?`` y se sustituyen por el **valor correspondiente en una tupla** que pasamos como parámetro a posteriori.
 
 Veamos cómo sería esta reimplementación::
 
-    >>> sql = 'INSERT INTO pyversions VALUES(?, ?, ?, ?)'
+    >>> sql = 'INSERT INTO pyversions VALUES (?, ?, ?, ?)'
 
     >>> cur.execute(sql, (branch, released_at_year, released_at_month, release_manager))
     <sqlite3.Cursor at 0x107426c40>
 
-Ahora sí que todo ha ido bien y **no nos hemos tenido que preocupar del tipo de los campos**. Ya sólo por esto valdría la pena utilizar esta aproximación pero también sirve para evitar ataques por inyección SQL [#inyeccion-sql]_.
+Ahora sí que todo ha ido bien y **no nos hemos tenido que preocupar del tipo de los campos**. Ya sólo por esto valdría la pena utilizar esta aproximación pero también ayuda a evitar ataques por inyección SQL [#inyeccion-sql]_.
 
-Este módulo también nos ofrece la posibilidad de usar **parámetros nominales a través de un diccionario** especificando los campos con dos puntos ``:field``. Veamos cómo sería esta aproximación::
+Este módulo nos ofrece igualmente la posibilidad de usar **parámetros nominales a través de un diccionario** especificando los campos con dos puntos ``:field``. Veamos cómo sería esta aproximación::
 
-    >>> sql = 'INSERT INTO pyversions VALUES(:branch, :year, :month, :manager)'
+    >>> sql = 'INSERT INTO pyversions VALUES (:branch, :year, :month, :manager)'
 
     >>> cur.execute(sql, dict(year=2020, month=10, branch=3.9, manager='Łukasz Langa'))
     <sqlite3.Cursor at 0x107426c40>
@@ -198,10 +209,10 @@ Queremos procesar cada línea e insertarla en la tabla como un nuevo registro. V
     ...     con.commit()
     ...
 
-Otra forma de hacer esto mismo sería utilizar la función `executemany()`_ en la que podemos indicar los parámetros a utilizar si partimos de un **iterable** de iterables (con el mismo número de campos que la tabla):
+Pero este módulo permite atacar el problema desde otro enfoque utilizando la función `executemany()`_. Esta función admite un **iterable de iterables** (con el mismo número de campos que la tabla) desde donde recupera los datos:
 
 .. code-block::
-    :emphasize-lines: 20
+    :emphasize-lines: 20-21
 
     >>> f = open('pyversions.csv')
     >>> data = [line.strip().split(',') for line in f.readlines()[1:]]
@@ -222,7 +233,8 @@ Otra forma de hacer esto mismo sería utilizar la función `executemany()`_ en l
      ['3.11', '2022', '10', 'Pablo Galindo Salgado'],
      ['3.12', '2023', '10', 'Thomas Wouters']]
     
-    >>> cur.executemany('INSERT INTO pyversions VALUES (?, ?, ?, ?)', data)
+    >>> sql = 'INSERT INTO pyversions VALUES (?, ?, ?, ?)'
+    >>> cur.executemany(sql, data)
     <sqlite3.Cursor at 0x104f3fb20>
     
     >>> con.commit()
@@ -230,7 +242,7 @@ Otra forma de hacer esto mismo sería utilizar la función `executemany()`_ en l
 Si dispusiéramos de un **diccionario** podríamos indicar incluso el nombre de los campos:
 
 .. code-block::
-    :emphasize-lines: 22
+    :emphasize-lines: 22-23
 
     >>> f = open('pyversions.csv')
     >>> fields = f.readline().strip().split(',')
@@ -253,7 +265,8 @@ Si dispusiéramos de un **diccionario** podríamos indicar incluso el nombre de 
      {'branch': '3.11', 'year': '2022', 'month': '10', 'manager': 'Pablo Galindo Salgado'},
      {'branch': '3.12', 'year': '2023', 'month': '10', 'manager': 'Thomas Wouters'}]
 
-    >>> cur.executemany('INSERT INTO pyversions VALUES (:branch, :year, :month, :manager)', data)
+    >>> sql = 'INSERT INTO pyversions VALUES (:branch, :year, :month, :manager)'
+    >>> cur.executemany(sql, data)
     <sqlite3.Cursor at 0x106e96030>
 
     >>> con.commit()
@@ -262,7 +275,7 @@ En cualquiera de los tres casos anteriores el resultado es el mismo y los regist
 
 .. code-block:: console
 
-    $ sqlite3 python.db "select * from pyversions"
+    $ sqlite3 python.db "SELECT * FROM pyversions"
     2.6|2008|10|Barry Warsaw
     2.7|2010|7|Benjamin Peterson
     3.0|2008|12|Barry Warsaw
@@ -279,6 +292,34 @@ En cualquiera de los tres casos anteriores el resultado es el mismo y los regist
     3.11|2022|10|Pablo Galindo Salgado
     3.12|2023|10|Thomas Wouters
 
+Identificador de fila
+=====================
+
+En el comportamiento por defecto de una base de datos SQLite **todas las tablas disponen de una columna "oculta" denominada** ``rowid`` o identificador de fila.
+
+Esta columna se va rellenando **de forma automática con valores enteros únicos** y puede utilizarse como clave primaria de los registros.
+
+Para poder visualizar (o utilizar) esta columna es necesario indicarlo explícitamente en la consulta:
+
+.. code-block:: console
+
+    $ sqlite3 python.db "SELECT rowid, * FROM pyversions"
+    1|2.6|2008|10|Barry Warsaw
+    2|2.7|2010|7|Benjamin Peterson
+    3|3.0|2008|12|Barry Warsaw
+    4|3.1|2009|6|Benjamin Peterson
+    5|3.2|2011|2|Georg Brandl
+    6|3.3|2012|9|Georg Brandl
+    7|3.4|2014|3|Larry Hastings
+    8|3.5|2015|9|Larry Hastings
+    9|3.6|2016|12|Ned Deily
+    10|3.7|2018|6|Ned Deily
+    11|3.8|2019|10|Łukasz Langa
+    12|3.9|2020|10|Łukasz Langa
+    13|3.10|2021|10|Pablo Galindo Salgado
+    14|3.11|2022|10|Pablo Galindo Salgado
+    15|3.12|2023|10|Thomas Wouters
+
 Cerrando la conexión
 ====================
 
@@ -289,12 +330,12 @@ La forma más directa de hacer esto sería::
     >>> con.close()
 
 .. attention::
-    Si hay alguna transacción pendiente, esta no será guardada al cerrar la conexión con la base de datos, si no se consolidan los cambios previamente.
+    Si hay alguna transacción pendiente, esta no será guardada al cerrar la conexión con la base de datos, si previamente no se consolidan los cambios.
 
-Confirmar cambios
-=================
+Gestor de contexto
+==================
 
-En SQLite también es posible utilizar un :ref:`gestor de contexto <core/modularity/oop:gestores de contexto>` sobre la conexión que funciona de la siguiente manera:
+En SQLite también es posible utilizar un :ref:`gestor de contexto <core/modularity/oop:gestores de contexto>` sobre la conexión, que funciona de la siguiente manera:
 
 - Si todo ha ido bien ejecutará un "commit" al final del bloque.
 - Si ha habido alguna excepción ejecutará un "rollback" para que todo quede como al principio y deshacer los posibles cambios efectuados.
@@ -324,19 +365,16 @@ Ejemplo donde se produce un error::
 
 Nótese que en ambos casos **debemos cerrar la conexión**. Esto no se realiza de forma automática.
 
-.. seealso::
-    Existe la función `rollback()`_ que restaura a su comienzo cualquier transacción pendiente.
-
 Es interesante conocer las distintas `excepciones`_ que pueden producirse al trabajar con este módulo a la hora del control de errores y de plantear posibles escenarios de mejora.
 
 *********
 Consultas
 *********
 
-La manera más sencilla de hacer una consulta es utilizar un cursor. Existen dos aproximaciones en el tratamiento de los resultados de la consulta:
+La manera más sencilla de hacer una consulta es **utilizar un cursor**. Existen dos aproximaciones en el tratamiento de los resultados de la consulta:
 
 1. Registros como tuplas.
-2. Registros como diccionarios.
+2. Registros como filas.
 
 Registros como tuplas
 =====================
@@ -390,12 +428,12 @@ También tenemos la opción de utilizar las funciones `fetchone()`_ y `fetchall(
 .. caution::
     Nótese que la llamada a ``fetchone()`` hace que quede "una fila menos" que recorrer. Es un comportamiento totalmente análogo a la :ref:`lectura de una línea <core/datastructures/files:lectura de una línea>` en un fichero. 
 
-Registros como diccionarios
-===========================
+Registros como filas
+====================
 
-Este módulo también nos permite obtener los resultados de una consulta como un **iterable de diccionarios**. Esto ayuda a **acceder a los valores de cada registro por el nombre de la columna**.
+Este módulo también nos permite obtener los resultados de una consulta como objetos de tipo `Row`_ lo que facilita acceder a los valores de cada registro **tanto por el índice como por el nombre de la columna**.
 
-Lo primero será indicar en la conexión que queremos obtener los resultados **también** como diccionarios:
+Para "activar" este modo tendremos que fijar el valor de la factoría de filas en la conexión:
 
 .. code-block::
     :emphasize-lines: 2
@@ -403,7 +441,10 @@ Lo primero será indicar en la conexión que queremos obtener los resultados **t
     >>> con = sqlite3.connect('python.db')
     >>> con.row_factory = sqlite3.Row
 
-Ahora ejecutamos una consulta y accedemos a la primera fila del resultado::
+Ahora ejecutamos una consulta y accedemos a la primera fila del resultado **como si fuera un diccionario**:
+
+.. code-block::
+    :emphasize-lines: 5-6
 
     >>> cur = con.cursor()
     >>> res = cur.execute('SELECT * FROM pyversions')
@@ -424,7 +465,7 @@ Ahora ejecutamos una consulta y accedemos a la primera fila del resultado::
     >>> row['release_manager']
     'Barry Warsaw'
 
-Vemos que esta aproximación nos permite usar nombres de columnas pero también es posible seguir accediendo a la información **a través del índice**::
+Pero también es posible seguir accediendo a la cada columna **a través del índice**::
 
     >>> row[0]
     '2.6'
@@ -440,16 +481,7 @@ Número de filas
 
 Hay ocasiones en las que lo que necesitamos obtener no es el dato en sí mismo, sino el **número de filas vinculadas a una determinada consulta**. En este sentido hay varias alternativas.
 
-La primera aproximación es **mediante la sentencia SQL para contar**: ``COUNT()`` y obtener su resultado::
-
-    >>> result = cur.execute('SELECT COUNT(*) FROM pyversions')
-
-    >>> rows = result.fetchone()
-
-    >>> rows[0]
-    15
-
-La segunda aproximación es **utilizar herramientas Python** para obtener la longitud del resultado de la consulta::
+La primera aproximación es **utilizar herramientas Python** para obtener la longitud del resultado de la consulta::
 
     >>> result = cur.execute('SELECT * FROM pyversions')
 
@@ -457,6 +489,17 @@ La segunda aproximación es **utilizar herramientas Python** para obtener la lon
 
     >>> len(rows)
     15
+
+La segunda aproximación es **mediante la sentencia SQL para contar**: ``COUNT()`` y obtener su resultado::
+
+    >>> result = cur.execute('SELECT COUNT(*) FROM pyversions')
+
+    >>> rows = result.fetchone()
+
+    >>> rows[0]  # sólo hay una columna 
+    15
+
+Obviamente si lo único que necesitamos es obtener el número de filas afectadas, esta segunda opción a través de ``COUNT()`` tiene más sentido.
 
 *********************
 Otras funcionalidades
@@ -476,10 +519,12 @@ Veamos un ejemplo muy sencillo:
 
     >>> cur = con.cursor()
 
-    >>> cur.execute('CREATE TABLE temp (id INTEGER PRIMARY KEY, value CHAR)')
+    >>> sql = 'CREATE TABLE temp (id INTEGER PRIMARY KEY, value CHAR)'
+    >>> cur.execute(sql)
     <sqlite3.Cursor at 0x107884ea0>
 
-    >>> cur.execute('INSERT INTO temp VALUES (1, "X")')
+    >>> sql = 'INSERT INTO temp VALUES (1, "X")'
+    >>> cur.execute(sql)
     <sqlite3.Cursor at 0x107884ea0>
 
     >>> for row in cur.execute('SELECT * FROM temp'):
@@ -494,7 +539,7 @@ Veamos un ejemplo muy sencillo:
 Claves autoincrementales
 ========================
 
-Es muy habitual encontrar en la definición de una tabla un **campo identificador numérico entero** con el modificador ``AUTOINCREMENT`` de tal forma que actúe como clave primaria.
+Es muy habitual encontrar en la definición de una tabla un **campo identificador numérico entero** que actúe como clave primaria y se le asignen valores automáticamente.
 
 Existe una `forma sencilla de aplicar este escenario en SQLite <https://www.sqlite.org/autoinc.html>`_:
 
@@ -517,8 +562,8 @@ Veamos un ejemplo de aplicación con una tabla en memoria que almacena **ciudade
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> cur.execute('''INSERT INTO
-    ... cities(city, latitude, longitude)  # Obviamos "id"
-    ... VALUES("Tokyo", 35.652832, 139.839478)''')
+    ... cities (city, latitude, longitude)  # Obviamos "id"
+    ... VALUES ("Tokyo", 35.652832, 139.839478)''')
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> result = cur.execute('SELECT * FROM cities')
@@ -526,13 +571,16 @@ Veamos un ejemplo de aplicación con una tabla en memoria que almacena **ciudade
     [(1, 'Tokyo', 35.652832, 139.839478)]
 
     >>> cur.execute('''INSERT INTO
-    ... cities(city, latitude, longitude)  # Obviamos "id"
-    ... VALUES("Barcelona", 41.390205, 2.154007)''')
+    ... cities (city, latitude, longitude)  # Obviamos "id"
+    ... VALUES ("Barcelona", 41.390205, 2.154007)''')
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> result = cur.execute('SELECT * FROM cities')
     >>> result.fetchall()
     [(1, 'Tokyo', 35.652832, 139.839478), (2, 'Barcelona', 41.390205, 2.154007)]
+
+.. important::
+    Si la clave primaria de una tabla es una columna de tipo ``INTEGER`` ésta se convierte en un alias para :ref:`rowid <stdlib/data_access/sqlite:identificador de fila>`.
 
 Copias de seguridad
 ===================
@@ -575,10 +623,20 @@ Podemos comprobar que ambas bases de datos tienen el mismo contenido::
     ...
     Contents from both DBs are the same!
 
+Un par de incisos respecto a este mecanismo:
+
+1. Funciona incluso si la base de datos está siendo accedida por otros clientes o concurrentemente por la misma conexión.
+2. Funciona incluso entre bases de datos ``:memory:`` y bases de datos en disco.
+
+.. seealso::
+    Hacer directamente una copia del fichero ``file.db`` (desde el propio sistema operativo) también es una opción rápida para disponer de copias de seguridad.
+
 Información de filas
 ====================
 
-Cuando ejecutamos una sentencia de modificación sobre la base de datos podemos obtener el **número de filas modificadas**:
+Cuando ejecutamos una sentencia de modificación sobre la base de datos podemos obtener el **número de filas modificadas**.
+
+Este dato lo sacamos del atributo ``rowcount`` del cursor. Veamos un ejemplo:
 
 .. code-block::
     :emphasize-lines: 25
@@ -610,7 +668,7 @@ Cuando ejecutamos una sentencia de modificación sobre la base de datos podemos 
     >>> cur.rowcount
     16  # filas modificadas
 
-Cuando insertamos un registro en la base de datos podemos obtener cuál es el **identificador de la últila fila insertada**:
+Igualmente cuando insertamos un registro en la base de datos podemos obtener cuál es el **identificador de la últila fila insertada**:
 
 .. code-block::
     :emphasize-lines: 4
@@ -620,6 +678,51 @@ Cuando insertamos un registro en la base de datos podemos obtener cuál es el **
 
     >>> cur.lastrowid
     17
+
+Ejecución de scripts
+====================
+
+¿Qué pasaría si intentamos ejecutar **varias sentencias SQL a la vez** con las herramientas que hemos visto hasta ahora?
+
+Supongamos una tabla de ejemplo que mantiene estadísticas de los `mejores jugadores históricos de la NBA`_. Queremos crear la tabla e insertar 3 registros en una misma ejecución::
+
+    >>> con = sqlite3.connect(':memory:')
+
+    >>> cur = con.cursor()
+
+    >>> sql = '''
+    ... CREATE TABLE nba (
+    ...     player CHAR PRIMARY KEY,
+    ...     points INTEGER
+    ... );
+    ... INSERT INTO nba VALUES ('LeBron James', 8023);
+    ... INSERT INTO nba VALUES ('Michael Jordan', 5987);
+    ... INSERT INTO nba VALUES ('Kareem Abdul-Jabbar', 5762);
+    ... '''
+
+    >>> cur.execute(sql)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ProgrammingError: You can only execute one statement at a time.
+
+**Obtenemos un error** indicando que sólo se puede ejecutar una sentencia cada vez.
+
+Para resolver este problema disponemos de la función `executescript()`_ que permite ejecutar varias sentencias SQL de una sola vez::
+
+    >>> cur.executescript(sql)
+    <sqlite3.Cursor at 0x1028ce840>
+
+Aparentemente ahora sí que ha ido todo bien. Podemos comprobar que la tabla está creada y los registros insertados::
+
+    >>> sql = 'SELECT * FROM nba'
+    >>> res = cur.execute(sql)
+
+    >>> res.fetchall()
+    [('LeBron James', 8023),
+     ('Michael Jordan', 5987),
+     ('Kareem Abdul-Jabbar', 5762)]
+
+----
 
 .. rubric:: EJERCICIOS DE REPASO
 
@@ -663,3 +766,6 @@ Cuando insertamos un registro en la base de datos podemos obtener cuál es el **
 .. _rollback(): https://docs.python.org/es/3/library/sqlite3.html#sqlite3.Connection.rollback
 .. _excepciones: https://docs.python.org/es/3/library/sqlite3.html#exceptions
 .. _Inyección SQL: https://es.wikipedia.org/wiki/Inyecci%C3%B3n_SQL
+.. _Row: https://docs.python.org/3/library/sqlite3.html#sqlite3.Row
+.. _mejores jugadores históricos de la NBA: https://www.nba.com/stats/alltime-leaders
+.. _executescript(): https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executescript
