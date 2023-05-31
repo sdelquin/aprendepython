@@ -446,7 +446,10 @@ Para "activar" este modo tendremos que fijar el valor de la factoría de filas e
     >>> con = sqlite3.connect('python.db')
     >>> con.row_factory = sqlite3.Row
 
-Ahora ejecutamos una consulta y accedemos a la primera fila del resultado **como si fuera un diccionario**:
+.. important::
+    Para que las consultas usen esta factoría hay que fijar el atributo ``row_factory`` **antes** de crear el cursor correspondiente.
+
+Ahora creamos un cursor, ejecutamos la consulta y accedemos a la primera fila del resultado **como si fuera un diccionario**:
 
 .. code-block::
     :emphasize-lines: 5-6
@@ -480,6 +483,33 @@ Pero también es posible seguir accediendo a la cada columna **a través del ín
     10
     >>> row[3]
     'Barry Warsaw'
+
+Desempaquetando filas
+=====================
+
+Cuando disponemos de una fila como resultado de una consulta (ya sea en formato tupla o en formato ``sqlite3.Row``) podemos realizar un desempaquetado para separar sus campos en variables únicas:
+
+.. code-block::
+    :emphasize-lines: 8
+
+    >>> sql = 'SELECT * FROM pyversions'
+    >>> result = cur.execute(sql)
+    >>> row = result.fetchone()
+
+    >>> row
+    <sqlite3.Row at 0x102e71ab0>
+
+    >>> branch, released_at_year, released_at_month, release_manager = row
+
+    >>> branch
+    '2.6'
+    >>> released_at_year
+    2008
+    >>> released_at_month
+    10
+    >>> release_manager
+    'Barry Warsaw'
+
 
 Número de filas
 ===============
@@ -738,6 +768,14 @@ Aparentemente ahora sí que ha ido todo bien. Podemos comprobar que la tabla est
     | Plantilla: :download:`todo.py <files/templates/todo.py>`
     | Tests: :download:`test_todo.py <files/test_todo.py>`
     | Lanzar tests: ``pytest -xq test_todo.py``
+
+2. Escriba una clase ``Twitter`` junto a dos clases ``User`` y ``Tweet`` que permita implementar una aplicación de tipo "Twitter".
+
+.. only:: html
+
+    | Plantilla: :download:`twitter.py <files/templates/twitter.py>`
+    | Tests: :download:`test_twitter.py <files/test_twitter.py>`
+    | Lanzar tests: ``pytest -xq test_twitter.py``
 
 .. --------------- Footnotes ---------------
 
