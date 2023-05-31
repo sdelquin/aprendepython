@@ -134,7 +134,7 @@ En Python se usa el símbolo ``=`` para **asignar** un valor a una variable:
 
 Algunos ejemplos de asignaciones a *variables*::
 
-    >>> total_population = 157503
+    >>> total_population = 157_503
     >>> avg_temperature = 16.8
     >>> city_name = 'San Cristóbal de La Laguna'
 
@@ -201,18 +201,18 @@ Conocer el valor de una variable
 
 Hemos visto previamente cómo asignar un valor a una variable, pero aún no sabemos cómo "comprobar" el valor que tiene dicha variable. Para ello podemos utilizar dos estrategias:
 
-1. Si estamos en una "shell" de Python, basta con que usemos el nombre de la variable::
+1. Si estamos en un **intérprete** ("shell" o consola) de Python, basta con que usemos el nombre de la variable::
 
     >>> final_stock = 38934
     >>> final_stock
     38934
 
-2. Si estamos escribiendo un programa desde el editor, podemos hacer uso de ``print``::
+2. Si estamos escribiendo un programa desde el **editor**, debmos hacer uso de ``print()``::
 
     final_stock = 38934
     print(final_stock)    
 
-.. note:: ``print`` sirve también cuando estamos en una sesión interactiva de Python ("shell")
+.. note:: ``print()`` sirve también cuando estamos en una sesión interactiva de Python ("shell")
 
 Conocer el tipo de una variable
 ===============================

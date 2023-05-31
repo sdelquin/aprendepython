@@ -41,8 +41,7 @@ Desventajas
 
 * Interpretado (velocidad de ejecución, multithread vs GIL, etc.).
 * Consumo de memoria.
-* Errores durante la ejecución.
-* Dos versiones mayores no del todo compatibles (v2 vs v3).
+* Errores no detectables en tiempo de compilación.
 * Desarrollo móvil.
 * Documentación a veces dispersa e incompleta.
 * Varios módulos para la misma funcionalidad.
@@ -99,9 +98,9 @@ Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ *hecha en 2022*
     
     Encuesta Stack Overflow 2022
 
-******************
-Python2 vs Python3
-******************
+*******************
+Versiones de Python
+*******************
 
 En el momento de la escritura de este material, se muestra a continuación la evolución de las versiones mayores de Python a lo largo de la historia: [#python-versions]_
 
