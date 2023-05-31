@@ -15,9 +15,13 @@ DB_PATH = 'test_twitter.db'
 
 @pytest.fixture(autouse=True)
 def create_test_database():
-    create_db(DB_PATH)
-    yield
-    Path(DB_PATH).unlink(missing_ok=True)
+    try:
+        create_db(DB_PATH)
+        yield
+    except Exception as err:
+        raise err
+    finally:
+        Path(DB_PATH).unlink(missing_ok=True)
 
 
 @pytest.fixture
