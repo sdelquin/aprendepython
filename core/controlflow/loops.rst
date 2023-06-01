@@ -12,87 +12,87 @@ La sentencia ``while``
 
 El primer mecanismo que existe en Python para repetir instrucciones es usar la sentencia ``while``. La semántica tras esta sentencia es: "Mientras se cumpla la condición haz algo". 
 
-Veamos un sencillo bucle que repite una pregunta mientras la respuesta sea negativa::
+Veamos un sencillo bucle que repite un saludo mientras así se desee::
 
-    >>> want_exit = 'N'  # importante dar un valor antes de empezar el bucle
+    >>> want_greet = 'S'  # importante dar un valor inicial
 
-    >>> while want_exit == 'N':
-    ...     print('Hola qué tal')
-    ...     want_exit = input('¿Quiere salir? [S/N] ')
-    ...
-    ... print('Ciao!')
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Hola qué tal
-    ¿Quiere salir? [S/N] S
-    Ciao!
+    >>> while want_greet == 'S':
+    ...     print('Hola qué tal!')
+    ...     want_greet = input('¿Quiere otro saludo? [S/N] ')
+    ... print('Que tenga un buen día')
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] N
+    Que tenga un buen día
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/cNg8dR0
+    https://cutt.ly/Zwwr8fub
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%0Aprint%28'Ciao!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22N%22,%22N%22,%22S%22%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="310" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_greet%20%3D%20'S'%20%20%23%20importante%20dar%20un%20valor%20inicial%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
-La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``want_exit`` sea igual a ``'N'``. Dentro del cuerpo del bucle estamos mostrando un mensaje y pidiendo la opción al usuario.
+La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``want_greet`` sea igual a ``'S'``. Dentro del cuerpo del bucle estamos mostrando un mensaje y pidiendo la opción al usuario.
 
 Romper un bucle while
 =====================
 
 Python ofrece la posibilidad de *romper* o finalizar un bucle *antes de que se cumpla la condición de parada*.
 
-Supongamos que en el ejemplo anterior, establecemos un máximo de 4 preguntas:
+Supongamos que en el ejemplo anterior, establecemos un máximo de 4 saludos:
 
 .. code-block::
-    :emphasize-lines: 10
+    :emphasize-lines: 11
 
-    >>> want_exit = 'N'
-    >>> num_questions = 0
+    >>> MAX_GREETS = 4
 
-    >>> while want_exit == 'N':
-    ...     print('Hola qué tal')
-    ...     want_exit = input('¿Quiere salir? [S/N] ')
-    ...     num_questions += 1
-    ...     if num_questions == 4:
-    ...         print('Máximo número de preguntas alcanzado')
+    >>> num_greets = 0
+    >>> want_greet = 'S'
+
+    >>> while want_greet == 'S':
+    ...     print('Hola qué tal!')
+    ...     num_greets += 1
+    ...     if num_greets == MAX_GREETS:
+    ...         print('Máximo número de saludos alcanzado')
     ...         break
-    ... print('Ciao!')
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Máximo número de preguntas alcanzado
-    Ciao!
+    ...     want_greet = input('¿Quiere otro saludo? [S/N] ')
+    ... print('Que tenga un buen día')
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    Máximo número de saludos alcanzado
+    Que tenga un buen día
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/xNhq3iI
+    https://cutt.ly/0wwtyaDF
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0Anum_questions%20%3D%200%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20num_questions%20%2B%3D%201%0A%20%20%20%20if%20num_questions%20%3D%3D%204%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20preguntas%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0Aprint%28'Ciao!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22N%22,%22N%22,%22N%22,%22N%22%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="460" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=MAX_GREETS%20%3D%204%0A%0Anum_greets%20%3D%200%0Awant_greet%20%3D%20'S'%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20num_greets%20%2B%3D%201%0A%20%20%20%20if%20num_greets%20%3D%3D%20MAX_GREETS%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20saludos%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
-Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos llegado al máximo número de preguntas. Pero si no hubiéramos llegado a dicho límite, el bucle habría seguido hasta que el usuario indicara que quiere salir.
+Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos llegado al máximo número de saludos. Pero si no hubiéramos llegado a dicho límite, el bucle habría seguido hasta que el usuario indicara que no quiere más saludos.
 
 Otra forma de resolver este ejercicio sería incorporar una condición al bucle::
 
-    while want_exit == 'N' and num_questions < 4:
+    while want_greet == 'S' and num_questions < MAX_GREETS:
         ...
 
 Comprobar la rotura
@@ -105,40 +105,44 @@ Python nos ofrece la posibilidad de **detectar si el bucle ha acabado de forma o
 Veamos su comportamiento siguiendo con el ejemplo que venimos trabajando:
 
 .. code-block::
-    :emphasize-lines: 11-12
+    :emphasize-lines: 13-14
 
-    >>> want_exit = 'N'
-    >>> num_questions = 0
+    >>> MAX_GREETS = 4
 
-    >>> while want_exit == 'N':
-    ...     print('Hola qué tal')
-    ...     want_exit = input('¿Quiere salir? [S/N] ')
-    ...     num_questions += 1
-    ...     if num_questions == 4:
-    ...         print('Máximo número de preguntas alcanzado')
+    >>> num_greets = 0
+    >>> want_greet = 'S'
+
+    >>> while want_greet == 'S':
+    ...     print('Hola qué tal!')
+    ...     num_greets += 1
+    ...     if num_greets == MAX_GREETS:
+    ...         print('Máximo número de saludos alcanzado')
     ...         break
+    ...     want_greet = input('¿Quiere otro saludo? [S/N] ')
     ... else:
-    ...     print('Usted ha decidido salir')
-    ... print('Ciao')
-    Hola qué tal
-    ¿Quiere salir? [S/N] S
-    Usted ha decidido salir
-    Ciao
+    ...     print('Usted no quiere más saludos')
+    ... print('Que tenga un buen día')
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] N
+    Usted no quiere más saludos
+    Que tenga un buen día
 
 .. important::
-    Si hubiéramos agotado el número de preguntas NO se habría ejecutado la cláusula ``else`` del bucle ya que habríamos roto el flujo con un ``break``.
+    Si hubiéramos agotado el número de saludos NO se habría ejecutado la cláusula ``else`` del bucle ya que habríamos roto el flujo con un ``break``.
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/xNho3di
+    https://cutt.ly/jwwtpivu
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="540" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0Anum_questions%20%3D%200%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20num_questions%20%2B%3D%201%0A%20%20%20%20if%20num_questions%20%3D%3D%204%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20preguntas%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0Aelse%3A%0A%20%20%20%20print%28'Usted%20ha%20decidido%20salir'%29%0Aprint%28'Ciao'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22S%22%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="510" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=MAX_GREETS%20%3D%204%0A%0Anum_greets%20%3D%200%0Awant_greet%20%3D%20'S'%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20num_greets%20%2B%3D%201%0A%20%20%20%20if%20num_greets%20%3D%3D%20MAX_GREETS%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20saludos%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aelse%3A%0A%20%20%20%20print%28'Usted%20no%20quiere%20m%C3%A1s%20saludos'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Continuar un bucle
 ==================
@@ -150,42 +154,45 @@ Hay situaciones en las que, en vez de romper un bucle, nos interesa **saltar ade
 Continuamos con el ejemplo anterior y vamos a contar el número de respuestas válidas:
 
 .. code-block::
-    :emphasize-lines: 9
+    :emphasize-lines: 10
 
-    >>> want_exit = 'N'
+    >>> want_greet = 'S'
     >>> valid_options = 0
 
-    >>> while want_exit == 'N':
-    ...     print('Hola qué tal')
-    ...     want_exit = input('¿Quiere salir? [S/N] ')
-    ...     if want_exit not in 'SN':
-    ...         want_exit = 'N'
+    >>> while want_greet == 'S':
+    ...     print('Hola qué tal!')
+    ...     want_greet = input('¿Quiere otro saludo? [S/N] ')
+    ...     if want_greet not in 'SN':
+    ...         print('No le he entendido pero le saludo')
+    ...         want_greet = 'S'
     ...         continue
     ...     valid_options += 1
     ... print(f'{valid_options} respuestas válidas')
-    ... print('Ciao!')
-    Hola qué tal
-    ¿Quiere salir? [S/N] N
-    Hola qué tal
-    ¿Quiere salir? [S/N] X
-    Hola qué tal
-    ¿Quiere salir? [S/N] Z
-    Hola qué tal
-    ¿Quiere salir? [S/N] S
+    ... print('Que tenga un buen día')
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] S
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] A
+    No le he entendido pero le saludo
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] B
+    No le he entendido pero le saludo
+    Hola qué tal!
+    ¿Quiere otro saludo? [S/N] N
     2 respuestas válidas
-    Ciao!
+    Que tenga un buen día
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/BNhkOhP
+    https://cutt.ly/YwwtlAp8
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="520" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_exit%20%3D%20'N'%0Avalid_options%20%3D%200%0A%0Awhile%20want_exit%20%3D%3D%20'N'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal'%29%0A%20%20%20%20want_exit%20%3D%20input%28'%C2%BFQuiere%20salir%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20if%20want_exit%20not%20in%20'SN'%3A%0A%20%20%20%20%20%20%20%20want_exit%20%3D%20'N'%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20valid_options%20%2B%3D%201%0Aprint%28f'%7Bvalid_options%7D%20respuestas%20v%C3%A1lidas'%29%0Aprint%28'Ciao!'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%22N%22,%22X%22,%22Z%22,%22S%22%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="460" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_greet%20%3D%20'S'%0Avalid_options%20%3D%200%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20if%20want_greet%20not%20in%20'SN'%3A%0A%20%20%20%20%20%20%20%20print%28'No%20le%20he%20entendido%20pero%20le%20saludo'%29%0A%20%20%20%20%20%20%20%20want_greet%20%3D%20'S'%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20valid_options%20%2B%3D%201%0Aprint%28f'%7Bvalid_options%7D%20respuestas%20v%C3%A1lidas'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Bucle infinito
 ==============
@@ -214,7 +221,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     .. raw:: html
 
-        <iframe width="800" height="435" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="260" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Una posible solución a este error es reescribir la condición de parada en el bucle:
 
@@ -484,10 +491,10 @@ Como ya vimos en las :ref:`sentencias condicionales <if-sentence>`, el *anidamie
 
 Veamos un ejemplo de 2 bucles anidados en el que generamos todas las tablas de multiplicar::
 
-    >>> for i in range(1, 10):
-    ...     for j in range(1, 10):
-    ...         result = i * j
-    ...         print(f'{i} * {j} = {result}')
+    >>> for num_table in range(1, 10):
+    ...     for mul_factor in range(1, 10):
+    ...         result = num_table * mul_factor 
+    ...         print(f'{num_table} * {mul_factor} = {result}')
     ...
     1 x 1 = 1
     1 x 2 = 2
@@ -577,13 +584,13 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. only:: latex
 
-    https://cutt.ly/vfyeWvj
+    https://cutt.ly/pwwtctK6
 
 .. only:: html
 
     .. raw:: html
 
-        <iframe width="800" height="355" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%281,%2010%29%3A%0A%20%20%20%20for%20j%20in%20range%281,%2010%29%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20i%20*%20j%0A%20%20%20%20%20%20%20%20print%28f'%7Bi%7D%20*%20%7Bj%7D%20%3D%20%7Bresult%7D'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+        <iframe width="800" height="260" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20num_table%20in%20range%281,%2010%29%3A%0A%20%20%20%20for%20mul_factor%20in%20range%281,%2010%29%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20num_table%20*%20mul_factor%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum_table%7D%20*%20%7Bmul_factor%7D%20%3D%20%7Bresult%7D'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. note::
     * Podemos añadir todos los niveles de anidamiento que queramos. Eso sí, hay que tener en cuenta que cada nuevo nivel de anidamiento supone un importante aumento de la `complejidad ciclomática`_ de nuestro código, lo que se traduce en mayores tiempos de ejecución.
