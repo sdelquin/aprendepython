@@ -68,9 +68,18 @@ Una vez que disponemos de la conexión ya podemos obtener un `Cursor`_ mediante 
 Creación de tablas
 ******************
 
+Para poder crear una tabla primero debemos manejar los `tipos de datos SQLite`_ disponibles. Aunque hay alguno más, con los siguientes nos será suficiente para la inmensa mayoría de diseños de bases de datos que podamos necesitar:
+
+- ``INTEGER`` para valores enteros.
+- ``REAL`` para valores flotantes.
+- ``TEXT`` para cadenas de texto.
+
+.. caution::
+    Aunque ``INT`` también está permitido, se desaconseja su uso en favor de ``INTEGER`` especialmente cuando trabajamos con la librería Python ``sqlite3`` y no queremos obtener resultados inesperados.
+
 Durante toda esta sección vamos a trabajar con una tabla de ejemplo que represente las `distintas versiones de Python`_ que han sido liberadas.
 
-Lo primero de todo será crear la tabla ``pyversions`` -- teniendo en cuenta los `tipos de datos SQLite`_ -- con un código similar al siguiente:
+Empecemos creando la tabla ``pyversions`` a través de un código SQL similar al siguiente:
 
 .. code-block:: sql
 
@@ -535,6 +544,36 @@ La segunda aproximación es **mediante la sentencia SQL para contar**: ``COUNT()
     15
 
 Obviamente si lo único que necesitamos es obtener el número de filas afectadas, esta segunda opción a través de ``COUNT()`` tiene más sentido.
+
+Comprobando si hay resultados
+=============================
+
+Hay ocasiones en las que necesitamos comprobar si la consulta tiene algún registro.
+
+Una manera de enfocar este escenario es utilizando el :ref:`operador morsa <core/controlflow/conditionals:operador morsa>` teniendo en cuenta que ``fetchone()`` devuelve ``None`` si la consulta es vacía. Veamos su implementación::
+
+    >>> con = sqlite3.connect(db_path)
+    >>> cur = con.cursor()
+
+    >>> # Consulta vacía
+    >>> res = cur.execute('SELECT * FROM pyversions WHERE branch=4.0')
+
+    >>> if row := res.fetchone():
+    ...     print(row)
+    ... else:
+    ...     print('Empty query')
+    ...
+    Empty query
+
+    >>> # Consulta con datos
+    >>> res = cur.execute('SELECT * FROM pyversions WHERE branch=3.0')
+
+    >>> if row := res.fetchone():
+    ...     print(row)
+    ... else:
+    ...     print('Empty query')
+    ...
+    ('3.0', 2008, 12, 'Barry Warsaw')
 
 *********************
 Otras funcionalidades

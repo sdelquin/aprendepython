@@ -33,7 +33,9 @@ class User:
         pass
 
     def login(self, password: str) -> None:
-        '''Realiza el login del usuario.'''
+        '''Realiza el login del usuario.
+        Comprueba si existe este usuario con el password pasado por parámetro en la BBDD
+        y actualiza los atributos correspondientes.'''
         pass
 
     def tweet(self, content: str) -> Tweet:
@@ -79,6 +81,7 @@ class Tweet:
         - Crea los atributos con y cur para la conexión a la base de datos (con factoría Row)
         - Crea los atributos _content, retweet_from e id.
         - retweet_from indica el id del tweet que se retuitea.
+          Un id válido debe ser mayor o igual que 1.
         - Si es un retweet el contenido debe ser la cadena vacía.
         '''
         pass
