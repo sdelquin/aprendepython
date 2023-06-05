@@ -84,19 +84,19 @@ Empecemos creando la tabla ``pyversions`` a través de un código SQL similar al
 .. code-block:: sql
 
     CREATE TABLE pyversions (
-        branch CHAR PRIMARY KEY,
+        branch TEXT PRIMARY KEY,
         released_at_year INTEGER,
         released_at_month INTEGER,
-        release_manager CHAR
+        release_manager TEXT
     )
 
 Haremos uso del cursor creado para **ejecutar** estas instrucciones::
 
     >>> sql = '''CREATE TABLE pyversions (
-    ...     branch CHAR PRIMARY KEY,
+    ...     branch TEXT PRIMARY KEY,
     ...     released_at_year INTEGER,
     ...     released_at_month INTEGER,
-    ...     release_manager CHAR
+    ...     release_manager TEXT
     ... )'''
 
     >>> cur.execute(sql)
@@ -593,7 +593,7 @@ Veamos un ejemplo muy sencillo:
 
     >>> cur = con.cursor()
 
-    >>> sql = 'CREATE TABLE temp (id INTEGER PRIMARY KEY, value CHAR)'
+    >>> sql = 'CREATE TABLE temp (id INTEGER PRIMARY KEY, value TEXT)'
     >>> cur.execute(sql)
     <sqlite3.Cursor at 0x107884ea0>
 
@@ -630,7 +630,7 @@ Veamos un ejemplo de aplicación con una tabla en memoria que almacena **ciudade
 
     >>> cur.execute('''CREATE TABLE cities (
     ... id INTEGER PRIMARY KEY,
-    ... city CHAR UNIQUE,
+    ... city TEXT UNIQUE,
     ... latitude REAL,
     ... longitude REAL)''')
     <sqlite3.Cursor at 0x107139bc0>
@@ -766,7 +766,7 @@ Supongamos una tabla de ejemplo que mantiene estadísticas de los `mejores jugad
 
     >>> sql = '''
     ... CREATE TABLE nba (
-    ...     player CHAR PRIMARY KEY,
+    ...     player TEXT PRIMARY KEY,
     ...     points INTEGER
     ... );
     ... INSERT INTO nba VALUES ('LeBron James', 8023);

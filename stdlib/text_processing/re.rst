@@ -316,7 +316,7 @@ Siguiendo con el caso anterior, supongamos que queremos hacer la misma transform
 Casar
 =====
 
-Si lo que estamos buscando es ver si una determinada cadena de texto "casa" (coincide) con un patrón de expresión regular, podemos hacer uso de la función ``re.match()``.
+Si lo que estamos buscando es ver si una determinada cadena de texto "casa" (coincide) con un patrón de expresión regular, podemos hacer uso de la función ``re.fullmatch()``.
 
 Veamos un ejemplo en el que comprobamos si un texto dado es un DNI válido::
 
@@ -324,22 +324,22 @@ Veamos un ejemplo en el que comprobamos si un texto dado es un DNI válido::
 
     >>> text = '54632178Y'
 
-    >>> re.match(regex, text)  # devuelve un objeto Match
+    >>> re.fullmatch(regex, text)  # devuelve un objeto Match
     <re.Match object; span=(0, 9), match='54632178Y'>
 
 Si el patrón no casa la función devuelve ``None``::
 
     >>> text = '87896532$'
 
-    >>> re.match(regex, text)  # devuelve None
+    >>> re.fullmatch(regex, text)  # devuelve None
 
-    >>> re.match(regex, text) is None
+    >>> re.fullmatch(regex, text) is None
     True
 
 Todo esto lo podemos poner dentro una sentencia condicional haciendo uso además del :ref:`operador morsa <core/controlflow/conditionals:operador morsa>` para aprovechar la variable creada::
 
     >>> def check_id_card(id_card: text) -> None:
-    ...     if m := re.match(regex, id_card):
+    ...     if m := re.fullmatch(regex, id_card):
     ...         print(f'{text} es un DNI válido')
     ...         print(m.span())
     ...     else:
@@ -353,8 +353,37 @@ Todo esto lo podemos poner dentro una sentencia condicional haciendo uso además
     >>> check_id_card('87896532$')
     87896532$ no es un DNI válido
 
-.. note::
-    Como ``re.match()`` devuelve un objeto de tipo :ref:`Match <stdlib/text_processing/re:coincidencia>` podemos hacer uso de todos sus métodos y atributos.
+Hay una **variante más "flexible"** para casar que es ``re.match()`` y comprueba la existencia del patrón **sólo desde el comienzo de la cadena**. *Es decir, que si el final de la cadena no coincide sigue casando*.
+
+Continuando con el caso anterior de comprobación de los DNI, podemos ver que añadir caracteres al final del documento de identidad no modifica el comportamiento de ``re.match()``::
+
+    >>> regex = r'\d{8}[A-Z]'
+    >>> text = '54632178Y###'
+
+    >>> re.match(regex, text)
+    <re.Match object; span=(0, 9), match='54632178Y'>
+
+Sin embargo no sucede lo mismo si añadimos caracteres al principio de la cadena::
+
+    >>> regex = r'\d{8}[A-Z]'
+    >>> text = '&&&54632178Y###'
+
+    >>> re.match(regex, text)
+    # None!
+
+En cualquier caso podemos hacer que ``re.match()`` se comporte como ``re.fullmatch()`` si especificamos los **indicadores de comienzo y final de línea** en el patrón:
+
+.. code-block::
+    :emphasize-lines: 1
+
+    >>> regex = r'^\d{8}[A-Z]$'
+    >>> text = '54632178Y'
+
+    >>> re.match(regex, text)
+    <re.Match object; span=(0, 9), match='54632178Y'>
+
+.. tip::
+    Tanto ``re.fullmatch()`` como ``re.match()`` devuelven un objeto de tipo :ref:`Match <stdlib/text_processing/re:coincidencia>` con lo que podemos hacer uso de todos sus métodos y atributos.
 
 Compilar
 ========

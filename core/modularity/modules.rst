@@ -269,9 +269,14 @@ La estructura que suele tener este *programa principal* es la siguiente::
     if __name__ == '__main__':
         # punto de entrada real
 
-.. important:: Si queremos ejecutar este fichero ``main.py`` desde línea de comandos, tendríamos que hacer::
+Si queremos ejecutar este fichero ``main.py`` desde línea de comandos, tendríamos que hacer:
 
-        $ python main.py
+.. code-block:: console
+
+    $ python main.py
+
+.. note::
+    Para llamar a función no es necesario que esté definida "antes" en el código, puede estar después. Pero siempre se trata de escribir el código intentado poner primero aquello que vamos a usar después.
 
 ``if __name__ == '__main__'``
 =============================

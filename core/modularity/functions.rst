@@ -830,7 +830,7 @@ Las **anotaciones de tipos** son una herramienta muy potente y que, usada de for
 Tipos compuestos
 ----------------
 
-Hay escenarios en los que necesitamos más expresividad de cara a la anotación de tipos. ¿Qué ocurre si queremos indicar una *lista de cadenas de texto* o un *conjunto de enteros*.
+Hay escenarios en los que necesitamos más expresividad de cara a la anotación de tipos. ¿Qué ocurre si queremos indicar una *lista de cadenas de texto* o un *conjunto de enteros*?
 
 Veamos algunos ejemplos válidos:
 
@@ -874,66 +874,6 @@ Tipos de funciones
 ******************
 
 |advlev|
-
-Funciones interiores
-====================
-
-Está permitido definir una función dentro de otra función::
-
-    >>> VALID_CHARS = 'xyz'
-
-    >>> def validation_rate(text: str) -> float:
-    ...     '''Rate of valid chars in text.'''
-    ...     def is_valid_char(char: str) -> bool:
-    ...         return char in VALID_CHARS
-    ...
-    ...     checklist = [is_valid_char(c) for c in text]
-    ...     return sum(checklist) / len(text)
-    ...
-
-    >>> validation_rate('zxyzxxyz')
-    1.0
-
-    >>> validation_rate('abzxyabcdz')
-    0.4
-
-    >>> validation_rate('abc')
-    0.0
-
-.. tip::
-    Estas funciones pueden tener sentido cuando su ámbito de aplicación es muy concreto y no se pueden reutilizar fácilmente.
-
-Clausuras
-=========
-
-Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <core/modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de los argumentos con los que fue creada::
-
-    >>> def make_multiplier_of(n):
-    ...     def multiplier(x):
-    ...         return x * n
-    ...     return multiplier
-    ...
-
-    >>> m3 = make_multiplier_of(3)
-
-    >>> m5 = make_multiplier_of(5)
-
-    >>> type(m3)
-    function
-
-    >>> m3(7)  # 7 * 3
-    21
-
-    >>> type(m5)
-    function
-
-    >>> m5(8)  # 8 * 5
-    40
-
-    >>> make_multiplier_of(5)(8)  # Llamada directa!
-    40
-
-.. important:: En una clausura retornamos una función, no una llamada a una función.
 
 Funciones anónimas "lambda"
 ===========================
@@ -1016,7 +956,7 @@ Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares
     pycheck_: **sort_ages**
 
 Enfoque funcional
-=================
+-----------------
 
 Como se comentó en la :ref:`introducción <core/introduction/python:Características del lenguaje>`, Python es un lenguaje de programación multiparadigma. Uno de los `paradigmas <https://es.wikipedia.org/wiki/Paradigma_de_programaci%C3%B3n>`_ menos explotados en este lenguaje es la **programación funcional** [#functional-programming]_.
 
@@ -1028,7 +968,7 @@ Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: `
     Rutinas muy enfocadas a programación funcional
 
 ``map()``
----------
+^^^^^^^^^
 
 Esta función **aplica otra función** sobre cada elemento de un iterable. Supongamos que queremos aplicar la siguiente función:
 
@@ -1066,7 +1006,7 @@ En Python es posible "simular" un ``map()`` a través de una :ref:`lista por com
     [0.5, 2.0, 4.5, 8.0, 12.5, 18.0, 24.5, 32.0, 40.5, 50.0]
 
 ``filter()``
-------------
+^^^^^^^^^^^^
 
 Esta función **selecciona** aquellos elementos de un iterable que cumplan una determinada condición. Supongamos que queremos seleccionar sólo aquellos números impares dentro de un rango::
 
@@ -1098,7 +1038,7 @@ En Python es posible "simular" un ``filter()`` a través de una :ref:`lista por 
     [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 
 ``reduce()``
-------------
+^^^^^^^^^^^^
 
 Para poder usar esta función debemos usar el módulo ``functools``. Nos permite aplicar una función dada sobre todos los elementos de un iterable de manera acumulativa. O dicho en otras palabras, nos permite **reducir** una función sobre un conjunto de valores. Supongamos que queremos realizar el producto de una serie de valores aplicando este enfoque::
 
@@ -1121,7 +1061,7 @@ Aplicando una :ref:`función anónima "lambda" <core/modularity/functions:Funcio
 .. hint:: Por cuestiones de legibilidad del código, se suelen preferir las **listas por comprensión** a funciones como ``map()`` o ``filter()``, aunque cada problema tiene sus propias características y sus soluciones más adecuadas. Es un **enfoque "más pitónico"**.
 
 Hazlo pitónico
---------------
+^^^^^^^^^^^^^^
 
 `Trey Hunner <https://treyhunner.com/>`_ explica en una de sus "newsletters" lo que él entiende por **código pitónico**:
 
@@ -1150,7 +1090,7 @@ Básicamente existen dos implementaciones de generadores:
 Funciones generadoras
 ---------------------
 
-Las funciones generadoras [#yield]_ (o factorías de generadores) se escriben como funciones ordinarias con el matiz de incorporar la sentencia ``yield`` que sustituye, de alguna manera, a ``return``. Esta sentencia devuelve el valor indicado y, a la vez, "congela" el estado de la función hasta la siguiente llamada.
+Las funciones generadoras [#yield]_ (o **factorías de generadores**) se escriben como funciones ordinarias con el matiz de incorporar la sentencia ``yield`` que sustituye, de alguna manera, a ``return``. Esta sentencia devuelve el valor indicado y, a la vez, "congela" el estado de la función hasta la siguiente llamada.
 
 Veamos un ejemplo en el que escribimos una **función generadora de números pares**::
 
@@ -1235,6 +1175,67 @@ Una expresión generadora se puede explicitar, sumar, buscar su máximo o su mí
 .. admonition:: Ejercicio
 
     pycheck_: **gen_squared**
+
+Funciones interiores
+====================
+
+Está permitido definir una función dentro de otra función::
+
+    >>> VALID_CHARS = 'xyz'
+
+    >>> def validation_rate(text: str) -> float:
+    ...     '''Rate of valid chars in text.'''
+    ...     def is_valid_char(char: str) -> bool:
+    ...         return char in VALID_CHARS
+    ...
+    ...     checklist = [is_valid_char(c) for c in text]
+    ...     return sum(checklist) / len(text)
+    ...
+
+    >>> validation_rate('zxyzxxyz')
+    1.0
+
+    >>> validation_rate('abzxyabcdz')
+    0.4
+
+    >>> validation_rate('abc')
+    0.0
+
+.. tip::
+    Estas funciones pueden tener sentido cuando su ámbito de aplicación es muy concreto y no se pueden reutilizar fácilmente.
+
+Clausuras
+=========
+
+Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <core/modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de los argumentos con los que fue creada::
+
+    >>> def make_multiplier_of(n):
+    ...     def multiplier(x):
+    ...         return x * n
+    ...     return multiplier
+    ...
+
+    >>> m3 = make_multiplier_of(3)
+
+    >>> m5 = make_multiplier_of(5)
+
+    >>> type(m3)
+    function
+
+    >>> m3(7)  # 7 * 3
+    21
+
+    >>> type(m5)
+    function
+
+    >>> m5(8)  # 8 * 5
+    40
+
+    >>> make_multiplier_of(5)(8)  # Llamada directa!
+    40
+
+.. important:: En una clausura retornamos una función, no una llamada a una función.
+
 
 Decoradores
 ===========
