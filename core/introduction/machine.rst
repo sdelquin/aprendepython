@@ -102,16 +102,22 @@ el programa se compilaría [#bytecode]_ al siguiente "bytecode"::
                  12 CALL                     1
                  22 RETURN_VALUE
 
-A continuación estas instrucciones básicas son ejecutadas por el intérprete de "bytecode" de Python (o máquina virtual).
+A continuación estas instrucciones básicas son ejecutadas por el intérprete de "bytecode" de Python (o máquina virtual):
+
+.. figure:: img/python-execution.png
+    :align: center
+
+    Modelo de ejecución de un programa Python [#bytecode_analysis]_
 
 .. note::
-    Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje "interpretado" como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un "bytecode" que se ejecuta (interpreta) de forma aparentemente simultánea.
+    Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje "interpretado" como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un "bytecode" que se ejecuta (interpreta) de forma "transparente".
 
 .. --------------- Footnotes ---------------
 
 .. [#machine-unsplash] Foto original por `Garett Mizunaka`_ en Unsplash.
 .. [#compiler] Iconos originales por `Flaticon`_.
 .. [#bytecode] Véase más información sobre `el intérprete de bytecode`_.
+.. [#bytecode_analysis] Imagen extraída del artículo `Python bytecode analysis`_.
 
 .. --------------- Hyperlinks ---------------
 
@@ -121,3 +127,4 @@ A continuación estas instrucciones básicas son ejecutadas por el intérprete d
 .. _ejemplo de código en ensamblador: https://medium.com/nabucodonosor-editorial/hola-mundo-ensamblado-x86-ff62789ab9b0
 .. _sistema binario: https://es.wikipedia.org/wiki/Sistema_binario
 .. _el intérprete de bytecode: https://devguide.python.org/internals/interpreter/
+.. _Python bytecode analysis: https://nowave.it/python-bytecode-analysis-1.html
