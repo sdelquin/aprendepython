@@ -229,9 +229,12 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     >>> type(height)
     int
 
-    >>> sound_speed = 343.2
-    >>> type(sound_speed)
+    >>> SOUND_SPEED = 343.2
+    >>> type(SOUND_SPEED)
     float
+
+.. warning::
+    Aunque está permitido, **NUNCA** llames ``type`` a una variable porque destruirías la función que nos permite conocer el tipo de un objeto.
 
 .. admonition:: Ejercicio
     :class: exercise
