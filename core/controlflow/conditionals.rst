@@ -284,19 +284,8 @@ Véanse las **tablas de la verdad** para cada operador lógico:
     2. El uso de paréntesis, en función del caso, puede aclarar la expresión de comparación.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dada una variable ``year`` con un valor entero, compruebe si dicho año es **bisiesto** o no lo es.
-
-    ℹ️ Un año es bisiesto en el calendario Gregoriano, si es divisible entre 4 y no divisible entre 100, o bien si es divisible entre 400. Puedes hacer la comprobación en `esta lista de años bisiestos <https://es.wikipedia.org/wiki/Anexo:A%C3%B1os_bisiestos_en_los_siglos_XX,_XXI_y_XXII>`_.
-
-    **Ejemplo**
-        * Entrada: ``2008``
-        * Salida: ``Es un año bisiesto``
-    
-    .. only:: html
-    
-        |solution| :download:`leap_year.py <files/leap_year.py>`
+    pycheck_: **leap_year**
 
 
 Cortocircuito lógico
@@ -388,25 +377,8 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
 * Si no hace frío, usa camiseta. 
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Implemente un "clon" de `Akinator`_ que permita adivinar un personaje de `Marvel`_ en base a las tres preguntas siguientes:
-
-    1. ¿Puede volar?
-    2. ¿Es humano?
-    3. ¿Tiene máscara?
-
-    .. image:: img/marvel-flowchart.png
-
-    **Ejemplo**
-        * Entrada: ``can_fly = True``, ``is_human = True`` y ``has_mask = True``
-        * Salida: ``Ironman``
-    
-    No use ``input()`` ya que puede complicar la gestión de los valores booleanos.
-       
-    .. only:: html
-    
-        |solution| :download:`marvel.py <files/marvel.py>`
+    pycheck_: **marvel_akinator**
 
 Valor nulo
 ==========
