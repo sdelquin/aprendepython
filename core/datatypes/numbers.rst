@@ -488,6 +488,9 @@ Cuenta con **2** símbolos para representar los valores: ``0`` y ``1``.
     >>> bin(12)
     '0b1100'
 
+.. caution::
+    Esta función devuelve una :ref:`cadena de texto <core/datatypes/strings:cadenas de texto>`.
+
 Base octal
 ==========
 
@@ -507,6 +510,9 @@ Cuenta con **8** símbolos para representar los valores: ``0``, ``1``, ``2``, ``
     >>> oct(687)
     '0o1257'
 
+.. caution::
+    Esta función devuelve una :ref:`cadena de texto <core/datatypes/strings:cadenas de texto>`.
+
 Base hexadecimal
 ================
 
@@ -525,6 +531,9 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
     '0x7f2a'
     >>> hex(18687)
     '0x48ff'
+
+.. caution::
+    Esta función devuelve una :ref:`cadena de texto <core/datatypes/strings:cadenas de texto>`.
 
 .. note:: Las letras para la representación hexadecimal no atienden a mayúsculas y minúsculas.
 
