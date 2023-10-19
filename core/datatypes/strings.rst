@@ -647,57 +647,40 @@ Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: an
     >>> f'{mount_height:010d}'
     '0000003718'
 
-**Dando formato a otras bases:**
-
-.. code-block::
-
-    >>> value = 0b10010011
-
-    >>> f'{value}'
-    '147'
-    >>> f'{value:b}'
-    '10010011'
-
-    >>> value = 0o47622
-    >>> f'{value}'
-    '20370'
-    >>> f'{value:o}'
-    '47622'
-
-    >>> value = 0xab217
-    >>> f'{value}'
-    '700951'
-    >>> f'{value:x}'
-    'ab217'
+.. tip::
+    Utilizamos el modificador ``d`` que viene de *entero decimal*.
 
 **Dando formato a valores flotantes:**
 
 .. code-block::
 
-    >>> pi = 3.14159265
+    >>> PI = 3.14159265
 
-    >>> f'{pi:f}'  # 6 decimales por defecto (se rellenan con ceros si procede)
+    >>> f'{PI:f}'  # 6 decimales por defecto
     '3.141593'
 
-    >>> f'{pi:.3f}'
+    >>> f'{PI:.3f}'
     '3.142'
 
-    >>> f'{pi:12f}'
+    >>> f'{PI:12f}'
     '    3.141593'
 
-    >>> f'{pi:7.2f}'
+    >>> f'{PI:7.2f}'
     '   3.14'
 
-    >>> f'{pi:07.2f}'
+    >>> f'{PI:07.2f}'
     '0003.14'
 
-    >>> f'{pi:.010f}'
+    >>> f'{PI:.010f}'
     '3.1415926500'
 
-    >>> f'{pi:e}'
+    >>> f'{PI:e}'
     '3.141593e+00'
 
-**Alineando valores:**
+.. tip::
+    Utilizamos el modificador ``f`` que viene de *flotante*.
+
+**Dando formato a cadenas de texto**
 
 .. code-block::
 
@@ -710,6 +693,35 @@ Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: an
 
     >>> f'{text1:-<7s}|{text2:·^11s}|{text3:->7s}'
     'how----|····are····|----you'
+
+.. tip::
+    Utilizamos el modificador ``s`` que viene de *string*.
+
+**Convirtiendo valores enteros a otras bases:**
+
+.. code-block::
+
+    >>> value = 65_321
+
+    >>> f'{value:b}'
+    '1111111100101001'
+
+    >>> f'{value:o}'
+    '177451'
+
+    >>> f'{value:x}'
+    'ff29'
+
+Por supuesto en el caso de otras bases también es posible aplicar los mismos **modificadores de ancho y de relleno** vistos para números enteros decimales. Por ejemplo:
+
+.. code-block::
+    
+    >>> f'{value:07x}'
+    '000ff29'
+
+.. seealso::
+    Nótese la diferencia de obtener el cambio de base con este método frente a las :ref:`funciones de cambio de base <core/datatypes/numbers:bases>` ya vistas previamente que añaden el prefijo de cada base ``0b``, ``0o`` y ``0x``.
+
 
 Modo "debug"
 ------------
@@ -767,6 +779,8 @@ En este caso se han añadido las comillas denotando que es una cadena de texto. 
         '00002.7183'
         '            2.71828'  # 12 espacios en blanco
 
+    Aproveche para hacer el ejercicio directamente en el intérprete de Python: ``>>>``
+
     .. only:: html
     
         |solution| :download:`fstrings.py <files/fstrings.py>`
@@ -804,6 +818,10 @@ El modificador ``\N`` permite representar un carácter **a partir de su nombre**
 
 .. seealso::
     `Tabla ASCII`_
+
+.. admonition:: Ejercicio
+
+    pycheck_: **find_unicode**
 
 Comparar cadenas
 ================
