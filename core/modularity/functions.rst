@@ -684,12 +684,12 @@ Del mismo modo podemos (y en muchos casos **debemos**) adjuntar **documentación
 La forma más ortodoxa de escribir un ``docstring`` es utilizando *triples comillas*::
 
     >>> def closest_int(value):
-    ...     '''Returns the closest integer to the given value.
+    ...     """Returns the closest integer to the given value.
     ...     The operation is:
     ...         1. Compute distance to floor.
     ...         2. If distance less than a half, return floor.
     ...            Otherwise, return ceil.
-    ...     '''
+    ...     """ 
     ...     floor = int(value)
     ...     if value - floor < 0.5:
     ...         return floor
@@ -762,7 +762,7 @@ Sphinx
 Veamos el uso de este formato en la documentación de la siguiente función::
 
     >>> def my_power(x, n):
-    ...     '''Calculate x raised to the power of n.
+    ...     """Calculate x raised to the power of n.
     ...
     ...     :param x: number representing the base of the operation
     ...     :type x: int
@@ -771,7 +771,7 @@ Veamos el uso de este formato en la documentación de la siguiente función::
     ...
     ...     :return: :math:`x^n`
     ...     :rtype: int
-    ...     '''
+    ...     """ 
     ...     result = 1
     ...     for _ in range(n):
     ...         result *= x
@@ -1184,7 +1184,7 @@ Está permitido definir una función dentro de otra función::
     >>> VALID_CHARS = 'xyz'
 
     >>> def validation_rate(text: str) -> float:
-    ...     '''Rate of valid chars in text.'''
+    ...     """Rate of valid chars in text."""
     ...     def is_valid_char(char: str) -> bool:
     ...         return char in VALID_CHARS
     ...

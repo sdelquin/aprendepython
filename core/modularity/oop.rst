@@ -834,7 +834,7 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
     Algoritmo de Euclides::
 
         def gcd(a: int, b: int) -> int:
-            ''' Algoritmo de Euclides para el cálculo del Máximo Común Divisor. '''
+            """ Algoritmo de Euclides para el cálculo del Máximo Común Divisor. """
             while b > 0:
                 a, b = b, a % b
             return a
@@ -1014,12 +1014,12 @@ Para que una clase "herede" de otra, basta con indicar la clase base entre paré
 Sigamos con el ejemplo galáctico: Una de las grandes categorías de droides en StarWars es la de `droides de protocolo`_. Vamos a crear una herencia sobre esta idea::
 
     >>> class Droid:
-    ...     ''' Clase Base '''
+    ...     """ Clase Base """
     ...     pass
     ...
 
     >>> class ProtocolDroid(Droid):
-    ...     ''' Clase Derivada '''
+    ...     """ Clase Derivada """
     ...     pass
     ...
 
@@ -1105,7 +1105,7 @@ La clase derivada puede, como cualquier otra clase "normal",  añadir métodos q
     ...         print("Hi! I'm a PROTOCOL droid. Can I help you?")
     ...
     ...     def translate(self, msg: str, *, from_lang: str) -> str:
-    ...         ''' Translate from language to Human understanding '''
+    ...         """ Translate from language to Human understanding """
     ...         return f'{msg} means "ZASCA" in {from_lang}'
 
     >>> r2d2 = Droid()
@@ -1953,7 +1953,7 @@ Durante toda la sección hemos analizado con detalle los distintos componentes q
 Aunque no existe ninguna indicación formal de la estructura de una clase, podríamos establecer el siguiente formato como guía de estilo::
 
     >>> class OrganizedClass:
-    ...     '''Descripción de la clase'''
+    ...     """Descripción de la clase"""
     ...
     ...     # Constructor
     ...

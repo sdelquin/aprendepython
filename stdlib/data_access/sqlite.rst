@@ -92,12 +92,12 @@ Empecemos creando la tabla ``pyversions`` a través de un código SQL similar al
 
 Haremos uso del cursor creado para **ejecutar** estas instrucciones::
 
-    >>> sql = '''CREATE TABLE pyversions (
+    >>> sql = """CREATE TABLE pyversions (
     ...     branch TEXT PRIMARY KEY,
     ...     released_at_year INTEGER,
     ...     released_at_month INTEGER,
     ...     release_manager TEXT
-    ... )'''
+    ... )"""
 
     >>> cur.execute(sql)
     <sqlite3.Cursor at 0x106a63960>
@@ -628,25 +628,25 @@ Veamos un ejemplo de aplicación con una tabla en memoria que almacena **ciudade
     >>> con = sqlite3.connect(':memory:')
     >>> cur = con.cursor()
 
-    >>> cur.execute('''CREATE TABLE cities (
+    >>> cur.execute("""CREATE TABLE cities (
     ... id INTEGER PRIMARY KEY,
     ... city TEXT UNIQUE,
     ... latitude REAL,
-    ... longitude REAL)''')
+    ... longitude REAL)""")
     <sqlite3.Cursor at 0x107139bc0>
 
-    >>> cur.execute('''INSERT INTO
+    >>> cur.execute("""INSERT INTO
     ... cities (city, latitude, longitude)  # Obviamos "id"
-    ... VALUES ("Tokyo", 35.652832, 139.839478)''')
+    ... VALUES ("Tokyo", 35.652832, 139.839478)""")
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> result = cur.execute('SELECT * FROM cities')
     >>> result.fetchall()
     [(1, 'Tokyo', 35.652832, 139.839478)]
 
-    >>> cur.execute('''INSERT INTO
+    >>> cur.execute("""INSERT INTO
     ... cities (city, latitude, longitude)  # Obviamos "id"
-    ... VALUES ("Barcelona", 41.390205, 2.154007)''')
+    ... VALUES ("Barcelona", 41.390205, 2.154007)""")
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> result = cur.execute('SELECT * FROM cities')
@@ -764,7 +764,7 @@ Supongamos una tabla de ejemplo que mantiene estadísticas de los `mejores jugad
 
     >>> cur = con.cursor()
 
-    >>> sql = '''
+    >>> sql = """
     ... CREATE TABLE nba (
     ...     player TEXT PRIMARY KEY,
     ...     points INTEGER
@@ -772,7 +772,7 @@ Supongamos una tabla de ejemplo que mantiene estadísticas de los `mejores jugad
     ... INSERT INTO nba VALUES ('LeBron James', 8023);
     ... INSERT INTO nba VALUES ('Michael Jordan', 5987);
     ... INSERT INTO nba VALUES ('Kareem Abdul-Jabbar', 5762);
-    ... '''
+    ... """
 
     >>> cur.execute(sql)
     Traceback (most recent call last):

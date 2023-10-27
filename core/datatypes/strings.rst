@@ -22,31 +22,31 @@ Para incluir *comillas dobles* dentro de la cadena de texto no hay mayor inconve
     >>> 'Los llamados "strings" son secuencias de caracteres'
     'Los llamados "strings" son secuencias de caracteres'
 
-Puede surgir la duda de cómo incluimos *comillas simples* dentro de la propia cadena de texto. Veamos soluciones para ello:
-
-.. code-block::
-    :caption: Comillas simples escapadas
-
-    >>> 'Los llamados \'strings\' son secuencias de caracteres'
-    "Los llamados 'strings' son secuencias de caracteres"
-
-.. code-block::
-    :caption: Comillas simples dentro de comillas dobles
+Para incluir *comillas simples* dentro de la cadena de texto cambiamos las comillas exteriores a comillas dobles:
 
     >>> "Los llamados 'strings' son secuencias de caracteres"
     "Los llamados 'strings' son secuencias de caracteres"
 
-En la primera opción estamos **escapando** las comillas simples para que no sean tratadas como caracteres especiales. En la segunda opción estamos creando el "string" con comillas dobles (por fuera) para poder incluir directamente las comillas simples (por dentro). Python también nos ofrece esta posibilidad.
+.. tip::
+    Efectivamente, como se puede ver, las cadenas de texto en Python se pueden escribir con comillas simples o con comillas dobles. Es indiferente. **En mi caso personal prefiero usar comillas simples**.
+
+    Elijas lo que elijas, ¡haz siempre lo mismo!
 
 Comillas triples
 ================
 
-Hay una forma alternativa de crear cadenas de texto utilizando *comillas triples*. Su uso está pensado principalmente para **cadenas multilínea**::
+Hay una forma alternativa de crear cadenas de texto y es utilizar *comillas triples*. Su uso está pensado principalmente para **cadenas multilínea**::
 
-    >>> poem = '''To be, or not to be, that is the question:
+    >>> poem = """To be, or not to be, that is the question:
     ... Whether 'tis nobler in the mind to suffer
     ... The slings and arrows of outrageous fortune,
-    ... Or to take arms against a sea of troubles'''
+    ... Or to take arms against a sea of troubles"""
+
+En este caso sí que se debería **utilizar comillas dobles** siguiendo las `indicaciones de la guía de estilo de Python`_:
+
+    In Python, single-quoted strings and double-quoted strings are the same. This PEP does not make a recommendation for this. Pick a rule and stick to it. When a string contains single or double quote characters, however, use the other one to avoid backslashes in the string. It improves readability.
+
+    For triple-quoted strings, always use double quote characters to be consistent with the docstring convention in PEP 257.
 
 .. important:: Los tres puntos ``...`` que aparecen a la izquierda de las líneas no están incluidos en la cadena de texto. Es el símbolo que ofrece el intérprete de Python cuando saltamos de línea.
 
@@ -454,12 +454,12 @@ Aunque hemos visto que la forma pitónica de saber si una subcadena se encuentra
 
 Vamos a partir de una variable que contiene un trozo de la canción `Mediterráneo`_ de *Joan Manuel Serrat* para ejemplificar las distintas opciones que tenemos::
 
-    >>> lyrics = '''Quizás porque mi niñez
+    >>> lyrics = """Quizás porque mi niñez
     ... Sigue jugando en tu playa
     ... Y escondido tras las cañas
     ... Duerme mi primer amor
     ... Llevo tu luz y tu olor
-    ... Por dondequiera que vaya'''
+    ... Por dondequiera que vaya"""
 
 Comprobar si una cadena de texto **empieza o termina por alguna subcadena**::
 
@@ -1030,3 +1030,4 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
 .. _Tabla ASCII: https://www.asciitable.com/
 .. _pycheck: https://pycheck.es
+.. _indicaciones de la guía de estilo de Python: https://peps.python.org/pep-0008/#string-quotes

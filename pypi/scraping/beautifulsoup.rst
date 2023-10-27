@@ -18,7 +18,7 @@ Para empezar a trabajar con *Beautiful Soup* es necesario construir un objeto de
 
     >>> from bs4 import BeautifulSoup
 
-    >>> contents = '''
+    >>> contents = """
     ... <html lang="en">
     ... <head>
     ...     <title>Just testing</title>
@@ -50,7 +50,7 @@ Para empezar a trabajar con *Beautiful Soup* es necesario construir un objeto de
     ...     </div>
     ... </body>
     ... </html>
-    ... '''
+    ... """
 
     >>> soup = BeautifulSoup(contents, features='html.parser')
 
