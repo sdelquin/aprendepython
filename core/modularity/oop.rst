@@ -1589,7 +1589,7 @@ Usando un iterador externo
 
 Hasta ahora hemos analizado el escenario en el que el objeto iterable coincide con el objeto iterador, pero esto no tiene por qué ser siempre así.
 
-Supongamos ahora que queremos implementar un **mercado de droides de protocolo** que debe ser un iterable y devolver cada vez un droide de protocolo. Veamos esta aproximación **usando un iterador externo**::
+Supongamos, en este caso, que queremos implementar un **mercado de droides de protocolo** que debe ser un iterable y devolver cada vez un droide de protocolo. Veamos esta aproximación **usando un iterador externo**::
 
     >>> class Droid:
     ...     def __init__(self, name: str):
@@ -1640,6 +1640,54 @@ Probamos ahora el código anterior recorriendo todos los droides que están disp
 
 .. hint::
     Esta aproximación puede ser interesante cuando no queremos mezclar el código del iterador con la lógica del objeto principal.
+
+Generadores como iteradores
+---------------------------
+
+Si utilizamos un generador (ya sea como función o expresión) estaremos, casi sin saberlo, implementando el protocolo de iteración:
+
+- El objeto iterador es el propio generador.
+- Una llamada a ``next()`` sobre el generador nos devuelve el siguiente valor.
+
+Veamos una reimplementación del ejemplo anterior del mercado de droides utilizando una **función generadora**:
+
+.. code-block::
+    :emphasize-lines: 16-18
+
+    >>> class Droid:
+    ...     def __init__(self, name: str):
+    ...         self.name = name
+    ...
+    ...     def __repr__(self):
+    ...         return f'Droid: {self.name}'
+    ...
+    
+    >>> class ProtocolDroidMarket:
+    ...     DROID_MODELS = ('C-3PO', 'K-3PO', 'R-3PO', 'RA-7',
+    ...                     'TC-14', 'TC-4', '4-LOM')
+    ...
+    ...     def __init__(self):
+    ...         self.droids = [Droid(name) for name in ProtocolDroidMarket.DROID_MODELS]
+    ...
+    ...     def __iter__(self):
+    ...         for droid in self.droids:
+    ...             yield droid
+    ...
+
+Probamos ahora si todo está funcionando como debería::
+
+    >>> market = ProtocolDroidMarket()
+
+    >>> for droid in market:
+    ...     print(droid)
+    ...
+    Droid: C-3PO
+    Droid: K-3PO
+    Droid: R-3PO
+    Droid: RA-7
+    Droid: TC-14
+    Droid: TC-4
+    Droid: 4-LOM
 
 Ejemplos de iterables
 ---------------------
