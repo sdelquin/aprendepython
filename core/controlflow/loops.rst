@@ -353,17 +353,8 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. tip:: Tanto la :ref:`comprobación de rotura de un bucle <core/controlflow/loops:Comprobar la rotura>` como la :ref:`continuación a la siguiente iteración <core/controlflow/loops:Continuar un bucle>` se llevan a cabo del mismo modo que hemos visto con los bucles de tipo ``while``.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dada una cadena de texto, indique el número de vocales que tiene.
-
-    **Ejemplo**
-        * Entrada: ``Supercalifragilisticoespialidoso``
-        * Salida: ``15``
-
-    .. only:: html
-
-        |solution| :download:`num_vowels.py <files/num_vowels.py>`    
+    pycheck_: **count_vowels**
 
 Secuencias de números
 =====================
@@ -430,21 +421,8 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. tip:: Se suelen utilizar nombres de variables ``i``, ``j``, ``k`` para lo que se denominan **contadores**. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores. No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de asignar un nombre semánticamente más significativo. Esto viene de tiempos antiguos en FORTRAN donde ``i`` era la primera letra que tenía valor entero por defecto.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Determine si un número dado es un `número primo`_.
-
-    *No es necesario implementar ningún algoritmo en concreto. La idea es probar los números menores al dado e ir viendo si las divisiones tienen resto cero o no*.
-
-    ¿Podría optimizar su código? ¿Realmente es necesario probar con tantos divisores?
-
-    **Ejemplo**
-        * Entrada: ``11``
-        * Salida: ``Es primo``
-
-    .. only:: html
-
-        |solution| :download:`prime.py <files/prime.py>`
+    pycheck_: **prime**
 
 Usando el guión bajo
 --------------------

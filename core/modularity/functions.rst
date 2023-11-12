@@ -1762,7 +1762,7 @@ Consejos para programar
 3. pycheck_: **split_case**
 4. pycheck_: **perfect**
 5. pycheck_: **palindrome**
-6. pycheck_: **count_vowels**
+6. pycheck_: **count_vowels_rec**
 7. pycheck_: **pangram**
 8. pycheck_: **cycle_alphabet**
 9. pycheck_: **bubble_sort**
