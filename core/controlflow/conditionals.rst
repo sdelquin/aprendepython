@@ -595,20 +595,8 @@ En su versión más simple, el "pattern matching" permite comparar un valor de e
     Unknown color!
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba un programa en Python que pida (por separado) dos valores numéricos y un operando (suma, resta, multiplicación, división) y calcule el resultado de la operación, usando para ello la sentencia ``match-case``.
-
-    Controlar que la operación no sea una de las cuatro predefinidas. En este caso dar un mensaje de error y no mostrar resultado final.
-
-    **Ejemplo**
-    
-    * Entrada: ``4``, ``3``, ``+``
-    * Salida: ``4+3=7``
-
-    .. only:: html
-    
-        |solution| :download:`calculator.py <files/calculator.py>`
+    pycheck_: **simple_op**
 
 Patrones avanzados
 ==================
@@ -813,13 +801,9 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que acepte la opción de dos jugadoras en `Piedra-Papel-Tijera`_ y decida el resultado (:download:`solución <files/pss.py>`).
-    - Entrada: ``person1=piedra; person2=papel``
-    - Salida: ``Gana persona2: El papel envuelve a la piedra``
-
-2. Escriba un programa en Python que acepte 3 números y calcule el mínimo (:download:`solución <files/min_values.py>`).
-    - Entrada: ``7, 4, 9``
-    - Salida: ``4``
+1. pycheck_: **rps**
+2. pycheck_: **min3values**
+3. pycheck_: **blood_donation**
 
 3. Escriba un programa en Python que acepte un país (como "string") y muestre por pantalla su bandera (como "emoji"). *Puede restringirlo a un conjunto limitado de países* (:download:`solución <files/countries.py>`).
     - Entrada: ``Italia``
@@ -829,11 +813,6 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
     - Entrada: ``tecla1=Ctrl; tecla2=Alt; tecla3=Del;``
     - Salida: ``Log out``
 
-5. Escriba un programa en Python que acepte edad, peso, pulso y plaquetas, y determine si una persona cumple con `estos requisitos <http://www3.gobiernodecanarias.org/sanidad/ichh/donantes/requisitos.asp>`_ para donar sangre.
-    - Entrada: ``edad=34; peso=81; heartbeat=70; plaquetas=150000``
-    - Salida: ``Apto para donar sangre``
-
-6. pycheck_: **red_square**
 
 .. rubric:: EJERCICIOS EXTERNOS
 

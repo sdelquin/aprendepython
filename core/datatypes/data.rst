@@ -239,6 +239,8 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
 .. admonition:: Ejercicio
     :class: exercise
 
+    Utilizando la consola interactiva de Python ``>>>``, realiza las siguientes tareas:
+
     1. Asigna un valor entero ``2001`` a la variable ``space_odyssey`` y muestra su valor.
     2. Descubre el tipo del literal ``'Good night & Good luck'``.
     3. Identifica el tipo del literal ``True``.

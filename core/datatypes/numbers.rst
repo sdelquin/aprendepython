@@ -557,16 +557,16 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 
 .. rubric:: EJERCICIOS EXTERNOS
 
-8. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
-9. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
-10. `USD => CNY <https://www.codewars.com/kata/5977618080ef220766000022>`_
-11. `Third angle of a triangle <https://www.codewars.com/kata/5a023c426975981341000014>`_
-12. `Keep hydrated! <https://www.codewars.com/kata/582cb0224e56e068d800003c>`_
-13. `Price of mangoes <https://www.codewars.com/kata/57a77726bb9944d000000b06>`_
-14. `Total pressure calculation <https://www.codewars.com/kata/5b7ea71db90cc0f17c000a5a>`_
-15. `NBA full 48 minutes average <https://www.codewars.com/kata/587c2d08bb65b5e8040004fd>`_
-16. `Age range compatibility equation <https://www.codewars.com/kata/5803956ddb07c5c74200144e>`_
-17. `Formatting decimal places <https://www.codewars.com/kata/5641a03210e973055a00000d>`_
+1. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
+2. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
+3. `USD => CNY <https://www.codewars.com/kata/5977618080ef220766000022>`_
+4. `Third angle of a triangle <https://www.codewars.com/kata/5a023c426975981341000014>`_
+5. `Keep hydrated! <https://www.codewars.com/kata/582cb0224e56e068d800003c>`_
+6. `Price of mangoes <https://www.codewars.com/kata/57a77726bb9944d000000b06>`_
+7. `Total pressure calculation <https://www.codewars.com/kata/5b7ea71db90cc0f17c000a5a>`_
+8. `NBA full 48 minutes average <https://www.codewars.com/kata/587c2d08bb65b5e8040004fd>`_
+9. `Age range compatibility equation <https://www.codewars.com/kata/5803956ddb07c5c74200144e>`_
+10. `Formatting decimal places <https://www.codewars.com/kata/5641a03210e973055a00000d>`_
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

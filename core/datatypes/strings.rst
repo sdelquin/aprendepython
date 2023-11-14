@@ -205,7 +205,7 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
 .. admonition:: Ejercicio
     :class: exercise
 
-    Escriba un programa en Python que lea por teclado dos números enteros y muestre por pantalla el resultado de realizar las operaciones básicas entre ellos.
+    Escriba un programa en Python que :ref:`lea por teclado <core/datatypes/strings:leer datos desde teclado>` dos números enteros y muestre por pantalla el resultado de realizar las operaciones básicas entre ellos.
 
     **Ejemplo**
         - Valores de entrada 7 y 4.
@@ -216,7 +216,10 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
             7*4=28
             7/4=1.75
 
-    .. hint:: Aproveche todo el potencial que ofrece :ref:`print() <more-print>` para conseguir la salida esperada.
+    .. hint::
+        - Aproveche todo el potencial que ofrece :ref:`print() <more-print>` para conseguir la salida esperada
+        - No utilice "f-strings".
+        - Guarde el programa en un fichero ``calc.py`` y ejecútelo desde la terminal con: ``python calc.py``
 
     .. only:: html
     
