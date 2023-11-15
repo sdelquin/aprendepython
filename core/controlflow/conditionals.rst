@@ -804,14 +804,8 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 1. pycheck_: **rps**
 2. pycheck_: **min3values**
 3. pycheck_: **blood_donation**
-
-3. Escriba un programa en Python que acepte un país (como "string") y muestre por pantalla su bandera (como "emoji"). *Puede restringirlo a un conjunto limitado de países* (:download:`solución <files/countries.py>`).
-    - Entrada: ``Italia``
-    - Salida: 🇮🇹
-
-4. Escriba un programa en Python que acepte 3 códigos de teclas y muestre por pantalla `la acción que se lleva a cabo en sistemas Ubuntu Linux`_ (:download:`solución <files/shortcuts.py>`).
-    - Entrada: ``tecla1=Ctrl; tecla2=Alt; tecla3=Del;``
-    - Salida: ``Log out``
+4. pycheck_: **facemoji**
+5. pycheck_: **shortcuts**
 
 
 .. rubric:: EJERCICIOS EXTERNOS
@@ -866,10 +860,6 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 .. _ali nafezarefi: https://unsplash.com/@beautyisblinding?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _PEP 8: https://www.python.org/dev/peps/pep-0008/#indentation
 .. _operador morsa: https://www.python.org/dev/peps/pep-0572/
-.. _Marvel: https://marvel.fandom.com/es/wiki/Categor%C3%ADa:Personajes
-.. _Akinator: https://es.akinator.com/
-.. _Piedra-Papel-Tijera: https://es.wikipedia.org/wiki/Piedra,_papel_o_tijera
-.. _la acción que se lleva a cabo en sistemas Ubuntu Linux: https://itsfoss.com/ubuntu-shortcuts/
 .. _Structural Pattern Matching: https://www.python.org/dev/peps/pep-0636/
 .. _Best practices for writing code comments: https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/
 .. _pycheck: https://pycheck.es
