@@ -376,43 +376,6 @@ Habría que prestar atención al caso en el que intentamos descubrir si una subc
     >>> 'C' not in dna_sequence  # Forma pitónica
     True    
 
-
-Dividir una cadena
-==================
-
-Una tarea muy común al trabajar con cadenas de texto es dividirlas por algún tipo de *separador*. En este sentido, Python nos ofrece la función ``split()``, que debemos usar anteponiendo el "string" que queramos dividir::
-
-    >>> proverb = 'No hay mal que por bien no venga'
-    >>> proverb.split()
-    ['No', 'hay', 'mal', 'que', 'por', 'bien', 'no', 'venga']
-
-    >>> tools = 'Martillo,Sierra,Destornillador'
-    >>> tools.split(',')
-    ['Martillo', 'Sierra', 'Destornillador']
-
-.. note:: Si no se especifica un separador, ``split()`` usa por defecto cualquier secuencia de espacios en blanco, tabuladores y saltos de línea.
-
-Aunque aún no lo hemos visto, lo que devuelve ``split()`` es una :ref:`lista <core/datastructures/lists:Listas>` (otro tipo de datos en Python) donde cada elemento es una parte de la cadena de texto original::
-
-    >>> game = 'piedra-papel-tijera'
-
-    >>> type(game.split('-'))
-    list
-
-.. admonition:: Ejercicio
-
-    pycheck_: **num_words**
-
-Existe una forma algo más avanzada de dividir una cadena a través del **particionado**. Para ello podemos valernos de la función ``partition()`` que proporciona Python.
-
-Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes: lo que queda a la izquierda del separador, el separador en sí mismo y lo que queda a la derecha del separador::
-
-    >>> text = '3 + 4'
-
-    >>> text.partition('+')
-    ('3 ', '+', ' 4')
-
-
 Limpiar cadenas
 ===============
 

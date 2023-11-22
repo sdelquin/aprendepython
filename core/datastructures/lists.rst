@@ -535,7 +535,51 @@ Para contar cuántas veces aparece un determinado valor dentro de una lista pode
     >>> sheldon_greeting.count('Penny')
     3
 
-Convertir lista a cadena de texto
+Dividir una cadena de texto en lista
+====================================
+
+Una tarea muy común al trabajar con cadenas de texto es dividirlas por algún tipo de *separador*. En este sentido, Python nos ofrece la función ``split()``, que debemos usar anteponiendo el "string" que queramos dividir::
+
+    >>> proverb = 'No hay mal que por bien no venga'
+    >>> proverb.split()
+    ['No', 'hay', 'mal', 'que', 'por', 'bien', 'no', 'venga']
+
+    >>> tools = 'Martillo,Sierra,Destornillador'
+    >>> tools.split(',')
+    ['Martillo', 'Sierra', 'Destornillador']
+
+.. note:: Si no se especifica un separador, ``split()`` usa por defecto cualquier secuencia de espacios en blanco, tabuladores y saltos de línea.
+
+La función ``split()`` devuelve una lista donde cada elemento es una parte de la cadena de texto original::
+
+    >>> game = 'piedra-papel-tijera'
+
+    >>> type(game_tools := game.split('-'))
+    list
+
+    >>> game_tools
+    ['piedra', 'papel', 'tijera']
+
+.. admonition:: Ejercicio
+
+    pycheck_: **num_words**
+
+Particionado de cadenas de texto
+--------------------------------
+
+Existe una forma algo más "elaborada" de dividir una cadena a través del **particionado**. Para ello podemos valernos de la función ``partition()`` que proporciona Python.
+
+Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes: lo que queda a la izquierda del separador, el separador en sí mismo y lo que queda a la derecha del separador::
+
+    >>> text = '3 + 4'
+
+    >>> text.partition('+')
+    ('3 ', '+', ' 4')
+
+.. seealso::
+    En este caso el resultado de la función ``partition()`` es una :ref:`tupla <core/datastructures/tuples:tuplas>`.
+
+Unir una lista en cadena de texto
 =================================
 
 Dada una lista, podemos convetirla a una cadena de texto, uniendo todos sus elementos mediante algún **separador**. Para ello hacemos uso de la función ``join()`` con la siguiente estructura:
@@ -565,18 +609,11 @@ Hay que tener en cuenta que ``join()`` sólo funciona si *todos sus elementos so
       File "<stdin>", line 1, in <module>
     TypeError: sequence item 0: expected str instance, int found
 
-.. tip:: Esta función ``join()`` es realmente la **opuesta** a la de ``split()`` para :ref:`dividir una cadena <core/datatypes/strings:Dividir una cadena>`.
+.. tip:: Esta función ``join()`` es realmente la **opuesta** a la función ``split()``.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Consiga la siguiente transformación:
-
-    ``12/31/20`` ➡️ ``31-12-2020``
-
-    .. only:: html
-    
-        |solution| :download:`fixdate.py <files/fixdate.py>`
+    pycheck_: **fixdate**
 
 Ordenar una lista
 =================
@@ -718,23 +755,8 @@ Dado que ``zip()`` produce un *iterador*, si queremos obtener una **lista explí
      ('Arroz', 'basmati')]
     
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dados dos vectores (listas) de la misma dimensión, utilice la función ``zip()`` para calcular su `producto escalar`_.
-
-    **Ejemplo**
-        * Entrada::
-
-            v1 = [4, 3, 8, 1]
-            v2 = [9, 2, 7, 3]
-
-        * Salida: ``101``
-
-        :math:`v1 \cdot v2 = [4 \cdot 9 + 3 \cdot 2 + 8 \cdot 7 + 1 \cdot 3] = 101`
-    
-    .. only:: html
-    
-        |solution| :download:`scalar_prod.py <files/scalar_prod.py>`
+    pycheck_: **dot_product**
 
 Comparar listas
 =================
@@ -992,15 +1014,8 @@ Veamos un ejemplo en el que generamos todas las combinaciones de una serie de va
 .. hint:: Las listas por comprensión son una herramienta muy potente y nos ayuda en muchas ocasiones, pero hay que tener cuidado de no generar **expresiones excesivamente complejas**. En estos casos es mejor una *aproximación clásica*.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Utilizando listas por comprensión, cree una lista que contenga el resultado de aplicar la función :math:`f(x) = 3x + 2` para :math:`x \in [0, 20)`.
-
-    **Salida esperada**: ``[2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59]``
-
-    .. only:: html
-    
-        |solution| :download:`comprehension.py <files/comprehension.py>`
+    pycheck_: **fcomp**
 
 .. _sys-argv:
 
@@ -1129,46 +1144,8 @@ Podemos comprobar el acceso a distintos elementos::
     'Villa'
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Escriba un programa que permita multiplicar únicamente matrices de 2 filas por 2 columnas. Veamos un ejemplo concreto:
-
-    .. code-block::
-    
-        A = [[6, 4], [8, 9]]
-        B = [[3, 2], [1, 7]]
-    
-    El producto :math:`\mathbb{P} = A \times B` se calcula siguiendo la `multiplicación de matrices`_ tal y como se indica a continuación:
-
-    .. math::
-
-        \mathbb{P}
-        =
-        \begin{pmatrix}
-        6_{[00]} & 4_{[01]}\\
-        8_{[10]} & 9_{[11]}
-        \end{pmatrix}
-        \times
-        \begin{pmatrix}
-        3_{[00]} & 2_{[01]}\\
-        1_{[10]} & 7_{[11]}
-        \end{pmatrix}
-        =\\
-        \begin{pmatrix}
-        6 \cdot 3  + 4 \cdot 1 & 6 \cdot 2  + 4 \cdot 7\\
-        8 \cdot 3  + 9 \cdot 1 & 8 \cdot 2  + 9 \cdot 7
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-        22 & 40\\
-        33 & 79
-        \end{pmatrix}
-
-    .. only:: html
-    
-        |solution| :download:`matrix2x2.py <files/matrix2x2.py>`
-    
-        · Solución generalizada para matrices de cualquier dimensión: :download:`matrix.py <files/matrix.py>`
+    pycheck_: **mulmatrix2**
 
 ----
 
