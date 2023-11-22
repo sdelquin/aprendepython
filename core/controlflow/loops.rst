@@ -624,32 +624,11 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     &\vdots\\
     111111111 &\cdot 111111111
 
-4. Escriba un programa en Python que acepte una cadena de texto e indique si todos sus caracteres son alfabéticos. No usar la función ``isalpha()`` sino una constante ``ALPHABET = 'abcdefghijklmnopqrstuvwxyz'`` (:download:`solución <files/alpha.py>`)
-    - Entrada: ``hello-world``
-    - Salida: ``Se han encontrado caracteres no alfabéticos``
-
-5. Escriba un programa en Python que acepte un número entero :math:`n` y realice el siguiente cálculo de productos sucesivos (:download:`solución <files/products.py>`):
-
-.. math::
-    \prod_{i=1}^n i^2 = 1^2 \cdot 2^2 \cdot 3^2 \cdot \cdots \cdot n^2
-
-6. Escriba un programa en Python que acepte dos cadenas de texto y compute el `producto cartesiano`_ letra a letra entre ellas (:download:`solución <files/cproduct.py>`).
-    - Entrada: ``str1=abc; str2=123``
-    - Salida: ``a1 a2 a3 b1 b2 b3 c1 c2 c3``
-
-7. Escriba un programa en Python que acepte dos valores enteros (:math:`x` e :math:`y`) que representarán un punto (objetivo) en el plano. El programa simulará el movimiento de un "caballo" de ajedrez moviéndose de forma alterna: 2 posiciones en :math:`x` + 1 posición en :math:`y`. El siguiente movimiento que toque sería para moverse 1 posición en :math:`x` + 2 posiciones en :math:`y`. El programa deberá ir mostrando los puntos por los que va pasando el "caballo" hasta llegar al punto objetivo (:download:`solución <files/horse.py>`).
+4. Escriba un programa en Python que acepte dos valores enteros (:math:`x` e :math:`y`) que representarán un punto (objetivo) en el plano. El programa simulará el movimiento de un "caballo" de ajedrez moviéndose de forma alterna: 2 posiciones en :math:`x` + 1 posición en :math:`y`. El siguiente movimiento que toque sería para moverse 1 posición en :math:`x` + 2 posiciones en :math:`y`. El programa deberá ir mostrando los puntos por los que va pasando el "caballo" hasta llegar al punto objetivo (:download:`solución <files/horse.py>`).
     - Entrada: ``objetivo_x=7; objetivo_y=8;``
     - Salida: ``(0, 0) (1, 2) (3, 3) (4, 5) (6, 6) (7, 8)``
 
-8. Escriba un programa que calcule la `distancia hamming`_ entre dos *cadenas de texto* de la misma longitud (:download:`solución <files/hamming.py>`).
-    - Entrada: ``0001010011101`` y ``0000110010001``
-    - Salida: ``4``
-
-9. Escriba un programa que calcule el máximo común divisor entre dos números enteros. No utilice ningún algoritmo existente. Hágalo probando divisores (:download:`solución <files/mcd.py>`).
-    - Entrada: ``a=12; b=44``
-    - Salida: ``4``
-
-10. Escriba un programa que muestre por pantalla todas las fichas del dominó. La ficha "en blanco" se puede representar con un 0 (:download:`solución <files/domino.py>`).
+5. Escriba un programa que muestre por pantalla todas las fichas del dominó. La ficha "en blanco" se puede representar con un 0 (:download:`solución <files/domino.py>`).
 
 .. image:: img/domino.jpg
 
@@ -663,13 +642,13 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     5|5 5|6
     6|6
 
-11. Escriba un programa que calcule el valor de :math:`x` para el que la función :math:`f(x) = x^2 - 6x + 3` obtiene su menor resultado. Centre la búsqueda en el rango :math:`[-9, 9]` sólo con valores enteros (:download:`solución <files/fmin.py>`). 
+6. Escriba un programa que calcule el valor de :math:`x` para el que la función :math:`f(x) = x^2 - 6x + 3` obtiene su menor resultado. Centre la búsqueda en el rango :math:`[-9, 9]` sólo con valores enteros (:download:`solución <files/fmin.py>`). 
 
 El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 
 .. image:: img/fmin.png
 
-12. Escriba un programa que muestre (por filas) la `Tabla ASCII`_, empezando con el código 33 y terminando con el 127 (:download:`solución <files/ascii_table.py>`):
+7. Escriba un programa que muestre (por filas) la `Tabla ASCII`_, empezando con el código 33 y terminando con el 127 (:download:`solución <files/ascii_table.py>`):
 
 .. code-block::
 
@@ -693,7 +672,7 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
     118 v   119 w   120 x   121 y   122 z
     123 {   124 |   125 }   126 ~   127 
 
-13. Escriba un programa que permita al usuario adivinar un número. Indicar si el número buscado es menor o mayor que el que se está preguntando y mostrar igualmente el número de intentos hasta encontrar el número objetivo (:download:`solución <files/guess_number.py>`):
+8. Escriba un programa que permita al usuario adivinar un número. Indicar si el número buscado es menor o mayor que el que se está preguntando y mostrar igualmente el número de intentos hasta encontrar el número objetivo (:download:`solución <files/guess_number.py>`):
 
 .. code-block::
 
@@ -706,6 +685,11 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
     Introduzca número: 87
     ✅ ¡Enhorabuena! Has encontrado el número en 4 intentos
 
+9. pycheck_: **gcd**
+10. pycheck_: **hamming**
+11. pycheck_: **sprod_cart**
+12. pycheck_: **cumsq_prod**
+13. pycheck_: **isalphabetic**
 14. pycheck_: **tennis_game**
 15. pycheck_: **tennis_set**
 
