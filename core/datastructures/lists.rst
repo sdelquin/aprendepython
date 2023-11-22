@@ -40,11 +40,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. admonition:: Ejercicio
     :class: exercise
 
-    Cree una lista con las 5 ciudades que más le gusten.
-
-    .. only:: html
-    
-        |solution| :download:`love_cities.py <files/love_cities.py>`
+    Entre en el intérprete interactivo de Python (``>>>``) y cree una lista con las 5 ciudades que más le gusten.
 
 **********
 Conversión
@@ -480,6 +476,8 @@ La diferencia entre ambos métodos tiene que ver con cuestiones internas de gest
 .. seealso::
     La memoria que queda "en el limbo" después de asignar un nuevo valor a la lista es detectada por el **recolector de basura** de Python, quien se encarga de liberar aquellos datos que no están referenciados por ninguna variable.
 
+    A efectos de **velocidad de ejecución**, ``shopping.clear()`` "parece" ir más rápido que ``shopping = []``.
+
 Encontrar un elemento
 =====================
 
@@ -520,20 +518,9 @@ Si queremos comprobar la existencia de un determinado elemento en una lista, pod
 .. note:: El operador ``in`` siempre devuelve un valor booleano, es decir, verdadero o falso.
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Determine si una cadena de texto dada es un **isograma**, es decir, no se repite ninguna letra.
+    pycheck_: **isogram**
 
-    Ejemplos válidos de isogramas:
-
-    - *lumberjacks*
-    - *background*
-    - *downstream*
-    - *six-year-old*
-
-    .. only:: html
-    
-        |solution| :download:`isogram.py <files/isogram.py>`
 
 Número de ocurrencias
 =====================
