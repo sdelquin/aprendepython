@@ -923,6 +923,14 @@ Veamos la **versión con veracidad múltiple** usando ``any()``, donde se compru
 
 .. hint:: Este enfoque puede ser interesante cuando se manejan muchas condiciones o bien cuando queremos separar las condiciones y agruparlas en una única lista.
 
+A tener en cuenta la *peculiaridad* de estas funciones cuando trabajan con la **lista vacía**::
+
+    >>> all([])
+    True
+
+    >>> any([])
+    False
+
 **********************
 Listas por comprensión
 **********************
@@ -1023,7 +1031,7 @@ Veamos un ejemplo en el que generamos todas las combinaciones de una serie de va
 ``sys.argv``
 ************
 
-Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendremos la posibilidad de acceder a los argumentos de dicho programa. Para ello se utiliza una lista que la encontramos dentro del módulo ``sys`` y que se denomina ``argv``:
+Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendremos la posibilidad de acceder a los argumentos de dicho programa. Para ello se utiliza una lista "especial" que la encontramos dentro del módulo ``sys`` y que se denomina ``argv``:
 
 .. figure:: img/sys-argv.png
     :align: center
@@ -1105,43 +1113,58 @@ Listas de listas
 
 Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Estos elementos pueden ser a su vez listas.
 
-A continuación planteamos un ejemplo del mundo deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Espa%C3%B1a_en_la_Copa_Mundial_de_F%C3%BAtbol_de_2010>`_ en 2010 había una disposición *4-3-3* con los siguientes jugadores:
+A continuación planteamos un ejemplo del contexto deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores/as. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Copa_Mundial_Femenina_de_F%C3%BAtbol_de_2023>`_ en 2023 había una disposición *4-3-3* con las siguientes jugadoras:
 
-.. figure:: img/world-champions.png
+.. figure:: img/spain2023-worldchampions.jpg
     :align: center
 
     Lista de listas (como equipo de fútbol)
 
-Veamos una posible representación de este equipo de fútbol usando una lista compuesta de listas. Primero definimos cada una de las líneas::
+Veamos una posible representación de este equipo de fútbol usando **una lista compuesta de listas**. Primero definimos cada una de las líneas::
 
-    >>> goalkeeper = 'Casillas'
-    >>> defenders = ['Capdevila', 'Piqué', 'Puyol', 'Ramos']
-    >>> midfielders = ['Xavi', 'Busquets', 'X. Alonso']
-    >>> forwards = ['Iniesta', 'Villa', 'Pedro']
+    >>> goalkeeper = 'Cata'
+    >>> defenders = ['Olga', 'Laia', 'Irene', 'Ona']
+    >>> midfielders = ['Jenni', 'Teresa', 'Aitana']
+    >>> forwards = ['Mariona', 'Salma', 'Alba']
 
 Y ahora las juntamos en una única lista::
 
     >>> team = [goalkeeper, defenders, midfielders, forwards]
 
     >>> team
-    ['Casillas',
-     ['Capdevila', 'Piqué', 'Puyol', 'Ramos'],
-     ['Xavi', 'Busquets', 'X. Alonso'],
-     ['Iniesta', 'Villa', 'Pedro']]
+    ['Cata',
+     ['Olga', 'Laia', 'Irene', 'Ona'],
+     ['Jenni', 'Teresa', 'Aitana'],
+     ['Mariona', 'Salma', 'Alba']]
 
-Podemos comprobar el acceso a distintos elementos::
+Podemos comprobar el **acceso a distintos elementos**::
 
-    >>> team[0]  # portero
-    'Casillas'
+    >>> team[0]  # portera
+    'Cata'
 
     >>> team[1][0]  # lateral izquierdo
-    'Capdevila'
+    'Olga'
 
     >>> team[2]  # centrocampistas
-    ['Xavi', 'Busquets', 'X. Alonso']
+    ['Jenni', 'Teresa', 'Aitana']
 
-    >>> team[3][1]  # delantero centro
-    'Villa'
+    >>> team[3][1]  # delantera centro
+    'Salma'
+
+También podemos **recorrer toda la alineación**::
+
+    >>> for playline in team:
+    ...     if isinstance(playline, list):
+    ...         for player in playline:
+    ...             print(player, end=' ')
+    ...         print()
+    ...     else:
+    ...         print(playline)
+    ...
+    Cata
+    Olga Laia Irene Ona
+    Jenni Teresa Aitana
+    Mariona Salma Alba
 
 .. admonition:: Ejercicio
 
