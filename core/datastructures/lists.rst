@@ -1082,11 +1082,11 @@ Python nos ofrece, entre otras [#more-math]_, estas tres funciones matemáticas 
 .. admonition:: Ejercicio
     :class: exercise
 
-    Lea :ref:`desde línea de comandos <sys-argv>` una serie de números y obtenga la media de dichos valores (*muestre el resultado con 2 decimales*).
+    Lea :ref:`desde línea de comandos <sys-argv>` una serie de números y obtenga la media de dichos valores (redondeando a 2 cifras decimales).
 
     La llamada se haría de la siguiente manera::
 
-        $ python avg.py 32 56 21 99 12 17
+        $ python avg.py 32 56 21 99 12 21
 
     Plantilla de código para el programa::
 
@@ -1099,7 +1099,7 @@ Python nos ofrece, entre otras [#more-math]_, estas tres funciones matemáticas 
 
     **Ejemplo**
         * Entrada: ``32 56 21 99 12 17``
-        * Salida: ``39.50``
+        * Salida: ``40.17``
     
     .. only:: html
     
@@ -1169,6 +1169,10 @@ También podemos **recorrer toda la alineación**::
 .. admonition:: Ejercicio
 
     pycheck_: **mulmatrix2**
+
+.. admonition:: Ejercicio
+
+    pycheck_: **mulmatrix**
 
 ----
 
