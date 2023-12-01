@@ -962,6 +962,7 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 9. pycheck_: **swap_name**
 10. pycheck_: **find_integral**
 11. pycheck_: **multiply_jack**
+12. pycheck_: **first_last_digit**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
