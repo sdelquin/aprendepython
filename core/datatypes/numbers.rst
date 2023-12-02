@@ -554,6 +554,7 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 11. pycheck_: **pillars**
 12. pycheck_: **clock_time**
 13. pycheck_: **xor**
+14. pycheck_: **ring_area**
 
 .. rubric:: EJERCICIOS EXTERNOS
 

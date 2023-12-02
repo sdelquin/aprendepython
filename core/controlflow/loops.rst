@@ -692,6 +692,7 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 13. pycheck_: **isalphabetic**
 14. pycheck_: **tennis_game**
 15. pycheck_: **tennis_set**
+16. pycheck_: **kpower**
 
 .. rubric:: EJERCICIOS EXTERNOS
 
