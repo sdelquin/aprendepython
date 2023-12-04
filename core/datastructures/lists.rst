@@ -1216,6 +1216,7 @@ También podemos **recorrer toda la alineación**::
 36. pycheck_: **reversing_words**
 37. pycheck_: **barycenter**
 38. pycheck_: **kpower**
+39. pycheck_: **sort_numbers**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
