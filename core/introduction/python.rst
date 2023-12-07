@@ -84,19 +84,26 @@ De igual modo son muchas las empresas, instituciones y organismos que utilizan P
 
 Existen ránkings y estudios de mercado que sitúan a Python como uno de los lenguajes más *usados* y la vez, más *amados* dentro del mundo del desarrollo de software.
 
-En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *noviembre de 2023* en el que Python ocupaba el **primer lugar de los lenguajes de programación más usados**, por delante de *C* y *C++*.
+En el momento de la escritura de este documento, la última actualización del `Índice TIOBE`_ es de *noviembre de 2023* en el que Python ocupaba el **primer puesto de los lenguajes de programación más usados**, por delante de *C* y *C++*.
 
 .. figure:: img/tiobe.png
     :align: center
     
     Índice TIOBE Noviembre 2023
 
-Igualmente en la `encuesta a desarrolladores de Stack Overflow`_ *hecha en 2022*, Python ocupaba el **cuarto puesto de los lenguajes de programación más populares**, sólo por detrás de *Javascript*, *HTML/CSS* y *SQL*:
+Igualmente en la `encuesta a desarrolladores/as de Stack Overflow del 2023 <https://survey.stackoverflow.co/2023/>`_ Python ocupaba el **tercer puesto de los lenguajes de programación más populares**, sólo por detrás de *HTML/CSS* y *JavaScript*:
 
 .. figure:: img/stackoverflow-survey.png
     :align: center
     
-    Encuesta Stack Overflow 2022
+    Encuesta Stack Overflow 2023
+
+También podemos reseñar el informe anual que realiza GitHub sobre el uso de tecnologías en su plataforma. En la `edición de 2023 del estado del opensource de GitHub <https://github.blog/2023-11-08-the-state-of-open-source-and-ai/>`_, Python ocupaba el **segundo puesto de los lenguajes de programación más usados**, sólo por detrás de *JavaScript*:
+
+.. figure:: img/github-report.png
+    :align: center
+    
+    Informe GitHub 2023
 
 *******************
 Versiones de Python
@@ -258,7 +265,6 @@ Un listado de consejos muy interesantes cuando nos enfrentamos a la programació
 .. _Monty Python: https://es.wikipedia.org/wiki/Monty_Python
 .. _Tim Peters: https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)
 .. _Índice TIOBE: https://www.tiobe.com/tiobe-index/
-.. _encuesta a desarrolladores de Stack Overflow: https://survey.stackoverflow.co/2022/#technology-most-popular-technologies
 .. _CPython: https://github.com/python/cpython
 .. _Brython: https://brython.info/
 .. _Jython: https://www.jython.org/
