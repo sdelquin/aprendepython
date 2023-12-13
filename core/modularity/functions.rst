@@ -1771,6 +1771,7 @@ Consejos para programar
 12. pycheck_: **sum_nested**
 13. pycheck_: **power_recursive**
 14. pycheck_: **hyperfactorial**
+15. pycheck_: **fibonacci_generator**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
