@@ -1201,25 +1201,26 @@ También podemos **recorrer toda la alineación**::
 21. pycheck_: **descending_numbers**
 22. pycheck_: **merge_sorted**
 23. pycheck_: **min_value**
-23. pycheck_: **min_value_with_max**
-24. pycheck_: **trimmed_sum**
-25. pycheck_: **wolves**
-26. pycheck_: **maxmin_values**
-27. pycheck_: **cascading_subsets**
-28. pycheck_: **diff_cuboid**
-29. pycheck_: **fl_strip**
-30. pycheck_: **logical_chain**
-31. pycheck_: **smallest_unused_id**
-32. pycheck_: **find_odds**
-33. pycheck_: **reagent_formula**
-34. pycheck_: **whats_next**
-35. pycheck_: **npartition**
-36. pycheck_: **add_length**
-37. pycheck_: **reversing_words**
-38. pycheck_: **barycenter**
-39. pycheck_: **kpower**
-40. pycheck_: **sort_numbers**
-41. pycheck_: **flatten_list_deep**
+24. pycheck_: **min_value_with_max**
+25. pycheck_: **trimmed_sum**
+26. pycheck_: **wolves**
+27. pycheck_: **maxmin_values**
+28. pycheck_: **cascading_subsets**
+29. pycheck_: **diff_cuboid**
+30. pycheck_: **fl_strip**
+31. pycheck_: **logical_chain**
+32. pycheck_: **smallest_unused_id**
+33. pycheck_: **find_odds**
+34. pycheck_: **reagent_formula**
+35. pycheck_: **whats_next**
+36. pycheck_: **npartition**
+37. pycheck_: **add_length**
+38. pycheck_: **reversing_words**
+39. pycheck_: **barycenter**
+40. pycheck_: **kpower**
+41. pycheck_: **sort_numbers**
+42. pycheck_: **flatten_list_deep**
+
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
