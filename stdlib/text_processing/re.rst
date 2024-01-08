@@ -247,7 +247,7 @@ Separar
 
 Otras de las operaciones más usadas con expresiones regulares es la separación o división de una cadena de texto mediante un separador.
 
-En su momento vimos el uso de la función :ref:`split() <core/datatypes/strings:dividir una cadena>` para cadenas de texto, pero era muy limitada al especificar patrones avanzados.  Veamos el uso de la función ``re.split()`` dentro de este módulo de expresiones regulares.
+En su momento vimos el uso de la función :ref:`split() <core/datastructures/lists:dividir una cadena de texto en lista>` para cadenas de texto, pero era muy limitada al especificar patrones avanzados.  Veamos el uso de la función ``re.split()`` dentro de este módulo de expresiones regulares.
 
 Un ejemplo muy sencillo sería **separar la parte entera de la parte decimal** en un determinado número flotante::
 

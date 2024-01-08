@@ -1,7 +1,2 @@
-flake8
-black
-rope
-rstcheck
-sphinx-autobuild
-esbonio
-pytest
+sphinx-autobuild==2021.3.14
+esbonio==0.16.3

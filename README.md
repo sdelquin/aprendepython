@@ -4,6 +4,10 @@
 
 Curso gratuito para aprender el lenguaje de programación **Python** con un enfoque **práctico**, incluyendo **ejercicios** y cobertura para distintos **niveles de conocimiento**.
 
+## Versión de Python
+
+Optimizado para trabajar con **Python 3.9.1**
+
 ## Desarrollo
 
 Asegúrate de que tienes instalado _Docker_ y _docker-compose_.
