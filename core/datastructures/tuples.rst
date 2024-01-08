@@ -193,12 +193,41 @@ Veamos un ejemplo:
     >>> tail
     'W'
 
+Podemos aplicar combinaciones del enfoque anterior. Por ejemplo usando sólo dos elementos::
+
+    >>> ranking = ('G', 'A', 'R', 'Y', 'W')
+
+    >>> head, *body = ranking
+    >>> head
+    'G'
+    >>> body
+    ['A', 'R', 'Y', 'W']
+
+    >>> *body, tail = ranking
+    >>> body
+    ['G', 'A', 'R', 'Y']
+    >>> tail
+    'W'
+
+Lo que se tiene que cumplir es que **el número de elementos de destino debe ser menor o igual que el número de elementos de origen**::
+
+    >>> ranking
+    ('G', 'A', 'R', 'Y', 'W')
+
+    >>> len(ranking)
+    5
+
+    >>> r1, r2, r3, r4, r5, r6 = ranking
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ValueError: not enough values to unpack (expected 6, got 5)
+
 Desempaquetado genérico
 =======================
 
 El desempaquetado de tuplas es extensible a cualquier tipo de datos que sea **iterable**. Veamos algunos ejemplos de ello.
 
-Sobre cadenas de texto::
+Sobre *cadenas de texto*::
 
     >>> oxygen = 'O2'
     >>> first, last = oxygen
@@ -210,7 +239,7 @@ Sobre cadenas de texto::
     >>> head, body, tail
     ('H', ['e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd'], '!')
 
-Sobre listas::
+Sobre *listas*::
 
     >>> writer1, writer2, writer3 = ['Virginia Woolf', 'Jane Austen', 'Mary Shelley']
     >>> writer1, writer2, writer3

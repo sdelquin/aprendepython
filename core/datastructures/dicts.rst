@@ -65,7 +65,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. admonition:: Ejercicio
     :class: exercise
 
-    Cree un diccionario con los nombres de 5 personas de su familia y sus edades.
+    Entre en el intérprete interactivo de Python (``>>>``) y cree un diccionario con los nombres (como claves) de 5 personas de su familia y sus edades (como valores).
 
 **********
 Conversión
