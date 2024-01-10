@@ -285,6 +285,20 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
 
     pycheck_: **count_letters**
 
+Longitud de un diccionario
+==========================
+
+Podemos conocer el número de elementos ("clave-valor") que tiene un diccionario con la función ``len()``::
+
+    >>> rae
+    {'bifronte': 'De dos frentes o dos caras',
+     'anarcoide': 'Que tiende al desorden',
+     'montuvio': 'Campesino de la costa',
+     'enjuiciar': 'Instruir, juzgar o sentenciar una causa'}
+
+    >>> len(rae)
+    4
+
 Obtener todos los elementos
 ===========================
 
@@ -326,20 +340,6 @@ Python ofrece mecanismos para obtener todos los elementos de un diccionario. Par
 
 .. note:: Para este último caso cabe destacar que los "items" se devuelven como una lista de *tuplas*, donde cada tupla tiene dos elementos: el primero representa la clave y el segundo representa el valor.
 
-Longitud de un diccionario
-==========================
-
-Podemos conocer el número de elementos ("clave-valor") que tiene un diccionario con la función ``len()``::
-
-    >>> rae
-    {'bifronte': 'De dos frentes o dos caras',
-     'anarcoide': 'Que tiende al desorden',
-     'montuvio': 'Campesino de la costa',
-     'enjuiciar': 'Instruir, juzgar o sentenciar una causa'}
-
-    >>> len(rae)
-    4
-
 Iterar sobre un diccionario
 ===========================
 
@@ -380,57 +380,6 @@ En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obt
 .. admonition:: Ejercicio
 
     pycheck_: **avg_population**
-
-Combinar diccionarios
-=====================
-
-Dados dos (o más) diccionarios, es posible "mezclarlos" para obtener una combinación de los mismos. Esta combinación se basa en dos premisas:
-
-1. Si la clave no existe, se añade con su valor.
-2. Si la clave ya existe, se añade con el valor del "último" diccionario en la mezcla. [#last-dict]_
-
-Python ofrece dos mecanismos para realizar esta combinación. Vamos a partir de los siguientes diccionarios para ejemplificar su uso::
-
-    >>> rae1 = {
-    ...     'bifronte': 'De dos frentes o dos caras',
-    ...     'enjuiciar': 'Someter una cuestión a examen, discusión y juicio'
-    ... }
-
-    >>> rae2 = {
-    ...     'anarcoide': 'Que tiende al desorden',
-    ...     'montuvio': 'Campesino de la costa',
-    ...     'enjuiciar': 'Instruir, juzgar o sentenciar una causa'
-    ... }
-
-**Sin modificar los diccionarios originales**:
-    Mediante el operador ``**``::
-
-        >>> {**rae1, **rae2}
-        {'bifronte': 'De dos frentes o dos caras',
-         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
-         'anarcoide': 'Que tiende al desorden',
-         'montuvio': 'Campesino de la costa'}
-
-    A partir de **Python 3.9** podemos utilizar el operador ``|`` para combinar dos diccionarios::
-
-        >>> rae1 | rae2
-        {'bifronte': 'De dos frentes o dos caras',
-         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
-         'anarcoide': 'Que tiende al desorden',
-         'montuvio': 'Campesino de la costa'}
-
-**Modificando los diccionarios originales**:
-    Mediante la función ``update()``::
-
-        >>> rae1.update(rae2)
-
-        >>> rae1
-        {'bifronte': 'De dos frentes o dos caras',
-         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
-         'anarcoide': 'Que tiende al desorden',
-         'montuvio': 'Campesino de la costa'}
-
-.. note:: Tener en cuenta que el orden en el que especificamos los diccionarios a la hora de su combinación (mezcla) es relevante en el resultado final. En este caso *el orden de los factores sí altera el producto*.
 
 Borrar elementos
 ================
@@ -493,6 +442,8 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
         >>> rae
         {}
 
+    ⏵ *En este caso borramos el contenido de la variable.*
+
     2. "Reinicializando" el diccionario a vacío con ``{}``::
 
         >>> rae = {
@@ -505,8 +456,63 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
 
         >>> rae
         {}
+    
+    ⏵ *En este caso creamos una nueva variable "vacía"*.
 
-    .. note:: La diferencia entre ambos métodos tiene que ver con cuestiones internas de gestión de memoria y de rendimiento.
+.. admonition:: Ejercicio
+
+    pycheck_: **merge_dicts**
+
+Combinar diccionarios
+=====================
+
+Dados dos (o más) diccionarios, es posible "mezclarlos" para obtener una combinación de los mismos. Esta combinación se basa en dos premisas:
+
+1. Si la clave no existe, se añade con su valor.
+2. Si la clave ya existe, se añade con el valor del "último" diccionario en la mezcla. [#last-dict]_
+
+Python ofrece dos mecanismos para realizar esta combinación. Vamos a partir de los siguientes diccionarios para ejemplificar su uso::
+
+    >>> rae1 = {
+    ...     'bifronte': 'De dos frentes o dos caras',
+    ...     'enjuiciar': 'Someter una cuestión a examen, discusión y juicio'
+    ... }
+
+    >>> rae2 = {
+    ...     'anarcoide': 'Que tiende al desorden',
+    ...     'montuvio': 'Campesino de la costa',
+    ...     'enjuiciar': 'Instruir, juzgar o sentenciar una causa'
+    ... }
+
+**Sin modificar los diccionarios originales**:
+    Mediante el operador ``**``::
+
+        >>> {**rae1, **rae2}
+        {'bifronte': 'De dos frentes o dos caras',
+         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
+         'anarcoide': 'Que tiende al desorden',
+         'montuvio': 'Campesino de la costa'}
+
+    A partir de **Python 3.9** podemos utilizar el operador ``|`` para combinar dos diccionarios::
+
+        >>> rae1 | rae2
+        {'bifronte': 'De dos frentes o dos caras',
+         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
+         'anarcoide': 'Que tiende al desorden',
+         'montuvio': 'Campesino de la costa'}
+
+**Modificando los diccionarios originales**:
+    Mediante la función ``update()``::
+
+        >>> rae1.update(rae2)
+
+        >>> rae1
+        {'bifronte': 'De dos frentes o dos caras',
+         'enjuiciar': 'Instruir, juzgar o sentenciar una causa',
+         'anarcoide': 'Que tiende al desorden',
+         'montuvio': 'Campesino de la costa'}
+
+.. note:: Tener en cuenta que el orden en el que especificamos los diccionarios a la hora de su combinación (mezcla) es relevante en el resultado final. En este caso *el orden de los factores sí altera el producto*.
 
 **********************
 Cuidado con las copias
@@ -651,10 +657,9 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 5. pycheck_: **fix_keys**
 6. pycheck_: **order_stock**
 7. pycheck_: **inventory_moves**
-8. pycheck_: **merge_dicts**
-9. pycheck_: **sort_dict**
-10. pycheck_: **money_back**
-11. pycheck_: **money_back_max**
+8. pycheck_: **sort_dict**
+9. pycheck_: **money_back**
+10. pycheck_: **money_back_max**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
