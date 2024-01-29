@@ -4,7 +4,7 @@ Conjuntos
 
 .. image:: img/duy-pham-Cecb0_8Hx-o-unsplash.jpg
 
-Un **conjunto** en Python representa una serie de **valores únicos** y **sin orden establecido**, con la única restricción de que sus elementos deben ser :ref:`"hashables" <core/datastructures/dicts:Objetos "hashables">`. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
+Un **conjunto** en Python representa una serie de **valores únicos** y **sin orden establecido**. Mantiene muchas similitudes con el `concepto matemático de conjunto`_ [#friends-unsplash]_
 
 *****************
 Creando conjuntos
@@ -109,6 +109,34 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
     pycheck_: **tupleset**
 
+Objetos hashables
+-----------------
+
+Los elementos de un conjunto deben ser :ref:`"hashables" <core/datastructures/dicts:Objetos "hashables">`.
+
+Por ejemplo, **una lista** no podría ser un objeto válido para un conjunto (ya que no es "hashable"). Supongamos que estamos contruyendo un conjunto con los `elementos químicos`_ de la tabla periódica::
+
+    >>> periodic_table = set()
+    >>> metals = ['Fe', 'Mg', 'Au', 'Au', 'Zn']
+
+    >>> periodic_table.add(metals)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: unhashable type: 'list'
+
+Sin embargo, podríamos conseguir lo que buscamos si, en vez de listas, usáramos **tuplas** para almacenar los elementos químicos (ya que sí son "hashables")::
+
+    >>> periodic_table = set()
+
+    >>> metals = ('Fe', 'Mg', 'Au', 'Au', 'Zn')
+    >>> periodic_table.add(metals)
+
+    >>> non_metals = ('C', 'H', 'O', 'F', 'Cl')
+    >>> periodic_table.add(non_metals)
+
+    >>> periodic_table
+    {('Fe', 'Mg', 'Au', 'Au', 'Zn'), ('C', 'H', 'O', 'F', 'Cl')}
+
 Borrar elementos
 ================
 
@@ -132,6 +160,10 @@ Podemos conocer el número de elementos (*cardinalidad*) que tiene un conjunto c
 
     >>> len(beatles)
     4
+
+.. admonition:: Ejercicio
+
+    pycheck_: **diverse_word**
 
 Iterar sobre un conjunto
 ========================
@@ -161,6 +193,10 @@ Al igual que con otros tipos de datos, Python nos ofrece el operador ``in`` para
 
     >>> 'Fari' in beatles
     False
+
+.. admonition:: Ejercicio
+
+    pycheck_: **half_out**
 
 Ordenando un conjunto
 =====================
@@ -350,3 +386,4 @@ Veamos qué ocurre si intentamos modificar este conjunto::
 .. _concepto matemático de conjunto: https://es.wikipedia.org/wiki/Conjunto
 .. _Diagramas de Venn: https://es.wikipedia.org/wiki/Diagrama_de_Venn
 .. _pycheck: https://pycheck.es
+.. _elementos químicos: https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico
