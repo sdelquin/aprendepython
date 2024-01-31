@@ -105,6 +105,17 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 .. tip::
     Una pequeña **regla mnemotécnica** para diferenciar ``add()`` de ``append()`` es que la función ``append()`` significa añadir al final, y como los conjuntos no mantienen un orden, esta función se aplica únicamente a listas. Por descarte, la función ``add()`` se aplica sobre conjuntos.
 
+Este pequeño fragmento de código nos demuestra claramente que, aunque lo intentemos por fuerza bruta, nunca vamos a poder insertar elementos repetidos en un conjunto::
+
+    >>> items = set()
+    
+    >>> for _ in range(1_000_000):
+    ...     items.add(1)
+    ...
+    
+    >>> items
+    {1}
+
 .. admonition:: Ejercicio
 
     pycheck_: **tupleset**
@@ -150,6 +161,13 @@ Para borrar un elemento de un conjunto podemos utilizar la función ``remove()``
     >>> beatles
     {'Harrison', 'Lennon', 'McCartney', 'Starr'}
 
+Si tratamos de **borrar un elemento que no existe** en un conjunto obtendremos un ``KeyError`` (al estilo de los :ref:`diccionarios <core/datastructures/dicts:obtener un elemento>`)::
+
+    >>> beatles.remove('Sinatra')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    KeyError: 'Sinatra'
+
 Longitud de un conjunto
 =======================
 
@@ -180,8 +198,8 @@ Tal y como hemos visto para otros tipos de datos *iterables*, la forma de recorr
 
 .. hint:: Como en el ejemplo anterior, es muy común utilizar una *variable en singular* para recorrer un iterable (en plural). No es una regla fija ni sirve para todos los casos, pero sí suele ser una *buena práctica*.
 
-Pertenencia de elemento
-=======================
+Pertenencia de un elemento
+==========================
 
 Al igual que con otros tipos de datos, Python nos ofrece el operador ``in`` para determinar si un elemento pertenece a un conjunto::
 
@@ -193,6 +211,11 @@ Al igual que con otros tipos de datos, Python nos ofrece el operador ``in`` para
 
     >>> 'Fari' in beatles
     False
+
+Obviamente también disponemos de la "negación" del operador::
+
+    >>> 'Fari' not in beatles
+    True
 
 .. admonition:: Ejercicio
 
@@ -226,7 +249,6 @@ Teoría de conjuntos
 Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemplificar las distintas operaciones que se pueden hacer entre ellos basadas en los `Diagramas de Venn`_ y la `Teoría de Conjuntos <https://es.wikipedia.org/wiki/Teor%C3%ADa_de_conjuntos>`__::
 
     >>> A = {1, 2}
-
     >>> B = {2, 3}
 
 .. figure:: img/venn.png
@@ -278,9 +300,9 @@ Diferencia simétrica
     >>> A.symmetric_difference(B)
     {1, 3}
 
-Podemos comprobar que se cumple la siguiente igualdad matemática :math:`A \triangle B = (A \setminus B) \cup (B \setminus A)`::
+Podemos comprobar que la definición de la diferencia simétrica se cumple también en Python::
 
-    >>> A ^ B == (A - B) | (B - A)
+    >>> A ^ B == (A | B) - (A & B)
     True
 
 Inclusión
@@ -328,6 +350,14 @@ En Python podemos realizar comprobaciones de inclusión (subconjuntos y supercon
     
     >>> B >= A
     True
+
+El hecho de que algunos elementos sí pertenezcan a otro conjunto no hace que sea un subconjunto. En el siguiente ejemplo tanto :math:`3` como :math:`5` del conjunto :math:`B` están en el conjunto :math:`A`, pero al no estar el elemento :math:`1` no se trata de un subconjunto:
+
+    >>> A = {3, 5, 7, 9}
+    >>> B = {1, 3, 5}
+
+    >>> B < A
+    False
 
 *************************
 Conjuntos por comprensión
