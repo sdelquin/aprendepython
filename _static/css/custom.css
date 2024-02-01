@@ -137,3 +137,8 @@ figcaption > p > a {
 #btn-hide-menu {
   width: 1.5rem;
 }
+
+b,
+strong {
+  font-weight: 600;
+}
