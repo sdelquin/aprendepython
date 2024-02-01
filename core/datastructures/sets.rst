@@ -418,6 +418,13 @@ Veamos qué ocurre si intentamos modificar este conjunto::
       File "<stdin>", line 1, in <module>
     AttributeError: 'frozenset' object has no attribute 'add'
 
+Un ejemplo en el que podemos aplicar un "frozenset" sería el conjunto de **posibles piezas del ajedrez**. Sabemos que estas piezas siempre son las mismas::
+
+    >>> CHESS_PIECES = frozenset(('King', 'Queen', 'Bishop', 'Knight', 'Rook', 'Pawn'))
+
+    >>> CHESS_PIECES
+    frozenset({'Bishop', 'King', 'Knight', 'Pawn', 'Queen', 'Rook'})
+
 .. note:: Los ``frozenset`` son a los ``sets`` lo que las tuplas a las listas: una forma de "congelar" los valores para que no se puedan modificar.
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
@@ -437,3 +444,4 @@ Veamos qué ocurre si intentamos modificar este conjunto::
 .. _Diagramas de Venn: https://es.wikipedia.org/wiki/Diagrama_de_Venn
 .. _pycheck: https://pycheck.es
 .. _elementos químicos: https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico
+.. _caracteres Unicode del ajedrez: https://unicode.org/charts/PDF/U1FA00.pdf
