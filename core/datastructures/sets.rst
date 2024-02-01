@@ -259,7 +259,12 @@ Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemp
 Intersección
 ============
 
-:math:`A \cap B` -- Elementos que están a la vez en :math:`A` y en :math:`B`::
+:math:`A \cap B` -- Elementos que están a la vez en :math:`A` y en :math:`B`:
+
+.. figure:: img/venn-intersection.png
+    :align: left
+
+.. code-block::
 
     >>> A & B
     {2}
@@ -270,7 +275,12 @@ Intersección
 Unión
 =====
 
-:math:`A \cup B` -- Elementos que están tanto en :math:`A` como en :math:`B`::
+:math:`A \cup B` -- Elementos que están tanto en :math:`A` como en :math:`B`:
+
+.. figure:: img/venn-union.png
+    :align: left
+
+.. code-block::
 
     >>> A | B
     {1, 2, 3}
@@ -281,7 +291,12 @@ Unión
 Diferencia
 ==========
 
-:math:`A \setminus B` -- Elementos que están en :math:`A` y no están en :math:`B`::
+:math:`A \setminus B` -- Elementos que están en :math:`A` y no están en :math:`B`:
+
+.. figure:: img/venn-difference.png
+    :align: left
+
+.. code-block::
 
     >>> A - B
     {1}
@@ -292,7 +307,12 @@ Diferencia
 Diferencia simétrica
 ====================
 
-:math:`A \triangle B` -- Elementos que están en :math:`A` o en :math:`B` pero no en ambos conjuntos::
+:math:`A \triangle B` -- Elementos que están en :math:`A` o en :math:`B` pero no en ambos conjuntos:
+
+.. figure:: img/venn-sym_diff.png
+    :align: left
+
+.. code-block::
 
     >>> A ^ B
     {1, 3}
