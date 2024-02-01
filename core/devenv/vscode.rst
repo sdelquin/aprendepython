@@ -12,18 +12,16 @@ Instalación
 
 VSCode tiene disponibles `paquetes autoinstalables <https://code.visualstudio.com/download>`_ para todos los sistemas operativos.
 
+************************
 Extensiones recomendadas
-------------------------
+************************
 
 Para escribir un "mejor" código Python en VSCode sería deseable tener instaladas las siguientes extensiones:
 
 - `Python`_
-- `Flake8`_
-- `Black Formatter`_
+- `Ruff`_
 - `Mypy Type Checker`_
 - `isort`_
-- `Python Indent`_
-- `Python Type Hint`_
 
 *****************
 Atajos de teclado
@@ -178,9 +176,6 @@ Pero también es posible **añadir manualmente** el seguimiento de otras variabl
 .. _pdb: https://docs.python.org/3/library/pdb.html
 .. _Gastón Danielsen en Dev.To: https://dev.to/gdcodev/atajos-de-teclado-shortcuts-en-vscode-430a
 .. _Python: https://marketplace.visualstudio.com/items?itemName=ms-python.python
-.. _Flake8: https://marketplace.visualstudio.com/items?itemName=ms-python.flake8
-.. _Black Formatter: https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter
+.. _Ruff: https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff
 .. _Mypy Type Checker: https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker
 .. _isort: https://marketplace.visualstudio.com/items?itemName=ms-python.isort
-.. _Python Indent: https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent
-.. _Python Type Hint: https://marketplace.visualstudio.com/items?itemName=njqdev.vscode-python-typehint

@@ -951,18 +951,19 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. pycheck_: **switch_name**
-2. pycheck_: **samba_split**
-3. pycheck_: **nif_digit**
-4. pycheck_: **n_repeat**
-5. pycheck_: **str_metric**
-6. pycheck_: **h2md**
-7. pycheck_: **count_sheeps**
-8. pycheck_: **strip1**
-9. pycheck_: **swap_name**
-10. pycheck_: **find_integral**
-11. pycheck_: **multiply_jack**
-12. pycheck_: **first_last_digit**
+1. pycheck_: **format_hexcolor**
+2. pycheck_: **switch_name**
+3. pycheck_: **samba_split**
+4. pycheck_: **nif_digit**
+5. pycheck_: **n_repeat**
+6. pycheck_: **str_metric**
+7. pycheck_: **h2md**
+8. pycheck_: **count_sheeps**
+9. pycheck_: **strip1**
+10. pycheck_: **swap_name**
+11. pycheck_: **find_integral**
+12. pycheck_: **multiply_jack**
+13. pycheck_: **first_last_digit**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
