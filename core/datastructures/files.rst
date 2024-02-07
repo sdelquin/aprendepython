@@ -63,7 +63,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
         '23 29\n23 31\n26 34\n23 33\n22 29\n22 28\n22 28\n'
 
 ``readlines()``
-    Devuelve todo el contenido del fichero como una lista (``list``) donde cada elemento es una línea::
+    Devuelve todo el contenido del fichero como una lista (``list``) donde cada línea es un elemento de la lista::
 
         >>> f = open('files/temps.dat')
 
@@ -143,6 +143,21 @@ Es importante señalar que cuando utilizamos la función ``readline()`` **el "pu
     22 29
     22 28
     22 28
+
+La función ``readline()`` devuelve la **cadena vacía** cuando ha llegado (puntero de lectura) al final del fichero. Con esta premisa podemos implementar una forma **poco ortodoxa** de recorrer un fichero usando la función ``readline()``::
+
+    >>> f = open('files/temps.dat')
+    
+    >>> while line := f.readline():  # No hagas esto!
+    ...     print(line.strip())
+    ...
+    23 29
+    23 31
+    26 34
+    23 33
+    22 29
+    22 28
+    22 28 
 
 Los ficheros se agotan
 ======================
@@ -286,7 +301,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
     >>> with open('files/lottery.dat', 'w') as f:
     ...     for number in lottery:
-    ...         f.write(number + '\n')
+    ...         f.write(number)
     ...
     Traceback (most recent call last):
       File "<stdin>", line 3, in <module>
@@ -296,10 +311,10 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. pycheck_: **avg_temps**
-2. pycheck_: **wc**
+1. pycheck_: **wc**
 3. pycheck_: **read_csv**
-4. pycheck_: **txt2md**
+3. pycheck_: **txt2md**
+4. pycheck_: **avg_temps**
 5. pycheck_: **find_words**
 6. pycheck_: **sum_matrix**
 7. pycheck_: **longest_word**
