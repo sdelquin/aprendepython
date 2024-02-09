@@ -312,7 +312,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 .. rubric:: EJERCICIOS DE REPASO
 
 1. pycheck_: **wc**
-3. pycheck_: **read_csv**
+2. pycheck_: **read_csv**
 3. pycheck_: **txt2md**
 4. pycheck_: **avg_temps**
 5. pycheck_: **find_words**
