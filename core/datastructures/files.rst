@@ -323,6 +323,7 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 10. pycheck_: **replace_chars**
 11. pycheck_: **histogram**
 12. pycheck_: **submarine**
+13. pycheck_: **common_words**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
