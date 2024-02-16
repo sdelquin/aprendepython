@@ -755,7 +755,14 @@ En este caso se han añadido las comillas denotando que es una cadena de texto. 
 Caracteres Unicode
 ******************
 
-Python trabaja *por defecto* con caracteres **Unicode**. Eso significa que tenemos acceso a la `amplia carta de caracteres <https://unicode-table.com/en/blocks/>`_ que nos ofrece este estándar de codificación.
+Los programas de ordenador deben manejar una **amplia variedad de caracteres**. Simplemente por el hecho de la internacionalización hay que mostrar mensajes en distintos idiomas (inglés, francés, japonés, español, etc.). También es posible incluir "emojis" u otros símbolos.
+
+Python utiliza el estándar **Unicode** para representar caracteres. Eso significa que tenemos acceso a una `amplia carta de caracteres <https://unicode-table.com/en/blocks/>`_ que nos ofrece este estándar de codificación.
+
+Unicode asigna a cada carácter dos atributos:
+
+1. Un **código numérico** único (habitualmente en hexadecimal).
+2. Un **nombre** representativo.
 
 Supongamos un ejemplo sobre el típico "emoji" de un **cohete** definido `en este cuadro <https://unicode-table.com/en/1F680/>`_:
 
@@ -782,12 +789,28 @@ El modificador ``\N`` permite representar un carácter **a partir de su nombre**
     >>> '\N{ROCKET}'
     '🚀' 
 
-.. seealso::
-    `Tabla ASCII`_
-
 .. admonition:: Ejercicio
 
     pycheck_: **find_unicode**
+
+ASCII
+=====
+
+En los principios de la computación los caracteres se representaban utilizando el `código ASCII`_. En un primer momento solo incluía letras mayúsculas y números, pero en 1967 se agregaron las letras minúsculas y algunos caracteres de control, formando así lo que se conoce como US-ASCII, es decir los **caracteres del 0 al 127**.
+
+Podemos obtener alguno de sus caracteres imprimibles mediante Python::
+
+    >>> chr(48)
+    '0'
+    
+    >>> chr(57)
+    '9'
+
+    >>> chr(65)
+    'A'
+    
+    >>> chr(90)
+    'Z'
 
 Comparar cadenas
 ================
@@ -996,6 +1019,6 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 .. _Mediterráneo: https://open.spotify.com/track/7Bewui7KtaMzROeteRitRz?si=NGwOUmwfRSuapY3JL7s1uQ
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
-.. _Tabla ASCII: https://www.asciitable.com/
+.. _código ASCII: https://elcodigoascii.com.ar/
 .. _pycheck: https://pycheck.es
 .. _indicaciones de la guía de estilo de Python: https://peps.python.org/pep-0008/#string-quotes
