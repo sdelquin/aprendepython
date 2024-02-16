@@ -1221,6 +1221,7 @@ También podemos **recorrer toda la alineación**::
 41. pycheck_: **sort_numbers**
 42. pycheck_: **flatten_list_deep**
 43. pycheck_: **first_duplicated**
+44. pycheck_: **fill_values**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
