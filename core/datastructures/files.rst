@@ -182,6 +182,26 @@ Esto mismo ocurre si utilizamos funciones como ``read()`` o ``readlines()``.
 .. warning::
     Por este motivo y también por cuestiones de legibilidad del código, deberíamos abrir un fichero una única vez y realizar todas las operaciones de lectura necesarias, siempre que las circunstancias lo permitan.
 
+Enumerando líneas
+=================
+
+En ocasiones no sólo necesitamos recorrer cada línea del fichero sino también ir llevando un "índice" que nos indique el número de línea que estamos procesando.
+
+Dado que los manejadores de ficheros también son objetos *iterables* podemos hacer uso de :ref:`enumerate() <core/datastructures/lists:iterar usando enumeración>`. Veamos un ejemplo::
+
+    >>> f = open('files/temps.dat')
+    
+    >>> for line_no, line in enumerate(f, start=1):
+    ...     print(f'L{line_no}: {line.strip()}')
+    ...
+    L1: 23 29
+    L2: 23 31
+    L3: 26 34
+    L4: 23 33
+    L5: 22 29
+    L6: 22 28
+    L7: 22 28
+
 ***********************
 Escritura en un fichero
 ***********************
