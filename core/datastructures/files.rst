@@ -69,7 +69,7 @@ Siguiendo con nuestro ejemplo de temperaturas, veamos cómo leer todo el conteni
 
         >>> f.readlines()
         ['23 29\n', '23 31\n', '26 34\n', '23 33\n', '22 29\n', '22 28\n', '22 28\n']
-
+    
 .. important:: Nótese que, en ambos casos, los saltos de línea ``\n`` siguen apareciendo en los datos leídos, por lo que habría que "limpiar" estos caracteres. Para ello se recomienda utilizar :ref:`las funciones ya vistas de cadenas de texto <core/datatypes/strings:Limpiar cadenas>`.
 
 Lectura línea a línea
@@ -162,7 +162,7 @@ La función ``readline()`` devuelve la **cadena vacía** cuando ha llegado (punt
 Los ficheros se agotan
 ======================
 
-Hay que tener en cuenta que, una vez abierto el fichero, **la lectura de su contenido se puede realizar una única vez**. O dicho de otra manera, el iterable que lleva implícito  "se agota".
+Hay que tener en cuenta que, una vez que leemos un fichero, no lo podemos volver a leer "directamente". O dicho de otra manera, el iterable que lleva implícito  "se agota".
 
 Veamos este escenario con el ejemplo anterior::
 
@@ -181,6 +181,23 @@ Esto mismo ocurre si utilizamos funciones como ``read()`` o ``readlines()``.
 
 .. warning::
     Por este motivo y también por cuestiones de legibilidad del código, deberíamos abrir un fichero una única vez y realizar todas las operaciones de lectura necesarias, siempre que las circunstancias lo permitan.
+
+Hay una posibilidad de **volver a leer desde el principio** y es utilizando la función ``seek()``. Esta función permite situar el "puntero de lectura" en cualquier *byte* del fichero. Veamos cómo usarlo::
+
+    >>> f = open('files/temps.dat')
+    
+    >>> for line in f:
+    ...     print(line.strip(), end=' ')
+    ...
+    23 29 23 31 26 34 23 33 22 29 22 28 22 28
+
+    >>> f.seek(0)  # desplazamiento al principio
+    0
+    
+    >>> for line in f:
+    ...     print(line.strip(), end=' ')
+    ...
+    23 29 23 31 26 34 23 33 22 29 22 28 22 28
 
 Enumerando líneas
 =================
