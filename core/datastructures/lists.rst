@@ -1222,6 +1222,7 @@ También podemos **recorrer toda la alineación**::
 42. pycheck_: **flatten_list_deep**
 43. pycheck_: **first_duplicated**
 44. pycheck_: **fill_values**
+45. pycheck_: **frange**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
