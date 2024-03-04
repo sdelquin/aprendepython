@@ -63,6 +63,9 @@ Cuando queremos **invocar a una función dentro de un fichero** ``*.py`` lo hare
     # Llamada a la función (primer nivel de indentación)
     say_hello()
 
+.. important::
+    La función debe estar definida **antes** del punto en el que sea llamada.
+
 Retornar un valor
 =================
 
@@ -79,7 +82,14 @@ Las funciones pueden retornar (o "devolver") un valor. Veamos un ejemplo muy sen
 
 .. note:: En la sentencia ``return`` podemos incluir variables y expresiones, no únicamente literales.
 
-Pero no sólo podemos invocar a la función directamente, también la podemos integrar en otras expresiones. Por ejemplo en condicionales::
+Pero no sólo podemos invocar a la función directamente, también la podemos asignar a variables y utilizarla::
+
+    >>> value = one()
+    
+    >>> print(value)
+    1
+
+También la podemos integrar en otras expresiones, por ejemplo en condicionales::
 
     >>> if one() == 1:
     ...     print('It works!')
@@ -455,7 +465,7 @@ Veamos un ejemplo en el que vamos a **implementar una función para sumar un nú
 
 Para superar esta "limitación" vamos a hacer uso del ``*`` para empaquetar los argumentos posicionales::
 
-    >>> def _sum(*values: int) -> int:
+    >>> def _sum(*values):
     ...     print(f'{values=}')
     ...     result = 0
     ...     for value in values:  # values es una tupla
@@ -489,7 +499,7 @@ Si utilizamos el operador ``**`` delante del nombre de un parámetro nominal, es
 
 Supongamos un ejemplo en el que queremos **encontrar la persona con mayor calificación de un examen**. Haremos uso del ``**`` para empaquetar los argumentos nominales::
 
-    >>> def best_student(**marks: int) -> str:
+    >>> def best_student(**marks):
     ...     print(f'{marks=}')
     ...     max_mark = -1
     ...     for student, mark in marks.items():  # marks es un diccionario
