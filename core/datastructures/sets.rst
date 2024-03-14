@@ -427,6 +427,13 @@ Un ejemplo en el que podemos aplicar un "frozenset" sería el conjunto de **posi
 
 .. note:: Los ``frozenset`` son a los ``sets`` lo que las tuplas a las listas: una forma de "congelar" los valores para que no se puedan modificar.
 
+----
+
+.. rubric:: EJERCICIOS DE REPASO
+
+1. pycheck_: **is_binary**
+
+
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
 * `Sets in Python <https://realpython.com/courses/sets-python/>`_

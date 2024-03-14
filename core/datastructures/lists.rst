@@ -1223,6 +1223,7 @@ También podemos **recorrer toda la alineación**::
 43. pycheck_: **first_duplicated**
 44. pycheck_: **fill_values**
 45. pycheck_: **frange**
+46. pycheck_: **qual_number**
 
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
