@@ -152,7 +152,7 @@ Por lo tanto, podremos aplicar el :ref:`desempaquetado de tuplas <core/datastruc
 Parámetros y argumentos
 ***********************
 
-Si una función no dispusiera de valores de entrada estaría muy limitada en su actuación. Es por ello que los **parámetros** nos permiten variar los datos que consume una función para obtener distintos resultados. Vamos a empezar a crear funciones que reciben **parámetros**.
+Si una función no dispusiera de valores de entrada, su comportamiento quedaría muy limitado. Es por ello que los **parámetros** nos permiten variar los datos que consume una función para obtener distintos resultados. Vamos a empezar a crear funciones que reciben **parámetros**.
 
 En este caso escribiremos una función que recibe un valor numérico y devuelve su raíz cuadrada::
 
@@ -188,7 +188,7 @@ Veamos otra función con dos parámetros y algo más de lógica de negocio: [#bl
     >>> _min(7, 9)
     7
 
-Nótese que la sentencia ``return`` puede escribirse en **múltiples ocasiones** y puede encontrarse en **cualquier lugar** de la función, no necesariamente al final del cuerpo. Esta técnica puede ser beneficiosa en múltiples escenarios.
+Nótese que la sentencia ``return`` puede escribirse en **múltiples ocasiones** y puede encontrarse en **cualquier lugar** de la función, no necesariamente al final del cuerpo. Esta técnica puede ser beneficiosa en distintos escenarios.
 
 Uno de esos escenarios se relaciona con el concepto de **cláusula guarda**: una pieza de código que normalmente está al comienzo de la función y comprueba una serie de condiciones para continuar con la ejecución o cortarla [#guarda]_.
 
@@ -209,7 +209,7 @@ Teniendo en cuenta que la sentencia ``return`` finaliza la ejecución de una fun
 Argumentos posicionales
 =======================
 
-Los **argumentos posicionales** son aquellos argumentos que se copian en sus correspondientes parámetros **en orden**. 
+Los **argumentos posicionales** son aquellos argumentos que se copian en sus correspondientes parámetros **por orden de escritura**. 
 
 Vamos a mostrar un ejemplo definiendo una función que construye una "cpu" a partir de 3 parámetros::
 
@@ -355,7 +355,7 @@ Modificando parámetros mutables
 
 Hay que tener cuidado a la hora de manejar los parámetros que pasamos a una función ya que :ref:`podemos obtener resultados indeseados <core/modularity/functions:argumentos mutables e inmutables>`, especialmente cuando trabajamos con *tipos de datos mutables*.
 
-Supongamos una función que añade elementos a una lista que pasamos por parámetro. La idea es que si no pasamos la lista, ésta siempre empiece siendo vacía. Hagamos una serie de pruebas pasando alguna lista como segundo argumento::
+Supongamos una función que añade elementos a una lista que pasamos como argumento. La idea es que si no pasamos la lista, ésta siempre empiece siendo vacía. Hagamos una serie de pruebas pasando alguna lista como segundo argumento::
 
     >>> def buggy(arg, result=[]):
     ...     result.append(arg)
@@ -575,7 +575,6 @@ Ejemplo::
     25
 
     >>> sum_power(3, 4, True)
-    ---------------------------------------------------------------------------
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: sum_power() takes 2 positional arguments but 3 were given
@@ -1086,9 +1085,11 @@ Para mí, código pitónico significa intentar ver el código desde la perspecti
 Generadores
 ===========
 
-Un **generador**, como su propio nombre indica, se encarga de generar "valores" sobre los que podemos iterar. Es decir, no construye una secuencia de forma explícita, sino que nos permite ir "consumiendo" un valor de cada vez. Esta propiedad los hace idóneos para situaciones en las que el tamaño de las secuencias podría tener un impacto negativo en el consumo de memoria.
+Un **generador**, como su propio nombre indica, se encarga de generar "valores" que podemos tratar de manera individual (y aislada).
 
-De hecho ya hemos visto algunos generadores y los hemos usado sin ser del todo conscientes. Algo muy parecido [#range]_ a un generador es ``range()`` que ofrece la posibilidad de crear :ref:`secuencias de números <core/controlflow/loops:Secuencias de números>`.
+Es decir, no construye una secuencia de forma explícita, sino que nos permite ir "consumiendo" un valor de cada vez. Esta propiedad los hace idóneos para situaciones en las que el tamaño de las secuencias podría tener un impacto negativo en el consumo de memoria.
+
+De hecho ya hemos visto algunos generadores y los hemos usado sin ser del todo conscientes. Algo muy parecido a un generador es ``range()`` [#range]_ que ofrece la posibilidad de crear :ref:`secuencias de números <core/controlflow/loops:Secuencias de números>`.
 
 Básicamente existen dos implementaciones de generadores:
 
@@ -1117,6 +1118,9 @@ Veamos un ejemplo en el que escribimos una **función generadora de números par
     >>> type(evens_gen)
     generator
 
+.. important::
+    Las funciones generadoras devuelven **un generador** que debe ser invocado con los parámetros correspondientes para obtener la secuencia de valores que necesitemos.
+
 Una vez creado el generador, ya podemos iterar sobre él::
 
     >>> for even in evens_gen:
@@ -1124,7 +1128,7 @@ Una vez creado el generador, ya podemos iterar sobre él::
     ...
     0 2 4 6 8 10 12 14 16 18 20
 
-De forma más "directa", podemos iterar sobre la propia llamada a la función generadora::
+De forma más "directa" (y habitual) podemos iterar sobre la propia llamada a la función generadora::
 
     >>> for even in evens(20):
     ...     print(even, end=' ')
@@ -1152,7 +1156,10 @@ Un detalle muy importante es que **los generadores "se agotan"**. Es decir, una 
 Expresiones generadoras
 -----------------------
 
-Una **expresión generadora** es sintácticamente muy similar a una *lista por comprensión*, pero utilizamos **paréntesis** en vez de corchetes. Se podría ver como una versión acortada de una función generadora.
+Una **expresión generadora** es sintácticamente muy similar a una *lista por comprensión*, pero utilizamos **paréntesis** en vez de corchetes.
+
+.. important::
+    Una expresión generadora es un generador en sí misma.
 
 Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <core/modularity/functions:Funciones generadoras>` en el que creamos números pares hasta el 20::
 
@@ -1168,7 +1175,7 @@ Podemos tratar de reproducir el ejemplo visto en :ref:`funciones generadoras <co
 
 .. seealso:: Las expresiones generadoras admiten *condiciones* y *anidamiento de bucles*, tal y como se vio con las :ref:`listas por comprensión <core/datastructures/lists:listas por comprensión>`.
 
-Una expresión generadora se puede explicitar, sumar, buscar su máximo o su mínimo, o lo que queramos, tal y como lo haríamos con un iterable cualquiera::
+Una expresión generadora se puede explicitar [#explicit-gen]_, sumar, buscar su máximo o su mínimo, o lo que queramos, tal y como lo haríamos con un iterable cualquiera::
 
     >>> list(i for i in range(0, 20, 2))
     [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
@@ -1189,27 +1196,26 @@ Una expresión generadora se puede explicitar, sumar, buscar su máximo o su mí
 Funciones interiores
 ====================
 
-Está permitido definir una función dentro de otra función::
+Está permitido definir una función dentro de otra función. Es lo que se conoce como **función interior**.
 
-    >>> VALID_CHARS = 'xyz'
+Veamos un ejemplo en el que extraemos las palabras de un texto que contienen todas las vocales, haciendo uso de una función interior que nos devuelve el número de vocales distintas que tiene cada palabra:
 
-    >>> def validation_rate(text: str) -> float:
-    ...     """Rate of valid chars in text."""
-    ...     def is_valid_char(char: str) -> bool:
-    ...         return char in VALID_CHARS
+.. code-block::
+    :emphasize-lines: 3-4
+
+    >>> def get_words_with_all_vowels(text: str) -> list[str]:
+    ...     VOWELS = 'aeiou'
+    ...     def get_unique_vowels(word: str) -> set[str]:
+    ...         return set(c for c in word if c in VOWELS)
     ...
-    ...     checklist = [is_valid_char(c) for c in text]
-    ...     return sum(checklist) / len(text)
-    ...
-
-    >>> validation_rate('zxyzxxyz')
-    1.0
-
-    >>> validation_rate('abzxyabcdz')
-    0.4
-
-    >>> validation_rate('abc')
-    0.0
+    ...     result = []
+    ...     for word in text.split():
+    ...         if len(get_unique_vowels(word)) == len(VOWELS):
+    ...             result.append(word)
+    ...     return result
+    
+    >>> get_words_with_all_vowels('La euforia de ver el riachuelo fue inmensa')
+    ['euforia', 'riachuelo']
 
 .. tip::
     Estas funciones pueden tener sentido cuando su ámbito de aplicación es muy concreto y no se pueden reutilizar fácilmente.
@@ -1217,24 +1223,24 @@ Está permitido definir una función dentro de otra función::
 Clausuras
 =========
 
-Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <core/modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de los argumentos con los que fue creada::
+Una **clausura** (del término inglés "*closure*") establece el uso de una :ref:`función interior <core/modularity/functions:Funciones interiores>` que se genera dinámicamente y recuerda los valores de los argumentos con los que fue creada.
 
-    >>> def make_multiplier_of(n):
-    ...     def multiplier(x):
+Veamos en acción una clausura que nos permitirá generar "tablas de multiplicar"::
+
+    >>> def make_multiplier_of(n: int):
+    ...     def multiplier(x: int) -> int:
     ...         return x * n
-    ...     return multiplier
+    ...     return multiplier  # factoría de funciones
     ...
 
     >>> m3 = make_multiplier_of(3)
-
-    >>> m5 = make_multiplier_of(5)
-
     >>> type(m3)
     function
 
     >>> m3(7)  # 7 * 3
     21
 
+    >>> m5 = make_multiplier_of(5)
     >>> type(m5)
     function
 
@@ -1244,7 +1250,7 @@ Una **clausura** (del término inglés "*closure*") establece el uso de una :ref
     >>> make_multiplier_of(5)(8)  # Llamada directa!
     40
 
-.. important:: En una clausura retornamos una función, no una llamada a una función.
+.. important:: En una clausura retornamos una función, no una llamada a una función. Es por esto que se dice que **una clausura** es una **factoría de funciones**.
 
 
 Decoradores
@@ -1252,12 +1258,12 @@ Decoradores
 
 Hay situaciones en las que necesitamos modificar el comportamiento de funciones existentes pero sin alterar su código. Para estos casos es muy útil usar decoradores.
 
-Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de :ref:`clausura <core/modularity/functions:Clausuras>`.
+Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de una :ref:`clausura <core/modularity/functions:Clausuras>`:
 
-.. figure:: img/decorator-candy.png
+.. figure:: img/decorator-behaviour.png
     :align: center
 
-    Esqueleto básico de un decorador
+    Comportamiento de un decorador
 
 El *esqueleto básico* de un decorador es el siguiente::
 
@@ -1282,6 +1288,11 @@ El *esqueleto básico* de un decorador es el siguiente::
 +------------------+------------------------------------------------+
 | ``**kwargs``     | Argumentos nominales (convención de nombre)    |
 +------------------+------------------------------------------------+
+
+.. figure:: img/decorator-candy.png
+    :align: center
+
+    Esqueleto básico de un decorador
 
 
 Veamos un ejemplo de **decorador que convierte el resultado numérico de una función a su representación binaria**::
@@ -1335,7 +1346,7 @@ Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los
 Manipulando argumentos
 ----------------------
 
-Hemos visto un ejemplo de decorador que trabaja sobre el resultado de la función decorada, pero nada impide que trabajemos sobre los argumentos que se le pasa a la función decorada.
+Hemos visto un ejemplo de decorador que trabaja sobre el resultado de la función decorada, pero nada impide que trabajemos sobre los argumentos que pasamos a la función decorada.
 
 Supongamos un escenario en el que implementamos **funciones que trabajan con dos operandos** y queremos asegurarnos de que **esos operados son números enteros**. Lo primero será definir el decorador::
 
@@ -1404,35 +1415,10 @@ Ahora aplicaremos ambos decoradores sobre una función que realiza el producto d
     >>> ((4 * 3) // 2) + 5
     11
 
+Orden de ejecución
+^^^^^^^^^^^^^^^^^^
+
 Cuando tenemos varios decoradores **se aplican desde dentro hacia fuera** ya que la ejecución de un decorador depende de otro decorador.
-
-Si anotamos los decoradores podemos ver exactamente cuál es el orden de ejecución::
-
-    >>> def plus5(func):
-    ...     def wrapper(*args, **kwargs):
-    ...         result = func(*args, **kwargs)  # ——————┐
-    ...         print(f'{result=}')             #       |
-    ...         print('plus5')                  #       |
-    ...         return result + 5               #       |
-    ...     return wrapper                      #       |
-    ...                                         #       |
-    ...                                         #       |
-    ... def div2(func):                         #       |
-    ...     def wrapper(*args, **kwargs):       #       |
-    ...         result = func(*args, **kwargs)  # ◄—————┘
-    ...         print(f'{result=}')
-    ...         print('div2')
-    ...         return result // 2
-    ...     return wrapper
-
-Ahora ejecutamos la función decorada::
-
-    >>> prod(4, 3)
-    result=12     # función prod "tal cual" (4*3)
-    div2          # decorador div2
-    result=6      # aplicación decorador div2 (12/2)
-    plus5         # decorador plus5
-    11            # aplicación decorador plus5 (6+5)
 
 Una forma sencilla de entender el orden de ejecución de múltiples decoradores es aplicar las funciones decoradoras directamente sobre la función decorada.
 
@@ -1523,7 +1509,7 @@ Veamos su aplicación con distintos tipos de datos::
 
 .. admonition:: Ejercicio
 
-    ¿Sabría implementar un decorador para ordenar el resultado de cualquier función tomando un parámetro opcional que indique si la ordenación es ascendente o descendente?
+    pycheck_: **deco_sort**
 
 Funciones recursivas
 ====================
@@ -1814,6 +1800,7 @@ Consejos para programar
 .. [#range] La función ``range()`` es un tanto especial. Véase `este artículo de Trey Hunner <https://treyhunner.com/2018/02/python-range-is-not-an-iterator/>`_.
 .. [#yield] Para una explicación detallada sobre generadores e iteradores se recomienda la ponencia `Yield el amigo que no sabías que tenías`_ de Jacobo de Vera.
 .. [#guarda] Para más información sobre las cláusulas guarda, véase `este artículo de Miguel G. Flores <https://www.miguelg.com/2019/05/clausulas-guarda-en-python.html>`_
+.. [#explicit-gen] Cuando hablamos de "explicitar" un generador nos referimos a obtener todos sus valores de forma directa como una lista (o sucedáneo).
 
 .. --------------- Hyperlinks ---------------
 
