@@ -448,13 +448,8 @@ Para estos casos se suele recomendar usar el **guión bajo** ``_`` como **nombre
     Repeat me 10 times!
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Imprima los 100 primeros números de la `sucesión de Fibonacci`_: :math:`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \dots` 
-
-    .. only:: html
-    
-        |solution| :download:`fibonacci.py <files/fibonacci.py>`
+    pycheck_: **pow**
 
 ***************
 Bucles anidados
@@ -693,6 +688,7 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 14. pycheck_: **tennis_game**
 15. pycheck_: **tennis_set**
 16. pycheck_: **kpower**
+17. pycheck_: **fibonacci**
 
 .. rubric:: EJERCICIOS EXTERNOS
 

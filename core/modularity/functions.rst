@@ -1531,21 +1531,32 @@ La **recursividad** es el mecanismo por el cual una función se llama a sí mism
 
 .. warning:: Podemos observar que existe un número máximo de llamadas recursivas. Python controla esta situación por nosotros, ya que, de no ser así, podríamos llegar a consumir todos los recursos del sistema.
 
-Veamos ahora un ejemplo más real en el que computar el enésimo término de la `Sucesión de Fibonacci`_ utilizando una función recursiva::
+Veamos ahora un ejemplo más real en el que calcular :math:`x^n` de manera recursiva. Usaremos la idea de *base* y *exponente* para resolver este reto::
 
-    >>> def fibonacci(n: int) -> int:
-    ...     if n == 0:
-    ...         return 0
-    ...     if n == 1:
+    >>> def pow(base: int, exponent: int) -> int:
+    ...     if exponent == 0:
     ...         return 1
-    ...     return fibonacci(n - 1) + fibonacci(n - 2)
+    ...     return base * pow(base, exponent - 1)
     ...
+    
+    >>> pow(2, 4)
+    16
+    
+    >>> pow(3, 5)
+    243
 
-    >>> fibonacci(10)
-    55
+Condición de parada:
+    En todo código recursivo es necesario establecer una **condición de parada**. En el ejemplo la condición de parada se da cuando el exponente es 0, siendo el resultado 1, ya que todo número elevado a 0 es igual a 1.
 
-    >>> fibonacci(20)
-    6765
+Llamada recursiva:
+    Obviamente en todo código recursivo debe haber una **llamada recursiva**. En el ejemplo anterior la recursividad se apoya en la idea de que :math:`2^4 = 2 * 2^3`. Por tanto podemos hacer uso de la misma función recursiva para calcular el resto de valores.
+
+La "pila de llamadas" para el ejemplo de ``pow(2, 4)`` sería la siguiente:
+
+.. figure:: img/pow_recursive.png
+    :align: center
+
+    Esquema de llamadas recursivas
 
 .. admonition:: Ejercicio
 
@@ -1765,7 +1776,7 @@ Consejos para programar
 10. pycheck_: **consecutive_seq**
 11. pycheck_: **magic_square**
 12. pycheck_: **sum_nested**
-13. pycheck_: **power_recursive**
+13. pycheck_: **fibonacci_recursive**
 14. pycheck_: **hyperfactorial**
 15. pycheck_: **fibonacci_generator**
 
@@ -1808,7 +1819,6 @@ Consejos para programar
 .. _DocString Formats: https://realpython.com/documenting-python-code/#docstring-formats
 .. _Programación funcional: https://es.wikipedia.org/wiki/Programaci%C3%B3n_funcional
 .. _Modelo de datos: https://docs.python.org/es/3/reference/datamodel.html
-.. _Sucesión de Fibonacci: https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci
 .. _mypy: http://mypy-lang.org/
 .. _syntactic sugar: https://es.wikipedia.org/wiki/Az%C3%BAcar_sint%C3%A1ctico
 .. _reStructuredText docstrings: https://peps.python.org/pep-0287/
