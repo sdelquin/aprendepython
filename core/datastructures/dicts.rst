@@ -661,6 +661,7 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 9. pycheck_: **money_back**
 10. pycheck_: **money_back_max**
 11. pycheck_: **first_ntimes**
+12. pycheck_: **fix_id**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
