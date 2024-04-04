@@ -1779,6 +1779,9 @@ Consejos para programar
 13. pycheck_: **fibonacci_recursive**
 14. pycheck_: **hyperfactorial**
 15. pycheck_: **fibonacci_generator**
+16. pycheck_: **gcd_recursive**
+17. pycheck_: **palindrome_recursive**
+18. pycheck_: **assert_positive**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
