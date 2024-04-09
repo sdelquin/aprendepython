@@ -35,13 +35,13 @@ Sus **beneficios** son los siguientes:
 
 Un **objeto** es una **estructura de datos personalizada** que contiene **datos** y **código**:
 
-+-----------+-----------+------------------+-----------------------+
-| Elementos | ¿Qué son? | ¿Cómo se llaman? | ¿Cómo se identifican? |
-+===========+===========+==================+=======================+
-| Datos     | Variables | Atributos        | Mediante sustantivos  |
-+-----------+-----------+------------------+-----------------------+
-| Código    | Funciones | Métodos          | Mediante verbos       |
-+-----------+-----------+------------------+-----------------------+
++-----------+-----------+-----------------+-----------------------+
+| Elementos | ¿Qué son? | ¿Nombre en POO? | ¿Cómo se identifican? |
++===========+===========+=================+=======================+
+| Datos     | Variables | Atributos       | Mediante sustantivos  |
++-----------+-----------+-----------------+-----------------------+
+| Código    | Funciones | Métodos         | Mediante verbos       |
++-----------+-----------+-----------------+-----------------------+
 
 Un objeto representa **una instancia única** de alguna entidad (a través de los valores de sus atributos) e interactúa con otros objetos (o consigo mismo) a través de sus métodos.
 
@@ -76,7 +76,7 @@ Empecemos por crear nuestra **primera clase**. En este caso vamos a modelar algu
 Para ello usaremos la palabra reservada ``class`` seguida del nombre de la clase::
 
     >>> class StarWarsDroid:
-    ...     pass
+    ...     pass  # pass no hace nada
     ...
 
 .. hint:: Los nombres de clases se suelen escribir en formato ``CamelCase`` y en singular [#pep8]_.
@@ -217,13 +217,14 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
     - ``install_app(self, app)`` *(no instalar la app si ya existe)*
     - ``uninstall_app(self, app)``  *(no borrar la app si no existe)*
 
-    *¿Serías capaz de extender el método* ``install_app()`` *para instalar varias aplicaciones a la vez?*
+    *¿Serías capaz de extender el método ``install_app()`` y ``uninstall_app()``para instalar/desinstalar varias aplicaciones a la vez?*
 
     .. only:: html
     
         | Plantilla: :download:`mobile.py <files/templates/mobile.py>`
         | Tests: :download:`test_mobile.py <files/test_mobile.py>`
         | Lanzar tests: ``pytest -xq test_mobile.py``
+        | Lanzar tests (avanzado): ``pytest -xq test_mobile_advanced.py``
 
 *********
 Atributos
