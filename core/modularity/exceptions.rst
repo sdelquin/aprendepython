@@ -461,8 +461,7 @@ Podemos observar que la excepción que se lanza no contiene ningún mensaje info
 
     | Plantilla: :download:`poker.py <files/templates/poker.py>`
     | Glifos de cartas: :download:`cards.dat <files/cards.dat>`
-    | Tests: :download:`test_poker.py <files/test_poker.py>`
-    | Lanzar tests: ``pytest -xq test_poker.py``
+    | Comprobación: ``pytest -xq`` :download:`test_poker.py <files/test_poker.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 

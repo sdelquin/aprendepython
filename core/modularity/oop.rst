@@ -222,9 +222,8 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
     .. only:: html
     
         | Plantilla: :download:`mobile.py <files/templates/mobile.py>`
-        | Tests: :download:`test_mobile.py <files/test_mobile.py>`
-        | Lanzar tests: ``pytest -xq test_mobile.py``
-        | Lanzar tests (avanzado): ``pytest -xq test_mobile_advanced.py``
+        | Comprobación: ``pytest -xq`` :download:`test_mobile.py <files/test_mobile.py>` 
+        | Comprobación (avanzado): ``pytest -xq`` :download:`test_mobile_advanced.py <files/test_mobile_advanced.py>`
 
 *********
 Atributos
@@ -852,8 +851,7 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
     .. only:: html
     
         | Plantilla: :download:`fraction.py <files/templates/fraction.py>`
-        | Tests: :download:`test_fraction.py <files/test_fraction.py>`
-        | Lanzar tests: ``pytest -xq test_fraction.py``
+        | Comprobación: ``pytest -xq`` :download:`test_fraction.py <files/test_fraction.py>`
 
 ``__repr__``
 ------------
@@ -1295,8 +1293,7 @@ Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
     .. only:: html
     
         | Plantilla: :download:`file_inheritance.py <files/templates/file_inheritance.py>`
-        | Tests: :download:`test_file_inheritance.py <files/test_file_inheritance.py>`
-        | Lanzar tests: ``pytest -xq test_file_inheritance.py``
+        | Comprobación: ``pytest -xq`` :download:`test_file_inheritance.py <files/test_file_inheritance.py>`
 
 Agregación y composición
 ========================
@@ -1402,8 +1399,7 @@ Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
     .. only:: html
     
         | Plantilla: :download:`infinite_list.py <files/templates/infinite_list.py>`
-        | Tests: :download:`test_infinite_list.py <files/test_infinite_list.py>`
-        | Lanzar tests: ``pytest -xq test_infinite_list.py``
+        | Comprobación: ``pytest -xq`` :download:`test_infinite_list.py <files/test_infinite_list.py>`
 
 Diccionarios
 ============
@@ -2030,32 +2026,28 @@ Aunque no existe ninguna indicación formal de la estructura de una clase, podr�
 .. only:: html
 
     | Plantilla: :download:`date.py <files/templates/date.py>`
-    | Tests: :download:`test_date.py <files/test_date.py>`
-    | Lanzar tests: ``pytest -xq test_date.py``
+    | Comprobación: ``pytest -xq`` :download:`test_date.py <files/test_date.py>`
 
 2. Escriba una clase ``DNA`` que represente una secuencia de ADN.
 
 .. only:: html
 
     | Plantilla: :download:`dna.py <files/templates/dna.py>`
-    | Tests: :download:`test_dna.py <files/test_dna.py>`
-    | Lanzar tests: ``pytest -xq test_dna.py``
+    | Comprobación: ``pytest -xq`` :download:`test_dna.py <files/test_dna.py>`
 
 3. Escriba una clase ``IntegerStack`` que represente una pila de valores enteros.
 
 .. only:: html
 
     | Plantilla: :download:`istack.py <files/templates/istack.py>`
-    | Tests: :download:`test_istack.py <files/test_istack.py>`
-    | Lanzar tests: ``pytest -xq test_istack.py``
+    | Comprobación: ``pytest -xq`` :download:`test_istack.py <files/test_istack.py>`
 
 3. Escriba una clase ``IntegerQueue`` que represente una cola de valores enteros.
 
 .. only:: html
 
     | Plantilla: :download:`iqueue.py <files/templates/iqueue.py>`
-    | Tests: :download:`test_iqueue.py <files/test_iqueue.py>`
-    | Lanzar tests: ``pytest -xq test_iqueue.py``
+    | Comprobación: ``pytest -xq`` :download:`test_iqueue.py <files/test_iqueue.py>`
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
