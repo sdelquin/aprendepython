@@ -493,6 +493,58 @@ Veamos un ejemplo de esto último:
     >>> droid3.obeys_owner
     False
 
+La explicación de este fenómeno es sencilla: Todas las instancias (pasadas y futuras) del droide tienen un "atributo" ``obeys_owner`` que "apunta" a la misma zona de memoria que la del atributo ``obeys_owner`` de la clase::
+
+    >>> id(Droid.obeys_owner)
+    4385213672
+    >>> id(droid1.obeys_owner)
+    4385213672
+    >>> id(droid2.obeys_owner)
+    4385213672
+    >>> id(droid3.obeys_owner)
+    4385213672
+
+.. figure:: img/obeys-owner1.png
+    :align: center
+
+    Atributo de clase
+
+Supongamos que tras el cambio "global" de ``obeys_owner`` lo que buscamos es que **sólo se modifiquen los droides futuros pero no los pasados**.
+
+Para poder abordar este escenario debemos recurrir a **atributos de instancia**.
+
+    >>> class Droid:
+    ...     obeys_owner = True
+    ...     def __init__(self):
+    ...         self.obeys_owner = Droid.obeys_owner
+    ...
+
+Ahora veamos cuál es el comportamiento::
+
+    >>> droid1 = Droid()
+    >>> droid1.obeys_owner
+    True
+    
+    >>> droid2 = Droid()
+    >>> droid2.obeys_owner
+    True
+    
+    >>> Droid.obeys_owner = False
+
+    >>> droid1.obeys_owner
+    True
+    >>> droid2.obeys_owner
+    True
+    
+    >>> droid3 = Droid()
+    >>> droid3.obeys_owner
+    False
+
+.. figure:: img/obeys-owner2.png
+    :align: center
+
+    Atributo de clase con asignación de instancia
+
 *******
 Métodos
 *******
