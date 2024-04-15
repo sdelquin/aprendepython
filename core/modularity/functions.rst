@@ -1782,6 +1782,7 @@ Consejos para programar
 16. pycheck_: **gcd_recursive**
 17. pycheck_: **palindrome_recursive**
 18. pycheck_: **assert_positive**
+19. pycheck_: **slice_recursive**
 
 .. rubric:: AMPLIAR CONOCIMIENTOS
 
