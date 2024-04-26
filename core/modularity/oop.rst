@@ -1340,7 +1340,15 @@ Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
     Notas:
 
     - El atributo ``size`` debe devolver el número total de caracteres sumando las longitudes de los elementos del atributo ``contents``.
-    - El atributo ``info`` de cada clase debe hacer uso del atributo ``info`` de su clase base para conformar las salida final.
+    - El atributo ``info`` de cada clase debe hacer uso del atributo ``info`` de su clase base para conformar las salida final. Veamos un ejemplo:
+
+    .. code-block:: text
+
+        /home/python/vanrossum.mp4 [size=19B]
+        Codec: h264
+        Geolocalization: (23.5454, 31.4343)
+        Duration: 487s
+        Dimensions: (1920, 1080)
 
     .. only:: html
     
