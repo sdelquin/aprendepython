@@ -1,9 +1,7 @@
 class File:
-    def __init__(self, path: str):
-        ...
+    def __init__(self, path: str): ...
 
-    def add_content(self, content: str):
-        ...
+    def add_content(self, content: str): ...
 
     @property
     def size(self):
@@ -12,24 +10,20 @@ class File:
 
     @property
     def info(self):
-        return f'{self.path} [size={self.size()}B]'
+        return f'{self.path} [size={self.size}B]'
 
 
 class MediaFile(File):
-    def __init__(self, path: str, codec: str, geoloc: tuple[float], duration: int):
-        ...
+    def __init__(self, path: str, codec: str, geoloc: tuple[float], duration: int): ...
 
     @property
-    def info(self):
-        ...
+    def info(self): ...
 
 
 class VideoFile(MediaFile):
     def __init__(
         self, path: str, codec: str, geoloc: tuple[float], duration: int, dimensions: tuple[int]
-    ):
-        ...
+    ): ...
 
     @property
-    def info(self):
-        ...
+    def info(self): ...
