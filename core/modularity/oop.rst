@@ -879,7 +879,7 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
 
     Además de esto, necesitaremos:
 
-    - ``gcd(a, b)`` como **método estático** siguiendo el *algoritmo de Euclides* para calcular el máximo común divisor entre ``a`` y ``b``.
+    - ``gcd(a, b)`` para calcular el máximo común divisor entre ``a`` y ``b`` (*Algoritmo de Euclides*).
     - ``__init__(self, num, den)`` para construir una fracción (incluyendo simplificación de sus términos mediante el método ``gcd()``.
     - ``__str__(self)`` para representar una fracción.
 
@@ -948,7 +948,7 @@ Ahora implementamos también el método ``__repr__()``::
 
     >>> c14 = Droid('C-14')
 
-    >>> print(c14)
+    >>> print(c14)  # __str__()
     Hi there! I'm C-14
 
     >>> c14  # __repr__()
@@ -1249,6 +1249,7 @@ Supongamos que queremos modelar la siguiente estructura de clases con *herencia 
 
 Podemos comprobar esta herencia múltiple de la siguiente manera::
 
+    # issubclass() funciona con múltiples clases!
     >>> issubclass(SuperDroid, (ProtocolDroid, AstromechDroid, Droid))
     True
 
@@ -1406,14 +1407,18 @@ En este apartado veremos algunos de ellos.
 Secuencias
 ==========
 
-Una **secuencia** en Python es un objeto en el que podemos acceder a cada uno de sus elementos a través de un índice, así como calcular su longitud total.
+Una **secuencia** en Python es un objeto en el que podemos acceder a cada uno de sus elementos a través de un **índice**, así como **calcular su longitud** total.
+
+Algunos ejemplos de secuencias que ya se han visto incluyen :ref:`cadenas de texto <core/datatypes/strings:cadenas de texto>`, :ref:`listas <core/datastructures/lists:listas>` o :ref:`tuplas <core/datastructures/tuples:tuplas>`.
+
+Las secuencias deben implementar, al menos, los siguientes métodos mágicos:
 
 .. figure:: img/sequences-magic.png
     :align: center
 
     Métodos mágicos asociados con las secuencias
 
-Como ejemplo, podemos asumir que los droides de StarWars están ensamblados con distintas partes/componentes. Veamos una implementación de este escenario::
+Como ejemplo, podemos asumir que los droides de StarWars **están ensamblados con distintas partes/componentes**. Veamos una implementación de este escenario::
 
     >>> class Droid:
     ...     def __init__(self, name: str, parts: list[str]):
@@ -1430,7 +1435,7 @@ Como ejemplo, podemos asumir que los droides de StarWars están ensamblados con 
     ...         return len(self.parts)
     ...
 
-Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
+Ahora podemos instanciar la clase anterior y probar su comportamiento::
 
     >>> droid = Droid('R2-D2', ['Radar Eye', 'Pocket Vent', 'Battery Box'])
     
@@ -1456,6 +1461,8 @@ Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
 
     Cree una clase ``InfiniteList`` que permita utilizar una lista sin tener límites, es decir, evitando un ``IndexError``. Por ejemplo, si la lista tiene 10 elementos, y asignamos un valor al elemento en el índice 20, esto no daría un error, sino que haría ampliar la lista hasta el valor 20, rellenando los valores en blanco con un valor de relleno que por defecto es ``None``.
 
+    La clase se debe implementar **como una secuencia**. Escriba también un método ``__str__()`` que devuelva la representación de la lista en formato cadena de texto. Por ejemplo para ``[5, 3, 8]`` habría que devolver ``'5,3,8'``.
+
     .. only:: html
     
         | Plantilla: :download:`infinite_list.py <files/templates/infinite_list.py>`
@@ -1464,9 +1471,9 @@ Ahora podemos poner instanciar la clase anterior y probar su comportamiento::
 Diccionarios
 ============
 
-Los métodos ``__getitem__()`` y ``__setitem()__`` también se pueden aplicar para obtener o fijar valores en un estructura tipo **diccionario**. La diferencia es que en vez de manejar un índice manejamos una clave.
+Los métodos ``__getitem__()`` y ``__setitem()__`` también se pueden aplicar para obtener o fijar valores en un estructura tipo **diccionario**. La diferencia es que en vez de manejar un índice **manejamos una clave**.
 
-Retomando el ejemplo anterior de las partes de un droide vamos a plantear que **cada componente tiene asociado una versión**, lo que nos proporciona una estructura de tipo diccionario con clave (nombre de la parte) y valor (versión de la parte)::
+Retomando el ejemplo anterior de las partes de un droide vamos a plantear que **cada componente tenga asociada una versión**, lo que nos proporciona una estructura de tipo diccionario con clave (nombre de la parte) y valor (versión de la parte)::
 
     >>> class Droid:
     ...     def __init__(self, name: str, parts: dict[str, float]):
@@ -1476,7 +1483,7 @@ Retomando el ejemplo anterior de las partes de un droide vamos a plantear que **
     ...     def __setitem__(self, part: str, version: float) -> None:
     ...         self.parts[part] = version
     ...
-    ...     def __getitem__(self, part: str) -> float:
+    ...     def __getitem__(self, part: str) -> float | None:
     ...         return self.parts.get(part)
     ...
     ...     def __len__(self):
@@ -1496,14 +1503,14 @@ Ahora podremos instanciar la clase anterior y comprobar su comportamiento::
     >>> droid.parts
     {'Radar Eye': 1.1, 'Pocket Vent': 3.0, 'Battery Box': 2.8}
 
-    >>> droid['Radar Eye']
+    >>> droid['Radar Eye']  # __getitem__('Radar Eye')
     1.1
     >>> droid['Pocket Vent']
     3.0
     >>> droid['Battery Box']
     2.8
 
-    >>> droid['Pocket Vent'] = 3.1
+    >>> droid['Pocket Vent'] = 3.1  # __setitem__('Pocket Vent', 3.1)
 
     >>> droid.parts
     {'Radar Eye': 1.1, 'Pocket Vent': 3.1, 'Battery Box': 2.8}
@@ -1516,9 +1523,9 @@ Iterables
 
 |advlev|
 
-Un objeto en Python se dice **iterable** si implementa el **protocolo de iteración**. Este protocolo permite "entregar" un valor de cada vez en forma de secuencia.
+Un objeto en Python se dice **iterable** si implementa el **protocolo de iteración**. Este protocolo permite "entregar" un valor del iterable cada vez que se "solicite".
 
-Hay muchos tipos de datos iterables en Python que ya hemos visto: *cadenas de texto, listas, tuplas, conjuntos, diccionarios, etc.*
+Hay muchos tipos de datos iterables en Python que ya se han estudiado: :ref:`cadenas de texto <core/datatypes/strings:cadenas de texto>`, :ref:`listas <core/datastructures/lists:listas>`, :ref:`tuplas <core/datastructures/tuples:tuplas>`, :ref:`conjuntos <core/datastructures/sets:conjuntos>`, :ref:`diccionarios <core/modularity/oop:diccionarios>` o :ref:`ficheros <core/datastructures/files:ficheros>`.
 
 Para ser un **objeto iterable** sólo es necesario implementar el método mágico ``__iter__()``. Este método debe proporcionar una referencia al **objeto iterador** que es quien se encargará de desarrollar el protocolo de iteración a través del método mágico ``__next__()``.
 
@@ -1546,11 +1553,11 @@ Vamos a implementar una factoría de droides (`Geonosis`_) como un iterable::
     ...         self.num_droids = num_droids
     ...         self.pointer = 0
     ...
-    ...     def __iter__(self):
+    ...     def __iter__(self) -> object:
     ...         # El iterador es el propio objeto!
     ...         return self
     ...
-    ...     def __next__(self):
+    ...     def __next__(self) -> Droid:
     ...         # Protocolo de iteración
     ...         if self.pointer >= self.num_droids:
     ...             raise StopIteration
@@ -1579,32 +1586,32 @@ Cuando utilizamos un bucle ``for`` para recorrer los elementos de un iterable, o
 
 1. Se obtiene el objeto iterador del iterable.
 2. Se hacen llamadas sucesivas a ``next()`` sobre dicho iterador para obtener cada elemento del iterable.
-3. Se para la iteración cuando el iterador lanza la excepción ``StopIteration``.
+3. Se para la iteración cuando el iterador lanza la excepción ``StopIteration`` (*protocolo de iteración*).
 
 Iterables desde fuera
 ---------------------
 
 Ahora que conocemos las interiodades de los iterables, podemos ver qué ocurre si los usamos desde un enfoque más funcional.
 
-En primer lugar hay que controlar el uso de los **métodos mágicos en el protocolo de iteración**:
+En primer lugar hay que conocer el uso de los **métodos mágicos en el protocolo de iteración**:
 
 - ``__iter()__`` se invoca cuando se hace uso de la función ``iter()``.
 - ``__next()__`` se invoca cuando se hace uso de la función ``next()``.
 
-Si esto es así, podríamos generar droides de una forma algo "peculiar"::
+Si esto es así, podríamos generar droides de una forma más "artesanal"::
 
     >>> factory = Geonosis(3)
 
-    >>> factory_iterator = iter(factory)
+    >>> factory_iterator = iter(factory)  # __iter__()
 
-    >>> next(factory_iterator)
+    >>> next(factory_iterator)  # __next__()
     Droid: SN=00000
-    >>> next(factory_iterator)
+    >>> next(factory_iterator)  # __next__()
     Droid: SN=11111
-    >>> next(factory_iterator)
+    >>> next(factory_iterator)  # __next__()
     Droid: SN=22222
 
-    >>> next(factory_iterator)
+    >>> next(factory_iterator)  # __next__()
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     StopIteration
@@ -1633,7 +1640,7 @@ Otra característica importante es que **los iterables se agotan**. Lo podemos c
     Droid: SN=11111
     Droid: SN=22222
 
-    >>> for droid in geon:
+    >>> for droid in geon:  # geon.pointer == 3
     ...     print(droid)
     ... # Salida vacía!
 
@@ -1646,7 +1653,10 @@ Usando un iterador externo
 
 Hasta ahora hemos analizado el escenario en el que el objeto iterable coincide con el objeto iterador, pero esto no tiene por qué ser siempre así.
 
-Supongamos, en este caso, que queremos implementar un **mercado de droides de protocolo** que debe ser un iterable y devolver cada vez un droide de protocolo. Veamos esta aproximación **usando un iterador externo**::
+Supongamos, en este caso, que queremos implementar un **mercado de droides de protocolo** que debe ser un iterable y devolver cada vez un droide de protocolo. Veamos esta aproximación **usando un iterador externo**:
+
+.. code-block::
+    :emphasize-lines: 17
 
     >>> class Droid:
     ...     def __init__(self, name: str):
@@ -1663,7 +1673,7 @@ Supongamos, en este caso, que queremos implementar un **mercado de droides de pr
     ...     def __init__(self):
     ...         self.droids = [Droid(name) for name in ProtocolDroidMarket.DROID_MODELS]
     ...
-    ...     def __iter__(self):
+    ...     def __iter__(self) -> object:
     ...         return ProtocolDroidMarketIterator(self)
     ...
 
@@ -1672,7 +1682,7 @@ Supongamos, en este caso, que queremos implementar un **mercado de droides de pr
     ...         self.market = market
     ...         self.pointer = 0
     ...
-    ...     def __next__(self):
+    ...     def __next__(self) -> Droid:
     ...         if self.pointer >= len(self.market.droids):
     ...             raise StopIteration
     ...         droid = self.market.droids[self.pointer]
@@ -1701,7 +1711,7 @@ Probamos ahora el código anterior recorriendo todos los droides que están disp
 Generadores como iteradores
 ---------------------------
 
-Si utilizamos un generador (ya sea como función o expresión) estaremos, casi sin saberlo, implementando el protocolo de iteración:
+Si utilizamos un generador (ya sea como función o expresión) estaremos, casi sin saberlo, implementando el protocolo de iteración, porque:
 
 - El objeto iterador es el propio generador.
 - Una llamada a ``next()`` sobre el generador nos devuelve el siguiente valor.
@@ -1731,7 +1741,25 @@ Veamos una reimplementación del ejemplo anterior del mercado de droides utiliza
     ...             yield droid
     ...
 
-Probamos ahora si todo está funcionando como debería::
+Analicemos el comportamiento de la implementación::
+
+    >>> pdmarket = ProtocolDroidMarket()
+    >>> type(pdmarket)
+    <class '__main__.ProtocolDroidMarket'>
+
+    >>> pdmarket_iterator = iter(pdmarket)
+    >>> type(pdmarket_iterator)
+    <class 'generator'>
+
+    >>> pdmarket is pdmarket_iterator  # iterador externo
+    False
+
+    >>> next(pdmarket_iterator)  # __next__() sobre el generador
+    Droid: C-3PO
+    >>> next(pdmarket_iterator)
+    Droid: K-3PO
+
+Si este comportamiento lo llevamos a un bucle podremos comprobar que el protocolo de iteración está funcionando correctamente::
 
     >>> market = ProtocolDroidMarket()
 
@@ -1803,7 +1831,7 @@ Vamos a analizar herramientas ya vistas -- entendiendo mejor su funcionamiento i
 .. note::
     Los objetos de tipo ``range`` representan una secuencia inmutable de números. La ventaja de usar este tipo de objetos es que siempre se usa una cantidad fija (y pequeña) de memoria, independientemente del rango que represente (ya que solamente necesita almacenar los valores para ``start``, ``stop`` y ``step``, y calcula los valores intermedios a medida que los va necesitando).
 
-**Invertido**::
+**Invertir**::
 
     >>> tool = reversed([1, 2, 3])
 
