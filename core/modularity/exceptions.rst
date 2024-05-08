@@ -173,7 +173,10 @@ Veamos un ejemplo de ambos::
         Not a valid integer. Try it again!
         Give me an integer number: 10
 
-    *Trate de implementar tanto la versión recursiva como la versión iterativa*.
+    Implemente:
+
+    1. Versión iterativa en ``get_integers_iter.py``
+    2. Versión recursiva en ``get_integers_recur.py``
 
 Mostrando los errores
 =====================
