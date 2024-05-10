@@ -2130,7 +2130,7 @@ Aunque no existe ninguna indicación formal de la estructura de una clase, podr�
     | Plantilla: :download:`istack.py <files/templates/istack.py>`
     | Comprobación: ``pytest -xq`` :download:`test_istack.py <files/test_istack.py>`
 
-3. Escriba una clase ``IntegerQueue`` que represente una cola de valores enteros.
+4. Escriba una clase ``IntegerQueue`` que represente una cola de valores enteros.
 
 .. only:: html
 
