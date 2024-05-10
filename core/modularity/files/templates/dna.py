@@ -73,5 +73,7 @@ class DNA:
         ...
 
     def __setitem__(self, index: int, base: str) -> None:
-        """Fija la base 'base' en la posición 'index'"""
+        """Fija la base 'base' en la posición 'index'
+        NOTA: Si la base que se va a asignar no es ninguna de las 4 bases
+        habituales, hay que asignar ADENINA."""
         ...
