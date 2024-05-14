@@ -46,17 +46,20 @@ def test_build_date_when_out_of_range():
 def test_is_leap_year():
     assert not Date.is_leap_year(1997)
     assert not Date.is_leap_year(1999)
+    assert not Date.is_leap_year(1700)
     assert Date.is_leap_year(2008)
     assert Date.is_leap_year(2016)
+    assert Date.is_leap_year(1600)
 
 
-def test_days_in_month():
-    assert Date.days_in_month(1, 2005) == 31
-    assert Date.days_in_month(2, 2005) == 28
-    assert Date.days_in_month(2, 2004) == 29
+def test_get_days_in_month():
+    assert Date.get_days_in_month(1, 2005) == 31
+    assert Date.get_days_in_month(2, 2005) == 28
+    assert Date.get_days_in_month(2, 2004) == 29
 
 
 def test_get_delta_days(date1: Date):
+    assert Date(1, 1, 1900).get_delta_days() == 0
     assert date1.get_delta_days() == 28913
 
 

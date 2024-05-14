@@ -2,27 +2,27 @@ from __future__ import annotations
 
 DAYS_IN_MONTH = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 DAYS_OF_WEEK = (
-    "Domingo",
-    "Lunes",
-    "Martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
 )
 MONTHS_IN_YEAR = (
-    "enero",
-    "febrero",
-    "marzo",
-    "abril",
-    "mayo",
-    "junio",
-    "julio",
-    "agosto",
-    "septiembre",
-    "octubre",
-    "noviembre",
-    "diciembre",
+    'enero',
+    'febrero',
+    'marzo',
+    'abril',
+    'mayo',
+    'junio',
+    'julio',
+    'agosto',
+    'septiembre',
+    'octubre',
+    'noviembre',
+    'diciembre',
 )
 MIN_YEAR_LIMIT = 1900
 MAX_YEAR_LIMIT = 2050
@@ -43,27 +43,28 @@ class Date:
         return year % 4 == 0 and year % 100 != 0 or year % 400 == 0
 
     @staticmethod
-    def get_days_month(month: int, year: int) -> int:
-        '''Los meses del año, 0 para enero, 11 para diciembre'''
+    def get_days_in_month(month: int, year: int) -> int:
         if month == 2 and Date.is_leap_year(year):
             return 29
         else:
             return DAYS_IN_MONTH[month - 1]
 
+    @staticmethod
+    def get_days_in_year(year: int) -> int:
+        return 366 if Date.is_leap_year(year) else 365
+
     def get_delta_days(self) -> int:
         """Número de días transcurridos desde el 1-1-1900 hasta la fecha"""
         delta = self.day - 1
         for month in range(1, self.month):
-            delta += Date.get_days_month(month, self.year)
+            delta += Date.get_days_in_month(month, self.year)
         for year in range(MIN_YEAR_LIMIT, self.year):
-            delta += 366 if self.is_leap_year(year) else 365
+            delta += Date.get_days_in_year(year)
         return delta
 
     @property
     def days_in_month(self) -> int:
-        """Día de la semana de la fecha (0 para domingo, ..., 6 para sábado).
-        El 1-1-1900 fue domingo."""
-        return Date.get_days_month(self.month, self.year)
+        return Date.get_days_in_month(self.month, self.year)
 
     @property
     def weekday(self) -> int:
@@ -79,7 +80,7 @@ class Date:
 
     @property
     def month_name(self) -> str:
-        '''Los meses del año, 0 para enero, 11 para diciembre'''
+        """Los meses del año, 0 para enero, 11 para diciembre"""
         return MONTHS_IN_YEAR[self.month - 1]
 
     @property
@@ -104,7 +105,7 @@ class Date:
             for century in range(self.year // 100, new_year // 100):
                 if (century * 100) % 400 != 0:
                     days_to_add -= 1
-            remaining_days_month = Date.get_days_month(self.month, new_year) - self.day
+            remaining_days_month = Date.get_days_in_month(self.month, new_year) - self.day
             if (days_to_add - remaining_days_month) > 0:
                 new_month = self.month + 1
                 if new_month == 13:
@@ -112,7 +113,7 @@ class Date:
                     new_month = 1
                 added_days = remaining_days_month
                 while True:
-                    added_days += Date.get_days_month(new_month, new_year)
+                    added_days += Date.get_days_in_month(new_month, new_year)
                     if added_days < days_to_add:
                         new_month += 1
                         if new_month == 13:
@@ -120,18 +121,18 @@ class Date:
                             new_year += 1
                     else:
                         new_day = (
-                            days_to_add + Date.get_days_month(new_month, new_year) - added_days
+                            days_to_add + Date.get_days_in_month(new_month, new_year) - added_days
                         )
                         break
             else:
                 new_month = self.month
                 new_day = self.day + days_to_add
             if new_year > MAX_YEAR_LIMIT:
-                print("Warning: max year limit reached")
+                print('Warning: max year limit reached')
                 return Date(31, 12, MAX_YEAR_LIMIT)
             return Date(new_day, new_month, new_year)
         else:
-            print("ERROR: se deben indicar los días a sumar como un entero.")
+            print('ERROR: se deben indicar los días a sumar como un entero.')
             return None
 
     def __sub__(self, other: Date | int) -> int | Date:
@@ -156,7 +157,7 @@ class Date:
                     new_month = 12
                 substracted_days = self.day
                 while True:
-                    substracted_days += Date.get_days_month(new_month, new_year)
+                    substracted_days += Date.get_days_in_month(new_month, new_year)
                     if substracted_days < days_to_sub:
                         new_month -= 1
                         if new_month == 0:
@@ -169,32 +170,26 @@ class Date:
                 new_month = self.month
                 new_day = self.day - days_to_sub
             if new_year < MIN_YEAR_LIMIT:
-                print("Warning: min year limit reached")
+                print('Warning: min year limit reached')
                 return Date(1, 1, MIN_YEAR_LIMIT)
             return Date(new_day, new_month, new_year)
         elif isinstance(other, Date):
             return self.get_delta_days() - other.get_delta_days()
         else:
-            error = "Error: solo esta soportada la resta de fechas o días."
+            error = 'Error: solo esta soportada la resta de fechas o días.'
             return False, error
 
-    def __eq__(self, other: Date) -> bool:
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, Date):
             return self.get_delta_days() == other.get_delta_days()
-        else:
-            error = "Solo está soportada la comparación entre fechas"
-            return False, error
+        raise ValueError('Sólo está soportada la comparación entre fechas')
 
     def __gt__(self, other: Date) -> bool:
         if isinstance(other, Date):
             return self.get_delta_days() > other.get_delta_days()
-        else:
-            error = "Solo está soportada la comparación entre fechas"
-            return False, error
+        raise ValueError('Sólo está soportada la comparación entre fechas')
 
     def __lt__(self, other: Date) -> bool:
         if isinstance(other, Date):
             return self.get_delta_days() < other.get_delta_days()
-        else:
-            error = "Solo está soportada la comparación entre fechas"
-            return False, error
+        raise ValueError('Sólo está soportada la comparación entre fechas')
