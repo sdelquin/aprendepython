@@ -267,6 +267,20 @@ Vemos que la función devuelve una lista con los distintos elementos separados.
 .. caution::
     Aunque parezca muy sencillo, este ejemplo no se puede resolver de manera "directa" usando la función ``split()`` de cadenas de texto.
 
+Python también nos da la posibilidad de "capturar" el separador. Siguiendo el ejemplo anterior:
+
+.. code-block::
+    :emphasize-lines: 1
+
+    >>> regex = r'([.,])'  # paréntesis: añadimos grupo de captura
+
+    >>> re.split(regex, '3.14')
+    ['3', '.', '14']
+
+    >>> re.split(regex, '3,14')
+    ['3', ',', '14']
+
+
 Reemplazar
 ==========
 
