@@ -144,6 +144,9 @@ Si hubiera algún **subgrupo de búsqueda** podríamos acceder con los índices 
 
     >>> m = re.search(r'\+?(\d{2})(\d{9})', text) 
 
+.. tip::
+    Nótese cómo hemos tenido que **escapar** el símbolo ``+`` usando la barra invertida para quitarle su significado especial.
+
 Ahora podemos acceder a los grupos capturados de distintas maneras::
 
     >>> m.groups()
@@ -200,7 +203,7 @@ Tras este código, todo lo anterior sigue funcionando igual::
     >>> m[2]
     '755142009'
 
-La diferencia está en que ahora podemos acceder a los grupos de captura por su nombre::
+La diferencia está en que ahora podemos **acceder a los grupos de captura por su nombre**::
 
     >>> m.group('prefix')
     '34'
@@ -338,8 +341,9 @@ Si el patrón no casa la función devuelve ``None``::
 
 Todo esto lo podemos poner dentro una sentencia condicional haciendo uso además del :ref:`operador morsa <core/controlflow/conditionals:operador morsa>` para aprovechar la variable creada::
 
-    >>> def check_id_card(id_card: text) -> None:
-    ...     if m := re.fullmatch(regex, id_card):
+    >>> def check_id_card(text: str) -> None:
+    ...     REGEX = r'\d{8}[A-Z]'
+    ...     if m := re.fullmatch(REGEX, text):
     ...         print(f'{text} es un DNI válido')
     ...         print(m.span())
     ...     else:
@@ -363,13 +367,13 @@ Continuando con el caso anterior de comprobación de los DNI, podemos ver que a�
     >>> re.match(regex, text)
     <re.Match object; span=(0, 9), match='54632178Y'>
 
-Sin embargo no sucede lo mismo si añadimos caracteres al principio de la cadena::
+Sin embargo no sucede lo mismo si añadimos caracteres al principio y al final de la cadena::
 
     >>> regex = r'\d{8}[A-Z]'
     >>> text = '&&&54632178Y###'
 
-    >>> re.match(regex, text)
-    # None!
+    >>> re.match(regex, text) is None  # No casa!
+    True
 
 En cualquier caso podemos hacer que ``re.match()`` se comporte como ``re.fullmatch()`` si especificamos los **indicadores de comienzo y final de línea** en el patrón:
 
@@ -388,19 +392,19 @@ En cualquier caso podemos hacer que ``re.match()`` se comporte como ``re.fullmat
 Compilar
 ========
 
-Si vamos a utilizar una expresión regular una única vez entonces no debemos preocuparnos por cuestiones de rendimiento. Pero si repetimos su aplicación, sería más recomendable **compilar** la expresión regular a un patrón para mejorar el rendimiento:
+Si vamos a utilizar una expresión regular una única vez entonces no debemos preocuparnos por cuestiones de rendimiento. Pero si repetimos su aplicación, sería más recomendable `compilar`_ la expresión regular a un patrón para mejorar el rendimiento:
 
 .. code-block::
     :emphasize-lines: 3
 
     >>> regex = r'\d+'
 
-    >>> r = re.compile(regex)
+    >>> pat = re.compile(regex)
 
-    >>> type(r)
+    >>> type(pat)
     re.Pattern
 
-    >>> re.search(r, '1:abc;10:def;100;ghi')
+    >>> re.search(pat, '1:abc;10:def;100;ghi')
     <re.Match object; span=(0, 1), match='1'>
 
 
@@ -408,11 +412,40 @@ Si vamos a utilizar una expresión regular una única vez entonces no debemos pr
 
 .. rubric:: EJERCICIOS DE REPASO
 
-1. Escriba un programa en Python que encuentre todas las palabras que comiencen por vocal en un texto dado: ``vowel_words.py``
-2. Escriba un programa en Python que indique si una URL dada es válida o no: ``valid_url.py``
-3. Escriba un programa en Python que indique si un determinado número es o no un :ref:`flotante válido en Python <core/datatypes/numbers:flotantes>`: ``valid_float.py``
-4. Escriba un programa en Python que determine si un email dado tiene el formato correcto: ``valid_email.py``
-5. Escriba un programa en Python que obtenga el resultado de una operación entre números enteros positivos. Las operación puede ser suma, resta, multiplicación o división, y puede haber espacios (o no) entre los operandos y el operador: ``eval_str_op.py``
+1. Escriba un programa en Python que encuentre todas las palabras que comiencen por vocal en un texto dado.
+
+.. only:: html
+
+    | Plantilla: :download:`vowel_words.py <files/templates/vowel_words.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_vowel_words.py <files/test_vowel_words.py>`
+
+2. Escriba un programa en Python que indique si una URL dada es válida o no.
+
+.. only:: html
+
+    | Plantilla: :download:`valid_url.py <files/templates/valid_url.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_valid_url.py <files/test_valid_url.py>`
+
+3. Escriba un programa en Python que indique si un determinado número es o no un :ref:`flotante válido en Python <core/datatypes/numbers:flotantes>`.
+
+.. only:: html
+
+    | Plantilla: :download:`valid_float.py <files/templates/valid_float.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_valid_float.py <files/test_valid_float.py>`
+
+4. Escriba un programa en Python que determine si un email dado tiene el formato correcto.
+
+.. only:: html
+
+    | Plantilla: :download:`valid_email.py <files/templates/valid_email.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_valid_email.py <files/test_valid_email.py>`
+
+5. Escriba un programa en Python que obtenga el resultado de una operación entre números enteros positivos. Las operación puede ser suma, resta, multiplicación o división, y puede haber espacios (o no) entre los operandos y el operador.
+
+.. only:: html
+
+    | Plantilla: :download:`calc_from_str.py <files/templates/calc_from_str.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_calc_from_str.py <files/test_calc_from_str.py>`
 
 
 
@@ -428,3 +461,4 @@ Si vamos a utilizar una expresión regular una única vez entonces no debemos pr
 .. _findall(): https://docs.python.org/es/3/library/re.html#re.findall
 .. _search(): https://docs.python.org/es/3/library/re.html#re.search
 .. _Match: https://docs.python.org/es/3/library/re.html#match-objects
+.. _compilar: https://docs.python.org/3/library/re.html#re.compile
