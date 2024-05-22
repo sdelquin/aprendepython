@@ -9,6 +9,9 @@ TESTDATA = (
     ('info$alumnado@iespto.gobcan.edu.es', False),
     ('info@iespto.gobcan.edu.es/', False),
     ('info@iespto.gobcan.edu.es/blog/', False),
+    ('info.edu.es', False),
+    ('info$edu.es', False),
+    ('info001@edu24.es', True),
 )
 
 

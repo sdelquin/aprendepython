@@ -12,6 +12,9 @@ TESTDATA = (
     ('-5.', True),
     ('3e2', True),
     ('3e2.5', False),
+    ('-', False),
+    ('+', False),
+    ('11_345.879', True),
 )
 
 

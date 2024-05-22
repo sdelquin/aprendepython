@@ -14,6 +14,9 @@ TESTDATA = (
     ('https://iespuertodelacruz.gobcan.edu.org/blog/hero/launch', True),
     ('https://iespuertodelacruz.gobcan.edu.org/blog/index.html', True),
     ('https://iespuertodelacruz.gobcan.edu.org/blog/index.html/', False),
+    ('https://iespuertodelacruz/blog/index.html', False),
+    ('https://iespuerto-001.com', True),
+    ('https://iespuerto-001.com/news/21/', True),
 )
 
 
