@@ -142,3 +142,8 @@ b,
 strong {
   font-weight: 600;
 }
+
+div.table-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+}
