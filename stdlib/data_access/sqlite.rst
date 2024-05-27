@@ -807,16 +807,14 @@ Aparentemente ahora sí que ha ido todo bien. Podemos comprobar que la tabla est
 .. only:: html
 
     | Plantilla: :download:`todo.py <files/templates/todo.py>`
-    | Tests: :download:`test_todo.py <files/test_todo.py>`
-    | Lanzar tests: ``pytest -xq test_todo.py``
+    | Comprobación: ``pytest -xq`` :download:`test_todo.py <files/test_todo.py>`
 
 2. Escriba una clase ``Twitter`` junto a dos clases ``User`` y ``Tweet`` que permita implementar una aplicación de tipo "Twitter".
 
 .. only:: html
 
     | Plantilla: :download:`twitter.py <files/templates/twitter.py>`
-    | Tests: :download:`test_twitter.py <files/test_twitter.py>`
-    | Lanzar tests: ``pytest -xq test_twitter.py``
+    | Comprobación: ``pytest -xq`` :download:`test_twitter.py <files/test_twitter.py>`
 
 .. --------------- Footnotes ---------------
 
