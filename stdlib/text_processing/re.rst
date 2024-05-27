@@ -140,36 +140,26 @@ Incluso hay una manera de acceder a estos índices por separado::
     >>> m.end()
     36
 
-Si hubiera algún **subgrupo de búsqueda** podríamos acceder con los índices subsiguientes. Para ejemplificar este comportamiento vamos a modificar ligeramente la expresión regular original y capturar también el prefijo y el propio número de teléfono::
+Grupos de captura
+^^^^^^^^^^^^^^^^^
+
+Los grupos de captura permiten "marcar" partes de la expresión regular para luego poder acceder a cada una de forma directa e independiente.
+
+Para ejemplificar este comportamiento vamos a modificar ligeramente la expresión regular original del número de teléfono y capturar también el prefijo y el propio número de teléfono::
 
     >>> m = re.search(r'\+?(\d{2})(\d{9})', text) 
 
 .. tip::
     Nótese cómo hemos tenido que **escapar** el símbolo ``+`` usando la barra invertida para quitarle su significado especial.
 
-Ahora podemos acceder a los grupos capturados de distintas maneras::
+Ahora podemos acceder a los grupos capturados de la siguiente manera:
 
-    >>> m.groups()
-    ('34', '755142009')
-
-    >>> m[0]
-    '+34755142009'
-    >>> m[1]
+    >>> m[1]  # equivale a m.group(1)
     '34'
-    >>> m[2]
-    '755142009'
-
-    >>> m.group()  # equivale a m.group(0)
-    '+34755142009'
-    >>> m.group(1)
-    '34'
-    >>> m.group(2)
+    >>> m[2]  # equivale a m.group(2)
     '755142009'
 
 Igualmente podemos acceder a los índices de comienzo y fin de cada grupo capturado::
-
-    >>> m.span(0)  # equivale a m.span()
-    (24, 36)
 
     >>> m.span(1)  # '34'
     (25, 27)
@@ -177,42 +167,17 @@ Igualmente podemos acceder a los índices de comienzo y fin de cada grupo captur
     >>> m.span(2)  # '755142009'
     (27, 36)
 
-Por tanto, se cumple lo siguiente::
-
-    >>> for group_id in range(len(m.groups()) + 1):
-    ...     start, end = m.span(group_id)
-    ...     print(text[start:end])
-    ...
-    +34755142009
-    34
-    755142009
-
-Ahora vamos a **añadir nombres** a los **grupos de captura** para poder explicar otras funcionalidades de este objeto ``Match``::
+Si queremos una aproximación más "semántica", podemos **añadir nombres** a los **grupos de captura**::
 
 >>> regex = r'\+?(?P<prefix>\d{2})(?P<number>\d{9})'
 >>> m = re.search(regex, text)
 
-Tras este código, todo lo anterior sigue funcionando igual::
+Con este cambio ahora podemos **acceder a los grupos de captura por su nombre**::
 
-    >>> m.groups()
-    ('34', '755142009')
-
-    >>> m[1]
+    >>> m['prefix']  # equivale a m.group('prefix')
     '34'
 
-    >>> m[2]
-    '755142009'
-
-La diferencia está en que ahora podemos **acceder a los grupos de captura por su nombre**::
-
-    >>> m.group('prefix')
-    '34'
-    >>> m['prefix']
-    '34'
-
-    >>> m.group('number')
-    '755142009'
-    >>> m['number']
+    >>> m['number']  # equivale a m.group('number')
     '755142009'
 
 Y también existe la posibilidad de obtener el diccionario completo con los grupos capturados::
@@ -436,6 +401,7 @@ Los símbolos incluidos pierden su significado especial:
 
 El guión medio hay que escaparlo en situaciones donde no represente un rango:
     .. code-block::
+        :emphasize-lines: 7
 
         >>> re.match(r'[-\d\s]', '-')  # No hay que escapar
         <re.Match object; span=(0, 1), match='-'>
