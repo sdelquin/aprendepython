@@ -437,10 +437,13 @@ Los símbolos incluidos pierden su significado especial:
 El guión medio hay que escaparlo en situaciones donde no represente un rango:
     .. code-block::
 
-        >>> re.match(r'[\d\-\s]', '-')
+        >>> re.match(r'[-\d\s]', '-')  # No hay que escapar
         <re.Match object; span=(0, 1), match='-'>
-        
-        >>> re.match(r'[\d\s-]', '-')  # Funciona!
+
+        >>> re.match(r'[\d\s-]', '-')  # No hay que escapar
+        <re.Match object; span=(0, 1), match='-'>
+
+        >>> re.match(r'[\d\-\s]', '-') # Hay que escapar!
         <re.Match object; span=(0, 1), match='-'>
 
 

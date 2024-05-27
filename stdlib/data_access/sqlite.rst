@@ -92,18 +92,21 @@ Empecemos creando la tabla ``pyversions`` a través de un código SQL similar al
 
 Haremos uso del cursor creado para **ejecutar** estas instrucciones::
 
-    >>> sql = """CREATE TABLE pyversions (
+    >>> sql = '''CREATE TABLE pyversions (
     ...     branch TEXT PRIMARY KEY,
     ...     released_at_year INTEGER,
     ...     released_at_month INTEGER,
     ...     release_manager TEXT
-    ... )"""
+    ... )'''
 
     >>> cur.execute(sql)
     <sqlite3.Cursor at 0x106a63960>
 
 .. hint::
     Las :ref:`cadenas multilínea <core/datatypes/strings:comillas triples>` son grandes aliadas a la hora de escribir sentencias SQL.
+
+.. tip::
+    No es necesario añadir punto y coma ``;`` al final de la sentencia SQL cuando usamos el módulo ``sqlite3`` salvo que se trate de :ref:`scripts <stdlib/data_access/sqlite:ejecución de scripts>`.
 
 Ya hemos creado la tabla ``pyversions`` de manera satisfactoria.
 
@@ -146,6 +149,15 @@ Ahora podemos comprobar que sí se han guardado los datos correctamente:
 
 .. note::
     La función ``commit()`` pertenece al objeto ``Connection``, no al objeto ``Cursor``.
+
+Autocommit
+==========
+
+Cuando creamos `la conexión a la base de datos <https://docs.python.org/3/library/sqlite3.html#sqlite3.connect>`_ podemos pasar como argumento ``autocommit=True`` de tal forma que no sea necesario invocar explícitamente a ``commit()``::
+
+    >>> con = sqlite3.connect('python.db', autocommit=True)
+
+Cada vez que ejecutamos operaciones de modificación sobre la base de datos se lanza automáticamente el método ``commit()`` confirmando los cambios indicados.
 
 Inserciones parametrizadas
 ==========================
@@ -217,9 +229,9 @@ Queremos procesar cada línea e insertarla en la tabla como un nuevo registro. V
     >>> with open('pyversions.csv') as f:
     ...     f.readline()  # ignore headers
     ...     for line in f:
-    ...         branch, year, month, manager = line.strip().split(',')
-    ...         sql = f'INSERT INTO pyversions VALUES ("{branch}", {year}, {month}, "{manager}")'
-    ...         cur.execute(sql)
+    ...         values = line.strip().split(',')
+    ...         sql = f'INSERT INTO pyversions VALUES (?, ?, ?, ?)'
+    ...         cur.execute(sql, values)
     ...     con.commit()
     ...
 
@@ -352,32 +364,30 @@ Gestor de contexto
 En SQLite también es posible utilizar un :ref:`gestor de contexto <core/modularity/oop:gestores de contexto>` sobre la conexión, que funciona de la siguiente manera:
 
 - Si todo ha ido bien ejecutará un "commit" al final del bloque.
-- Si ha habido alguna excepción ejecutará un "rollback" para que todo quede como al principio y deshacer los posibles cambios efectuados.
+- Si ha habido alguna excepción ejecutará un "rollback"[#rollback]_ para que todo quede como al principio y deshacer los posibles cambios efectuados.
 
-Ejemplo en el que todo va bien::
+Analicemos el siguiente ejemplo:
 
-    >>> try:
-    ...     with con:
-    ...         cur.execute('INSERT INTO pyversions VALUES ("3.13", 2024, 10, "Thomas Wouters")')
-    ... except sqlite3.IntegrityError:
-    ...     print('Error: Duplicated Python version')
+.. code-block::
+    :linenos:
+
+    >>> with con:
+    ...     cur.execute('INSERT INTO pyversions VALUES ("3.13", 2024, 10, "Thomas Wouters")')
+    ...     cur.execute('INSERT INTO pyversions VALUES ("3.12", 2023, 10, "Thomas Wouters")')
     ...
+    Traceback (most recent call last):
+      Cell In, line 3
+        cur.execute('INSERT INTO pyversions VALUES ("3.12", 2023, 10, "Thomas Wouters")')
+    IntegrityError: UNIQUE constraint failed: pyversions.branch
 
-    >>> con.close()
+Línea 1:
+    Creamos el gestor de contexto.
+Línea 2:
+    Insertamos una nueva fila en la tabla que no tiene ningún problema aparente.
+Línea 3:
+    Insertamos una nueva fila que viola la restricción de clave única para la columna "branch".
 
-Ejemplo donde se produce un error::
-
-    >>> try:
-    ...     with con:
-    ...         cur.execute('INSERT INTO pyversions VALUES ("3.12", 2023, 10, "Thomas Wouters")')
-    ... except sqlite3.IntegrityError:
-    ...     print('Error: Duplicated Python version')
-    ...
-    Error: Duplicated Python version
-
-    >>> con.close()
-
-Nótese que en ambos casos **debemos cerrar la conexión**. Esto no se realiza de forma automática.
+El resultado de la ejecución del código anterior es que **no se inserta ninguna fila** ya que, aunque la en la línea 2 no hay ningún error, en la línea 3 se lanza una excepción de tipo ``IntegrityError`` que provoca que el gestor de contexto ejecute un "rollback" de las acciones previas.
 
 Es interesante conocer las distintas `excepciones`_ que pueden producirse al trabajar con este módulo a la hora del control de errores y de plantear posibles escenarios de mejora.
 
@@ -388,7 +398,7 @@ Consultas
 La manera más sencilla de hacer una consulta es **utilizar un cursor**. Existen dos aproximaciones en el tratamiento de los resultados de la consulta:
 
 1. Registros como tuplas.
-2. Registros como filas.
+2. Registros como "filas".
 
 Registros como tuplas
 =====================
@@ -630,25 +640,25 @@ Veamos un ejemplo de aplicación con una tabla en memoria que almacena **ciudade
     >>> con = sqlite3.connect(':memory:')
     >>> cur = con.cursor()
 
-    >>> cur.execute("""CREATE TABLE cities (
+    >>> cur.execute('''CREATE TABLE cities (
     ... id INTEGER PRIMARY KEY,
     ... city TEXT UNIQUE,
     ... latitude REAL,
-    ... longitude REAL)""")
+    ... longitude REAL)''')
     <sqlite3.Cursor at 0x107139bc0>
 
-    >>> cur.execute("""INSERT INTO
+    >>> cur.execute('''INSERT INTO
     ... cities (city, latitude, longitude)  # Obviamos "id"
-    ... VALUES ("Tokyo", 35.652832, 139.839478)""")
+    ... VALUES ("Tokyo", 35.652832, 139.839478)''')
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> result = cur.execute('SELECT * FROM cities')
     >>> result.fetchall()
     [(1, 'Tokyo', 35.652832, 139.839478)]
 
-    >>> cur.execute("""INSERT INTO
+    >>> cur.execute('''INSERT INTO
     ... cities (city, latitude, longitude)  # Obviamos "id"
-    ... VALUES ("Barcelona", 41.390205, 2.154007)""")
+    ... VALUES ("Barcelona", 41.390205, 2.154007)''')
     <sqlite3.Cursor at 0x107139bc0>
 
     >>> result = cur.execute('SELECT * FROM cities')
@@ -682,6 +692,9 @@ Es posible realizar copias de seguridad de manera programática [#backup-example
 
     >>> dst.close()
     >>> src.close()
+
+.. seealso::
+    El parámetro ``pages`` del método ``backup()`` indica el número de páginas a copiar a la vez. Si este valor es menor o igual que 0, la base de datos se copia en un único paso. El valor por defecto es -1.
 
 Podemos comprobar que ambas bases de datos tienen el mismo contenido::
 
@@ -755,6 +768,9 @@ Igualmente cuando insertamos un registro en la base de datos podemos obtener cu�
     >>> cur.lastrowid
     17
 
+.. tip::
+    Esto último también funciona si utilizamos **una clave primaria entera personalizada** e insertamos un valor "manualmente" en dicha columna.
+
 Ejecución de scripts
 ====================
 
@@ -766,15 +782,15 @@ Supongamos una tabla de ejemplo que mantiene estadísticas de los `mejores jugad
 
     >>> cur = con.cursor()
 
-    >>> sql = """
+    >>> sql = '''
     ... CREATE TABLE nba (
     ...     player TEXT PRIMARY KEY,
     ...     points INTEGER
     ... );
-    ... INSERT INTO nba VALUES ('LeBron James', 8023);
-    ... INSERT INTO nba VALUES ('Michael Jordan', 5987);
-    ... INSERT INTO nba VALUES ('Kareem Abdul-Jabbar', 5762);
-    ... """
+    ... INSERT INTO nba VALUES ('LeBron James', 40474);
+    ... INSERT INTO nba VALUES ('Kareem Abdul-Jabbar', 38387);
+    ... INSERT INTO nba VALUES ('Karl Malone', 36928);
+    ... '''
 
     >>> cur.execute(sql)
     Traceback (most recent call last):
@@ -794,9 +810,9 @@ Aparentemente ahora sí que ha ido todo bien. Podemos comprobar que la tabla est
     >>> res = cur.execute(sql)
 
     >>> res.fetchall()
-    [('LeBron James', 8023),
-     ('Michael Jordan', 5987),
-     ('Kareem Abdul-Jabbar', 5762)]
+    [('LeBron James', 40474),
+     ('Kareem Abdul-Jabbar', 38387),
+     ('Karl Malone', 36928)]
 
 ----
 
@@ -822,6 +838,7 @@ Aparentemente ahora sí que ha ido todo bien. Podemos comprobar que la tabla est
 .. [#sqlite-cli] `Herramienta cliente de sqlite`_ para terminal.
 .. [#backup-example] Ejemplo tomado de la documentación oficial de Python.
 .. [#inyeccion-sql] `Inyección SQL`_ es un método de infiltración de código intruso que se vale de una vulnerabilidad informática presente en una aplicación en el nivel de validación de las entradas para realizar operaciones sobre una base de datos.
+.. [#rollback] En tecnologías de base de datos, un "rollback" o reversión es una operación que devuelve a la base de datos a algún estado previo. 
 
 .. --------------- Hyperlinks ---------------
 
