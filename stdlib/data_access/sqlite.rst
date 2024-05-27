@@ -145,7 +145,7 @@ Ahora podemos comprobar que sí se han guardado los datos correctamente:
     2.6|2008|10|Barry Warsaw
 
 .. note::
-    La función ``commit()`` pertenece al objeto conexión, no al objeto cursor.
+    La función ``commit()`` pertenece al objeto ``Connection``, no al objeto ``Cursor``.
 
 Inserciones parametrizadas
 ==========================
@@ -482,7 +482,7 @@ Ahora creamos un cursor, ejecutamos la consulta y accedemos a la primera fila de
     >>> row['release_manager']
     'Barry Warsaw'
 
-Pero también es posible seguir accediendo a la cada columna **a través del índice**::
+Pero también es posible seguir accediendo a cada columna **a través del índice**::
 
     >>> row[0]
     '2.6'
@@ -550,7 +550,9 @@ Comprobando si hay resultados
 
 Hay ocasiones en las que necesitamos comprobar si la consulta tiene algún registro.
 
-Una manera de enfocar este escenario es utilizando el :ref:`operador morsa <core/controlflow/conditionals:operador morsa>` teniendo en cuenta que ``fetchone()`` devuelve ``None`` si la consulta es vacía. Veamos su implementación::
+Una manera de afrontar este problema es utilizando el :ref:`operador morsa <core/controlflow/conditionals:operador morsa>` y teniendo en cuenta que ``fetchone()`` devuelve ``None`` si la consulta es vacía.
+
+Veamos una posible implementación::
 
     >>> con = sqlite3.connect(db_path)
     >>> cur = con.cursor()
