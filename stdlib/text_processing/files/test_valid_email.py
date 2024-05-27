@@ -12,6 +12,10 @@ TESTDATA = (
     ('info.edu.es', False),
     ('info$edu.es', False),
     ('info001@edu24.es', True),
+    ('info.secretaria@iespuertodelacruz.es', True),
+    ('info.secretaria.admision@iespuertodelacruz.es', True),
+    ('$@$', False),
+    ('$@$.com', False),
 )
 
 

@@ -8,6 +8,8 @@ TESTDATA = (
     ('https://iespuertodelacruz', False),
     ('http://iespuertodelacruz.gobcan.edu.org', True),
     ('https://iespuertodelacruz.gobcan.edu.org', True),
+    ('https://iespuerto-de-la-cruz.es', True),
+    ('https://-.-.-.-', False),
     ('https://iespuertodelacruz.gobcan.edu.org/blog', True),
     ('https://iespuertodelacruz.gobcan.edu.org/blog/', True),
     ('https://iespuertodelacruz.gobcan.edu.org/blog/hero', True),
@@ -17,6 +19,7 @@ TESTDATA = (
     ('https://iespuertodelacruz/blog/index.html', False),
     ('https://iespuerto-001.com', True),
     ('https://iespuerto-001.com/news/21/', True),
+    ('https://$$$.!!!', False),
 )
 
 

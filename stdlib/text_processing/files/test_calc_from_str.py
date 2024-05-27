@@ -15,3 +15,9 @@ TESTDATA = (
 @pytest.mark.parametrize('expression,expected', TESTDATA)
 def test_core(expression: str, expected: list[str]):
     assert calc(expression) == expected
+
+
+def test_calc_fails_when_operator_is_not_supported():
+    with pytest.raises(ValueError) as err:
+        calc('3@2')
+    assert str(err.value) == 'Operator @ is not supported!'

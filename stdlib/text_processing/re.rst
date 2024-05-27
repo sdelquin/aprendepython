@@ -421,6 +421,28 @@ Si vamos a utilizar una expresión regular una única vez entonces no debemos pr
     >>> re.search(pat, '1:abc;10:def;100;ghi')
     <re.Match object; span=(0, 1), match='1'>
 
+Aclaraciones sobre corchetes
+============================
+
+Los corchetes ``[]`` en una expresión regular tienen varios matices:
+
+Los símbolos incluidos pierden su significado especial:
+    .. code-block::
+
+        >>> re.match(r'[.]', 'A')  # No casa!
+        
+        >>> re.match(r'[.]', '.')
+        <re.Match object; span=(0, 1), match='.'>
+
+El guión medio hay que escaparlo en situaciones donde no represente un rango:
+    .. code-block::
+
+        >>> re.match(r'[\d\-\s]', '-')
+        <re.Match object; span=(0, 1), match='-'>
+        
+        >>> re.match(r'[\d\s-]', '-')  # Funciona!
+        <re.Match object; span=(0, 1), match='-'>
+
 
 ----
 
