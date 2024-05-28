@@ -5,7 +5,7 @@ from typing import Generator
 import pytest
 from twitter import Tweet, Twitter, TwitterError, User, create_db
 
-DB_PATH = 'test_twitter.db'
+TEST_DB_PATH = 'test_twitter.db'
 
 
 # **************************************************************
@@ -16,17 +16,17 @@ DB_PATH = 'test_twitter.db'
 @pytest.fixture(autouse=True)
 def create_test_database():
     try:
-        create_db(DB_PATH)
+        create_db(TEST_DB_PATH)
         yield
     except Exception as err:
         raise err
     finally:
-        Path(DB_PATH).unlink(missing_ok=True)
+        Path(TEST_DB_PATH).unlink(missing_ok=True)
 
 
 @pytest.fixture
 def db_con():
-    con = sqlite3.connect(DB_PATH)
+    con = sqlite3.connect(TEST_DB_PATH)
     con.row_factory = sqlite3.Row
     yield con
     con.close()
@@ -37,7 +37,7 @@ def make_dbutils_use_test_database(monkeypatch: pytest.MonkeyPatch):
     sconnect = sqlite3.connect
 
     def mock_sqlite3_connect(*args, **kwargs):
-        return sconnect(DB_PATH)
+        return sconnect(TEST_DB_PATH)
 
     monkeypatch.setattr(sqlite3, 'connect', mock_sqlite3_connect)
 
@@ -179,12 +179,12 @@ def test_tweet_fails_when_length_is_over_max(user1: User):
     user1.login(USER1_PASSWORD)
     with pytest.raises(TwitterError) as err:
         user1.tweet(
-            '''
+            """
 Elit nisi in tempor dolor Lorem laborum nisi enim sit id duis esse Lorem.
 Ut non fugiat excepteur laboris elit consectetur. Voluptate pariatur
 ullamco incididunt minim. In exercitation anim eiusmod esse cillum
 fugiat fugiat. Fugiat ut fugiat ipsum mollit esse eiusmod. Sunt aute
-eiusmod voluptate laborum ipsum duis.'''
+eiusmod voluptate laborum ipsum duis."""
         )
     assert str(err.value) == 'Tweet has more than 280 chars!'
 

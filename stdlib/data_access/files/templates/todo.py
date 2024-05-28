@@ -7,67 +7,72 @@ TASK_DONE_SYMBOL = '✔'
 TASK_PENDING_SYMBOL = '⎕'
 
 
+def create_db(db_path: str) -> None:
+    """Crea la base de datos y la siguiente tabla:
+    - tasks (id, name, done)
+        └ id es la clave primaria identificador numérico
+        └ name es el nombre/descripción de la tarea
+        └ done indica si la tarea está hecha o no"""
+    pass
+
+
 class Task:
-    '''Crear atributos de clase:
-    - con: para la conexión a la base de datos. Establecer consultas como diccionarios.
-    - cur: para el cursor de manejo.'''
+    """Crear atributos de clase:
+    - con: para la conexión a la base de datos. Establecer consultas como "filas".
+    - cur: para el cursor de manejo."""
 
     pass
 
     def __init__(self, name: str, done: bool = False, id: int = -1):
-        '''Crea los atributos homónimos a los parámetros'''
+        """Crea los atributos homónimos a los parámetros"""
         pass
 
     def save(self):
-        '''Guarda esta tarea en la base de datos.
+        """Guarda esta tarea en la base de datos.
         El identificador asignado en la base de datos se debe usar para actualizar el
-        atributo id de la tarea.'''
+        atributo id de la tarea."""
         pass
 
     def update(self):
-        '''Actualiza la tarea (nombre y estado) en la base de datos'''
+        """Actualiza la tarea (nombre y estado) en la base de datos"""
         pass
 
     def check(self):
-        '''Marca la tarea como completada. Haz uso también de .update()'''
+        """Marca la tarea como completada. Haz uso también de .update()"""
         pass
 
     def uncheck(self):
-        '''Marca la tarea como no completada. Haz uso también de .update()'''
+        """Marca la tarea como no completada. Haz uso también de .update()"""
         pass
 
     def __repr__(self):
-        '''Muestra la tarea en formato:
-        <SYMBOL> <name> (id=<id>)'''
+        """Muestra la tarea en formato:
+        <SYMBOL> <name> (id=<id>)"""
         pass
 
     @classmethod
     def from_db_row(cls, row: sqlite3.Row) -> Task:
-        '''Construye una nueva tarea a partir de una fila de consulta devuelta por execute()'''
+        """Construye una nueva tarea a partir de una fila de consulta devuelta por execute()"""
         pass
 
     @classmethod
     def get(cls, task_id: int) -> Task:
-        '''Devuelve un objeto Task desde la consulta a la base de datos'''
+        """Devuelve un objeto Task desde la consulta a la base de datos"""
         pass
 
 
 class ToDo:
-    '''Crear atributos de clase:
-    - con: para la conexión a la base de datos. Establecer consultas como diccionarios.
-    - cur: para el cursor de manejo.'''
+    """Crear atributos de clase:
+    - con: para la conexión a la base de datos. Establecer consultas como "filas".
+    - cur: para el cursor de manejo."""
 
     pass
 
-    def create_db(self):
-        '''Crea la base de datos con los campos "id", "name" y "done"'''
-        pass
-
     def get_tasks(self, *, done: int = -1):
-        '''Devuelve todas las tareas como objetos de tipo Task consultando la BBDD.
+        """Devuelve todas las tareas como objetos de tipo Task consultando la BBDD.
         - Si done = 0 se devuelven las tareas pendientes.
         - Si done = 1 se devuelven las tareas completadas.
-        Ojo! Esto es una función generadora.'''
+        Ojo! Esto es una función generadora."""
         pass
 
     def add_task(self, name: str):
@@ -75,9 +80,9 @@ class ToDo:
         pass
 
     def complete_task(self, task_id: int):
-        '''Marca la tarea con identificador "task_id" como completada'''
+        """Marca la tarea con identificador "task_id" como completada"""
         pass
 
     def reopen_task(self, task_id: int):
-        '''Marca la tarea con identificador "task_id" como pendiente'''
+        """Marca la tarea con identificador "task_id" como pendiente"""
         pass

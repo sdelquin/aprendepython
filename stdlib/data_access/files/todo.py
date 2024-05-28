@@ -7,10 +7,31 @@ TASK_DONE_SYMBOL = '✔'
 TASK_PENDING_SYMBOL = '⎕'
 
 
+def create_db(db_path: str) -> None:
+    """Crea la base de datos y la siguiente tabla:
+    - tasks (id, name, done)
+        └ id es la clave primaria identificador numérico
+        └ name es el nombre/descripción de la tarea
+        └ done indica si la tarea está hecha o no"""
+    # <hide>
+    con = sqlite3.connect(db_path)
+    cur = con.cursor()
+    sql = """
+    CREATE TABLE tasks (
+        id INTEGER PRIMARY KEY,
+        name CHAR,
+        done INTEGER
+    );
+    """
+    cur.executescript(sql)
+    con.commit()
+    # </hide>
+
+
 class Task:
-    '''Crear atributos de clase:
-    - con: para la conexión a la base de datos. Establecer consultas como diccionarios.
-    - cur: para el cursor de manejo.'''
+    """Crear atributos de clase:
+    - con: para la conexión a la base de datos. Establecer consultas como "filas".
+    - cur: para el cursor de manejo."""
 
     # <hide>
     con = sqlite3.connect(DB_PATH)
@@ -19,7 +40,7 @@ class Task:
     # </hide>
 
     def __init__(self, name: str, done: bool = False, id: int = -1):
-        '''Crea los atributos homónimos a los parámetros'''
+        """Crea los atributos homónimos a los parámetros"""
         # <hide>
         self.name = name
         self.done = done
@@ -27,9 +48,9 @@ class Task:
         # </hide>
 
     def save(self):
-        '''Guarda esta tarea en la base de datos.
+        """Guarda esta tarea en la base de datos.
         El identificador asignado en la base de datos se debe usar para actualizar el
-        atributo id de la tarea.'''
+        atributo id de la tarea."""
         # <hide>
         sql = 'INSERT INTO tasks(name, done) VALUES(?, ?)'
         self.cur.execute(sql, (self.name, self.done))
@@ -38,7 +59,7 @@ class Task:
         # </hide>
 
     def update(self):
-        '''Actualiza la tarea (nombre y estado) en la base de datos'''
+        """Actualiza la tarea (nombre y estado) en la base de datos"""
         # <hide>
         sql = 'UPDATE tasks SET name=?, done=? WHERE id=?'
         self.cur.execute(sql, (self.name, self.done, self.id))
@@ -46,22 +67,22 @@ class Task:
         # </hide>
 
     def check(self):
-        '''Marca la tarea como completada. Haz uso también de .update()'''
+        """Marca la tarea como completada. Haz uso también de .update()"""
         # <hide>
         self.done = True
         self.update()
         # </hide>
 
     def uncheck(self):
-        '''Marca la tarea como no completada. Haz uso también de .update()'''
+        """Marca la tarea como no completada. Haz uso también de .update()"""
         # <hide>
         self.done = False
         self.update()
         # </hide>
 
     def __repr__(self):
-        '''Muestra la tarea en formato:
-        <SYMBOL> <name> (id=<id>)'''
+        """Muestra la tarea en formato:
+        <SYMBOL> <name> (id=<id>)"""
         # <hide>
         symbol = TASK_DONE_SYMBOL if self.done else TASK_PENDING_SYMBOL
         return f'{symbol} {self.name} (id={self.id})'
@@ -69,14 +90,14 @@ class Task:
 
     @classmethod
     def from_db_row(cls, row: sqlite3.Row) -> Task:
-        '''Construye una nueva tarea a partir de una fila de consulta devuelta por execute()'''
+        """Construye una nueva tarea a partir de una fila de consulta devuelta por execute()"""
         # <hide>
         return Task(row['name'], row['done'], row['id'])
         # </hide>
 
     @classmethod
     def get(cls, task_id: int) -> Task:
-        '''Devuelve un objeto Task desde la consulta a la base de datos'''
+        """Devuelve un objeto Task desde la consulta a la base de datos"""
         # <hide>
         sql = 'SELECT * FROM tasks WHERE id=?'
         result = cls.cur.execute(sql, (task_id,))
@@ -85,9 +106,9 @@ class Task:
 
 
 class ToDo:
-    '''Crear atributos de clase:
-    - con: para la conexión a la base de datos. Establecer consultas como diccionarios.
-    - cur: para el cursor de manejo.'''
+    """Crear atributos de clase:
+    - con: para la conexión a la base de datos. Establecer consultas como "filas".
+    - cur: para el cursor de manejo."""
 
     # <hide>
     con = sqlite3.connect(DB_PATH)
@@ -95,22 +116,11 @@ class ToDo:
     cur = con.cursor()
     # </hide>
 
-    def create_table_tasks(self):
-        '''Crea la tabla "tasks" con los campos "id", "name" y "done"'''
-        # <hide>
-        sql = '''CREATE TABLE tasks (
-            id INTEGER PRIMARY KEY,
-            name CHAR,
-            done INTEGER)'''
-        self.cur.execute(sql)
-        self.con.commit()
-        # </hide>
-
     def get_tasks(self, *, done: int = -1):
-        '''Devuelve todas las tareas como objetos de tipo Task consultando la BBDD.
+        """Devuelve todas las tareas como objetos de tipo Task consultando la BBDD.
         - Si done = 0 se devuelven las tareas pendientes.
         - Si done = 1 se devuelven las tareas completadas.
-        Ojo! Esto es una función generadora.'''
+        Ojo! Esto es una función generadora."""
         # <hide>
         sql = 'SELECT * FROM tasks'
         if done != -1:
@@ -128,14 +138,14 @@ class ToDo:
         # </hide>
 
     def complete_task(self, task_id: int):
-        '''Marca la tarea con identificador "task_id" como completada'''
+        """Marca la tarea con identificador "task_id" como completada"""
         # <hide>
         task = Task.get(task_id)
         task.check()
         # </hide>
 
     def reopen_task(self, task_id: int):
-        '''Marca la tarea con identificador "task_id" como pendiente'''
+        """Marca la tarea con identificador "task_id" como pendiente"""
         # <hide>
         task = Task.get(task_id)
         task.uncheck()

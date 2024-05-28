@@ -3,7 +3,7 @@ import typing
 from pathlib import Path
 
 import pytest
-from todo import Task, ToDo
+from todo import Task, ToDo, create_db
 
 TEST_DB_PATH = 'test_todo.db'
 
@@ -14,18 +14,13 @@ TEST_DB_PATH = 'test_todo.db'
 
 @pytest.fixture(autouse=True)
 def create_test_database():
-    Path(TEST_DB_PATH).unlink(missing_ok=True)
-    con = sqlite3.connect(TEST_DB_PATH)
-    sql = '''CREATE TABLE tasks (
-        id INTEGER PRIMARY KEY,
-        name CHAR,
-        done INTEGER)'''
-    cur = con.cursor()
-    cur.execute(sql)
-    con.commit()
-    yield
-    con.close()
-    Path(TEST_DB_PATH).unlink(missing_ok=True)
+    try:
+        create_db(TEST_DB_PATH)
+        yield
+    except Exception as err:
+        raise err
+    finally:
+        Path(TEST_DB_PATH).unlink(missing_ok=True)
 
 
 @pytest.fixture(autouse=True)

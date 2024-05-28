@@ -10,3 +10,4 @@ geckodriver.log
 .python-version
 TODO.txt
 *-journal
+stdlib/data_access/files/todo.db
