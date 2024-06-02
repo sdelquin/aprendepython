@@ -275,8 +275,6 @@ Pero hay que tener en cuenta que, en este escenario, **los argumentos posicional
 Argumentos mutables e inmutables
 ================================
 
-|intlev|
-
 Cuando realizamos modificaciones a los argumentos de una función es importante tener en cuenta si son **mutables** (listas, diccionarios, conjuntos, ...) o **inmutables** (tuplas, enteros, flotantes, cadenas de texto, ...) ya que podríamos obtener efectos colaterales no deseados.
 
 Supongamos que nos piden escribir una función que reciba una lista y que devuelva sus valores elevados al cuadrado. Pero lo hacemos "malamente"::
@@ -322,8 +320,6 @@ Llamada a la función indicando una frecuencia concreta de "cpu"::
     >>> build_cpu('INTEL', 2, 3.4)
     {'vendor': 'INTEL', 'num_cores': 2, 'freq': 3.4}
 
-|intlev|
-
 Es importante tener presente que los valores por defecto en los parámetros se calculan cuando se **define** la función, no cuando se **ejecuta**. Veamos un ejemplo siguiendo con el caso anterior::
 
     >>> DEFAULT_FREQ = 2.0
@@ -350,8 +346,6 @@ Es importante tener presente que los valores por defecto en los parámetros se c
 
 Modificando parámetros mutables
 -------------------------------
-
-|advlev|
 
 Hay que tener cuidado a la hora de manejar los parámetros que pasamos a una función ya que :ref:`podemos obtener resultados indeseados <core/modularity/functions:argumentos mutables e inmutables>`, especialmente cuando trabajamos con *tipos de datos mutables*.
 
@@ -396,15 +390,9 @@ Obviamente algo no ha funcionado correctamente. Se esperaría que ``result`` tuv
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/sBNpVT2
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=def%20buggy%28arg,%20result%3D%5B%5D%29%3A%0A%20%20%20%20result.append%28arg%29%0A%20%20%20%20print%28result%29%0A%0Abuggy%28'a'%29%0A%0Abuggy%28'b'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=def%20buggy%28arg,%20result%3D%5B%5D%29%3A%0A%20%20%20%20result.append%28arg%29%0A%20%20%20%20print%28result%29%0A%0Abuggy%28'a'%29%0A%0Abuggy%28'b'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 A riesgo de perder el *parámetro por defecto*, una posible solución sería la siguiente::
@@ -444,8 +432,6 @@ La forma de arreglar el código anterior utilizando un parámetro con valor por 
 
 Empaquetar/Desempaquetar argumentos
 ===================================
-
-|intlev|
 
 Python nos ofrece la posibilidad de empaquetar y desempaquetar argumentos cuando estamos invocando a una función, tanto para **argumentos posicionales** como para **argumentos nominales**.
 
@@ -545,8 +531,6 @@ Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en
 Argumentos sólo nominales
 -------------------------
 
-|advlev|
-
 A partir de `Python 3.0 <https://www.python.org/dev/peps/pep-3102/>`_ se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
 
 Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros. Así, todos los parámetros a la derecha del separador estarán **obligados** a ser nominales:
@@ -581,8 +565,6 @@ Ejemplo::
 
 Argumentos sólo posicionales
 ----------------------------
-
-|advlev|
 
 A partir de `Python 3.8 <https://www.python.org/dev/peps/pep-0570/>`_ se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por posición.
 
@@ -640,8 +622,6 @@ Continuando con el ejemplo anterior, podríamos hacer lo siguiente::
 
 Funciones como parámetros
 =========================
-
-|advlev|
 
 Las funciones se pueden utilizar en cualquier contexto de nuestro programa. Son objetos que pueden ser asignados a variables, usados en expresiones, devueltos como valores de retorno o pasados como argumentos a otras funciones.
 
@@ -794,8 +774,6 @@ Dentro del "docstring" podemos escribir con sintaxis `reStructuredText`_ -- véa
 Anotación de tipos
 ==================
 
-|intlev|
-
 Las anotaciones de tipos o **type-hints** [#type-hints]_ se introdujeron en `Python 3.5 <https://www.python.org/dev/peps/pep-0484/>`_ y permiten indicar tipos para los parámetros de una función y/o para su valor de retorno (*aunque también funcionan en creación de variables*).
 
 Veamos un ejemplo en el que creamos una función para dividir una cadena de texto por la posición especificada en el parámetro::
@@ -881,8 +859,6 @@ En el siguiente ejemplo hay una función que calcula el máximo de una serie de 
 ******************
 Tipos de funciones
 ******************
-
-|advlev|
 
 Funciones anónimas "lambda"
 ===========================
@@ -1760,9 +1736,9 @@ Consejos para programar
 7. Usa comentarios para explicar el "por qué" y no el "qué".
     *El código limpio es autoexplicativo y por lo tanto los comentarios no deberían usarse para explicar lo que hace el código. En cambio, los comentarios debería usarse para proporcionar contexto adicional, como por qué el código está diseñado de una cierta manera.*
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **num_in_interval**
 2. pycheck_: **extract_evens**
@@ -1784,7 +1760,9 @@ Consejos para programar
 18. pycheck_: **assert_positive**
 19. pycheck_: **slice_recursive**
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 - `Comparing Python Objects the Right Way: "is" vs "==" <https://realpython.com/courses/python-is-identity-vs-equality/>`_
 - `Python Scope & the LEGB Rule: Resolving Names in Your Code <https://realpython.com/python-scope-legb-rule/>`_

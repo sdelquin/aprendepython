@@ -315,7 +315,9 @@ Supongamos el siguiente programa ``hello.py`` y analizemos cuál es el comportam
     * **Línea 10**: salida por pantalla de la cadena de texto ``Entry point``.
     * **Línea 11**: llamada a la función ``myfunc()`` que muestra por pantalla ``Inside myfunc``, además de invocar a la función ``hi()`` del módulo ``blabla``.
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 - `Defining Main Functions in Python <https://realpython.com/courses/python-main-function/>`_
 - `Python Modules and Packages: An Introduction <https://realpython.com/courses/python-modules-packages/>`_

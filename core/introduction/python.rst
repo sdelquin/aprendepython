@@ -138,8 +138,6 @@ El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versi�
 CPython
 *******
 
-|advlev|
-
 Existen múltiples **implementaciones** de Python según el lenguaje de programación que se ha usado para desarrollarlo. Veamos algunas de ellas:
 
 +----------------+------------+

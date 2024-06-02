@@ -202,9 +202,7 @@ Si una respuesta contiene "cookies"[#http-cookies]_ es posible acceder a ellas m
     - Valor de la cookie ``guest_id``
     - Valor de la cabecera ``content-encoding``
 
-    .. only:: html
-    
-        |solution| :download:`req.py <files/req.py>`
+    Solución: :download:`req.py <files/req.py>`
 
 ********************
 Descargar un fichero

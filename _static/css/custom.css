@@ -1,95 +1,58 @@
-/* https://github.com/sdabhi23/furo/blob/main/src/furo/assets/styles/variables/_index.scss#L41 */
-@import "light-background.css";
-/* https://richleland.github.io/pygments-css/ */
-@import "pygments-light.css";
-
-/* Fix some issues with pygments styles */
-.highlight,
-.highlight .n,
-.highlight .p {
-  color: rgb(32, 32, 32);
-}
-.highlighttable td.linenos {
-  background-color: #e8e8e8;
-  color: #696969;
-  border-right: 1px solid lightgray;
-}
-.highlighttable .linenodiv {
-  box-shadow: none;
-}
-.highlight .go {
-  color: #676767;
-}
-
-.sidebar-brand-text {
-  display: none;
-}
-
 /* Footnotes section styling */
-dl.footnote {
+aside.footnote-list {
   margin-top: 4rem;
   border-top: 1px solid var(--color-background-border);
   padding-top: 1rem;
 }
 
-/* Button to remove prompt in Python code */
-.copybutton {
-  cursor: pointer;
-  position: absolute;
-  color: var(--color-link);
-  font-weight: bold;
-  top: 0;
-  right: 0;
-  font-family: monospace;
-  padding-left: 0.3em;
-  padding-right: 0.3em;
-  font-size: 90%;
+/* https://github.com/pradyunsg/furo/issues/28#issuecomment-1380549435 */
+.theme-toggle-container {
+  display: none;
 }
 
-/* Custom box for difficulty levels */
-.difficulty-level {
-  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
-  font-weight: 600;
-  font-size: 90%;
-}
-.beginner-level {
-  color: #246398;
-  border: 1px solid #246398;
-  border-left: 7px solid #246398;
-}
-.intermediate-level {
-  color: #176f36;
-  border: 1px solid #176f36;
-  border-left: 7px solid #176f36;
-}
-.advanced-level {
-  color: #9e5d17;
-  border: 1px solid #9e5d17;
-  border-left: 7px solid #9e5d17;
+/* Hide default footer */
+div.bottom-of-page {
+  display: none;
 }
 
-/* Badges */
-.badges {
+img.sidebar-logo {
+  border-radius: 1rem;
+}
+
+a.headerlink {
+  text-decoration: none;
+}
+
+a.headerlink:hover {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+div.related-pages {
   margin-bottom: 1rem;
 }
-.badges span {
-  padding-right: 0.5rem;
+
+/* Set caption below tables */
+table.docutils {
+  caption-side: bottom;
 }
 
-/* Center alignment on brand template */
-.sidebar-brand {
-  align-items: center;
+/* Gap between caption and table */
+table.docutils caption {
+  margin-top: 0.5rem;
 }
 
-/* Custom style for rubrics */
-p.rubric {
-  font-size: 1.1rem;
-  font-weight: 400;
-  border: 1px solid lightgray;
-  padding: 0.5rem;
-  margin-top: 3rem;
+.strike {
+  text-decoration: line-through;
 }
 
+/* Color for line numbers in code blocks */
+.highlight span.linenos {
+  color: lightgray;
+  box-shadow: -0.0625rem 0 lightgray inset;
+}
+
+/* Change color when selecting text */
 ::selection {
   background: #a8d1ff;
 }
@@ -98,13 +61,9 @@ p.rubric {
   background: #a8d1ff;
 }
 
-/* Disable anchor on figure captions */
-figcaption > p > a {
-  display: none;
-}
-
-.toc-tree a:hover {
-  color: var(--color-toc-item-text--active);
+/* Button to hide mobile menu -> Zen mode for presentations */
+#btn-hide-menu {
+  width: 1.5rem;
 }
 
 /* Dynamic TOC (Gumshoe) */
@@ -124,26 +83,7 @@ figcaption > p > a {
   display: none;
 }
 
-/* Avoid Python prompt to be selected */
-.highlight span.gp {
-  user-select: none;
-}
-
-/* Background color when searching terms */
-.highlighted {
-  background-color: #ffdf00;
-}
-
-#btn-hide-menu {
-  width: 1.5rem;
-}
-
-b,
-strong {
-  font-weight: 600;
-}
-
-div.table-wrapper {
-  margin-top: 0;
-  margin-bottom: 0;
+/* Disable smooth scroll */
+html {
+  scroll-behavior: auto;
 }

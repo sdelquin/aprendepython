@@ -246,15 +246,11 @@ Para poder descubrir el tipo de un literal o una variable, Python nos ofrece la 
     3. Identifica el tipo del literal ``True``.
     4. Asigna la expresión ``10 * 3.0`` a la variable ``result`` y muestra su tipo.
 
-    .. only:: html
-    
-        |solution| :download:`numbers.py <files/numbers.py>`
+    Solución: :download:`numbers.py <files/numbers.py>`
 
 ***********
 Mutabilidad
 ***********
-
-|advlev|
 
 Las variables son nombres, no lugares. Detrás de esta frase se esconde la reflexión de que cuando asignamos un valor a una variable, lo que realmente está ocurriendo es que se hace **apuntar** el nombre de la variable a una zona de memoria en el que se representa el objeto (con su valor)::
 
@@ -306,15 +302,9 @@ Por ejemplo, las **listas** son un tipo de dato mutable ya que podemos modificar
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/lvCyXeL
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="375" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original%20%3D%20%5B1,%202,%203%5D%0Acopy%20%3D%20original%0A%0A%23%20Modify%20first%20element%0Aoriginal%5B0%5D%20%3D%2099%0A%0A%23%20Assign%20new%20object%0Aoriginal%20%3D%20%5B4,%205,%206%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="375" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original%20%3D%20%5B1,%202,%203%5D%0Acopy%20%3D%20original%0A%0A%23%20Modify%20first%20element%0Aoriginal%5B0%5D%20%3D%2099%0A%0A%23%20Assign%20new%20object%0Aoriginal%20%3D%20%5B4,%205,%206%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 Tipos de objetos en Python según su naturaleza de cambio:
@@ -338,8 +328,6 @@ Tipos de objetos en Python según su naturaleza de cambio:
 ********************
 Funciones "built-in"
 ********************
-
-|intlev|
 
 Hemos ido usando una serie de :ref:`funciones <core/modularity/functions:Funciones>` sin ser especialmente conscientes de ello. Esto se debe a que son funciones "built-in" o incorporadas por defecto en el propio lenguaje Python.
 
@@ -379,7 +367,9 @@ Existe una *forma alternativa* de obtener ayuda: añadiendo el signo de interrog
     Type:      builtin_function_or_method
 
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `Basic Data Types in Python <https://realpython.com/courses/python-data-types/>`_
 * `Variables in Python <https://realpython.com/courses/variables-python/>`_

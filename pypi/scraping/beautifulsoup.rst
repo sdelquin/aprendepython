@@ -583,9 +583,7 @@ En la siguiente tabla se recogen el resto de atributos que nos permiten movernos
 
     Se recomienda usar el paquete :ref:`requests <pypi/scraping/requests:requests>` para obtener el código fuente de la página. Hay que tener en cuenta que el listado de paquetes cambia cada pocos segundos, a efectos de comprobación.
 
-    .. only:: html
-    
-        |solution| :download:`pypi-trend.py <files/pypi-trend.py>`
+    Solución: :download:`pypi-trend.py <files/pypi-trend.py>`
 
 .. --------------- Footnotes ---------------
 

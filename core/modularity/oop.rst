@@ -219,8 +219,6 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
 
     *¿Serías capaz de extender el método ``install_app()`` y ``uninstall_app()``para instalar/desinstalar varias aplicaciones a la vez?*
 
-    .. only:: html
-    
         | Plantilla: :download:`mobile.py <files/templates/mobile.py>`
         | Comprobación: ``pytest -xq`` :download:`test_mobile.py <files/test_mobile.py>` 
         | Comprobación (avanzado): ``pytest -xq`` :download:`test_mobile_advanced.py <files/test_mobile_advanced.py>`
@@ -693,8 +691,6 @@ El decorador se puede poner dentro o fuera de la clase. Por una cuestión de enc
 Métodos mágicos
 ===============
 
-|advlev|
-
 Cuando escribimos ``'hello world' * 3`` ¿cómo sabe el objeto ``'hello world'`` lo que debe hacer para multiplicarse con el objeto entero ``3``? O dicho de otra forma, ¿cuál es la implementación del operador ``*`` para "strings" e "int"? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos.  La solución que proporciona Python para estas (y otras) situaciones son los **métodos mágicos**.
 
 Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ello que también se les conoce como "dunder-methods"). Uno de los "dunder-methods" más famosos es el constructor de una clase: ``__init__()``.
@@ -900,10 +896,8 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
         \bigg[ \frac{25}{30} * \frac{40}{45} = \frac{20}{27} \bigg] \hspace{5mm}
         \bigg[ \frac{25}{30} / \frac{40}{45} = \frac{15}{16} \bigg]
 
-    .. only:: html
-    
-        | Plantilla: :download:`fraction.py <files/templates/fraction.py>`
-        | Comprobación: ``pytest -xq`` :download:`test_fraction.py <files/test_fraction.py>`
+    | Plantilla: :download:`fraction.py <files/templates/fraction.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_fraction.py <files/test_fraction.py>`
 
 ``__repr__``
 ------------
@@ -1045,8 +1039,6 @@ Veamos este gestor de contexto en acción::
 ********
 Herencia
 ********
-
-|intlev|
 
 La **herencia** consiste en **construir una nueva clase partiendo de una clase existente**, pero que añade o modifica ciertos aspectos. La herencia se considera una buena práctica de programación tanto para *reutilizar código* como para *realizar generalizaciones*.
 
@@ -1208,8 +1200,6 @@ Veamos un ejemplo más elaborado con nuestros droides:
 Herencia múltiple
 =================
 
-|advlev|
-
 Aunque no está disponible en todos los lenguajes de programación, Python sí permite heredar de **múltiples clases base**.
 
 Supongamos que queremos modelar la siguiente estructura de clases con *herencia múltiple*:
@@ -1351,10 +1341,8 @@ Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
         Duration: 487s
         Dimensions: (1920, 1080)
 
-    .. only:: html
-    
-        | Plantilla: :download:`file_inheritance.py <files/templates/file_inheritance.py>`
-        | Comprobación: ``pytest -xq`` :download:`test_file_inheritance.py <files/test_file_inheritance.py>`
+    | Plantilla: :download:`file_inheritance.py <files/templates/file_inheritance.py>`
+    | Comprobación: ``pytest -xq`` :download:`test_file_inheritance.py <files/test_file_inheritance.py>`
 
 Agregación y composición
 ========================
@@ -1463,8 +1451,6 @@ Ahora podemos instanciar la clase anterior y probar su comportamiento::
 
     La clase se debe implementar **como una secuencia**. Escriba también un método ``__str__()`` que devuelva la representación de la lista en formato cadena de texto. Por ejemplo para ``[5, 3, 8]`` habría que devolver ``'5,3,8'``.
 
-    .. only:: html
-    
         | Plantilla: :download:`infinite_list.py <files/templates/infinite_list.py>`
         | Comprobación: ``pytest -xq`` :download:`test_infinite_list.py <files/test_infinite_list.py>`
 
@@ -1520,8 +1506,6 @@ Ahora podremos instanciar la clase anterior y comprobar su comportamiento::
 
 Iterables
 =========
-
-|advlev|
 
 Un objeto en Python se dice **iterable** si implementa el **protocolo de iteración**. Este protocolo permite "entregar" un valor del iterable cada vez que se "solicite".
 
@@ -2105,39 +2089,33 @@ Aunque no existe ninguna indicación formal de la estructura de una clase, podr�
     ...     ...
     ...
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. Escriba una clase ``Date`` que represente una fecha.
-
-.. only:: html
 
     | Plantilla: :download:`date.py <files/templates/date.py>`
     | Comprobación: ``pytest -xq`` :download:`test_date.py <files/test_date.py>`
 
 2. Escriba una clase ``DNA`` que represente una secuencia de ADN.
 
-.. only:: html
-
     | Plantilla: :download:`dna.py <files/templates/dna.py>`
     | Comprobación: ``pytest -xq`` :download:`test_dna.py <files/test_dna.py>`
 
 3. Escriba una clase ``IntegerStack`` que represente una pila de valores enteros.
-
-.. only:: html
 
     | Plantilla: :download:`istack.py <files/templates/istack.py>`
     | Comprobación: ``pytest -xq`` :download:`test_istack.py <files/test_istack.py>`
 
 4. Escriba una clase ``IntegerQueue`` que represente una cola de valores enteros.
 
-.. only:: html
-
     | Plantilla: :download:`iqueue.py <files/templates/iqueue.py>`
     | Comprobación: ``pytest -xq`` :download:`test_iqueue.py <files/test_iqueue.py>`
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 - `Supercharge Your Classes With Python super() <https://realpython.com/courses/python-super/>`_
 - `Inheritance and Composition: A Python OOP Guide <https://realpython.com/inheritance-composition-python/>`_

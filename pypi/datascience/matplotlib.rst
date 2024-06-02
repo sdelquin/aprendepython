@@ -422,9 +422,7 @@ Vamos a insertar una serie de anotaciones en el gráfico:
     - :math:`x \in [0, 2\pi]` (1000 puntos)
     - :math:`y = e^{-\alpha x} sin(\beta x)`, donde :math:`\alpha=0.7` y :math:`\beta=10`.
 
-    .. only:: html
-    
-        |solution| :download:`soften_wave.py <files/soften_wave.py>`
+    Solución: :download:`soften_wave.py <files/soften_wave.py>`
 
 
 *****************
@@ -520,9 +518,7 @@ Ahora ya podemos centrarnos en el diseño del gráfico de barras::
 
     .. image:: img/barplot-tiobe.png
 
-    .. only:: html
-    
-        |solution| :download:`tiobe_2020.py <files/tiobe_2020.py>`
+    Solución: :download:`tiobe_2020.py <files/tiobe_2020.py>`
 
 Gráficos de dispersión
 ======================
@@ -588,9 +584,7 @@ Del gráfico anterior cabe destacar varios aspectos:
 
     El mapa de color que se ha usado es ``plasma_r``.
 
-    .. only:: html
-    
-        |solution| :download:`bmw_plot.py <files/bmw_plot.py>`
+    Solución: :download:`bmw_plot.py <files/bmw_plot.py>`
 
 Histogramas
 ===========
@@ -658,9 +652,7 @@ Descargo de responsabilidad: Técnicamente este gráfico no es un histograma ya 
 
     .. image:: img/hist-pokemon-speed.png
 
-    .. only:: html
-    
-        |solution| :download:`pokemon_speed.py <files/pokemon_speed.py>`
+    Solución: :download:`pokemon_speed.py <files/pokemon_speed.py>`
 
 Gráficos para series temporales
 ===============================
@@ -823,9 +815,7 @@ Ahora ya podemos construir el mapa de calor usando el DataFrame ``ratings`` gene
 
     .. image:: img/heatmap-eurodollar.png
 
-    .. only:: html
-    
-        |solution| :download:`euro_dollar.py <files/euro_dollar.py>`
+    Solución: :download:`euro_dollar.py <files/euro_dollar.py>`
     
 
 Diagramas de caja
@@ -986,9 +976,7 @@ Ahora ya podemos montar el gráfico dedicando algo de esfuerzo a la parte estét
 
     Las marcas (en el eje x) tienen una separación de 10 días.
 
-    .. only:: html
-    
-        |solution| :download:`mwh_spain.py <files/mwh_spain.py>`
+    Solución: :download:`mwh_spain.py <files/mwh_spain.py>`
 
 .. --------------- Footnotes ---------------
 

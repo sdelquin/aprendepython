@@ -121,8 +121,6 @@ Quizás la *secuencia de escape* más conocida es ``\n`` que representa un *salt
 Expresiones literales
 =====================
 
-|intlev|
-
 Hay situaciones en las que nos interesa que los caracteres especiales pierdan ese significado y poder usarlos de otra manera. Existe un modificar de cadena que proporciona Python para tratar el texto *en bruto*. Es el llamado "raw data" y se aplica anteponiendo una ``r`` a la cadena de texto.
 
 Veamos algunos ejemplos::
@@ -221,9 +219,7 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
         - No utilice "f-strings".
         - Guarde el programa en un fichero ``calc.py`` y ejecútelo desde la terminal con: ``python calc.py``
 
-    .. only:: html
-    
-        |solution| :download:`calc.py <files/calc.py>`
+    Solución: :download:`calc.py <files/calc.py>`
     
 *************************
 Operaciones con "strings"
@@ -597,8 +593,6 @@ Podría surgir la duda de cómo incluir llaves dentro de la cadena de texto, ten
 Formateando cadenas
 -------------------
 
-|intlev|
-
 Los "f-strings" proporcionan una gran variedad de **opciones de formateado**: ancho del texto, número de decimales, tamaño de la cifra, alineación, etc. Muchas de estas facilidades se pueden consultar en el artículo `Best of Python3.6 f-strings`_ [#best-fstrings]_
 
 **Dando formato a valores enteros:**
@@ -747,9 +741,7 @@ En este caso se han añadido las comillas denotando que es una cadena de texto. 
 
     Aproveche para hacer el ejercicio directamente en el intérprete de Python: ``>>>``
 
-    .. only:: html
-    
-        |solution| :download:`fstrings.py <files/fstrings.py>`
+    Solución: :download:`fstrings.py <files/fstrings.py>`
 
 ******************
 Caracteres Unicode
@@ -857,8 +849,6 @@ Tener en cuenta que en Python la letras mayúsculas van antes que las minúscula
 ************
 Casos de uso
 ************
-
-|advlev|
 
 Hemos estado usando muchas funciones de objetos tipo "string" (y de otros tipos previamente). Pero quizás no sabemos aún como podemos descubrir todo lo que podemos hacer con ellos y los **casos de uso** que nos ofrece.
 
@@ -970,9 +960,9 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
      'is_integer',
      'real']
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **format_hexcolor**
 2. pycheck_: **switch_name**
@@ -988,7 +978,9 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 12. pycheck_: **multiply_jack**
 13. pycheck_: **first_last_digit**
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `A Guide to the Newer Python String Format Techniques <https://realpython.com/python-formatted-output/>`_
 * `Strings and Character Data in Python <https://realpython.com/courses/python-strings/>`_

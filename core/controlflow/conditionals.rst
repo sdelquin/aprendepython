@@ -153,22 +153,14 @@ Apliquemos esta mejora al código del ejemplo anterior:
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/wd58B4t
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="495" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="495" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=temperature%20%3D%2028%0A%0Aif%20temperature%20%3C%2020%3A%0A%20%20%20%20if%20temperature%20%3C%2010%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20azul'%29%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20print%28'Nivel%20verde'%29%0Aelif%20temperature%20%3C%2030%3A%0A%20%20%20%20print%28'Nivel%20naranja'%29%0Aelse%3A%0A%20%20%20%20print%28'Nivel%20rojo'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 **************************
 Asignaciones condicionales
 **************************
-
-|intlev|
 
 Supongamos que queremos asignar un nivel de riesgo de incendio en función de la temperatura. En su **versión clásica** escribiríamos::
 
@@ -383,8 +375,6 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
 Valor nulo
 ==========
 
-|intlev|
-
 ``None`` es un valor especial de Python que almacena el **valor nulo** [#none]_. Veamos cómo se comporta al incorporarlo en condiciones de veracidad::
 
     >>> value = None
@@ -423,8 +413,6 @@ De igual forma, podemos usar esta construcción para el caso contrario. La forma
     ...     print(f'{value=}')
     ...
     value=99
-
-|advlev|
 
 Cabe preguntarse por qué utilizamos ``is`` en vez del operador ``==`` al comprobar si un valor es nulo, ya que ambas aproximaciones nos dan el mismo resultado [#is_none]_::
 
@@ -465,8 +453,6 @@ Por lo tanto, ver si un objeto es ``None`` es simplemente comprobar que su ident
 *********
 Veracidad
 *********
-
-|intlev|
 
 Cuando trabajamos con expresiones que incorporan valores booleanos, se produce una :ref:`conversión implícita <core/datatypes/numbers:conversión implícita>` que transforma los tipos de datos involucrados a valores ``True`` o ``False``.
 
@@ -600,8 +586,6 @@ En su versión más simple, el "pattern matching" permite comparar un valor de e
 
 Patrones avanzados
 ==================
-
-|advlev|
 
 La sentencia ``match-case`` va mucho más allá de una simple comparación de valores. Con ella podremos deconstruir estructuras de datos, capturar elementos o mapear valores.
 
@@ -763,8 +747,6 @@ Cambiando de ejemplo, a continuación veremos un código que nos indica si, dada
 Operador morsa
 **************
 
-|advlev|
-
 A partir de Python 3.8 se incorpora el `operador morsa`_ [#walrus-operator]_ que permite unificar **sentencias de asignación dentro de expresiones**. Su nombre proviene de la forma que adquiere ``:=``
 
 Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, indicando al usuario que debe incrementarlo siempre y cuando no llegue a un mínimo establecido.
@@ -797,9 +779,9 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 
 .. hint:: Como hemos comprobado, el operador morsa permite realizar asignaciones dentro de expresiones, lo que, en muchas ocasiones, permite obtener un código más compacto. Sería conveniente encontrar un equilibrio entre la expresividad y la legibilidad.
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **rps**
 2. pycheck_: **min3values**
@@ -807,8 +789,7 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 4. pycheck_: **facemoji**
 5. pycheck_: **shortcuts**
 
-
-.. rubric:: EJERCICIOS EXTERNOS
+----
 
 1. `Return the day <https://www.codewars.com/kata/59dd3ccdded72fc78b000b25>`_
 2. `Return negative <https://www.codewars.com/kata/55685cd7ad70877c23000102>`_
@@ -838,7 +819,9 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 26. `Validate code with simple regex <https://www.codewars.com/kata/56a25ba95df27b7743000016>`_
 27. `Fuel calculator <https://www.codewars.com/kata/57b58827d2a31c57720012e8>`_
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `How to Use the Python or Operator <https://realpython.com/python-or-operator/>`_
 * `Conditional Statements in Python (if/elif/else) <https://realpython.com/courses/python-conditional-statements/>`_

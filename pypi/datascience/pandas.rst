@@ -74,9 +74,7 @@ Todas las series que hemos visto hasta ahora no tienen asignado ningún nombre. 
 
     Cree una serie de pandas con valores enteros en el intervalo :math:`[1, 26]` y etiquetas ``'ABCDEFGHIJKLMNOPQRSTUVWXYZ'``. Busque una manera programática (no manual) de hacerlo (recuerde el :ref:`módulo string <stdlib/text_processing/string:Constantes>`).
 
-    .. only:: html
-    
-        |solution| :download:`create_series.py <files/create_series.py>`
+    Solución: :download:`create_series.py <files/create_series.py>`
 
 Atributos de una serie
 ======================
@@ -610,9 +608,7 @@ DataFrame desde series
 
     La superficie (*Area*) está expresada en :math:`\text{km}^2` y las provincias corresponden con ``LPGC``: Las Palmas de Gran Canaria y ``SCTF``: Santa Cruz de Tenerife.
 
-    .. only:: html
-    
-        |solution| :download:`create_dataframe.py <files/create_dataframe.py>`
+    Solución: :download:`create_dataframe.py <files/create_dataframe.py>`
     
     .. important:: Nos referiremos a este DataFrame como ``democan`` de ahora en adelante.
 
@@ -670,9 +666,7 @@ En aquellos DataFrames que disponen de un índice etiquetado, es posible resetea
         El Hierro           11147   278.71     SCTF
         Fuerteventura      119732  1659.00     LPGC
     
-    .. only:: html
-    
-        |solution| :download:`index_dataframe.py <files/index_dataframe.py>`
+    Solución: :download:`index_dataframe.py <files/index_dataframe.py>`
 
 
 Lectura de fuentes externas
@@ -724,9 +718,7 @@ Usaremos la función ``read_csv()`` que espera la **coma** como separador de cam
 
     *También es posible cargar el "dataset" a través de la URL que conseguimos con botón derecho: copiar enlace.*
 
-    .. only:: html
-    
-        |solution| :download:`load_dataframe.py <files/load_dataframe.py>`
+    Solución: :download:`load_dataframe.py <files/load_dataframe.py>`
 
 
 Características de un DataFrame
@@ -1203,9 +1195,7 @@ Imaginemos ahora que estamos buscando aquellas **empresas establecidas en Califo
         Tenerife           928604  2034.38     SCTF
         Fuerteventura      119732  1659.00     LPGC
     
-    .. only:: html
-    
-        |solution| :download:`df_access.py <files/df_access.py>`
+    Solución: :download:`df_access.py <files/df_access.py>`
 
 Seleción usando "query"
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -1385,9 +1375,7 @@ Uno de los usos más habituales es la recodificación. Supongamos que queremos *
 
     Recodifique la columna *Province* del "dataset" :download:`democan <files/democan.csv>` de tal manera que aparezcan las provincias con el texto completo: *Santa Cruz de Tenerife* y *Las Palmas de Gran Canaria*.
 
-    .. only:: html
-    
-        |solution| :download:`recoding.py <files/recoding.py>`
+    Solución: :download:`recoding.py <files/recoding.py>`
 
 
 Insertando y borrando filas
@@ -1514,9 +1502,7 @@ Veamos un ejemplo con el borrado de columnas:
 
     Añada una nueva columna *Density* a :download:`democan <files/democan.csv>` de tal manera que represente la densidad de población de cada isla del archipiélago canario.
 
-    .. only:: html
-    
-        |solution| :download:`pop_density.py <files/pop_density.py>`
+    Solución: :download:`pop_density.py <files/pop_density.py>`
 
 También es posible **renombrar columnas** utilizando la función `rename()`_ de Pandas.
 
@@ -1841,9 +1827,7 @@ Esto nos permite indexar de forma mucho más precisa::
     - Convierta la columna "album_release_date" a tipo "datetime".
     - Obtenga los nombres de los álbumes publicados entre 2000 y 2005.
 
-    .. only:: html
-    
-        |solution| :download:`oasis.py <files/oasis.py>`
+    Solución: :download:`oasis.py <files/oasis.py>`
 
 Manejando categorías
 --------------------
@@ -2000,9 +1984,7 @@ Vamos a aplicar las funciones estadísticas que proporciona pandas sobre la colu
 
     Resultado esperado: ``['Gran Canaria', 'Tenerife']``
 
-    .. only:: html
-    
-        |solution| :download:`above_mean.py <files/above_mean.py>`
+    Solución: :download:`above_mean.py <files/above_mean.py>`
 
 Ordenando valores
 -----------------
@@ -2190,9 +2172,7 @@ Si queremos acceder al registro completo, podemos aplicar estas funciones de otr
         La Gomera           21678   369.76     SCTF  58.627218
         Fuerteventura      119732  1659.00     LPGC  72.171187
     
-    .. only:: html
-    
-        |solution| :download:`smallest_density.py <files/smallest_density.py>`
+    Solución: :download:`smallest_density.py <files/smallest_density.py>`
 
 
 Gestionando valores nulos
@@ -2416,9 +2396,7 @@ Incluso podemos aplicar distintas funciones de agregación a cada columna. Supon
     - Las Palmas de Gran Canaria: 52%
     - Santa Cruz de Tenerife: 48%
 
-    .. only:: html
-    
-        |solution| :download:`pop_percentage.py <files/pop_percentage.py>`
+    Solución: :download:`pop_percentage.py <files/pop_percentage.py>`
 
 Aplicando funciones
 -------------------
@@ -2512,9 +2490,7 @@ El resultado es una serie que se podría incorporar al conjunto de datos, o bien
         El Hierro           11147   278.71     SCTF    3344.1
         Fuerteventura      119732  1659.00     LPGC   23946.4
 
-    .. only:: html
-    
-        |solution| :download:`grants.py <files/grants.py>`
+    Solución: :download:`grants.py <files/grants.py>`
 
 Uniendo DataFrames
 ------------------
@@ -2569,9 +2545,7 @@ Si queremos "reindexar" el DataFrame concatenado, la función ``concat()`` admit
     - Realice la mezcla de población y superficie en un único DataFrame.
     - Calcule la densidad de población de cada comunidad autónoma.
 
-    .. only:: html
-    
-        |solution| :download:`comunidades.py <files/comunidades.py>`
+    Solución: :download:`comunidades.py <files/comunidades.py>`
 
 
 

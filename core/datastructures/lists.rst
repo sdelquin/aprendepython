@@ -24,15 +24,9 @@ Una lista está compuesta por *cero* o *más elementos*. En Python debemos escri
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/Ofiiare
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="425" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_list%20%3D%20%5B%5D%0A%0Alanguages%20%3D%20%5B'Python',%20'Ruby',%20'Javascript'%5D%0A%0Afibonacci%20%3D%20%5B0,%201,%201,%202,%203,%205,%208,%2013%5D%0A%0Adata%20%3D%20%5B'Tenerife',%20%7B'cielo'%3A%20'limpio',%20'temp'%3A%2024%7D,%203718,%20%2828.2933947,%20-16.5226597%29%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="425" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_list%20%3D%20%5B%5D%0A%0Alanguages%20%3D%20%5B'Python',%20'Ruby',%20'Javascript'%5D%0A%0Afibonacci%20%3D%20%5B0,%201,%201,%202,%203,%205,%208,%2013%5D%0A%0Adata%20%3D%20%5B'Tenerife',%20%7B'cielo'%3A%20'limpio',%20'temp'%3A%2024%7D,%203718,%20%2828.2933947,%20-16.5226597%29%5D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. warning::
     Aunque está permitido, **NUNCA** llames ``list`` a una variable porque destruirías la función que nos permite crear listas. Y tampoco uses nombres derivados como ``_list`` o ``list_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
@@ -209,15 +203,9 @@ Supongamos un ejemplo en el que queremos construir una lista con los números pa
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/2fiS9Ax
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=even_numbers%20%3D%20%5B%5D%0A%0Afor%20i%20in%20range%2820%29%3A%0A%20%20%20%20if%20i%20%25%202%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20even_numbers.append%28i%29%0A%0Aprint%28even_numbers%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="410" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=even_numbers%20%3D%20%5B%5D%0A%0Afor%20i%20in%20range%2820%29%3A%0A%20%20%20%20if%20i%20%25%202%20%3D%3D%200%3A%0A%20%20%20%20%20%20%20%20even_numbers.append%28i%29%0A%0Aprint%28even_numbers%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Añadir en cualquier posición de una lista
 =========================================
@@ -455,8 +443,6 @@ Python nos ofrece, al menos, dos formas para borrar una lista por completo:
     >>> shopping
     []
     
-|advlev|
-
 La diferencia entre ambos métodos tiene que ver con cuestiones internas de gestión de memoria y de rendimiento::
 
     >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
@@ -695,15 +681,9 @@ Hay veces que no sólo nos interesa "visitar" cada uno de los elementos de una l
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/TfiuIZ0
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=shopping%20%3D%20%5B'Agua',%20'Huevos',%20'Aceite',%20'Sal',%20'Lim%C3%B3n'%5D%0A%0Afor%20i,%20product%20in%20enumerate%28shopping%29%3A%0A%20%20%20%20print%28i,%20product%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="360" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=shopping%20%3D%20%5B'Agua',%20'Huevos',%20'Aceite',%20'Sal',%20'Lim%C3%B3n'%5D%0A%0Afor%20i,%20product%20in%20enumerate%28shopping%29%3A%0A%20%20%20%20print%28i,%20product%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. tip::
     Es posible utilizar el parámetro ``start`` con ``enumerate()`` para indicar el índice en el que queremos comenzar. Por defecto es 0.
@@ -732,15 +712,9 @@ Veamos un ejemplo en el que añadimos ciertos detalles a nuestra lista de la com
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/lfioilG
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=shopping%20%3D%20%5B'Agua',%20'Aceite',%20'Arroz'%5D%0Adetails%20%3D%20%5B'mineral%20natural',%20'de%20oliva%20virgen',%20'basmati'%5D%0A%0Afor%20product,%20detail%20in%20zip%28shopping,%20details%29%3A%0A%20%20%20%20print%28product,%20detail%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=shopping%20%3D%20%5B'Agua',%20'Aceite',%20'Arroz'%5D%0Adetails%20%3D%20%5B'mineral%20natural',%20'de%20oliva%20virgen',%20'basmati'%5D%0A%0Afor%20product,%20detail%20in%20zip%28shopping,%20details%29%3A%0A%20%20%20%20print%28product,%20detail%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. note:: En el caso de que las listas no tengan la misma longitud, la función ``zip()`` realiza la combinación hasta que se agota la lista más corta.
 
@@ -781,8 +755,6 @@ Entender la forma en la que se comparan dos listas es importante para poder apli
 Cuidado con las copias
 **********************
 
-|intlev|
-
 Las listas son estructuras de datos :ref:`mutables <core/datatypes/data:Mutabilidad>` y esta característica nos obliga a tener cuidado cuando realizamos copias de listas, ya que la modificación de una de ellas puede afectar a la otra.
 
 Veamos un ejemplo sencillo::
@@ -801,16 +773,9 @@ Veamos un ejemplo sencillo::
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/pfi5PC5
-    
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. note:: A través de *Python Tutor* se puede ver claramente el motivo de por qué ocurre esto. Dado que las variables "apuntan" a la misma zona de memoria, al modificar una de ellas, el cambio también se ve reflejado en la otra.
 
@@ -833,16 +798,9 @@ Una **posible solución** a este problema es hacer una "copia dura". Para ello P
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/Dfi6oLk    
-
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list.copy%28%29%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="430" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=original_list%20%3D%20%5B4,%203,%207,%201%5D%0A%0Acopy_list%20%3D%20original_list.copy%28%29%0A%0Aoriginal_list%5B0%5D%20%3D%2015%0A%0Aprint%28original_list%29%0Aprint%28copy_list%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Existe **otra aproximación** a este problema, y es utilizar un :ref:`troceado <core/datastructures/lists:trocear una lista>` completo de la lista, lo que nos devuelve una "copia desvinculada" de manera implícita:
 
@@ -935,8 +893,6 @@ A tener en cuenta la *peculiaridad* de estas funciones cuando trabajan con la **
 Listas por comprensión
 **********************
 
-|intlev|
-
 Las **listas por comprensión** establecen una técnica para crear listas de forma más **compacta** basándose en el concepto matemático de `conjuntos definidos por comprensión <http://recursostic.educacion.es/descartes/web/materiales_didacticos/conjuntos_y_operaciones_agsm/conjuntos_12.html>`_.
 
 Podríamos decir que su sintaxis sigue un modelo **VLC (Value-Loop-Condition)** tal y como se muestra en la siguiente figura:
@@ -991,8 +947,6 @@ Continuando con el ejemplo anterior, supongamos que sólo queremos crear la list
 
 Anidamiento en comprensiones
 ============================
-
-|advlev|
 
 En la iteración que usamos dentro de la lista por comprensión es posible usar :ref:`bucles anidados <core/controlflow/loops:Bucles anidados>`.
 
@@ -1101,15 +1055,11 @@ Python nos ofrece, entre otras [#more-math]_, estas tres funciones matemáticas 
         * Entrada: ``32 56 21 99 12 17``
         * Salida: ``40.17``
     
-    .. only:: html
-    
-        |solution| :download:`avg.py <files/avg.py>`
+    Solución: :download:`avg.py <files/avg.py>`
 
 ****************
 Listas de listas
 ****************
-
-|intlev|
 
 Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Estos elementos pueden ser a su vez listas.
 
@@ -1174,9 +1124,9 @@ También podemos **recorrer toda la alineación**::
 
     pycheck_: **mulmatrix**
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **max_value**
 2. pycheck_: **max_value_with_min**
@@ -1225,8 +1175,9 @@ También podemos **recorrer toda la alineación**::
 45. pycheck_: **frange**
 46. pycheck_: **qual_number**
 
-
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `Linked Lists in Python: An Introduction <https://realpython.com/linked-lists-python/>`_
 * `Python Command Line Arguments <https://realpython.com/python-command-line-arguments/>`_

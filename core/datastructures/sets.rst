@@ -92,15 +92,9 @@ A modo de ejemplo, vamos a partir de un conjunto que representa a los cuatro int
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/E8Q3p1m
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="380" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=beatles%20%3D%20set%28%5B'Lennon',%20'McCartney',%20'Harrison',%20'Starr'%5D%29%0A%0Abeatles.add%28'Best'%29%20%20%23%20Pete%20Best%0A%0Aprint%28beatles%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. tip::
     Una pequeña **regla mnemotécnica** para diferenciar ``add()`` de ``append()`` es que la función ``append()`` significa añadir al final, y como los conjuntos no mantienen un orden, esta función se aplica únicamente a listas. Por descarte, la función ``add()`` se aplica sobre conjuntos.
@@ -429,12 +423,16 @@ Un ejemplo en el que podemos aplicar un "frozenset" sería el conjunto de **posi
 
 ----
 
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **is_binary**
 
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `Sets in Python <https://realpython.com/courses/sets-python/>`_
 

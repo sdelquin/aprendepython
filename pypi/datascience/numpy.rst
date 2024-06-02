@@ -208,9 +208,7 @@ Nos apoyamos en una :ref:`lista de listas <core/datastructures/lists:listas de l
 
     Obtenga igualmente las siguientes características de cada uno de ellos: dimensión, tamaño, forma y tipo de sus elementos.
 
-    .. only:: html
-
-        |solution| :download:`np_matrix.py <files/np_matrix.py>`
+    Solución: :download:`np_matrix.py <files/np_matrix.py>`
 
 Cambiando la forma
 ------------------
@@ -430,9 +428,7 @@ Matriz diagonal
 
     Obtenga igualmente las siguientes características de cada uno de ellos: dimensión, tamaño, forma y tipo de sus elementos.
 
-    .. only:: html
-    
-        |solution| :download:`diag.py <files/diag.py>`
+    Solución: :download:`diag.py <files/diag.py>`
 
 Valores equiespaciados
 ======================
@@ -615,9 +611,7 @@ Muestra aleatoria sin reemplazo:
     - Un array unidimensional con 128 valores aleatorios de una distribución normal :math:`\mu=1, \sigma=2`.
     - Un array unidimensional con 15 valores aleatorios de una muestra *1, X, 2* donde la probabilidad de que gane el equipo local es del 50%, la probabilidad de que empaten es del 30% y la probabilidad de que gane el visitante es del 20%.
 
-    .. only:: html
-    
-        |solution| :download:`np_random.py <files/np_random.py>`
+    Solución: :download:`np_random.py <files/np_random.py>`
 
 Constantes
 ==========
@@ -885,9 +879,7 @@ Insertar elementos en posiciones arbitrarias del array:
           21 & 31 & 62 & 63\\
         \end{bmatrix}
 
-    .. only:: html
-    
-        |solution| :download:`np_transform.py <files/np_transform.py>`
+    Solución: :download:`np_transform.py <files/np_transform.py>`
 
 Apilando matrices
 =================
@@ -1122,9 +1114,7 @@ Las condiciones pueden ser más complejas e incorporar operadores lógicos ``|``
           18 & 19 & 20 & 21\\
         \end{bmatrix}
     
-    .. only:: html
-    
-        |solution| :download:`np_odds.py <files/np_odds.py>`
+    Solución: :download:`np_odds.py <files/np_odds.py>`
 
 Si lo que nos interesa es **obtener los índices** del array que satisfacen una determinada condición, NumPy nos proporciona el método ``where()`` cuyo comportamiento se ejemplifica a continuación:
 
@@ -1154,9 +1144,7 @@ Si lo que nos interesa es **obtener los índices** del array que satisfacen una 
     - Los elementos mayores que 50 tengan valor 100.
     - Los elementos menores que 50 tengan valor 0.
 
-    .. only:: html
-    
-        |solution| :download:`diag_transform.py <files/diag_transform.py>`
+    Solución: :download:`diag_transform.py <files/diag_transform.py>`
 
 Comparando arrays
 -----------------
@@ -1498,9 +1486,7 @@ A modo de ilustración, veamos un par de ejemplos con la suma y el producto::
         \approx
         \frac{\sin(\theta)}{\theta}
 
-    .. only:: html
-    
-        |solution| :download:`euler_product.py <files/euler_product.py>`
+    Solución: :download:`euler_product.py <files/euler_product.py>`
 
 Funciones estadísticas
 ----------------------
@@ -1652,9 +1638,7 @@ Hemos obtenido una mejora de ``2.32x`` con respecto al uso de funciones simples.
     3. Realice la misma operación que en 2) pero usando suma de matrices y división por escalar.
     4. Compute los tiempos de ejecución de 2) y 3)
 
-    .. only:: html
-    
-        |solution| :download:`vectorize.py <files/vectorize.py>`
+    Solución: :download:`vectorize.py <files/vectorize.py>`
 
 **************
 Álgebra lineal
@@ -1694,9 +1678,7 @@ En `Python 3.5 se introdujo el operador <https://docs.python.org/3/whatsnew/3.5.
 
     Compruebe que la matriz :math:`\begin{bmatrix}1 & 2\\3 & 5\end{bmatrix}` satisface la ecuación matricial: :math:`X^2 - 6X - I = 0` donde :math:`I` es la matriz identidad de orden 2.
 
-    .. only:: html
-    
-        |solution| :download:`identity_equation.py <files/identity_equation.py>`
+    Solución: :download:`identity_equation.py <files/identity_equation.py>`
 
 Determinante de una matriz
 ==========================
@@ -1776,9 +1758,7 @@ Aún más fácil es computar la traspuesta de una matriz con NumPy::
     - :math:`(A + B)^t = A^t + B^t`
     - :math:`(3A)^t = 3A^t` 
 
-    .. only:: html
-    
-        |solution| :download:`transpose.py <files/transpose.py>`
+    Solución: :download:`transpose.py <files/transpose.py>`
 
 
 Elevar matriz a potencia
@@ -1803,9 +1783,7 @@ En el mundo del álgebra lineal es muy frecuente recurrir a la exponenciación d
 
     ¿Nota algo especial en los resultados?
 
-    .. only:: html
-    
-        |solution| :download:`flip_powers.py <files/flip_powers.py>`
+    Solución: :download:`flip_powers.py <files/flip_powers.py>`
 
 Sistemas de ecuaciones lineales
 ===============================
@@ -1881,9 +1859,7 @@ La solución del sistema debe ser la misma que si obtenemos :math:`\mathcal{X} =
             2x - 2y + z = 1
         \end{cases}
     
-    .. only:: html
-    
-        |solution| :download:`lineq.py <files/lineq.py>`
+    Solución: :download:`lineq.py <files/lineq.py>`
 
         
 

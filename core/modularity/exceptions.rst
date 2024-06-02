@@ -325,8 +325,6 @@ A continuación se detalla la **jerarquía completa de excepciones predefinidas*
 Excepciones propias
 *******************
 
-|advlev|
-
 Python ofrece una gran cantidad de `excepciones predefinidas`_. Hasta ahora hemos visto cómo gestionar y manejar este tipo de excepciones. Pero hay ocasiones en las que nos puede interesar crear nuestras propias excepciones. Para ello simplemente tendremos que crear una clase :ref:`heredando <core/modularity/oop:Herencia>` de ``Exception``, la clase base para todas las excepciones.
 
 Veamos un ejemplo en el que creamos una excepción propia controlando que el valor sea un número entero:
@@ -456,17 +454,19 @@ Podemos observar que la excepción que se lanza no contiene ningún mensaje info
       File "<stdin>", line 1, in <module>
     AssertionError: El resultado debe ser positivo
 
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. Escriba una clase ``Card`` que represente una carta de poker y una clase ``InvalidCardError`` que represente un error propio indicando que la carta no es válida.
-
-.. only:: html
 
     | Plantilla: :download:`poker.py <files/templates/poker.py>`
     | Glifos de cartas: :download:`cards.dat <files/cards.dat>`
     | Comprobación: ``pytest -xq`` :download:`test_poker.py <files/test_poker.py>`
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 - `Python Exceptions: An introduction <https://realpython.com/python-exceptions/>`_
 - `Python KeyError Exceptions and How to Handle Them <https://realpython.com/python-keyerror/>`_

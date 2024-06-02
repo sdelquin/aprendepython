@@ -48,16 +48,9 @@ En el código anterior podemos observar la creación de un diccionario vacío, o
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/Sfav2Yw
-
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="585" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_dict%20%3D%20%7B%7D%0A%0Arae%20%3D%20%7B%0A%20%20%20%20'bifronte'%3A%20'De%20dos%20frentes%20o%20dos%20caras',%0A%20%20%20%20'anarcoide'%3A%20'Que%20tiende%20al%20desorden',%0A%20%20%20%20'montuvio'%3A%20'Campesino%20de%20la%20costa'%0A%7D%0A%0Apopulation_can%20%3D%20%7B%0A%20%20%20%202015%3A%202_135_209,%0A%20%20%20%202016%3A%202_154_924,%0A%20%20%20%202017%3A%202_177_048,%0A%20%20%20%202018%3A%202_206_901,%0A%20%20%20%202019%3A%202_220_270%0A%7D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="585" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=empty_dict%20%3D%20%7B%7D%0A%0Arae%20%3D%20%7B%0A%20%20%20%20'bifronte'%3A%20'De%20dos%20frentes%20o%20dos%20caras',%0A%20%20%20%20'anarcoide'%3A%20'Que%20tiende%20al%20desorden',%0A%20%20%20%20'montuvio'%3A%20'Campesino%20de%20la%20costa'%0A%7D%0A%0Apopulation_can%20%3D%20%7B%0A%20%20%20%202015%3A%202_135_209,%0A%20%20%20%202016%3A%202_154_924,%0A%20%20%20%202017%3A%202_177_048,%0A%20%20%20%202018%3A%202_206_901,%0A%20%20%20%202019%3A%202_220_270%0A%7D&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. warning::
     Aunque está permitido, **NUNCA** llames ``dict`` a una variable porque destruirías la función que nos permite crear diccionarios. Y tampoco uses nombres derivados como ``_dict`` o ``dict_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
@@ -134,8 +127,6 @@ El inconveniente que tiene esta aproximación es que las **claves deben ser iden
         date of birth='31/01/1956'
               ^
     SyntaxError: invalid syntax
-
-|intlev|
 
 Es posible crear un diccionario especificando sus claves y un único valor de "relleno"::
 
@@ -518,8 +509,6 @@ Python ofrece dos mecanismos para realizar esta combinación. Vamos a partir de 
 Cuidado con las copias
 **********************
 
-|intlev|
-
 Al igual que ocurría con :ref:`las listas <core/datastructures/lists:Cuidado con las copias>`, si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de ser *mutable*. Veamos un ejemplo concreto:
 
 .. code-block::
@@ -576,8 +565,6 @@ Una **posible solución** a este problema es hacer una "copia dura". Para ello P
 Diccionarios por comprensión
 ****************************
 
-|intlev|
-
 De forma análoga a cómo se escriben las :ref:`listas por comprensión <core/datastructures/lists:Listas por comprensión>`, podemos aplicar este método a los diccionarios usando llaves ``{`` ``}``.
 
 Veamos un ejemplo en el que creamos un **diccionario por comprensión** donde las claves son palabras y los valores son sus longitudes:
@@ -610,8 +597,6 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 *******************
 Objetos "hashables"
 *******************
-
-|advlev|
 
 La única restricción que deben cumplir las **claves** de un diccionario es ser **"hashables"** [#hashables-terron]_. Un objeto es "hashable" si se le puede asignar un valor "hash" que no cambia en ejecución durante toda su vida.
 
@@ -646,9 +631,9 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
     >>> 'spiderman'.__hash__()
     -8105710090476541603
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **group_words**
 2. pycheck_: **same_dict_values**
@@ -663,7 +648,9 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 11. pycheck_: **first_ntimes**
 12. pycheck_: **fix_id**
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `Using the Python defaultdict Type for Handling Missing Keys <https://realpython.com/python-defaultdict/>`_
 * `Python Dictionary Iteration: Advanced Tips & Tricks <https://realpython.com/courses/python-dictionary-iteration/>`_

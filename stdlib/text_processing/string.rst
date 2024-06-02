@@ -50,9 +50,7 @@ Las constantes definidas en este módulo son las siguientes::
         * Entrada: ``This is it``
         * Salida: True
     
-    .. only:: html
-    
-        |solution| :download:`ascii_letters.py <files/ascii_letters.py>`
+    Solución: :download:`ascii_letters.py <files/ascii_letters.py>`
 
 **********
 Plantillas

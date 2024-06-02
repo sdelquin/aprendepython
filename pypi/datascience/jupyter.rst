@@ -396,9 +396,7 @@ Múltiples puntos de alineación:
     
     .. tip:: Puede encontrar símbolos matemáticos para Latex `en este enlace <https://www.caam.rice.edu/~heinken/latex/symbols.pdf>`_ así como dibujar directamente un símbolo y obtener su referencia a través de la herramienta `Detexify`_.
 
-    .. only:: html
-    
-        |solution| :download:`equations.tex <files/equations.tex>`
+    Solución: :download:`equations.tex <files/equations.tex>`
 
 *******************
 Comandos especiales
@@ -556,9 +554,7 @@ De igual forma, existe un mecanismo para medir el tiempo de ejecución de una ce
     - Tipo de distribución (*Poisson*, *Uniform*, *Logistic*).
     - Tamaño de la muestra (100, 10000, 1000000).
 
-    .. only:: html
-    
-        |solution| :download:`timeit.py <files/timeit.py>`
+    Solución: :download:`timeit.py <files/timeit.py>`
 
 Incluyendo otros lenguajes
 --------------------------

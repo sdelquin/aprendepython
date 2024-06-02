@@ -346,7 +346,9 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 
 .. important:: Para evitar este tipo de **errores**, se debe convertir a ``str`` aquellos valores que queramos usar con la función ``write()`` para escribir información en un fichero de texto. Los :ref:`f-strings <core/datatypes/strings:"f-strings">` son tu aliado.
 
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **wc**
 2. pycheck_: **read_csv**
@@ -362,8 +364,9 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 12. pycheck_: **submarine**
 13. pycheck_: **common_words**
 
-
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 - `Reading and Writing Files in Python <https://realpython.com/courses/reading-and-writing-files-python/>`_
 - `Python Context Managers and the "with" Statement <https://realpython.com/courses/python-context-managers-and-with-statement/>`_

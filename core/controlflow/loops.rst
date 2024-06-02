@@ -30,15 +30,9 @@ Veamos un sencillo bucle que repite un saludo mientras así se desee::
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/Zwwr8fub
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="310" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_greet%20%3D%20'S'%20%20%23%20importante%20dar%20un%20valor%20inicial%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="310" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_greet%20%3D%20'S'%20%20%23%20importante%20dar%20un%20valor%20inicial%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 La condición del bucle se comprueba en cada nueva repetición. En este caso chequeamos que la variable ``want_greet`` sea igual a ``'S'``. Dentro del cuerpo del bucle estamos mostrando un mensaje y pidiendo la opción al usuario.
@@ -78,15 +72,9 @@ Supongamos que en el ejemplo anterior, establecemos un máximo de 4 saludos:
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/0wwtyaDF
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="460" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=MAX_GREETS%20%3D%204%0A%0Anum_greets%20%3D%200%0Awant_greet%20%3D%20'S'%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20num_greets%20%2B%3D%201%0A%20%20%20%20if%20num_greets%20%3D%3D%20MAX_GREETS%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20saludos%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="460" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=MAX_GREETS%20%3D%204%0A%0Anum_greets%20%3D%200%0Awant_greet%20%3D%20'S'%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20num_greets%20%2B%3D%201%0A%20%20%20%20if%20num_greets%20%3D%3D%20MAX_GREETS%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20saludos%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Como hemos visto en este ejemplo, ``break`` nos permite finalizar el bucle una vez que hemos llegado al máximo número de saludos. Pero si no hubiéramos llegado a dicho límite, el bucle habría seguido hasta que el usuario indicara que no quiere más saludos.
 
@@ -97,8 +85,6 @@ Otra forma de resolver este ejercicio sería incorporar una condición al bucle:
 
 Comprobar la rotura
 -------------------
-
-|intlev|
 
 Python nos ofrece la posibilidad de **detectar si el bucle ha acabado de forma ordinaria**, esto es, ha finalizado por no cumplirse la condición establecida. Para ello podemos hacer uso de la sentencia ``else`` como parte del propio bucle. Si el bucle while finaliza normalmente (sin llamada a ``break``) el flujo de control pasa a la sentencia opcional ``else``.
 
@@ -134,20 +120,12 @@ Veamos su comportamiento siguiendo con el ejemplo que venimos trabajando:
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/jwwtpivu
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="510" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=MAX_GREETS%20%3D%204%0A%0Anum_greets%20%3D%200%0Awant_greet%20%3D%20'S'%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20num_greets%20%2B%3D%201%0A%20%20%20%20if%20num_greets%20%3D%3D%20MAX_GREETS%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20saludos%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aelse%3A%0A%20%20%20%20print%28'Usted%20no%20quiere%20m%C3%A1s%20saludos'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="510" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=MAX_GREETS%20%3D%204%0A%0Anum_greets%20%3D%200%0Awant_greet%20%3D%20'S'%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20num_greets%20%2B%3D%201%0A%20%20%20%20if%20num_greets%20%3D%3D%20MAX_GREETS%3A%0A%20%20%20%20%20%20%20%20print%28'M%C3%A1ximo%20n%C3%BAmero%20de%20saludos%20alcanzado'%29%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0Aelse%3A%0A%20%20%20%20print%28'Usted%20no%20quiere%20m%C3%A1s%20saludos'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Continuar un bucle
 ==================
-
-|intlev|
 
 Hay situaciones en las que, en vez de romper un bucle, nos interesa **saltar adelante hacia la siguiente repetición**. Para ello Python nos ofrece la sentencia ``continue`` que hace precisamente eso, descartar el resto del código del bucle y saltar a la siguiente iteración.
 
@@ -184,15 +162,9 @@ Continuamos con el ejemplo anterior y vamos a contar el número de respuestas v�
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/YwwtlAp8
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="460" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_greet%20%3D%20'S'%0Avalid_options%20%3D%200%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20if%20want_greet%20not%20in%20'SN'%3A%0A%20%20%20%20%20%20%20%20print%28'No%20le%20he%20entendido%20pero%20le%20saludo'%29%0A%20%20%20%20%20%20%20%20want_greet%20%3D%20'S'%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20valid_options%20%2B%3D%201%0Aprint%28f'%7Bvalid_options%7D%20respuestas%20v%C3%A1lidas'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="460" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=want_greet%20%3D%20'S'%0Avalid_options%20%3D%200%0A%0Awhile%20want_greet%20%3D%3D%20'S'%3A%0A%20%20%20%20print%28'Hola%20qu%C3%A9%20tal!'%29%0A%20%20%20%20want_greet%20%3D%20input%28'%C2%BFQuiere%20otro%20saludo%3F%20%5BS/N%5D%20'%29%0A%20%20%20%20if%20want_greet%20not%20in%20'SN'%3A%0A%20%20%20%20%20%20%20%20print%28'No%20le%20he%20entendido%20pero%20le%20saludo'%29%0A%20%20%20%20%20%20%20%20want_greet%20%3D%20'S'%0A%20%20%20%20%20%20%20%20continue%0A%20%20%20%20valid_options%20%2B%3D%201%0Aprint%28f'%7Bvalid_options%7D%20respuestas%20v%C3%A1lidas'%29%0Aprint%28'Que%20tenga%20un%20buen%20d%C3%ADa'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Bucle infinito
 ==============
@@ -213,15 +185,9 @@ El problema que surje es que la variable ``num`` toma los valores ``1, 3, 5, 7, 
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/AfrZroa
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="260" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="260" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=num%20%3D%201%0A%0Awhile%20num%20!%3D%2010%3A%0A%20%20%20%20num%20%2B%3D%202&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 Una posible solución a este error es reescribir la condición de parada en el bucle:
 
@@ -275,9 +241,7 @@ El código anterior se podría enfocar haciendo uso del :ref:`operador morsa <co
         * Salida: ``5 10 15 20 25 30 35``
     
 
-    .. only:: html
-
-        |solution| :download:`limit5.py <files/limit5.py>` 
+    Solución: :download:`limit5.py <files/limit5.py>` 
 
 .. _for-sentence:
 
@@ -308,15 +272,9 @@ La clave aquí está en darse cuenta que el bucle va tomando, en cada iteración
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/Pft6R2e
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="345" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="345" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. important:: La variable que utilizamos en el bucle ``for`` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades. Tener en cuenta que se suele usar un nombre en singular.
 
@@ -340,15 +298,9 @@ Una sentencia break dentro de un ``for`` rompe el bucle, :ref:`igual que veíamo
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/zfyqkbJ
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="390" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="390" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=word%20%3D%20'Python'%0A%0Afor%20letter%20in%20word%3A%0A%20%20%20%20if%20letter%20%3D%3D%20't'%3A%0A%20%20%20%20%20%20%20%20break%0A%20%20%20%20print%28letter%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. tip:: Tanto la :ref:`comprobación de rotura de un bucle <core/controlflow/loops:Comprobar la rotura>` como la :ref:`continuación a la siguiente iteración <core/controlflow/loops:Continuar un bucle>` se llevan a cabo del mismo modo que hemos visto con los bucles de tipo ``while``.
 
@@ -408,15 +360,9 @@ La técnica para la generación de secuencias de números es muy similar a la ut
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/vfywE45
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="300" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20i%20in%20range%282,%2010%29%3A%0A%20%20%20%20print%28i%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
     
 .. tip:: Se suelen utilizar nombres de variables ``i``, ``j``, ``k`` para lo que se denominan **contadores**. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores. No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de asignar un nombre semánticamente más significativo. Esto viene de tiempos antiguos en FORTRAN donde ``i`` era la primera letra que tenía valor entero por defecto.
 
@@ -426,8 +372,6 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 Usando el guión bajo
 --------------------
-
-|advlev|
 
 Hay situaciones en las que **no necesitamos usar la variable** que toma valores en el rango, sino que únicamente queremos repetir una acción un número determinado de veces.
 
@@ -555,15 +499,9 @@ Lo que está ocurriendo en este código es que, para cada valor que toma la vari
 
 Ejecución **paso a paso** a través de *Python Tutor*:
 
-.. only:: latex
+.. raw:: html
 
-    https://cutt.ly/pwwtctK6
-
-.. only:: html
-
-    .. raw:: html
-
-        <iframe width="800" height="260" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20num_table%20in%20range%281,%2010%29%3A%0A%20%20%20%20for%20mul_factor%20in%20range%281,%2010%29%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20num_table%20*%20mul_factor%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum_table%7D%20*%20%7Bmul_factor%7D%20%3D%20%7Bresult%7D'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+    <iframe width="800" height="260" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=for%20num_table%20in%20range%281,%2010%29%3A%0A%20%20%20%20for%20mul_factor%20in%20range%281,%2010%29%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20num_table%20*%20mul_factor%0A%20%20%20%20%20%20%20%20print%28f'%7Bnum_table%7D%20*%20%7Bmul_factor%7D%20%3D%20%7Bresult%7D'%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=0&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 .. note::
     * Podemos añadir todos los niveles de anidamiento que queramos. Eso sí, hay que tener en cuenta que cada nuevo nivel de anidamiento supone un importante aumento de la `complejidad ciclomática`_ de nuestro código, lo que se traduce en mayores tiempos de ejecución.
@@ -584,14 +522,11 @@ Ejecución **paso a paso** a través de *Python Tutor*:
             D D D X U 
             D D D D X 
 
-    .. only:: html
-    
-        |solution| :download:`mosaic.py <files/mosaic.py>`
+    Solución: :download:`mosaic.py <files/mosaic.py>`
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
-
+**********
+Ejercicios
+**********
 
 1. Escriba un programa que encuentre la mínima secuencia de múltiplos de 3 (distintos) cuya suma sea igual o superior a un valor dado (:download:`solución <files/multiples3_limit.py>`).
     - Entrada: ``45``
@@ -690,7 +625,7 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 16. pycheck_: **kpower**
 17. pycheck_: **fibonacci**
 
-.. rubric:: EJERCICIOS EXTERNOS
+----
 
 1. `Summation <https://www.codewars.com/kata/55d24f55d7dd296eb9000030>`_
 2. `Find nearest square number <https://www.codewars.com/kata/5a805d8cafa10f8b930005ba>`_
@@ -703,7 +638,9 @@ El resultado es: :math:`x = 3` y :math:`f(x) = -6`
 9. `ASCII Total <https://www.codewars.com/kata/572b6b2772a38bc1e700007a>`_
 10. `Collatz Conjecture (3n+1) <https://www.codewars.com/kata/577a6e90d48e51c55e000217>`_
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `The Python range() Function <https://realpython.com/courses/python-range-function/>`_
 * `How to Write Pythonic Loops <https://realpython.com/courses/how-to-write-pythonic-loops/>`_

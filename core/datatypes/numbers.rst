@@ -249,8 +249,6 @@ Python ofrece la función ``abs()`` para obtener el valor absoluto de un número
 Límite de un entero
 ===================
 
-|advlev|
-
 ¿Cómo de grande puede ser un ``int`` en Python? La respuesta es **de cualquier tamaño**. Por poner un ejemplo, supongamos que queremos representar un `centillón`_. Este valor viene a ser un "1" seguido por ¡600 ceros! ¿Será capaz Python de almacenarlo?
 
 .. code-block::
@@ -411,8 +409,6 @@ Pero también existe la posibilidad seguimos **comprobar el tipo** que tiene una
 Errores de aproximación
 =======================
 
-|intlev|
-
 Supongamos el siguiente cálculo::
 
     >>> (19 / 155) * (155 / 19)
@@ -462,8 +458,6 @@ A diferencia de los :ref:`enteros <core/datatypes/numbers:límite de un entero>`
 *****
 Bases
 *****
-
-|intlev|
 
 Los valores numéricos con los que estamos acostumbrados a trabajar están en **base 10** (o decimal). Esto indica que disponemos de 10 "símbolos" para representar las cantidades. En este caso del ``0`` al ``9``.
 
@@ -537,9 +531,9 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 
 .. note:: Las letras para la representación hexadecimal no atienden a mayúsculas y minúsculas.
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. pycheck_: **circle_area**
 2. pycheck_: **sphere_volume**
@@ -556,7 +550,7 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 13. pycheck_: **xor**
 14. pycheck_: **ring_area**
 
-.. rubric:: EJERCICIOS EXTERNOS
+----
 
 1. `Cat years, dog years <https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b>`_
 2. `Aspect ratio cropping <https://www.codewars.com/kata/596e4ef7b61e25981200009f>`_
@@ -569,7 +563,9 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 9. `Age range compatibility equation <https://www.codewars.com/kata/5803956ddb07c5c74200144e>`_
 10. `Formatting decimal places <https://www.codewars.com/kata/5641a03210e973055a00000d>`_
 
-.. rubric:: AMPLIAR CONOCIMIENTOS
+*********************
+Ampliar conocimientos
+*********************
 
 * `The Python Square Root Function <https://realpython.com/python-square-root-function/>`_
 * `How to Round Numbers in Python <https://realpython.com/python-rounding/>`_

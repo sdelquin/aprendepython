@@ -254,9 +254,7 @@ Para el ejemplo anterior de Amazon en el que debemos identificar el botón para 
 
     Escriba un programa en Python que, utilizando Selenium, pulse el botón de "¡JUGAR!" en el sitio web https://wordle.danielfrg.com/. Los selectores "xpath" pueden ser de mucha ayuda.
 
-    .. only:: html
-    
-        |solution| :download:`wordle_play.py <files/wordle_play.py>`
+    Solución: :download:`wordle_play.py <files/wordle_play.py>`
 
 Enviar texto
 ============
@@ -306,9 +304,7 @@ Por ejemplo, si quisiéramos **enviar las teclas de cursor**, haríamos lo sigui
     - Puede ser visualmente interesante poner un ``time.sleep(0.5)`` tras la inserción de cada letra.
     - Una vez enviada la cadena de texto hay que pulsar ENTER.
 
-    .. only:: html
-    
-        |solution| :download:`wordle_try.py <files/wordle_try.py>`
+    Solución: :download:`wordle_try.py <files/wordle_try.py>`
 
 
 Borrar contenido
@@ -529,9 +525,7 @@ Cuando en la función ``execute_script()`` se hace referencia al array ``argumen
 
     Puede probar su programa con la localización de Las Palmas de Gran Canaria (28.1035677, -15.5319742).
 
-    .. only:: html
-    
-        |solution| :download:`mercadona.py <files/mercadona.py>`
+    Solución: :download:`mercadona.py <files/mercadona.py>`
 
 
 

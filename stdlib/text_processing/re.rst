@@ -413,41 +413,31 @@ El guión medio hay que escaparlo en situaciones donde no represente un rango:
         <re.Match object; span=(0, 1), match='-'>
 
 
-----
-
-.. rubric:: EJERCICIOS DE REPASO
+**********
+Ejercicios
+**********
 
 1. Escriba un programa en Python que encuentre todas las palabras que comiencen por vocal en un texto dado.
-
-.. only:: html
 
     | Plantilla: :download:`vowel_words.py <files/templates/vowel_words.py>`
     | Comprobación: ``pytest -xq`` :download:`test_vowel_words.py <files/test_vowel_words.py>`
 
 2. Escriba un programa en Python que indique si una URL dada es válida o no.
 
-.. only:: html
-
     | Plantilla: :download:`valid_url.py <files/templates/valid_url.py>`
     | Comprobación: ``pytest -xq`` :download:`test_valid_url.py <files/test_valid_url.py>`
 
 3. Escriba un programa en Python que indique si un determinado número es o no un :ref:`flotante válido en Python <core/datatypes/numbers:flotantes>`.
-
-.. only:: html
 
     | Plantilla: :download:`valid_float.py <files/templates/valid_float.py>`
     | Comprobación: ``pytest -xq`` :download:`test_valid_float.py <files/test_valid_float.py>`
 
 4. Escriba un programa en Python que determine si un email dado tiene el formato correcto.
 
-.. only:: html
-
     | Plantilla: :download:`valid_email.py <files/templates/valid_email.py>`
     | Comprobación: ``pytest -xq`` :download:`test_valid_email.py <files/test_valid_email.py>`
 
 5. Escriba un programa en Python que obtenga el resultado de una operación entre números enteros positivos. Las operación puede ser suma, resta, multiplicación o división, y puede haber espacios (o no) entre los operandos y el operador.
-
-.. only:: html
 
     | Plantilla: :download:`calc_from_str.py <files/templates/calc_from_str.py>`
     | Comprobación: ``pytest -xq`` :download:`test_calc_from_str.py <files/test_calc_from_str.py>`

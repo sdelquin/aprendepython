@@ -52,8 +52,6 @@ Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herrami
 Entornos virtuales
 ******************
 
-|intlev|
-
 Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (*a nivel de máquina*). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, y esto nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos.
 
 La manera más sencilla de `crear un entorno virtual`_ es la siguiente:

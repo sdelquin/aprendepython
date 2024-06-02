@@ -2,21 +2,19 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 jobs:
   deploy-documentation:
-    name: Deploy documentation in html/pdf format
+    name: Deploy documentation in html format
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build docker image
         run: docker build . -t aprendepython
-      - name: Build documentation in pdf
-        run: docker-compose run aprendepython make latexpdf
       - name: Build documentation in html
-        run: docker-compose run aprendepython make dirhtml
+        run: docker run --rm -v .:/code aprendepython
       - name: Sync files with production server
         uses: burnett01/rsync-deployments@4.1
         with:
