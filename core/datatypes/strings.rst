@@ -254,7 +254,7 @@ Obtener un carácter
 
 Los "strings" están **indexados** y cada carácter tiene su propia posición. Para obtener un único carácter dentro de una cadena de texto es necesario especificar su **índice** dentro de corchetes ``[...]``.
 
-.. figure:: img/string-indexing.jpg
+.. figure:: img/string-indexing.svg
     :align: center
 
     Indexado de una cadena de texto

@@ -14,7 +14,7 @@ Los **módulos** son simplemente ficheros de texto que contienen código Python 
 
 Los módulos pueden agruparse en carpetas denominadas **paquetes** mientras que estas carpetas, a su vez, pueden dar lugar a **librerías**.
 
-.. figure:: img/library-package-module.png
+.. figure:: img/library-package-module.svg
     :align: center
 
     Concepto de módulo, paquete y librería
@@ -23,7 +23,7 @@ Un ejemplo de todo ello lo encontramos en la `librería estándar`_. Se trata de
 
 Un caso concreto dentro de la ``stdlib`` (libería estándar) podría ser el del paquete ``urllib`` -- para operaciones con URLs -- que dispone de 5 módulos:
 
-.. figure:: img/stdlib-package-module.png
+.. figure:: img/stdlib-package-module.svg
     :align: center
 
     Ejemplo de paquete y módulos en la librería estándar
@@ -165,7 +165,7 @@ Para **importar varios objetos** (funciones en este caso) desde un mismo módulo
 
 Es posible hacer ``from stats import *`` pero estaríamos importando todos los componentes del módulo, cuando a lo mejor no es lo que necesitamos. A continuación una imagen que define bien este escenario:
 
-.. figure:: img/import.png
+.. figure:: img/import.svg
     :align: center
 
     Diferencia entre importar un módulo o su contenido [#import-reddit]_
@@ -293,7 +293,7 @@ Supongamos el siguiente programa ``hello.py`` y analizemos cuál es el comportam
 .. literalinclude:: files/hello.py
     :linenos:
 
-.. figure:: img/if-name-main.jpg
+.. figure:: img/if-name-main.svg
     :align: center
 
     Comportamiento de un programa principal al importarlo o ejecutarlo

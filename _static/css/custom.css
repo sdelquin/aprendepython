@@ -32,6 +32,10 @@ div.related-pages {
   margin-bottom: 1rem;
 }
 
+/* ==================================== */
+/* TABLES */
+/* ==================================== */
+
 /* Set caption below tables */
 table.docutils {
   caption-side: bottom;
@@ -40,6 +44,22 @@ table.docutils {
 /* Gap between caption and table */
 table.docutils caption {
   margin-top: 0.5rem;
+}
+
+/* ==================================== */
+/* FIGURES / IMAGES */
+/* ==================================== */
+
+/* Gap below figure captions */
+article .figure :last-child,
+article figure :last-child {
+  margin-bottom: 1rem;
+}
+
+/* Add top margin to figure */
+article figure,
+article .figure {
+  margin-top: 1.5rem;
 }
 
 .strike {
@@ -68,6 +88,7 @@ table.docutils caption {
 
 /* Dynamic TOC (Gumshoe) */
 /* https://github.com/cferdinandi/gumshoe#nested-navigation */
+/* Download gumshoe.polyfills.min.js and store at _static/js/ */
 .toc-tree > ul > li > ul > li:not(.scroll-current) > ul,
 .toc-tree > ul > li > ul > li > ul > li:not(.scroll-current) > ul,
 .toc-tree

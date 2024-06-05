@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Dynamic TOC (Gumshoe)
   // https://github.com/cferdinandi/gumshoe#nested-navigation
   // https://github.com/pradyunsg/furo/blob/main/src/furo/assets/scripts/furo.js#L141
+  // Download gumshoe.polyfills.min.js and store at _static/js/
   new Gumshoe(".toc-tree a", {
     reflow: true,
     recursive: true,

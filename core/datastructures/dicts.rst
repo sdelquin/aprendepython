@@ -8,7 +8,7 @@ Diccionarios
 Podemos trasladar el concepto de *diccionario* de la vida real al de *diccionario* en Python. Al fin y al cabo un diccionario es un objeto que contiene palabras, y cada palabra tiene asociado un significado. Haciendo el paralelismo, diríamos que en Python un diccionario es también un objeto indexado por **claves** (las palabras) que tienen asociados unos **valores** (los significados). [#dict-unsplash]_
 
 
-.. figure:: img/dicts.jpg
+.. figure:: img/dicts.svg
     :align: center
 
     Analogía de un diccionario en Python

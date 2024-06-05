@@ -39,7 +39,7 @@ Cronología de lenguajes de programación
 
 Desde la década de 1950 se han sucedido multitud de lenguajes de programación que cada vez incorporan más funcionalidades destinadas a cubrir las necesidades del desarrollo de aplicaciones. A continuación se muestra una tabla con la historia de los lenguajes de programación más destacados:
 
-.. figure:: img/proglangs.png
+.. figure:: img/proglangs.svg
     :align: center
 
     Cronología de los lenguajes de programación más destacados

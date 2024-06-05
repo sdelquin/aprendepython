@@ -245,7 +245,7 @@ Vamos a partir de dos conjuntos :math:`A=\{1,2\}` y :math:`B=\{2,3\}` para ejemp
     >>> A = {1, 2}
     >>> B = {2, 3}
 
-.. figure:: img/venn.png
+.. figure:: img/venn.svg
     :align: center
 
     Diagramas de Venn
@@ -255,7 +255,7 @@ Intersección
 
 :math:`A \cap B` -- Elementos que están a la vez en :math:`A` y en :math:`B`:
 
-.. figure:: img/venn-intersection.png
+.. figure:: img/venn-intersection.svg
     :align: left
 
 .. code-block::
@@ -271,7 +271,7 @@ Unión
 
 :math:`A \cup B` -- Elementos que están tanto en :math:`A` como en :math:`B`:
 
-.. figure:: img/venn-union.png
+.. figure:: img/venn-union.svg
     :align: left
 
 .. code-block::
@@ -287,7 +287,7 @@ Diferencia
 
 :math:`A \setminus B` -- Elementos que están en :math:`A` y no están en :math:`B`:
 
-.. figure:: img/venn-difference.png
+.. figure:: img/venn-difference.svg
     :align: left
 
 .. code-block::
@@ -303,7 +303,7 @@ Diferencia simétrica
 
 :math:`A \triangle B` -- Elementos que están en :math:`A` o en :math:`B` pero no en ambos conjuntos:
 
-.. figure:: img/venn-sym_diff.png
+.. figure:: img/venn-sym_diff.svg
     :align: left
 
 .. code-block::
@@ -330,7 +330,7 @@ Veamos un ejemplo con los siguientes conjuntos::
     >>> A = {2, 4, 6, 8, 10}
     >>> B = {4, 6, 8}
 
-.. figure:: img/subset-superset.png
+.. figure:: img/subset-superset.svg
     :align: center
 
     Subconjuntos y Superconjuntos

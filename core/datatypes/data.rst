@@ -6,13 +6,13 @@ Datos
 
 Los programas están formados por **código** y **datos**. Pero a nivel interno de la memoria del ordenador no son más que una secuencia de bits. La interpretación de estos bits depende del lenguaje de programación, que almacena en la memoria no sólo el puro dato sino distintos metadatos. [#love-unsplash]_
 
-Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en Python **todo son objetos**. Y cada objeto tiene, al menos, los siguientes campos:
+Cada "trozo" de memoria contiene realmente un objeto, de ahí que se diga que en Python **todo son objetos**. Y cada objeto contiene, al menos, los siguientes campos:
 
 * Un **tipo** del dato almacenado.
 * Un **identificador** único para distinguirlo de otros objetos.
 * Un **valor** consistente con su tipo.
 
-.. figure:: img/object.jpg
+.. figure:: img/pyobject.svg
     :align: center
 
     Esquema (*metadatos*) de un objeto en Python
@@ -36,7 +36,7 @@ Variables
 
 Las **variables** son fundamentales ya que permiten definir **nombres** para los **valores** que tenemos en memoria y que vamos a usar en nuestro programa.
 
-.. figure:: img/name-variable.jpg
+.. figure:: img/name-variables.svg
     :align: center
 
     Uso de un *nombre* de variable
@@ -125,7 +125,7 @@ Asignación
 
 En Python se usa el símbolo ``=`` para **asignar** un valor a una variable:
 
-.. figure:: img/assignment.jpg
+.. figure:: img/assignment-variables.svg
     :align: center
 
     Asignación de *valor* a *nombre* de variable
@@ -256,7 +256,7 @@ Las variables son nombres, no lugares. Detrás de esta frase se esconde la refle
 
     >>> a = 5
 
-.. figure:: img/var-memory1.png
+.. figure:: img/variable-reference1.svg
     :align: center
 
     Representación de la asignación de valor a variable
@@ -265,7 +265,7 @@ Si ahora "copiamos" el valor de ``a`` en otra variable ``b`` se podría esperar 
 
     >>> b = a
 
-.. figure:: img/var-memory2.png
+.. figure:: img/variable-reference2.svg
     :align: center
 
     Representación de la asignación de una variable a otra variable

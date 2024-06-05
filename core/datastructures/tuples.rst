@@ -122,7 +122,7 @@ Desempaquetado de tuplas
 
 El **desempaquetado** es una característica de las tuplas que nos permite *asignar una tupla a variables independientes*:
 
-.. figure:: img/tuple-unpacking.jpg
+.. figure:: img/tuple-unpacking.svg
     :align: center
 
     Desempaquetado de tuplas

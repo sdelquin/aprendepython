@@ -560,7 +560,7 @@ Ejercicios
 
 5. Escriba un programa que muestre por pantalla todas las fichas del dominó. La ficha "en blanco" se puede representar con un 0 (:download:`solución <files/domino.py>`).
 
-.. image:: img/domino.jpg
+.. image:: img/domino.svg
 
 .. code-block::
 

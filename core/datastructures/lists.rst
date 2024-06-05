@@ -570,7 +570,7 @@ Unir una lista en cadena de texto
 
 Dada una lista, podemos convetirla a una cadena de texto, uniendo todos sus elementos mediante algún **separador**. Para ello hacemos uso de la función ``join()`` con la siguiente estructura:
 
-.. figure:: img/join-list.jpg
+.. figure:: img/join-list.svg
     :align: center
 
     Estructura de llamada a la función ``join()``
@@ -693,7 +693,7 @@ Iterar sobre múltiples listas
 
 Python ofrece la posibilidad de iterar sobre **múltiples listas en paralelo** utilizando la función ``zip()``. Se basa en ir "juntando" ambas listas elemento a elemento:
 
-.. figure:: img/zip.png
+.. figure:: img/zip.svg
     :align: center
 
     Funcionamiento de ``zip()``
@@ -897,7 +897,7 @@ Las **listas por comprensión** establecen una técnica para crear listas de for
 
 Podríamos decir que su sintaxis sigue un modelo **VLC (Value-Loop-Condition)** tal y como se muestra en la siguiente figura:
 
-.. figure:: img/list-comprehensions.png
+.. figure:: img/list-comprehensions.svg
     :align: center
 
     Estructura de una lista por comprensión
@@ -925,7 +925,7 @@ Ahora veamos el código utilizando una **lista por comprensión**::
     >>> int_values
     [32, 45, 11, 87, 20, 48]
 
-.. figure:: img/list-comprehensions-transformation.jpg
+.. figure:: img/list-comprehensions-transformation.svg
     :align: center
 
     Transformación de estructura clásica en lista por comprensión
@@ -987,7 +987,7 @@ Veamos un ejemplo en el que generamos todas las combinaciones de una serie de va
 
 Cuando queramos ejecutar un programa Python desde **línea de comandos**, tendremos la posibilidad de acceder a los argumentos de dicho programa. Para ello se utiliza una lista "especial" que la encontramos dentro del módulo ``sys`` y que se denomina ``argv``:
 
-.. figure:: img/sys-argv.png
+.. figure:: img/sys-argv.svg
     :align: center
 
     Acceso a parámetros en línea de comandos
@@ -1065,7 +1065,7 @@ Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que
 
 A continuación planteamos un ejemplo del contexto deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores/as. En aquella alineación con la que España `ganó la copa del mundo <https://es.wikipedia.org/wiki/Copa_Mundial_Femenina_de_F%C3%BAtbol_de_2023>`_ en 2023 había una disposición *4-3-3* con las siguientes jugadoras:
 
-.. figure:: img/spain2023-worldchampions.jpg
+.. figure:: img/spain2023-worldchampions.svg
     :align: center
 
     Lista de listas (como equipo de fútbol)

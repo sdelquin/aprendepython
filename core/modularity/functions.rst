@@ -17,7 +17,7 @@ Definir una función
 
 Para definir una función utilizamos la palabra reservada ``def`` seguida del **nombre** [#naming-functions]_ de la función. A continuación aparecerán 0 o más **parámetros** separados por comas (entre paréntesis), finalizando la línea con **dos puntos** ``:`` En la siguiente línea empezaría el **cuerpo** de la función que puede contener 1 o más **sentencias**, incluyendo (o no) una **sentencia de retorno** con el resultado mediante ``return``.
 
-.. figure:: img/function-definition.jpg
+.. figure:: img/function-definition.svg
     :align: center
 
     Definición de una función en Python
@@ -167,7 +167,7 @@ En este caso escribiremos una función que recibe un valor numérico y devuelve 
 
 Cuando llamamos a una función con *argumentos*, los valores de estos argumentos se copian en los correspondientes *parámetros* dentro de la función:
 
-.. figure:: img/args-params.jpg
+.. figure:: img/args-params.svg
     :align: center
 
     Parámetros y argumentos de una función
@@ -535,7 +535,7 @@ A partir de `Python 3.0 <https://www.python.org/dev/peps/pep-3102/>`_ se ofrece 
 
 Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``*`` que delimitará el tipo de parámetros. Así, todos los parámetros a la derecha del separador estarán **obligados** a ser nominales:
 
-.. figure:: img/keyword-only-params.png
+.. figure:: img/params-only-keywords.svg
     :align: center
 
     Separador para especificar parámetros sólo nominales
@@ -570,7 +570,7 @@ A partir de `Python 3.8 <https://www.python.org/dev/peps/pep-0570/>`_ se ofrece 
 
 Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial ``/`` que delimitará el tipo de parámetros. Así, todos los parámetros a la izquierda del delimitador estarán **obligados** a ser posicionales:
 
-.. figure:: img/position-only-params.png
+.. figure:: img/params-only-positional.svg
     :align: center
 
     Separador para especificar parámetros sólo posicionales
@@ -839,7 +839,7 @@ Veamos algunos ejemplos válidos:
     :widths: 20, 50
 
 .. seealso::
-    `Guía rápida para de anotación de tipos (mypy) <https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html>`_
+    `Guía rápida para anotación de tipos (mypy) <https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html>`_
 
 .. admonition:: Ejercicio
 
@@ -871,7 +871,7 @@ Una **función lambda** tiene las siguientes propiedades:
 
 Veamos un primer ejemplo de función "lambda" que nos permite **contar el número de palabras en una cadena de texto** dada. La **transformación de su versión clásica en su versión anónima** sería la siguiente:
 
-.. figure:: img/lambda.png
+.. figure:: img/lambda.svg
     :align: center
 
     Transformación en función "lambda"
@@ -947,7 +947,7 @@ Como se comentó en la :ref:`introducción <core/introduction/python:Caracterís
 
 Python nos ofrece 3 funciones que encajan verdaderamente bien en este enfoque: ``map()``, ``filter()`` y ``reduce()``.
 
-.. figure:: img/map-filter-reduce.png
+.. figure:: img/map-filter-reduce.svg
     :align: center
 
     Rutinas muy enfocadas a programación funcional
@@ -1236,7 +1236,7 @@ Hay situaciones en las que necesitamos modificar el comportamiento de funciones 
 
 Un **decorador** es una *función* que recibe como parámetro una función y devuelve otra función. Se podría ver como un caso particular de una :ref:`clausura <core/modularity/functions:Clausuras>`:
 
-.. figure:: img/decorator-behaviour.png
+.. figure:: img/decorator-behaviour.svg
     :align: center
 
     Comportamiento de un decorador
@@ -1251,6 +1251,13 @@ El *esqueleto básico* de un decorador es el siguiente::
     ...     return wrapper
     ...
 
+.. figure:: img/decorator-anatomy.svg
+    :align: center
+
+    Anatomía de un decorador
+
+Descripción de sus elementos:
+
 +------------------+------------------------------------------------+
 |     Elemento     |                  Descripción                   |
 +==================+================================================+
@@ -1264,11 +1271,6 @@ El *esqueleto básico* de un decorador es el siguiente::
 +------------------+------------------------------------------------+
 | ``**kwargs``     | Argumentos nominales (convención de nombre)    |
 +------------------+------------------------------------------------+
-
-.. figure:: img/decorator-candy.png
-    :align: center
-
-    Esqueleto básico de un decorador
 
 
 Veamos un ejemplo de **decorador que convierte el resultado numérico de una función a su representación binaria**::
@@ -1529,7 +1531,7 @@ Llamada recursiva:
 
 La "pila de llamadas" para el ejemplo de ``pow(2, 4)`` sería la siguiente:
 
-.. figure:: img/pow_recursive.png
+.. figure:: img/pow-recursive.svg
     :align: center
 
     Esquema de llamadas recursivas
@@ -1582,10 +1584,10 @@ Los espacios de nombres proporcionan un mecanismo de empaquetado, de tal forma q
 
 Cada *función* define su propio espacio de nombres y es diferente del espacio de nombres global aplicable a todo nuestro programa.
 
-.. figure:: img/namespaces.png
+.. figure:: img/namespaces.svg
     :align: center
 
-    Espacio de nombres global vs espacios de nombres de funciones
+    Espacio de nombres global vs espacios de nombres locales
 
 Acceso a variables globales
 ===========================

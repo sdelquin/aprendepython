@@ -80,7 +80,7 @@ Compiladores
 
 Los `compiladores <https://es.wikipedia.org/wiki/Compilador>`__ son programas que convierten un lenguaje "cualquiera" en *código máquina*. Se pueden ver como traductores, permitiendo a la máquina interpretar lo que queremos hacer.
 
-.. figure:: img/compiler.jpg
+.. figure:: img/compiler.svg
     :align: center
 
     Esquema de funcionamiento de un compilador [#compiler]_
@@ -104,7 +104,7 @@ el programa se compilaría [#bytecode]_ al siguiente "bytecode"::
 
 A continuación estas instrucciones básicas son ejecutadas por el intérprete de "bytecode" de Python (o máquina virtual):
 
-.. figure:: img/python-execution.png
+.. figure:: img/python-execution.svg
     :align: center
 
     Modelo de ejecución de un programa Python [#bytecode_analysis]_

@@ -132,7 +132,7 @@ Asignación aumentada
 
 Python nos ofrece la posibilidad de escribir una `asignación aumentada <https://www.python.org/dev/peps/pep-0577/>`_ mezclando la *asignación* y un *operador*. 
 
-.. figure:: img/augmented-assignment.jpg
+.. figure:: img/augmented-assignment.svg
     :align: center
 
     Asignación aumentada en Python
@@ -184,7 +184,7 @@ Módulo
 
 La operación **módulo** (también llamado **resto**), cuyo símbolo en Python es ``%``, se define como el resto de dividir dos números. Veamos un ejemplo para enteder bien su funcionamiento:
 
-.. figure:: img/modulo.jpg
+.. figure:: img/modulo.svg
     :align: center
 
     Operador "módulo" en Python
@@ -202,6 +202,94 @@ La operación **módulo** (también llamado **resto**), cuyo símbolo en Python 
     3
     >>> resto
     2
+
+Si miramos el módulo en **forma circular** se entiende mejor lo que ocurre:
+
+.. figure:: img/modulo-circular.svg
+    :align: center
+
+    El "módulo" visto en forma circular/espiral
+
+
+Desplazamiento circular
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Una de las aplicaciones más habituales del operador módulo ``%`` es el **desplazamiento circular**. 
+
+Veamos un ejemplo en el que disponemos de **4 "casillas"** y la "ficha" avanza **de uno en uno**. Después de la última casilla debemos volver a la casilla de salida. Si esto lo representamos en forma de *espiral* nos quedaría algo así:
+
+.. figure:: img/circular-shift-step1.svg
+    :align: center
+
+    Desplazamiento circular con paso 1
+
+Veamos la implementación en Python::
+
+    >>> a = 0
+    >>> a
+    0  🟪
+    >>> a = (a + 1) % 4  # 1 % 4
+    >>> a
+    1  🟦
+    >>> a = (a + 1) % 4  # 2 % 4
+    >>> a
+    2  🟩
+    >>> a = (a + 1) % 4  # 3 % 4
+    >>> a
+    3  🟪
+    >>> a = (a + 1) % 4  # 4 % 4
+    >>> a
+    0  🟦
+    >>> a = (a + 1) % 4  # 1 % 4
+    >>> a
+    1  🟩
+    >>> a = (a + 1) % 4  # 2 % 4
+    >>> a
+    2  🟪
+    >>> a = (a + 1) % 4  # 3 % 4
+    >>> a
+    3  🟦
+    >>> a = (a + 1) % 4  # 4 % 4
+    >>> a
+    0  🟩
+    >>> a = (a + 1) % 4  # 1 % 4
+    >>> a
+    1  🟪
+
+Haciendo el módulo estamos "encerrando" el valor en unos límites. Supongamos ahora que, en vez de ir de uno en uno, podemos mover la "ficha" **de tres en tres**:
+
+.. figure:: img/circular-shift-step3.svg
+    :align: center
+
+    Desplazamiento circular con paso 3
+
+Veamos la implementación en Python:
+
+.. code-block::
+
+    >>> a = 0
+    >>> a
+    0  🟪
+    >>> a = (a + 3) % 4  # 3 % 4
+    >>> a
+    3  🟦
+    >>> a = (a + 3) % 4  # 6 % 4
+    >>> a
+    2  🟩
+    >>> a = (a + 3) % 4  # 5 % 4
+    >>> a
+    1  🟪
+
+Hay una propiedad obvia de esta operación y es que **cuando el dividendo es múltiplo del divisor, su módulo es cero**::
+
+    >>> 12 % 3
+    0
+    >>> 15 % 5
+    0
+    >>> 21 % 7
+    0
+    >>> 81 % 9
+    0
 
 Exponenciación
 --------------

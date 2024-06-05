@@ -12,7 +12,7 @@ Definición de bloques
 
 A diferencia de otros lenguajes que utilizan llaves para definir los bloques de código, cuando Guido Van Rossum :ref:`creó el lenguaje <core/introduction/python:Python>` quiso evitar estos caracteres por considerarlos innecesarios. Es por ello que en Python los bloques de código se definen a través de **espacios en blanco, preferiblemente 4**. [#pep8]_ En términos técnicos se habla del **tamaño de indentación**.
 
-.. figure:: img/four-spaces.png
+.. figure:: img/four-spaces.svg
     :align: center
 
     Python recomienda 4 espacios en blanco para indentar
@@ -127,7 +127,7 @@ Podríamos tener incluso condiciones dentro de condiciones, lo que se viene a ll
 
 Python nos ofrece una mejora en la escritura de condiciones anidadas cuando aparecen consecutivamente un ``else`` y un ``if``. Podemos sustituirlos por la sentencia ``elif``:
 
-.. figure:: img/elif.png
+.. figure:: img/elif.svg
     :align: center
 
     Construcción de la sentencia ``elif``
@@ -266,7 +266,7 @@ Podemos escribir condiciones más complejas usando los **operadores lógicos**:
 
 Véanse las **tablas de la verdad** para cada operador lógico:
 
-.. figure:: img/truth-tables.png
+.. figure:: img/truth-tables.svg
     :align: center
 
     Resultados al aplicar operadores lógicos
@@ -295,7 +295,7 @@ Para poder **enviar un mensaje por Telegram** necesitamos tener al menos un 25% 
     >>> power > 25 and signal_4g > 10
     False
 
-.. figure:: img/shortcircuit-and.jpg
+.. figure:: img/shortcircuit-and.svg
     :align: center
 
     Cortocircuito para expresión lógica "and"
@@ -310,7 +310,7 @@ Otro ejemplo. Para poder **hacer una llamada VoIP** necesitamos tener al menos u
     >>> power > 40 or signal_4g > 30
     True
 
-.. figure:: img/shortcircuit-or.jpg
+.. figure:: img/shortcircuit-or.svg
     :align: center
 
     Cortocircuito para expresión lógica "or"

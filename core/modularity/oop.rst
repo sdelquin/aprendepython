@@ -25,7 +25,7 @@ Sus **beneficios** son los siguientes:
 **Polimorfismo**
     Permite **crear** múltiples objetos a partir de una misma pieza flexible de código.
 
-.. figure:: img/oop.jpg
+.. figure:: img/oop-features.svg
     :align: center
 
     Beneficios de la Programación Orientada a Objetos
@@ -45,7 +45,7 @@ Un **objeto** es una **estructura de datos personalizada** que contiene **datos*
 
 Un objeto representa **una instancia única** de alguna entidad (a través de los valores de sus atributos) e interactúa con otros objetos (o consigo mismo) a través de sus métodos.
 
-.. figure:: img/bike-object.jpg
+.. figure:: img/bike-object.svg
     :align: center
 
     Analogía de atributos y métodos en un objeto "bicicleta"
@@ -55,7 +55,7 @@ Un objeto representa **una instancia única** de alguna entidad (a través de lo
 
 Para crear un objeto primero debemos definir la clase que lo contiene. Podemos pensar en la **clase** como el **molde** con el que se crean nuevos objetos de ese tipo.
 
-.. figure:: img/mold.png
+.. figure:: img/mold.svg
     :align: center
 
     Ejemplificación de creación de objetos a partir de una clase
@@ -502,7 +502,7 @@ La explicación de este fenómeno es sencilla: Todas las instancias (pasadas y f
     >>> id(droid3.obeys_owner)
     4385213672
 
-.. figure:: img/obeys-owner1.png
+.. figure:: img/obeys-owner1.svg
     :align: center
 
     Atributo de clase
@@ -538,7 +538,7 @@ Ahora veamos cuál es el comportamiento::
     >>> droid3.obeys_owner
     False
 
-.. figure:: img/obeys-owner2.png
+.. figure:: img/obeys-owner2.svg
     :align: center
 
     Atributo de clase con asignación de instancia
@@ -581,7 +581,7 @@ Si la implementación requiere de parámetros, no hay confusión, necesitamos us
 
 Pero más allá de esto, no existe una respuesta clara y concisa a la pregunta. Aunque sí podemos dar algunas "pistas" para saber cuándo usar propiedades o cuándo usar métodos:
 
-.. figure:: img/properties-vs-methods.png
+.. figure:: img/properties-vs-methods.svg
     :align: center
 
     ¿Cuándo usar propiedades vs métodos?
@@ -699,10 +699,10 @@ Los métodos mágicos empiezan y terminan por doble subguión ``__`` (es por ell
 
 Para el caso de los operadores, existe un método mágico asociado (que podemos personalizar). Por ejemplo la comparación de dos objetos se realiza con el método ``__eq__()``:
 
-.. figure:: img/magic-methods.png
+.. figure:: img/magic-methods.svg
     :align: center
 
-    Equivalencia entre operador y método mágico
+    Ejecución de método mágico mediante operador
 
 Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que dos droides son iguales si su nombre es igual, independientemente de que tengan distintos números de serie:
 
@@ -732,7 +732,7 @@ Extrapolando esta idea a nuestro universo StarWars, podríamos establecer que do
     | ``from __future__ import annotations``
     
 
-.. figure:: img/magic-methods-list.jpg
+.. figure:: img/magic-methods-list.svg
     :align: center
 
     Métodos mágicos para comparaciones y operaciones matemáticas
@@ -1042,7 +1042,7 @@ Herencia
 
 La **herencia** consiste en **construir una nueva clase partiendo de una clase existente**, pero que añade o modifica ciertos aspectos. La herencia se considera una buena práctica de programación tanto para *reutilizar código* como para *realizar generalizaciones*.
 
-.. figure:: img/inheritance.jpg
+.. figure:: img/inheritance.svg
     :align: center
 
     Nomenclatura de clases en la herencia [#freepik-icons]_
@@ -1204,7 +1204,7 @@ Aunque no está disponible en todos los lenguajes de programación, Python sí p
 
 Supongamos que queremos modelar la siguiente estructura de clases con *herencia múltiple*:
 
-.. figure:: img/multiple-inheritance.jpg
+.. figure:: img/multiple-inheritance.svg
     :align: center
 
     Ejemplo de herencia múltiple [#starwars-fandom]_
@@ -1326,7 +1326,7 @@ Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
 
     Cree el siguiente escenario de herencia de clases en Python que representa distintos tipos de ficheros en un sistema:
 
-    .. image:: img/files-inheritance.jpg
+    .. image:: img/files-inheritance.svg
 
     Notas:
 
@@ -1351,10 +1351,10 @@ Aunque la herencia de clases nos permite modelar una gran cantidad de casos de u
 
 Hay una sutil diferencia entre agregación y composición:
 
-- La **composición** implica que el objeto utilizado no puede "funcionar" sin la presencia de su propietario.
 - La **agregación** implica que el objeto utilizado puede funcionar por sí mismo.
+- La **composición** implica que el objeto utilizado no puede "funcionar" sin la presencia de su propietario.
 
-.. figure:: img/aggregation-composition.jpg
+.. figure:: img/aggregation-composition.svg
     :align: center
 
     Agregación vs. Composición [#freepik-icons]_
@@ -1401,7 +1401,7 @@ Algunos ejemplos de secuencias que ya se han visto incluyen :ref:`cadenas de tex
 
 Las secuencias deben implementar, al menos, los siguientes métodos mágicos:
 
-.. figure:: img/sequences-magic.png
+.. figure:: img/sequences-magic.svg
     :align: center
 
     Métodos mágicos asociados con las secuencias
@@ -1513,7 +1513,7 @@ Hay muchos tipos de datos iterables en Python que ya se han estudiado: :ref:`cad
 
 Para ser un **objeto iterable** sólo es necesario implementar el método mágico ``__iter__()``. Este método debe proporcionar una referencia al **objeto iterador** que es quien se encargará de desarrollar el protocolo de iteración a través del método mágico ``__next__()``.
 
-.. figure:: img/iterables.png
+.. figure:: img/iterables.svg
     :align: center
 
     Protocolo de iteración

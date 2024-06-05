@@ -77,7 +77,7 @@ Al ser un lenguaje de propósito general, podemos encontrar aplicaciones prácti
 
 De igual modo son muchas las empresas, instituciones y organismos que utilizan Python en su día a día para mejorar sus sistemas de información. Veamos algunas de las más relevantes:
 
-.. figure:: img/who-uses-python.png
+.. figure:: img/who-uses-python.jpg
     :align: center
     
     Grandes empresas y organismos que usan Python
