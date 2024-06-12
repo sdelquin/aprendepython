@@ -638,7 +638,7 @@ Manipulando elementos
 
 Los arrays multidimensionales de NumPy están indexados por unos ejes que establecen la forma en la que debemos acceder a sus elementos. Véase el siguiente diagrama:
 
-.. figure:: img/numpy-arrays.png
+.. figure:: img/numpy-arrays.svg
     :align: center
 
     Esquema de ejes sobre los arrays de NumPy [#axis-diagram]_
@@ -993,7 +993,7 @@ Extracción de elementos por diagonal
 
 La función ``np.diag()`` permite acceder a los elementos de un array especificando un parámetro ``k`` que indica la "distancia" con la diagonal principal:
 
-.. figure:: img/numpy-diagonal.png
+.. figure:: img/numpy-diagonal.svg
     :align: center
 
     Acceso a elementos de un array por su diagonal

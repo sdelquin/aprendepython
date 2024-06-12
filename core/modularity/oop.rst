@@ -1207,7 +1207,7 @@ Supongamos que queremos modelar la siguiente estructura de clases con *herencia 
 .. figure:: img/multiple-inheritance.svg
     :align: center
 
-    Ejemplo de herencia múltiple [#starwars-fandom]_
+    Ejemplo de herencia múltiple [#dimensions]_
    
 .. code-block::
     :emphasize-lines: 16,20
@@ -2136,7 +2136,7 @@ Ampliar conocimientos
 .. [#starwars-droids] Fuente de la imagen: `Astro Mech Droids`_.
 .. [#pep8] Guía de estilos `PEP8 <https://www.python.org/dev/peps/pep-0008/#class-names>`__ para convenciones de nombres.
 .. [#mro] Viene del inglés "method resolution order" o ``mro``.
-.. [#starwars-fandom] Imágenes de los droides por `StarWars Fandom`_.
+.. [#dimensions] Imágenes de los droides por `Dimensions StarWars`_.
 .. [#freepik-icons] Iconos por `Freepik`_.
 .. [#solid-principles] Principios `SOLID`_
 
@@ -2147,7 +2147,7 @@ Ampliar conocimientos
 .. _droides de la saga Starwars: https://en.wikipedia.org/wiki/Droid_(Star_Wars)
 .. _Astro Mech Droids: https://www.facebook.com/astromechdroids/
 .. _droides de protocolo: https://starwars.fandom.com/wiki/Category:Protocol_droids
-.. _StarWars Fandom: https://starwars.fandom.com/
+.. _Dimensions StarWars: https://www.dimensions.com/collection/star-wars
 .. _métodos especiales: https://docs.python.org/es/3/reference/datamodel.html#special-method-names
 .. _Freepik: https://www.flaticon.com/authors/freepik
 .. _SOLID: https://es.wikipedia.org/wiki/SOLID

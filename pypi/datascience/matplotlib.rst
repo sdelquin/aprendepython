@@ -94,7 +94,7 @@ Marcos
 
 Para poder empezar a graficar necesitamos tener, al menos, un marco. Utilizaremos la función ``add_subplot()`` que requiere pasar como parámetros el número de filas, el número de columnas y el marco activo:
 
-.. figure:: img/add-subplot.png
+.. figure:: img/add-subplot.svg
     :align: center
 
     Creación de marcos dentro de una figura
@@ -823,7 +823,7 @@ Diagramas de caja
 
 Un diagrama de caja permite visualizar la distribución de los valores de manera rápida y muy visual:
 
-.. figure:: img/boxplot-anatomy.jpg
+.. figure:: img/boxplot-anatomy.svg
     :align: center
 
     Anatomía de un diagrama de caja [#boxplot-anatomy]_

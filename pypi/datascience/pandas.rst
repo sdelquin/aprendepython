@@ -509,7 +509,7 @@ DataFrames
 
 Un DataFrame es una estructura tabular compuesta por series. Se trata del tipo de datos fundamental en pandas y sobre el que giran la mayoría de operaciones que podemos realizar.
 
-.. figure:: img/series-and-dataframes.png
+.. figure:: img/series-and-dataframes.svg
     :align: center
 
     Estructura de un DataFrame a partir de Series
@@ -604,7 +604,7 @@ DataFrame desde series
 
     Cree el siguiente DataFrame en Pandas [#wikipedia-canarias]_:
 
-    .. image:: img/canary-dataframe.png
+    .. image:: img/canary-dataframe.svg
 
     La superficie (*Area*) está expresada en :math:`\text{km}^2` y las provincias corresponden con ``LPGC``: Las Palmas de Gran Canaria y ``SCTF``: Santa Cruz de Tenerife.
 
@@ -844,7 +844,7 @@ Acceso a un DataFrame
 
 Es fundamental conocer la estructura de un DataFrame para su adecuado manejo:
 
-.. figure:: img/dataframe-structure.png
+.. figure:: img/dataframe-structure.svg
     :align: center
 
     Componentes de un DataFrame
@@ -2502,7 +2502,7 @@ Fusión de DataFrames
 
 Pandas proporciona la función `merge()`_ para mezclar dos DataFrames.  El comportamiento de la función viene definido, entre otros, por el parámetro ``how`` que establece el método de "fusión":
 
-.. figure:: img/pandas-merge.jpg
+.. figure:: img/pandas-merge.svg
     :align: center
 
     Operaciones de mezcla con "merge"
@@ -2517,7 +2517,7 @@ Concatenación de DataFrames
 
 Para concatenar dos DataFrames podemos utilizar la función `concat()`_ que permite añadir las filas de un DataFrame a otro, o bien añadir las columnas de un DataFrame a otro.
 
-.. figure:: img/pandas-concat.jpg
+.. figure:: img/pandas-concat.svg
     :align: center
 
     Operaciones de concatenación con "concat"

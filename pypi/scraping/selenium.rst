@@ -479,7 +479,7 @@ Veamos un ejemplo en el que cargamos la web de Stack Overflow y esperamos a que 
     Mobile
     ...
 
-.. figure:: img/webdriverwait.jpg
+.. figure:: img/webdriverwait.svg
     :align: center
 
     Anatomía de una condición de espera
