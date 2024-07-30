@@ -965,7 +965,7 @@ Ejercicios
 **********
 
 1. pycheck_: **format_hexcolor**
-2. pycheck_: **switch_name**
+2. pycheck_: **swap_name**
 3. pycheck_: **samba_split**
 4. pycheck_: **nif_digit**
 5. pycheck_: **n_repeat**
@@ -973,7 +973,6 @@ Ejercicios
 7. pycheck_: **h2md**
 8. pycheck_: **count_sheeps**
 9. pycheck_: **strip1**
-10. pycheck_: **swap_name**
 11. pycheck_: **find_integral**
 12. pycheck_: **multiply_jack**
 13. pycheck_: **first_last_digit**
