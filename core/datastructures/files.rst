@@ -350,19 +350,19 @@ Hay que prestar atención a la hora de escribir valores numéricos en un fichero
 Ejercicios
 **********
 
-1. pycheck_: **wc**
-2. pycheck_: **read_csv**
-3. pycheck_: **txt2md**
-4. pycheck_: **avg_temps**
-5. pycheck_: **find_words**
-6. pycheck_: **sum_matrix**
-7. pycheck_: **longest_word**
-8. pycheck_: **word_freq**
-9. pycheck_: **get_line**
-10. pycheck_: **replace_chars**
-11. pycheck_: **histogram**
-12. pycheck_: **submarine**
-13. pycheck_: **common_words**
+1. :pypas:`wc!`
+2. :pypas:`read-csv!`
+3. :pypas:`txt2md!`
+4. :pypas:`avg-temps!`
+5. :pypas:`find-words!`
+6. :pypas:`sum-matrix!`
+7. :pypas:`longest-word!`
+8. :pypas:`word-freq!`
+9. :pypas:`get-line!`
+10. :pypas:`replace-chars!`
+11. :pypas:`histogram-txt!`
+12. :pypas:`submarine!`
+13. :pypas:`common-words!`
 
 *********************
 Ampliar conocimientos
@@ -382,7 +382,6 @@ Ampliar conocimientos
 
 .. _Maksym Kaharlytskyi: https://unsplash.com/@qwitka?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _Smart Drone: https://smart-drone.es/codigos-oaci-aeropuertos/
-.. _pycheck: https://pycheck.es
 .. _codificaciones de caracteres: https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres
 .. _UTF-8: https://es.wikipedia.org/wiki/UTF-8
 .. _Unicode: https://unicode-table.com/en/blocks/

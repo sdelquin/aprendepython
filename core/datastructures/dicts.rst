@@ -253,7 +253,7 @@ Supongamos un ejemplo en el que queremos construir un diccionario donde las clav
 
 .. admonition:: Ejercicio
 
-    pycheck_: **cities**
+    :pypas:`extract-cities`
 
 
 Pertenencia de una clave
@@ -274,7 +274,7 @@ La forma **pitónica** de comprobar la existencia de una clave dentro de un dicc
 
 .. admonition:: Ejercicio
 
-    pycheck_: **count_letters**
+    :pypas:`count-letters`
 
 Longitud de un diccionario
 ==========================
@@ -370,7 +370,7 @@ En base a :ref:`los elementos que podemos obtener <core/datastructures/dicts:Obt
 
 .. admonition:: Ejercicio
 
-    pycheck_: **avg_population**
+    :pypas:`avg-population`
 
 Borrar elementos
 ================
@@ -452,7 +452,7 @@ Python nos ofrece, al menos, tres formas para borrar elementos en un diccionario
 
 .. admonition:: Ejercicio
 
-    pycheck_: **merge_dicts**
+    :pypas:`merge-dicts`
 
 Combinar diccionarios
 =====================
@@ -592,7 +592,7 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 
 .. admonition:: Ejercicio
 
-    pycheck_: **split_marks**
+    :pypas:`split-marks`
 
 *******************
 Objetos "hashables"
@@ -635,18 +635,19 @@ La función "built-in" ``hash()`` realmente hace una llamada al método mágico 
 Ejercicios
 **********
 
-1. pycheck_: **group_words**
-2. pycheck_: **same_dict_values**
-3. pycheck_: **build_super_dict**
-4. pycheck_: **clear_dict_values**
-5. pycheck_: **fix_keys**
-6. pycheck_: **order_stock**
-7. pycheck_: **inventory_moves**
-8. pycheck_: **sort_dict**
-9. pycheck_: **money_back**
-10. pycheck_: **money_back_max**
-11. pycheck_: **first_ntimes**
-12. pycheck_: **fix_id**
+1. :pypas:`group-words!`
+2. :pypas:`same-dict-values!`
+3. :pypas:`dict-from-list!`
+4. :pypas:`clear-dict-values!`
+5. :pypas:`fix-keys!`
+6. :pypas:`order-stock!`
+7. :pypas:`inventory-moves!`
+8. :pypas:`sort-dict!`
+9. :pypas:`money-back!`
+10. :pypas:`money-back-max!`
+11. :pypas:`first-ntimes!`
+12. :pypas:`fix-id!`
+13. :pypas:`dict-pull!`
 
 *********************
 Ampliar conocimientos
@@ -675,4 +676,3 @@ Ampliar conocimientos
 .. _Aaron Burden: https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _análisis de complejidad y rendimiento: https://wiki.python.org/moin/TimeComplexity
 .. _PEP-274: https://www.python.org/dev/peps/pep-0274/
-.. _pycheck: https://pycheck.es

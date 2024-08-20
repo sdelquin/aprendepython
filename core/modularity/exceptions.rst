@@ -161,22 +161,12 @@ Veamos un ejemplo de ambos::
     Have a good day!
 
 .. admonition:: Ejercicio
-    :class: exercise
+    
+    :pypas:`getint-iterative`
 
-    Sabiendo que ``ValueError`` es la excepción que se lanza cuando no podemos convertir una cadena de texto en su valor numérico, escriba una función ``getint()`` que lea un valor entero del usuario y lo devuelva, iterando mientras el valor no sea correcto.
-
-    Ejecución a modo de ejemplo::
-
-        Give me an integer number: ten
-        Not a valid integer. Try it again!
-        Give me an integer number: diez
-        Not a valid integer. Try it again!
-        Give me an integer number: 10
-
-    Implemente:
-
-    1. Versión iterativa en ``get_integers_iter.py``
-    2. Versión recursiva en ``get_integers_recur.py``
+.. admonition:: Ejercicio
+    
+    :pypas:`getint-recursive`
 
 Mostrando los errores
 =====================
@@ -458,11 +448,7 @@ Podemos observar que la excepción que se lanza no contiene ningún mensaje info
 Ejercicios
 **********
 
-1. Escriba una clase ``Card`` que represente una carta de poker y una clase ``InvalidCardError`` que represente un error propio indicando que la carta no es válida.
-
-    | Plantilla: :download:`poker.py <files/templates/poker.py>`
-    | Glifos de cartas: :download:`cards.dat <files/cards.dat>`
-    | Comprobación: ``pytest -xq`` :download:`test_poker.py <files/test_poker.py>`
+1. :pypas:`poker-card!`
 
 *********************
 Ampliar conocimientos

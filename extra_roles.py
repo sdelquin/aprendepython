@@ -5,6 +5,7 @@ from docutils import nodes
 
 def setup(app):
     app.add_role('fa', fa)
+    app.add_role('pypas', pypas)
 
 
 def fa(name, rawtext, text, lineno, inliner, options={}, content=[]):
@@ -23,5 +24,14 @@ def fa(name, rawtext, text, lineno, inliner, options={}, content=[]):
     else:
         html_style = ''
     html = f'<i class="fa-{style} fa-{icon}" {html_style}></i>'
+    node = nodes.raw('', html, format='html')
+    return [node], []
+
+
+def pypas(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    ENLARGE_SYMBOL = '!'
+    exercise = text.rstrip(ENLARGE_SYMBOL)
+    style = 'font-size: larger' if text.endswith(ENLARGE_SYMBOL) else ''
+    html = f'<a href="https://pypas.es">pypas</a>: <b><tt style="{style}">{exercise}</tt></b>'
     node = nodes.raw('', html, format='html')
     return [node], []

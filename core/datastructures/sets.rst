@@ -112,7 +112,7 @@ Este pequeño fragmento de código nos demuestra claramente que, aunque lo inten
 
 .. admonition:: Ejercicio
 
-    pycheck_: **tupleset**
+    :pypas:`tuple-set`
 
 Objetos hashables
 -----------------
@@ -175,7 +175,7 @@ Podemos conocer el número de elementos (*cardinalidad*) que tiene un conjunto c
 
 .. admonition:: Ejercicio
 
-    pycheck_: **diverse_word**
+    :pypas:`diverse-word`
 
 Iterar sobre un conjunto
 ========================
@@ -213,7 +213,7 @@ Obviamente también disponemos de la "negación" del operador::
 
 .. admonition:: Ejercicio
 
-    pycheck_: **half_out**
+    :pypas:`half-out`
 
 Ordenando un conjunto
 =====================
@@ -388,7 +388,7 @@ Veamos un ejemplo en el que construimos un conjunto por comprensión con aquello
 
 .. admonition:: Ejercicio
 
-    pycheck_: **common_consonants**
+    :pypas:`common-consonants`
 
 ********************
 Conjuntos inmutables
@@ -427,7 +427,7 @@ Un ejemplo en el que podemos aplicar un "frozenset" sería el conjunto de **posi
 Ejercicios
 **********
 
-1. pycheck_: **is_binary**
+1. :pypas:`is-binary!`
 
 
 *********************
@@ -447,6 +447,5 @@ Ampliar conocimientos
 .. _Duy Pham: https://unsplash.com/@miinyuii?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 .. _concepto matemático de conjunto: https://es.wikipedia.org/wiki/Conjunto
 .. _Diagramas de Venn: https://es.wikipedia.org/wiki/Diagrama_de_Venn
-.. _pycheck: https://pycheck.es
 .. _elementos químicos: https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico
 .. _caracteres Unicode del ajedrez: https://unicode.org/charts/PDF/U1FA00.pdf

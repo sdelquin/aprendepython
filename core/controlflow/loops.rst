@@ -232,16 +232,8 @@ El código anterior se podría enfocar haciendo uso del :ref:`operador morsa <co
     Nota fuera de rango
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Escriba un programa que encuentre todos los múltiplos de 5 menores que un valor dado:
-
-    **Ejemplo**
-        * Entrada: ``36``
-        * Salida: ``5 10 15 20 25 30 35``
     
-
-    Solución: :download:`limit5.py <files/limit5.py>` 
+    :pypas:`m5-limited`
 
 .. _for-sentence:
 
@@ -306,7 +298,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. admonition:: Ejercicio
 
-    pycheck_: **count_vowels**
+    :pypas:`count-vowels`
 
 Secuencias de números
 =====================
@@ -368,7 +360,7 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. admonition:: Ejercicio
 
-    pycheck_: **prime**
+    :pypas:`prime`
 
 Usando el guión bajo
 --------------------
@@ -393,7 +385,7 @@ Para estos casos se suele recomendar usar el **guión bajo** ``_`` como **nombre
 
 .. admonition:: Ejercicio
 
-    pycheck_: **pow**
+    :pypas:`pow`
 
 ***************
 Bucles anidados
@@ -508,122 +500,28 @@ Ejecución **paso a paso** a través de *Python Tutor*:
     * Los bucles anidados también se pueden aplicar en la sentencia ``while``.
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Dado su tamaño, muestre por pantalla un mosaico donde la diagonal principal esté representada por ``X``, la parte inferior por ``D`` y la parte superior por ``U``.
-
-    **Ejemplo**
-        * Entrada: ``5``
-        * Salida::
-
-            X U U U U 
-            D X U U U 
-            D D X U U 
-            D D D X U 
-            D D D D X 
-
-    Solución: :download:`mosaic.py <files/mosaic.py>`
+    
+    :pypas:`mosaic`
 
 **********
 Ejercicios
 **********
 
-1. Escriba un programa que encuentre la mínima secuencia de múltiplos de 3 (distintos) cuya suma sea igual o superior a un valor dado (:download:`solución <files/multiples3_limit.py>`).
-    - Entrada: ``45``
-    - Salida: ``0, 3, 6, 9, 12, 15``
-
-2. Escriba un programa que pida nombre y apellidos de una persona (usando un solo ``input``) y repita la pregunta mientras el nombre no esté en formato título (:download:`solución <files/repeat_please.py>`).
-
-.. code-block::
-
-    ¿Su nombre? ana torres blanco
-    Error. Debe escribirlo correctamente
-    ¿Su nombre? Ana torres blanco
-    Error. Debe escribirlo correctamente
-    ¿Su nombre? Ana Torres blanco
-    Error. Debe escribirlo correctamente
-    ¿Su nombre? Ana Torres Blanco
-
-3. Escriba un programa en Python que realice las siguientes 9 multiplicaciones. ¿Nota algo raro en el resultado? (:download:`solución <files/ones_product.py>`)
-
-.. math::
-
-    1 &\cdot 1\\
-    11 &\cdot 11\\
-    111 &\cdot 111\\
-    &\vdots\\
-    111111111 &\cdot 111111111
-
-4. Escriba un programa en Python que acepte dos valores enteros (:math:`x` e :math:`y`) que representarán un punto (objetivo) en el plano. El programa simulará el movimiento de un "caballo" de ajedrez moviéndose de forma alterna: 2 posiciones en :math:`x` + 1 posición en :math:`y`. El siguiente movimiento que toque sería para moverse 1 posición en :math:`x` + 2 posiciones en :math:`y`. El programa deberá ir mostrando los puntos por los que va pasando el "caballo" hasta llegar al punto objetivo (:download:`solución <files/horse.py>`).
-    - Entrada: ``objetivo_x=7; objetivo_y=8;``
-    - Salida: ``(0, 0) (1, 2) (3, 3) (4, 5) (6, 6) (7, 8)``
-
-5. Escriba un programa que muestre por pantalla todas las fichas del dominó. La ficha "en blanco" se puede representar con un 0 (:download:`solución <files/domino.py>`).
-
-.. image:: img/domino.svg
-
-.. code-block::
-
-    0|0 0|1 0|2 0|3 0|4 0|5 0|6
-    1|1 1|2 1|3 1|4 1|5 1|6
-    2|2 2|3 2|4 2|5 2|6
-    3|3 3|4 3|5 3|6
-    4|4 4|5 4|6
-    5|5 5|6
-    6|6
-
-6. Escriba un programa que calcule el valor de :math:`x` para el que la función :math:`f(x) = x^2 - 6x + 3` obtiene su menor resultado. Centre la búsqueda en el rango :math:`[-9, 9]` sólo con valores enteros (:download:`solución <files/fmin.py>`). 
-
-El resultado es: :math:`x = 3` y :math:`f(x) = -6`
-
-.. image:: img/fmin.png
-
-7. Escriba un programa que muestre (por filas) la `Tabla ASCII`_, empezando con el código 33 y terminando con el 127 (:download:`solución <files/ascii_table.py>`):
-
-.. code-block::
-
-    033 !   034 "   035 #   036 $   037 %
-    038 &   039 '   040 (   041 )   042 *
-    043 +   044 ,   045 -   046 .   047 /
-    048 0   049 1   050 2   051 3   052 4
-    053 5   054 6   055 7   056 8   057 9
-    058 :   059 ;   060 <   061 =   062 >
-    063 ?   064 @   065 A   066 B   067 C
-    068 D   069 E   070 F   071 G   072 H
-    073 I   074 J   075 K   076 L   077 M
-    078 N   079 O   080 P   081 Q   082 R
-    083 S   084 T   085 U   086 V   087 W
-    088 X   089 Y   090 Z   091 [   092 \
-    093 ]   094 ^   095 _   096 `   097 a
-    098 b   099 c   100 d   101 e   102 f
-    103 g   104 h   105 i   106 j   107 k
-    108 l   109 m   110 n   111 o   112 p
-    113 q   114 r   115 s   116 t   117 u
-    118 v   119 w   120 x   121 y   122 z
-    123 {   124 |   125 }   126 ~   127 
-
-8. Escriba un programa que permita al usuario adivinar un número. Indicar si el número buscado es menor o mayor que el que se está preguntando y mostrar igualmente el número de intentos hasta encontrar el número objetivo (:download:`solución <files/guess_number.py>`):
-
-.. code-block::
-
-    Introduzca número: 50
-    Mayor
-    Introduzca número: 100
-    Menor
-    Introduzca número: 90
-    Menor
-    Introduzca número: 87
-    ✅ ¡Enhorabuena! Has encontrado el número en 4 intentos
-
-9. pycheck_: **gcd**
-10. pycheck_: **hamming**
-11. pycheck_: **sprod_cart**
-12. pycheck_: **cumsq_prod**
-13. pycheck_: **isalphabetic**
-14. pycheck_: **tennis_game**
-15. pycheck_: **tennis_set**
-16. pycheck_: **kpower**
-17. pycheck_: **fibonacci**
+1. :pypas:`m3-sum-limited!`
+2. :pypas:`repeat-please!`
+3. :pypas:`one-tree!`
+4. :pypas:`chess-horse!`
+5. :pypas:`domino!`
+6. :pypas:`fmin!`
+7. :pypas:`ascii-table!`
+8. :pypas:`guess-number!`
+9. :pypas:`gcd!`
+10. :pypas:`hamming!`
+11. :pypas:`cartesian!`
+12. :pypas:`cumprod-sq!`
+13. :pypas:`isalpha!`
+14. :pypas:`kpower!`
+15. :pypas:`fibonacci!`
 
 ----
 
@@ -665,5 +563,4 @@ Ampliar conocimientos
 .. _distancia hamming: https://es.wikipedia.org/wiki/Distancia_de_Hamming
 .. _producto cartesiano: https://es.wikipedia.org/wiki/Producto_cartesiano
 .. _Tabla ASCII: https://www.asciitable.com/
-.. _pycheck: https://pycheck.es
 .. _Marina Yufereva: https://www.revista.escaner.cl/node/7197

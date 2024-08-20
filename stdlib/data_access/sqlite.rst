@@ -818,15 +818,8 @@ Aparentemente ahora sí que ha ido todo bien. Podemos comprobar que la tabla est
 Ejercicios
 **********
 
-1. Escriba una clase ``ToDo`` y una clase ``Task`` que permita implementar una aplicación de gestión de tareas.
-
-    | Plantilla: :download:`todo.py <files/templates/todo.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_todo.py <files/test_todo.py>`
-
-2. Escriba una clase ``Twitter`` junto a dos clases ``User`` y ``Tweet`` que permita implementar una aplicación de tipo "Twitter".
-
-    | Plantilla: :download:`twitter.py <files/templates/twitter.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_twitter.py <files/test_twitter.py>`
+1. :pypas:`todo!`
+2. :pypas:`twitter!`
 
 .. --------------- Footnotes ---------------
 

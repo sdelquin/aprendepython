@@ -201,25 +201,8 @@ Los programas se hacen para tener interacción con el usuario. Una de las formas
     Aunque está permitido, **NUNCA** llames ``input`` a una variable porque destruirías la función que nos permite leer datos desde teclado. Y tampoco uses nombres derivados como ``_input`` o ``input_`` ya que no son nombres representativos que :ref:`identifiquen el propósito de la variable <core/datatypes/data:convenciones para nombres>`.
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Escriba un programa en Python que :ref:`lea por teclado <core/datatypes/strings:leer datos desde teclado>` dos números enteros y muestre por pantalla el resultado de realizar las operaciones básicas entre ellos.
-
-    **Ejemplo**
-        - Valores de entrada 7 y 4.
-        - Salida esperada::
-
-            7+4=11
-            7-4=3
-            7*4=28
-            7/4=1.75
-
-    .. hint::
-        - Aproveche todo el potencial que ofrece :ref:`print() <more-print>` para conseguir la salida esperada
-        - No utilice "f-strings".
-        - Guarde el programa en un fichero ``calc.py`` y ejecútelo desde la terminal con: ``python calc.py``
-
-    Solución: :download:`calc.py <files/calc.py>`
+    
+    :pypas:`calc-basic`
     
 *************************
 Operaciones con "strings"
@@ -462,7 +445,7 @@ Contabilizar el **número de veces que aparece** una subcadena::
 
 .. admonition:: Ejercicio
 
-    pycheck_: **lost_word**
+    :pypas:`lost-word`
 
 Reemplazar elementos
 ====================
@@ -724,24 +707,8 @@ Pero si quisiéramos ver la **representación** del objeto, tal y como se almace
 En este caso se han añadido las comillas denotando que es una cadena de texto. Este modificador se puede aplicar a cualquier otro tipo de dato.
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Dada la variable::
-
-        e = 2.71828
     
-    , obtenga los siguientes resultados utilizando "f-strings"::
-
-        '2.718'
-        '2.718280'
-        '    2.72'  # 4 espacios en blanco
-        '2.718280e+00'
-        '00002.7183'
-        '            2.71828'  # 12 espacios en blanco
-
-    Aproveche para hacer el ejercicio directamente en el intérprete de Python: ``>>>``
-
-    Solución: :download:`fstrings.py <files/fstrings.py>`
+    :pypas:`fstring-format`
 
 ******************
 Caracteres Unicode
@@ -783,7 +750,7 @@ El modificador ``\N`` permite representar un carácter **a partir de su nombre**
 
 .. admonition:: Ejercicio
 
-    pycheck_: **find_unicode**
+    :pypas:`find-unicode`
 
 ASCII
 =====
@@ -964,18 +931,18 @@ Esto es aplicable tanto a variables como a literales e incluso a tipos de datos 
 Ejercicios
 **********
 
-1. pycheck_: **format_hexcolor**
-2. pycheck_: **swap_name**
-3. pycheck_: **samba_split**
-4. pycheck_: **nif_digit**
-5. pycheck_: **n_repeat**
-6. pycheck_: **str_metric**
-7. pycheck_: **h2md**
-8. pycheck_: **count_sheeps**
-9. pycheck_: **strip1**
-11. pycheck_: **find_integral**
-12. pycheck_: **multiply_jack**
-13. pycheck_: **first_last_digit**
+1. :pypas:`format-hexcolor!`
+2. :pypas:`swap-name!`
+3. :pypas:`samba-split!`
+4. :pypas:`nif-digit!`
+5. :pypas:`n-repeat!`
+6. :pypas:`str-metric!`
+7. :pypas:`h2md!`
+8. :pypas:`count-sheeps!`
+9. :pypas:`strip1!`
+10. :pypas:`find-integral!`
+11. :pypas:`multiply-jack!`
+12. :pypas:`first-last-digit!`
 
 *********************
 Ampliar conocimientos
@@ -1011,5 +978,4 @@ Ampliar conocimientos
 .. _Best of Python3.6 f-strings: https://medium.com/@NirantK/best-of-python3-6-f-strings-41f9154983e
 .. _Unicode: https://es.wikipedia.org/wiki/Unicode
 .. _código ASCII: https://elcodigoascii.com.ar/
-.. _pycheck: https://pycheck.es
 .. _indicaciones de la guía de estilo de Python: https://peps.python.org/pep-0008/#string-quotes

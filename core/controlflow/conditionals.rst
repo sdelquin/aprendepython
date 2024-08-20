@@ -277,7 +277,7 @@ Véanse las **tablas de la verdad** para cada operador lógico:
 
 .. admonition:: Ejercicio
 
-    pycheck_: **leap_year**
+    :pypas:`leap-year`
 
 
 Cortocircuito lógico
@@ -370,7 +370,7 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el *lenguaje natur
 
 .. admonition:: Ejercicio
 
-    pycheck_: **marvel_akinator**
+    :pypas:`marvel-akinator`
 
 Valor nulo
 ==========
@@ -582,7 +582,7 @@ En su versión más simple, el "pattern matching" permite comparar un valor de e
 
 .. admonition:: Ejercicio
 
-    pycheck_: **simple_op**
+    :pypas:`simple-op`
 
 Patrones avanzados
 ==================
@@ -783,11 +783,11 @@ Supongamos un ejemplo en el que computamos el perímetro de una circunferencia, 
 Ejercicios
 **********
 
-1. pycheck_: **rps**
-2. pycheck_: **min3values**
-3. pycheck_: **blood_donation**
-4. pycheck_: **facemoji**
-5. pycheck_: **shortcuts**
+1. :pypas:`rps!`
+2. :pypas:`min3values!`
+3. :pypas:`blood-donation!`
+4. :pypas:`facemoji!`
+5. :pypas:`shortcuts!`
 
 ----
 
@@ -845,4 +845,3 @@ Ampliar conocimientos
 .. _operador morsa: https://www.python.org/dev/peps/pep-0572/
 .. _Structural Pattern Matching: https://www.python.org/dev/peps/pep-0636/
 .. _Best practices for writing code comments: https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/
-.. _pycheck: https://pycheck.es

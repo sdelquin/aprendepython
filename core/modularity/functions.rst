@@ -204,7 +204,7 @@ Teniendo en cuenta que la sentencia ``return`` finaliza la ejecución de una fun
 
 .. admonition:: Ejercicio
 
-    pycheck_: **squared_sum**
+    :pypas:`sum-squares`
 
 Argumentos posicionales
 =======================
@@ -342,7 +342,7 @@ Es importante tener presente que los valores por defecto en los parámetros se c
 
 .. admonition:: Ejercicio
 
-    pycheck_: **factorial**
+    :pypas:`factorial`
 
 Modificando parámetros mutables
 -------------------------------
@@ -617,7 +617,7 @@ Continuando con el ejemplo anterior, podríamos hacer lo siguiente::
 
 .. admonition:: Ejercicio
 
-    pycheck_: **consecutive_freqs**
+    :pypas:`consecutive-freqs`
     
 
 Funciones como parámetros
@@ -843,7 +843,7 @@ Veamos algunos ejemplos válidos:
 
 .. admonition:: Ejercicio
 
-    pycheck_: **mcount**
+    :pypas:`mcount`
 
 Número indefinido
 -----------------
@@ -938,7 +938,7 @@ Veamos cómo usar una función anónima "lambda" para ordenar una tupla de pares
 
 .. admonition:: Ejercicio
 
-    pycheck_: **sort_ages**
+    :pypas:`order-by-age`
 
 Enfoque funcional
 -----------------
@@ -1129,6 +1129,10 @@ Un detalle muy importante es que **los generadores "se agotan"**. Es decir, una 
     ...     print(even, end=' ')
     ... # No sale nada... ¡Agotado!
 
+.. admonition:: Ejercicio
+
+    :pypas:`genfun-squares`
+
 Expresiones generadoras
 -----------------------
 
@@ -1167,7 +1171,7 @@ Una expresión generadora se puede explicitar [#explicit-gen]_, sumar, buscar su
 
 .. admonition:: Ejercicio
 
-    pycheck_: **gen_squared**
+    :pypas:`genexp-squares`
 
 Funciones interiores
 ====================
@@ -1317,10 +1321,6 @@ Python nos ofrece un "`syntactic sugar`_" para simplificar la aplicación de los
     >>> power(4, 5)
     '0b10000000000'
 
-.. admonition:: Ejercicio
-
-    pycheck_: **abs_decorator**
-
 Manipulando argumentos
 ----------------------
 
@@ -1359,6 +1359,10 @@ Veamos el comportamiento para diferentes casos de uso::
     >>> result = _sum('a', 'b')
     >>> print(result)
     None
+
+.. admonition:: Ejercicio
+
+    :pypas:`deco-abs`
 
 Múltiples decoradores
 ---------------------
@@ -1487,7 +1491,7 @@ Veamos su aplicación con distintos tipos de datos::
 
 .. admonition:: Ejercicio
 
-    pycheck_: **deco_sort**
+    :pypas:`deco-sort`
 
 Funciones recursivas
 ====================
@@ -1538,7 +1542,7 @@ La "pila de llamadas" para el ejemplo de ``pow(2, 4)`` sería la siguiente:
 
 .. admonition:: Ejercicio
 
-    pycheck_: **factorial_recursive**
+    :pypas:`factorial-recursive`
 
 Otra aproximación a la recursividad se da en problemas donde tenemos que procesar una secuencia de elementos. Supongamos que nos piden **calcular la suma de las longitudes de una serie de palabras** definidas en una lista::
 
@@ -1742,25 +1746,24 @@ Consejos para programar
 Ejercicios
 **********
 
-1. pycheck_: **num_in_interval**
-2. pycheck_: **extract_evens**
-3. pycheck_: **split_case**
-4. pycheck_: **perfect**
-5. pycheck_: **palindrome**
-6. pycheck_: **count_vowels_rec**
-7. pycheck_: **pangram**
-8. pycheck_: **cycle_alphabet**
-9. pycheck_: **bubble_sort**
-10. pycheck_: **consecutive_seq**
-11. pycheck_: **magic_square**
-12. pycheck_: **sum_nested**
-13. pycheck_: **fibonacci_recursive**
-14. pycheck_: **hyperfactorial**
-15. pycheck_: **fibonacci_generator**
-16. pycheck_: **gcd_recursive**
-17. pycheck_: **palindrome_recursive**
-18. pycheck_: **assert_positive**
-19. pycheck_: **slice_recursive**
+1. :pypas:`num-in-interval!`
+2. :pypas:`extract-evens!`
+3. :pypas:`split-case!`
+4. :pypas:`perfect!`
+5. :pypas:`palindrome!`
+6. :pypas:`count-vowels-recursive!`
+7. :pypas:`pangram!`
+8. :pypas:`cycle-alphabet!`
+9. :pypas:`bubble-sort!`
+10. :pypas:`consecutive-seq!`
+11. :pypas:`magic-square!`
+12. :pypas:`nested-add!`
+13. :pypas:`fibonacci-recursive!`
+14. :pypas:`hyperfactorial!`
+15. :pypas:`fibonacci-generator!`
+16. :pypas:`palindrome-recursive!`
+17. :pypas:`deco-positive!`
+18. :pypas:`slice-recursive!`
 
 *********************
 Ampliar conocimientos
@@ -1818,7 +1821,6 @@ Ampliar conocimientos
 .. _perfecto: https://es.wikipedia.org/wiki/N%C3%BAmero_perfecto
 .. _palíndromo: https://es.wikipedia.org/wiki/Pal%C3%ADndromo
 .. _pangrama: https://es.wikipedia.org/wiki/Pangrama
-.. _pycheck: https://pycheck.es
 .. _requests: https://requests.readthedocs.io/en/latest/api/
 .. _Epydoc: https://epydoc.sourceforge.net/
 .. _Yield el amigo que no sabías que tenías: https://www.youtube.com/watch?v=W-3wHM549gA

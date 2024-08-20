@@ -197,31 +197,8 @@ Es importante tener en cuenta que si no usamos ``self`` estaremos creando una va
 
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Escriba una clase ``MobilePhone`` que represente un teléfono móvil.
-
-    Atributos:
-
-    - ``manufacturer`` (cadena de texto)
-    - ``screen_size`` (flotante)
-    - ``num_cores`` (entero)
-    - ``apps`` (lista de cadenas de texto)
-    - ``status`` (``False``: apagado, ``True``: encendido)
-
-    Métodos:
-
-    - ``__init__(self, manufacturer, screen_size, num_cores)``
-    - ``power_on(self)``
-    - ``power_off(self)``
-    - ``install_app(self, app)`` *(no instalar la app si ya existe)*
-    - ``uninstall_app(self, app)``  *(no borrar la app si no existe)*
-
-    *¿Serías capaz de extender el método ``install_app()`` y ``uninstall_app()``para instalar/desinstalar varias aplicaciones a la vez?*
-
-        | Plantilla: :download:`mobile.py <files/templates/mobile.py>`
-        | Comprobación: ``pytest -xq`` :download:`test_mobile.py <files/test_mobile.py>` 
-        | Comprobación (avanzado): ``pytest -xq`` :download:`test_mobile_advanced.py <files/test_mobile_advanced.py>`
+    
+    :pypas:`mobile-phone`
 
 *********
 Atributos
@@ -869,35 +846,8 @@ Uno de los métodos mágicos más utilizados es ``__str__`` y permite establecer
     'Droid -> 🤖 Droid "K-2SO" serial-no 8403898409432'
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Defina una clase ``Fraction`` que represente una fracción con numerador y denominador enteros y utilice los métodos mágicos para poder sumar, restar, multiplicar y dividir estas fracciones.
-
-    Además de esto, necesitaremos:
-
-    - ``gcd(a, b)`` para calcular el máximo común divisor entre ``a`` y ``b`` (*Algoritmo de Euclides*).
-    - ``__init__(self, num, den)`` para construir una fracción (incluyendo simplificación de sus términos mediante el método ``gcd()``.
-    - ``__str__(self)`` para representar una fracción.
-
-    Algoritmo de Euclides::
-
-        def gcd(a: int, b: int) -> int:
-            """ Algoritmo de Euclides para el cálculo del Máximo Común Divisor. """
-            while b > 0:
-                a, b = b, a % b
-            return a
-
-    Compruebe que se cumplen las siguientes igualdades:
-
-    .. math::
-
-        \bigg[ \frac{25}{30} + \frac{40}{45} = \frac{31}{18} \bigg] \hspace{5mm}
-        \bigg[ \frac{25}{30} - \frac{40}{45} = \frac{-1}{18} \bigg] \hspace{5mm}
-        \bigg[ \frac{25}{30} * \frac{40}{45} = \frac{20}{27} \bigg] \hspace{5mm}
-        \bigg[ \frac{25}{30} / \frac{40}{45} = \frac{15}{16} \bigg]
-
-    | Plantilla: :download:`fraction.py <files/templates/fraction.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_fraction.py <files/test_fraction.py>`
+    
+    :pypas:`fraction`
 
 ``__repr__``
 ------------
@@ -1322,27 +1272,8 @@ Veamos un ejemplo de un "mixin" para mostrar las variables de un objeto::
     {'code': 'DN-LD', 'num_feet': 2, 'type': 'Power Droid'}
 
 .. admonition:: Ejercicio
-    :class: exercise
-
-    Cree el siguiente escenario de herencia de clases en Python que representa distintos tipos de ficheros en un sistema:
-
-    .. image:: img/files-inheritance.svg
-
-    Notas:
-
-    - El atributo ``size`` debe devolver el número total de caracteres sumando las longitudes de los elementos del atributo ``contents``.
-    - El atributo ``info`` de cada clase debe hacer uso del atributo ``info`` de su clase base para conformar las salida final. Veamos un ejemplo:
-
-    .. code-block:: text
-
-        /home/python/vanrossum.mp4 [size=19B]
-        Codec: h264
-        Geolocalization: (23.5454, 31.4343)
-        Duration: 487s
-        Dimensions: (1920, 1080)
-
-    | Plantilla: :download:`file_inheritance.py <files/templates/file_inheritance.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_file_inheritance.py <files/test_file_inheritance.py>`
+    
+    :pypas:`file-inheritance`
 
 Agregación y composición
 ========================
@@ -1447,12 +1378,7 @@ Ahora podemos instanciar la clase anterior y probar su comportamiento::
 
 .. admonition:: Ejercicio
 
-    Cree una clase ``InfiniteList`` que permita utilizar una lista sin tener límites, es decir, evitando un ``IndexError``. Por ejemplo, si la lista tiene 10 elementos, y asignamos un valor al elemento en el índice 20, esto no daría un error, sino que haría ampliar la lista hasta el valor 20, rellenando los valores en blanco con un valor de relleno que por defecto es ``None``.
-
-    La clase se debe implementar **como una secuencia**. Escriba también un método ``__str__()`` que devuelva la representación de la lista en formato cadena de texto. Por ejemplo para ``[5, 3, 8]`` habría que devolver ``'5,3,8'``.
-
-        | Plantilla: :download:`infinite_list.py <files/templates/infinite_list.py>`
-        | Comprobación: ``pytest -xq`` :download:`test_infinite_list.py <files/test_infinite_list.py>`
+    :pypas:`infinite-list`
 
 Diccionarios
 ============
@@ -1630,7 +1556,7 @@ Otra característica importante es que **los iterables se agotan**. Lo podemos c
 
 .. admonition:: Ejercicio
 
-    pycheck_: **fibonacci_iterable**
+    :pypas:`fibonacci-iterable`
 
 Usando un iterador externo
 --------------------------
@@ -2093,25 +2019,10 @@ Aunque no existe ninguna indicación formal de la estructura de una clase, podr�
 Ejercicios
 **********
 
-1. Escriba una clase ``Date`` que represente una fecha.
-
-    | Plantilla: :download:`date.py <files/templates/date.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_date.py <files/test_date.py>`
-
-2. Escriba una clase ``DNA`` que represente una secuencia de ADN.
-
-    | Plantilla: :download:`dna.py <files/templates/dna.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_dna.py <files/test_dna.py>`
-
-3. Escriba una clase ``IntegerStack`` que represente una pila de valores enteros.
-
-    | Plantilla: :download:`istack.py <files/templates/istack.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_istack.py <files/test_istack.py>`
-
-4. Escriba una clase ``IntegerQueue`` que represente una cola de valores enteros.
-
-    | Plantilla: :download:`iqueue.py <files/templates/iqueue.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_iqueue.py <files/test_iqueue.py>`
+1. :pypas:`dna!`
+2. :pypas:`istack!`
+3. :pypas:`iqueue!`
+4. :pypas:`date!`
 
 *********************
 Ampliar conocimientos
@@ -2152,4 +2063,3 @@ Ampliar conocimientos
 .. _Freepik: https://www.flaticon.com/authors/freepik
 .. _SOLID: https://es.wikipedia.org/wiki/SOLID
 .. _Geonosis: https://starwars.fandom.com/es/wiki/F%C3%A1bricas_de_droides_de_Geonosis
-.. _pycheck: https://pycheck.es

@@ -417,32 +417,11 @@ El guión medio hay que escaparlo en situaciones donde no represente un rango:
 Ejercicios
 **********
 
-1. Escriba un programa en Python que encuentre todas las palabras que comiencen por vocal en un texto dado.
-
-    | Plantilla: :download:`vowel_words.py <files/templates/vowel_words.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_vowel_words.py <files/test_vowel_words.py>`
-
-2. Escriba un programa en Python que indique si una URL dada es válida o no.
-
-    | Plantilla: :download:`valid_url.py <files/templates/valid_url.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_valid_url.py <files/test_valid_url.py>`
-
-3. Escriba un programa en Python que indique si un determinado número es o no un :ref:`flotante válido en Python <core/datatypes/numbers:flotantes>`.
-
-    | Plantilla: :download:`valid_float.py <files/templates/valid_float.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_valid_float.py <files/test_valid_float.py>`
-
-4. Escriba un programa en Python que determine si un email dado tiene el formato correcto.
-
-    | Plantilla: :download:`valid_email.py <files/templates/valid_email.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_valid_email.py <files/test_valid_email.py>`
-
-5. Escriba un programa en Python que obtenga el resultado de una operación entre números enteros positivos. Las operación puede ser suma, resta, multiplicación o división, y puede haber espacios (o no) entre los operandos y el operador.
-
-    | Plantilla: :download:`calc_from_str.py <files/templates/calc_from_str.py>`
-    | Comprobación: ``pytest -xq`` :download:`test_calc_from_str.py <files/test_calc_from_str.py>`
-
-
+1. :pypas:`vowel-words!`
+2. :pypas:`valid-float!`
+3. :pypas:`valid-email!`
+4. :pypas:`calc-from-str!`
+5. :pypas:`valid-url!`
 
 .. --------------- Footnotes ---------------
 

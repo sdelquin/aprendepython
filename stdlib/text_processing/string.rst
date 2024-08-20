@@ -42,15 +42,8 @@ Las constantes definidas en este módulo son las siguientes::
     ' \t\n\r\x0b\x0c'
 
 .. admonition:: Ejercicio
-    :class: exercise
 
-    Dada una cadena de texto, compruebe si todos sus caracteres son dígitos ASCII. *Ignore los espacios en blanco*.
-
-    **Ejemplo**
-        * Entrada: ``This is it``
-        * Salida: True
-    
-    Solución: :download:`ascii_letters.py <files/ascii_letters.py>`
+    :pypas:`all-ascii`
 
 **********
 Plantillas

@@ -505,7 +505,7 @@ Si queremos comprobar la existencia de un determinado elemento en una lista, pod
 
 .. admonition:: Ejercicio
 
-    pycheck_: **isogram**
+    :pypas:`isogram`
 
 
 Número de ocurrencias
@@ -548,7 +548,7 @@ La función ``split()`` devuelve una lista donde cada elemento es una parte de l
 
 .. admonition:: Ejercicio
 
-    pycheck_: **num_words**
+    :pypas:`num-words`
 
 Particionado de cadenas de texto
 --------------------------------
@@ -599,7 +599,7 @@ Hay que tener en cuenta que ``join()`` sólo funciona si *todos sus elementos so
 
 .. admonition:: Ejercicio
 
-    pycheck_: **fixdate**
+    :pypas:`fix-date`
 
 Ordenar una lista
 =================
@@ -661,7 +661,7 @@ Al igual que :ref:`hemos visto con las cadenas de texto <for-sentence>`, tambié
 
 .. admonition:: Ejercicio
 
-    pycheck_: **chars_list**
+    :pypas:`chars-list`
 
 Iterar usando enumeración
 -------------------------
@@ -730,7 +730,7 @@ Dado que ``zip()`` produce un *iterador*, si queremos obtener una **lista explí
     
 .. admonition:: Ejercicio
 
-    pycheck_: **dot_product**
+    :pypas:`dot-product`
 
 Comparar listas
 =================
@@ -977,7 +977,7 @@ Veamos un ejemplo en el que generamos todas las combinaciones de una serie de va
 
 .. admonition:: Ejercicio
 
-    pycheck_: **fcomp**
+    :pypas:`fcomp`
 
 .. _sys-argv:
 
@@ -1118,62 +1118,58 @@ También podemos **recorrer toda la alineación**::
 
 .. admonition:: Ejercicio
 
-    pycheck_: **mulmatrix2**
-
-.. admonition:: Ejercicio
-
-    pycheck_: **mulmatrix**
+    :pypas:`mulmatrix2`
 
 **********
 Ejercicios
 **********
 
-1. pycheck_: **max_value**
-2. pycheck_: **max_value_with_min**
-3. pycheck_: **remove_dups**
-4. pycheck_: **flatten_list**
-5. pycheck_: **remove_consecutive_dups**
-6. pycheck_: **all_same**
-7. pycheck_: **sum_diagonal**
-8. pycheck_: **powers2**
-9. pycheck_: **dec2bin**
-10. pycheck_: **sum_mixed**
-11. pycheck_: **n_mult**
-12. pycheck_: **remove_second**
-13. pycheck_: **nth_power**
-14. pycheck_: **name_initials**
-15. pycheck_: **non_consecutive**
-16. pycheck_: **mult_reduce**
-17. pycheck_: **digit_rev_list**
-18. pycheck_: **time_plus_minutes**
-19. pycheck_: **sum_positive**
-20. pycheck_: **add_inverse**
-21. pycheck_: **descending_numbers**
-22. pycheck_: **merge_sorted**
-23. pycheck_: **min_value**
-24. pycheck_: **min_value_with_max**
-25. pycheck_: **trimmed_sum**
-26. pycheck_: **wolves**
-27. pycheck_: **maxmin_values**
-28. pycheck_: **cascading_subsets**
-29. pycheck_: **diff_cuboid**
-30. pycheck_: **fl_strip**
-31. pycheck_: **logical_chain**
-32. pycheck_: **smallest_unused_id**
-33. pycheck_: **find_odds**
-34. pycheck_: **reagent_formula**
-35. pycheck_: **whats_next**
-36. pycheck_: **npartition**
-37. pycheck_: **add_length**
-38. pycheck_: **reversing_words**
-39. pycheck_: **barycenter**
-40. pycheck_: **kpower**
-41. pycheck_: **sort_numbers**
-42. pycheck_: **flatten_list_deep**
-43. pycheck_: **first_duplicated**
-44. pycheck_: **fill_values**
-45. pycheck_: **frange**
-46. pycheck_: **qual_number**
+1. :pypas:`max-value!`
+2. :pypas:`max-value-with-min!`
+3. :pypas:`min-value!`
+4. :pypas:`min-value-with-max!`
+5. :pypas:`remove-dups!`
+6. :pypas:`flatten-list!`
+7. :pypas:`remove-consecutive-dups!`
+8. :pypas:`all-same!`
+9. :pypas:`sum-diagonal!`
+10. :pypas:`powers2!`
+11. :pypas:`dec2bin!`
+12. :pypas:`sum-mixed!`
+13. :pypas:`n-multiples!`
+14. :pypas:`drop-even!`
+15. :pypas:`nth-power!`
+16. :pypas:`name-initials!`
+17. :pypas:`non-consecutive!`
+18. :pypas:`mult-reduce!`
+19. :pypas:`digit-rev-list!`
+20. :pypas:`time-plus-minutes!`
+21. :pypas:`add-positives!`
+22. :pypas:`add-opposites!`
+23. :pypas:`descending-numbers!`
+24. :pypas:`merge-sorted!`
+25. :pypas:`trimmed-add!`
+26. :pypas:`wolves!`
+27. :pypas:`minmax!`
+28. :pypas:`cascading-subsets!`
+29. :pypas:`diff-cuboid!`
+30. :pypas:`fl-strip!`
+31. :pypas:`logical-chain!`
+32. :pypas:`first-unused-id!`
+33. :pypas:`find-odds!`
+34. :pypas:`chemistry!`
+35. :pypas:`next-next!`
+36. :pypas:`v-partition!`
+37. :pypas:`attach-len!`
+38. :pypas:`reversing-words!`
+39. :pypas:`barycenter!`
+40. :pypas:`sort-custom!`
+41. :pypas:`flatten-list-deep`
+42. :pypas:`first-duplicated!`
+43. :pypas:`fill-values!`
+44. :pypas:`frange!`
+45. :pypas:`qual-number!`
+46. :pypas:`mul-matrix!`
 
 *********************
 Ampliar conocimientos
@@ -1201,4 +1197,3 @@ Ampliar conocimientos
 .. _Numpy: https://numpy.org/
 .. _producto escalar: https://es.wikipedia.org/wiki/Producto_escalar
 .. _multiplicación de matrices: https://www.superprof.es/apuntes/escolar/matematicas/algebralineal/matrices/producto-de-matrices.html
-.. _pycheck: https://pycheck.es

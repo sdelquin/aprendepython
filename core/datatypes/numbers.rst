@@ -314,7 +314,7 @@ Hecho en Python::
 
 .. admonition:: Ejercicio
 
-    pycheck_: **quadratic**
+    :pypas:`quadratic`
 
 Valor absoluto
 --------------
@@ -492,7 +492,7 @@ Pero también existe la posibilidad seguimos **comprobar el tipo** que tiene una
 
 .. admonition:: Ejercicio
 
-    pycheck_: **sin_approx**
+    :pypas:`sin-approx`
 
 Errores de aproximación
 =======================
@@ -623,20 +623,20 @@ Cuenta con **16** símbolos para representar los valores: ``0``, ``1``, ``2``, `
 Ejercicios
 **********
 
-1. pycheck_: **circle_area**
-2. pycheck_: **sphere_volume**
-3. pycheck_: **triangle_area**
-4. pycheck_: **interest_rate**
-5. pycheck_: **euclid_distance**
-6. pycheck_: **century_year**
-7. pycheck_: **red_square**
-8. pycheck_: **igic**
-9. pycheck_: **super_fast**
-10. pycheck_: **move_twice**
-11. pycheck_: **pillars**
-12. pycheck_: **clock_time**
-13. pycheck_: **xor**
-14. pycheck_: **ring_area**
+1. :pypas:`circle-area!`
+2. :pypas:`sphere-volume!`
+3. :pypas:`triangle-area!`
+4. :pypas:`interest-rate!`
+5. :pypas:`euclid-distance!`
+6. :pypas:`century-year!`
+7. :pypas:`red-square!`
+8. :pypas:`igic!`
+9. :pypas:`super-fast!`
+10. :pypas:`move-twice!`
+11. :pypas:`pillars!`
+12. :pypas:`clock-time!`
+13. :pypas:`xor-sim!`
+14. :pypas:`ring-area!`
 
 ----
 
@@ -679,4 +679,3 @@ Ampliar conocimientos
 .. _IEEE 754: https://es.wikipedia.org/wiki/IEEE_754
 .. _aritmética finita: https://www.unioviedo.es/compnum/laboratorios_py/Aritmetica_finita/Aritmetica_finita_y_error.html#Representaci%C3%B3n-de-los-n%C3%BAmeros-reales
 .. _round(): https://docs.python.org/es/3/library/functions.html#round
-.. _pycheck: https://pycheck.es
