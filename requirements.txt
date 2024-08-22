@@ -1,5 +1,5 @@
-Sphinx==7.2.6
-furo==2024.1.29
+sphinx==8.0.2
+furo==2024.8.6
 sphinxext-opengraph==0.9.1
 sphinx-copybutton==0.5.2
 sphinxnotes-strike==1.2.1

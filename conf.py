@@ -7,6 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import glob
 import os
+import sys
+from pathlib import Path
 
 project = 'Aprende Python'
 description = 'Aprende Python'
@@ -15,6 +17,8 @@ author = 'Sergio Delgado Quintero'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+
+sys.path.append(str(Path(__file__).parent))
 
 extensions = [
     'extra_roles',
@@ -27,7 +31,7 @@ extensions = [
 autosectionlabel_prefix_document = True
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'prolog.rst']
+exclude_patterns = ['.venv', '_build', 'Thumbs.db', '.DS_Store', 'prolog.rst']
 
 rst_prolog = open('prolog.rst').read()
 
