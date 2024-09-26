@@ -66,5 +66,5 @@ ogp_image = 'https://raw.githubusercontent.com/sdelquin/aprendepython/main/_stat
 # -- Options for Copy button -------------------------------------------------
 # https://sphinx-copybutton.readthedocs.io/en/latest/use.html
 
-copybutton_prompt_text = r'>>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: '
-copybutton_prompt_is_regexp = True
+# copybutton_prompt_text = r'>>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: '
+# copybutton_prompt_is_regexp = True
