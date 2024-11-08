@@ -1118,7 +1118,7 @@ También podemos **recorrer toda la alineación**::
 
 .. admonition:: Ejercicio
 
-    :pypas:`mulmatrix2`
+    :pypas:`mul-matrix2`
 
 **********
 Ejercicios
@@ -1141,7 +1141,7 @@ Ejercicios
 15. :pypas:`nth-power!`
 16. :pypas:`name-initials!`
 17. :pypas:`non-consecutive!`
-18. :pypas:`mult-reduce!`
+18. :pypas:`mul-reduce!`
 19. :pypas:`digit-rev-list!`
 20. :pypas:`time-plus-minutes!`
 21. :pypas:`add-positives!`
@@ -1158,17 +1158,17 @@ Ejercicios
 32. :pypas:`first-unused-id!`
 33. :pypas:`find-odds!`
 34. :pypas:`chemistry!`
-35. :pypas:`next-next!`
+35. :pypas:`next-item!`
 36. :pypas:`v-partition!`
 37. :pypas:`attach-len!`
 38. :pypas:`reversing-words!`
 39. :pypas:`barycenter!`
 40. :pypas:`sort-custom!`
-41. :pypas:`flatten-list-deep`
+41. :pypas:`flatten-list-deep!`
 42. :pypas:`first-duplicated!`
 43. :pypas:`fill-values!`
 44. :pypas:`frange!`
-45. :pypas:`qual-number!`
+45. :pypas:`qual-name!`
 46. :pypas:`mul-matrix!`
 
 *********************
