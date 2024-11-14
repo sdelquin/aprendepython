@@ -507,21 +507,22 @@ Ejecución **paso a paso** a través de *Python Tutor*:
 Ejercicios
 **********
 
-1. :pypas:`m3-sum-limited!`
-2. :pypas:`repeat-please!`
-3. :pypas:`one-tree!`
-4. :pypas:`chess-horse!`
-5. :pypas:`domino!`
-6. :pypas:`fmin!`
-7. :pypas:`ascii-table!`
-8. :pypas:`guess-number!`
-9. :pypas:`gcd!`
-10. :pypas:`hamming!`
-11. :pypas:`cartesian!`
-12. :pypas:`cumprod-sq!`
-13. :pypas:`isalpha!`
-14. :pypas:`kpower!`
-15. :pypas:`fibonacci!`
+1. :pypas:`letdig!`
+2. :pypas:`m3-sum-limited!`
+3. :pypas:`repeat-please!`
+4. :pypas:`one-tree!`
+5. :pypas:`chess-horse!`
+6. :pypas:`domino!`
+7. :pypas:`fmin!`
+8. :pypas:`ascii-table!`
+9. :pypas:`guess-number!`
+10. :pypas:`gcd!`
+11. :pypas:`hamming!`
+12. :pypas:`cartesian!`
+13. :pypas:`cumprod-sq!`
+14. :pypas:`isalpha!`
+15. :pypas:`kpower!`
+16. :pypas:`fibonacci!`
 
 ----
 
