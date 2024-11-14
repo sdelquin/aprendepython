@@ -118,6 +118,9 @@ Veamos su comportamiento siguiendo con el ejemplo que venimos trabajando:
 .. important::
     Si hubiéramos agotado el número de saludos NO se habría ejecutado la cláusula ``else`` del bucle ya que habríamos roto el flujo con un ``break``.
 
+.. warning::
+    La sentencia ``else`` sólo tiene sentido en aquellos bucles que contienen un ``break``.
+
 Ejecución **paso a paso** a través de *Python Tutor*:
 
 .. raw:: html
