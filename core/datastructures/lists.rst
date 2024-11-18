@@ -507,6 +507,15 @@ Si queremos comprobar la existencia de un determinado elemento en una lista, pod
 
     :pypas:`isogram`
 
+Longitud de una lista
+=====================
+
+Podemos conocer el número de elementos que tiene una lista con la función ``len()``::
+
+    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+
+    >>> len(shopping)
+    5
 
 Número de ocurrencias
 =====================
@@ -630,16 +639,6 @@ Python proporciona, al menos, dos formas de ordenar los elementos de una lista:
 
     >>> sorted(shopping, reverse=True)
     ['Sal', 'Limón', 'Huevos', 'Agua', 'Aceite']
-
-Longitud de una lista
-=====================
-
-Podemos conocer el número de elementos que tiene una lista con la función ``len()``::
-
-    >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
-
-    >>> len(shopping)
-    5
 
 Iterar sobre una lista
 ======================
