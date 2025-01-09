@@ -641,7 +641,7 @@ Ejercicios
 4. :pypas:`clear-dict-values!`
 5. :pypas:`fix-keys!`
 6. :pypas:`order-stock!`
-7. :pypas:`inventory-moves!`
+7. :pypas:`inventory-updates!`
 8. :pypas:`sort-dict!`
 9. :pypas:`money-back!`
 10. :pypas:`money-back-max!`
