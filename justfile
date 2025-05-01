@@ -6,6 +6,3 @@ rundirty port="8000":
 
 build:
     uv run mkdocs build --clean
-
-deploy: build
-    rsync -avz --delete site/ aprendepython.es:~/code/aprendepython-mkdocs/site/
