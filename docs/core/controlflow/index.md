@@ -1,0 +1,3 @@
+# Control de flujo
+
+El control de flujo en programación se refiere a la manera en que se determina el orden en que se ejecutan las instrucciones de un programa. En lugar de seguir una secuencia lineal, los programas pueden tomar decisiones, repetir bloques de código o desviar la ejecución según ciertas condiciones. Esto se logra mediante estructuras como condicionales (if, else), bucles (for, while) y declaraciones de control como break o continue. Dominar el control de flujo es clave para desarrollar programas dinámicos y adaptables, capaces de responder a distintos escenarios. En este capítulo, aprenderás cómo utilizar estas estructuras en Python para crear algoritmos más complejos y eficientes.

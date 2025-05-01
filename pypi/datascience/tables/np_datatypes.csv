@@ -1,7 +1,0 @@
-dtype,Descripción,Rango
-np.int32,Integer,De -2147483648 a 2147483647
-np.int64,Integer,De -9223372036854775808 a 9223372036854775807
-np.uint32,Unsigned integer,De 0 a 4294967295
-np.uint64,Unsigned integer,De 0 a 18446744073709551615
-np.float32,Float,De -3.4028235e+38 a 3.4028235e+38
-np.float64,Float,De -1.7976931348623157e+308 a 1.7976931348623157e+308

@@ -1,0 +1,3 @@
+# Tipos de datos
+
+En programación, los tipos de datos son fundamentales porque determinan la naturaleza de los valores que se pueden almacenar y manipular en un programa. Cada lenguaje, incluido Python, clasifica la información en distintos tipos para poder realizar operaciones apropiadas según su naturaleza, como sumar números o concatenar cadenas de texto. Comprender los tipos de datos es esencial para escribir código correcto y eficiente, ya que permite al programador elegir la forma adecuada de representar la información. En este capítulo exploraremos los principales tipos de datos en Python, como los números, las cadenas de texto o los booleanos.

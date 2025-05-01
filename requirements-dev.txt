@@ -1,2 +1,0 @@
-sphinx-autobuild==2024.4.16
-esbonio==0.16.4

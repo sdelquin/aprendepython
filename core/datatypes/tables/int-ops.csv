@@ -1,8 +1,0 @@
-Operador,Descripción,Ejemplo,Resultado
-``+``,Suma,``3 + 9``,``12``
-``-``,Resta,``6 - 2``,``4``
-``*``,Multiplicación,``5 * 5``,``25``
-``/``,División flotante,``9 / 2``,``4.5``
-``//``,División entera,``9 // 2``,``4``
-``%``,Módulo,``9 % 4``,``1``
-``**``,Exponenciación,``2 ** 4``,``16``

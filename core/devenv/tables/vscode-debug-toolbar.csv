@@ -1,7 +1,0 @@
-**Acción**,Atajo,Significado
-**Continue**,``F5``,Continuar la ejecución del programa hasta el próximo punto de ruptura o hasta su finalización
-**Step over**,``F10``,Ejecutar la siguiente instrucción del programa
-**Step into**,``F11``,Ejecutar la siguiente instrucción del programa entrando en un contexto inferior
-**Step out**,⇧ + ``F11``,Ejecutar la siguiente instrucción del programa saliendo a un contexto superior
-**Restart**,⌃ + ⇧ + ``F5``,Reiniciar la depuración del programa
-**Stop**,⇧ + ``F5``,Detener la depuración del programa

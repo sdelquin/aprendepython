@@ -1,0 +1,3 @@
+# Estructuras de datos
+
+Las estructuras de datos son formas organizadas de almacenar y gestionar conjuntos de información para que puedan ser utilizadas de manera eficiente por un programa. En Python, existen diversas estructuras integradas como listas, tuplas, conjuntos y diccionarios, cada una con características específicas que las hacen más adecuadas para ciertos tipos de tareas. Comprender cómo funcionan estas estructuras y cuándo utilizarlas es fundamental para escribir código limpio, optimizado y fácil de mantener. En este capítulo, exploraremos las principales estructuras de datos en Python, su sintaxis, operaciones comunes y casos prácticos donde se aplican.

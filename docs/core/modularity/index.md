@@ -1,0 +1,3 @@
+# Modularidad
+
+La modularidad en programación es un principio clave que permite dividir un programa en partes más pequeñas, reutilizables y fáciles de mantener. En Python, esta modularidad se logra mediante el uso de funciones, la programación orientada a objetos (POO), el manejo de excepciones y la organización del código en módulos. Las funciones permiten encapsular tareas específicas, la POO facilita la creación de estructuras más complejas a través de clases y objetos, las excepciones ayudan a gestionar errores de manera controlada, y los módulos permiten organizar el código en archivos independientes que pueden ser reutilizados. En este capítulo, exploraremos cómo aplicar estos conceptos para construir programas más claros, escalables y robustos.

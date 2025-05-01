@@ -1,0 +1,3 @@
+# Acceso a datos
+
+El acceso a datos es un componente esencial en el desarrollo de aplicaciones, ya que la mayoría de los programas necesitan leer, almacenar o intercambiar información con distintas fuentes. En Python, existen múltiples formas de acceder a datos, ya sea desde archivos locales (como texto, CSV o JSON), bases de datos relacionales (como SQLite o MySQL) o servicios externos a través de APIs. Dominar estas técnicas permite construir aplicaciones más útiles y dinámicas, capaces de interactuar con el entorno y manejar grandes volúmenes de información. En este capítulo, exploraremos las principales herramientas de la librería estándar y métodos para acceder, leer y escribir datos en Python de manera segura y eficiente.

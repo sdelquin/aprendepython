@@ -1,14 +1,11 @@
-runserver port='8000':
-    sphinx-autobuild --port {{ port }} . _build/html
+runserver port="8000":
+    uv run mkdocs serve -a localhost:{{ port }}
 
-cleanrun port='8000': clean
-    just runserver {{ port }}
+rundirty port="8000":
+    uv run mkdocs serve -a localhost:{{ port }} --dirty
 
-clean:
-    make clean
+build:
+    uv run mkdocs build --clean
 
-html:
-    make dirhtml
-
-ideas:
-    open ideas.pdf
+deploy: build
+    rsync -avz --delete site/ aprendepython.es:~/code/aprendepython-mkdocs/site/

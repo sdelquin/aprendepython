@@ -1,0 +1,204 @@
+# Inspired by: https://github.com/astral-sh/uv/blob/main/mkdocs.template.yml
+
+site_name: Aprende Python
+site_author: sdelquin
+site_url: https://aprendepython.es
+
+theme:
+  name: material
+  logo: assets/images/aprendepython-logo.svg
+  favicon: assets/images/favicon.svg
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.prune
+    - navigation.tabs
+    - navigation.top
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+      primary: teal
+      accent: pink
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  language: es
+
+repo_url: https://github.com/sdelquin/aprendepython
+repo_name: aprendepython
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - markdown.extensions.attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - search
+  # https://github.com/byrnereese/mkdocs-minify-plugin?tab=readme-ov-file#options
+  - minify:
+      cache_safe: true
+      minify_css: true
+      css_files:
+        - assets/css/custom.css
+
+watch:
+  - includes
+
+extra_css:
+  - assets/css/custom.css
+extra_javascript:
+  - assets/js/clipboard.js
+  - assets/js/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sdelquin/aprendepython
+
+validation:
+  links:
+    absolute_links: relative_to_docs
+
+not_in_nav: |
+  index.md
+
+nav:
+  - Fundamentos del lenguaje:
+      - core/index.md
+      - Introducción:
+          - core/introduction/index.md
+          - core/introduction/machine.md
+          - core/introduction/history.md
+          - core/introduction/python.md
+      - Entornos de desarrollo:
+          - core/devenv/index.md
+          - core/devenv/thonny.md
+          - core/devenv/real-context.md
+          - core/devenv/vscode.md
+      - Tipos de datos:
+          - core/datatypes/index.md
+          - core/datatypes/data.md
+          - core/datatypes/numbers.md
+          - core/datatypes/strings.md
+      - Control de flujo:
+          - core/controlflow/index.md
+          - core/controlflow/conditionals.md
+          - core/controlflow/loops.md
+      - Estructuras de datos:
+          - core/datastructures/index.md
+          - core/datastructures/lists.md
+          - core/datastructures/tuples.md
+          - core/datastructures/dicts.md
+          - core/datastructures/sets.md
+          - core/datastructures/files.md
+      - Modularidad:
+          - core/modularity/index.md
+          - core/modularity/functions.md
+          - core/modularity/oop.md
+          - core/modularity/exceptions.md
+          - core/modularity/modules.md
+  - Librería estándar:
+      - stdlib/index.md
+      - Procesamiento de texto:
+          - stdlib/text-processing/index.md
+          - stdlib/text-processing/re.md
+          - stdlib/text-processing/string.md
+      - Acceso a datos:
+          - stdlib/data-access/index.md
+          - stdlib/data-access/sqlite.md
+  - Paquetes de terceros:
+      - third-party/index.md
+      - Ciencia de datos:
+          - third-party/data-science/index.md
+          - third-party/data-science/jupyter.md
+          - third-party/data-science/numpy.md
+          - Pandas:
+              - third-party/data-science/pandas/index.md
+              - third-party/data-science/pandas/series.md
+              - third-party/data-science/pandas/dataframes.md
+          - third-party/data-science/matplotlib.md
+      - Configuraciones:
+          - third-party/config/index.md
+          - third-party/config/prettyconf.md
+      - Desarrollo web:
+          - third-party/webdev/index.md
+          - Django:
+              - third-party/webdev/django/index.md
+              - third-party/webdev/django/webdev.md
+              - third-party/webdev/django/setup.md
+              - third-party/webdev/django/apps.md
+              - third-party/webdev/django/models.md
+              - third-party/webdev/django/urls.md
+              - third-party/webdev/django/views.md
+              - third-party/webdev/django/templates.md
+              - third-party/webdev/django/admin.md
+              - third-party/webdev/django/forms.md
+              - third-party/webdev/django/static.md
+              - third-party/webdev/django/auth.md
+              - third-party/webdev/django/i18n.md
+              - third-party/webdev/django/extras.md
+              - third-party/webdev/django/api.md
+      - PDF:
+          - third-party/pdf/index.md
+          - third-party/pdf/weasyprint.md
+      - Redes:
+          - third-party/networking/index.md
+          - third-party/networking/requests.md
+      - Scraping:
+          - third-party/scraping/index.md
+          - third-party/scraping/beautifulsoup.md
+          - third-party/scraping/selenium.md

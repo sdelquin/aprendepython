@@ -1,0 +1,3 @@
+# Procesamiento de texto
+
+El procesamiento de texto es una de las aplicaciones más comunes y poderosas de la programación, especialmente en un lenguaje como Python que ofrece herramientas muy versátiles para manipular cadenas de caracteres. Desde tareas simples como buscar y reemplazar palabras, hasta operaciones más complejas como analizar, limpiar o transformar grandes volúmenes de texto, el manejo eficiente de datos textuales es fundamental en áreas como la automatización, el análisis de datos y el procesamiento del lenguaje natural. En este capítulo, aprenderás a trabajar con textos en Python utilizando funciones básicas de cadenas, expresiones regulares y otras técnicas clave para procesar información escrita de forma efectiva.

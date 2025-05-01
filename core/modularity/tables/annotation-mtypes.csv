@@ -1,4 +1,0 @@
-Anotación,Significado
-``tuple❘dict``,Tupla o diccionario
-``list[str❘int]``,Lista de cadenas de texto y/o enteros
-``set[int❘float]``,Conjunto de enteros y/o flotantes

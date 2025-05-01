@@ -1,0 +1,3 @@
+# Introducción
+
+La programación es el proceso mediante el cual se le da instrucciones a una computadora para que realice tareas específicas. Es una herramienta fundamental en el mundo moderno, ya que permite automatizar procesos, analizar datos, crear aplicaciones y desarrollar soluciones tecnológicas para diversos problemas. Aprender a programar no solo ayuda a entender mejor cómo funcionan las tecnologías que usamos a diario, sino que también desarrolla habilidades de pensamiento lógico y resolución de problemas. Uno de los lenguajes más populares para iniciarse en este campo es Python, gracias a su sintaxis simple y legible.
