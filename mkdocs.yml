@@ -3,6 +3,7 @@
 site_name: Aprende Python
 site_author: sdelquin
 site_url: https://aprendepython.es
+copyright: Copyright &copy; Sergio Delgado Quintero
 
 theme:
   name: material
@@ -108,6 +109,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/sdelquin/aprendepython
+    - icon: material/shield-account
+      link: https://sdelquin.me
 
 validation:
   links:
