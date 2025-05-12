@@ -107,10 +107,8 @@ extra_javascript:
 
 extra:
   social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/sdelquin/aprendepython
-    - icon: material/shield-account
-      link: https://sdelquin.me
+    - icon: material/human-greeting-variant
+      link: https://sdelquin.matraka.es
 
 validation:
   links:
