@@ -12,6 +12,10 @@ icon: fontawesome/solid/memory
 
 Los programas están formados por **código** y **datos**[^1]. Pero a nivel interno de la memoria del ordenador (RAM) no son más que una secuencia de bits. La interpretación de estos bits depende del lenguaje de programación, que almacena en la memoria no sólo el puro dato sino distintos metadatos[^2].
 
+!!! quote "Rich Hickey"
+
+    «Programming is not about typing, it's about thinking»
+
 Desde la perspectiva de un lenguaje de programación, cada «trozo» de memoria contiene realmente un objeto, de ahí que se diga que en Python **todo son objetos**. Y cada objeto contiene, al menos, los siguientes campos:
 
 - [x] El **tipo** del dato almacenado.
