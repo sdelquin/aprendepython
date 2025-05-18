@@ -23,7 +23,7 @@ Si quieres **apoyar este proyecto** te dejo dos vías:
     
     ---
 
-    [Pagándome un café :material-hand-coin:](buymeacoffee.com/sdelquin)
+    [Pagándome un café :material-hand-coin:](https://buymeacoffee.com/sdelquin)
 
 </div>
 
