@@ -8,6 +8,14 @@ Aprende el lenguaje de programación ^^Python^^ :material-snake:{ .slide .green 
 
 1. :fontawesome-solid-image: Monty Python. Fuente: [noticiascyl](https://www.noticiascyl.com/t/1700231/monty-python-vuelven-leon)
 
+El contenido de esta página está organizado en tres grandes bloques:
+
+- [x] [Fundamentos del lenguaje](/core)
+- [x] [Librería estándar](/stdlib)
+- [x] [Paquetes de terceros](/third-party)
+
+---
+
 Si quieres **apoyar este proyecto** te dejo dos vías:
 
 <div class="grid cards" markdown>
