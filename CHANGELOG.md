@@ -2,9 +2,15 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
-## Sin publicar
+## Version 2.0.2
 
-Publicada el XX-XX-XXXX
+Publicada el 22-09-2025
+
+- Completa documentación de:
+    - Fundamentos del lenguaje.
+    - Expresiones regulares.
+    - sqlite.
+    - Desarrollo web.
 
 ## Version 2.0.1
 
