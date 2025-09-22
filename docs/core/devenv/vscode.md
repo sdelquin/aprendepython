@@ -10,11 +10,11 @@ icon: material/microsoft-visual-studio-code
 
 1. :fontawesome-regular-copyright: [Kelly Sikkema](https://unsplash.com/@kellysikkema) (Unsplash)
 
-[Visual Studio Code](https://code.visualstudio.com/) (también conocido por _VSCode_) es un entorno de desarrollo integrado IDE gratuito y de código abierto que ha ganado mucha relevancia en los últimos años. Permite trabajar fácilmente con multitud de lenguajes de programación y dispone de una gran cantidad de extensiones.
+[Visual Studio Code](https://code.visualstudio.com/) (también conocido por _VSCode_) es un entorno de desarrollo integrado IDE gratuito y de código abierto desarrollado por **Microsoft** :material-microsoft: que ha ganado mucha relevancia en los últimos años. Permite trabajar fácilmente con multitud de lenguajes de programación y dispone de una gran cantidad de extensiones.
 
 ## Instalación { #installation }
 
-VSCode está disponible para distintos sistemas operativos con paquetes autoinstalables que puedes descargar desde [este enlace](https://code.visualstudio.com/download).
+VSCode está disponible para distintos sistemas operativos con paquetes autoinstalables que se pueden descargar desde [este enlace](https://code.visualstudio.com/download).
 
 ## Extensiones { #extensions }
 
@@ -88,13 +88,13 @@ Existen varias herramientas de depuración (o _debuggers_). Algunas de ellas en 
 - La herramienta más extendida en el mundo Python para **depurar en modo texto** es el módulo [pdb](https://docs.python.org/3/library/pdb.html) (The Python Debugger). Viene incluido en la instalación base de Python y es realmente potente.
 - Aunque existen varias herramientas para **depurar en entorno gráfico** nos vamos a centrar en **Visual Studio Code**.
 
-Lo primero será abrir el fichero `fibonacci.py` (como ejemplo) sobre que el que vamos a trabajar:
+Lo primero será abrir el fichero `fibonacci.py` (como <span class="example">ejemplo:material-flash:</span>) sobre que el que vamos a trabajar:
 
 ![VSCode Debug Open](images/vscode/vscode-debug-open.png)
 
 ### Punto de ruptura { #breakpoint }
 
-A continuación pondremos un **punto de ruptura** (también llamado «breakpoint»). Esto implica que la ejecución se pare en ese punto y viene indicado por un punto rojo :octicons-dot-fill-16:{ .red }. Para ponerlo nos tenemos que acercar a la columna que hay a la izquierda del número de línea y hacer clic.
+A continuación pondremos un **punto de ruptura** (también llamado «breakpoint»). Esto implica que la ejecución se pare en ese punto que viene indicado por un punto rojo :octicons-dot-fill-16:{ .red }. Para ponerlo nos tenemos que acercar a la columna que hay a la izquierda del número de línea y hacer clic.
 
 En este ejemplo ponemos un punto de ruptura en la ^^línea 10^^:
 

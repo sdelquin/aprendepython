@@ -14,14 +14,14 @@ En esta sección veremos los tipos de datos númericos que ofrece Python centrá
 
 ## Booleanos { #booleans }
 
-[George Boole](https://es.wikipedia.org/wiki/George_Boole) es considerado como uno de los fundadores del campo de las ciencias de la computación y fue el creador del [Álgebra de Boole](https://es.wikipedia.org/wiki/%C3%81lgebra_de_Boole) que da lugar, entre otras estructuras algebraicas, a la [Lógica binaria](https://es.wikipedia.org/wiki/L%C3%B3gica_binaria). En esta lógica las variables sólo pueden tomar dos valores discretos: **Verdadero :octicons-shield-check-16:{ .green }** | **Falso :octicons-shield-x-16:{ .red }**.
+[George Boole](https://es.wikipedia.org/wiki/George_Boole) es considerado como uno de los fundadores del campo de las ciencias de la computación y fue el creador del [Álgebra de Boole](https://es.wikipedia.org/wiki/%C3%81lgebra_de_Boole) que da lugar, entre otras estructuras algebraicas, a la [Lógica binaria](https://es.wikipedia.org/wiki/L%C3%B3gica_binaria). En esta lógica las variables sólo pueden tomar dos valores discretos: **Verdadero :octicons-shield-check-16:{ .green }** o **Falso :octicons-shield-x-16:{ .red }**.
 
-El tipo de datos `bool` proviene de lo explicado anteriormente y admite dos posibles valores:
+El tipo de datos `bool` en _Python_ proviene de lo explicado anteriormente y admite dos posibles valores:
 
 - `#!python True` que se corresponde con **verdadero**.
 - `#!python False` que se corresponde con **falso**.
 
-Veamos un ejemplo de su uso:
+Veamos un <span class="example">ejemplo:material-flash:</span> de su uso:
 
 ```pycon
 >>> is_opened = True
@@ -206,7 +206,7 @@ Estas dos formas son equivalentes a nivel de resultados y funcionalidad, pero ob
 
 #### Módulo { #modulo }
 
-La operación **módulo** (también llamado **resto**), cuyo símbolo en Python es `%` se define como el **resto de dividir dos números**. Veamos un ejemplo para enteder bien su funcionamiento:
+La operación **módulo** (también llamado **resto**), cuyo símbolo en Python es `%` se define como el **resto de dividir dos números**. Veamos un <span class="example">ejemplo:material-flash:</span> para enteder bien su funcionamiento:
 
 ![Modulo](images/numbers/modulo-dark.svg#only-dark)
 ![Modulo](images/numbers/modulo-light.svg#only-light)
@@ -262,7 +262,7 @@ Una de las aplicaciones más habituales del operador módulo `%` es el **desplaz
 
 === "Desplazamiento con paso 1"
 
-    Veamos un ejemplo en el que disponemos de **4 «casillas»** y la «ficha» avanza **de uno en uno**. Después de la última casilla debemos volver a la casilla de salida:
+    Veamos un <span class="example">ejemplo:material-flash:</span> en el que disponemos de **4 «casillas»** y la «ficha» avanza **de uno en uno**. Después de la última casilla debemos volver a la casilla de salida:
 
     ![Dark image](images/numbers/circular-shift-step1-dark.svg#only-dark)
     ![Light image](images/numbers/circular-shift-step1-light.svg#only-light)
@@ -357,7 +357,7 @@ Hecho en Python:
 
 Python ofrece la función `#!python abs()` para obtener el **valor absoluto** $|n|$ de un número $n$.
 
-Veamos algunos ejemplos:
+Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 ```pycon
 >>> abs(-1)
@@ -381,7 +381,7 @@ Veamos algunos ejemplos:
 
 ¿Cómo de grande puede ser un `int` en Python? La respuesta es: **el tamaño que quieras**[^2].
 
-Por poner un ejemplo, supongamos que queremos representar un [centillón](https://es.wikipedia.org/wiki/Centill%C3%B3n). Este valor viene a ser un «1» seguido de ¡600 ceros! ¿Será capaz Python de almacenarlo?
+Por poner un <span class="example">ejemplo:material-flash:</span> supongamos que queremos representar un [centillón](https://es.wikipedia.org/wiki/Centill%C3%B3n). Este valor viene a ser un «1» seguido de ¡600 ceros! ¿Será capaz Python de almacenarlo?
 
 ```pycon
 >>> centillion = 10 ** 600
@@ -398,13 +398,10 @@ Por poner un ejemplo, supongamos que queremos representar un [centillón](https:
 
 ```pycon
 >>> 10 ** 10_000
-Traceback (most recent call last):
-  File ~/.local/pipx/venvs/ipython/lib/python3.12/site-packages/IPython/core/formatters.py:702 in __call__
-    return repr(obj)
 ValueError: Exceeds the limit (4300 digits) for integer string conversion; use sys.set_int_max_str_digits() to increase the limit
 ```
 
-Obtenemos un error... pero subsanable, ya que hay forma de ampliar este **límite inicial de 4300 dígitos** usando la función`sys.set_int_max_str_digits()` :fontawesome-solid-wand-magic-sparkles:
+Obtenemos un error... pero subsanable, ya que hay forma de ampliar este **límite inicial de 4300 dígitos** usando la función [`sys.set_int_max_str_digits()`](https://docs.python.org/3/library/stdtypes.html#int-max-str-digits) :fontawesome-solid-wand-magic-sparkles:
 
 ## Flotantes { #floats }
 
@@ -461,9 +458,9 @@ Cuando mezclamos enteros, booleanos y flotantes, Python realiza automáticamente
 
 Podemos resumir la conversión implícita de la siguiente manera:
 
-- `#!python bool` :fontawesome-regular-handshake: `#!python int` → `#!python int`
-- `#!python bool` :fontawesome-regular-handshake: `#!python float` → `#!python float`
-- `#!python int` :fontawesome-regular-handshake: `#!python float` → `#!python float`
+- `#!python bool` :material-bowl-mix-outline: `#!python int` → `#!python int`
+- `#!python bool` :material-bowl-mix-outline: `#!python float` → `#!python float`
+- `#!python int` :material-bowl-mix-outline: `#!python float` → `#!python float`
 
 #### Conversión explícita { #explicit-typecast }
 
@@ -473,7 +470,7 @@ Aunque más adelante veremos el concepto de **función**, desde ahora podemos de
 - `int()` convierte al tipo [entero](#integers).
 - `float()` convierte al tipo [flotante](#floats).
 
-Veamos algunos ejemplos de estas funciones:
+Veamos algunos <span class="example">ejemplos:material-flash:</span> de estas funciones:
 
 ```pycon
 >>> bool(1)
@@ -496,11 +493,11 @@ False
 0.0
 ```
 
-En el caso de que usemos la función int() sobre un valor flotante nos retornará su **parte baja**:
+En el caso de que usemos la función `#!python int()` sobre un valor flotante nos retornará su **parte baja**:
 
 $int(x) = \lfloor x \rfloor$
 
-Por ejemplo:
+Por <span class="example">ejemplo:material-flash:</span>:
 
 ```pycon
 >>> int(3.1)
@@ -602,7 +599,7 @@ Aunque existen distintas formas de solventar esta limitación, de momento veremo
 1.0
 ```
 
-Veamos otros ejemplos de `#!python round()` aplicamos sobre $\pi$:
+Veamos otros <span class="example">ejemplos:material-flash:</span> de `#!python round()` aplicados sobre $\pi$:
 
 ```pycon
 >>> PI = 3.141_592_653_589

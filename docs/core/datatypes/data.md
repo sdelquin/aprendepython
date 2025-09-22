@@ -10,7 +10,7 @@ icon: fontawesome/solid/memory
 
 1. :fontawesome-regular-copyright: [Alexander Sinn](https://unsplash.com/es/@swimstaralex) (Unsplash)
 
-Los programas están formados por **código** y **datos**[^1]. Pero a nivel interno de la memoria del ordenador (RAM) no son más que una secuencia de bits. La interpretación de estos bits depende del lenguaje de programación, que almacena en la memoria no sólo el puro dato sino distintos metadatos[^2].
+Los programas están formados por **código** y **datos**[^1]. Pero a nivel interno de la memoria del ordenador (RAM) no son más que una secuencia de bits `100101101...` La interpretación de estos bits depende del lenguaje de programación, que almacena en la memoria no sólo el puro dato sino distintos metadatos[^2].
 
 !!! quote "Rich Hickey"
 
@@ -91,7 +91,7 @@ Mientras se sigan las [reglas](#naming-rules) que hemos visto para nombrar varia
     - [ ] `PascalCase`
     - [x] `snake_case`
 
-Por ejemplo, para nombrar una variable que almacene el _número de canciones_ en nuestro ordenador, podríamos usar `num_songs`.
+Por <span class="example">ejemplo:material-flash:</span> para nombrar una variable que almacene el _número de canciones_ en nuestro ordenador, podríamos usar `num_songs`.
 
 Esta convención, y muchas otras, están definidas en un documento denominado [PEP 8](https://peps.python.org/pep-0008/#naming-conventions). Se trata de una **guía de estilo** para escribir código Python. Los PEP son las propuestas que se hacen para la mejora del lenguaje.
 
@@ -112,7 +112,9 @@ Supongamos que queremos buscar un nombre de variable para almacenar el **número
 - [ ] `number_of_items`
 - [ ] `number_of_items_to_be_handled`
 
-No existe una regla mágica que nos diga cuál es el nombre perfecto, pero podemos aplicar el sentido común y, a través de la experiencia, ir detectando aquellos nombres que sean más adecuados. En el ejemplo anterior, quizás podríamos descartar de principio la opción 1 y la 4 (por ser demasiado cortas o demasiado largas); nos quedaríamos con las otras dos. Si nos fijamos bien, casi no hay mucha información adicional de la opción 3 con respecto a la 2. Así que podríamos concluir que **la opción 2 es válida para nuestras necesidades**. En cualquier caso esto dependerá siempre del contexto del problema que estemos tratando.
+No existe una regla mágica que nos diga cuál es el nombre perfecto, pero podemos aplicar el sentido común y, a través de la experiencia, ir detectando aquellos nombres que sean más adecuados. En el ejemplo anterior, quizás podríamos descartar de principio la opción 1 y la 4 (por ser demasiado cortas o demasiado largas); nos quedaríamos con las otras dos. Si nos fijamos bien, casi no hay mucha información adicional de la opción 3 con respecto a la 2. Así que podríamos concluir que **la opción 2 es válida para nuestras necesidades**. 
+
+En cualquier caso esta decisión dependerá siempre del contexto del problema que estemos tratando y de los acuerdos a los que hayamos llegado con nuestro equipo de trabajo.
 
 Como regla general:
 
@@ -133,7 +135,7 @@ flowchart LR
     value ~~~ equals
 ```
 
-Hay que diferenciar la asignación en Python con la igualación en matemáticas. El símbolo `=` lo hemos aprendido desde siempre como una equivalencia entre dos expresiones algebraicas, sin embargo en Python nos indica una sentencia de asignación, del valor (en la derecha) al nombre (en la izquierda).
+Hay que diferenciar la _asignación en Python_ de la _igualación en matemáticas_. El símbolo `=` lo hemos aprendido desde siempre como una equivalencia entre dos expresiones algebraicas, sin embargo en Python nos indica una sentencia de asignación, del valor (en la derecha) al nombre (en la izquierda).
 
 !!! example "Lados de una asignación"
 
@@ -170,7 +172,7 @@ En un escenario donde queramos asignar el mismo valor a tres variables distintas
 >>> drei = 3
 ```
 
-Para estos casos Python nos ofreces la posibilidad de realizar una **asignación múltiple** en una única línea:
+Para estos casos Python nos ofrece la posibilidad de realizar una **asignación múltiple** en una única línea:
 
 ```pycon
 >>> tres = three = drei = 3
@@ -566,7 +568,7 @@ Los detalles de cada función se pueden consultar en la [documentación oficial 
 
 En Python, como en muchas otras situaciones de la vida, podemos pedir ayuda con la función `help()`.
 
-Supongamos que queremos obtener información sobre id. Desde el intérprete de Python <span class="green">❯❯❯</span> ejecutamos lo siguiente:
+Supongamos que queremos obtener información sobre `id`. Desde el intérprete de Python <span class="green">❯❯❯</span> ejecutamos lo siguiente:
 
 ```pycon
 >>> help(id)

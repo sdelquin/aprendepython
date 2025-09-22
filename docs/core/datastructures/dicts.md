@@ -10,7 +10,7 @@ icon: material/code-braces
 
 1. :fontawesome-regular-copyright: [Aaron Burden](https://unsplash.com/@aaronburden) :material-at: [Unsplash](https://unsplash.com) 
 
-Podemos trasladar el concepto de _diccionario_ de la vida real al de mundo Python. Al fin y al cabo un diccionario es un objeto que contiene palabras, y cada palabra tiene asociado un significado. Haciendo el paralelismo, diríamos que en Python un diccionario es también un objeto indexado por **claves** (las palabras) que tienen asociados unos **valores** (los significados).
+Podemos trasladar el concepto de _diccionario_ de la vida real al mundo Python. Al fin y al cabo un diccionario es un objeto que contiene palabras, y cada palabra tiene asociado un significado. Haciendo el paralelismo, diríamos que en Python un diccionario es también un objeto indexado por **claves** (las palabras) que tienen asociados unos **valores** (los significados).
 
 ![Dark image](images/dicts/dicts-dark.svg#only-dark)
 ![Light image](images/dicts/dicts-light.svg#only-light)
@@ -18,13 +18,13 @@ Podemos trasladar el concepto de _diccionario_ de la vida real al de mundo Pytho
 Los diccionarios en Python tienen las siguientes **características**:
 
 - Mantienen el **orden** en el que se insertan las claves[^1].
-- Son **mutables**, con lo que admiten añadir, borrar y modificar sus elementos.
+- Son **mutables**, con lo que permiten añadir, borrar y modificar sus elementos.
 - Las **claves** deben ser **únicas**. A menudo se utilizan las _cadenas de texto_ como claves, pero en realidad podría ser **cualquier tipo de datos inmutable**: enteros, flotantes, tuplas (entre otros).
 - Tienen un **acceso muy rápido** a sus elementos, debido a la forma en la que están implementados internamente[^2].
 
 !!! note "Hashes"
 
-    En otros lenguajes de programación, a los diccionarios se les conoce como _arrays asociativos_, _«hashes»_ o _«hashmaps»_.
+    En otros lenguajes de programación, a los diccionarios se les conoce como _arrays asociativos_, _«hashes»_ o _«hashmaps»_. Básicamente porque al final lo que utilizan es una [función hash](#hashables) para determinar la ubicación de las claves.
 
 ## Creando diccionarios { #create }
 
@@ -92,7 +92,7 @@ Veamos varios <span class="example">ejemplos:material-flash:</span> donde creamo
 
 También es posible utilizar la función `#!python dict()` para crear dicionarios y no tener que utilizar llaves y comillas.
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> donde queremos transformar la siguiente tabla en un diccionario:
+Planteemos un <span class="example">ejemplo:material-flash:</span> donde queremos transformar la siguiente tabla en un diccionario:
 
 | Atributo | Valor |
 | --- | --- |
@@ -100,7 +100,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde queremo
 | `surname` | van Rossum |
 | `job` | Python creator |
 
-Utilizando la construcción mediante `#!python dict()` podemos pasar clave y valor como **argumentos** de la función:
+Utilizando la construcción mediante `#!python dict()` podemos pasar ^^clave y valor^^ como **argumentos** de la función:
 
 ```pycon
 >>> person = dict(
@@ -115,11 +115,11 @@ Utilizando la construcción mediante `#!python dict()` podemos pasar clave y val
 
 El inconveniente que tiene esta aproximación es que las **claves deben ser identificadores válidos** en Python. Por <span class="example">ejemplo:material-flash:</span> no se permiten espacios:
 
-```pycon
+```pycon hl_lines="7"
 >>> person = dict(
 ...     name='Guido van Rossum',
 ...     date of birth='31/01/1956'
-  Cell In[8], line 1
+  Cell In[1], line 1
     person = dict(
                  ^
 SyntaxError: '(' was never closed
@@ -129,11 +129,11 @@ SyntaxError: '(' was never closed
 
 Python permite crear un diccionario especificando sus claves y un único valor de «relleno» utilizando la función [`fromkeys()`](https://docs.python.org/3/library/stdtypes.html#dict.fromkeys).
 
-Por <span class="example">ejemplo:material-flash:</span> creamos un diccionario para almacenar las notas de cierto alumnado (partiendo de cero):
+Por <span class="example">ejemplo:material-flash:</span> creemos un diccionario para almacenar el «rating» (valoración) de productos en una tienda de comercio online (inicialmente tendrán 0):
 
 ```pycon
->>> dict.fromkeys(['ana', 'julio', 'miguel', 'mar'], 0)
-{'ana': 0, 'julio': 0, 'miguel': 0, 'mar': 0}
+>>> dict.fromkeys(['portátil', 'nevera', 'ventilador', 'monitor'], 0)
+{'portátil': 0, 'nevera': 0, 'ventilador': 0, 'monitor': 0}
 ```
 
 !!! note "Sobre cualquier iterable"
@@ -146,7 +146,7 @@ Existen multitud de operaciones que se pueden realizar sobre diccionarios. A con
 
 ### Obtener un elemento { #get-item }
 
-Para obtener un elemento de un diccionario basta con **escribir la clave entre corchetes**.
+Para obtener un elemento (valor de una clave) de un diccionario basta con **escribir la clave entre corchetes**.
 
 Veamos un <span class="example">ejemplo:material-flash:</span>:
 
@@ -176,7 +176,7 @@ KeyError: 'acceso'
 Existe una función muy útil para «superar» los posibles errores de acceso por claves inexistentes. Se trata de `#!python get()` y su comportamiento es el siguiente:
 
 1. Si la clave que buscamos existe, nos devuelve su valor.
-2. Si la clave que buscamos no existe, nos devuelve `#!python None`[^3] salvo que le indiquemos otro valor por defecto, pero en ninguno de los dos casos obtendremos un error.
+2. Si la clave que buscamos no existe, nos devuelve `#!python None` salvo que le indiquemos otro valor por defecto, pero en ninguno de los dos casos obtendremos un error.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> de cada uno de los escenarios indicados:
 
@@ -245,7 +245,7 @@ rae = {
 
 Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e ir añadiendo elementos poco a poco. Se podría hablar de un **patrón creación**.
 
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos construir un diccionario donde las **claves** son las **letras vocales** y los **valores** son sus **códigos UNICODE**:
+A continuación se muestra un <span class="example">ejemplo:material-flash:</span> de creación de un diccionario donde las **claves** son las **letras vocales** y los **valores** son sus [códigos UNICODE](../datatypes/strings.md#unicode):
 
 ```pycon
 >>> VOWELS = 'aeiou'
@@ -266,7 +266,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremo
 
 ### Pertenencia de una clave { #in }
 
-La forma **pitónica** de comprobar la existencia de una clave dentro de un diccionario, es utilizar el operador `#!python in`:
+La forma **pitónica** de comprobar la existencia de una ^^clave^^ dentro de un diccionario, es utilizar el operador `#!python in`:
 
 ```pycon
 >>> 'bifronte' in rae
@@ -316,14 +316,14 @@ Partimos del siguiente diccionario de <span class="example">ejemplo:material-fla
  'montuvio': 'Campesino de la costa'}
 ```
 
-=== "Obtener claves"
+=== "Obtener claves :octicons-key-16:"
 
     ```pycon
     >>> rae.keys()
     dict_keys(['bifronte', 'anarcoide', 'montuvio', 'enjuiciar'])
     ```
 
-=== "Obtener valores"
+=== "Obtener valores :material-content-save:"
 
     ```pycon
     >>> rae.values()
@@ -335,7 +335,7 @@ Partimos del siguiente diccionario de <span class="example">ejemplo:material-fla
     ])
     ```
 
-=== "Obtener claves y valores"
+=== "Obtener claves y valores :octicons-key-16::material-content-save:"
 
     ```pycon
     >>> rae.items()
@@ -347,13 +347,13 @@ Partimos del siguiente diccionario de <span class="example">ejemplo:material-fla
     ])
     ```
 
-    :material-check-all:{ .blue } Cabe destacar que los «items» se devuelven como una **lista de tuplas**, donde cada tupla contiene dos elementos: el primero representa la **clave** y el segundo representa el **valor**.
+    :material-check-all:{ .blue } Cabe destacar que los «items» se devuelven como una **[lista](./lists.md) de [tuplas](./tuples.md)**, donde cada tupla contiene dos elementos: el primero representa la **clave** y el segundo representa el **valor**.
 
 ### Iterar sobre un diccionario { #iterate }    
 
 En función de los [elementos que podemos obtener](#get-items), Python proporciona tres maneras de iterar sobre un diccionario:
 
-=== "Iterar sobre claves"
+=== "Iterar sobre claves :octicons-key-16:"
 
     ```pycon
     >>> for word in rae.keys():
@@ -365,7 +365,7 @@ En función de los [elementos que podemos obtener](#get-items), Python proporcio
     enjuiciar
     ```
 
-=== "Iterar sobre valores"
+=== "Iterar sobre valores :material-content-save:"
 
     ```pycon
     >>> for meaning in rae.values():
@@ -377,7 +377,7 @@ En función de los [elementos que podemos obtener](#get-items), Python proporcio
     Instruir, juzgar o sentenciar una causa
     ```
 
-=== "Iterar sobre claves y valores"
+=== "Iterar sobre claves y valores :octicons-key-16::material-content-save:"
 
     ```pycon
     >>> for word, meaning in rae.items():
@@ -398,9 +398,9 @@ En función de los [elementos que podemos obtener](#get-items), Python proporcio
 
 ### Borrar elementos { #remove }
 
-Python nos ofrece varios mecanismos para borrar elementos de un diccionario:
+Python nos ofrece varios mecanismos para borrar elementos en un diccionario:
 
-=== "Por su clave"
+=== "Por su clave :octicons-key-16:"
 
     ```pycon hl_lines="7"
     >>> rae = {
@@ -415,7 +415,7 @@ Python nos ofrece varios mecanismos para borrar elementos de un diccionario:
     {'anarcoide': 'Que tiende al desorden', 'montuvio': 'Campesino de la costa'}
     ```
 
-=== "Por su clave (con extracción)"
+=== "Por su clave (con extracción) :material-party-popper:"
 
     ```pycon hl_lines="7"
     >>> rae = {
@@ -441,7 +441,7 @@ Python nos ofrece varios mecanismos para borrar elementos de un diccionario:
     1. `#!python pop()` extrae la clave (y el valor) indicados.
     2. Si una clave no existe obtenemos un error de tipo [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError).
 
-=== "Borrado completo"
+=== "Borrado completo :material-eraser:"
 
     ```pycon hl_lines="7"
     >>> rae = {
@@ -459,7 +459,7 @@ Python nos ofrece varios mecanismos para borrar elementos de un diccionario:
     
     1. Se borra la zona de memoria existente.
 
-=== "Borrado completo (reasignado)"
+=== "Borrado completo (reasignado) :octicons-trash-16:"
 
     ```pycon hl_lines="7"
     >>> rae = {
@@ -485,10 +485,10 @@ Python nos ofrece varios mecanismos para borrar elementos de un diccionario:
 
 Dados dos (o más) diccionarios, es posible «mezclarlos» para obtener una combinación de los mismos. Esta combinación se basa en dos premisas:
 
-1. Si la clave no existe, se añade con su valor.
-2. Si la clave ya existe, se añade con el valor del «último»[^4] diccionario en la mezcla.
+- [x] Si la clave no existe, se añade con su valor.
+- [x] Si la clave ya existe, se añade con el valor del «último»[^3] diccionario en la mezcla.
 
-Vamos a partir de los siguientes diccionarios y mostrar <span class="example">ejemplos:material-flash:</span> sobre los mecanismos que ofrece Python para combinar diccionarios:
+Partiendo de los siguientes diccionarios vamos a mostrar <span class="example">ejemplos:material-flash:</span> sobre los mecanismos que ofrece Python para combinar diccionarios:
 
 ```pycon
 >>> rae1 = {
@@ -503,7 +503,7 @@ Vamos a partir de los siguientes diccionarios y mostrar <span class="example">ej
 ... }
 ```
 
-=== "Sin modificar los diccionarios originales"
+=== "Sin modificar los diccionarios originales :material-silverware-clean:"
 
     ```pycon
     >>> rae1 | rae2#(1)!
@@ -514,9 +514,9 @@ Vamos a partir de los siguientes diccionarios y mostrar <span class="example">ej
     ```
     { .annotate }
     
-    1. En versiones anteriores a <span class="pyversion"><a href="https://www.python.org/downloads/release/python-390/">Python <span class="version">:octicons-tag-24: 3.9</span></a></span> habría que utilizar: `#!python {**rae1, **rae2}`
+    1. En versiones anteriores a <span class="pyversion"><a href="https://docs.python.org/3.9/">Python <span class="version">:octicons-tag-24: 3.9</span></a></span> habría que utilizar: `#!python {**rae1, **rae2}`
 
-=== "Modificando los diccionarios originales"
+=== "Modificando los diccionarios originales :material-message-arrow-right-outline:"
 
     ```pycon
     >>> rae1.update(rae2)
@@ -530,11 +530,11 @@ Vamos a partir de los siguientes diccionarios y mostrar <span class="example">ej
 
 ??? tip "Orden de la mezcla"
 
-    Tener en cuenta que el orden en el que especificamos los diccionarios a la hora de su combinación (mezcla) es relevante en el resultado final. En este caso _el orden de los factores sí altera el producto_.
+    Hay que tener en cuenta el orden en el que especificamos los diccionarios a la hora de su combinación (mezcla) ya que es relevante en el resultado final. En este caso _el orden de los factores sí altera el producto_.
 
 ## Cuidado con las copias { #copy }
 
-Al igual que ocurría con [las listas](lists.md#copy), si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de ser _mutable_.
+Al igual que [ocurría con las listas](lists.md#copy), si hacemos un cambio en un diccionario, se verá reflejado en todas las variables que hagan referencia al mismo. Esto se deriva de su propiedad de ser _mutable_.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> concreto:
 
@@ -682,3 +682,9 @@ TypeError: unhashable type: 'list'
 11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `first-ntimes`
 12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fix-id`
 13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `dict-pull`
+
+
+
+[^1]: «Los diccionarios preservan el orden de inserción» extraído de la [documentación oficial de Python sobre diccionarios](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict).
+[^2]: Artículo de Ramil Suleimanov sobre [«Por qué los diccionarios en Python son tan rápidos»](https://medium.com/@r_suleimanov/why-is-python-dict-so-fast-555e330a8ded).
+[^3]: En este contexto «último» significa el que esté más a la derecha en la sentencia de asignación.

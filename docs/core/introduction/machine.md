@@ -10,11 +10,11 @@ icon: octicons/cpu-24
 
 1. :fontawesome-regular-copyright: [Garett Mizunaka](https://unsplash.com/@garett3) (Unsplash)
 
-Los ordenadores son dispositivos complejos pero están diseñados para hacer una cosa bien: ejecutar aquello que se les indica. La cuestión es cómo indicar a un ordenador lo que queremos que ejecute. Esas indicaciones se llaman técnicamente instrucciones y se expresan en un lenguaje. Podríamos decir que programar consiste en escribir instrucciones para que sean ejecutadas por un ordenador. El lenguaje que utilizamos para ello se denomina lenguaje de programación.
+Los ordenadores son dispositivos complejos pero están diseñados para hacer una cosa bien: **ejecutar aquello que se les indica**. La cuestión radica en cómo indicarle a una máquina lo que queremos que haga. Esas indicaciones se llaman técnicamente **instrucciones** y se expresan en un **lenguaje**. Podríamos decir que _programar consiste en escribir instrucciones para que sean ejecutadas por un ordenador_. El lenguaje que utilizamos para ello se denomina _lenguaje de programación_.
 
 ## Código máquina { #machine-code }
 
-Pero aún seguimos con el problema de cómo hacer que un ordenador (o máquina) entienda el lenguaje de programación. A priori podríamos decir que un ordenador sólo entiende un lenguaje muy "simple" denominado [código máquina](https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina). En este lenguaje se utilizan únicamente los símbolos 0 y 1 en representación de los niveles de tensión alto y bajo, que al fin y al cabo, son los estados que puede manejar un circuito digital. Hablamos de [sistema binario](https://es.wikipedia.org/wiki/Sistema_binario). Si tuviéramos que escribir programas de ordenador en este formato sería una tarea ardua, pero afortunadamente se han ido creando con el tiempo lenguajes de programación intermedios que, posteriormente, son convertidos a código máquina.
+Pero aún no hemos resuelto el problema de cómo hacer que un ordenador (o máquina) entienda un lenguaje de programación. A priori se podría decir que un ordenador sólo entiende un lenguaje muy «simple» denominado [código máquina](https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina). En este lenguaje se utilizan únicamente los símbolos <span class="red">0</span> y <span class="green">1</span> en representación de los niveles de tensión alto y bajo, que al fin y al cabo, son los estados que puede manejar un [circuito digital](https://es.wikipedia.org/wiki/Circuito_digital). En este contexto, por tanto, hablamos de [sistema binario](https://es.wikipedia.org/wiki/Sistema_binario). Si tuviéramos que escribir programas de ordenador en este formato sería una tarea ardua, pero afortunadamente con el tiempo se han ido creando lenguajes de programación intermedios que, posteriormente, son convertidos a código máquina.
 
 Si intentamos visualizar un programa en código máquina, únicamente obtendríamos una secuencia de ceros y unos:
 
@@ -27,7 +27,7 @@ Si intentamos visualizar un programa en código máquina, únicamente obtendría
 
 ## Ensamblador { #assembly }
 
-El primer lenguaje de programación que encontramos en esta "escalada" es **ensamblador**. Veamos un [ejemplo de código en ensamblador](https://medium.com/nabucodonosor-editorial/hola-mundo-ensamblado-x86-ff62789ab9b0) del típico programa que se escribe por primera vez, el _«Hello, World»_:
+El primer lenguaje de programación que encontramos en esta «escalada» es **ensamblador**. Veamos a continuación un [ejemplo de código en ensamblador](https://medium.com/nabucodonosor-editorial/hola-mundo-ensamblado-x86-ff62789ab9b0) del típico programa que se escribe por primera vez, el _«Hello, World»_:
 
 ```asm
 SYS_SALIDA equ 1
@@ -49,7 +49,9 @@ fin: mov eax, SYS_SALIDA ;llamada al sistema (sys_exit)
     int 0x80
 ```
 
-Aunque resulte difícil de creer, lo «único» que hace este programa es mostrar en la pantalla de nuestro ordenador la frase «Hello, World», pero además teniendo en cuenta que sólo funcionará para una [arquitectura x86](https://es.wikipedia.org/wiki/X86).
+Aunque resulte difícil de creer, lo «único» que hace este programa es mostrar en la pantalla de nuestro ordenador el texto `Hello, World`.
+
+Un detalle fundamental es que sólo funcionará para una [arquitectura x86](https://es.wikipedia.org/wiki/X86), ya que las instrucciones en ensamblador están vinculadas con el tipo de arquitectura del procesador.
 
 ## C { #c }
 
@@ -72,7 +74,7 @@ Si seguimos «subiendo» en esta lista de lenguajes de programación, podemos ll
 print('Hello, World')
 ```
 
-¡Pues así de fácil! Hemos pasado de _código máquina_ (ceros y unos) a código Python en el que se puede entender perfectamente lo que estamos indicando al ordenador. La pregunta que surge es: ¿cómo entiende una máquina lo que tiene que hacer si le pasamos un programa hecho en Python (o cualquier otro lenguaje de alto nivel)? La respuesta es un **compilador**.
+¡Pues así de fácil! :material-robot-happy-outline:{.hl} Hemos pasado de _código máquina_ (ceros y unos) a código Python en el que se puede entender perfectamente lo que estamos indicando al ordenador. La pregunta que surge es: ¿cómo entiende una máquina lo que tiene que hacer si le pasamos un programa hecho en Python (o cualquier otro lenguaje de programación de alto nivel)? La respuesta es un **compilador**.
 
 ## Compiladores { #compilers }
 

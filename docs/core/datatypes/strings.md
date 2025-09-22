@@ -10,9 +10,9 @@ icon: material/text-box
 
 1. :fontawesome-regular-copyright: [Roman Kraft](https://unsplash.com/@romankraft) (Unsplash)
 
-Las cadenas de texto son **secuencias de caracteres**. También se les conoce como «strings» y nos permiten almacenar información textual de forma muy cómoda.
+Las cadenas de texto son **secuencias de caracteres**. También se les conoce como «strings» y nos permiten almacenar información textual de manera muy cómoda.
 
-Es importante reseñar que Python 3 almacena los caracteres codificados en el estándar [Unicode](https://es.wikipedia.org/wiki/Unicode), lo que es una gran ventaja con respecto a versiones antiguas del lenguaje. Además permite representar una cantidad ingente de símbolos incluyendo los famosos emojis 😎.
+Es importante señalar que desde <span class="pyversion"><a href="https://docs.python.org/3.0/">Python <span class="version">:octicons-tag-24: 3.0</span></a></span> las cadenas de texto se almacenan en el estándar [Unicode](https://es.wikipedia.org/wiki/Unicode), lo que supone una gran ventaja con respecto a versiones antiguas del lenguaje (que usaban _bytes_ para esto). Además permite representar una cantidad ingente de símbolos incluyendo los famosos emojis 😎.
 
 ## Creando «strings» { #create }
 
@@ -42,13 +42,13 @@ Para incluir _comillas simples_ dentro de la cadena de texto cambiamos las comil
 
 !!! tip "Cuestión de estilo"
 
-    Efectivamente, como se puede ver, las cadenas de texto en Python se pueden escribir con comillas simples o con comillas dobles. Es indiferente. **En mi caso personal prefiero usar comillas simples :material-format-quote-close:**.
+    Efectivamente, como se puede ver, las cadenas de texto en Python se pueden escribir con comillas simples o con comillas dobles. Es indiferente. **En mi caso personal prefiero usar comillas simples :fontawesome-solid-single-quote-right:**.
 
     Hagas lo que hagas... ¡haz siempre lo mismo!
 
 ### Comillas triples { #triple-quotes }
 
-Hay una forma alternativa de crear cadenas de texto y es utilizar _comillas triples_. Su uso está pensado principalmente para **cadenas multilínea**:
+Una forma alternativa de crear cadenas de texto es utilizar _comillas triples_. Su aplicación está pensada principalmente para **cadenas multilínea**:
 
 ```pycon
 >>> poem = """To be, or not to be, that is the question:
@@ -57,7 +57,7 @@ Hay una forma alternativa de crear cadenas de texto y es utilizar _comillas trip
 ... Or to take arms against a sea of troubles"""
 ```
 
-En este caso sí que se debería utilizar **comillas dobles** siguiendo las [indicaciones de la guía de estilo de Python](https://peps.python.org/pep-0008/#string-quotes):
+En este caso sí que se debería utilizar **comillas dobles** (triples) siguiendo las [indicaciones de la guía de estilo de Python](https://peps.python.org/pep-0008/#string-quotes):
 
 !!! quote "PEP 257"
 
@@ -67,7 +67,7 @@ En este caso sí que se debería utilizar **comillas dobles** siguiendo las [ind
 
 ### Cadena vacía { #empty-string }
 
-La cadena vacía es aquella que no contiene ningún carácter. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier programa. Su representación en Python es la siguiente:
+La cadena vacía es aquella que no contiene ningún carácter. Aunque a priori no lo pueda parecer, es un recurso importante en cualquier programa (y lenguaje de programación). Su representación en Python es la siguiente:
 
 ```pycon
 >>> ''
@@ -106,12 +106,14 @@ Traceback (most recent call last):
 ValueError: could not convert string to float: '3.1a'
 ```
 
-Pero hay que tener en cuenta un detalle. La función `#!python int()` también admite la **base** en la que se encuentra el número. Eso significa que podemos pasar un número, por ejemplo, en **hexadecimal** (como «string») y lo podríamos convertir a su valor entero:
+!!! tip "Otras bases"
 
-```pycon
->>> int('FF', 16)
-255
-```
+    Hay que tener en cuenta un detalle. La función `#!python int()` también admite la **base** en la que se encuentra el número. Eso significa que podemos pasar un número, por ejemplo, en **hexadecimal** (como «string») y lo podríamos convertir a su valor entero:
+
+    ```pycon
+    >>> int('FF', 16)
+    255
+    ```
 
 ## Secuencias de escape { #escape-sequences }
 
@@ -153,7 +155,7 @@ Quizás la secuencia de escape más conocida es `\n` que representa un ^^salto d
     Capítulo \ Sección \ Encabezado
     ```
 
-:material-check-all:{ .blue } Aunque estamos en el [intérprete de Python](data.md#get-value), hemos utilizado la función `#!python print()` porque nos permite ver realmente el resultado de utilizar los caracteres escapados.
+:material-check-all:{ .blue } Los <span class="example">ejemplos:material-flash:</span> anteriores se han mostrado con el [intérprete de Python](data.md#get-value). Aún así hemos utilizado la función `#!python print()` porque nos permite ver realmente el resultado de utilizar los caracteres escapados.
 
 ### Cadenas en crudo { #raw }
 
@@ -192,9 +194,9 @@ Veamos algunos ejemplos:
 
 ## Más sobre `print()` { #more-about-print }
 
-Hemos estado utilizando la función `#!python print()` de forma sencilla, pero admite algunos [parámetros](https://docs.python.org/es/3/library/functions.html#print) interesantes.
+Hemos estado utilizando la función `#!python print()` de manera sencilla, pero admite algunos [parámetros](https://docs.python.org/es/3/library/functions.html#print) interesantes.
 
-Veamos algunos ejemplos:
+Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 ```pycon
 >>> msg1 = '¿Sabes por qué estoy acá?'
@@ -217,7 +219,7 @@ Porque me apasiona!!
 
 ## Leer datos desde teclado { #read-from-keyboard }
 
-Los programas se hacen para tener una cierta interacción con el usuario. Una de las formas de interacción es solicitar la entrada de datos por teclado. Como muchos otros lenguajes de programación, Python también nos ofrece la posibilidad de leer la información introducida por teclado. Para ello se utiliza la función `#!python input()`.
+Los programas se desarrollan (habitualmente) para tener una cierta interacción con el usuario. Una de las formas de interacción es solicitar la entrada de datos por teclado. Como muchos otros lenguajes de programación, Python también nos ofrece la posibilidad de leer la información introducida por teclado. Para ello se utiliza la función `#!python input()`.
 
 Veamos algunos ejemplos:
 
@@ -283,7 +285,7 @@ Podemos repetir dos o más cadenas de texto utilizando el operador `*`:
 
 Los «strings» están **indexados** y cada carácter tiene su propia posición (numérica).
 
-Veamos el ejemplo de la cadena de texto `#!python 'Hola, Mundo'`:
+Veamos el <span class="example">ejemplo:material-flash:</span> de la cadena de texto `#!python 'Hola, Mundo'`:
 
 ![Dark image](images/strings/string-indexing-dark.svg#only-dark)
 ![Light image](images/strings/string-indexing-light.svg#only-light)
@@ -313,7 +315,7 @@ IndexError: string index out of range
 
 Las cadenas de texto son tipos de datos [inmutables](data.md#mutability). Es por ello que no podemos modificar un carácter directamente.
 
-Veamos un ejemplo:
+Veamos un <span class="example">ejemplo:material-flash:</span>:
 
 ```pycon hl_lines="7"
 >>> song = 'Hey Jude'
@@ -398,7 +400,7 @@ Es posible extraer «trozos» («rebanadas»)[^1] de una cadena de texto. Tenemo
 
 Para obtener la longitud de una cadena podemos hacer uso de `#!python len()`, una función común a prácticamente todos los tipos y estructuras de datos en Python.
 
-Veamos algunos ejemplos:
+Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 ```pycon
 >>> proverb = 'Lo cortés no quita lo valiente'
@@ -417,7 +419,7 @@ Veamos algunos ejemplos:
 
 Si queremos comprobar que una determinada subcadena se encuentra en una cadena de texto utilizamos el operador `#!python in` para ello. Se trata de una expresión que tiene como resultado un valor «booleano» verdadero o falso.
 
-Veamos algunos ejemplos:
+Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 ```pycon
 >>> proverb = 'Más vale malo conocido que bueno por conocer'
@@ -460,7 +462,7 @@ True
 
 ### Limpiar cadenas { #strip }
 
-Cuando leemos datos del usuario o de cualquier fuente externa de información, es bastante probable que se incluyan en esas cadenas de texto, caracteres de relleno[^2] al comienzo y al final. Python nos ofrece la posibilidad de eliminar estos caracteres u otros que no nos interesen.
+Cuando leemos datos del usuario o de cualquier fuente externa de información, es bastante probable que se incluyan en esas cadenas de texto caracteres de relleno[^2] al comienzo y al final. Python nos ofrece la posibilidad de eliminar estos caracteres u otros que no nos interesen.
 
 La función `#!python strip()` se utiliza para eliminar caracteres del principio y del final de un «string». También existen variantes de esta función para aplicarla únicamente al comienzo o únicamente al final de la cadena de texto.
 
@@ -475,18 +477,18 @@ Supongamos que debemos procesar un fichero con números de serie de un determina
 
 !!! info "Valores por defecto"
 
-    Si no se especifican los caracteres a eliminar, `strip()` usa por defecto cualquier combinación de _espacios en blanco_, _saltos de línea_ `\n` y _tabuladores_ `\t`.
+    Si no se especifican los caracteres a eliminar, `strip()` usará por defecto cualquier combinación de _espacios en blanco_, _saltos de línea_ `\n` y _tabuladores_ `\t`.
 
 Hay dos variantes de esta función para especificar «por dónde» hacer la limpieza:
 
-=== "«Left» `strip` :material-hand-pointing-left:"
+=== ":material-hand-pointing-right: «Left» `strip`" 
 
     ```pycon
     >>> serial_number.lstrip()
     '48374983274832    \n\n\t   \t   \n'
     ```    
 
-=== "«Right» `strip` :material-hand-pointing-right:"
+=== "«Right» `strip` :material-hand-pointing-left:"
 
     ```pycon
     >>> serial_number.rstrip()
@@ -502,11 +504,11 @@ También existe la posibilidad de **especificar los caracteres** que queremos bo
 
 !!! tip "Cadena modificada"
 
-    La función `strip()` no modifica la cadena que estamos usando (_algo obvio porque los «strings» son [inmutables](data.md#mutability)_) sino que devuelve una nueva cadena de texto con las modificaciones pertinentes.
+    La función `strip()` no modifica la cadena que estamos usando (_algo obvio porque los «strings» son [inmutables](data.md#mutability)_) sino que ^^devuelve una nueva cadena^^ de texto con las modificaciones pertinentes.
 
 ### Realizar búsquedas { #search }
 
-Aunque hemos visto que la forma [pitónica](../modularity/functions.md#pythonic) de saber [si una subcadena se encuentra dentro de otra](#in) es a través del operador `#!python in`, Python nos ofrece distintas alternativas para realizar búsquedas en cadenas de texto.
+Aunque hemos visto que la forma [pitónica](../modularity/functions.md#pythonic) de saber [si una subcadena se encuentra dentro de otra](#in) es a través del operador `#!python in`, Python nos ofrece distintas alternativas para realizar búsquedas dentro de una cadena de texto.
 
 Vamos a partir de una variable que contiene un trozo de la canción [Mediterráneo](https://open.spotify.com/track/7Bewui7KtaMzROeteRitRz?si=NGwOUmwfRSuapY3JL7s1uQ) de Joan Manuel Serrat para ejemplificar las distintas opciones que tenemos:
 
@@ -573,7 +575,7 @@ Para contabilizar el **número de veces que aparece** una subcadena utilizamos l
 
 Podemos usar la función `replace()` indicando la _subcadena a reemplazar_, la _subcadena de reemplazo_ y _cuántas instancias_ se deben reemplazar. Si no se especifica este último argumento, la sustitución se hará en todas las instancias encontradas.
 
-Veamos un ejemplo:
+Veamos un <span class="example">ejemplo:material-flash:</span>:
 
 ```pycon
 >>> proverb = 'Quien mal anda mal acaba'
@@ -592,7 +594,7 @@ Veamos un ejemplo:
 
 Python nos permite realizar variaciones en los caracteres de una cadena de texto para pasarlos a mayúsculas y/o minúsculas.
 
-Veamos las distintas opciones disponibles a través de un ejemplo:
+Veamos las distintas opciones disponibles a través del siguiente <span class="example">ejemplo:material-flash:</span>:
 
 ```pycon
 >>> proverb = 'quien a buen árbol se arrima Buena Sombra le cobija'
@@ -674,11 +676,11 @@ Veamos los estilos que proporciona Python para este cometido:
 
 | Nombre | Símbolo | Soportado |
 | --- | --- | --- |
-| Estilo «antiguo» | `#!python %` | :material-code-greater-than-or-equal: <span class="pyversion"><a href="https://www.python.org/download/releases/2.0/">Python <span class="version">:octicons-tag-24: 2.0</span></a></span>
-| Estilo «nuevo» | `#!python .format()` | :material-code-greater-than-or-equal: <span class="pyversion"><a href="https://www.python.org/download/releases/2.6/">Python <span class="version">:octicons-tag-24: 2.6</span></a></span>
-| «f-strings» | `#!python f''` | :material-code-greater-than-or-equal: <span class="pyversion"><a href="https://www.python.org/downloads/release/python-360/">Python <span class="version">:octicons-tag-24: 3.6</span></a></span>
+| Estilo «antiguo» | `#!python %` | :material-code-greater-than-or-equal: <span class="pyversion"><a href="https://docs.python.org/2.0/">Python <span class="version">:octicons-tag-24: 2.0</span></a></span> 
+| Estilo «nuevo» | `#!python .format()` | :material-code-greater-than-or-equal: <span class="pyversion"><a href="https://docs.python.org/2.6/">Python <span class="version">:octicons-tag-24: 2.6</span></a></span>
+| «f-strings» | `#!python f''` | :material-code-greater-than-or-equal: <span class="pyversion"><a href="https://docs.python.org/3.6/">Python <span class="version">:octicons-tag-24: 3.6</span></a></span>
 
-Aunque aún podemos encontrar código con el [estilo antiguo y el estilo nuevo en el formateo de cadenas](https://pyformat.info/), vamos a centrarnos en el análisis de los **«f-strings»** que se están utilizando bastante en la actualidad.
+Aunque aún podemos encontrar código Python con el [estilo antiguo y el estilo nuevo en el formateo de cadenas](https://pyformat.info/), vamos a centrarnos en el análisis de los **«f-strings»** que se están muy extendidos en el desarrollo actual.
 
 ### «f-strings» { #fstrings }
 
@@ -695,13 +697,19 @@ Supongamos que disponemos de los datos de una persona y queremos formar una fras
 >>> age = 22
 >>> role = 'líder de la Alianza Rebelde'
 
->>> f'Me llamo {name}, tengo {age} años y soy {role}'
+>>> f'Me llamo {name}, tengo {age} años y soy {role}'#(1)!
 'Me llamo Leia Organa, tengo 22 años y soy líder de la Alianza Rebelde'
 ```
+{ .annotate }
 
-:material-check-all:{ .blue } Si olvidamos poner la `f` delante de la cadena de texto, no obtendremos ningún eror, únicamente no habrá sustitución (interpolación) de variables.
+1. Si olvidamos poner la `f` delante de la cadena de texto, no obtendremos ningún eror, únicamente no habrá sustitución (interpolación) de variables:
 
-Podría surgir la duda de **cómo incluir llaves** dentro de la cadena de texto, teniendo en cuenta que las llaves son símbolos especiales para la interpolación de variables. La respuesta es duplicar las llaves:
+    ```python
+    >>> 'Me llamo {name}, tengo {age} años y soy {role}'
+    'Me llamo {name}, tengo {age} años y soy {role}'
+    ```
+
+Podría surgir la duda de **cómo incluir llaves** dentro de un «f-string», teniendo en cuenta que las llaves son símbolos especiales para la interpolación de variables. La respuesta es duplicar las llaves:
 
 ```pycon
 >>> x = 10
@@ -813,9 +821,9 @@ Los «f-strings» proporcionan una gran variedad de **opciones de formateado**: 
 
 #### Modo «debug» { #fstring-debug }
 
-A partir de [Python 3.8](https://docs.python.org/3/whatsnew/3.8.html#f-strings-support-for-self-documenting-expressions-and-debugging), los «f-strings» permiten imprimir el nombre de la variable y su valor, como un atajo para depurar nuestro código. Para ello sólo tenemos que incluir el símbolo igual `=` después del nombre de la variable.
+A partir de [Python 3.8](https://docs.python.org/3/whatsnew/3.8.html#f-strings-support-for-self-documenting-expressions-and-debugging), los «f-strings» permiten imprimir el nombre de la variable y su valor, como un atajo para depurar nuestro código. Para ello sólo tendremos que incluir el símbolo igual `=` después del nombre de la variable.
 
-Veamos algunos ejemplos:
+Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 ```pycon
 >>> serie = 'The Simpsons'
@@ -845,7 +853,7 @@ Si imprimimos el valor de una variable utilizando un «f-string», obviamente ve
 ```pycon
 >>> name = 'Steven Spielberg'
 
->>> print(f'{name}')
+>>> print(f'{name}')  # NO HAGAS ESTO! Usa: print(name)
 Steven Spielberg
 ```
 
@@ -870,10 +878,10 @@ Python utiliza el estándar **Unicode** para representar caracteres. Eso signifi
 
 Unicode asigna a cada carácter (al menos) dos atributos:
 
-1. Un **código numérico** único (habitualmente en hexadecimal).
+1. Un **código numérico** único (habitualmente se muestra en [hexadecimal](numbers.md#hex)).
 2. Un **nombre** representativo.
 
-Veamos un ejemplo con el típico «emoji» de un cohete :rocket: definido en [este cuadro](https://unicode-table.com/en/1F680/).
+Veamos un <span class="example">ejemplo:material-flash:</span> con el típico «emoji» de un cohete :rocket: (definido en [este cuadro Unicode](https://unicode-table.com/en/1F680/)).
 
 Python nos permite convertir de...
 
@@ -922,7 +930,7 @@ Python nos permite convertir de...
 
 En los albores de la computación los caracteres se representaban utilizando el [código ASCII](https://elcodigoascii.com.ar/). En un primer momento solo incluía letras mayúsculas y números, pero en 1967 se agregaron las letras minúsculas y algunos caracteres de control, formando así lo que se conoce como [US-ASCII](https://www.microfocus.com/documentation/enterprise-developer/ed60/ETS-help/HHSNRHOPTN0P.html), es decir los caracteres del 0 al 127.
 
-Podemos obtener algunos de sus _caracteres imprimibles_ mediante Python:
+Podemos obtener algunos de los _caracteres imprimibles_ del código ASCII mediante Python:
 
 ```pycon
 >>> chr(48)
@@ -937,7 +945,7 @@ Podemos obtener algunos de sus _caracteres imprimibles_ mediante Python:
 
 ### Comparar cadenas { #compare }
 
-Cuando comparamos dos cadenas de texto lo hacemos en términos **lexicográficos**. Es decir, se van comparando los caracteres de ambas cadenas uno a uno y se va mirando cuál está «antes».
+Cuando comparamos dos cadenas de texto lo hacemos en términos **lexicográficos**. Es decir, se van comparando los caracteres de ambas cadenas uno a uno y se va chequeando cuál está «antes».
 
 Podemos afirmar (al menos en Python) que la cadena de texto `#!python 'arca'` es menor que la cadena de texto `#!python 'arpa'`:
 

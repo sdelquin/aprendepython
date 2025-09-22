@@ -10,7 +10,7 @@ icon: material/file-cabinet
 
 1. :fontawesome-regular-copyright: [Maksym Kaharlytskyi](https://unsplash.com/@qwitka) :material-at: [Unsplash](https://unsplash.com) 
 
-Aunque los ficheros encajarían más en un apartado de «entrada/salida» ya que representan un **medio de almacenamiento persistente**, también podrían ser vistos como _estructuras de datos_, puesto que nos permiten guardar la información y asignarles un cierto formato.
+Aunque los ficheros encajarían más en un apartado de «entrada/salida» ya que representan un **medio de almacenamiento persistente**, también podrían ser vistos como _estructuras de datos_, puesto que nos permiten guardar información y asignarle un cierto formato.
 
 Un **fichero** es un _conjunto de bytes_ almacenados en algún dispositivo. El [sistema de ficheros](https://bit.ly/405ABbw) es la estructura lógica que alberga los ficheros y está jerarquizado a través de _directorios_ (o carpetas). Cada fichero se **identifica unívocamente a través de una ruta** que nos permite acceder a él.
 
@@ -18,9 +18,9 @@ En esta sección nos centraremos en el manejo de **ficheros de texto plano** (aq
 
 Hay tres modos de apertura de un fichero:
 
-- **Lectura**.
-- **Escritura**.
-- **Añadido**.
+- [x] [Lectura](#read).
+- [x] [Escritura](#write).
+- [x] [Añadido](#append).
 
 ## Lectura de un fichero { #read }
 
@@ -38,7 +38,7 @@ En el siguiente <span class="example">ejemplo:material-flash:</span> vamos a lee
 22 28
 ```
 
-Abrir un fichero significa crear un objeto «manejador» que nos permita realizar operaciones sobre dicho fichero:
+Abrir un fichero significa crear un objeto «manejador»[^1] que nos permita realizar operaciones sobre dicho fichero:
 
 ```pycon
 >>> f = open('store/temps.dat', 'r')#(1)!
@@ -62,7 +62,7 @@ El **manejador del fichero** se implementa mediante un [flujo de entrada/salida]
 
 !!! tip "Codificaciones"
 
-    Existen muchas [codificaciones de caracteres](https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres) para ficheros, pero la más utilizada es [UTF-8](https://es.wikipedia.org/wiki/UTF-8) ya que es capaz de representar cualquier caracter [Unicode](https://symbl.cc/en/unicode/blocks/) al utilizar una longitud variable de 1 a 4 bytes.
+    Existen muchas [codificaciones de caracteres](https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres) para ficheros, pero la más utilizada es [UTF-8](https://es.wikipedia.org/wiki/UTF-8) ya que es capaz de representar cualquier caracter [Unicode](../datatypes/strings.md#unicode) al utilizar una longitud variable de 1 a 4 bytes.
 
 Hay que tener en cuenta que **la ruta al fichero** que abrimos (en modo lectura) **debe existir**, ya que de lo contrario obtendremos un error:
 
@@ -78,9 +78,9 @@ Una vez abierto el fichero ya podemos proceder a leer su contenido. Para ello Py
 
 ### Lectura completa
 
-Siguiendo nuestro <span class="example">ejemplo:material-flash:</span> de temperatura, veamos cómo leer todo el contenido del fichero de una sola vez. Para esta operación, Pythos nos provee de dos funciones:
+Siguiendo nuestro <span class="example">ejemplo:material-flash:</span> de temperaturas, veamos cómo leer todo el contenido del fichero de una sola vez. Para esta operación, Python nos provee de dos funciones:
 
-=== "`read()`"
+=== "`read()` :fontawesome-regular-file-text:"
 
     Devuelve todo el contenido del fichero como una única **cadena de texto**:
 
@@ -91,7 +91,7 @@ Siguiendo nuestro <span class="example">ejemplo:material-flash:</span> de temper
     '23 29\n23 31\n26 34\n23 33\n22 29\n22 28\n22 28\n'
     ```
 
-=== "`readlines()`"
+=== "`readlines()` :material-account-file-text-outline:"
 
     Devuelve todo el contenido del fichero como una **lista** donde cada elemento de la lista representa una línea del fichero:
 
@@ -110,7 +110,7 @@ Siguiendo nuestro <span class="example">ejemplo:material-flash:</span> de temper
 
 Hay situaciones en las que interesa leer el contenido del fichero **línea a línea**. Imaginemos un fichero de tamaño considerable (varios GB). Si intentamos leer completamente este fichero de sola una vez podríamos ocupar demasiada RAM y reducir el rendimiento de nuestra máquina.
 
-Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros línea a línea. La más usada es ^^iterar sobre el propio manejador del fichero^^, ya que los ficheros son estructuras de datos iterables.
+Es por ello que Python nos ofrece varias aproximaciones a la lectura de ficheros línea a línea. La más usada es ^^iterar sobre el propio manejador del fichero^^[^2].
 
 Veamos cómo aplicarlo en el <span class="example">ejemplo:material-flash:</span> de las temperaturas:
 
@@ -118,7 +118,7 @@ Veamos cómo aplicarlo en el <span class="example">ejemplo:material-flash:</span
 >>> f = open('store/temps.dat')
 
 >>> for line in f:    # that easy!
-...     print(line)
+...     print(line)#(1)!
 ...
 23 29
 
@@ -134,6 +134,9 @@ Veamos cómo aplicarlo en el <span class="example">ejemplo:material-flash:</span
 
 22 28
 ```
+{ .annotate }
+
+1. Notése que cada línea tiene un «espacio de más» que proviene del propio `#!python print()`.
 
 #### Enumerando líneas { #enumerate }
 
@@ -141,7 +144,7 @@ En ocasiones no sólo necesitamos recorrer cada línea del fichero sino también
 
 Dado que los manejadores de ficheros también son **objetos iterables** podemos hacer uso de la función [`enumerate()`](lists.md#enumerate).
 
-A continuación mostramos un <span class="example">ejemplo:material-flash:</span> donde usamos esta característica para incluir los días de la semana en el fichero de temperaturas:
+A continuación mostramos un <span class="example">ejemplo:material-flash:</span> donde aprovechamos esta característica para incluir los días de la semana en el fichero de temperaturas:
 
 ```pycon
 >>> f = open('store/temps.dat')
@@ -160,18 +163,21 @@ D7: 22 28
 
 ### Lectura de una línea { #readline }
 
-Es posible que sólo necesitemos leer una línea del fichero. Para ello Python ofrece la función `#!python readline()` que nos devuelve la «siguiente» línea del fichero.
+Es posible que sólo necesitemos leer una línea del fichero. Para ello Python nos ofrece la función `#!python readline()` que devuelve la «siguiente» línea del fichero.
 
 Veamos cómo hacerlo con el <span class="example">ejemplo:material-flash:</span> del fichero de temperaturas:
 
 ```pycon
 >>> f = open('store/temps.dat')
 
->>> f.readline()
+>>> f.readline()#(1)!
 '23 29\n'
 ```
+{ .annotate }
 
-Es importante señalar que cuando utilizamos la función `#!python readline()` el ^^puntero de lectura^^ se deplaza a la siguiente línea del fichero. Este hecho nos permite seguir leyendo por donde íbamos.
+1. Devuelve una única línea, en este caso la primera del fichero.
+
+:material-check-all:{ .blue } Es importante señalar que cuando utilizamos la función `#!python readline()` el ^^puntero de lectura^^ se desplaza hasta la siguiente línea del fichero. Este hecho nos permite seguir leyendo desde donde nos quedamos.
 
 A continuación se muestra un trozo de código sobre el <span class="example">ejemplo:material-flash:</span> de las temperaturas en el que mezclamos ambas técnicas de lectura:
 
@@ -239,7 +245,7 @@ Analicemos este escenario con el <span class="example">ejemplo:material-flash:</
 2.  - Al intentar recorre de nuevo el fichero no sale nada por pantalla.
     - El puntero de lectura ha llegado al final.
 
-Aunque no es tan usual, existe la posibilidad de **volver a leer el fichero desde el principio** reposicionando el **puntero de lectura** mediante la función `#!python seek()`.
+Aunque no es tan usual, existe la posibilidad de **volver a leer el fichero desde el principio** reposicionando el **puntero de lectura** mediante la función [`seek()`](https://docs.python.org/3/tutorial/inputoutput.html#methods-of-file-objects).
 
 A continuación se muestra como <span class="example">ejemplo:material-flash:</span> una «doble» lectura del fichero de temperaturas:
 
@@ -278,7 +284,7 @@ A continuación se muestra como <span class="example">ejemplo:material-flash:</s
 
 Para abrir un fichero en **modo escritura** utilizamos la función `#!python open()` con el modificador `#!python 'w'`.
 
-A continuación vamos a implementar un <span class="example">ejemplo:material-flash:</span> en el que queremos escribir en un fichero las temperaturas mínimas y máximas de la última semana en una región determinada.
+A continuación vamos a implementar un <span class="example">ejemplo:material-flash:</span> para escribir en un fichero las temperaturas mínimas y máximas de la última semana en una región determinada.
 
 Lo primero será abrir el fichero en modo escritura:
 
@@ -286,7 +292,7 @@ Lo primero será abrir el fichero en modo escritura:
 >>> f = open('store/temps.dat', 'w')
 ```
 
-:material-check-all:{ .blue } La apertura de un fichero en _modo escritura_ ^^borrará todo el contenido^^ que contuviera.
+:material-alarm-light:{.acc} La apertura de un fichero en _modo escritura_ ^^borrará todo el contenido^^ que contuviera.
 
 ??? failure "Ruta al fichero"
 
@@ -301,7 +307,7 @@ Lo primero será abrir el fichero en modo escritura:
     FileNotFoundError: [Errno 2] No such file or directory: 'foo/bar/temps.dat'
     ```
 
-Ahora supongamos que disponemos de una estructura de datos (_tupla de tuplas_) con las temperaturas:
+Ahora supongamos que disponemos de una estructura de datos (_[tupla](./tuples.md) de tuplas_) con las temperaturas:
 
 ```pycon
 >>> temps = (
@@ -315,7 +321,7 @@ Ahora supongamos que disponemos de una estructura de datos (_tupla de tuplas_) c
 ... )
 ```
 
-Python proporciona la función `#!python write()` para escribir en un fichero:
+Python proporciona la función (método) `#!python write()` para escribir en un fichero:
 
 ```pycon hl_lines="2 4"
 >>> for min_temp, max_temp in temps:
@@ -348,7 +354,7 @@ TypeError: write() argument must be str, not int
 
 ### Usando contextos { #contexts }
 
-Python proporciona **gestores de contexto** como aproximación al manejo de ficheros. En este escenario usaremos la sentencia `#!python with` y el contexto creado se ocupará de abrir y cerrar el fichero automáticamente (**incluso si ha habido cualquier error**).
+Python proporciona [gestores de contexto](../modularity/oop.md#context-manager) como aproximación al manejo de ficheros. En este escenario usaremos la sentencia `#!python with` y el contexto creado se ocupará de abrir y cerrar el fichero automáticamente (**incluso si ha habido cualquier error**).
 
 Veamos cómo aplicarlo con el <span class="example">ejemplo:material-flash:</span> anterior de las temperaturas:
 
@@ -388,3 +394,6 @@ Para abrir un fichero en **modo añadido** utilizamos la función `#!python open
 11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `histogram-txt`
 12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `submarine`
 13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `common-words`
+
+[^1]: Es muy frecuente encontrar en la documentación el término «handler» para referirse al objeto manejador del fichero.
+[^2]: Los manejadores de ficheros son estructuras de datos [iterables](../modularity/oop.md#iterables).

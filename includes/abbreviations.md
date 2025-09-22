@@ -1,3 +1,4 @@
+*[ABC]: Atanasoff Berry Computer
 *[API]: Application Programming Interface
 *[APL]: A Programming Language
 *[ASCII]: American Standard Code for Information Interchange

@@ -61,7 +61,7 @@ Supongamos que en el <span class="example">ejemplo:material-flash:</span> anteri
 ...     if num_greets == MAX_GREETS:
 ...         print('Número máximo de saludos alcanzado')
 ... ┌────── break
-... ▼   want_greet = input('¿Quiere otro saludo? [S/N] ')
+... ↓   want_greet = input('¿Quiere otro saludo? [S/N] ')
 ... print('Que tenga un buen día')
 Hola qué tal!
 ¿Quiere otro saludo? [S/N] S
@@ -89,7 +89,7 @@ Como hemos visto en este ejemplo, `#!python break` nos permite finalizar el bucl
 
 Python nos ofrece la posibilidad de **detectar si el bucle ha acabado de forma ordinaria**, esto es, ha finalizado por no cumplirse la condición establecida.
 
-Para ello podemos hacer uso de la sentencia `#!python else` como parte del propio bucle. Si el bucle `#!python while` finaliza normalmente (sin llamada a break) el flujo de control pasa a la sentencia opcional `#!python else`.
+Para ello podemos hacer uso de la sentencia `#!python else` como parte del propio bucle. Si el bucle `#!python while` finaliza normalmente (sin llamada a `#!python break`) el flujo de control pasa a la sentencia opcional `#!python else`.
 
 Veamos su comportamiento siguiendo con el <span class="example">ejemplo:material-flash:</span> que venimos trabajando:
 
@@ -137,7 +137,7 @@ Continuamos con el <span class="example">ejemplo:material-flash:</span> anterior
 >>> valid_options = 0
 
 >>> while want_greet == 'S':
-... ▲   print('Hola qué tal!')
+... ↑   print('Hola qué tal!')
 ... │   want_greet = input('¿Quiere otro saludo? [S/N] ')
 ... │   if want_greet not in 'SN':#(1)!
 ... │       print('No le he entendido pero le saludo')
@@ -236,7 +236,7 @@ En comparación con el enfoque «clásico» del bucle `#!python while`:
 
 ## La sentencia `for` { #for }
 
-Python permite recorrer aquellos tipos de datos que sean **iterables**, es decir, que admitan iterar[^2] sobre ellos. Algunos ejemplos de **tipos y estructuras de datos iterables** (_que permiten ser iteradas/recorridas_) son: cadenas de texto, listas, tuplas, diccionarios, ficheros, etc.
+Python permite recorrer aquellos tipos de datos que sean **iterables**, es decir, que admitan iterar[^2] sobre ellos. Algunos ejemplos de **tipos y estructuras de datos iterables** (_que permiten ser iteradas/recorridas_) son: [cadenas de texto](../datatypes/strings.md), [listas](../datastructures/lists.md), [tuplas](../datastructures/tuples.md), [diccionarios](../datastructures/dicts.md), [ficheros](../datastructures/files.md), etc.
 
 La sentencia `#!python for` nos permite realizar esta acción.
 
@@ -264,7 +264,7 @@ n
 
     La **variable de asignación** que utilizamos en el bucle `#!python for` para ir tomando los valores puede tener **cualquier nombre**. Al fin y al cabo es una variable que definimos según nuestras necesidades.
 
-    Suele ser de buen estilo que sea un **nombre en singular** relacionado con la estructura que recorre:
+    Suele ser de buen estilo de programación que sea un **nombre en singular** relacionado con la estructura que recorre:
 
     - `#!python for item in items:`
     - `#!python for num in numbers:`
@@ -306,7 +306,7 @@ La técnica para la generación de secuencias de números es muy similar a la ut
 | Parámetro | Carácter | Por defecto |
 | --- | --- | --- |
 | `start` | Opcional | 0 |
-| `stop` | Obligatorio | - |
+| `stop` | <span class="hl">Obligatorio</span> | - |
 | `step` | Opcional | 1 |
 
 Veamos distintos casos de uso:
@@ -360,7 +360,7 @@ Veamos distintos casos de uso:
 
     Se suelen utilizar nombres de variables `i`, `j`, `k` para lo que se denominan **contadores**[^4]. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores.
     
-    :material-alarm-light:{ .green } No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de **asignar un nombre semánticamente más significativo**.
+    :material-alarm-light:{ .red } No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de **asignar un nombre semánticamente más significativo**.
 
 !!! exercise "Ejercicio"
 
@@ -396,7 +396,7 @@ Repeat me 10 times!
 
 Como ya vimos en las [sentencias condicionales](conditionals.md#if), el **anidamiento** es una técnica por la que incluimos distintos niveles de encapsulamiento de sentencias, unas dentro de otras, con mayor nivel de profundidad.
 
-En el caso de los bucles también es posible hacer anidamiento, tanto para bucles [while](#while) como para bucles [for](#for).
+En el caso de los bucles también es posible hacer anidamiento, tanto para bucles [`while`](#while) como para bucles [`for`](#for).
 
 ![Matrioskas](images/loops/matrioskas.png)
 (1)

@@ -21,7 +21,7 @@ La forma más habitual de instalar Python (junto con sus librerías) es descarga
     [Descargar Python para Windows](https://www.python.org/downloads/windows/)
     !!! info "Ayuda"
 
-        [Tutorial para instalar Python en Linux](https://www.freecodecamp.org/news/how-to-install-python-in-windows-operating-system/)
+        [Tutorial para instalar Python en Windows](https://www.freecodecamp.org/news/how-to-install-python-in-windows-operating-system/)
 
 === ":simple-apple: MacOS"
 
@@ -33,7 +33,7 @@ La forma más habitual de instalar Python (junto con sus librerías) es descarga
 
 ### Anaconda { #anaconda }
 
-Otra de las alternativas para disponer de Python en nuestro sistema y que además es muy utilizada, es **Anaconda**. Se trata de un _conjunto de herramientas_, orientadas en principio a la _ciencia de datos_, pero que podemos utilizarlas para desarrollo general en Python (junto con otras librerías adicionales).
+Otra de las alternativas para disponer de Python en nuestro sistema y que además es muy utilizada, es **Anaconda**. Se trata de un _conjunto de herramientas_, orientadas en principio a la _ciencia de datos_, pero que podemos utilizar para desarrollo general en Python (junto con otras librerías adicionales).
 
 Existen versiones de pago, pero también se ofrece una distribución «open-source» y gratuita. Se puede [descargar](https://www.anaconda.com/download) desde su página web. Anaconda trae por defecto una gran cantidad de [paquetes](https://docs.anaconda.com/anaconda/pkg-docs/) Python en su distribución.
 
@@ -92,7 +92,7 @@ $ conda install pytest
 
 Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (a nivel del sistema). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, lo que nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos dentro del mismo.
 
-La manera más sencilla de [crear un entorno virtual](https://docs.python.org/es/3/library/venv.html#creating-virtual-environments) es la siguiente:
+La manera ~~más sencilla~~ oficial de [crear un entorno virtual](https://docs.python.org/es/3/library/venv.html#creating-virtual-environments) es la siguiente:
 
 ```console
 $ cd myproject #(1)!
@@ -110,7 +110,7 @@ $ source .venv/bin/activate #(3)!
 
 ### pyenv { #pyenv }
 
-**pyenv** es una herramienta que permite instalar/cambiar fácilmente entre múltiples versiones de Python en un mismo sistema. Su instalación engloba varios pasos y está bien explicada en la [página del proyecto](https://github.com/pyenv/pyenv#installation).
+**pyenv** es una herramienta que permite instalar/cambiar fácilmente entre múltiples versiones de Python en un mismo sistema. Su instalación engloba distintos pasos y está bien explicada en la [página del proyecto](https://github.com/pyenv/pyenv#installation).
 
 Veamos algunas de sus ^^funcionalidades^^ más interesantes:
 
@@ -182,7 +182,7 @@ Veamos algunas de sus ^^funcionalidades^^ más interesantes:
 
 !!! info "pyenv-virtualenv"
 
-    También existe un módulo denominado [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) para manejar entornos virtuales utilizando las ventajas que proporciona _pyenv_.
+    Existe un «plugin» para _pyenv_ denominado [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) que permite manejar entornos virtuales utilizando las ventajas que proporciona _pyenv_.
 
 ### uv { #uv }
 
@@ -237,13 +237,13 @@ La [documentación](https://docs.astral.sh/uv/) está muy bien conseguida. A con
 
     ---
     ```console
-    $ uv run example.py
+    $ uv run python example.py
     ```
     Este comando permite ejecutar un «script» Python directamente desde uv.
     
     En el caso de que el «script» tuviera dependencias externas, podemos usar el siguiente comando:
     ```console
-    $ uv run --with pytest example.py
+    $ uv run --with pytest python example.py
     ```
 
 </div>
@@ -278,19 +278,19 @@ Cada editor tiene sus características (ventajas e inconvenientes). Supongo que 
 
 ### Jupyter { #jupyter }
 
-[Jupyter :simple-jupyter:](https://jupyter.org/) es un proyecto «open-source» que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque suele estar más enfocado a ciencia de datos: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización o «machine-learning»[^4].
+[Jupyter :simple-jupyter:](https://jupyter.org/) es un proyecto «open-source» que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque **suele estar más enfocado a ciencia de datos**: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización o «machine-learning»[^4].
 
 Podemos verlo como un intérprete de Python (contiene un «kernel»[^5] que permite ejecutar código) con la capacidad de incluir documentación en formato [Markdown :material-language-markdown-outline:](https://markdown.es/) lo que potencia sus funcionalidades y lo hace adecuado para preparar cualquier tipo de material vinculado con lenguajes de programación.
 
 !!! example "Kernels"
 
-    Aunque su uso está más extendido en el mundo Python, existen [muchos otros «kernels»](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) sobre los que trabajar con Jupyter.
+    Aunque el uso de Jupyter está más extendido en el mundo Python, existen [muchos otros «kernels»](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) con los que podemos trabajar.
 
 ### repl.it { #replit }
 
 [repl.it :simple-replit:](https://replit.com/) es un **servicio web que ofrece un entorno de desarrollo integrado** para programar en más de 50 lenguajes (Python incluido).
 
-Es gratuito y de uso colaborativo. Se requiere una cuenta en el sistema para utilizarlo. El hecho de no requerir instalación ni configuración previa lo hace atractivo en determinadas circunstancias.
+Permite trabajo colaborativo y dispone de [una capa gratuita](https://replit.com/pricing). Se requiere una cuenta en el sistema para utilizarlo. El hecho de no requerir instalación ni configuración previa lo hace atractivo en determinados escenarios.
 
 <figure markdown="span">
     ![Replit](images/real-context/replit.png)
@@ -300,8 +300,9 @@ Es gratuito y de uso colaborativo. Se requiere una cuenta en el sistema para uti
 En su versión gratuita[^6] («Starter») repl.it ofrece:
 
 - 2Gb de almacenamiento en disco.
-- 1Gb de memoria RAM.
-- Python 3.11.9.
+- 2Gb de memoria RAM.
+- 10 aplicaciones (proyectos) gratuitos.
+- Python 3.11.
 - Hasta 3 repositorios públicos.
 - Explorador (y subida) de ficheros.
 - Gestor de paquetes integrado.
@@ -316,7 +317,7 @@ Si estamos trabajando en un sistema **Windows** (versión 10/11/...) es posible 
 
 [WSL](https://learn.microsoft.com/es-es/windows/wsl/) nos proporciona una consola con entorno Linux que podemos utilizar en nuestro sistema operativo Windows sin necesidad de instalar una máquina virtual o crear una partición para un Linux nativo. Es importante saber también que existen [dos versiones de WSL](https://learn.microsoft.com/es-es/windows/wsl/compare-versions) hoy en día: WSL y WSL2. La segunda tiene mejor rendimiento y se adhiere más al comportamiento de un Linux nativo.
 
-La instalación de WSL debería ser tan fácil como :material-powershell:`#!console wsl --install` pero quizás deberías echar un vistazo a la [documentación](https://learn.microsoft.com/es-es/windows/wsl/install) por si hay algo que debas saber...
+La instalación de WSL tendría que ser tan fácil como :material-powershell:`#!console wsl --install` pero quizás deberías echar un vistazo a la [documentación](https://learn.microsoft.com/es-es/windows/wsl/install) por si hay algo que no vaya bien...
 
 
 

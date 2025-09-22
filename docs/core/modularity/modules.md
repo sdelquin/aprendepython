@@ -158,7 +158,7 @@ Es posible que no necesitemos todo aquello que está definido en `stats.py`. Por
 
 1.  La función se utiliza sin ningún prefijo.
 
-Este esquema tiene el inconveniente de la **posible colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando. Para estas (u otras situaciones) situaciones Python permite usar **alias** a través de la sentencia `#!python as`:
+Este esquema tiene el inconveniente de la **posible colisión de nombres**, en aquellos casos en los que tuviéramos algún objeto con el mismo nombre que el objeto que estamos importando. Para estas (u otras) situaciones Python permite usar **alias** a través de la sentencia `#!python as`:
 
 ```pycon hl_lines="1"
 >>> from stats import mean as avg
@@ -202,7 +202,7 @@ def lcm(a: int, b: int) -> int:
     return a * b // gcd(a, b)
 ```
 
-Si nuestro código principal va a estar en un fichero `main.py` (a primer nivel), la estructura de ficheros nos quedaría tal que así:
+Si nuestro código principal va a estar en `main.py` (a primer nivel), la estructura de ficheros nos quedaría tal que así:
 
 <div class="annotate" markdown>
 ```

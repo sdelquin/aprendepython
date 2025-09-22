@@ -42,7 +42,7 @@ Podemos observar que la pantalla está dividida en **3 paneles**:
 
 !!! warning "Versión de Python"
 
-    Las actualizaciones de Thonny no están «alineadas» con las últimas versiones de Python, por lo que es probable que no dispongas de la última versión estable de Python en Thonny. En cualquier caso, siempre se podrá configurar el editor para usar una instalación personalizada de Python más actualizada.
+    Las actualizaciones de Thonny no están «alineadas» con las últimas versiones de Python, por lo que es probable que no dispongas de la última versión estable de Python en Thonny. En cualquier caso, siempre se podrá configurar el editor para utilizar una instalación personalizada de Python más actualizada.
 
 ## Intérprete { #interpreter }
 
@@ -81,14 +81,14 @@ Ahora ya podemos ejecutar nuestro fichero `helloworld.py`. Para ello pulsamos el
 
 ## Depurador { #debugger }
 
-Nos falta por probar el depurador o «debugger». Aunque su funcionamiento va mucho más allá, de momento nos vamos a quedar en la posibilidad de inspeccionar las variables de nuestro programa. Desafortunadamente `helloworld.py` es muy simple y ni siquiera contiene variables, pero podemos hacer una pequeña modificación al programa para poder incorporarlas:
+Nos falta por probar el depurador o «debugger». Aunque su funcionamiento va mucho más allá de lo que vemos aquí, nos vamos a quedar de momento con la posibilidad de inspeccionar variables de nuestro programa. Desafortunadamente `helloworld.py` es muy simple y ni siquiera contiene variables, pero podemos hacer una pequeña modificación al programa para incorporarlas:
 
 ```python linenums="1"
 msg = 'Hello, World'
 print(msg)
 ```
 
-Aunque ya lo veremos en profundidad, lo que hemos hecho es añadir una variable `#!python msg` en la ^^línea 1^^ para luego utilizarla al mostrar por pantalla su contenido (^^línea 2^^). Si ahora volvemos a ejecutar nuestro programa veremos que en el panel de variables nos aparece la siguiente información:
+Aunque [ya lo veremos en profundidad](../datatypes/data.md#variables), lo que hemos hecho es añadir una variable `#!python msg` en la ^^línea 1^^ para luego utilizarla al mostrar por pantalla su contenido (^^línea 2^^). Si ahora volvemos a ejecutar nuestro programa veremos que en el panel de variables nos aparece la siguiente información:
 
 | Name           | Value                     |
 | -------------- | ------------------------- |

@@ -10,7 +10,7 @@ icon: material/function
 
 1. :fontawesome-regular-copyright: [Nathan Dumlao](https://unsplash.com/es/@nate_dumlao) :material-at: [Unsplash](https://unsplash.com) 
 
-El concepto de **función** es básico en prácticamente cualquier lenguaje de programación. Se trata de una estructura que nos permite agrupar código. Persigue dos objetivos claros:
+El concepto de **función** es básico en prácticamente cualquier lenguaje de programación. Se trata de un artefacto que nos permite agrupar código. Persigue dos objetivos claros:
 
 1. **No repetir** fragmentos de código en un programa.
 2. **Reutilizar** el código en distintos escenarios.
@@ -110,7 +110,6 @@ Si una función no incluye un `#!python return` de forma explícita, devolverá 
 ```pycon
 >>> def empty():
 ...     x = 0
-...     # return None
 
 >>> print(empty())
 None
@@ -133,7 +132,8 @@ A continuación se muestra un <span class="example">ejemplo:material-flash:</spa
 ```
 { .annotate }
 
-1. `#!python 0, 1` es una tupla!
+1.  - `#!python 0, 1` es una tupla!
+    - Sería equivalente a: `#!python return (0, 1)`
 
 Veamos qué ocurre si invocamos esta función:
 
@@ -160,7 +160,7 @@ Por tanto, también podremos aplicar [desempaquetado de tuplas](../datastructure
 
 ## Funciones auxiliares { #aux-funcs }
 
-Es muy probable que en un programa utilicemos distintas funciones para resolver un determinado problema.
+Es bastante probable que en un programa ~~utilicemos~~ necesitemos funciones para resolver un determinado problema.
 
 En este sentido, hay que entender que podemos definir y utilizar todas aquellas funciones que consideremos necesarias (funciones auxiliares) para conseguir el fin deseado.
 
@@ -195,7 +195,7 @@ flowchart LR
 
 ## Parámetros y argumentos { #parameters }
 
-Si una función no dispusiera de valores de entrada, su comportamiento quedaría muy limitado. Es por ello que los **parámetros** nos permiten variar los datos que consume una función para obtener distintos resultados.
+Si una función no dispusiera de valores de entrada, su comportamiento quedaría muy limitado. Es por ello que los **parámetros** nos permiten variar los datos que consume una función y obtener distintos resultados.
 
 Vamos a empezar a crear funciones que reciben parámetros. En este primer <span class="example">ejemplo:material-flash:</span> se define una función que recibe un valor numérico y devuelve su raíz cuadrada:
 
@@ -278,7 +278,7 @@ En el uso de argumentos posicionales hay un inconveniente: **recordar el orden**
 
 ### Argumentos nominales { #kwargs }
 
-En esta aproximación los argumentos no son copiados en un orden específico sino que **se asignan por nombre a cada parámetro**. Esto nos permite evitar el problema de conocer cuál es el orden de los parámetros en la definición de la función. Para utilizarlo, basta con realizar una asignación de cada argumento en la propia llamada a la función.
+En esta aproximación los argumentos no son copiados en un orden específico sino que **se asignan por nombre a cada parámetro**. Esto nos permite evitar el problema de conocer cuál debe ser el orden de los parámetros en la definición de la función. Para utilizarlo, basta con realizar una asignación de cada argumento en la propia llamada a la función.
 
 Veamos la misma llamada que hemos hecho en el <span class="example">ejemplo:material-flash:</span> de «construcción» de la CPU pero ahora utilizando paso de argumentos nominales:
 
@@ -308,7 +308,7 @@ Python permite **mezclar argumentos posicionales y nominales** en la llamada a u
 
 Pero hay que tener en cuenta que, en este escenario, **los argumentos posicionales siempre deben ir antes que los argumentos nominales**. Esto tiene mucho sentido ya que, de no hacerlo así, Python no tendría forma de discernir a qué parámetro corresponde cada argumento:
 
-```pycon
+```pycon hl_lines="5"
 >>> build_cpu(num_cores=4, 'INTEL', freq=3.1)
   Cell In[1], line 1
     build_cpu(num_cores=4, 'INTEL', freq=3.1)
@@ -349,7 +349,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que nos
 
 Es posible especificar **valores por defecto** en los parámetros de una función. En el caso de que no se proporcione un valor al argumento en la llamada a la función, el parámetro correspondiente tomará el valor definido por defecto.
 
-Siguiendo con el <span class="example">ejemplo:material-flash:</span> de la CPU, podemos asignar _2.0GHz_ como frecuencia por defecto. La definición de la función cambiaría ligeramente:
+Siguiendo con el <span class="example">ejemplo:material-flash:</span> de la CPU, podemos asignar _2.0GHz_ como frecuencia de reloj por defecto. La definición de la función cambiaría ligeramente:
 
 ```pycon
 >>> def build_cpu(vendor, num_cores, freq=2.0):
@@ -361,19 +361,23 @@ Siguiendo con el <span class="example">ejemplo:material-flash:</span> de la CPU,
 ...
 ```
 
-Llamada a la función sin especificar frecuencia de CPU:
+=== "Llamada sin frecuencia"
 
-```pycon
->>> build_cpu('INTEL', 2)
-{'vendor': 'INTEL', 'num_cores': 2, 'freq': 2.0}
-```
+    Llamada a la función sin especificar frecuencia de CPU:
 
-Llamada a la función indicando una frecuencia concreta de CPU:
+    ```pycon
+    >>> build_cpu('INTEL', 2)
+    {'vendor': 'INTEL', 'num_cores': 2, 'freq': 2.0}
+    ```
 
-```pycon
->>> build_cpu('INTEL', 2, 3.4)
-{'vendor': 'INTEL', 'num_cores': 2, 'freq': 3.4}
-```
+=== "Llamada con frecuencia"
+
+    Llamada a la función indicando una frecuencia concreta de CPU:
+
+    ```pycon
+    >>> build_cpu('INTEL', 2, 3.4)
+    {'vendor': 'INTEL', 'num_cores': 2, 'freq': 3.4}
+    ```
 
 Es importante tener presente que **los valores por defecto en los parámetros se calculan cuando se define la función**, no cuando se ejecuta. Veamos un <span class="example">ejemplo:material-flash:</span> siguiendo con el caso anterior:
 
@@ -406,13 +410,13 @@ Es importante tener presente que **los valores por defecto en los parámetros se
 
 ### Número variable de argumentos { #variable-arguments }
 
-Si nos quedamos en lo visto hasta ahora, una función podría recibir un gran número de argumentos, pero siempre sería un **número fijo**. Sin embargo hay ocasiones en las que necesitamos que una función reciba un número variable (indeterminado) de argumentos.
+Si nos quedamos en lo visto hasta ahora, una función podría recibir un gran número de argumentos, pero siempre sería un **número fijo**. Sin embargo hay ocasiones en las que necesitamos que una función reciba un número variable (a priori desconocido) de argumentos.
 
-Python nos ofrece la posibilidad de **empaquetar y desempaquetar argumentos** cuando estamos invocando a una función, tanto para argumentos posicionales como para argumentos nominales, lo que facilita la gestión de número variable de argumentos.
+Python nos ofrece la posibilidad de **empaquetar y desempaquetar argumentos** cuando estamos invocando a una función, tanto para [argumentos posicionales](#args) como para [argumentos nominales](#kwargs), lo que facilita la gestión de número variable de argumentos.
 
 === "Argumentos variables ^^posicionales^^"
 
-    Supongamos un <span class="example">ejemplo:material-flash:</span> de función que «construye» una hamburguesa :material-hamburger-plus::
+    Supongamos un <span class="example">ejemplo:material-flash:</span> de función que «construye» una hamburguesa :material-hamburger-plus:{.hl}:
 
     ```pycon
     >>> def make_burguer(*ingredients):#(1)!
@@ -439,7 +443,8 @@ Python nos ofrece la posibilidad de **empaquetar y desempaquetar argumentos** cu
     ```
     { .annotate }
 
-    1. En este contexto, el asterisco separa los argumentos al llamar a la función.
+    1.  - En este contexto, el asterisco separa los argumentos al llamar a la función.
+        - Serviría para cualquier estructura de datos que fuera **iterable**.
 
 === "Argumentos variables ^^nominales^^"
 
@@ -470,11 +475,11 @@ Python nos ofrece la posibilidad de **empaquetar y desempaquetar argumentos** cu
     ```
     { .annotate }
 
-    1. En este contexto, el doble asterisco separa los argumentos al llamar a la función.
+    3. En este contexto, el doble asterisco separa los argumentos al llamar a la función.
 
 #### Convenciones { #args-standard }
 
-Es habitual encontrar definición de **funciones genéricas** con un número variable de argumentos posicionales y/o nominales:
+Es habitual encontrar la definición de **funciones genéricas** con un número variable de argumentos posicionales y/o nominales de la siguiente manera:
 
 ```pycon
 >>> def func(*args, **kwargs):
@@ -482,15 +487,15 @@ Es habitual encontrar definición de **funciones genéricas** con un número var
 ...
 ```
 
-:material-check-all:{ .blue } El hecho de llamar `args` a los argumentos posicionales y `kwargs` a los argumentos nominales («keyword») sólo es una **convención**.
+:material-check-all:{ .blue } El hecho de llamar `args` (por «arguments») a los argumentos posicionales y `kwargs` (por «keyword arguments») a los argumentos nominales es sólo una **convención**.
 
 ### Forzando modo de paso de argumentos { #force-arguments-mode }
 
-Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo nominal o posicional, existen opciones para forzar que dicho paso sea obligatorio para una determinada modalidad.
+Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en modo nominal o posicional, existen opciones para forzar que dicho paso sea obligatorio en una determinada modalidad.
 
 === "Argumentos sólo ^^nominales^^"
 
-    A partir de <span class="pyversion"><a href="https://www.python.org/downloads/release/python-300/">Python <span class="version">:octicons-tag-24: 3.0</span></a></span> se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
+    A partir de <span class="pyversion"><a href="https://docs.python.org/3.0/">Python <span class="version">:octicons-tag-24: 3.0</span></a></span> se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por nombre.
 
     Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial **asterisco** `*` que delimitará el tipo de parámetros. Así, **todos los parámetros a la derecha del asterisco estarán obligados a ser nominales**:
 
@@ -524,7 +529,7 @@ Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en
 
 === "Argumentos sólo ^^posicionales^^"
 
-    A partir de <span class="pyversion"><a href="https://www.python.org/downloads/release/python-380/">Python <span class="version">:octicons-tag-24: 3.8</span></a></span> se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por posición.
+    A partir de <span class="pyversion"><a href="https://docs.python.org/3.8/">Python <span class="version">:octicons-tag-24: 3.8</span></a></span> se ofrece la posibilidad de obligar a que determinados parámetros de la función sean pasados sólo por posición.
 
     Para ello, en la definición de los parámetros de la función, tendremos que incluir un parámetro especial **barra** `/` que delimitará el tipo de parámetros. Así, **todos los parámetros a la izquierda del delimitador estarán obligados a ser posicionales**:
 
@@ -709,19 +714,19 @@ closest_int(value)
 
 Como ya se ha visto, es posible documentar una función utilizando un «docstring». Pero la _redacción y el formato_ de esta cadena de texto puede ser muy variada.
 
-Existen distintas formas de documentar una función (u otros objetos)[^3]:
+Existen distintos formatos para documentar una función (u otros objetos)[^3]:
 
 | Tipo de formato | Descripción | Soporta [Sphinx](https://www.sphinx-doc.org/)
 | --- | --- | --- |
-| [reStructuredText](https://peps.python.org/pep-0287/) | Formato de documentación **recomendado** por Python. | :material-check:{.green} |
-| [Google](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings) | Formato de documentación utilizado por Google. | :material-check:{.green} |
+| [reStructuredText](https://peps.python.org/pep-0287/) | Formato de documentación **recomendado** por [Python](https://www.python.org/). | :material-check:{.green} |
+| [Google](https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings) | Formato de documentación utilizado por [Google](https://google.com). | :material-check:{.green} |
 | [NumPy](https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard) | Formato de documentación utilizado por [NumPy](https://numpy.org/)[^4]. | :material-check:{.green} |
 | [Epytext](https://epydoc.sourceforge.net/epytext.html) | Formato de documentación utilizado por [Epydoc](https://epydoc.sourceforge.net/)[^5]. | :octicons-x-12:{.red}
 
 Aunque cada uno tienes sus particularidades, todos comparten una misma estructura:
 
 1. Una primera línea de **descripción de la función**.
-2. A continuación especificamos las **características de los parámetros** (incluyendo sus tipos).
+2. A continuación se especifican las **características de los parámetros** (incluyendo sus tipos).
 3. Por último, indicamos si la función **retorna un valor** y sus características.
 
 :material-check-all:{ .blue } Aunque todos los formatos son válidos, nos centraremos en **reStructuredText** por ser el estándar propuesto por Python para la documentación.
@@ -751,7 +756,7 @@ def power(x, n):
 
 ```
 
-Si preparamos un [proyecto sobre Sphinx](./files/functions/docs.zip) y generamos la documentación, obtendríamos algo similar a la siguiente página:
+Si preparamos un [proyecto sobre Sphinx](./files/functions/docs.zip) y generamos la documentación, obtendremos algo similar a la siguiente página:
 
 ![Dark image](images/functions/sphinx-docs-dark.png#only-dark)
 ![Light image](images/functions/sphinx-docs-light.png#only-light)
@@ -759,11 +764,11 @@ Si preparamos un [proyecto sobre Sphinx](./files/functions/docs.zip) y generamos
 
 !!! info "Read the Docs"
 
-    La plataforma [Read the Docs](https://about.readthedocs.com/) aloja la documentación de gran cantidad de proyectos. En muchos de los casos se han usado «docstrings» con el formato Sphinx visto anteriormente. Un <span class="example">ejemplo:material-flash:</span> de esta documentación es la popular librería de Python [requests](https://requests.readthedocs.io/en/latest/api/).        
+    La plataforma [Read the Docs](https://about.readthedocs.com/) aloja la documentación de gran cantidad de proyectos. En muchos de los casos se han usado «docstrings» con el formato Sphinx (_reStructuredText_) visto anteriormente. Un <span class="example">ejemplo:material-flash:</span> de esta documentación es la popular librería de Python [requests](https://requests.readthedocs.io/en/latest/api/).        
 
 ### Anotación de tipos { #type-hints }
 
-Las anotaciones de tipos (o «type-hints») se introdujeron en <span class="pyversion"><a href="https://www.python.org/downloads/release/python-350/">Python <span class="version">:octicons-tag-24: 3.5</span></a></span> y permiten indicar tipos para los parámetros de una función y/o para su valor de retorno (_aunque también funcionan en creación de variables_).
+Las anotaciones de tipos (o «type-hints») se introdujeron en <span class="pyversion"><a href="https://docs.python.org/3.5/">Python <span class="version">:octicons-tag-24: 3.5</span></a></span> y permiten indicar tipos para los parámetros de una función y/o para su valor de retorno (_aunque también funcionan en creación de variables_).
 
 Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos una función para **dividir una cadena de texto** por la posición especificada en el parámetro:
 
@@ -830,7 +835,7 @@ En la siguiente tabla se muestran distintos métodos para **anotaciones de tipos
 
 #### Múltiples tipos { #type-hints-multiple }
 
-A partir de <span class="pyversion"><a href="https://www.python.org/downloads/release/python-310/">Python <span class="version">:octicons-tag-24: 3.10</span></a></span> podemos indicar que un parámetro puede ser de un tipo o de otro utilizando el operador `|`.
+A partir de <span class="pyversion"><a href="https://docs.python.org/3.10/">Python <span class="version">:octicons-tag-24: 3.10</span></a></span> podemos indicar (anotar) que un parámetro sea de un tipo u otro utilizando el operador `|`.
 
 Veamos algunos <span class="example">ejemplos:material-flash:</span> válidos:
 
@@ -867,7 +872,7 @@ Una función «lambda» tiene las siguientes propiedades:
 1. Se escribe en una única sentencia (línea).
 2. No tiene nombre (por eso es anónima).
 3. Su cuerpo conlleva un `#!python return` implícito.
-4. Puede recibir cualquier número de parámetros.
+4. Puede recibir cualquier número de parámetros (si así se define).
 
 Veamos un primer <span class="example">ejemplo:material-flash:</span> de función «lambda» que permite **contar el número de «palabras» de una cadena de texto dada**:
 
@@ -879,7 +884,7 @@ Veamos un primer <span class="example">ejemplo:material-flash:</span> de funció
 
 1. En funciones «lambda» hay una cierta «licencia» para abreviar nombres de variables y que no ocupen tanto espacio.
 
-Visto así quizás haya dudas de su escritura, pero veamos cuál es la transformación que se ha llevado a cabo:
+Visto así quizás haya dudas de su escritura, pero analicemos cuál es la transformación que se ha llevado a cabo:
 
 ![Dark image](images/functions/lambda-dark.svg#only-dark)
 ![Light image](images/functions/lambda-light.svg#only-light)
@@ -1090,7 +1095,7 @@ generator
 
 ¿Cómo obtengo entonces los valores «finales» a partir de un generador? Hay dos enfoques para resolver esta pregunta:
 
-=== "Poco a poco"
+=== "Poco a poco :material-walk:"
 
     ```pycon
     >>> for even in evens_gen:#(1)!
@@ -1114,7 +1119,7 @@ generator
         - Efectivamente la función se congela hasta la próxima «petición».
         - El bucle acaba cuando ya no quedan valores que devolver desde el generador.
 
-=== "Todo a la vez"
+=== "Todo a la vez :material-run:"
 
     ```pycon
     >>> list(evens_gen)#(1)!
@@ -1153,9 +1158,9 @@ generator
 
 #### Expresiones generadoras { #genexp }
 
-Una **expresión generadora** es sintácticamente muy similar a una _lista por comprensión_, pero utilizamos paréntesis en vez de corchetes.
+Una **expresión generadora** es sintácticamente muy similar a una [lista por comprensión](../datastructures/lists.md#comprehension), pero utilizamos ^^paréntesis^^ en vez de corchetes.
 
-Podemos tratar de reproducir el <span class="example">ejemplo:material-flash:</span> visto en [funciones generadoras](#genfun) donde se generaban números pares:
+Podemos tratar de reproducir el <span class="example">ejemplo:material-flash:</span> visto en [funciones generadoras](#genfun) donde se producían números pares:
 
 ```pycon
 >>> evens_gen = (n for n in range(0, 20, 2))
@@ -1260,7 +1265,7 @@ function
 
 !!! tip "Factoría de funciones"
 
-    En una clausura se retorna una función, no un valor. Es por esto que se dice que **una clausura es una factoría de funciones**.
+    En una clausura se retorna una función, no un valor. Es por ello que se dice que **una clausura es una factoría de funciones**.
 
 ### Decoradores { #decorators }
 
@@ -1348,7 +1353,7 @@ Veamos su aplicación con el <span class="example">ejemplo:material-flash:</span
 
 #### Manipulando argumentos { #mangling-args }
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos implementar un **decorador que pase a minúsculas argumentos** de tipo _cadena de texto_.
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos implementar un **decorador que pase a minúsculas todos los argumentos** de tipo _cadena de texto_.
 
 El planteamiento varía según el número de argumentos que queramos manipular. Para funciones con...
 
@@ -1515,28 +1520,46 @@ Definimos los siguientes decoradores:
 
 Aplicamos los decoradores a una función producto:
 
-```pycon
->>> @plus5
-... @div2
-... def prod(a, b):
-...     return a * b
-...
+=== "Versión :material-at:"
 
->>> prod(4, 3)#(1)!
-11
-```
-{ .annotate }
+    ```pycon
+    >>> @plus5
+    ... @div2
+    ... def prod(a, b):
+    ...     return a * b
+    ...
 
-1. $$\frac{(4 \cdot 3)}{2}+5 = \frac{12}{2}+5 = 6+5 = 11$$
+    >>> prod(4, 3)#(1)!
+    11
+    ```
+    { .annotate }
 
+    1. $$\frac{(4 \cdot 3)}{2}+5 = \frac{12}{2}+5 = 6+5 = 11$$
+
+=== "Versión funcional"
+
+    ```pycon
+    >>> def prod(a, b):
+    ...     return a * b
+    ...
+
+    >>> f = plus5(div2(prod))
+    
+    >>> f(4, 3)#(1)!
+    11
+    ```
+    { .annotate }
+
+    1. $$\frac{(4 \cdot 3)}{2}+5 = \frac{12}{2}+5 = 6+5 = 11$$
+    
 ``` mermaid
 graph LR
-  s[prod*] --> p5[plus5]
-  p5 --> d2[div2]
-  d2 --> f[prod]
-  f -->|12| d2
-  d2 -->|6| p5
-  p5 -->|11| s
+s[prod*] --> p5[plus5]
+p5 --> d2[div2]
+d2 --> f[prod]
+f -->|12| d2
+d2 -->|6| p5
+p5 -->|11| s
 ```
 
 #### Decoradores con parámetros { #deco-params }
@@ -1561,7 +1584,7 @@ El _esqueleto básico_ de un decorador con parámetros es el siguiente:
 Supongamos un <span class="example">ejemplo:material-flash:</span> donde queremos implementar un decorador que convierta el resultado de una función a una base determinada:
 
 ```pycon
->>> def basify(base: int):
+>>> def basify(base: int = 10):#(1)!
 ...     def decorator(func):
 ...         def wrapper(*args, **kwargs):
 ...             result = func(*args, **kwargs)
@@ -1572,6 +1595,8 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde queremo
 ...                     result = oct(result)
 ...                 case 16:
 ...                     result = hex(result)
+...                 case 10:
+...                     result = result
 ...                 case _:
 ...                     result = None
 ...             return result
@@ -1579,6 +1604,9 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde queremo
 ...     return decorator
 ...
 ```
+{ .annotate }
+
+1. Es posible definir valores por defecto para los argumentos, como cualquier otra función en Python.
 
 Ahora podemos aplicarlo variando la base de representación:
 
@@ -1626,6 +1654,39 @@ Ahora podemos aplicarlo variando la base de representación:
     { .annotate }
     
     1. $\equiv$ `#!python hex(349+125)`
+
+=== "Sin base :octicons-circle-slash-24:"
+
+    ```pycon
+    >>> @basify()#(1)!
+    ... def add(a, b):
+    ...     return a + b
+    ...
+    
+    >>> add(349, 125)#(2)!
+    474    
+    ```
+    { .annotate }
+    
+    1. Se aplica la base por defecto :octicons-arrow-right-24: Base 10.
+    2. $349+125=474$
+
+    ??? warning "Uso de paréntesis"
+    
+        En decoradores con parámetros que contengan valores por defecto, aunque no pasemos nada al propio decorador, es obligatorio el uso de paréntesis, ya que de otro modo obtendríamos un error:
+
+        ```pycon hl_lines="1 10"
+        >>> @basify
+        ... def add(a, b):
+        ...     return a + b
+        ...
+        
+        >>> add(349, 125)
+        Traceback (most recent call last):
+          Cell In[2], line 1
+            add(349, 125)
+        TypeError: basify.<locals>.decorator() takes 1 positional argument but 2 were given
+        ```
 
 !!! exercise "Ejercicio"
 
@@ -1676,8 +1737,8 @@ $$
 
 Cuando trabajamos con recursividad hay que detectar (al menos) dos casos:
 
-1. El caso base o _condición de parada_ $(A)$.
-2. El caso recursivo $(B)$.
+- [x] El caso base o _condición de parada_ $(A)$.
+- [x] El caso recursivo $(B)$.
 
 Veamos una posible implementación pensando en `base` $\equiv x$ y `exponent` $\equiv n$
 

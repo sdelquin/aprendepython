@@ -10,11 +10,11 @@ icon: material/call-split
 
 1. :fontawesome-regular-copyright: [Dreamlike Street](https://unsplash.com/es/@dreamlikestreet) :material-at: [Unsplash](https://unsplash.com) 
 
-En esta sección veremos las sentencias `if` y `match-case` junto a las distintas variantes que pueden asumir, pero antes de eso introduciremos algunas cuestiones generales de _escritura de código_.
+En esta sección estudiaremos las sentencias `if` y `match-case` de _Python_ junto a las distintas variantes que pueden asumir, pero antes de eso introduciremos algunas cuestiones generales de _escritura de código_.
 
 ## Definición de bloques { #blocks }
 
-A diferencia de otros lenguajes que utilizan _llaves_ para definir los bloques de código, cuando Guido Van Rossum [creó el lenguaje](../introduction/python.md#python) quiso evitar estos caracteres por considerarlos innecesarios.
+A diferencia de otros lenguajes que utilizan _llaves_ para definir los bloques de código (véase C o Java), cuando Guido Van Rossum [diseñó Python](../introduction/python.md#python) quiso evitar estos caracteres por considerarlos innecesarios.
 
 Es por ello que en Python los bloques de código se definen a través de **espacios en blanco**, preferiblemente :four: espacios en blanco.[^1]
 
@@ -58,7 +58,7 @@ Reglas para escribir buenos comentarios[^2]:
 
 Los programas suelen ser más legibles cuando las líneas no son excesivamente largas. La longitud máxima de línea recomendada por la [guía de estilo de Python](https://www.python.org/dev/peps/pep-0008/#maximum-line-length) es de **80 caracteres**.
 
-Sin embargo, esto genera una [cierta controversia](https://richarddingwall.name/2008/05/31/is-the-80-character-line-limit-still-relevant/) hoy en día, ya que los tamaños de pantalla han aumentado y las resoluciones son mucho mayores que hace años. Así las líneas de más de 80 caracteres se siguen visualizando correctamente. Hay personas que son más estrictas en este límite y otras más flexibles.
+Sin embargo, esto genera una [cierta controversia](https://richarddingwall.name/2008/05/31/is-the-80-character-line-limit-still-relevant/) hoy en día, ya que los tamaños de pantalla han aumentado y las resoluciones son mucho mayores que hace años. Así las líneas de más de 80 caracteres se siguen visualizando correctamente. Hay personas que son más estrictas con este límite y otras más flexibles.
 
 En caso de que queramos **romper una línea de código** demasiado larga, tenemos dos opciones:
 
@@ -104,7 +104,7 @@ Aviso por alta temperatura
 
 !!! note "Paréntesis"
 
-    Nótese que en Python no es necesario incluir paréntesis `(` y `)` al escribir condiciones. Hay veces que es recomendable por claridad o por establecer prioridades.
+    Nótese que en Python no es necesario incluir paréntesis `(` y `)` al escribir condiciones. Hay ocasiones que es recomendable por claridad o por establecer prioridades.
 
 En el caso anterior se puede ver claramente que la condición se cumple y por tanto se ejecuta la instrucción que tenemos dentro del cuerpo de la condición. Pero podría no ser así. Para controlar ese caso existe la sentencia `else`.
 
@@ -193,9 +193,11 @@ Sin embargo, esto lo podríamos abreviar con una **asignación condicional de un
 'HIGH'
 ```
 
+:material-check-all:{ .blue } Con la experiencia, este tipo de construcciones cada vez son más utilizadas ya que condensan información pero mantienen legibilidad.
+
 ## Operadores de comparación { #comparation-operators }
 
-Cuando escribimos condiciones debemos incluir alguna expresión de comparación. Para usar estas expresiones es fundamental conocer los operadores que nos ofrece Python:
+Cuando escribimos condiciones debemos incluir alguna expresión de comparación. Para usar estas expresiones es fundamental conocer los **operadores** que nos ofrece Python:
 
 |     Operador      |    Símbolo    |
 | ----------------- | ------------- |
@@ -230,7 +232,7 @@ True
 False
 ```
 
-Python ofrece la posibilidad de ver si un valor está entre dos límites de manera directa.
+Python ofrece la posibilidad de ver si un valor está entre dos límites de una manera muy sencilla.
 
 Así, por <span class="example">ejemplo:material-flash:</span>, para descubrir si $x \in [4, 12]$ haríamos:
 
@@ -491,7 +493,7 @@ True
 
 Cuando trabajamos con expresiones que incorporan valores «booleanos», se produce una [conversión implícita](../datatypes/numbers.md#implicit-typecast) que transforma los tipos de datos involucrados a valores `#!python True` o `#!python False`.
 
-Lo primero que debemos entender de cara comprobar la **veracidad** son los valores que evalúan a falso o evalúan a verdadero.
+Lo primero que debemos entender de cara a comprobar la **veracidad** son los valores que evalúan a falso o evalúan a verdadero.
 
 A continuación se muestra un listado de los **únicos items** que evalúan a `#!python False` en Python:
 
@@ -533,7 +535,7 @@ False
 
 :material-check-all:{ .blue } El resto de objetos en Python evalúan a `#!python True`.
 
-Veamos algunos **_ejemplos_**{ .orange }:material-flash:{ .orange } de objetos que evalúan a `#!python True` en Python:
+Veamos algunos <span class="example">ejemplos:material-flash:</span> de objetos que evalúan a `#!python True` en Python:
 
 ```pycon
 >>> bool('False')
@@ -592,7 +594,7 @@ Es posible utilizar [operadores lógicos](#logical-operators) en sentencias de a
         
 ## Sentencia `match-case` { #match-case }
 
-Una de las novedades más esperadas (y quizás controvertidas) de <span class="pyversion"><a href="https://www.python.org/downloads/release/python-3100/">Python <span class="version">:octicons-tag-24: 3.10</span></a></span> fue el llamado [Structural Pattern Matching](https://peps.python.org/pep-0636/) que introdujo en el lenguaje una nueva sentencia condicional. Ésta se podría asemejar a la sentencia «switch» que ya existe en otros lenguajes de programación.
+Una de las novedades más esperadas de <span class="pyversion"><a href="https://docs.python.org/3.10/">Python <span class="version">:octicons-tag-24: 3.10</span></a></span> fue el llamado [Structural Pattern Matching](https://peps.python.org/pep-0636/) que introdujo en el lenguaje una nueva sentencia condicional. Ésta se podría asemejar a la sentencia «switch» que ya existe en otros lenguajes de programación.
 
 ### Comparando valores { #comparing-values }
 
@@ -632,6 +634,30 @@ Veamos esta primera aproximación mediante un <span class="example">ejemplo:mate
 Unknown color!
 ```
 
+Hay que tener cuidado con un detalle. Si estás pensando en usar constantes para definir los valores que puede tomar el color, que sepas que esto te va a fallar:
+
+```pycon
+>>> RED_HEXA = '#FF0000'
+>>> GREEN_HEXA = '#00FF00'
+>>> BLUE_HEXA = '#0000FF'
+
+>>> match color:
+...     case RED_HEXA:
+...         print('🔴')
+...     case GREEN_HEXA:
+...         print('🟢')
+...     case BLUE_HEXA:
+...         print('🔵')
+...     case _:
+...         print('Unknown color!')
+  Cell In[4], line 2
+    case RED_HEXA:
+         ^
+SyntaxError: name capture 'RED_HEXA' makes remaining patterns unreachable
+```
+
+Esto se debe a que Python trata a las constantes `#!python RED_HEXA GREEN_HEXA BLUE_HEXA` como nombres de variables y trata de aplicar el [patrón de captura](https://peps.python.org/pep-0634/#capture-patterns) sobre `match-case`[^6].
+
 !!! exercise "Ejercicio"
 
     [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `simple-op`
@@ -664,7 +690,7 @@ Vamos a plantear un <span class="example">ejemplo:material-flash:</span> donde p
 (3,1,7) is in space
 ```
 
-Sin embargo esta aproximación permitiría un punto formato por «strings»...
+Sin embargo esta aproximación permitiría tratar un punto formado por cadenas de texto...
 
 ```pycon
 >>> point = ('2', '5')
@@ -810,7 +836,7 @@ Not in the US
 
 ## Operador morsa { #walrus }
 
-A partir de <span class="pyversion"><a href="https://www.python.org/downloads/release/python-380/">Python <span class="version">:octicons-tag-24: 3.8</span></a></span> se incorpora el [operador morsa](https://peps.python.org/pep-0572/)[^6] `#!python :=` que permite unificar sentencias de asignación dentro de expresiones.
+<span class="pyversion"><a href="https://docs.python.org/3.8/">Python <span class="version">:octicons-tag-24: 3.8</span></a></span> introdujo el ^^polémico^^ [operador morsa](https://peps.python.org/pep-0572/)[^7] `#!python :=` que permitía unificar sentencias de asignación dentro de expresiones.
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que computamos el **perímetro de una circunferencia**, indicando al usuario que debe incrementarlo siempre y cuando no llegue a un mínimo establecido.
 
@@ -843,6 +869,10 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que com
 
     Como hemos comprobado, el operador morsa permite realizar asignaciones dentro de expresiones, lo que, en muchas ocasiones, permite obtener un código más compacto. Sería conveniente encontrar un equilibrio entre la expresividad y la legibilidad.
 
+??? danger "Renuncia de Guido van Rossum"
+
+    La adopción del «walrus operator» en el lenguaje fue una de las polémicas más polarizadas en la historia reciente de Python. Tal es así, que al día siguiente de que Guido van Rossum aceptara su introducción en el lenguaje, tuvo un aluvión de críticas que colmaron la paciencia del creador holandés. Así las cosas, Guido escribió [esta carta](https://www.mail-archive.com/python-committers@python.org/msg05628.html) abandonando su puesto como líder y transfiriendo su poder de decisión sobre Python; y terminaba con un «I'm tired, and need a very long break.»
+
 ## Ejercicios { #exercises }
 
 1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `rps`
@@ -858,4 +888,5 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que com
 [^3]: El anidamiento (o «nesting») hace referencia a incorporar sentencias unas dentro de otras mediante la inclusión de diversos niveles de profunidad (indentación).
 [^4]: El valor nulo se conoce en otros lenguajes de programación como `nil`, `null`, `nothing`, ...
 [^5]: Uso de `#!python is` en comparación de valores nulos explicada [aquí](https://jaredgrubb.blogspot.com/2009/04/python-is-none-vs-none.html) por Jared Grubb.
-[^6]: Se denomina así porque el operador `#!python :=` tiene similitud con los colmillos de una morsa.
+[^6]: El error está perfectamente analizado en [esta respuesta de StackOverflow](https://stackoverflow.com/a/67525259).
+[^7]: Se denomina así porque el operador `#!python :=` tiene similitud con los colmillos de una morsa.

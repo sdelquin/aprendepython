@@ -59,7 +59,7 @@ Para crear un objeto primero debemos definir **la clase que lo contiene**. Podem
 ![Dark image](images/oop/mold-dark.svg#only-dark)
 ![Light image](images/oop/mold-light.svg#only-light)
 
-En el **proceso de diseño de una clase** hay que tener en cuenta —entre otros— el **principio de responsabilidad única**[^1], intentando que los atributos y los métodos que contenga esa clase estén enfocados a un objetivo único y bien definido.
+:material-check-all:{ .blue } En el **proceso de diseño de una clase** hay que tener en cuenta —entre otros— el **principio de responsabilidad única**[^1], intentando que los atributos y los métodos que contenga esa clase estén enfocados a un objetivo único y bien definido.
 
 ### Creando clases { #making-classes }
 
@@ -103,7 +103,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> sobre los droides
 
 ```pycon
 >>> class Droid:#(1)!
-...     def switch_on(self):#(2)!
+...     def switch_on(self):
 ...         print("Hi! I'm a droid. Can I help you?")
 ...
 ...     def switch_off(self):
@@ -149,7 +149,7 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos
 ```
 { .annotate }
 
-1. Para que una variable se convierta en atributo de un objeto, debemos usar `self.`.
+1. Para que una variable se convierta en atributo de un objeto, debemos usar el prefijo `self.`
 2. Modificamos el valor del atributo en función del método.
 
 Probemos este código para ver su comportamiento:
@@ -170,7 +170,7 @@ False
 
 ### Inicialización { #init }
 
-Existe un **método especial** que se ejecuta cuando creamos una instancia de un objeto. Este método es `#!python __self__` y nos permite asignar atributos y realizar operaciones con el objeto en el momento de su creación. También es ampliamente conocido como el **constructor**.
+Existe un **método especial** que se ejecuta cuando creamos una instancia de un objeto. Este método es `#!python __init__` y nos permite asignar atributos y realizar operaciones con el objeto en el momento de su creación. También es ampliamente conocido como el **constructor**.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> de este método con nuestros droides en el que únicamente guardaremos el nombre del droide como un atributo del objeto:
 
@@ -223,7 +223,7 @@ En esta sección se tratará en profundidad todo lo relacionado con los atributo
 
 ### Acceso directo { #direct-access }
 
-En el siguiente ejemplo vemos que, aunque el atributo `name` se ha creado en el constructor de la clase, también podemos modificarlo desde «fuera» con un acceso directo:
+En el siguiente <span class="example">ejemplo:material-flash:</span> vemos que, aunque el atributo `name` se ha creado en el constructor de la clase, también podemos modificarlo desde «fuera» con un acceso directo:
 
 ```pycon
 >>> class Droid:
@@ -254,7 +254,7 @@ Aunque el uso de propiedades puede ir destinado a la «privacidad» de ciertos a
 
 Mediante el [decorador](functions.md#decorators) `#!python @property` indicamos que un método se convierte en propiedad.
 
-A modo de <span class="example">ejemplo:material-flash:</span>, supongamos que **la altura del periscopio de los droides astromecánicos** se calcula siempre como un porcentaje de su altura:
+A modo de <span class="example">ejemplo:material-flash:</span>, supongamos que **la altura del periscopio** de los [droides astromecánicos](https://www.astromech.com.es/) se calcula siempre como un ^^porcentaje de su altura^^:
 
 ```pycon
 >>> class AstromechDroid:
@@ -287,7 +287,7 @@ Ahora veamos su aplicación práctica:
 
 Una propiedad **no puede modificarse**[^2]:
 
-```pycon
+```pycon hl_lines="5"
 >>> droid.periscope_height = 0.645
 Traceback (most recent call last):
   Cell In[1], line 1
@@ -295,9 +295,9 @@ Traceback (most recent call last):
 AttributeError: property 'periscope_height' of 'AstromechDroid' object has no setter
 ```
 
-Las propiedades **no pueden recibir parámetros** ya ni siquiera pueden ser invocadas:
+Las propiedades **no pueden recibir parámetros** ya que ni siquiera pueden ser invocadas:
 
-```pycon
+```pycon hl_lines="17"
 >>> class AstromechDroid:
 ...     def __init__(self, name: str, height: float):
 ...         self.name = name
@@ -401,9 +401,9 @@ A continuación se presenta un <span class="example">ejemplo:material-flash:</sp
 ...
 ```
 
-A la hora de acceder a este atributo obtendremos un error:
+A la hora de acceder a este atributo obtendríamos un error:
 
-```pycon
+```pycon hl_lines="7"
 >>> droid = Droid('BC-44')
 
 >>> droid.__name
@@ -413,7 +413,7 @@ Traceback (most recent call last):
 AttributeError: 'Droid' object has no attribute '__name'
 ```
 
-Lo que realmente ocurre tras el telón se conoce como «name mangling» y consiste en modificar el nombre del atributo incorporado la clase como un prefijo. Sabiendo esto podemos acceder al valor del atributo supuestamente privado:
+Lo que realmente ocurre tras el telón se conoce como «name mangling» y consiste en modificar el nombre del atributo ^^incorporando la clase como un prefijo^^. Sabiendo esto podemos acceder al valor del atributo supuestamente privado:
 
 ```pycon
 >>> droid._Droid__name
@@ -596,7 +596,7 @@ Pero más allá de esto, no existe una respuesta clara y concisa a la pregunta. 
 
 ### Métodos de clase { #class-methods }
 
-Un **método de clase** es un método que ^^accede o modifica el estado de la clase^^ a la que hace referencia. Recibe cls como primer parámetro, el cual se convierte en la propia clase sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el decorador `#!python @classmethod` a la función.
+Un **método de clase** es un método que ^^accede o modifica el estado de la clase^^ a la que hace referencia. Recibe `#!python cls` como primer parámetro, el cual se convierte en la propia clase (una referencia) sobre la que estamos trabajando. Python envía este argumento de forma transparente. La identificación de estos métodos se completa aplicando el [decorador](./functions.md#decorators) `#!python @classmethod` a la función.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> en el que implementamos un _método de clase_ que **muestra el número de droides creados**:
 
@@ -615,7 +615,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que impleme
 { .annotate }
 
 1. Se trata de una variable de clase.
-2. Incrementamos la variable de clase cada vez que se «construye» en nuevo droide.
+2. Incrementamos la variable de clase cada vez que se «construye» nuevo droide.
 3. Uso del decorador que define un método de clase.
 4. Los métodos de clase siempre reciben como primer parámetro `cls` haciendo referencia a la propia clase.
 5. Accedemos a la cuenta de droides construidos.
@@ -633,7 +633,7 @@ Probemos el código anterior:
 
 ### Métodos estáticos { #static-methods }
 
-Un **método estático** es un método que ^^no «debería» modificar el estado del objeto ni de la clase^^. No recibe ningún parámetro especial. La identificación de estos métodos se completa aplicando el decorador `#!python @staticmethod` a la función.
+Un **método estático** es un método que ^^no «debería» modificar el estado del objeto ni de la clase^^. No recibe ningún parámetro especial. La identificación de estos métodos se completa aplicando el [decorador](./functions.md#decorators) `#!python @staticmethod` a la función.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos un método estático para devolver **las categorías de droides** que existen en _StarWars_:
 
@@ -725,7 +725,7 @@ Hi there! I'm B1 at your service
 
 ### Métodos mágicos { #magic-methods }
 
-Cuando escribimos `#!python 'hello world' * 3` ¿cómo sabe el objeto `#!python 'hello world'` lo que debe hacer para multiplicarse con el objeto entero `#!python 3`? O dicho de otra forma, ¿cuál es la implementación del operador `*` para «strings» e «int»? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos), pero no es así para otros objetos. La solución que proporciona Python para estas (y otras) situaciones son los **métodos mágicos**.
+Cuando escribimos `#!python 'hello world' * 3` ¿cómo sabe el objeto `#!python 'hello world'` lo que debe hacer para multiplicarse con el objeto entero `#!python 3`? O dicho de otra forma, ¿cuál es la implementación del operador `*` para «strings» e «int»? En valores numéricos puede parecer evidente (siguiendo los operadores matemáticos clásicos), pero no es así para otros objetos. La solución que proporciona Python para estas (y otras) situaciones son los **métodos mágicos**.
 
 Los métodos mágicos empiezan y terminan por doble subguión `__` (es por ello que también se les conoce como «dunder-methods»). Uno de los «dunder-methods» más famosos ya lo hemos visto y es el constructor de la clase: `#!python __init__()`.
 
@@ -773,7 +773,7 @@ True
 
 ¿Pero qué pasaría si tratamos de comparar un droide con «cualquier otra cosa»?
 
-```pycon
+```pycon hl_lines="7"
 >>> droid1 == 'C-3PO'
 Traceback (most recent call last):
   Cell In[8], line 1
@@ -943,7 +943,10 @@ Existen tres ocasiones en las que se «dispara» el método mágico `#!python __
 <__main__.Droid object at 0x1052bb380>
 ```
 
-Porque el método mágico que se ejecuta cuando mostramos un objeto en el intérprete es `#!python __repr__` y suele estar más enfocado a una representación «técnica» del mismo.
+Porque el método mágico que se ejecuta cuando mostramos un objeto en el intérprete es `#!python __repr__`(1) y suele estar más enfocado a una representación «técnica» del mismo.
+{ .annotate }
+
+1. También cuando usamos la función «built-in» `#!python repr()`.
 
 !!! exercise "Ejercicio"
 
@@ -1081,9 +1084,12 @@ Empecemos con un <span class="example">ejemplo:material-flash:</span> sencillo e
 Hecho esto, podemos comprobar que realmente se cumple la herencia:
 
 ```pycon
->>> issubclass(ProtocolDroid, Droid)#(5)!
+>>> issubclass(ProtocolDroid, Droid)#(1)!
 True
 ```
+{ .annotate }
+
+1. ¿Es `ProtocolDroid` una subclase de `Droid`? :material-check-circle:{.green}
 
 Vamos ahora a añadir cierta funcionalidad a la clase base:
 
@@ -1174,7 +1180,7 @@ Bye! I'm going to sleep
 
 ### Añadir un método { #inheritance-add-method }
 
-La subclase puede, como cualquier otra clase «normal», añadir métodos que no estaban presentes en su clase base.
+La subclase puede, como cualquier otra clase «ordinaria», añadir métodos que no estaban presentes en su clase base.
 
 En el siguiente <span class="example">ejemplo:material-flash:</span> vamos a añadir un método `translate()` que permita a los _droides de protocolo_ **traducir cualquier mensaje**:
 
@@ -1199,7 +1205,7 @@ En el siguiente <span class="example">ejemplo:material-flash:</span> vamos a añ
 
 Probemos ahora esta implementación:
 
-```pycon
+```pycon hl_lines="11"
 >>> r2d2 = Droid()
 >>> c3po = ProtocolDroid()
 
@@ -1222,7 +1228,7 @@ AttributeError: 'Droid' object has no attribute 'translate'
 
 ### Resolver colisiones { #solving-collides }
 
-Cuando tenemos métodos (o atributos) definidos con el mismo nombre en la clase base y en la clase derivada (**colisión**) debe existir un mecanismo para diferenciarlos.
+Cuando tenemos métodos (o atributos) definidos con el mismo nombre en la clase base y en la clase derivada se produce una **colisión** y debe existir un mecanismo para diferenciarlos.
 
 Para estos casos Python nos ofrece `#!python super()` como función para acceder a métodos (o atributos) de la clase base.
 
@@ -1445,7 +1451,7 @@ Aunque la herencia de clases nos permite modelar una gran cantidad de casos de u
 
 <div class="grid cards" markdown>
 
--   Agregación
+-  **Agregación** 
 
     ---
 
@@ -1453,9 +1459,9 @@ Aunque la herencia de clases nos permite modelar una gran cantidad de casos de u
 
     ![Agregación](images/oop/aggregation.svg)
 
-    <span class="example">Ejemplo:material-flash:</span> con linterna y bicicleta.
+    «Una bicicleta tiene una linterna» 
 
--   Composición
+-  **Composición** 
 
     ---
 
@@ -1463,7 +1469,7 @@ Aunque la herencia de clases nos permite modelar una gran cantidad de casos de u
 
     ![Composición](images/oop/composition.svg)
 
-    <span class="example">Ejemplo:material-flash:</span> con CPU y ordenador.
+    «Un ordenador tiene una CPU»
 </div>
 
 Veamos un <span class="example">ejemplo:material-flash:</span> de cada uno de ellos en el contexto de los droides de _StarWars_:
@@ -1623,7 +1629,7 @@ Ahora podemos instanciar la clase anterior y probar su comportamiento:
 
 ### Diccionarios { #dicts }
 
-Los métodos `__getitem__()` y `__setitem()__` también se pueden aplicar para obtener o fijar valores en un estructura tipo **diccionario**. La diferencia es que **en vez de manejar un índice manejamos una clave**.
+Los métodos `__getitem__()` y `__setitem()__` también se pueden aplicar para obtener o fijar valores en un estructura de tipo **diccionario**. La diferencia es que **en vez de manejar un índice manejamos una clave**.
 
 Retomando el <span class="example">ejemplo:material-flash:</span> anterior de las partes de un droide vamos a plantear que **cada componente tenga asociada una versión**, lo que nos proporciona una estructura de tipo diccionario con clave (nombre de la parte) y valor (versión de la parte):
 
@@ -1704,7 +1710,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> del universo _Sta
 ...
 ```
 
-Vamos a implementar una factoría de droides ([Geonosis](https://starwars.fandom.com/es/wiki/F%C3%A1bricas_de_droides_de_Geonosis)) como un iterable:
+A continuación implementamos una factoría de droides ([Geonosis](https://starwars.fandom.com/es/wiki/F%C3%A1bricas_de_droides_de_Geonosis)) como un iterable:
 
 ```pycon
 >>> class Geonosis:
@@ -1748,8 +1754,8 @@ Droid: SN=9
 
 Cuando utilizamos un bucle `for` para recorrer los elementos de un iterable, ocurren varias cosas:
 
-1. Se obtiene el objeto iterador del iterable.
-2. Se hacen llamadas sucesivas a `next()` sobre dicho iterador para obtener cada elemento del iterable.
+1. Se obtiene el objeto iterador del iterable mediante `#!python iter()`.
+2. Se hacen llamadas sucesivas a `#!python next()` sobre dicho iterador para obtener cada elemento del iterable.
 3. Se para la iteración cuando el iterador lanza la excepción `StopIteration` (_protocolo de iteración_).
 
 !!! exercise "Ejercicio"
@@ -2231,7 +2237,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de **factoría de
 { .annotate }
 
 1.  - Usamos una [expresión generadora](functions.md#genexp) para construir los droides.
-    - Al ser un generador los droides no son creados en este punto, sino cuando se requieran.
+    - Al ser un generador los droides no son creados en este punto, sino cuando se requieran (comportamiento «lazy»).
 2. El iterador que vamos a utilizar es el iterador del generador.
 
 Probemos la implementación anterior:

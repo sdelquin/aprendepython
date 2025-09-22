@@ -166,13 +166,21 @@ Veamos un <span class="example">ejemplo:material-flash:</span> desempaquetando a
 Veamos otro <span class="example">ejemplo:material-flash:</span> en el que utilizamos la función «built-in» [`divmod()`](https://docs.python.org/3/library/functions.html#divmod) que devuelve el cociente y el resto de una división usando una única llamada. Lo interesante (para el caso que nos ocupa) es que se suele utilizar el desempaquetado de tuplas para obtener los valores por separado:
 
 ```pycon
->>> quotient, remainder = divmod(7, 3)
+>>> quotient, remainder = divmod(7, 3)#(1)!
 
 >>> quotient
 2
 >>> remainder
 1
 ```
+{ .annotate }
+
+1.  
+    ```
+    7 │ 3
+      └————
+    1   2
+    ```
 
 ### Intercambio de valores { #swap-values }
 
@@ -296,9 +304,9 @@ Veamos posibles implementaciones del _desempaquetado extendido_ en un <span clas
 
 ### Desempaquetado genérico { #generic-unpacking }
 
-El desempaquetado de tuplas es **extensible a cualquier tipo de datos que sea iterable**.
+El desempaquetado de tuplas es **extensible a cualquier otro tipo de datos que sea iterable**.
 
-Veamos algunos <span class="example">ejemplos:material-flash:</span>...
+Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 === "Sobre cadenas de texto :material-format-quote-open:"
 
@@ -331,13 +339,13 @@ Veamos algunos <span class="example">ejemplos:material-flash:</span>...
 
 Los tipos de datos mutables (_listas, diccionarios y conjuntos_) sí permiten comprensiones pero **no así los tipos de datos inmutables** como cadenas de texto y tuplas.
 
-Si intentamos crear una **tupla por comprensión** utilizando paréntesis alrededor de la expresión, vemos que no obtenemos ningún error al ejecutarlo:
+Si intentamos crear una **tupla por comprensión** utilizando paréntesis alrededor de la expresión, vemos que no aparece ningún error al ejecutarlo:
 
 ```pycon
 >>> myrange = (number for number in range(1, 6))
 ```
 
-Sin embargo lo que hemos conseguido **no es una tupla** sino un [generador](../modularity/functions.md#generators):
+Sin embargo lo que obtendremos **no es una tupla** sino un [generador](../modularity/functions.md#generators):
 
 ```pycon
 >>> myrange
@@ -346,9 +354,9 @@ Sin embargo lo que hemos conseguido **no es una tupla** sino un [generador](../m
 
 ## Tuplas vs Listas { #tuples-vs-lists }
 
-Aunque puedan parecer estructuras de datos muy similares, sabemos que las tuplas carecen de ciertas operaciones, especialmente las que tienen que ver con la modificación de sus valores, ya que no son inmutables.
+Aunque las tuplas y las listas puedan parecer estructuras de datos muy similares, sabemos que las tuplas carecen de ciertas operaciones, especialmente las que tienen que ver con la modificación de sus valores, ya que no son inmutables.
 
-Si las listas son más flexibles y potentes, **¿por qué íbamos a necesitar tuplas?** Veamos 4 potenciales ventajas del uso de tuplas frente a las listas:
+Si las listas son más flexibles y potentes, **¿por qué íbamos a necesitar tuplas?** Veamos 4 potenciales ^^ventajas^^ del uso de tuplas frente a las listas:
 
 1. Las tuplas ocupan **menos espacio** en memoria.
 2. En las tuplas existe **protección** frente a cambios indeseados.

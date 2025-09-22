@@ -10,9 +10,9 @@ Aprende el lenguaje de programación ^^Python^^ :material-snake:{ .slide .green 
 
 El contenido de esta página está organizado en tres grandes bloques:
 
-- [x] [Fundamentos del lenguaje](/core)
-- [x] [Librería estándar](/stdlib)
-- [x] [Paquetes de terceros](/third-party)
+- [x] [Fundamentos del lenguaje](/core/index.md)
+- [x] [Librería estándar](/stdlib/index.md)
+- [x] [Paquetes de terceros](/third-party/index.md)
 
 ---
 

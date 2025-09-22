@@ -10,7 +10,7 @@ icon: material/set-center
 
 1. :fontawesome-regular-copyright: [Duy Pham](https://unsplash.com/es/@miinyuii) :material-at: [Unsplash](https://unsplash.com) 
 
-Un **conjunto** en Python almacena valores **únicos** y **sin orden** establecido. Mantiene muchas similitudes con el [concepto matemático de conjunto](https://es.wikipedia.org/wiki/Conjunto).
+Un **conjunto** en Python es una estructura de datos que almacena valores **únicos** y **sin orden** establecido. Mantiene muchas similitudes con el [concepto matemático de conjunto](https://es.wikipedia.org/wiki/Conjunto).
 
 ## Creando conjuntos { #create }
 
@@ -93,11 +93,11 @@ Veamos varios <span class="example">ejemplos:material-flash:</span> donde creamo
 
 !!! info "Valores únicos"
 
-    Como se ha visto en los ejemplos anteriores, `#!python set()` se suele utilizar en muchas ocasiones como una forma de **extraer los valores únicos** de otros tipos de datos.
+    Como se puede ver en los ejemplos anteriores, `#!python set()` es utilizado habitualmente como mecanismo para **extraer los valores únicos** de otras estructuras de datos.
 
 !!! warning "Orden"
 
-    Python [almacena los conjuntos](https://www.reddit.com/r/learnpython/comments/1b0aama/comment/ks7bjvm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) ordenados según [el valor «hash»](dicts.md#hashables) de sus elementos. Pero esto es únicamente un «detalle de implementación» en el que no se puede confiar.
+    Python [almacena los conjuntos](https://www.reddit.com/r/learnpython/comments/1b0aama/comment/ks7bjvm/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) ordenados según [el valor «hash»](dicts.md#hashables) de sus elementos. Pero esto es únicamente un «detalle de implementación» en el que no se puede confiar.[^1]
 
 ## Operaciones con conjuntos { #operations }
 
@@ -107,7 +107,7 @@ Existen multitud de operaciones que se pueden realizar sobre conjuntos. A contin
 
 Como ya se ha indicado previamente los conjuntos no tienen un orden establecido, es por ello que **no podemos acceder a un elemento en concreto**.
 
-Como consecuencia **tampoco podemos modificar un elemento existente**, ya que ni siquiera tenemos acceso al mismo. Python sí nos permite añadir o borrar elementos de un conjunto.
+Como consecuencia de lo anterior, **tampoco podemos modificar un elemento existente**, ya que ni siquiera tenemos acceso al mismo. Python sí nos permite añadir o borrar elementos de un conjunto.
 
 ### Añadir un elemento { #add }
 
@@ -135,7 +135,7 @@ Ahora vamos a añadir a [Pete Best](https://es.wikipedia.org/wiki/Pete_Best) a l
 
     No confundir la función [`append()`](lists.md#append) de las listas con la función `#!python add()` de los conjuntos. Ambas sirve para añadir elementos pero en estructuras de diferente naturaleza.
 
-El siguiente fragmento de código nos demuestra claramente que, aunque lo intentemos por **fuerza bruta**, nunca vamos a poder añadir _elemenetos repetidos_ en un conjunto:
+El siguiente fragmento de código nos demuestra claramente que, aunque lo intentemos por **fuerza bruta** :sweat_smile: nunca vamos a poder añadir _elementos repetidos_ en un conjunto:
 
 ```pycon
 >>> items = set()#(1)!
@@ -159,7 +159,7 @@ El siguiente fragmento de código nos demuestra claramente que, aunque lo intent
 
 ### Borrar elementos { #remove }
 
-Para borrar un elemento de un conjunto podemos utilizar la función `#!python remove()`. Siguiente con el <span class="example">ejemplo:material-flash:</span> anterior, vamos a borrar el último «beatle» añadido:
+Para borrar un elemento de un conjunto podemos utilizar la función `#!python remove()`. Siguiendo con el <span class="example">ejemplo:material-flash:</span> anterior, vamos a borrar el último «beatle» añadido:
 
 ```pycon
 >>> beatles
@@ -173,7 +173,7 @@ Para borrar un elemento de un conjunto podemos utilizar la función `#!python re
 
 Si tratamos de **borrar un elemento que no existe** obrendremos un `#!python KeyError` (al igual que ocurría en los [diccionarios](dicts.md#get-item)):
 
-```pycon
+```pycon hl_lines="5"
 >>> beatles.remove('Sinatra')
 Traceback (most recent call last):
   Cell In[1], line 1
@@ -258,7 +258,7 @@ Veamos el comportamiento a través del <span class="example">ejemplo:material-fl
 
 Obviamente, el uso de `#!python .sort()` no está permitido sobre un conjunto:
 
-```pycon
+```pycon hl_lines="5"
 >>> beatles.sort()
 Traceback (most recent call last):
   Cell In[1], line 1
@@ -268,7 +268,7 @@ AttributeError: 'set' object has no attribute 'sort'
 
 ## Teoría de conjuntos { #set-theory }
 
-A continuación se mostrarán las distintas operaciones sobre conjuntos que se pueden hacer en Python basadas en los [Diagramas de Venn](https://es.wikipedia.org/wiki/Diagrama_de_Venn) y la [Teoría de conjuntos](https://es.wikipedia.org/wiki/Teor%C3%ADa_de_conjuntos):
+A continuación veremos las distintas operaciones sobre conjuntos que se pueden hacer en Python basadas en los [Diagramas de Venn](https://es.wikipedia.org/wiki/Diagrama_de_Venn) y la [Teoría de conjuntos](https://es.wikipedia.org/wiki/Teor%C3%ADa_de_conjuntos):
 
 ### Aritmética { #arithmetic }
 
@@ -441,7 +441,7 @@ frozenset({1, 2, 3, 4, 5})
 
 Veamos qué ocurre si intentamos modificar este conjunto:
 
-```pycon
+```pycon hl_lines="5"
 >>> mark_levels.add(100)#(1)!
 Traceback (most recent call last):
   Cell In[1], line 1
@@ -460,18 +460,23 @@ AttributeError: 'frozenset' object has no attribute 'add'
 
 La única restricción que deben cumplir los elementos de un conjunto es ser [hashables](dicts.md#hashables). Un objeto es «hashable» si se le puede asignar un valor «hash» que no cambia en ejecución durante toda su vida.
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que estamos construyendo un conjunto con los [elementos químicos](https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico) de la tabla periódica:
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que estamos construyendo un conjunto con los [elementos químicos](https://es.wikipedia.org/wiki/Elemento_qu%C3%ADmico) de la tabla periódica.
 
-```pycon
+Si intentamos añadir una [lista](./lists.md) como clave de un diccionario obtendremos el siguiente error:
+
+```pycon hl_lines="8"
 >>> periodic_table = set()
 >>> metals = ['Fe', 'Mg', 'Au', 'Au', 'Zn']
 
->>> periodic_table.add(metals)
+>>> periodic_table.add(metals)#(1)!
 Traceback (most recent call last):
   Cell In[3], line 1
     periodic_table.add(metals)
 TypeError: unhashable type: 'list'
 ```
+{ .annotate }
+
+1. Una lista no es un objeto «hashable» derivado de su condición de mutabilidad.
 
 Sin embargo, podríamos conseguir lo que buscamos si, en vez de listas, usáramos **tuplas** para almacenar los elementos químicos (ya que sí son «hashables»):
 
@@ -491,3 +496,6 @@ Sin embargo, podríamos conseguir lo que buscamos si, en vez de listas, usáramo
 !!! exercise "Ejercicio"
 
     [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `is-binary`
+
+
+[^1]: La ordenación de los elementos de un conjunto no está definida en el estándar de Python. Otra cuestión es que exista una ordenación por su «hash» para la implementación concreta de CPython.

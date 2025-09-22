@@ -1814,7 +1814,7 @@ array([[77, 53, 31],
        [36, 49, 29]])
 ```
 
-En <span class="pyversion"><a href="https://www.python.org/downloads/release/python-350/">Python <span class="version">:octicons-tag-24: 3.5</span></a></span> se introdujo el operador [`@`](https://docs.python.org/3/whatsnew/3.5.html#pep-465-a-dedicated-infix-operator-for-matrix-multiplication) que permitía implementar el [método especial](../../core/modularity/oop.md#magic-methods) `__matmul__()` de multiplicación de matrices.
+En <span class="pyversion"><a href="https://docs.python.org/3.5/">Python <span class="version">:octicons-tag-24: 3.5</span></a></span> se introdujo el operador [`@`](https://docs.python.org/3/whatsnew/3.5.html#pep-465-a-dedicated-infix-operator-for-matrix-multiplication) que permitía implementar el [método especial](../../core/modularity/oop.md#magic-methods) `__matmul__()` de multiplicación de matrices.
 
 NumPy lo ha desarrollado y simplifica la multiplicación de matrices de la siguiente manera:
 

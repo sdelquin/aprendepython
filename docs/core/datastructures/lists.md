@@ -41,7 +41,7 @@ Veamos algunos <span class="example">ejemplos:material-flash:</span> de listas:
 
 ??? note "Datos heterogéneos"
 
-    Una lista en Python puede contener **datos heterogéneos** a diferencia de otros lenguajes de programación. Esto hace de la lista una estructura de datos muy versátil.
+    Una lista en Python (a diferencia de otros lenguajes de programación) puede contener **datos heterogéneos**. Esto hace de la lista una estructura de datos muy versátil.
 
 !!! exercise "Ejercicio"
 
@@ -138,7 +138,7 @@ El troceado de listas funciona de manera totalmente análoga al [troceado de cad
 1. También podríamos haber escrito `#!python shopping[0:3]` aunque no es habitual.
 2. Equivale a invertir la lista.
 
-En el troceado de listas, a diferencia de lo que ocurre al obtener elementos, no debemos preocuparnos por acceder a índices inválidos (fuera de rango) ya que Python los restringirá a los límites de la lista:
+En el troceado de listas, a diferencia de lo que ocurre al obtener elementos, no debemos preocuparnos por acceder a índices no válidos (fuera de rango) ya que Python los restringirá a los límites de la lista:
 
 ```pycon
 >>> shopping
@@ -538,7 +538,7 @@ Python nos ofrece varios mecanismos para borrar una lista por completo:
 
 !!! info "Recolector de basura"
 
-    La memoria que queda «en el limbo» después de asignar un nuevo valor a la lista es detectada por el **recolector de basura** de Python, quien se encarga de liberar aquellos datos que no están referenciados por ninguna variable.
+    La memoria que queda «en el limbo» después de asignar un nuevo valor a la lista es detectada por el [recolector de basura](https://dev.to/pragativerma18/understanding-pythons-garbage-collection-and-memory-optimization-4mi2) de Python, quien se encarga de liberar aquellos datos que no están referenciados por ninguna variable.
 
 ### Encontrar un elemento { #find }
 
@@ -569,23 +569,23 @@ ValueError: 'Pollo' is not in list
 
     Si buscamos un valor que existe más de una vez en una lista, la función `index()` sólo nos devolverá **el índice de la primera ocurrencia**.
 
-!!! warning "No existe find"
+!!! warning "No existe `find`"
 
     En listas no disponemos de la función `find()` que sí estaba disponible para [cadenas de texto](../datatypes/strings.md#search).
 
 ### Pertenencia de un elemento { #in }
 
-Si queremos comprobar la existencia de un determinado elemento en una lista, podríamos buscar su índice, pero la **forma pitónica** de hacerlo es utilizar el operador `#!python in`.
+Si queremos comprobar la existencia de un determinado elemento en una lista, podríamos buscarlo por su índice, pero la **forma pitónica** de hacerlo es utilizar el operador `#!python in`.
 
 Si no estamos seguros de si hemos incluido ciertos productos en nuestro <span class="example">ejemplo:material-flash:</span> de la lista de la compra, lo podemos comprobar de la siguiente manera:
 
 ```pycon
 >>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
 
->>> 'Aceite' in shopping
+>>> 'Aceite' in shopping  # ¿Apunté aceite? 🤔
 True
 
->>> 'Pollo' in shopping
+>>> 'Pollo' in shopping   # ¿Apunté pollo? 🤔
 False
 ```
 
@@ -672,16 +672,29 @@ Existe _una variante_ de `split()` en la que indicamos el **número máximo de d
 
 Existe una forma algo más «elaborada» de dividir una cadena a través del **particionado**. Para ello podemos valernos de la función `partition()` que proporciona Python.
 
-Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes: lo que queda a la izquierda del separador, el separador en sí mismo y lo que queda a la derecha del separador
+Esta función toma un argumento como separador, y divide la cadena de texto en 3 partes:
+
+1. Lo que queda a la izquierda del separador.
+2. El separador en sí mismo.
+3. Lo que queda a la derecha del separador.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> muy sencillo a partir de una operación matemática:
 
 ```pycon hl_lines="3"
 >>> text = '3+4'
 
->>> text.partition('+')
+>>> text.partition('+')#(1)!
 ('3', '+', '4')
 ```
+{ .annotate }
+
+1. Funciona igualmente con separadores de más de un carácter:
+
+    ```pycon
+    >>> text = '3//4'
+    >>> text.partition('//')
+    ('3', '//', '4')
+    ```
 
 :material-check-all:{ .blue } También existe la función `rpartition()` que se comporta exactamente igual que la función `partition()` pero **empezando por la derecha**.
 
@@ -707,7 +720,7 @@ Veamos varios <span class="example">ejemplos:material-flash:</span> uniendo los 
 'Agua|Huevos|Aceite|Sal|Limón'
 ```
 
-Hay que tener en cuenta que `join()` **sólo funciona si todos sus elementos son cadenas de texto**:
+:material-alarm-light:{.acc} Hay que tener en cuenta que `join()` **sólo funciona si todos sus elementos son cadenas de texto**:
 
 ```pycon hl_lines="5"
 >>> ', '.join([1, 2, 3, 4, 5])
@@ -799,7 +812,7 @@ Limón
 
 #### Iterar usando enumeración { #enumerate }
 
-Hay veces que no sólo nos interesa **«visitar»** cada uno de los elementos de una lista, sino que **también queremos saber su índice** dentro de la misma. Para ello Python nos ofrece la función `enumerate()`.
+Hay veces que no sólo nos interesa **«visitar»** cada uno de los elementos de una lista, sino **también conocer su ^^índice^^** dentro de la misma. Para ello Python nos ofrece la función `enumerate()`.
 
 Para el <span class="example">ejemplo:material-flash:</span> de la lista de la compra, nos podría interesar aplicar esta estructura programática:
 
@@ -863,17 +876,20 @@ Arroz basmati
 
     En el caso de que las listas no tengan la misma longitud, la función `zip()` realiza la combinación hasta que se agota la lista más corta.
 
-Dado que `zip()` produce un ^^iterador^^, si queremos obtener una lista explícita con la combinación en paralelo de las listas, debemos construir dicha lista de la siguiente manera:
+Dado que [`zip()`](https://docs.python.org/3/library/functions.html#zip) produce un ^^iterador^^, si queremos obtener una lista explícita con la combinación en paralelo de las listas, debemos construir dicha lista de la siguiente manera:
 
 ```pycon
 >>> shopping = ['Agua', 'Aceite', 'Arroz']
 >>> details = ['mineral natural', 'de oliva virgen', 'basmati']
 
->>> list(zip(shopping, details))
+>>> list(zip(shopping, details))#(1)!
 [('Agua', 'mineral natural'),
  ('Aceite', 'de oliva virgen'),
  ('Arroz', 'basmati')]
 ```
+{ .annotate }
+
+1. Formalmente lo que devuelve `#!python zip()` son [tuplas](./tuples.md), en este caso «envueltas» en una lista.
 
 !!! exercise "Ejercicio"
 
@@ -1026,7 +1042,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
     3. `#!python True`
     4. `#!python any([False, False, True])` :material-arrow-right-box: `#!python True`
     
-:material-check-all:{ .blue } A tener en cuenta la peculiaridad de estas funciones cuando trabajan con la **lista vacía**:
+:material-check-all:{ .blue } Ojo con el comportamiento de estas funciones cuando trabajan con la **lista vacía**:
 
 ```pycon
 >>> all([])
@@ -1231,7 +1247,7 @@ Python nos ofrece, entre otras[^2], estas **tres funciones matemáticas** básic
 
 Como ya hemos visto en varias ocasiones, las listas son estructuras de datos que pueden contener elementos heterogéneos. Estos elementos pueden ser a su vez listas.
 
-A continuación planteamos un ejemplo del contexto deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores/as. En aquella alineación con la que España [ganó la copa del mundo](https://es.wikipedia.org/wiki/Copa_Mundial_Femenina_de_F%C3%BAtbol_de_2023) en 2023 había una disposición _4-3-3_ con las siguientes jugadoras:
+A continuación planteamos un <span class="example">ejemplo:material-flash:</span> para un contexto deportivo. Un equipo de fútbol suele tener una disposición en el campo organizada en líneas de jugadores/as. En aquella alineación con la que España [ganó la copa del mundo](https://es.wikipedia.org/wiki/Copa_Mundial_Femenina_de_F%C3%BAtbol_de_2023) en 2023 había una disposición _4-3-3_ con las siguientes jugadoras:
 
 ![Campeonas 2023](./images/lists/spain2023-worldchampions.svg)
 
@@ -1278,7 +1294,7 @@ Podemos comprobar el **acceso a distintos elementos**:
 3. Centrocampistas.
 4. Delantera centro.
 
-También podemos **recorrer toda la alineación**:
+También podemos **recorrer toda la alineación** (por líneas):
 
 ```pycon
 >>> for playline in team:

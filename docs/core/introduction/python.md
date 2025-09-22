@@ -12,7 +12,12 @@ icon: fontawesome/brands/python
 
 [Python](https://www.python.org/) es un **lenguaje de programación** de [alto nivel](https://aprendepython.es/core/introduction/machine/#python) creado a principios de los años 90 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum) que trabajaba por aquella época en el _Centro para las Matemáticas y la Informática de los Países Bajos_ ([CWI](https://www.cwi.nl/en/)).
 
-Sus instrucciones están muy cercanas al **lenguaje natural** (en inglés) y se hace hincapié en la **legibilidad** del código. Toma su nombre de los [Monty Python](https://es.wikipedia.org/wiki/Monty_Python), grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje _ABC_.
+Sus instrucciones están muy cercanas al **lenguaje natural** (en inglés) y favorecen la **legibilidad** del código. Toma su nombre de los [Monty Python](https://es.wikipedia.org/wiki/Monty_Python), grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje _ABC_.
+
+!!! abstract "Python: El Documental"
+
+    De cara a conocer los detalles tras este lenguaje de programación, resulta muy interesante visionar [este documental de Python](https://www.youtube.com/watch?v=GfH4QL4VqJ0) que fue lanzado en agosto de 2025 y producido por [Cult.Repo](https://www.linkedin.com/company/cult-repo/).
+
 
 ## Características del lenguaje { #language-features }
 
@@ -30,7 +35,7 @@ A partir de su [definición de la Wikipedia](https://es.wikipedia.org/wiki/Pytho
 - Fácil de leer, parecido a pseudocódigo.
 - Aprendizaje relativamente fácil y rápido: claro e intuitivo.
 - Alto nivel.
-- Alta Productividad: simple y rápido.
+- Alta productividad: simple y rápido.
 - Tiende a producir un buen código: orden, limpieza, elegancia, flexibilidad, ...
 - Multiplataforma. Portable.
 - Multiparadigma: programación imperativa, orientada a objetos, funcional, ...
@@ -39,7 +44,7 @@ A partir de su [definición de la Wikipedia](https://es.wikipedia.org/wiki/Pytho
 - Gran cantidad de librerías de terceros.
 - Extensible (C, C++, ..) y «embebible».
 - Gran comunidad, amplio soporte.
-- Interpretado.
+- [Interpretado](machine.md#compilers).
 - Tipado dinámico.(1)
 - Fuertemente tipado.(2)
 
@@ -97,33 +102,33 @@ Existen ránkings y estudios de mercado que sitúan a Python como uno de los len
 
 === "TIOBE"
 
-    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **agosto de 2024** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
+    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **agosto de 2025** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
 
     | Puesto | Lenguaje | Uso    |
     | ------ | -------- | ------ |
-    | 1      | Python   | 18% |
-    | 2      | C++      | 10% |
-    | 3      | C        | 9.2%  |
+    | 1      | Python   | 26.14% |
+    | 2      | C++      | 9.18% |
+    | 3      | C        | 9.03%  |
 
 === "Stack Overflow"
 
-    En el momento de la escritura de este documento, la última actualización de la [encuesta a desarrolladores/as de Stack Overflow](https://survey.stackoverflow.co/2024/technology#admired-and-desired) es de **mayo de 2024** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más deseados y admirados^^, por delante de JavaScript y SQL.
+    En el momento de la escritura de este documento, la última actualización de la [encuesta a desarrolladores/as de Stack Overflow](https://survey.stackoverflow.co/2025/technology#admired-and-desired) es de **mayo de 2025** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más deseados y admirados^^, por delante de SQL y HTML/CSS.
 
     | Puesto | Lenguaje | Deseado | Admirado |
     | ------ | -------- | ------- | -------- |
-    | 1      | Python   | 41.9%   | 67.6%    |
-    | 2      | C++      | 39.8%   | 58.3%    |
-    | 3      | C        | 37.4%   | 67.4%    |
+    | 1      | Python   | 39.3%   | 56.4%    |
+    | 2      | SQL      | 35.6%   | 56.4%    |
+    | 3      | HTML/CSS | 33.8%   | 52.1%    |
 
 === "GitHub"
 
-    En el momento de la escritura de este documento, la última actualización del [informe anual sobre tecnologías en la plataforma GitHub](https://github.blog/news-insights/research/the-state-of-open-source-and-ai/#the-most-popular-programming-languages) es de **julio de 2024** en la que **Python ocupaba el segundo puesto** de los ^^lenguajes de programación más usados^^, por detrás de JavaScript y por delante de TypeScript.
+    En el momento de la escritura de este documento, la última actualización del [informe sobre tecnologías en la plataforma GitHub](https://github.blog/news-insights/octoverse/octoverse-2024/#the-most-popular-programming-languages) es de **octubre de 2024** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de JavaScript y TypeScript.
 
-    | Puesto |  Lenguaje  | Uso |
-    | ------ | ---------- | --- |
-    | 1      | JavaScript | ~6M |
-    | 2      | Python     | ~5M |
-    | 3      | TypeScript | ~3M |
+    | Puesto |  Lenguaje  |
+    | ------ | ---------- |
+    | 1      | Python     |
+    | 2      | JavaScript |
+    | 3      | TypeScript |
 
 === "IEEE Spectrum"
 
@@ -139,40 +144,48 @@ Existen ránkings y estudios de mercado que sitúan a Python como uno de los len
 
 De acuerdo con el propio [blog de Guido Van Rossum](https://python-history.blogspot.com/2009/01/brief-timeline-of-python.html) la implementación de Python comenzó en **diciembre de 1989**[^2] liberando distintas versiones internas `0.x` durante los siguientes 4 años.
 
-A partir de ese momento se empezaron a desarrollar las versiones estables mayores indicadas en la siguiente tabla:
+A partir de ese momento se empezaron a desarrollar las versiones estables «mayores» indicadas en la siguiente tabla:
 
-| Versión        | Fecha de lanzamiento |
-| -------------- | -------------------- |
-| **Python 1.0** | Enero 1994           |
-| Python 1.5     | Diciembre 1997       |
-| Python 1.6     | Septiembre 2000      |
-| **Python 2.0** | Octubre 2000         |
-| Python 2.1     | Abril 2001           |
-| Python 2.2     | Diciembre 2001       |
-| Python 2.3     | Julio 2003           |
-| Python 2.4     | Noviembre 2004       |
-| Python 2.5     | Septiembre 2006      |
-| Python 2.6     | Octubre 2008         |
-| Python 2.7     | Julio 2010           |
-| **Python 3.0** | Diciembre 2008       |
-| Python 3.1     | Junio 2009           |
-| Python 3.2     | Febrero 2011         |
-| Python 3.3     | Septiembre 2012      |
-| Python 3.4     | Marzo 2014           |
-| Python 3.5     | Septiembre 2015      |
-| Python 3.6     | Diciembre 2016       |
-| Python 3.7     | Junio 2018           |
-| Python 3.8     | Octubre 2019         |
-| Python 3.9     | Octubre 2020         |
-| Python 3.10    | Octubre 2021         |
-| Python 3.11    | Octubre 2022         |
-| Python 3.12    | Octubre 2023         |
-| Python 3.13    | Octubre 2024         |
-| Python 3.14    | Octubre 2025 :fontawesome-solid-question:{.acc} |
+<div class="annotate" markdown>
+|                    Versión                     | Fecha de lanzamiento |  Release manager(1)   |
+| ---------------------------------------------- | -------------------- | --------------------- |
+| **Python 1.0**                                 | Enero 1994           | Guido van Rossum      |
+| Python 1.5                                     | Diciembre 1997       | Guido van Rossum      |
+| Python 1.6                                     | Septiembre 2000      | Guido van Rossum      |
+| **Python 2.0**                                 | Octubre 2000         | Guido van Rossum      |
+| Python 2.1                                     | Abril 2001           | Guido van Rossum      |
+| Python 2.2                                     | Diciembre 2001       | Guido van Rossum      |
+| Python 2.3                                     | Julio 2003           | Guido van Rossum      |
+| Python 2.4                                     | Noviembre 2004       | Guido van Rossum      |
+| Python 2.5                                     | Septiembre 2006      | Guido van Rossum      |
+| [Python 2.6](https://docs.python.org/2.6/)     | Octubre 2008         | Barry Warsaw          |
+| [Python 2.7](https://docs.python.org/2.7/)     | Julio 2010           | Benjamin Peterson     |
+| [**Python 3.0**](https://docs.python.org/3.0/) | Diciembre 2008       | Barray Warsaw         |
+| [Python 3.1](https://docs.python.org/3.1/)     | Junio 2009           | Benjamin Peterson     |
+| [Python 3.2](https://docs.python.org/3.2/)     | Febrero 2011         | Georg Brandl          |
+| [Python 3.3](https://docs.python.org/3.3/)     | Septiembre 2012      | Georg Brandl          |
+| [Python 3.4](https://docs.python.org/3.4/)     | Marzo 2014           | Larry Hastings        |
+| [Python 3.5](https://docs.python.org/3.5/)     | Septiembre 2015      | Larry Hastings        |
+| [Python 3.6](https://docs.python.org/3.6/)     | Diciembre 2016       | Ned Deily             |
+| [Python 3.7](https://docs.python.org/3.7/)     | Junio 2018           | Ned Deily             |
+| [Python 3.8](https://docs.python.org/3.8/)     | Octubre 2019         | Łukasz Langa          |
+| [Python 3.9](https://docs.python.org/3.9/)     | Octubre 2020         | Łukasz Langa          |
+| [Python 3.10](https://docs.python.org/3.10/)   | Octubre 2021         | Pablo Galindo Salgado |
+| [Python 3.11](https://docs.python.org/3.11/)   | Octubre 2022         | Pablo Galindo Salgado |
+| [Python 3.12](https://docs.python.org/3.12/)   | Octubre 2023         | Thomas Wouters        |
+| [Python 3.13](https://docs.python.org/3.13/)   | Octubre 2024         | Thomas Wouters        |
+| [Python 3.14](https://docs.python.org/3.14/)   | Octubre 2025         | Hugo van Kemenade     |
+| [Python 3.15](https://docs.python.org/3.15/)   | Octubre 2026         | Hugo van Kemenade     |
+</div>
+1. El «release manager» de una versión de Python es un/una [«core developer»](https://hugovk.github.io/python-core-devs/) encargado/a de coordinar y responsabilizarse de liberar dicha versión de Python en tiempo y forma.
 
 !!! abstract "Dato curioso"
 
-    Desde <span class="pyversion"><a href="https://www.python.org/downloads/release/python-380/">Python <span class="version">:octicons-tag-24: 3.8</span></a></span>, cada nueva versión estable de Python se libera en el mes de **Octubre**.
+    Desde <span class="pyversion"><a href="https://docs.python.org/3.8/">Python <span class="version">:octicons-tag-24: 3.8</span></a></span>, cada nueva versión estable de Python se libera en el mes de **Octubre**.
+
+!!! info "Soporte"
+
+    Es importante tener en cuenta el [calendario de soporte](https://devguide.python.org/versions/#full-chart) de cada una de las versiones de Python.
 
 ### Python 3 { #python3 }
 

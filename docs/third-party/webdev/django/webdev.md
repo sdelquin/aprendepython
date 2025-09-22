@@ -15,9 +15,9 @@ flowchart LR
   Client <--> Server
 ```
 
-Cuando una **página web** se descarga al ordenador, su contenido define qué se debe mostrar en pantalla. **Este contenido está programado en un lenguaje de marcado**, formado por etiquetas, que habitualmente es **HTML**. Las etiquetas que componen la página indican el objetivo de cada una de las partes que la componen. Así, dentro de estos lenguajes hay etiquetas para indicar que un texto es un encabezado, que forma parte de una tabla, o que simplemente es un párrafo de texto.
+Cuando una **página web** se descarga al ordenador, su contenido define qué se debe mostrar en pantalla. **Este contenido está programado en un lenguaje de marcas**, formado por etiquetas, que habitualmente es **HTML**. Las etiquetas que componen la página indican el objetivo de cada una de las partes que la componen (véase `#!html <h1>`, `#!html <tr>`, `#!html <p>`, ...). Así, dentro de estos lenguajes hay etiquetas para indicar que un texto es un encabezado, que forma parte de una tabla, o que simplemente es un párrafo de texto.
 
-Además, si la página está bien estructurada, la información que le indica al navegador el estilo con que se debe mostrar cada parte de la página estará almacenado en otro fichero, una **hoja de estilos** o **CSS**. La hoja de estilos se encuentra indicada en la página web y el navegador la descarga junto a ésta. En ella nos podemos encontrar, por ejemplo, estilos que indican que el encabezado debe ir con tipo de letra Arial y en color rojo, o que los párrafos deben ir alineados a la izquierda.
+Además, si la página está bien estructurada, la información que le indica al navegador el estilo con que se debe mostrar cada parte de la página estará almacenado en otro fichero (o ficheros), una **hoja de estilos** o **CSS**. La hoja de estilos se encuentra indicada en la página web y el navegador la descarga junto a ésta. En ella nos podemos encontrar, por ejemplo, estilos que indican que el encabezado debe ir con tipo de letra [Helvetica](https://font.download/font/helvetica-255) y en color azul, o que los párrafos deben ir alineados a la izquierda.
 
 ![HTML+CSS](images/webdev/html-and-css.png)
 (1)
@@ -52,7 +52,7 @@ flowchart LR
 
 Las páginas explicadas en el apartado anterior se llaman **páginas web estáticas**. Estas páginas se encuentran almacenadas en su forma definitiva, tal y como se crearon, y su contenido no varía. Son útiles para mostrar una información concreta, y mostrarán esa misma información cada vez que se carguen. La única forma en que pueden cambiar es si un programador la modifica y actualiza su contenido.
 
-En contraposición a las páginas web estáticas existen las **páginas web dinámicas**. Estas páginas, como su propio nombre indica, se caracterizan porque su contenido cambia en función del escenario correspondiente (usuario identificado, acciones ejecutadas, configuración, etc.).
+En contraposición a las páginas web estáticas existen las **páginas web dinámicas**. Estas páginas, como su propio nombre indica, se caracterizan porque su contenido cambia en función del escenario correspondiente (usuario logeado, acciones ejecutadas, configuración, etc.).
 
 === "Petición de página estática"
 
@@ -78,7 +78,7 @@ Dentro de las **páginas web dinámicas**, es muy importante distinguir dos tipo
 
 1. Aquellas cuyo contenido se «conforma» **completamente** de forma dinámica en el servidor y se devuelven al cliente. Puede que tengan extensión `.php`, `.asp` o que incluso ni siquiera tengan extensión (por ejemplo `/shop`). El código HTML de estas páginas es el resultado de la ejecución de un programa (en el servidor). Estas páginas entran dentro de la categoría **SSR** que veremos un poco más adelante.
 
-2. Aquellas que **incluyen código que ejecuta el navegador**. En estas páginas el código ejecutable, normalmente en lenguaje JavaScript, se incluye dentro del HTML y se descarga junto con la página. Cuando el navegador muestra la página en pantalla, ejecuta el código que la acompaña. Este código puede incorporar múltiples funcionalidades que pueden ir desde mostrar animaciones hasta cambiar totalmente la apariencia y el contenido de la página. Estas páginas entran dentro de la categoría **CSR** que veremos un poco más adelante.
+2. Aquellas que **incluyen código que ejecuta el navegador**. En estas páginas el código ejecutable, normalmente en lenguaje JavaScript, se incluye dentro del HTML y se descarga junto con la página. Cuando el navegador muestra la página en pantalla, ejecuta el código que la acompaña. Este código puede incorporar múltiples funcionalidades que pueden ir desde mostrar animaciones hasta cambiar totalmente la apariencia y el contenido. Estas páginas entran dentro de la categoría **CSR** que veremos un poco más adelante.
 
 El esquema de funcionamiento de una página web dinámica es el siguiente:
 
@@ -91,7 +91,7 @@ El esquema de funcionamiento de una página web dinámica es el siguiente:
 
 Este procedimiento tiene lugar constantemente mientras consultamos páginas web. Por ejemplo, cuando consultas tu correo electrónico vía web, lo primero que tienes que hacer es introducir tu nombre de usuario y contraseña. A continuación, lo más habitual es que el servidor te muestre una pantalla con la bandeja de entrada, en la que aparecen los mensajes recibidos en tu cuenta. Esta pantalla es un claro ejemplo de una página web dinámica.
 
-Obviamente, el navegador no envía esa misma página a todos los usuarios, sino que la personaliza de forma dinámica en función de quién sea el usuario que se conecte. Para generarla ejecuta un programa que obtiene los datos de tu usuario (tus contactos, la lista de mensajes recibidos) y con ellos compone la página web que recibes desde el servidor web.
+Obviamente, el servidor no envía esa misma página a todos los usuarios, sino que la personaliza de forma dinámica en función de quién sea el usuario que se conecte. Para generarla ejecuta un programa que obtiene los datos de tu usuario (tus contactos, la lista de mensajes recibidos) y con ellos compone la página web que recibes desde el servidor web.
 
 #### Ámbito de aplicación { #scope }
 
@@ -110,7 +110,7 @@ Pero si se decide hacer un sitio web utilizando páginas estáticas, ten en cuen
 
 #### Aplicaciones web { #webapps }
 
-Las **aplicaciones web emplean páginas web dinámicas** para crear aplicaciones que se ejecuten en un servidor web y se muestren en un navegador. Se puede encontrar aplicaciones web para realizar múltiples tareas. Unas de las primeras en aparecer fueron las que se comentarion anteriormente, los clientes de correo.
+Las **aplicaciones web emplean páginas web dinámicas** para crear aplicaciones que se ejecuten en un servidor web y se muestren en un navegador. Se puede encontrar aplicaciones web para realizar múltiples tareas. Unas de las primeras en aparecer fueron las comentadas anteriormente: clientes de correo.
 
 Hoy en día existen aplicaciones web para multitud de tareas como procesadores de texto, gestión de tareas, o edición y almacenamiento de imágenes. Estas aplicaciones tienen ciertas ventajas e inconvenientes si las comparas con las aplicaciones tradicionales que se ejecutan sobre el sistema operativo de la propia máquina (aplicaciones nativas):
 
@@ -122,7 +122,7 @@ Hoy en día existen aplicaciones web para multitud de tareas como procesadores d
 
 ### Lugar de ejecución del código { #code-execution }
 
-En función del lugar en el que se ejecuta el código se distinguen (al menos) dos modelos de «renderizado».
+En función del lugar en el que se ejecuta el código se distinguen (al menos) dos modelos de «renderizado»: SSR y CSR.
 
 #### SSR { #ssr }
 
@@ -134,7 +134,7 @@ Cuando el navegador solicita a un servidor web una página, es posible que antes
 
 1. :fontawesome-regular-copyright: [Ricardo Andreatta](https://ferie.medium.com/what-is-the-server-side-rendering-and-how-it-works-f1d4bf9322c6) (Medium)
 
-Además, cuando una página web llega al navegador, es también posible que incluya algún programa o fragmentos de código que se deban ejecutar en el cliente. Ese código, normalmente en lenguaje **JavaScript**, se ejecutará en el navegador y, además de poder modificar el contenido de la página, puede llevar a cabo acciones como la animación de textos u objetos de la página o la comprobación de los datos que se introducen en un formulario.
+Además, cuando una página web llega al navegador, también es posible que incluya algún programa o fragmentos de código que se deban ejecutar en el cliente. Ese código, normalmente en lenguaje **JavaScript**, se ejecutará en el navegador y, además de poder modificar el contenido de la página, puede llevar a cabo acciones como la animación de textos u objetos de la página o la comprobación de los datos que se introducen en un formulario.
 
 **Estas dos tecnologías se complementan** una con la otra. Así, volviendo al ejemplo del correo web, el programa que se encarga de obtener tus mensajes y su contenido de una base de datos se ejecuta en el entorno del servidor, mientras que tu navegador ejecuta, por ejemplo, el código encargado de avisarte cuando quieres enviar un mensaje y te has olvidado de poner un texto en el asunto.
 
@@ -168,16 +168,16 @@ Muchas de las aplicaciones **web actuales utilizan ambas tecnologías**: la ejec
 
 ## Tecnologías web { #web-technologies }
 
-Cuando se programa una aplicación se hace utilizando un lenguaje de programación. Por ejemplo, utilizamos el lenguaje Python para crear aplicaciones que se ejecuten en distintos sistemas operativos. Para programar una aplicación se necesitan ciertas herramientas como un entorno de desarrollo o librerías de código. Además, una vez acabado su desarrollo, esta aplicación necesitará ciertos componentes para su ejecución, como por ejemplo un intérprete dentro de un entorno virtual.
+Cuando se desarrolla una aplicación se hace utilizando un lenguaje de programación. Por ejemplo, utilizamos Python para crear aplicaciones que se ejecuten en distintos sistemas operativos. Para programar una aplicación se necesitan ciertas ^^herramientas^^ como un entorno de desarrollo o librerías de código. Además, una vez acabado su desarrollo, esta aplicación necesitará ciertos componentes para su ejecución, como por ejemplo un ^^intérprete^^ dentro de un ^^entorno virtual^^.
 
-En este bloque veremos distintas tecnologías que se pueden utilizar para programar aplicaciones que se ejecuten en un servidor web, y cómo se relacionan unas con otras. Analizaremos las ventajas e inconvenientes de utilizar cada una, y qué lenguajes de programación se deben aprender para utilizarlas.
+En este bloque veremos distintas tecnologías que se pueden utilizar para programar aplicaciones y que se ejecuten en un servidor web. Analizaremos las ventajas e inconvenientes de utilizar cada una, y qué lenguajes de programación se deben aprender para utilizarlas.
 
 ### Componentes para desarrollo web { #webdev-components }
 
 Los **componentes principales** con los que se debe contar para ejecutar aplicaciones web en un servidor son los siguientes:
 
 1. Un **servidor web** para recibir las peticiones de los clientes web (normalmente navegadores) y enviarles la página que solicitan (una vez generada puesto que hablamos de páginas web dinámicas). El servidor web debe conocer el procedimiento a seguir para generar la página web: qué módulo se encargará de la ejecución del código y cómo se debe comunicar con él.
-2. El **módulo encargado de ejecutar el código** y generar la página web resultante. Este módulo debe integrarse de alguna forma con el servidor web, y dependerá del lenguaje y tecnología que utilicemos para programar la aplicación web. También se conoce por servidor de aplicación.
+2. El **módulo encargado de ejecutar el código** y generar la página web resultante. Este módulo debe integrarse de alguna forma con el servidor web, y dependerá del lenguaje y tecnología que utilicemos para programar la aplicación web. También se conoce por ^^servidor de aplicación^^.
 3. Un **sistema gestor de base de datos**. Este módulo no es estrictamente necesario pero en la práctica se utiliza en todas las aplicaciones web que manejan ciertas cantidades de datos o información.
 4. El **lenguaje de programación** que utilizarás para desarrollar las aplicaciones.
 
@@ -223,7 +223,7 @@ La primera decisión antes de comenzar a programar una aplicación web es elegir
 5. ¿Se van a usar herramientas de código abierto o herramientas propietarias? ¿Cuál es el coste de utilizar soluciones comerciales?
 6. ¿Voy a programar la aplicación yo solo o formaré parte de un equipo de desarrollo?
 
-Estudiando las respuestas a estas y otras preguntas, se podrá ver qué arquitecturas se adaptan mejor a la aplicación y cuáles no son viables.
+Las respuestas a estas y otras preguntas te ayudarán a definir los detalles de implementación de tu aplicación web así como la arquitectura más adecuada.
 
 ### Lenguajes { #languages }
 
@@ -245,14 +245,9 @@ Si nos centramos en **desarrollo web para entorno servidor** podemos citar algun
 | [Go :fontawesome-brands-golang:](https://go.dev/) | [Gin :simple-gin:](https://gin-gonic.com/) |
 | [Python :simple-python:](https://www.python.org/) | [Django :simple-django:](https://www.djangoproject.com/) |
 
-!!! tip "Encuentra el lenguaje"
+!!! tip "El lenguaje es una herramienta"
 
     Todos los lenguajes tienen ventajas e inconvenientes. El lenguaje de programación debe ser una herramienta para solucionar el problema, no un fin en sí mismo. Explora las distintas posibilidades y trata de encontrar aquella herramienta que mejor se adapte al proyecto.
-
-Si queremos ver una muestra de lenguajes utilizados en la industria podemos echar un vistazo a [LeanMind](https://leanmind.es/es/) una empresa canaria dedicada al desarrollo de software:
-
-- [Tecnologías de desarrollo frontend en LeanMind](https://leanmind.es/es/desarrollo/frontend/)
-- [Tecnologías de desarrollo backend en LeanMind](https://leanmind.es/es/desarrollo/backend/)
 
 #### Framework web { #web-framework }
 
@@ -341,7 +336,7 @@ A continuación se muestran las versiones **mayores** de Django con su año de l
 | [:simple-django: 3.0](https://docs.djangoproject.com/en/stable/releases/3.0/) | 2019 |
 | [:simple-django: 4.0](https://docs.djangoproject.com/en/stable/releases/4.0/) | 2021 |
 | [:simple-django: 5.0](https://docs.djangoproject.com/en/stable/releases/5.0/) | 2023 |
-| [:simple-django: 6.0](https://docs.djangoproject.com/en/stable/releases/6.0/) | 2025 :octicons-question-16: |
+| [:simple-django: 6.0](https://docs.djangoproject.com/en/dev/releases/6.0/) | 2025 :octicons-question-16: |
 
 ### Características { #django-features }
 
@@ -392,33 +387,17 @@ Confían en Django debido a su alta calidad, seguridad y funcionalidades, respal
 
 ### Comparando con otras tecnologías { #django-in-market }
 
-En la encuesta a desarrolladores/as de [Stack Overflow (2024)](https://survey.stackoverflow.co/2024/technology/#1-web-frameworks-and-technologies), Django ocupaba el **décimo puesto** de los frameworks web más utilizados:
+En la encuesta a desarrolladores/as de [Stack Overflow (2025)](https://survey.stackoverflow.co/2025/technology/#1-web-frameworks-and-technologies), Django estaba presente en los framework web más utilizados.
 
-| Framework | Uso |
-| --- | --- |
-| Node.js | 40.8% |
-| React | 39.5% |
-| jQuery | 21.4% |
-| Next.js | 17.9% |
-| Express | 17.8% |
-| Angular | 17.1% |
-| ASP.NET CORE | 16.9% |
-| Vue.js | 15.4% |
-| ASP.NET | 12.9% |
-| Flask | 12.9% |
-| Spring Boot | 12.7% |
-| Django | 12% |
-| Wordpress | 11.8% |
-| FastAPI | 9.9% |
-| Laravel | 7.9% |
-| AngularJS | 6.8% |
-| Svelte | 6.5% |
-| NestJS | 5.8% |
-| Blazor | 4.9% |
-| Ruby on Rails | 4.7% |
-| Nuxt.js | 3.6% |
-| Htmx | 3.3% |
-| Symfony | 3.2% |
-| Astro | 3% |
-| Fastify | 2.2% |
-| Deno | 1.9% |
+En la siguiente lista se muestran unicamente aquellos **framework web** ^^generalistas^^ (es decir no enfocados a API) y ^^del lado del servidor^^ (es decir no enfocados a «frontend»):
+
+|    Framework    |          Lenguaje          |            Uso             |
+| --------------- | -------------------------- | -------------------------- |
+| ASP.NET CORE    | :material-language-csharp: | ████████████████████ 19.7% |
+| Spring Boot     | :material-language-java:   | ███████████████ 14.7%      |
+| ASP.NET         | :material-language-csharp: | ██████████████14.2%        |
+| Wordpress       | :simple-php:               | █████████████13.6%         |
+| **Django**{.hl} | :simple-python:            | ████████████12.6%          |
+| Laravel         | :simple-php:               | █████████ 8.9%             |
+| Ruby on Rails   | :simple-ruby:              | ██████ 5.9%                |
+| Symfony         | :simple-php:               | ████ 4.0%                  |

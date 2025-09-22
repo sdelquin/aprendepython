@@ -14,41 +14,48 @@ En programación, una excepción es un **evento anómalo o inesperado** que ocur
 
 ## Manejando errores { #handling-errors }
 
-Si una excepción ocurre en algún lugar de nuestro programa y no es capturada en ese punto, va subiendo (burbujeando) hasta que es capturada en alguna función que ha hecho la llamada. Si en toda la «pila» de llamadas no existe un control de la excepción, Python muestra un mensaje de error con información adicional:
+Si una excepción ocurre en algún lugar de nuestro programa y no es capturada en ese punto, va subiendo (burbujeando) hasta que es capturada en alguna función que ha hecho la llamada.
 
-```pycon
-In [1]: def f3():
-   ...:     return 1/0
-   ...:
+Si en toda la «pila» de llamadas no existe un control de la excepción, Python terminará abortando la ejecución del programa y mostrando un mensaje de error con información adicional:
 
-In [2]: def f2():
-   ...:     return f3()
-   ...:
+<div class="grid cards" markdown>
 
-In [3]: def f1():
-   ...:     return f2()
-   ...:
+-   
+    ```pycon hl_lines="11-20"
+    >>> def f3():
+    ...     return 1/0
+    ...
+    >>> def f2():
+    ...     return f3()
+    ...
+    >>> def f1():
+    ...     return f2()
+    ...
+    >>> f1()
+    Traceback (most recent call last):
+      Cell In[4], line 1
+        f1()
+      Cell In[3], line 2 in f1
+        return f2()
+      Cell In[2], line 2 in f2
+        return f3()
+      Cell In[1], line 2 in f3
+        return 1/0
+    ZeroDivisionError: division by zero
+    ```
+  
+  -   
 
-In [4]: f1()
----------------------------------------------------------------------------
-ZeroDivisionError                         Traceback (most recent call last)
-Cell In[4], line 1
-----> 1 f1()
+      ``` mermaid
+      graph
+      start[[Start]] --> f1
+      f1 --> f2
+      f2 --> f3
+      f3 -->|1/0| err{{ZeroDivisionError}}
+      err -->|Traceback| start
+      ```
 
-Cell In[3], line 2, in f1()
-      1 def f1():
-----> 2     return f2()
-
-Cell In[2], line 2, in f2()
-      1 def f2():
-----> 2     return f3()
-
-Cell In[1], line 2, in f3()
-      1 def f3():
-----> 2     return 1/0
-
-ZeroDivisionError: division by zero
-```
+</div>
 
 Para manejar (capturar) las excepciones podemos usar un bloque de código con las sentencias `#!python try` + `#!python except`.
 
@@ -207,10 +214,13 @@ Lo más habitual al recuperar el objeto de error es mostrar (o manipular) los me
 >>> try:
 ...     print(values[3])
 ... except IndexError as err:
-...     print(f'Something went wrong: {err}')
+...     print(f'Something went wrong: {err}')#(1)!
 ...
 Something went wrong: list index out of range
 ```
+{ .annotate }
+
+1. Lo que ocurre en este caso es una llamada implícita a `#!python err.__str__()` como se explicó [aquí](./oop.md#str).
 
 ### Elevando excepciones { #raise-exceptions }
 
@@ -382,7 +392,7 @@ NotIntError: 2.4
 
 ### Personalizar la excepción { #customize-exception }
 
-La excepción propia no deja de ser una clase «normal» escrita en Python que podemos personalizar a necesidad.
+La excepción propia no deja de ser una clase «ordinaria» escrita en Python que podemos personalizar según necesidad.
 
 Veamos a continuación varios <span class="example">ejemplos:material-flash:</span> de personalización:
 

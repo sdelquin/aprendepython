@@ -79,9 +79,11 @@ Para poder crear una tabla primero debemos manejar los [tipos de datos SQLite](h
 - [x] `REAL` :material-arrow-right-bold: para valores **flotantes**.
 - [x] `TEXT` :material-arrow-right-bold: para **cadenas de texto**.
 
-!!! warning "INT"
+??? warning "INT"
 
     Aunque `INT` también está permitido, se desaconseja su uso en favor de `INTEGER` especialmente cuando trabajamos con la librería Python `sqlite3` y no queremos obtener resultados inesperados.
+
+¿Y cómo represento un valor [booleano](../../core/datatypes/numbers.md#booleans)? Simplemente podemos usar `INTEGER` y ya nos será suficiente para representar 0 (falso) y 1 (verdadero).
 
 Durante toda esta sección vamos a trabajar con una tabla de <span class="example">ejemplo:material-flash:</span> que representa las [distintas versiones de Python](https://devguide.python.org/versions/) que han sido liberadas.
 
@@ -135,7 +137,7 @@ Para tener contenido sobre el que trabajar, vamos primeramente a añadir ciertos
 <sqlite3.Cursor object at 0x1057d4240>
 ```
 
-Aparentemente todo ha ido bien. Vamos a usar —temporalmente— la herramienta cliente sqlite3[^1] para ver el contenido de la tabla:
+Aparentemente todo ha ido bien. Vamos a usar —temporalmente— la herramienta cliente `sqlite3`[^1] para ver el contenido de la tabla:
 
 ```console
 $ sqlite3 python.db "select * from pyversions"
@@ -462,7 +464,7 @@ Traceback (most recent call last):
 IntegrityError: UNIQUE constraint failed: pyversions.branch
 ```
 
-Se ha elevado una excepción de tipo `IntegrityError` indicando que hay valores duplicados en el campo `branch` ya que se trata de clave primaria y sus valores deben ser únicos. Pero dado que estamos en un gestor de contexto, se realiza un «rollback» de las acciones previas y la base de datos queda en el mismo estado anterior.
+Se ha elevado una [excepción](../../core/modularity/exceptions.md) de tipo `IntegrityError` indicando que hay valores duplicados en el campo `branch` ya que se trata de una clave primaria y sus valores deben ser únicos. Pero dado que estamos en un gestor de contexto, se realiza un «rollback» de las acciones previas y la base de datos queda en el mismo estado anterior.
 
 !!! tip "Excepciones"
 
@@ -633,7 +635,7 @@ A continuación se muestra el acceso a los valores del último objeto `sqlite3.R
 
     El modo `sqlite3.Row` también permite utilizar las funciones `fetchone()` y `fetchall()`.
 
-### Números de filas { #num-rows }
+### Número de filas { #num-rows }
 
 Hay ocasiones en las que lo que necesitamos obtener no es el dato en sí mismo, sino el **número de filas vinculadas a una determinada consulta**. En este sentido hay varias alternativas:
 

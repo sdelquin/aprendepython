@@ -92,7 +92,7 @@ Existen una serie de caracteres que tienen un **significado especial** dentro de
 
 ## Operaciones { #operations }
 
-Una vez encontrada la expresión regular correspondiente, Python nos ofrece distintas operaciones que podemos realizar.
+Una vez encontrada la expresión regular correspondiente, Python nos ofrece distintos mecanismos que aplicar.
 
 ### Buscar { #re-search }
 
