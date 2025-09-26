@@ -12,7 +12,7 @@ Suponiendo que disponemos de [Python](../../../core/devenv/real-context.md#pytho
 
 ### Carpeta del proyecto { #project-folder }
 
-Supongamos que el proyecto se va a llamar `matraka`. Crearemos una carpeta con dicho nombre:
+Imaginemos que el proyecto se va a llamar `matraka`. Crearemos una carpeta con dicho nombre:
 
 ```console
 $ mkdir matraka

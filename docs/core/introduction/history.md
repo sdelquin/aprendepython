@@ -47,7 +47,14 @@ Desde la década de 1950 se han sucedido multitud de lenguajes de programación 
 
 ![Cronología lenguajes de programación](images/history/proglangs.svg)
 
-El **número** actual de lenguajes de programación depende de lo que se considere un lenguaje de programación y a quién se pregunte. Según [TIOBE](https://www.tiobe.com/tiobe-index/programming-languages-definition/#instances) más de 250; según [Wikipedia](https://en.wikipedia.org/wiki/List_of_programming_languages) más de 700, según [Language List](http://www.info.univ-angers.fr/~gh/hilapr/langlist/langlist.htm) más de 2500; y para una cifra muy alta podemos considerar a [Online Historical Encyclopaedia of Programming Languages](http://hopl.info/) que se acerca a los 9000.
+El **número** actual de lenguajes de programación depende de lo que se considere un lenguaje de programación y a quién se pregunte:
+
+| Organismo | Número de lenguajes |
+| --- | --- |
+| [TIOBE](https://www.tiobe.com/tiobe-index/programming-languages-definition/#instances) | :material-approximately-equal:250 |
+| [Wikipedia](https://en.wikipedia.org/wiki/List_of_programming_languages) | :material-approximately-equal:700 |
+| [Language List](http://www.info.univ-angers.fr/~gh/hilapr/langlist/langlist.htm) | :material-approximately-equal:2500 |
+| [Online Historical Encyclopaedia of Programming Languages](http://hopl.info/) | :material-approximately-equal:9000 |
 
 ## Creadores de lenguajes de programación { #programming-languages-creators }
 

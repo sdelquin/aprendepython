@@ -12,11 +12,11 @@ icon: fontawesome/brands/python
 
 [Python](https://www.python.org/) es un **lenguaje de programación** de [alto nivel](https://aprendepython.es/core/introduction/machine/#python) creado a principios de los años 90 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum) que trabajaba por aquella época en el _Centro para las Matemáticas y la Informática de los Países Bajos_ ([CWI](https://www.cwi.nl/en/)).
 
-Sus instrucciones están muy cercanas al **lenguaje natural** (en inglés) y favorecen la **legibilidad** del código. Toma su nombre de los [Monty Python](https://es.wikipedia.org/wiki/Monty_Python), grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje _ABC_.
+Sus instrucciones están muy cercanas al **lenguaje natural** (en inglés) y favorecen la **legibilidad** del código. Toma su nombre de los [Monty Python](https://es.wikipedia.org/wiki/Monty_Python), grupo humorista de los 60 que gustaban mucho a Guido. Python fue creado como sucesor del lenguaje [ABC](https://homepages.cwi.nl/~steven/abc/).
 
 !!! abstract "Python: El Documental"
 
-    De cara a conocer los detalles tras este lenguaje de programación, resulta muy interesante visionar [este documental de Python](https://www.youtube.com/watch?v=GfH4QL4VqJ0) que fue lanzado en agosto de 2025 y producido por [Cult.Repo](https://www.linkedin.com/company/cult-repo/).
+    De cara a conocer los detalles tras este lenguaje de programación, resulta muy interesante visionar [este documental de Python :simple-youtube:](https://www.youtube.com/watch?v=GfH4QL4VqJ0) que fue lanzado en agosto de 2025 y producido por [Cult.Repo](https://www.linkedin.com/company/cult-repo/).
 
 
 ## Características del lenguaje { #language-features }
@@ -55,7 +55,7 @@ A partir de su [definición de la Wikipedia](https://es.wikipedia.org/wiki/Pytho
 
 ### Inconvenientes { #disadvantages }
 
-- Interpretado (velocidad de ejecución, multithread vs GIL[^1], ...).
+- «Interpretado» (velocidad de ejecución, multithread vs GIL[^1], ...).
 - Consumo de memoria.
 - Errores no fácilmente detectables en tiempo de compilación.
 - Desarrollo móvil.
@@ -65,7 +65,7 @@ A partir de su [definición de la Wikipedia](https://es.wikipedia.org/wiki/Pytho
 
 ## Uso de Python { #python-usage }
 
-Al ser un lenguaje de ^^propósito general^^, podemos encontrar aplicaciones prácticamente en todos los ámbitos:
+Al ser un lenguaje de ^^propósito general^^, podemos encontrar aplicaciones en prácticamente en todos los ámbitos:
 
 - Análisis de datos.
 - Aplicaciones de escritorio.
@@ -102,23 +102,23 @@ Existen ránkings y estudios de mercado que sitúan a Python como uno de los len
 
 === "TIOBE"
 
-    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **agosto de 2025** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
+    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **septiembre de 2025** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
 
-    | Puesto | Lenguaje | Uso    |
+    | Puesto | Lenguaje |  Uso   |
     | ------ | -------- | ------ |
-    | 1      | Python   | 26.14% |
-    | 2      | C++      | 9.18% |
-    | 3      | C        | 9.03%  |
+    | 1      | Python   | 25.98% |
+    | 2      | C++      | 8.80%  |
+    | 3      | C        | 8.65%  |
 
 === "Stack Overflow"
 
     En el momento de la escritura de este documento, la última actualización de la [encuesta a desarrolladores/as de Stack Overflow](https://survey.stackoverflow.co/2025/technology#admired-and-desired) es de **mayo de 2025** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más deseados y admirados^^, por delante de SQL y HTML/CSS.
 
-    | Puesto | Lenguaje | Deseado | Admirado |
-    | ------ | -------- | ------- | -------- |
-    | 1      | Python   | 39.3%   | 56.4%    |
-    | 2      | SQL      | 35.6%   | 56.4%    |
-    | 3      | HTML/CSS | 33.8%   | 52.1%    |
+    | Puesto | Lenguaje | Deseado :material-heart: | Admirado :fontawesome-solid-hands-clapping: |
+    | ------ | -------- | ------------------------ | ------------------------------------------- |
+    | 1      | Python   | 39.3%                    | 56.4%                                       |
+    | 2      | SQL      | 35.6%                    | 56.4%                                       |
+    | 3      | HTML/CSS | 33.8%                    | 52.1%                                       |
 
 === "GitHub"
 
@@ -187,9 +187,24 @@ A partir de ese momento se empezaron a desarrollar las versiones estables «mayo
 
     Es importante tener en cuenta el [calendario de soporte](https://devguide.python.org/versions/#full-chart) de cada una de las versiones de Python.
 
+### Core developers { #core-developers }
+
+Los «core developers» de Python constituyen el equipo de personas que desarrollan/mantienen el lenguaje de programación Python.
+
+Convertirse en «core developer» exige superar una serie de [requisitos](https://devguide.python.org/core-team/join-team/). El listado de todas las personas que han formado parte de este equipo puede consultarse [aquí](https://devguide.python.org/core-team/team-log/index.html).
+
+Cada cierto tiempo se reúnen en «sprints»[^3] donde toman decisiones sobre el futuro de Python y programan los cambios que han sido aceptados mediante los PEP.
+
+![Core developers Sprint 2025](./images/python/coredev-sprint.jpg)
+(1)
+{ .annotate }
+
+1.  CPython [Core Dev Sprint 2025](https://www.linkedin.com/feed/update/ugcPost:7375230884591083520/) en [ARM](https://www.arm.com/) (Cambridge)  
+    :fontawesome-regular-copyright: [Diego R.](https://www.linkedin.com/in/diegor/) (Linkedin)
+
 ### Python 3 { #python3 }
 
-El cambio **de Python 2 a Python 3** fue bastante «traumático» ya que **se perdió la compatibilidad** en muchas de las estructuras del lenguaje. Los «core-developers»[^3], con _Guido van Rossum_ a la cabeza, vieron la necesidad de aplicar estas modificaciones en beneficio del rendimiento y expresividad del lenguaje de programación. Este cambio implicaba que el código escrito en Python 2 no funcionaría (de manera inmediata) en Python 3.
+El cambio **de Python 2 a Python 3** fue bastante «traumático» ya que **se perdió la compatibilidad** en muchas de las estructuras del lenguaje. Los [«core-developers»](#core-developers), con _Guido van Rossum_ a la cabeza, vieron la necesidad de aplicar estas modificaciones en beneficio del rendimiento y expresividad del lenguaje de programación. Este cambio implicaba que el código escrito en Python 2 no funcionaría (de manera inmediata) en Python 3.
 
 El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versión 2.7** del lenguaje de programación Python. Es por ello que se recomienda lo siguiente:
 
@@ -312,6 +327,6 @@ Por aquí te dejo una lista de consejos muy interesantes cuando nos enfrentamos 
 
 [^1]: Amplía información sobre el GIL en [este enlace](https://codigofacilito.com/articulos/gil-python).
 [^2]: El primer «commit» de CPython registrado por Guido van Rossum está disponible en [Github](https://github.com/python/cpython/commit/7f777ed95a19224294949e1b4ce56bbffcb1fe9f).
-[^3]: Término que se refiere a los/las desarrolladores/as principales del lenguaje de programación.
+[^3]: Ciclo de trabajo de duración fija enfocado en desarrollar determinados aspectos software.
 [^4]: Dícese de algo/alguien que sigue las convenciones de Python.
 [^5]: Consejos obtenidos de la cuenta :simple-x: de [@codewithvoid](https://twitter.com/codewithvoid).

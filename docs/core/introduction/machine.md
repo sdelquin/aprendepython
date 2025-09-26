@@ -126,9 +126,14 @@ graph LR
   bytecode -.-> pyc[.pyc]
 ```
 
-!!! note "Nota"
+!!! tip ".pyc"
 
-    Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje «interpretado» como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un «bytecode» que se ejecuta (interpreta) de forma «transparente».
+    Los ficheros `.pyc` (del inglés «Python compiled») contienen _bytecode_ en formato binario[^3]. Son generados por el compilador de Python. Su objetivo principal es optimizar la ejecución de un programa, ya que si el código fuente no cambia, no es necesario volver a recompilar.
+
+### Compilado vs Interpretado
+
+Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje «interpretado» como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un «bytecode» que se ejecuta (interpreta) de forma «transparente».
 
 [^1]: Consulta aquí más información sobre el [intérprete de bytecode](https://devguide.python.org/internals/interpreter/).
 [^2]: Imagen basada en el artículo [Python bytecode analysis](https://nowave.it/python-bytecode-analysis-1.html).
+[^3]: Es posible incluso obtener el _bytecode_ (legible) desde un fichero `.pyc`. Aquí tienes este [post](https://mathspp.com/blog/til/read-bytecode-from-a-pyc-file) donde se explica claramente.
