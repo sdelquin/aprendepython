@@ -8,20 +8,22 @@ icon: octicons/database-24
 
 Como hemos visto en las [características de Django](../django/webdev.md#django-features) existe un **ORM** que vincula tablas de la base de datos con objetos de Python.
 
-Un modelo es simplemente una clase de Python que hereda características definidas (en otras clases) del propio framework de Django.
+Un **modelo** es simplemente una **clase de Python** que hereda características definidas (en otras clases) del propio framework de Django.
+
+Se trata de una **abstracción** del _modelo de datos_ que permite trabajar a más alto nivel. En teoría[^1] podríamos cambiar el sistema gestor de base de datos que hay debajo y todo seguiría funcionando de la misma manera.
 
 ## Creando modelos { #creation }
 
-Un modelo no es más que una clase Python que «suele» vivir en el fichero `models.py` de una aplicación Django.
+Un modelo no es más que una clase Python que «suele» vivir en el fichero `models.py` de una [aplicación](apps.md) Django.
 
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos un modelo `Post` de un «blog» dentro de una aplicación llamada `posts`:
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos un modelo `Post` de nuestro «blog» dentro de una [aplicación](apps.md#creation) llamada `posts`:
 
-```python title="posts/models.py"
+```python title="posts/models.py" linenums="1"
 from django.db import models#(1)!
 
 class Post(models.Model):#(2)!
     title = models.CharField(max_length=256)
-    content = models.TextField(max_length=256)#(3)!
+    content = models.TextField()#(3)!
 
     def __str__(self):#(4)!
         return self.title
@@ -38,93 +40,96 @@ class Post(models.Model):#(2)!
 
     Todos los campos que definimos en un modelo son **campos obligatorios** (requeridos) por defecto, salvo que se [indique lo contrario](#optional-fields) de forma explícita.
 
+:material-check-all:{ .blue } Existe una correspondencia entre el modelo de datos (clase) definido en Django y la tabla creada en la base de datos. Para el caso anterior se creará la tabla `posts_post` (`app_model`).
+
+
 ## Campos { #fields }
 
 Los campos de un modelo no son más que **atributos de clase**.
 
-Dentro del módulo `#!python django.db.models` disponemos de una gran cantidad de [tipos de campos](https://docs.djangoproject.com/en/dev/ref/models/fields/#field-types). A continuación se muestra una tabla completa con los **tipos de campos** existentes en Django:
+Dentro del módulo [`django.db.models`](https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models) disponemos de una gran cantidad de [tipos de campos](https://docs.djangoproject.com/en/stable/ref/models/fields/#field-types). A continuación se muestra una tabla completa con los **tipos de campos** existentes en Django:
 
 <div class="annotate" markdown>
 | Campo :material-focus-field: | Descripción :material-invoice-text-fast-outline: | Objeto Python :material-language-python: | Parámetros :material-cube-outline:
 | --- | --- | --- | --- |
-| [`AutoField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/dev/ref/models/fields/#autofield) | Entero autoincremental | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`BigAutoField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/dev/ref/models/fields/#bigautofield) | Entero largo  (_64bits_)<br>autoincremental | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`BigIntegerField`:material-lightning-bolt:](https://docs.djangoproject.com/en/dev/ref/models/fields/#bigintegerfield) | Entero largo (_64bits_) | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`BinaryField`:octicons-file-binary-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#binaryfield) | Valor binario | [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes) | `max_length`(1) |
-| [`BooleanField`:material-sort-bool-descending:](https://docs.djangoproject.com/en/dev/ref/models/fields/#booleanfield) | Valor «booleano» | [`bool`](../../../core/datatypes/numbers.md#booleans) | |
-| [`CharField`:material-text-short:](https://docs.djangoproject.com/en/dev/ref/models/fields/#charfield) | Campo de texto (corto) | [`str`](../../../core/datatypes/strings.md) | `max_length`:octicons-key-asterisk-24:{ .red } (2) <br>`db_collation`(3) |
-| [`DateField`:material-calendar:](https://docs.djangoproject.com/en/dev/ref/models/fields/#datefield) | Fecha | [`datetime.date`](https://docs.python.org/3/library/datetime.html#datetime.date) | `auto_now_add`(4)<br>`auto_now`(5) |
-| [`DateTimeField`:octicons-clock-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#datetimefield) | Fecha y hora | [`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) | `auto_now_add`(6)<br>`auto_now`(7) |
-| [`DecimalField`:fontawesome-solid-euro-sign:](https://docs.djangoproject.com/en/dev/ref/models/fields/#decimalfield) | Valor flotante<br>(dinero/divisas) | [`Decimal`](https://docs.python.org/3/library/decimal.html#decimal.Decimal) | `max_digits`:octicons-key-asterisk-24:{ .red } (8)<br>`decimal_places`:octicons-key-asterisk-24:{ .red } (9) |
-| [`DurationField`:material-av-timer:](https://docs.djangoproject.com/en/dev/ref/models/fields/#durationfield) | Período de tiempo | [`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#datetime.timedelta) | |
-| [`EmailField`:material-email-box:](https://docs.djangoproject.com/en/dev/ref/models/fields/#emailfield) | Correo electrónico | [`str`](../../../core/datatypes/strings.md) | `max_length`(10) |
-| [`FileField`:octicons-file-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#filefield) | Fichero | [`Storage`](https://docs.djangoproject.com/en/stable/ref/files/storage/#django.core.files.storage.Storage) | `upload_to`(11) <br> `storage`(12) <br> `max_length`(13) |
-| [`FilePathField`:material-folder-hidden:](https://docs.djangoproject.com/en/dev/ref/models/fields/#filepathfield) | Nombres de ficheros | [`str`](../../../core/datatypes/strings.md) | `path`:octicons-key-asterisk-16:{ .red } (14)<br>`match`(15)<br>`recursive`(16)<br>`allow_files`(17)<br>`allow_folders`(18)<br>`max_length`(19) |
-| [`FloatField`:octicons-number-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#floatfield) | Valor flotante | [`float`](../../../core/datatypes/numbers.md#floats) | |
-| [`GeneratedField`:material-star-box-multiple-outline:](https://docs.djangoproject.com/en/dev/ref/models/fields/#generatedfield) | Computado en base a otros | | `expression`(20)<br>`output_field`(21)<br>`db_persist`(22) |
-| [`GenericIPAddressField`:material-ip-network:](https://docs.djangoproject.com/en/dev/ref/models/fields/#genericipaddressfield) | Dirección IPv4 o IPv6 | [`str`](../../../core/datatypes/strings.md) | `protocol`(23)<br>`unpack_ipv4`(24) |
-| [`ImageField`:octicons-image-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#imagefield) | Fichero de imagen | [`Storage`](https://docs.djangoproject.com/en/stable/ref/files/storage/#django.core.files.storage.Storage) | `upload_to`(25)<br>`height_field`(26)<br>`width_field`(27)<br>`max_length`(28) |
-| [`IntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#integerfield) | Valor entero | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`JSONField`:material-code-json:](https://docs.djangoproject.com/en/dev/ref/models/fields/#jsonfield) | Datos JSON | [`dict`](../../../core/datastructures/dicts.md) o [`list`](../../../core/datastructures/lists.md) | `encoder`(29)<br>`decoder`(30) |
-| [`PositiveBigIntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#positivebigintegerfield) | Entero positivo largo | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`PositiveIntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#positiveintegerfield) | Entero positivo | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`PositiveSmallIntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#positivesmallintegerfield) | Entero positivo corto | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`SlugField`:fontawesome-solid-link:](https://docs.djangoproject.com/en/dev/ref/models/fields/#slugfield) | «Slug»[^1] | [`str`](../../../core/datatypes/strings.md) | `max_length`(31) |
-| [`SmallAutoField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/dev/ref/models/fields/#smallautofield) | Entero corto autoincremental | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`SmallIntegerField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/dev/ref/models/fields/#smallintegerfield) | Entero corto | [`int`](../../../core/datatypes/numbers.md#integers) | |
-| [`TextField`:material-text-long:](https://docs.djangoproject.com/en/dev/ref/models/fields/#textfield) | Campo de texto (largo) | [`str`](../../../core/datatypes/strings.md) | |
-| [`TimeField`:octicons-clock-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#timefield) | Hora | [`datetime.time`](https://docs.python.org/3/library/datetime.html#datetime.time) | `auto_now_add`(32)<br>`auto_now`(33) |
-| [`URLField`:material-web:](https://docs.djangoproject.com/en/dev/ref/models/fields/#urlfield) | URL | [`str`](../../../core/datatypes/strings.md) | `max_length`(34) |
-| [`UUIDField`:octicons-hash-24:](https://docs.djangoproject.com/en/dev/ref/models/fields/#uuidfield) | UUID | [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) | |
+| [`AutoField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/stable/ref/models/fields/#autofield) | Entero autoincremental | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`BigAutoField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/stable/ref/models/fields/#bigautofield) | Entero largo  (_64bits_)<br>autoincremental | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`BigIntegerField`:material-lightning-bolt:](https://docs.djangoproject.com/en/stable/ref/models/fields/#bigintegerfield) | Entero largo (_64bits_) | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`BinaryField`:octicons-file-binary-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#binaryfield) | Valor binario | [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes) | `max_length`(1) |
+| [`BooleanField`:material-sort-bool-descending:](https://docs.djangoproject.com/en/stable/ref/models/fields/#booleanfield) | Valor «booleano» | [`bool`](../../../core/datatypes/numbers.md#booleans) | |
+| [`CharField`:material-text-short:](https://docs.djangoproject.com/en/stable/ref/models/fields/#charfield) | Campo de texto (corto) | [`str`](../../../core/datatypes/strings.md) | `max_length`:octicons-key-asterisk-24:{ .yellow } (2) |
+| [`DateField`:material-calendar:](https://docs.djangoproject.com/en/stable/ref/models/fields/#datefield) | Fecha | [`datetime.date`](https://docs.python.org/3/library/datetime.html#datetime.date) | `auto_now_add`(3)<br>`auto_now`(4) |
+| [`DateTimeField`:octicons-clock-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#datetimefield) | Fecha y hora | [`datetime.datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime) | `auto_now_add`(5)<br>`auto_now`(6) |
+| [`DecimalField`:fontawesome-solid-euro-sign:](https://docs.djangoproject.com/en/stable/ref/models/fields/#decimalfield) | Valor flotante<br>(dinero/divisas) | [`Decimal`](https://docs.python.org/3/library/decimal.html#decimal.Decimal) | `max_digits`:octicons-key-asterisk-24:{ .red } (7)<br>`decimal_places`:octicons-key-asterisk-24:{ .red } (8) |
+| [`DurationField`:material-av-timer:](https://docs.djangoproject.com/en/stable/ref/models/fields/#durationfield) | Período de tiempo | [`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#datetime.timedelta) | |
+| [`EmailField`:material-email-box:](https://docs.djangoproject.com/en/stable/ref/models/fields/#emailfield) | Correo electrónico | [`str`](../../../core/datatypes/strings.md) | `max_length`(9) |
+| [`FileField`:octicons-file-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#filefield) | Fichero | [`Storage`](https://docs.djangoproject.com/en/stable/ref/files/storage/#django.core.files.storage.Storage) | `upload_to`(10) <br> `storage`(11) <br> `max_length`(12) |
+| [`FilePathField`:material-folder-hidden:](https://docs.djangoproject.com/en/stable/ref/models/fields/#filepathfield) | Nombres de ficheros existentes en una ruta | [`str`](../../../core/datatypes/strings.md) | `path`:octicons-key-asterisk-16:{ .red } (13)<br>`match`(14)<br>`recursive`(15)<br>`allow_files`(16)<br>`allow_folders`(17)<br>`max_length`(18) |
+| [`FloatField`:octicons-number-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#floatfield) | Valor flotante | [`float`](../../../core/datatypes/numbers.md#floats) | |
+| [`GeneratedField`:material-star-box-multiple-outline:](https://docs.djangoproject.com/en/stable/ref/models/fields/#generatedfield) | Computado en función de otros (a nivel de base de datos) | | `expression`(19)<br>`output_field`(20)<br>`db_persist`(21) |
+| [`GenericIPAddressField`:material-ip-network:](https://docs.djangoproject.com/en/stable/ref/models/fields/#genericipaddressfield) | Dirección IPv4 o IPv6 | [`str`](../../../core/datatypes/strings.md) | `protocol`(22)<br>`unpack_ipv4`(23) |
+| [`ImageField`:octicons-image-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#imagefield) | Fichero de imagen | [`Storage`](https://docs.djangoproject.com/en/stable/ref/files/storage/#django.core.files.storage.Storage) | `upload_to`(24)<br>`height_field`(25)<br>`width_field`(26)<br>`max_length`(27) |
+| [`IntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#integerfield) | Valor entero | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`JSONField`:material-code-json:](https://docs.djangoproject.com/en/stable/ref/models/fields/#jsonfield) | Datos JSON | [`dict`](../../../core/datastructures/dicts.md) o [`list`](../../../core/datastructures/lists.md) | `encoder`(28)<br>`decoder`(29) |
+| [`PositiveBigIntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#positivebigintegerfield) | Entero positivo largo | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`PositiveIntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#positiveintegerfield) | Entero positivo | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`PositiveSmallIntegerField`:octicons-number-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#positivesmallintegerfield) | Entero positivo corto | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`SlugField`:fontawesome-solid-link:](https://docs.djangoproject.com/en/stable/ref/models/fields/#slugfield) | «Slug»[^2] | [`str`](../../../core/datatypes/strings.md) | `max_length`(30) |
+| [`SmallAutoField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/stable/ref/models/fields/#smallautofield) | Entero corto autoincremental | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`SmallIntegerField`:fontawesome-solid-arrow-up-right-dots:](https://docs.djangoproject.com/en/stable/ref/models/fields/#smallintegerfield) | Entero corto | [`int`](../../../core/datatypes/numbers.md#integers) | |
+| [`TextField`:material-text-long:](https://docs.djangoproject.com/en/stable/ref/models/fields/#textfield) | Campo de texto (largo) | [`str`](../../../core/datatypes/strings.md) | |
+| [`TimeField`:octicons-clock-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#timefield) | Hora | [`datetime.time`](https://docs.python.org/3/library/datetime.html#datetime.time) | `auto_now_add`(31)<br>`auto_now`(32) |
+| [`URLField`:material-web:](https://docs.djangoproject.com/en/stable/ref/models/fields/#urlfield) | URL | [`str`](../../../core/datatypes/strings.md) | `max_length`(33) |
+| [`UUIDField`:octicons-hash-24:](https://docs.djangoproject.com/en/stable/ref/models/fields/#uuidfield) | UUID | [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) | |
 </div>
 1. Tamaño máximo permitido (en _bytes_).
-2. Número máximo de caracteres que se pueden almacenar en la base de datos.
-3. Nombre del «collation» en la base de datos.
-4.  - Puesto a `#!python True` hace que el campo se actualice a la fecha actual ^^cuando se crea^^ el objeto.
+2.  - Número máximo de caracteres que se pueden almacenar en la base de datos.
+    - Es obligatorio para todos los sistemas gestores de bases de datos, salvo para PostgreSQL y SQLite.
+3.  - Puesto a `#!python True` hace que el campo se actualice a la fecha actual ^^cuando se crea^^ el objeto.
     - No es obligatorio. Sólo usarlo en los casos en los que sea necesario.
-5.  - Puesto a `#!python True` hace que el campo se actualice a la fecha actual ^^cada vez que se guarda^^ el objeto.
+4.  - Puesto a `#!python True` hace que el campo se actualice a la fecha actual ^^cada vez que se guarda^^ el objeto.
     - No es obligatorio. Sólo usarlo en los casos en los que sea necesario.
-6.  - Puesto a `#!python True` hace que el campo se actualice a la fecha/hora actual ^^cuando se crea^^ el objeto.
+5.  - Puesto a `#!python True` hace que el campo se actualice a la fecha/hora actual ^^cuando se crea^^ el objeto.
     - No es obligatorio. Sólo usarlo en los casos en los que sea necesario.
-7.  - Puesto a `#!python True` hace que el campo se actualice a la fecha/hora actual ^^cada vez que se guarda^^ el objeto.
+6.  - Puesto a `#!python True` hace que el campo se actualice a la fecha/hora actual ^^cada vez que se guarda^^ el objeto.
     - No es obligatorio. Sólo usarlo en los casos en los que sea necesario.
-8.  - Número máximo de dígitos permitidos en el número.
+7.  - Número máximo de dígitos permitidos en el número.
     - Incluye tanto los dígitos a la izquierda de la «coma» como los dígitos a la derecha de la «coma».
-9.  - Número de cifras decimales para almacenar el número.
+8.  - Número de cifras decimales para almacenar el número.
     - Por <span class="example">ejemplo:material-flash:</span> para almacenar números hasta **999.99** usaríamos:
         - `#!python max_digits=5`
         - `#!python decimal_places=2`
-10. Número máximo de caracteres que se pueden almacenar en la base de datos.
-11. Ruta en la que almacenar el archivo una vez que se suba.
-12. Objeto de almacenamiento.
-13. Número máximo de caracteres que se pueden almacenar en la base de datos.
-14. Ruta de sistema desde la que se extraen las opciones del campo.
-15. Expresión regular para filtrar nombres de fichero.
-16. - Si es `#!python True` se listará recursivamente todo el contenido de la ruta indicada.
+9. Número máximo de caracteres que se pueden almacenar en la base de datos.
+10. Ruta en la que almacenar el archivo una vez que se suba.
+11. Objeto de almacenamiento.
+12. Número máximo de caracteres que se pueden almacenar en la base de datos.
+13. Ruta de sistema desde la que se extraen las opciones del campo.
+14. Expresión regular para filtrar nombres de fichero.
+15. - Si es `#!python True` se listará recursivamente todo el contenido de la ruta indicada.
     - Por defecto es `#!python False`.
-17. - Si es `#!python True` permite el listado de ficheros.
+16. - Si es `#!python True` permite el listado de ficheros.
     - Por defecto es `#!python True`.
-18. - Si es `#!python True` permite el listado de directorios.
+17. - Si es `#!python True` permite el listado de directorios.
     - Por defecto es `#!python False`.
-19. Número máximo de caracteres que se pueden almacenar en la base de datos.
-20. Objeto de tipo [`Expression`](https://docs.djangoproject.com/en/stable/ref/models/expressions/#django.db.models.Expression) para el cálculo del campo.
-21. Instancia de campo de modelo que define el tipo de datos del campo.
-22. - Si es `#!python True` la columna en la base de datos será almacenada como real.
+18. Número máximo de caracteres que se pueden almacenar en la base de datos.
+19. Objeto de tipo [`Expression`](https://docs.djangoproject.com/en/stable/ref/models/expressions/#django.db.models.Expression) para el cálculo del campo.
+20. Instancia de campo de modelo que define el tipo de datos del campo.
+21. - Si es `#!python True` la columna en la base de datos será almacenada como real.
     - En otro caso la columna actuará como una _columna virtual_.
-23. Limita la entrada al protocolo especificado.
-24. Desempaqueta direcciones IPv4.
-25. Ruta en la que almacenar el archivo una vez que se suba.
-26. Nombre de un campo de modelo que contendrá el alto de la imagen.
-27. Nombre de un campo de modelo que contendrá el ancho de la imagen.
-28. Número máximo de caracteres que se pueden almacenar en la base de datos.
-29. Una subclase de [`JSONEncoder`](https://docs.python.org/3/library/json.html#json.JSONEncoder) para serializar los tipos de datos no soportados por el serializador JSON.
-30. Una subclase de [`JSONDecoder`](https://docs.python.org/3/library/json.html#json.JSONDecoder) para deserializar la entrada.
-31. Número máximo de caracteres que se pueden almacenar en la base de datos.
-32. - Puesto a `#!python True` hace que el campo se actualice a la hora actual ^^cuando se crea^^ el objeto.
+22. Limita la entrada al protocolo especificado.
+23. Desempaqueta direcciones IPv4.
+24. Ruta en la que almacenar el archivo una vez que se suba.
+25. Nombre de un campo de modelo que contendrá el alto de la imagen.
+26. Nombre de un campo de modelo que contendrá el ancho de la imagen.
+27. Número máximo de caracteres que se pueden almacenar en la base de datos.
+28. Una subclase de [`JSONEncoder`](https://docs.python.org/3/library/json.html#json.JSONEncoder) para serializar los tipos de datos no soportados por el serializador JSON.
+29. Una subclase de [`JSONDecoder`](https://docs.python.org/3/library/json.html#json.JSONDecoder) para deserializar la entrada.
+30. Número máximo de caracteres que se pueden almacenar en la base de datos.
+31. - Puesto a `#!python True` hace que el campo se actualice a la hora actual ^^cuando se crea^^ el objeto.
     - No es obligatorio. Sólo usarlo en los casos en los que sea necesario.
-33.  - Puesto a `#!python True` hace que el campo se actualice a la hora actual ^^cada vez que se guarda^^ el objeto.
+32.  - Puesto a `#!python True` hace que el campo se actualice a la hora actual ^^cada vez que se guarda^^ el objeto.
     - No es obligatorio. Sólo usarlo en los casos en los que sea necesario.
-34. Número máximo de caracteres que se pueden almacenar en la base de datos.
+33. Número máximo de caracteres que se pueden almacenar en la base de datos.
 
 <small>:octicons-key-asterisk-24:{ .red }</small> Parámetro requerido.
 
@@ -132,9 +137,22 @@ Dentro del módulo `#!python django.db.models` disponemos de una gran cantidad d
 
     Aunque es un campo totalmente libre, como estrategia puede ser interesante asignarle valores potencias de 2. Esto normaliza en cierta manera el tamaño que especificamos y tiene su margen de crecimiento: 32, 64, 128, 256, 512, 1024, ...
 
+### Tamaño de enteros
+
+Veamos a continuación una tabla resumen del tamaño de los distintos campos enteros existentes en los modelos de Django:
+
+| Campo | Límite inferior | Límite superior |
+| --- | --- | --- |
+| `SmallIntegerField` | -32768 | 32767 |
+| `PositiveSmallIntegerField` | 0 | 32767 |
+| `IntegerField` | -2147483648 | 2147483647 |
+| `PositiveIntegerField` | 0 | 2147483647 |
+| `BigIntegerField` | -9223372036854775808 | 9223372036854775807 |
+| `PositiveBigIntegerField` | 0 | 9223372036854775807 |
+
 ## Migraciones { #migrations }
 
-Una migración es un fichero de código Python que contiene las instrucciones a ejecutar sobre la tabla de la base de datos en función de los cambios realizados en el correspondiente modelo.
+Una migración es un ^^fichero de código Python^^ que contiene las instrucciones a ejecutar sobre la correspondiente tabla de la base de datos en función de los cambios realizados en el modelo.
 
 El flujo de trabajo con los modelos implica los siguientes pasos:
 
@@ -142,17 +160,33 @@ El flujo de trabajo con los modelos implica los siguientes pasos:
 - [x] Crear la migración.
 - [x] Aplicar la migración.
 
-Para **crear** las migraciones ejecutamos el comando:
+Para **^^crear^^** las migraciones ejecutamos el comando:
 
-```console
-$ ./manage.py makemigrations
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-Para **aplicar** las migraciones ejecutamos el comando:
+    ```console
+    $ ./manage.py makemigrations
+    ```
 
-```console
-$ ./manage.py migrate
-```
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py makemigrations
+    ```
+
+Para **^^aplicar^^** las migraciones ejecutamos el comando:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py migrate
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py migrate
+    ```
 
 !!! tip "Migración de una aplicación"
 
@@ -162,7 +196,9 @@ $ ./manage.py migrate
     $ ./manage.py migrate <app>
     ```
 
-:material-check-all:{ .blue } Las migraciones se almacenan en una carpeta `migrations` dentro de la correspondiente aplicación.
+### Ficheros de migración { #migration-files }
+
+Las migraciones se almacenan en la carpeta `migrations` dentro de la correspondiente aplicación.
 
 ```mermaid
 flowchart LR
@@ -176,9 +212,38 @@ flowchart LR
     migrate --> Database
 ```
 
+Veamos la migración inicial sobre el modelo `Posts` definido previamente para nuestro «blog»:
+
+```python title="posts/migrations/0001_initial.py"
+# Generated by Django 5.2.6 on 2025-09-29 10:25
+
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Post',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=256)),
+                ('content', models.TextField()),
+            ],
+        ),
+    ]
+```
+
+Como puede observarse en el fragmento de código anterior no aparece ninguna sentencia SQL. Lo que encontramos es código Python con indicaciones de alto nivel que serán «traducidas» a SQL para su aplicación sobre la base de datos.
+
 ## Base de datos { #database }
 
-La configuración de la base de datos del proyecto se encuentra en la variable `DATABASES` del fichero `settings.py` y (por defecto) tiene este aspecto:
+La configuración de la base de datos del proyecto se encuentra en la variable [`DATABASES`](https://docs.djangoproject.com/en/5.2/ref/settings/#std-setting-DATABASES) del fichero `settings.py` y (por defecto) tiene este aspecto:
 
 ```python title="main/settings.py"
 DATABASES = {
@@ -189,9 +254,9 @@ DATABASES = {
 }
 ```
 
-Podemos ver que se trata de un diccionario con una clave `default` lo que nos hace pensar que podemos definir configuraciones alternativas para la base de datos.
+Podemos ver que se trata de un ^^diccionario^^ con una clave `default` lo que nos hace pensar que podemos definir configuraciones alternativas para la base de datos.
 
-En esta configuración (por defecto) tenemos un motor de base de datos [sqlite](https://www.sqlite.org/) que almacenará la información en un fichero `db.sqlite3` dentro de la carpeta base (raíz) del proyecto.
+En esta configuración (por defecto) tenemos un motor de base de datos [SQLite](https://www.sqlite.org/) que almacenará la información en un fichero `db.sqlite3` dentro de la carpeta base[^3] (raíz) del proyecto.
 
 !!! danger "Control de versiones"
 
@@ -205,7 +270,7 @@ Siempre que creemos un nuevo modelo y no definamos una clave primaria, **Django 
 "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT
 ```
 
-En el caso de que efectivamente queramos crear una clave primaria propia, basta con indicarlo a la hora de escribir nuestro modelo. Supongamos un <span class="example">ejemplo:material-flash:</span> donde el «slug» de un «post» (blog) sea la clave primaria:
+En el caso de que efectivamente queramos crear una clave primaria propia, basta con indicarlo a la hora de escribir nuestro modelo. Supongamos un <span class="example">ejemplo:material-flash:</span> donde el «slug» de un «post» (blog) fuera la clave primaria:
 
 ```python title="posts/models.py" hl_lines="4"
 from django.db import models
@@ -218,9 +283,9 @@ class Post(models.Model):
 
 ### Valores únicos { #unique }
 
-Hay escenarios en los que necesitamos que los valores de un determinado campo no se repitan, o dicho de otra forma, que sea únicos. En este sentido Django nos permite especificarlo mediante un parámetro al campo correspondiente.
+Hay escenarios en los que necesitamos que los valores de un determinado campo no se repitan, o dicho de otra forma, que sea únicos. En este sentido Django nos permite especificarlo mediante un parámetro en el campo correspondiente.
 
-Siguiendo con el ejemplo anterior de un «post», quizás nos puede interesar más que `slug` sea único. Para ello simplemente hacemos:
+Siguiendo con el ejemplo anterior de un «post», quizás nos puede interesar que `slug` sea único. Para ello simplemente hacemos:
 
 ```python title="posts/models.py" hl_lines="5"
 from django.db import models
@@ -1484,7 +1549,7 @@ class Post(models.Model):
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
-Django nos ofrece la posibilidad de asignar a cada instancia de modelo una URL canónica[^2]. Para ello debemos implementar el método [`get_absolute_url`](https://docs.djangoproject.com/en/stable/ref/models/instances/#get-absolute-url).
+Django nos ofrece la posibilidad de asignar a cada instancia de modelo una URL canónica[^4]. Para ello debemos implementar el método [`get_absolute_url`](https://docs.djangoproject.com/en/stable/ref/models/instances/#get-absolute-url).
 
 Continuando con el <span class="example">ejemplo:material-flash:</span> del «post», podríamos definir su URL canónica de la siguiente manera:
 
@@ -1822,5 +1887,7 @@ class Post(models.Model):
 
     Los validadores **no se ejecutan** cuando guardamos «directamente» un modelo, sólo se ejecutan cuando creamos [formularios de modelo](forms.md#model-forms) y tratamos de guardar una instancia del mismo.
 
-[^1]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable
-[^2]: Una URL canónica es la URL que mejor representa un determinado recurso web.
+[^1]: En la práctica hay [ciertos aspectos](https://docs.djangoproject.com/en/stable/ref/databases/) a tener en cuenta cuando usamos distintos sistemas gestores de bases de datos.
+[^2]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable
+[^3]: Es importante manejar el módulo [`pathlib`](https://docs.python.org/3/library/pathlib.html) de la librería estándar para manejar rutas en el sitema de ficheros.
+[^4]: Una URL canónica es la URL que mejor representa un determinado recurso web.

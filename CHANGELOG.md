@@ -2,6 +2,15 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## Version 2.0.4
+
+Publicada el 29-09-2025
+
+- Completa documentación de:
+  - Django: Puesta en marcha.
+  - Django: Aplicaciones.
+  - Django: Modelos.
+
 ## Version 2.0.3
 
 Publicada el 26-09-2025

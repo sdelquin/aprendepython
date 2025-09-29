@@ -6,17 +6,39 @@ icon: material/application-outline
 
 <span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
 
-Un proyecto Django está formado por aplicaciones. En este contexto podemos entender una aplicación como una «zona» o «sección» de nuestro sitio web.
+Un proyecto Django está formado por aplicaciones. En este contexto podemos entender una aplicación como un «módulo» o «sección» de nuestro sitio web.
+
+```mermaid
+flowchart TB
+    P[Proyecto Django] --> APP1[App 1]
+    P --> APP2[App 2]
+    P --> APP3[App 3]
+```
+
+Hay una serie de aplicaciones que **ya vienen incluidas en la propia instalación de Django**. En el [primer arranque](setup.md#first-launch) vimos que se aplicaron [migraciones](models.md#migrations) de:
+
+- [x] admin
+- [x] auth
+- [x] contenttypes
+- [x] sessions
 
 ## Crear una aplicación { #creation }
 
 Para crear una nueva aplicación en un proyecto usaremos el subcomando `startapp`.
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una aplicación para gestionar los «posts» de un «blog». Para ello ejecutamos el siguiente comando:
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una aplicación para gestionar los «posts» de nuestro «blog». Para ello ejecutamos el siguiente comando:
 
-```console
-$ ./manage.py startapp posts
-```
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py startapp posts
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py startapp posts
+    ```
 
 !!! tip "Nombres en plural"
 
@@ -24,7 +46,7 @@ $ ./manage.py startapp posts
 
 ## Estructura de una aplicación { #structure }
 
-La estructura de una aplicación es la siguiente:
+La estructura de una **aplicación Django** es la siguiente:
 
 ```python
 .
@@ -49,9 +71,9 @@ La estructura de una aplicación es la siguiente:
 
 ## Instalar la aplicación { #installation }
 
-Para que Django reconozca una nueva aplicación en nuestro proyecto, necesitamos darla de alta («instalar») en el fichero `settings.py`.
+Para que Django reconozca una nueva aplicación en nuestro proyecto, necesitamos darla de alta («instalarla») en el fichero `settings.py`.
 
-Existe una variable `INSTALLED_APPS` que contiene una lista con todas las aplicaciones dadas de alta en el proyecto. Si miramos su contenido actual veremos lo siguiente:
+Existe una variable [`INSTALLED_APPS`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-INSTALLED_APPS) que contiene una lista con todas las aplicaciones dadas de alta en el proyecto. Si miramos su contenido actual veremos lo siguiente:
 
 ```python
 INSTALLED_APPS = [
@@ -82,9 +104,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts.apps.PostsConfig',
+    'posts.apps.PostsConfig',#(1)!
 ]
 ```
+{ .annotate }
+
+1. `/posts/apps.py` clase `PostsConfig`
 
 :material-check-all:{ .blue } Como regla general, lo que debemos añadir a la lista `INSTALLED_APPS` de `settings.py` es la **clase** que configura la aplicación.
 
@@ -98,6 +123,18 @@ En cualquier proyecto hay una gran cantidad de recursos que se comparten por tod
 
 En este sentido **es recomendable** [crear una aplicación](#creation) `shared`{ .red } que contenga artefactos compartidos: plantillas base, estáticos comunes, funciones genéricas, etc.
 
-```console
-$ ./manage.py startapp shared
-```
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py startapp shared
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py startapp shared
+    ```
+
+!!! info "shared"
+
+    El nombre `shared` para esta aplicación de «recursos compartidos» es uno de tantos que se pueden elegir. Obviamente no es obligatorio y queda a decisión del equipo de desarrollo.
