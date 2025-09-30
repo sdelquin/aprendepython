@@ -10,9 +10,15 @@ Un proyecto Django está formado por aplicaciones. En este contexto podemos ente
 
 ```mermaid
 flowchart TB
-    P[Proyecto Django] --> APP1[App 1]
-    P --> APP2[App 2]
-    P --> APP3[App 3]
+    P[Proyecto Django] e1@--> app1[App 1]
+    P e2@--> app2[App 2]
+    P e3@--> app3[App 3]
+    e1@{ animate: true }
+    e2@{ animate: true }
+    e3@{ animate: true }
+    app1 --> url1(("<tt>/app1</tt>"))
+    app2 --> url2(("<tt>/app2</tt>"))
+    app3 --> url3(("<tt>/app3</tt>"))
 ```
 
 Hay una serie de aplicaciones que **ya vienen incluidas en la propia instalación de Django**. En el [primer arranque](setup.md#first-launch) vimos que se aplicaron [migraciones](models.md#migrations) de:
@@ -24,7 +30,7 @@ Hay una serie de aplicaciones que **ya vienen incluidas en la propia instalació
 
 ## Crear una aplicación { #creation }
 
-Para crear una nueva aplicación en un proyecto usaremos el subcomando `startapp`.
+Para crear una nueva aplicación en un proyecto Django usaremos el subcomando `startapp`.
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una aplicación para gestionar los «posts» de nuestro «blog». Para ello ejecutamos el siguiente comando:
 
@@ -96,7 +102,7 @@ INSTALLED_APPS = [
 
 Siguiendo con el <span class="example">ejemplo:material-flash:</span> anterior vamos a «instalar» nuestra aplicación `posts`. Basta con añadir su fichero de configuración a `settings.py`:
 
-```python hl_lines="8"
+```python hl_lines="9"
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -104,6 +110,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # CUSTOM
     'posts.apps.PostsConfig',#(1)!
 ]
 ```
@@ -111,7 +118,7 @@ INSTALLED_APPS = [
 
 1. `/posts/apps.py` clase `PostsConfig`
 
-:material-check-all:{ .blue } Como regla general, lo que debemos añadir a la lista `INSTALLED_APPS` de `settings.py` es la **clase** que configura la aplicación.
+:material-check-all:{ .blue } Como regla general, lo que debemos añadir a la lista `INSTALLED_APPS` de `settings.py` es la «ruta» a la **clase** que configura la aplicación.
 
 !!! note "Clase de configuración"
 

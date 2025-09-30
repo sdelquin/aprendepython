@@ -102,12 +102,25 @@ Suponiendo que ya hemos [creado la carpeta](#project-folder) y el [entorno virtu
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
     ```console
-    $ uv add django
+    $ uv add django #(1)!
+    Using CPython 3.13.2
+    Creating virtual environment at: .venv
+    Resolved 5 packages in 281ms
+    Installed 3 packages in 128ms
+     + asgiref==3.9.2
+     + django==5.2.6
+     + sqlparse==0.5.3
     ```
+    { .annotate }
+    
+    1.  1. Crea el entorno virtual (si no existía).
+        2. Instala `django` (y sus dependencias) en el entorno virtual.
+        3. Añade `django` como requerimiento a `pyproject.toml`
+        4. Crea el archivo `uv.lock` con las dependencias necesarias.
 
 ### Creación del proyecto { #create-project }
 
-Cuando instalamos Django, este paquete ofrece un ejecutable llamado `django-admin`
+Cuando instalamos Django, este paquete ofrece un ejecutable llamado [`django-admin`](https://docs.djangoproject.com/en/stable/ref/django-admin/)
 
 Supongamos que el proyecto se va a llamar `blog` y que ya estamos dentro de una carpeta llamada `blog`.
 
@@ -116,13 +129,13 @@ Para crear el proyecto lanzamos el siguiente comando:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ django-admin startproject main . 
+    $ django-admin startproject main .
     ```
 
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
     ```console
-    $ uv run django-admin startproject main . 
+    $ uv run django-admin startproject main .
     ```
 
 El proyecto habrá quedado con la siguiente estructura:
@@ -145,6 +158,8 @@ El proyecto habrá quedado con la siguiente estructura:
 4. URLs de primer nivel.
 5. Configuraciones para el servidor de aplicación WSGI.
 6. Herramienta (manejador) para gestión del proyecto.
+
+El fichero `manage.py` nos permite ejecutar una [gran variedad de acciones](https://docs.djangoproject.com/en/stable/ref/django-admin/) sobre el proyecto Django. Su funcionalidad es la misma que `django-admin` pero además establece la variable de entorno [`DJANGO_SETTINGS_MODULE`](https://docs.djangoproject.com/en/stable/topics/settings/#envvar-DJANGO_SETTINGS_MODULE) apuntando a las configuraciones del proyecto `main/settings.py`.
 
 ??? tip "main"
 
@@ -170,7 +185,7 @@ Para verificar que todo está en orden podemos comprobar el estado del proyecto 
     System check identified no issues (0 silenced).
     ```
 
-Antes de «levantar» nuestro proyecto Django por primera vez, necesitamos aplicar las migraciones. En este punto podemos entender que hay una serie de acciones a llevar a cabo en la base de datos para que Django pueda disponer de una estructura sobre la que trabajar.
+Antes de arrancar nuestro proyecto Django por primera vez, necesitamos ^^aplicar las migraciones^^. En este punto podemos entender que hay una serie de acciones a llevar a cabo en la base de datos para que Django pueda disponer de una estructura sobre la que trabajar.
 
 Para ello ejecutamos el siguiente comando:
 
@@ -228,7 +243,7 @@ Para ello ejecutamos el siguiente comando:
       Applying sessions.0001_initial... OK
     ```
 
-Ahora ya estamos en disposición de levantar el **servidor de desarrollo** de Django:
+Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** de Django:
 
 === "*venv* :octicons-package-24:{.blue}"
 
@@ -282,9 +297,9 @@ Siempre y cuando no haya surgido algún inconveniente de última hora, con esto 
 
 ### Interfaz administrativa { #admin }
 
-Django nos ofrece una **interfaz administrativa** para poder interactuar con la base de datos.
+Django proporciona «automágicamente» una **interfaz administrativa** que permite interactuar con la base de datos de manera cómoda y accesible.
 
-Lo primero será crear una cuenta de «superusuario» mediante el subcomando `createsuperuser`:
+Para poder acceder a la interfaz administrativa, obviamente necesitaremos unas **credenciales**. Vamos a aprovechar este momento para crear una cuenta de **«superusuario»** (_administrador_) mediante el subcomando `createsuperuser`:
 
 === "*venv* :octicons-package-24:{.blue}"
 
@@ -319,6 +334,8 @@ Para crear un nuevo repositorio, usaremos el siguiente comando:
 ```console
 $ git init
 ```
+
+:material-alarm-light:{.acc} Esto no será necesario si ya estás trabajando en un repositorio git/GitHub creado previamente.
 
 ### Ignorando archivos { #ignoring-files }
 
@@ -385,9 +402,9 @@ Para que los proyectos (Python) puedan ser reproducibles en otros entornos (por 
 
 ## Lanzando comandos { #lauch-commands }
 
-[just](https://github.com/casey/just) es un lanzador de comandos. Aunque no es necesario para desarrollar proyectos software, es altamente recomendable incluirlo porque permite automatizar muchas tareas que son habituales en el día a día.
+[just](https://github.com/casey/just) es un lanzador de comandos. Aunque no es imprescindible para desarrollar proyectos software, es altamente recomendable incluirlo porque permite automatizar muchas tareas que son habituales en el día a día.
 
-Basta con tener [instalada la herramienta](https://github.com/casey/just?tab=readme-ov-file#pre-built-binaries) y crear un fichero `justfile` en el raíz de nuestro proyecto.
+Basta con tener [instalada la herramienta `just`](https://github.com/casey/just?tab=readme-ov-file#pre-built-binaries) y crear un fichero `justfile` en el raíz de nuestro proyecto.
 Este fichero se compone de «recetas» identificadas por un nombre que luego podemos ejecutar desde línea de comandos.
 
 A continuación se muestra un <span class="example">ejemplo:material-flash:</span> ^^mínimo^^ de `justfile` para un proyecto Django:
