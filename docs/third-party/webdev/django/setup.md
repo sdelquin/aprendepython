@@ -120,7 +120,7 @@ Suponiendo que ya hemos [creado la carpeta](#project-folder) y el [entorno virtu
 
 ### Creación del proyecto { #create-project }
 
-Cuando instalamos Django, este paquete ofrece un ejecutable llamado [`django-admin`](https://docs.djangoproject.com/en/stable/ref/django-admin/)
+Cuando instalamos Django, este paquete ofrece un ejecutable llamado [`django-admin`](https://docs.djangoproject.com/en/stable/ref/django-admin/).
 
 Supongamos que el proyecto se va a llamar `blog` y que ya estamos dentro de una carpeta llamada `blog`.
 
@@ -163,7 +163,7 @@ El fichero `manage.py` nos permite ejecutar una [gran variedad de acciones](http
 
 ??? tip "main"
 
-    El hecho de haber especificado `main` como nombre del proyecto es simplemente porque se crea una carpeta con ese nombre dentro del proyecto con los elementos «principales» (_main_).
+    El hecho de haber elegido `main` como nombre del proyecto es simplemente porque se crea una carpeta con ese nombre dentro del proyecto con los elementos «principales» (_main_).
 
     Pero se podría haber utilizando cualquier otro nombre que denotara ese lugar preferente: `core`, `base`, `kernet`, etc.
 
@@ -185,7 +185,7 @@ Para verificar que todo está en orden podemos comprobar el estado del proyecto 
     System check identified no issues (0 silenced).
     ```
 
-Antes de arrancar nuestro proyecto Django por primera vez, necesitamos ^^aplicar las migraciones^^. En este punto podemos entender que hay una serie de acciones a llevar a cabo en la base de datos para que Django pueda disponer de una estructura sobre la que trabajar.
+Antes de arrancar nuestro proyecto Django por primera vez, necesitamos aplicar las [migraciones](models.md#migrations). Aunque se verán con más profundidad en futuras secciones, en este punto podemos entender que hay una serie de acciones a llevar a cabo en la base de datos para que Django pueda disponer de una estructura sobre la que trabajar.
 
 Para ello ejecutamos el siguiente comando:
 
@@ -279,7 +279,10 @@ Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** d
     For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
     ```
 
-Siempre y cuando no haya surgido algún inconveniente de última hora, con esto ya tendremos accesible el proyecto en la URL http://127.0.0.1:8000/
+Siempre y cuando no haya surgido algún inconveniente de última hora, con esto ya tendremos accesible el proyecto en la URL http://127.0.0.1:8000/ (1)
+{ .annotate }
+
+1. También estará disponible en http://localhost:8000/
 
 !!! question "Detener el servidor"
 
@@ -287,19 +290,19 @@ Siempre y cuando no haya surgido algún inconveniente de última hora, con esto 
 
 !!! warning "Puerto en uso"
 
-    Es posible que en algún momento —al arrancar el servidor de desarrollo— nos aparezca este mensaje: <span class="acc">«Error: That port is already in use.»</span> Eso se debe a que ya existe un proceso escuchando en el puerto 8000.
+    Es posible que en algún momento —al arrancar el servidor de desarrollo— nos aparezca este mensaje: <span class="acc">«Error: That port is already in use.»</span> Ello se debe a que ya existe un proceso escuchando en el puerto 8000.
 
     Para resolverlo debemos «matar» el proceso (o procesos) bloqueantes:
     
     ```bash
-    kill -9 $(ps aux | grep '[Pp]ython.*manage.py runserver' | awk '{print $2}')
+    pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
     ```
 
 ### Interfaz administrativa { #admin }
 
-Django proporciona «automágicamente» una **interfaz administrativa** que permite interactuar con la base de datos de manera cómoda y accesible.
+Django proporciona «automágicamente» una [interfaz administrativa](admin.md) que permite interactuar con la base de datos de manera cómoda y accesible.
 
-Para poder acceder a la interfaz administrativa, obviamente necesitaremos unas **credenciales**. Vamos a aprovechar este momento para crear una cuenta de **«superusuario»** (_administrador_) mediante el subcomando `createsuperuser`:
+Para poder acceder a dicha interfaz administrativa, obviamente necesitaremos unas **credenciales**. Vamos a aprovechar este momento para crear una cuenta de **«superusuario»** (_administrador_) mediante el subcomando `createsuperuser`:
 
 === "*venv* :octicons-package-24:{.blue}"
 
@@ -335,7 +338,7 @@ Para crear un nuevo repositorio, usaremos el siguiente comando:
 $ git init
 ```
 
-:material-alarm-light:{.acc} Esto no será necesario si ya estás trabajando en un repositorio git/GitHub creado previamente.
+:material-alarm-light:{.acc} Esto no será necesario si ya estás trabajando en un repositorio `git`(GitHub) creado previamente.
 
 ### Ignorando archivos { #ignoring-files }
 
@@ -404,48 +407,127 @@ Para que los proyectos (Python) puedan ser reproducibles en otros entornos (por 
 
 [just](https://github.com/casey/just) es un lanzador de comandos. Aunque no es imprescindible para desarrollar proyectos software, es altamente recomendable incluirlo porque permite automatizar muchas tareas que son habituales en el día a día.
 
-Basta con tener [instalada la herramienta `just`](https://github.com/casey/just?tab=readme-ov-file#pre-built-binaries) y crear un fichero `justfile` en el raíz de nuestro proyecto.
-Este fichero se compone de «recetas» identificadas por un nombre que luego podemos ejecutar desde línea de comandos.
+Basta con tener [instalada la herramienta `just`](https://github.com/casey/just?tab=readme-ov-file#pre-built-binaries) y crear un fichero `justfile` en el raíz de nuestro proyecto. Este fichero se compone de «recetas» identificadas por un nombre que luego podemos ejecutar desde línea de comandos.
+
+!!! tip "Alias"
+
+    Un `alias j=just` suele ser interesante ya que nos permite «ahorrar» aún más en la escritura de las recetas.
+
+### Primer justfile { #first-justfile }
 
 A continuación se muestra un <span class="example">ejemplo:material-flash:</span> ^^mínimo^^ de `justfile` para un proyecto Django:
 
 === "*venv* :octicons-package-24:{.blue}"
 
     ```makefile title="justfile"
-    # Levantar el servidor de desarrollo
+    # Run development server
     dev:
         ./manage.py runserver
 
-    # Comprobar el proyecto Django
+    # Check Django project
     check:
         ./manage.py check
+
+    # Create a superuser (or update it if already exists)
+    create-su username="admin" password="admin" email="admin@example.com":
+        #!/usr/bin/env bash
+        ./manage.py shell -c '
+        from django.contrib.auth.models import User
+        user, _ = User.objects.get_or_create(username="{{ username }}")
+        user.email = "{{ email }}"
+        user.set_password("{{ password }}") 
+        user.is_superuser = True
+        user.is_staff = True
+        user.save()
+        ' 
+        echo "✔ Created superuser → {{ username }}:{{ password }}"
+
+    # Kill existent manage.py processes
+    kill:
+        pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
     ```
 
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
     ```makefile title="justfile"
-    # Levantar el servidor de desarrollo
+    # Run development server
     dev:
         uv run manage.py runserver
 
-    # Comprobar el proyecto Django
+    # Check Django project
     check:
         uv run manage.py check
+    
+    # Create a superuser (or update it if already exists)
+    create-su username="admin" password="admin" email="admin@example.com":
+        #!/usr/bin/env bash
+        uv run manage.py shell -c '
+        from django.contrib.auth.models import User
+        user, _ = User.objects.get_or_create(username="{{ username }}")
+        user.email = "{{ email }}"
+        user.set_password("{{ password }}") 
+        user.is_superuser = True
+        user.is_staff = True
+        user.save()
+        ' 
+        echo "✔ Created superuser → {{ username }}:{{ password }}"
+    
+    # Kill existent manage.py processes
+    kill:
+        pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
     ```
+
+### Invocar recetas { #invoke-recipes }
 
 Si queremos levantar el servidor de desarrollo basta con ejecutar:
 
 ```console
-$ just dev
+$ just dev #(1)!
+```
+{ .annotate }
+
+1. O simplemente `just` ya que la primera receta es la _receta por defecto_.
+
+### Listar recetas { #list-recipes }
+
+Para ^^listar todas las recetas disponibles^^ podemos hacer:
+
+```console
+$ just -l
+Available recipes:
+    check # Check Django project
+    create-su username="admin" password="admin" email="admin@example.com" # Create a superuser (or update it if already exists)
+    dev   # Run development server
+    kill  # Kill existent manage.py processes
 ```
 
-O simplemente `just` ya que la primera receta es la _receta por defecto_.
+### Parámetros { #recipe-params }
 
-!!! tip "Alias"
+Aquellas recetas que tienen parámetros (por <span class="example">ejemplo:material-flash:</span> `create-su`) admiten ^^argumentos^^ en línea de comandos:
 
-    Un `alias j=just` suele ser interesante ya que nos permite «ahorrar» aún más en la escritura de las recetas.
+=== "Crear superusuario (por defecto)"
 
+    El siguiente comando creará el superusuario `admin` con contraseña `admin` y correo `admin@example.com` ya que son los valores por defecto indicados en la receta.
 
+    ```console
+    $ just create-su
+    ```
+
+=== "Actualizar superusuario"
+
+    Suponiendo que ya existe un usuario `admin` y que hemos olvidado (o queremos cambiar) su contraseña, el siguiente comando actualizará su contraseña a `space`:
+    
+    ```console
+    $ just create-su admin space
+    ```
+
+=== "Crear superusuario (personalizado)"
+
+    El siguiente comando creará el superusuario `admin` con contraseña `jupyter` y correo `admin@jupyter.com`:
+
+    ```console
+    $ just create-su admin jupyter admin@jupyter.com
+    ```
 
 [^1]: También se denominan **dependencias** del proyecto.
 [^2]: Viene del verbo «pin» en inglés.

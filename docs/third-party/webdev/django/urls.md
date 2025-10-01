@@ -6,7 +6,25 @@ icon: fontawesome/solid/arrows-to-dot
 
 <span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
 
-Cuando Django recibe una petición HTTP lo primero que hace es intentar encontrar el patrón que coincide con la URL solicitada. En esta sección veremos cómo configurar estos patrones para lanzar las acciones oportunas.
+Cuando Django recibe una petición HTTP lo primero que hace es intentar encontrar el patrón que coincide con la URL solicitada:
+
+```mermaid
+flowchart TD
+    client[Client]
+    subgraph "URLs de primer nivel"
+    main_urls[main/urls.py]
+    end
+    client -->|"/posts/django-is-awesome/"| main_urls
+    subgraph "URLs de segundo nivel"
+    main_urls -->|"django-is-awesome/"| post_urls[posts/urls.py]
+    end
+    post_urls -->|"'django-is-awesome'"| post_views[posts/views.py]
+    subgraph "Vistas"
+    post_views --> post_detail["post_detail('django-is-awesome')"]
+    end
+```
+
+En esta sección veremos cómo configurar estos patrones para lanzar las acciones oportunas.
 
 ## URLs de primer nivel { #main-urls }
 
@@ -16,21 +34,24 @@ El contenido (por defecto) de este fichero es el siguiente:
 
 ```python title="main/urls.py"
 from django.contrib import admin#(1)!
+from django.urls import path#(2)!
 
-urlpatterns = [#(2)!
-    path('admin/', admin.site.urls),#(3)!
+
+urlpatterns = [#(3)!
+    path('admin/', admin.site.urls),#(4)!
 ]
 ```
 { .annotate }
 
 1. Este módulo contiene las funcionalidades de la interfaz administrativa de Django.
-2. Las URLs deben almacenarse en una **lista** con nombre **`urlpatterns`**.
-3.  - Cada URL viene definida por la función [path](https://docs.djangoproject.com/en/stable/ref/urls/#path) que vincula (en general) una ruta con una vista.
-    - En este caso se indica que si la URL de entrada es `/admin/` se pase el control al módulo [admin.site.urls](https://github.com/django/django/blob/main/django/contrib/admin/sites.py#L318).
+2. Esta función nos permite definir las rutas URL correspondientes.
+3. Las URLs deben almacenarse en una **lista** con nombre **`urlpatterns`**.
+4.  - Cada URL viene definida por la función [path](https://docs.djangoproject.com/en/stable/ref/urls/#path) que vincula (en general) una ruta con una vista.
+    - En este caso se indica que si la URL de entrada es `/admin/` se pase el control al módulo [admin.site.urls](https://github.com/django/django/blob/main/django/contrib/admin/sites.py#L324).
 
 ## URLs de segundo nivel { #app-urls }
 
-Cada aplicación de un proyecto Django puede tener sus propias URLs que definen el comportamiento de la misma.
+Cada aplicación en un proyecto Django puede tener sus propias URLs que definen el comportamiento de la misma.
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que estamos desarrollando una aplicación llamada `posts` y queremos que las siguientes URLs cobren vida:
 
@@ -41,11 +62,13 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que estamos 
 1. Listado de todos los «posts» del «blog».
 2. Detalle de un «post» en concreto con el slug `this-is-a-new-post`.
 
-Lo primero será tocar el fichero de configuración de las [URLs de primer nivel](#main-urls) para añadir la delegación a la aplicación correspondiente:
+Lo primero será modificar el fichero de configuración de las [URLs de primer nivel](#main-urls) para añadir la delegación a la aplicación correspondiente:
 
-```python title="main/urls.py" hl_lines="6"
+```python title="main/urls.py" hl_lines="3 8"
 from django.contrib import admin
+from django.urls import path
 from django.url import include#(1)!
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -64,7 +87,7 @@ urlpatterns = [
     Para evitar problemas, recuerda siempre acabar las URLs con la barra `/` del final.  
     Por <span class="example">ejemplo:material-flash:</span> `#!python 'comments/'` en vez de `#!python 'comments`
 
-Ahora ya podemos definir las **URLs de segundo nivel** en la aplicación `posts`:
+Ahora ya podemos definir las **URLs de segundo nivel** en la aplicación `posts` **creando** el fichero `posts/urls.py` con el siguiente contenido:
 
 ```python title="posts/urls.py"
 from django.urls import path
@@ -76,7 +99,7 @@ app_name = 'posts'#(1)!
 
 urlpatterns = [
     path('', views.post_list, name='post-list'),#(2)!
-    path('<post_slug>/', views.post_detail, name='post-detail'),#(3)!
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),#(3)!
 ]
 ```
 { .annotate }
@@ -139,11 +162,12 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 
 | Conversor | Ejemplo |  Explicación |
 | --- | --- | --- |
-| `#!python path('<username>', ...)` | `/guido/`  | Por defecto se convierte a `#!python str` |
-| `#!python path('<str:tag>', ...)` | `/python/` | Conversión explícita a `#!python str` |
-| `#!python path('<int:post_id>', ...)` | `/4673/`  | Conversión explícita a `#!python int` |
-| `#!python path('<slug:product_slug>', ...)` | `/display-23-inches/`  | Conversión explícita a `#!python str` |
-| `#!python path('<uuid:token>', ...)` | `/075194d3-6885-417e-a8a8-6c931e272f00/`  | Conversión explícita a [UUID](https://docs.python.org/3/library/uuid.html#uuid.UUID) |
+| `#!python path('<username>', ...)` | `/guido/`  | Equivalente al conversor `str` |
+| `#!python path('<str:query>', ...)` | `/django+python+dev/` | Casa con cualquier cadena de caracteres excluyendo el separador `/` y retorna un `#!python str` |
+| `#!python path('<int:post_id>', ...)` | `/4673/`  | Casa con 0 o un entero positivo y retorna `#!python int` |
+| `#!python path('<slug:product_slug>', ...)` | `/display-23-inches/`  | Casa con un «slug» y retorna `#!python str` |
+| `#!python path('<uuid:token>', ...)` | `/075194d3-6885-417e-a8a8-6c931e272f00/`  | Casa con cualquier UUID y retorna un objeto [UUID](https://docs.python.org/3/library/uuid.html#uuid.UUID) |
+| `#!python path('<path:resource_path>', ...)` | `/products/tech/logitech-keyboard/`  | Casa con cualquier cadena de caracteres cinluyendo el separador `/` y retorna un `#!python str` |
 
 ## URL desde nombre { #reverse }
 

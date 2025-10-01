@@ -20,13 +20,14 @@ flowchart LR
     request --> view --> response
 ```
 
-Supongamos una primera vista que por <span class="example">ejemplo:material-flash:</span> devuelva un «Hello, World!»:
+Supongamos una primera vista que por <span class="example">ejemplo:material-flash:</span> sea el punto de entrada de nuestra aplicación del «blog»:
 
-```python
+```python title="posts/views.py"
 from django.http import HttpResponse#(1)!
 
-def hello_world(request):#(2)!
-    return HttpResponse('Hello, World!')#(3)!
+
+def post_list(request):#(2)!
+    return HttpResponse('Welcome to the ultimate blog!')#(3)!
 ```
 { .annotate }
 
@@ -42,23 +43,24 @@ def hello_world(request):#(2)!
 
 Si quisiéramos devolver un HTML mediante el objeto `HttpResponse` nos quedaría algo relativamente incómodo:
 
-```python
+```python title="posts/views.py"
 from django.http import HttpResponse
 
+
 def hello_world(request):
-    return HttpResponse('''
+    return HttpResponse("""
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello World</title>
+    <title>Blog</title>
   </head>
 
   <body>
-    <p>Hello, World!</p>
+    <h1>Welcome to the ultimate blog!</h1>
   </body>
-</html>''')
+</html>""")
 ```
 
 Es por ello que Django nos facilita esta tarea mediante el «shortcut» [`render`](https://docs.djangoproject.com/en/stable/topics/http/shortcuts/#render) que se encarga de renderizar una plantilla y devolver el contenido de la misma mediante un objeto de tipo `HttpResponse`.
@@ -68,8 +70,9 @@ Veamos el mismo <span class="example">ejemplo:material-flash:</span> que antes p
 ```python
 from django.shortcuts import render#(1)!
 
-def hello_world(request):
-    return render(request, 'helloworld.html')#(2)!
+
+def post_list(request):
+    return render(request, 'posts/post/list.html')#(2)!
 ```
 { .annotate }
 
@@ -80,18 +83,53 @@ def hello_world(request):
 
 Una de las ventajas importantes del uso de plantillas en Django es la posibilidad de «inyectar» variables. Dicho de otro modo, cuando estamos renderizando una plantilla podemos pasar un **contexto** con las variables que vamos a utilizar.
 
-El <span class="example">ejemplo:material-flash:</span> anterior se puede escribir de otra manera haciendo uso del contexto:
+Para seguir evolucionando el listado de «posts» necesitaríamos obtener todos los «posts» del blog y pasar un contexto con ellos. Veamos un <span class="example">ejemplo:material-flash:</span> de este escenario mediante la siguiente vista:
 
-```python
+```python title="posts/views.py" hl_lines="3 7 11"
 from django.shortcuts import render
 
-def hello_world(request):
-    return render(request, 'caption.html', {'message': 'Hello, World!'})#(1)!
+from .models import Post#(1)!
+
+
+def post_list(request):
+    posts = Post.objects.all()#(2)!
+    return render(
+        request,
+        'posts/post/list.html',
+        {'posts': posts}#(3)!
+    )
 ```
 { .annotate }
 
-1.  - La función `render()` admite un tercer parámetro (_contexto_) que es un **diccionario**.
-    - De esta forma podemos «generalizar» la plantilla `caption.html` y parametrizarla con el contexto en función del mensaje que queramos mostrar.
+1. Necesitamos importar el modelo `Post` para utilizarlo en la vista.
+2. Hacemos una consulta y [recuperamos todos los objetos](models.md#retrieve-objects) de tipo «post» existentes en la base de datos.
+3.  - La función `render()` admite un tercer parámetro (_contexto_) que es un **diccionario**.
+    - De esta forma podemos «generalizar» la plantilla y parametrizarla con el contexto en función del contenido de la base de datos.
+
+## Vistas con parámetros { #views-with-params }
+
+Es bastante probable que la vista reciba una serie de parámetros desde la [URL](urls.md). Esto le permitirá atender a distintas casuísticas en función de los valores de entrada de dichos parámetros.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> de vista que recibe el «slug» de un «post»:
+
+```python title="posts/views.py" hl_lines="7"
+from django.http import HttpResponse
+from django.shortcuts import render
+
+from .models import Post
+
+
+def post_detail(request, post_slug: str):
+    try:
+        post = Post.objects.get(slug=post_slug)
+    except Post.DoesNotExist:
+        return HttpResponse(f'Post with slug "{post_slug}" does not exist!')
+    return render(
+        request,
+        'posts/post/detail.html',
+        {'post': post}
+    )
+```
 
 ## Método de la petición { #request-method }
 

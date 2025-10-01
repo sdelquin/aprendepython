@@ -46,6 +46,14 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
     $ uv run manage.py startapp posts
     ```
 
+    ??? abstract "justfile"
+    
+        ```makefile
+        # Create a new app
+        startapp app="":
+            uv run manage.py makemigrations {{app}}
+        ```
+
 !!! tip "Nombres en plural"
 
     Suele ser habitual usar **nombres en plural** para las aplicaciones, pero obviamente depende del contexto y no es una regla fija.
@@ -54,7 +62,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 La estructura de una **aplicación Django** es la siguiente:
 
-```python
+```python title="posts/"
 .
 ├── __init__.py#(1)!
 ├── admin.py#(2)!
@@ -81,7 +89,7 @@ Para que Django reconozca una nueva aplicación en nuestro proyecto, necesitamos
 
 Existe una variable [`INSTALLED_APPS`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-INSTALLED_APPS) que contiene una lista con todas las aplicaciones dadas de alta en el proyecto. Si miramos su contenido actual veremos lo siguiente:
 
-```python
+```python title="main/settings.py"
 INSTALLED_APPS = [
     'django.contrib.admin',#(1)!
     'django.contrib.auth',#(2)!
@@ -102,7 +110,7 @@ INSTALLED_APPS = [
 
 Siguiendo con el <span class="example">ejemplo:material-flash:</span> anterior vamos a «instalar» nuestra aplicación `posts`. Basta con añadir su fichero de configuración a `settings.py`:
 
-```python hl_lines="9"
+```python title="main/settings.py" hl_lines="8-9"
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
