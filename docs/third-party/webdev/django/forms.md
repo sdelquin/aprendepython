@@ -12,9 +12,9 @@ Los formularios son componentes web que permiten al usuario introducir informaci
 
 En función de la forma de implementarlos, podemos distinguir los siguientes tipos de formularios:
 
-1. Formularios de plantilla.
-2. Formularios de clase.
-3. Formularios de modelo.
+:one: [Formularios de plantilla](#template-forms).  
+:two: [Formularios de clase](#class-forms).  
+:three: [Formularios de modelo](#model-forms).
 
 ### Formularios de plantilla { #template-forms }
 
@@ -22,7 +22,7 @@ Este tipo de formularios provienen de una plantilla HTML.
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos un formulario en una plantilla para añadir un nuevo «post» en un «blog». Tendríamos algo similar a lo siguiente:
 
-```htmldjango title="posts/templates/posts/add_post.html"
+```htmldjango title="posts/templates/posts/post/add.html"
 <form method="post"><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     <input type="text" name="post-title"><!--(3)!-->
@@ -48,6 +48,7 @@ from django.utils.text import slugify
 
 from .models import Post
 
+
 def add_post(request):
     if request.method == 'POST':#(1)!
         post_title = request.POST.get('post-title')#(2)!
@@ -66,7 +67,7 @@ def add_post(request):
 ```
 { .annotate }
 
-1. En `#!python request.method` disponemos del tipo de petición (`#!python 'GET'` o `#!python 'POST'`)
+1. Distinguimos el [método de la petición](views.md#request-method) HTTP.
 2. En `#!python request.POST` tenemos un **diccionario** con todos los datos que provienen de la petición «post». La clave que buscamos debe coincidir con el atributo `name` del correspondiente «input» del formulario HTML.
 3. En `#!python request.POST` tenemos un **diccionario** con todos los datos que provienen de la petición «post». La clave que buscamos debe coincidir con el atributo `name` del correspondiente «input» del formulario HTML.
 4. «Validación» del formulario → debe existir un título y un contenido para el post.

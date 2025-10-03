@@ -10,11 +10,11 @@ Cuando Django recibe una petición HTTP lo primero que hace es intentar encontra
 
 ```mermaid
 flowchart TD
-    client[Client]
+    client[Client] -->|"https://myblog.com/posts/django-is-awesome/"| django[Django]
     subgraph "URLs de primer nivel"
     main_urls[main/urls.py]
     end
-    client -->|"/posts/django-is-awesome/"| main_urls
+    django -->|"/posts/django-is-awesome/"| main_urls
     subgraph "URLs de segundo nivel"
     main_urls -->|"django-is-awesome/"| post_urls[posts/urls.py]
     end
@@ -64,10 +64,9 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que estamos 
 
 Lo primero será modificar el fichero de configuración de las [URLs de primer nivel](#main-urls) para añadir la delegación a la aplicación correspondiente:
 
-```python title="main/urls.py" hl_lines="3 8"
+```python title="main/urls.py" hl_lines="2 7"
 from django.contrib import admin
-from django.urls import path
-from django.url import include#(1)!
+from django.urls import include, path
 
 
 urlpatterns = [

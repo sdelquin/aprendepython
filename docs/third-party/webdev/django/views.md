@@ -10,7 +10,7 @@ En el [MVC](webdev.md#web-framework) de Django se podría decir que las **vistas
 
 ## La primera vista { #first-view }
 
-Una vista no es más que una **función** Python que recibe (como primer parámetro) la petición HTTP y retorna una respuesta HTTP:
+Una vista no es más que una **función** Python que recibe (como primer parámetro) la petición HTTP ([`HttpRequest`](https://docs.djangoproject.com/en/stable/ref/request-response/#httprequest-objects)) y retorna una respuesta HTTP ([`HttpResponse`](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-objects)):
 
 ```mermaid
 flowchart LR
@@ -20,7 +20,7 @@ flowchart LR
     request --> view --> response
 ```
 
-Supongamos una primera vista que por <span class="example">ejemplo:material-flash:</span> sea el punto de entrada de nuestra aplicación del «blog»:
+Supongamos una primera vista que por <span class="example">ejemplo:material-flash:</span> sea el ^^punto de entrada^^ de nuestra aplicación del «blog»:
 
 ```python title="posts/views.py"
 from django.http import HttpResponse#(1)!
@@ -67,7 +67,7 @@ Es por ello que Django nos facilita esta tarea mediante el «shortcut» [`render
 
 Veamos el mismo <span class="example">ejemplo:material-flash:</span> que antes pero utilizando esta funcionalidad:
 
-```python
+```python title="posts/views.py" hl_lines="1 5"
 from django.shortcuts import render#(1)!
 
 

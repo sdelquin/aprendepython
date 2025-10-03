@@ -23,6 +23,7 @@
 *[IBM]: International Business Machines Corporation
 *[IDE]: Integrated Development Environment
 *[IEEE]: Institute of Electrical and Electronics Engineers
+*[IRI]: Internationalized Resource Identifier
 *[JSON]: JavaScript Object Notation
 *[JWT]: JSON Web Token
 *[LHS]: Left Hand Side

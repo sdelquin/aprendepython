@@ -2,9 +2,20 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## Version 2.0.7
+
+Publicada el 03-10-2025
+
+- Completa documentación de:
+  - Django: Formularios.
+  - Django: Plantillas.
+  - Django: URLs.
+  - Django: Vistas.
+- Añade abreviaturas.
+
 ## Version 2.0.6
 
-Publicada el 01-01-2025
+Publicada el 01-10-2025
 
 - Completa documentación de:
   - Django: Puesta en marcha.
