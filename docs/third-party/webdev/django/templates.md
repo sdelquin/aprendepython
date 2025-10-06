@@ -90,40 +90,37 @@ Una tabla resumen que puede aclarar distintos escenarios:
 
 ## Variables { #variables }
 
-Para usar variables en una plantilla Django debemos rodear su nombre con **dobles llaves** :material-code-braces:
+Para usar variables en una plantilla Django debemos rodear su nombre con **dobles llaves** `{{}}`
 
-Por <span class="example">ejemplo:material-flash:</span> si queremos mostrar un determinado «post» de un «blog» en una plantilla, usamos la siguiente plantilla:
+Por <span class="example">ejemplo:material-flash:</span> si queremos mostrar un determinado «post» de un «blog» en una plantilla, podríamos usar la siguiente plantilla:
 
 ```htmldjango title="posts/templates/posts/post/detail.html"
-<h1>{{ post.title }}</h1><!--(1)!-->
+<h2>{{ post.title }}</h2><!--(1)!-->
 <p>{{ post.content }}</p>
 ```
 { .annotate }
 
 1. También podríamos haber usado directamente `{{ post }}` siempre y cuando se haya implementado convenientemente el método `#!python __str__()` de la clase `Post`.
 
-Desde la correspondiente [vista](views.md), tendremos que renderizar la plantilla anterior mediante el siguiente fragmento de código:
+Desde la correspondiente [vista](views.md#views-with-params), tendremos que renderizar la plantilla anterior mediante el siguiente fragmento de código:
 
 ```python
 from django.shortcuts import render
 
-def post_detail(request):
+
+def post_detail(request, post_slug: str):
     # ...
-    return render('posts/post_detail.html', {'post': post})#(1)!
+    return render(request, 'posts/post/detail.html', {'post': post})#(1)!
 ```
 { .annotate }
 
 1. En el contexto se fija el «post» que vamos a utilizar en la plantilla.
 
-!!! tip "`__str__()`"
-
-    Recuerda que cuando usamos un objeto de modelo en una plantilla `#!htmldjango {{ post }}` se invoca automáticamente el método [`__str__`](../../../core/modularity/oop.md#str) del modelo.
-
 ## Etiquetas { #tags }
 
-Django proporciona una serie de [etiquetas](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-tag-reference) para usar en plantillas. Estas etiquetas ofrecen distintas funcionalidades y se caracterizan por usar sintaxis `{% %}` finalizando con sentencia de cierre.
+Django proporciona una serie de [etiquetas](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-tag-reference) para usar en plantillas. Estas etiquetas ofrecen distintas funcionalidades y se caracterizan por usar sintaxis `{% tag %}`.
 
-A continuación veremos los distintos tipos de etiquetas que podemos encontrar en una plantilla Django.
+A continuación veremos los distintos tipos de etiquetas de plantilla que ofrece Django.
 
 ### Bucles { #loops }
 
@@ -143,6 +140,24 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de plantilla en l
 1. En esta línea podemos usar directamente las variables sin usar doble :material-code-braces:.
 2. Aquí si tenemos que acceder a la variable con doble :material-code-braces:.
 3. Hay que terminar el bucle con esta sentencia.
+
+!!! tip "`__str__()`"
+
+    Recuerda que cuando usamos un objeto de modelo en una plantilla `#!htmldjango {{ post }}` se invoca automáticamente el método [`__str__`](../../../core/modularity/oop.md#str) del modelo.
+
+Desde la correspondiente [vista](views.md#passing-context), tendremos que renderizar la plantilla anterior mediante el siguiente fragmento de código:
+
+```python
+from django.shortcuts import render
+
+
+def post_list(request):
+    # ...
+    return render(request, 'posts/post/list.html', {'posts': posts})#(1)!
+```
+{ .annotate }
+
+1. En el contexto se fijan los «posts» que vamos a utilizar en la plantilla.
 
 #### Desempaquetado { #loop-unpack }
 
@@ -164,13 +179,23 @@ Cuando usamos un [bucle](../../../core/controlflow/loops.md) en una plantilla Dj
 
 | Variable | Descripción |
 | --- | --- |
-| `forloop.counter` | Iteración actual del bucle (índice :material-numeric-1-circle:) |
-| `forloop.counter0` | Iteración actual del bucle (índice :material-numeric-0-circle:) |
-| `forloop.revcounter` | Número de iteraciones desde el final del bucle (índice :material-numeric-1-circle:) |
-| `forloop.revcounter0` | Número de iteraciones desde el final del bucle (índice :material-numeric-0-circle:) |
-| `forloop.first` | `#!python True` si es la primera iteración del bucle. |
-| `forloop.last` | `#!python True` si es la última iteración del bucle. |
-| `forloop.parentloop` | Para bucles anidados, permite el acceso al bucle que engloba al bucle actual. |
+| `#!htmldjango {{ forloop.counter }} ` | Iteración actual del bucle (índice :material-numeric-1-circle:) |
+| `#!htmldjango {{ forloop.counter0 }}` | Iteración actual del bucle (índice :material-numeric-0-circle:) |
+| `#!htmldjango {{ forloop.revcounter }}` | Número de iteraciones desde el final del bucle (índice :material-numeric-1-circle:) |
+| `#!htmldjango {{ forloop.revcounter0 }}` | Número de iteraciones desde el final del bucle (índice :material-numeric-0-circle:) |
+| `#!htmldjango {{ forloop.first }}` | `#!python True` si es la primera iteración del bucle. |
+| `#!htmldjango {{ forloop.last }}` | `#!python True` si es la última iteración del bucle. |
+| `#!htmldjango {{ forloop.parentloop }}` | Para bucles anidados, permite el acceso al bucle que engloba al bucle actual. |
+
+Podríamos por <span class="example">ejemplo:material-flash:</span> numerar los «posts» de nuestro «blog»:
+
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="3"
+<ul>
+    {% for post in posts %}
+        <li>{{ forloop.counter }}. {{ post }}</li>
+    {% endfor %}
+</ul>
+```
 
 #### Vacío { #loop-empty }
 
@@ -178,7 +203,7 @@ El bucle `{% for %}` admite la cláusula [`{% empty %}`](https://docs.djangoproj
 
 En el <span class="example">ejemplo:material-flash:</span> de los «posts» de un «blog», podríamos mostrar un mensaje en el caso de que no exisitera ningún «post»:
 
-```htmldjango title="posts/templates/posts/post_list.html" hl_lines="4"
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="4"
 <ul>
     {% for post in posts %}
         <li>{{ post }}</li>
@@ -188,25 +213,46 @@ En el <span class="example">ejemplo:material-flash:</span> de los «posts» de u
 </ul>
 ```
 
+#### Ciclo { #cycle }
+
+La etiqueta [`{% cycle %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#cycle) puede ser útil dentro de un bucle ya que nos permite ir «alternando» entre distintos valores.
+
+Por <span class="example">ejemplo:material-flash:</span> imaginemos que queremos alternar el color de fondo de los distintos «posts» del «blog»:
+
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="3"
+<ul>
+    {% for post in posts %}
+        <li style="background-color: {% cycle 'LightBlue' 'LightPink' %}">
+            {{ post }}
+        </li>
+    {% endfor %}
+</ul>
+```
+
+:material-check-all:{ .blue } Django ofrece la etiqueta [`{% resetcycle %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#resetcycle) para reiniciar un ciclo `{% cycle %}` y que vuelva a empezar por su primer valor.
+
 ### Condicionales { #conditionals }
 
 Django proporciona la etiqueta [`{% if %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#if) para llevar a cabo comprobaciones en el código de una plantilla. Funciona de manera análoga a la sentencia [`if`](../../../core/controlflow/conditionals.md#if) de Python.
 
-En el siguiente <span class="example">ejemplo:material-flash:</span> mostramos un indicativo en función del número de visitas que tiene el «post» de un «blog»:
+En el siguiente <span class="example">ejemplo:material-flash:</span> se muestra un mensaje diferente para el primer «post» del «blog»:
 
-```htmldjango title="posts/templates/posts/post/detail.html"
-﹤span class=
-{% if post.num_visits > 1000 %}<!--(1)!-->
-    "highlight">Interesting!
-{% else %}<!--(2)!-->
-    "regular">Not bad
-{% endif %}<!--(3)!-->
-</span>
+```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="3 5 6 8"
+{% for post in posts %}
+    <li>
+    {% if forloop.first %}<!--(1)!-->
+        <em>{{ post }}</em>
+        <strong>(Post más antiguo)</strong>
+    {% else %}<!--(2)!-->
+        {{ post }}
+    {% endif %}<!--(3)!-->
+    </li>
+{% endfor %}
 ```
 { .annotate }
 
-1. Aplicamos una condición sobre el número de visitas del «post».
-2. No siempre hace falta usar sentencia `{% else %}`.
+1. Aplicamos una condición sobre el número de iteración.
+2. No es obligatorio el uso de `{% else %}`.
 3. Hay que terminar la condición con esta sentencia.
 
 #### Operadores { #operators }
@@ -230,9 +276,56 @@ Además tenemos disponibles otros operadores habituales:
 
     El código que insertamos en las plantillas también debemos cuidarlo y aplicarle las mismas reglas de estilo que si estuviéramos escribiendo un fichero puro de Python.
 
+### URL { #url-tag }
+
+Ya hemos visto que las [URLs definidas](urls.md) en `urls.py` ~~pueden~~ deben disponer de un nombre que las identifique.
+
+En el <span class="example">ejemplo:material-flash:</span> del «blog» se han definido las siguientes URLs:
+
+```python title="posts/urls.py"
+# ...
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='post-list'),
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+]
+```
+
+Así las cosas, Django nos permite identificar cada URL mediante `<app_name>:<url_name>`:
+
+- `#!python 'posts:post-list'` identifica la URL del **listado de «posts»**.
+- `#!python 'posts:post-detail'` identifica la URL del **detalle de un «post»**.
+
+En una plantilla usaremos la etiqueta [`{% url %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url) para renderizar la URL de un determinado recurso. Se diferencian dos casos:
+
+=== "URL sin parámetros"
+
+    ```htmldjango
+    <a href="{% url 'posts:post-list' %}"><!--(1)!-->
+        Ver todos los posts
+    </a>
+    ```
+    { .annotate }
+    
+    1. Al renderizar: `#!html <a href="/posts/">Ver todos los posts</a>`
+
+=== "URL con parámetros"
+
+    ```htmldjango
+    <a href="{% url 'posts:post-detail' post.slug %}"><!--(1)!-->
+        {{ post.title }}
+    </a>
+    ```
+    { .annotate }
+    
+    1.  - Al ser una URL con parámetro, es necesario pasar un argumento `post.slug`.
+        - Al renderizar: `#!html <a href="/posts/django-is-awesome/">Django is awesome</a>`
+    
+
 ### Herencia { #inheritance }
 
-Cuando diseñamos una página web, hay ciertos componentes que son comunes a todas las «pantallas». Véase la cabecera, el pie o las distintas barras de navegación. No parece muy razonable, reescribir estos componentes en todas las plantillas que hagamos. Siguiendo la filosofía DRY deberíamos poder «refactorizar» estas secciones y sólo añadir el contenido propio de cada página.
+Cuando diseñamos una página web, hay ciertos componentes que son comunes a todas las «pantallas». Véase la cabecera («header»), el pie («footer») o las distintas barras de navegación («sidebar»). No parece muy razonable, reescribir estos componentes en todas las plantillas que hagamos. Siguiendo la filosofía DRY deberíamos poder «refactorizar» estas secciones y sólo añadir el contenido propio de cada página.
 
 La herencia de plantillas se basa en definir una **plantilla base** desde la que derivamos otras plantillas. En la plantilla base ^^se definen ciertos bloques^^ que serán sobreescritos por las **plantillas derivadas**.
 
@@ -249,7 +342,7 @@ flowchart TB
     e4@{ animate: true }
 ```
 
-El elemento fundamental sobre el que trabaja la herencia es la etiqueta [`{% block %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#block). Nos permite definir un bloque para luego reutilizarlo en la jerarquía de plantillas.
+El elemento fundamental sobre el que trabaja la herencia es la etiqueta [`{% block %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#block). Nos permite definir un bloque (con nombre) para luego reutilizarlo en la jerarquía de plantillas.
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que estamos definiendo plantillas para un «blog». Lo primero será establecer una ^^plantilla base^^:
 
@@ -259,21 +352,28 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que est
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% if title %}{{ title }} | {% endif %}Blog</title>
+    <title>{% if title %}{{ title }} | {% endif %}Blog</title><!--(1)!-->
   </head>
 
   <body>
     <div class="container">
-        {% block content %}{% endblock %}<!--(1)!-->
+        {% block content %}{% endblock %}<!--(2)!-->
     </div>
   </body>
 </html>
 ```
 { .annotate }
 
-1. Se define un bloque para el contenido **propio** de la página.
+1.  - `#!html <title>Technology | Blog</title>` si se envía _título_ en el [contexto](views.md#passing-context) `#!python {'title': 'Technology'}` de la vista.
+    - `#!html <title>Blog</title>` si no se envía _título_ en el [contexto](views.md#passing-context) `#!python {}` de la vista.
 
-Ahora vamos a definir una ^^plantilla derivada^^ que se encargue de mostrar todos los «posts» del blog:
+2. Se define un bloque para el contenido **propio** de la página.
+
+!!! tip "Ubicación de la plantilla base"
+
+    La plantilla base (raíz del proyecto) se entiende que será ^^compartida^^ por todas las aplicaciones del proyecto. Por ello, puede ser interesante crear una aplicación [`shared`](apps.md#shared) que contenga la mencionada plantilla `base.html`.
+
+Ahora vamos a crear una ^^plantilla derivada^^ (desde esta plantilla base) que se encargue de mostrar todos los «posts» del blog:
 
 ```htmldjango title="posts/templates/posts/post/list.html" hl_lines="1 3 8"
 {% extends "base.html" %}<!--(1)!-->
@@ -281,32 +381,36 @@ Ahora vamos a definir una ^^plantilla derivada^^ que se encargue de mostrar todo
 {% block content %}<!--(2)!-->
     {% for post in posts %}
         <h3>{{ post }}</h3>
-        <p>Read more <a href="{% url 'posts:post-detail' post.id %}">here</a></p>
+        <p>Read more <a href="{% url 'posts:post-detail' post.slug %}">here</a></p>
     {% endfor %}
 {% endblock %}
 ```
 { .annotate }
 
-1. Extendemos de la plantilla base.
+1.  - Extendemos de la plantilla base.
+    - La sentencia `#!djangohtml {% extends %}` debe ser **la primera línea** de la plantilla. En caso contrario se lanzará el siguiente error: `<ExtendsNode: extends "base.html"> must be the first tag in the template.`{ .red }
 2.  - Sobreescribimos el bloque de contenido correspondiente a esta página.
     - Usar bloques sólo tiene sentido cuando estamos extendiendo de alguna plantilla base.
 
-!!! tip "Ubicación de la plantilla base"
+!!! danger "Contenido"
 
-    La plantilla base (raíz del proyecto) se entiende que será ^^compartida^^ por todas las aplicaciones del proyecto. Por ello, puede ser interesante crear una aplicación [`shared`](apps.md#shared) que contenga la mencionada plantilla `base.html`.
+    Cuando estamos «heredando» de otra plantilla, todo el contenido que pongamos en la plantilla derivada debe ir dentro de algún bloque extendido. En otro caso, el contenido que quede fuera no se renderizará.
 
 ### Inclusión { #include }
 
 Django nos permite externalizar partes de una plantilla a un fichero, para luego incluirlo desde la propia plantilla. Para ello se utiliza la etiqueta [`{% include %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#include).
 
-Supongamos por <span class="example">ejemplo:material-flash:</span> que disponemos de la siguiente plantilla para mostrar la cabecera de un «blog»:
+Supongamos por <span class="example">ejemplo:material-flash:</span> que disponemos de la siguiente plantilla para mostrar la cabecera («header») de un «blog»:
 
 ```htmldjango title="shared/templates/header.html"
 <div class="header">
     <h1>The ultimate blog</h1>
-    <h2>{{ subtitle }}</h1>
+    <h2>{{ subtitle }}</h1><!--(1)!-->
 </div>
 ```
+{ .annotate }
+
+1. Es perfectamente válido utilizar [variables](#variables) o [etiquetas](#tags) dentro de las plantillas a incluir.
 
 Django nos ofrece **dos modos** de incluir la plantilla anterior:
 
@@ -327,6 +431,104 @@ Django nos ofrece **dos modos** de incluir la plantilla anterior:
     {% include "header.html" with subtitle="Don't miss the cutting edge info!" %} 
     ...
     ```
+
+### Varios { #misc-tags }
+
+A continuación se muestran otras etiquetas de plantilla disponibles en Django:
+
+=== "`comment`"
+
+    [`{% comment %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#comment) :material-arrow-right: Ignora todo lo que hay dentro del bloque de comentario y permite añadir un comentario opcional:
+
+    ```htmldjango
+    {% comment "Comentario opcional" %}
+        <p>This won't be rendered</p>
+    {% endcomment %}
+    ```    
+
+=== "`debug`"
+
+    [`{% debug %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#debug) :material-arrow-right: Muestra el contexto actual pasado a la plantilla.
+
+    ```htmldjango
+    {% debug %}
+    ```    
+
+=== "`firstof`"
+
+    [`{% firstof %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#firstof) :material-arrow-right: Muestra el primer argumento que no evalúe a `#!python False`:
+
+    ```htmldjango
+    {% firstof var1 var2 var3 %}<!--(1)!-->
+    ```    
+    { .annotate }
+    
+    1. Equivale a:
+        ```htmldjango
+        {% if var1 %}
+            {{ var1 }}
+        {% elif var2 %}
+            {{ var2 }}
+        {% elif var3 %}
+            {{ var3 }}
+        {% endif %}
+        ```
+
+=== "`lorem`"
+
+    [`{% lorem %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#lorem) :material-arrow-right: Muestra contenido [«lorem ipsum»](https://www.lipsum.com/) aleatorio. Útil para rellenar datos en plantillas:
+
+    ```htmldjango
+    {% lorem %}<!--(1)!-->
+    {% lorem 20 w %}<!--(2)!-->
+    {% lorem 3 p %}<!--(3)!-->
+    ```
+    { .annotate }
+    
+    1. Muestra el habitual párrafo «lorem ipsum».
+    2. Muestra 20 palabras en Latín.
+    3. Muestra 3 párrafos en Latín.
+
+=== "`now`"
+
+    [`{% now %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#now) :material-arrow-right: Muestra la fecha/hora actual (admite [modificadores de formato](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#std-templatefilter-date)):
+
+    ```htmldjango
+    {% now %}<!--(1)!-->
+    {% now "d-m-Y" %}<!--(2)!-->
+    {% now "l M/j/y" %}<!--(3)!-->
+    ```
+    { .annotate }
+    
+    1. `2025-10-04 10:56:23.668338`
+    2. `04-10-2025`
+    3. `Friday Oct/4/25`
+
+=== "`spaceless`"
+
+    [`{% spaceless %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#spaceless) :material-arrow-right: Elimina los espacios en blanco entre etiquetas HTML:
+
+    ```htmldjango
+    {% spaceless %}<!--(1)!-->
+        <p>
+            <a href="posts/">Post list</a>
+        </p>
+    {% endspaceless %}
+    ```
+    { .annotate }
+    
+    1. Genera: `#!htmldjango <p><a href="posts/">Post List</a></p>`
+
+=== "`verbatim`"
+
+    [`{% verbatim %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#verbatim) :material-arrow-right: El contenido incluido dentro de este bloque no será renderizado por Django:
+
+    ```htmldjango
+    {% verbatim %}
+        <p>This won't be {{ var }} rendered</p>
+    {% endverbatim %}
+    ```
+
 
 ### Etiquetas personalizadas { #custom-tags }
 
@@ -416,29 +618,20 @@ Lo que nos quedaría es utilizar la etiqueta creada en alguna plantilla:
 
 ## Filtros { #filters }
 
-Django nos proporciona una gran cantidad de [filtros](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference) para trabajar con plantillas. Estos filtros ofrecen funcionalidades muy interesantes dependiendo del contexto que queramos abordar.
+Django nos proporciona una enorme cantidad de [filtros](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference) para utilizar en plantillas. Estos filtros ofrecen funcionalidades muy interesantes dependiendo del contexto que queramos abordar.
 
 Hay dos tipos de filtros:
 
 1. Aquellos que ^^no^^ admiten argumentos, cuya sintaxis es: `#!python {{ value|filter }}`
 2. Aquellos que ^^sí^^ admiten argumentos, cuya sintaxis es: `#!python {{ value|filter:"argument" }}`
 
-En la siguiente tabla se muestran todos los filtros de plantilla que ofrece Django:
+En la siguiente tabla se muestran todos los filtros de plantilla que ofrece Django clasificados por el ^^tipo de dato^^ que manejan:
 
-=== "Numéricos"
-
-    | Filtro | Ejemplo | Descripción |
-    | --- | --- | --- |
-    | [`add`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#add) | `value = 5` :material-arrow-down-right:<br>`#!htmldjango {{ value|add:"2" }}`<br>:material-arrow-right-bottom: `7`| Suma el argumento al valor. |
-    | [`divisibleby`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#divisiblebly) | `value = 15` :material-arrow-down-right:<br>`#!htmldjango {{ value|divisibleby:"5" }}`<br>:material-arrow-right-bottom: `True`| Devuelve `#!python True` si el valor es divisible por el argumento. |
-    | [`get_digit`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#get-digit) | `value = 123456789` :material-arrow-down-right:<br>`#!htmldjango {{ value|get_digit:"2" }}`<br>:material-arrow-right-bottom: `8`| Devuelve el dígito que ocupa la posición del argumento indicado (empezando por la derecha) en índice :material-numeric-1-circle:. |
-    | [`stringformat`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#stringformat) | `value = '3.141516'` :material-arrow-down-right:<br>`#!htmldjango {{ value|stringformat:".3f" }}`<br>:material-arrow-right-bottom: `'3.142'` | Formatea el valor de acuerdo a la especificación del argumento. |
-
-=== "Texto"
+=== "Cadena de texto"
 
     | Filtro | Ejemplo | Descripción |
     | --- | --- | --- |
-    | [`addslashes`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#addslashes) | `value = "I'm Guido"` :material-arrow-down-right:<br>`#!htmldjango {{ value|addslashes }}`<br>:material-arrow-right-bottom: `"I\'m Guido"`| Añade barra invertida antes de comillas. |
+    | [`addslashes`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#addslashes) | `value = "I'm Guido"` :material-arrow-down-right:<br>`#!htmldjango {{ value|addslashes }}`<br>:material-arrow-right-bottom: `"I\'m Guido"`| Añade barra invertida antes de las comillas. |
     | [`capfirst`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#capfirst) | `value = 'django'` :material-arrow-down-right:<br>`#!htmldjango {{ value|capfirst }}`<br>:material-arrow-right-bottom: `'Django'`| Pasa a mayúsculas el primer caracter del valor. |
     | [`center`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#center) | `value = 'Django'` :material-arrow-down-right:<br>`#!htmldjango {{ value|center:"15" }}`<br>:material-arrow-right-bottom: `'     Django    '`| Centra el valor indicado en el número de caracteres dado, añadiendo espacios antes y después. |
     | [`cut`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#cut) | `value = 'Django-jango'` :material-arrow-down-right:<br>`#!htmldjango {{ value|cut:"j" }}`<br>:material-arrow-right-bottom: `'Dango-ango'`| Elimina el carácter indicado. |
@@ -470,24 +663,7 @@ En la siguiente tabla se muestran todos los filtros de plantilla que ofrece Djan
     | [`wordcount`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#wordcount) | `value = 'Django is awesome!'` :material-arrow-down-right:<br>`#!htmldjango {{ value|wordcount }}`<br>:material-arrow-right-bottom: `3` | Devuelve el número de palabras del valor. |
     | [`wordwrap`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#wordwrap) | `value = 'Django is awesome'` :material-arrow-down-right:<br>`#!htmldjango {{ value|wordwrap:6 }}`<br>:material-arrow-right-bottom: `Django\nis\nawesome` | Incluye saltos de línea con palabras del tamaño indicado. |
 
-=== "Fecha/Hora"
-
-    | Filtro | Ejemplo | Descripción |
-    | --- | --- | --- |
-    | [`date`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#date) | `value = datetime.date(2024, 10, 17)` :material-arrow-down-right:<br>`#!htmldjango {{ value|date:"d/m/Y" }}`<br>:material-arrow-right-bottom: `'17/10/2024'`| Formatea un objeto de tipo fecha. |
-    | [`time`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#time) | `value = datetime.now()` :material-arrow-down-right:<br>`#!htmldjango {{ value|time:"H:i" }}`<br>:material-arrow-right-bottom: `'04:32'` | Formatea un objeto de tipo hora. |
-    | [`timesince`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#timesince) | `value = datetime.datetime()` :material-arrow-down-right:<br>`#!htmldjango {{ value|timesince }}`<br>:material-arrow-right-bottom: `'4 days, 6 hours'` | Indica en formato «humano» el tiempo que ha pasado desde el valor indicado.<br>Se puede especificar como argumento otro momento de comparación distinto a ^^ahora^^. |
-    | [`timeuntil`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#timeuntil) | `value = datetime.datetime()` :material-arrow-down-right:<br>`#!htmldjango {{ value|timeuntil }}`<br>:material-arrow-right-bottom: `'6 days, 4 hours'` | Indica en formato «humano» el tiempo que falta hasta el valor indicado.<br>Se puede especificar como argumento otro momento de comparación distinto a ^^ahora^^. |
-    
-=== "Booleanos"
-
-    | Filtro | Ejemplo | Descripción |
-    | --- | --- | --- |
-    | [`default`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#default) | `value = None` :material-arrow-down-right:<br>`#!htmldjango {{ value|default:"empty" }}`<br>:material-arrow-right-bottom: `'empty'`| Si el valor evalúa a `#!python False` muestra el argumento indicado. |
-    | [`default_if_none`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#default-if-none) | `value = None` :material-arrow-down-right:<br>`#!htmldjango {{ value|default_if_none:"nothing" }}`<br>:material-arrow-right-bottom: `'nothing'`| Si (y solo si) el valor es `#!python None` muestra el argumento indicado. |
-    | [`yesno`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#yesno) | `value = 1` :material-arrow-down-right:<br>`#!htmldjango {{ value|yesno:"good,bad,regular"' }}`<br>:material-arrow-right-bottom: `'good'` | :octicons-dot-24: Si el valor es `#!python True` se devuelve el primer argumento.<br>:octicons-dot-24: Si el valor es `#!python False` se devuelve el segundo argumento.<br>:octicons-dot-24: Si el valor es `#!python None` se devuelve el tercer argumento (opcional). |
-    
-=== "Listas"
+=== "Lista"
 
     | Filtro | Ejemplo | Descripción |
     | --- | --- | --- |
@@ -501,20 +677,40 @@ En la siguiente tabla se muestran todos los filtros de plantilla que ofrece Djan
     | [`safeseq`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#safeseq) | `value = ['<p>', '<h1>']` :material-arrow-down-right:<br>`#!htmldjango {{ value|escapeseq }}`<br>:material-arrow-right-bottom: `['<p>', '<h1>']`| Aplica el filtro [`safe`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#safe) a cada elemento de la lista. |
     | [`unordered_list`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#unordered-list) | `value = ['A', ['B', 'C']]` :material-arrow-down-right:<br>`#!htmldjango {{ value|unordered_list }}`<br>:material-arrow-right-bottom: `'<li>A<ul><li>B</li><li>C</li></ul></li>'`| Convierte una lista anidada en una lista no ordenada HTML. |
 
-=== "Diccionarios"
+=== "Número"
+
+    | Filtro | Ejemplo | Descripción |
+    | --- | --- | --- |
+    | [`add`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#add) | `value = 5` :material-arrow-down-right:<br>`#!htmldjango {{ value|add:"2" }}`<br>:material-arrow-right-bottom: `7`| Suma el argumento al valor. |
+    | [`divisibleby`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#divisiblebly) | `value = 15` :material-arrow-down-right:<br>`#!htmldjango {{ value|divisibleby:"5" }}`<br>:material-arrow-right-bottom: `True`| Devuelve `#!python True` si el valor es divisible por el argumento o `#!python False` en otro caso. |
+    | [`filesizeformat`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#filesizeformat) | `value = 123456789` :material-arrow-down-right:<br>`#!htmldjango {{ value|filesizeformat }}`<br>:material-arrow-right-bottom: `'117.7 MB'`| Formatea el valor como un tamaño de fichero legible por un humano. |
+    | [`get_digit`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#get-digit) | `value = 123456789` :material-arrow-down-right:<br>`#!htmldjango {{ value|get_digit:"2" }}`<br>:material-arrow-right-bottom: `8`| Devuelve el dígito que ocupa la posición del argumento indicado (empezando por la derecha) en índice :material-numeric-1-circle:. |
+    | [`stringformat`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#stringformat) | `value = '3.141516'` :material-arrow-down-right:<br>`#!htmldjango {{ value|stringformat:".3f" }}`<br>:material-arrow-right-bottom: `'3.142'` | Formatea el valor de acuerdo a la especificación del argumento. |
+
+=== "Fecha/Hora"
+
+    | Filtro | Ejemplo | Descripción |
+    | --- | --- | --- |
+    | [`date`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#date) | `value = datetime.date(2024, 10, 17)` :material-arrow-down-right:<br>`#!htmldjango {{ value|date:"d/m/Y" }}`<br>:material-arrow-right-bottom: `'17/10/2024'`| Formatea un objeto de tipo fecha. |
+    | [`time`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#time) | `value = datetime.now()` :material-arrow-down-right:<br>`#!htmldjango {{ value|time:"H:i" }}`<br>:material-arrow-right-bottom: `'04:32'` | Formatea un objeto de tipo hora. |
+    | [`timesince`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#timesince) | `value = datetime.datetime()` :material-arrow-down-right:<br>`#!htmldjango {{ value|timesince }}`<br>:material-arrow-right-bottom: `'4 days, 6 hours'` | Indica en formato «humano» el tiempo que ha pasado desde el valor indicado.<br>Se puede especificar como argumento otro momento de comparación distinto a ^^ahora^^. |
+    | [`timeuntil`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#timeuntil) | `value = datetime.datetime()` :material-arrow-down-right:<br>`#!htmldjango {{ value|timeuntil }}`<br>:material-arrow-right-bottom: `'6 days, 4 hours'` | Indica en formato «humano» el tiempo que falta hasta el valor indicado.<br>Se puede especificar como argumento otro momento de comparación distinto a ^^ahora^^. |
+    
+=== "Booleano"
+
+    | Filtro | Ejemplo | Descripción |
+    | --- | --- | --- |
+    | [`default`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#default) | `value = None` :material-arrow-down-right:<br>`#!htmldjango {{ value|default:"empty" }}`<br>:material-arrow-right-bottom: `'empty'`| Si el valor evalúa a `#!python False` muestra el argumento indicado. |
+    | [`default_if_none`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#default-if-none) | `value = None` :material-arrow-down-right:<br>`#!htmldjango {{ value|default_if_none:"nothing" }}`<br>:material-arrow-right-bottom: `'nothing'`| Si (y solo si) el valor es `#!python None` muestra el argumento indicado. |
+    | [`yesno`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#yesno) | `value = 1` :material-arrow-down-right:<br>`#!htmldjango {{ value|yesno:"good,bad,regular"' }}`<br>:material-arrow-right-bottom: `'good'` | :octicons-dot-24: Si el valor es `#!python True` se devuelve el primer argumento.<br>:octicons-dot-24: Si el valor es `#!python False` se devuelve el segundo argumento.<br>:octicons-dot-24: Si el valor es `#!python None` se devuelve el tercer argumento (opcional). |
+    
+=== "Diccionario"
 
     | Filtro | Ejemplo | Descripción |
     | --- | --- | --- |
     | [`dictsort`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#dictsort) | `value = [{'name': 'Carry', 'age': 32}, {'name': 'Mike', 'age': 21}]` :material-arrow-down-right:<br>`#!htmldjango {{ value|dictsort:"age" }}`<br>:material-arrow-right-bottom: `[{'name': 'Mike', 'age': 21}, {'name: 'Carry', age: 32}]`| Ordena una lista de diccionarios por la clave indicada en el argumento. |
     | [`dictsortreversed`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#dictsortreversed) | `value = [{'name': 'Carry', 'age': 32}, {'name': 'Mike', 'age': 21}]` :material-arrow-down-right:<br>`#!htmldjango {{ value|dictsortreversed:"age" }}`<br>:material-arrow-right-bottom: `[{'name: 'Carry', age: 32}, {'name': 'Mike', 'age': 21}]`| Ordena una lista de diccionarios (de forma inversa/descendente) por la clave indicada en el argumento. |
     
-=== "Ficheros"
-
-    | Filtro | Ejemplo | Descripción |
-    | --- | --- | --- |
-    | [`filesizeformat`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#filesizeformat) | `value = 123456789` :material-arrow-down-right:<br>`#!htmldjango {{ value|filesizeformat }}`<br>:material-arrow-right-bottom: `'117.7 MB'`| Formatea el valor como un tamaño de fichero legible por un humano. |
-        
-
 ### Filtros personalizados { #custom-filters }
 
 <span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>

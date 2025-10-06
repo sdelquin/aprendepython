@@ -6,7 +6,7 @@ icon: material/form-select
 
 <span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
 
-Los formularios son componentes web que permiten al usuario introducir información en una aplicación web. Veremos cómo manejar y gestionar los formularios a través de Django.
+Los [formularios](https://www.w3schools.com/html/html_forms.asp) son componentes web que permiten al usuario introducir información en una aplicación web. Veremos cómo manejar y gestionar los formularios a través de Django.
 
 ## Tipos de formularios { #form-types }
 
@@ -18,7 +18,7 @@ En función de la forma de implementarlos, podemos distinguir los siguientes tip
 
 ### Formularios de plantilla { #template-forms }
 
-Este tipo de formularios provienen de una plantilla HTML.
+Este tipo de formularios se construyen a partir de una **plantilla HTML**.
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos un formulario en una plantilla para añadir un nuevo «post» en un «blog». Tendríamos algo similar a lo siguiente:
 
@@ -39,7 +39,9 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos 
 4. Los nombres que damos a los «widgets» son importantes. En este caso el nombre es `post-content` y contendrá el contenido del post que introduzca el usuario.
 5. Necesitamos un botón para realizar el envío.
 
-El envío de este formulario llegará al correspondiente fichero `urls.py` que ejecutará una determinada vista dentro del fichero `views.py`. Veamos cómo procesar esta solicitud, siguiendo con el ejemplo anterior:
+El envío de este formulario llegará al correspondiente fichero [`urls.py`](urls.md) que ejecutará una determinada vista dentro del fichero [`views.py`](views.md).
+
+Veamos cómo procesar esta solicitud, siguiendo con el <span class="example">ejemplo:material-flash:</span> anterior de creación de un «post»:
 
 ```python title="posts/views.py"
 from django.http import HttpResponse
@@ -79,11 +81,11 @@ def add_post(request):
 
 ### Formularios de clase { #class-forms }
 
-Este tipo de formularios provienen de una clase Python.
+Este tipo de formularios se construyen a partir de una **clase Python**.
 
 Django nos ofrece funcionalidades para poder escribir los [formularios usando código Python](https://docs.djangoproject.com/en/stable/topics/forms/#building-a-form-in-django) en vez de tener que usar código HTML.
 
-En realidad lo que hacemos es definir una clase Python que posteriormente se transformará al correspondiente código HTML («widget») inyectándolo en la plantilla.
+En realidad lo que hacemos es definir una clase Python que posteriormente se transformará en el correspondiente código HTML («widget») inyectándolo en la plantilla.
 
 #### Campos de formulario { #fields }
 
@@ -199,10 +201,11 @@ La siguiente tabla muestra la información más relevante de los distintos [camp
 
 Para explicar la creación y el uso de _formularios de clase_ vamos a utilizar el mismo <span class="example">ejemplo:material-flash:</span> que en el apartado anterior en el cual creamos un nuevo «post» de un «blog» a partir de los datos introducidos por el usuario.
 
-Lo primero que debemos hacer es definir nuestro formulario en un fichero `forms.py` dentro de la aplicación correspondiente:
+Lo primero que debemos hacer es definir nuestro formulario en un fichero `forms.py` dentro de la correspondiente aplicación:
 
 ```python title="posts/forms.py"
 from django import forms
+
 
 class AddPostForm(forms.Form):#(1)!
     title = forms.CharField()#(2)!
@@ -215,9 +218,9 @@ class AddPostForm(forms.Form):#(1)!
 2. Los campos se definen «manualmente» pero utilizando los [tipos de campos para formularios](https://docs.djangoproject.com/en/stable/ref/forms/fields/#built-in-field-classes) que ofrece Django.
 3.  - Los campos se definen «manualmente» pero utilizando los [tipos de campos para formularios](https://docs.djangoproject.com/en/stable/ref/forms/fields/#built-in-field-classes) que ofrece Django.
 
-Ahora veremos cómo es el código de la plantilla:
+Ahora veamos cuál es el código que debemos introducir en la plantilla:
 
-```htmldjango title="posts/templates/posts/add_post.html"
+```htmldjango title="posts/templates/posts/post/add.html"
 <form method="post"><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     {{ form }}<!--(3)!-->
@@ -235,8 +238,8 @@ Ahora veremos cómo es el código de la plantilla:
 Por último veamos cómo implementar la vista que debe procesar el formulario:
 
 ```python title="posts/views.py"
-from django.utils.text import slugify
 from django.shortcuts import render, redirect
+from django.utils.text import slugify
 
 from .forms import AddPostForm
 from .models import Post
@@ -263,9 +266,9 @@ def add_post(request):
 1.  - La petición ha sido «post».
     - Instanciamos (construimos) el formulario con los datos que provienen de la propia petición «post».
     - El método `is_valid()` comprueba si los datos del formulario son válidos.
-2.  - Los formularios disponen un atributo `cleaned_data` (`dict`) con los datos ya «limpios» y transformados al tipo correspondiente según su definición.
+2.  - Los formularios disponen un atributo [`cleaned_data`](https://docs.djangoproject.com/en/stable/ref/forms/api/#django.forms.Form.cleaned_data) (`dict`) con los datos ya «limpios» y transformados al tipo correspondiente según su definición.
     - Extraemos el título del «post» → La clave `#!python 'title'` debe coincidir con el nombre que se le dio al campo en `forms.py`.
-3.  - Los formularios disponen un atributo `cleaned_data` (`dict`) con los datos ya «limpios» y transformados al tipo correspondiente según su definición.
+3.  - Los formularios disponen un atributo [`cleaned_data`](https://docs.djangoproject.com/en/stable/ref/forms/api/#django.forms.Form.cleaned_data) (`dict`) con los datos ya «limpios» y transformados al tipo correspondiente según su definición.
     - Extraemos el contenido del «post» → La clave `#!python 'content'` debe coincidir con el nombre que se le dio al campo en `forms.py`.
 4. Creamos el «slug» a partir del título del «post».
 5. Se [crea](models.md#create-objects) un nuevo «post» a partir del título, contenido y «slug».
@@ -276,7 +279,7 @@ def add_post(request):
 
 ### Formularios de modelo { #model-forms }
 
-Este tipo de formularios provienen de un modelo Django.
+Este tipo de formularios se construyen a partir de un **modelo Django**.
 
 Cuando estamos trabajando con un modelo y queremos pedir datos en un formulario que finalmente constituirán un objeto de dicho modelo, Django nos ofrece los [`ModelForm`](https://docs.djangoproject.com/en/stable/topics/forms/modelforms/).
 
@@ -286,7 +289,7 @@ El formulario se diseña especificando el **modelo al que está vinculado** y lo
 
     Cada (tipo de) campo de modelo tiene su [correspondencia](https://docs.djangoproject.com/en/stable/topics/forms/modelforms/#field-types) con un (tipo de) campo de formulario.
 
-A partir del <span class="example">ejemplo:material-flash:</span> ya visto, vamos a preparar un formulario de modelo para el «post» de un «blog»:
+A partir del <span class="example">ejemplo:material-flash:</span> ya visto, vamos a preparar un formulario de modelo para crear un «post» de un «blog»:
 
 ```python title="posts/forms.py"
 from django import forms
@@ -312,7 +315,7 @@ class AddPostForm(forms.ModelForm):#(1)!
 
 Ahora veremos cómo es el código de la plantilla:
 
-```htmldjango title="posts/templates/posts/add_post.html"
+```htmldjango title="posts/templates/posts/post/add.html"
 <form method="post"><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     {{ form }}<!--(3)!-->
@@ -327,7 +330,7 @@ Ahora veremos cómo es el código de la plantilla:
 3. Con esto basta para que se renderice el contenido del formulario en HTML.
 4. Es necesario incluir un botón para enviar el formulario.
 
-Por último veamos cómo implementar la vista que debe procesar el formulario:
+Por último veamos cómo implementar la [vista](views.md) que debe procesar el formulario:
 
 === "Estructura estándar :octicons-organization-24:"
 
@@ -384,7 +387,9 @@ Por último veamos cómo implementar la vista que debe procesar el formulario:
 
 === "Con lógica adicional :material-calculator:"
 
-    Veamos cómo implementar cierta lógica adicional. En el <span class="example">ejemplo:material-flash:</span> convertir a «slug» el título del «post» antes de almacenarlo:
+    Veamos cómo implementar cierta lógica adicional.
+    
+    En este <span class="example">ejemplo:material-flash:</span> convertimos a «slug» el título del «post» antes de almacenarlo:
 
     ```python title="posts/views.py"
     from django.shortcuts import redirect, render
@@ -425,9 +430,9 @@ Por último veamos cómo implementar la vista que debe procesar el formulario:
 
 ### Formularios de edición { #edit-forms }
 
-No es un tipo en sí mismo, pero cabe destacarlos por la forma especial en la que se procesan los datos. Se puede aplicar tanto para [formularios de clase](#class-forms) como para [formularios de modelo](#model-forms).
+Es habitual que, además de crear formularios para añadir/crear objetos, necesitemos formularios para editar/modificar dichos objetos.
 
-Es muy habitual en cualquier aplicación web que tengamos una opción para editar un objeto a través de un formulario.
+No es un tipo en sí mismo, pero cabe destacarlos por la forma especial en la que se procesan los datos. Se puede aplicar tanto para [formularios de clase](#class-forms) como para [formularios de modelo](#model-forms).
 
 Seguimos con el <span class="example">ejemplo:material-flash:</span> anterior y vamos a implementar una solución para editar título y contenido de un determinado «post».
 
@@ -447,7 +452,7 @@ class EditPostForm(forms.ModelForm):
 
 La presentación de este modelo en **la plantilla** no difiere mucho de lo que ya se ha visto en apartados anteriores:
 
-```htmldjango
+```htmldjango title="posts/templates/posts/post/edit.html"
 <h1>Editando post "{{ post.title }}"</h1><!--(1)!-->
 
 <form method="post"><!--(2)!-->
@@ -463,7 +468,7 @@ La presentación de este modelo en **la plantilla** no difiere mucho de lo que y
 
 Por último escribimos **la vista** que procesará este formulario:
 
-```python
+```python title="posts/views.py" hl_lines="11"
 from django.shortcuts import redirect, render
 from django.utils.text import slugify
 
