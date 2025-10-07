@@ -671,7 +671,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 1.  - El atributo `objects` es el «[manager](https://docs.djangoproject.com/en/stable/topics/db/managers/#django.db.models.Manager)» por defecto.
     - El método `filter()` devuelve un [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) (una especie de lista «perezosa» de objetos).
-    - `startswith` es un [«field lookup»](#build-queries). Existen muchos otros.
+    - `startswith` es un [«field lookup»](#field-lookups). Existen muchos otros.
 
 #### Un único objeto { #retrieve-one }
 
@@ -714,9 +714,9 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 1.  - El atributo `objects` es el «[manager](https://docs.djangoproject.com/en/stable/topics/db/managers/#django.db.models.Manager)» por defecto.
     - El método `filter()` devuelve un [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) (una especie de lista «perezosa» de objetos).
-    - `startswith` es un [«field lookup»](#build-queries). Existen muchos otros.
+    - `startswith` es un [«field lookup»](#field-lookups). Existen muchos otros.
     - El método `exclude()` devuelve un [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) (una especie de lista «perezosa» de objetos).
-    - `endswith` es un [«field lookup»](#build-queries). Existen muchos otros.
+    - `endswith` es un [«field lookup»](#field-lookups). Existen muchos otros.
 
 !!! note "Encadenados"
 
@@ -1852,6 +1852,28 @@ class Post(models.Model):
 { .annotate }
 
 1. La función [reverse](urls.md#reverse) ya nos devuelve la URL correspondiente.
+
+!!! tip "Redirección"
+
+    Además de las [redirecciones](urls.md#redirect) ya vistas, Django nos permite hacer una redirección sobre una instancia de un modelo. En ese caso se usará la URL canónica del objeto como URL de destino.
+
+    Veamos un <span class="example">ejemplo:material-flash:</span> sobre un «post» del «blog»:
+
+    ```python title="posts/views.py"
+    from django.shortcuts import redirect    
+
+    from .models import Post
+
+    
+    def post_detail(request, post_slug: str):
+        # ...
+        post = Post.objects.get(slug=post_slug)
+        return redirect(post)#(1)!
+    ```
+    { .annotate }
+    
+    1.  - Django obtiene la URL llamando a [`post.get_absolute_url()`](models.md#canonical-url) y hace la redirección.
+        - En este caso se haría una redirección a `/posts/this-is-a-test-post`.
 
 ## Ordenación por defecto { #default-ordering }
 

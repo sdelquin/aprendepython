@@ -16,7 +16,7 @@ Los ficheros estáticos («assets») son ficheros que no necesitan un preprocesa
 
 ## Estáticos en desarrollo { #static-during-development }
 
-Siempre y cuando tengamos activada la aplicación `#!python 'django.contrib.staticfiles'` (_que ya viene por defecto_) Django se encarga de servir los ficheros estáticos cuando así sea necesario.
+Siempre y cuando tengamos activada la aplicación `#!python 'django.contrib.staticfiles'` (_que ya viene por defecto_) Django se encargará de servir los ficheros estáticos cuando así sea necesario.
 
 !!! warning "Producción"
 
@@ -26,48 +26,110 @@ Siempre y cuando tengamos activada la aplicación `#!python 'django.contrib.stat
 
 Los ficheros estáticos «deberían» estar ubicados en la carpeta `static` de cada [aplicación](apps.md) del proyecto. Cuando hacemos referencia a un estático usamos una ruta. Funciona de manera análoga a la [ubicación de las plantillas](templates.md#location).
 
-Por <span class="example">ejemplo:material-flash:</span> en una aplicación `posts` para un proyecto de «blog» podríamos tener la siguiente estructura de estáticos:
+Una aproximación inicial sería definir una _hoja de estilos_ CSS y una _carpeta de imágenes_ para todo el proyecto. Lo podríamos ubicar por <span class="example">ejemplo:material-flash:</span> en la aplicación [`shared`](apps.md#shared) para que los recursos sean compartidos por todo el proyecto:
 
-```hl_lines="3 5"
-posts
+``` hl_lines="1-2"
+shared
 └── static
-    ├── blog.svg
-    └── posts
-        └── book.svg
+    ├── css
+    │   └── base.css
+    └── images
+        ├── logo.svg
+        └── background.png
 ```
 
-- La ruta para acceder a `blog.svg` sería `blog.svg`
-- La ruta para acceder a `book.svg` sería `posts/book.svg`
+- La ruta para acceder a `base.css` sería `css/custom.css`
+- La ruta para acceder a `logo.svg` sería `images/logo.svg`
 
-Django se encarga de rastrear las carpetas `static` de las aplicaciones para encontrar los estáticos indicados.
+:material-check-all:{ .blue } Django se encargará de rastrear las carpetas `static` de las aplicaciones para encontrar los estáticos indicados. Por lo tanto los **espacios de nombres** también son importantes a la hora de organizar los estáticos de nuestro proyecto Django.
 
-:material-check-all:{ .blue } Por lo tanto los **espacios de nombres** también son importantes a la hora de organizar los estáticos de nuestro proyecto Django.
+Una buena práctica (en el caso de estáticos específicos de una aplicación concreta) es crear una subcarpeta con el nombre de la aplicación. Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos guardar ciertas imágenes específicas de un «post»:
+
+``` hl_lines="1-3"
+posts
+└── static
+    └── posts
+        └── images
+            ├── fav.png
+            └── like.png
+```
+
+- La ruta para acceder a `fav.png` sería `posts/images/fav.png`
+- La ruta para acceder a `like.png` sería `posts/images/like.svg`
 
 ## Acceso a estáticos { #access }
 
 En este apartado veremos cómo acceder a ficheros estáticos tanto desde una plantilla como desde una vista.
 
+Hay dos variables importantes en `settings.py` que definen el comportamiento de los estáticos en un proyecto Django:
+
+- [`STATIC_URL`](https://docs.djangoproject.com/en/5.2/ref/settings/#std-setting-STATIC_URL): Define la URL que se utilizará cuando hagamos referencia a un fichero estático. Su valor por defecto es `#!python 'static/'`.
+- [`STATICFILES_DIRS`](https://docs.djangoproject.com/en/5.2/ref/settings/#std-setting-STATICFILES_DIRS): Define directorios adicionales donde Django irá a buscar ficheros estáticos. Su valor por defecto es `#!python []`.
+
 ### Estáticos en plantillas { #template-usage }
 
 Para acceder a ficheros estáticos desde una plantilla Django debemos utilizar la etiqueta [`{% static %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#static).
 
-Supongamos que tratamos de acceder a las imágenes (ficheros estáticos) definidas en el <span class="example">ejemplo:material-flash:</span> anterior del «blog»:
+Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <span class="example">ejemplo:material-flash:</span> anterior del «blog»:
 
 ```htmldjango 
 {% load static %}<!--(1)!-->
 
-<img src="<% static 'blog.svg' %>"/><!--(2)!-->
-<img src="<% static 'posts/blog.svg' %>"/><!--(3)!-->
+<link rel="stylesheet" href="{% static 'css/base.css' %}"><!--(2)!-->
+<img src="{% static 'images/logo.svg' %}"/><!--(3)!-->
+<img src="{% static 'posts/images/like.png' %}"/><!--(4)!-->
 ```
 { .annotate }
 
 1. Es necesario cargar la etiqueta `static`.
-2. Acceso a un fichero estático. En este caso se generará la URL :material-arrow-right-box: `/static/blog.svg`
-3. Acceso a un fichero estático. En este caso se generará la URL :material-arrow-right-box: `/static/posts/blog.svg`
+2. URL generada: `/static/css/base.css`
+3. URL generada: `/static/images/logo.svg`
+4. URL generada: :material-arrow-right-box: `/static/posts/images/like.png`
 
 ### Estáticos en vistas { #view-usage }
 
-Para acceder a ficheros estáticos desde una vista Django debemos utilizar 
+Lo más habitual es utilizar ficheros estáticos directamente en plantillas, pero puede darse el caso donde necesitemos acceso a los estáticos en las vistas. Se diferencian dos aproximaciones:
+
+:one: Acceso a la ruta en la URL.  
+:two: Acceso a la ruta en el sistema de ficheros.
+
+=== "URL :octicons-browser-16:"
+
+    Para obtener la ruta en la URL de un determinado estático podemos utilizar la misma etiqueta `static` pero desde `django.templatetags.static`.
+
+    Veamos un <span class="example">ejemplo:material-flash:</span>:
+
+    ```python title="posts/views.py"
+    from django.templatetags.static import static as static_url#(1)!
+
+
+    def my_view(request):
+        # ...
+        like_url_path = static_url('posts/images/like.png')#(2)!
+    ```
+    { .annotate }
+
+    1. Es necesario importar la función `static()`.
+    2. En este caso se devolverá la URL :material-arrow-right-box: `/static/posts/images/like.png`
+
+=== "Sistema de ficheros :fontawesome-solid-floppy-disk:"
+
+    Para obtener la ruta en el sistema de ficheros de un determinado estático podemos utilizar la función `path` desde `django.contrib.staticfiles`.
+
+    Veamos un <span class="example">ejemplo:material-flash:</span>:
+
+    ```python title="posts/views.py"
+    from django.contrib.staticfiles.storage import path as static_path #(1)!
+
+
+    def my_view(request):
+        # ...
+        like_file_path = static_path('posts/images/like.png')#(2)!
+    ```
+    { .annotate }
+
+    1. Es necesario importar la función `path()`.
+    2. En este caso se devolverá la ruta :material-arrow-right-box: `/home/guido/dev/blog/posts/static/posts/images/like.png`
 
 ## Bootstrap { #bootstrap }
 

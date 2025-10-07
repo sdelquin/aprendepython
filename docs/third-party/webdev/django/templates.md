@@ -104,7 +104,7 @@ Por <span class="example">ejemplo:material-flash:</span> si queremos mostrar un 
 
 Desde la correspondiente [vista](views.md#views-with-params), tendremos que renderizar la plantilla anterior mediante el siguiente fragmento de código:
 
-```python
+```python title="posts/views.py"
 from django.shortcuts import render
 
 
@@ -147,7 +147,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de plantilla en l
 
 Desde la correspondiente [vista](views.md#passing-context), tendremos que renderizar la plantilla anterior mediante el siguiente fragmento de código:
 
-```python
+```python title="posts/views.py"
 from django.shortcuts import render
 
 
@@ -237,7 +237,7 @@ Django proporciona la etiqueta [`{% if %}`](https://docs.djangoproject.com/en/st
 
 En el siguiente <span class="example">ejemplo:material-flash:</span> se muestra un mensaje diferente para el primer «post» del «blog»:
 
-```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="3 5 6 8"
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="3 5 6 8"
 {% for post in posts %}
     <li>
     {% if forloop.first %}<!--(1)!-->
@@ -278,30 +278,15 @@ Además tenemos disponibles otros operadores habituales:
 
 ### URL { #url-tag }
 
-Ya hemos visto que las [URLs definidas](urls.md) en `urls.py` ~~pueden~~ deben disponer de un nombre que las identifique.
+Ya hemos visto que las [URLs definidas](urls.md#app-urls) en `urls.py` ~~pueden~~ deben disponer de un nombre que las identifique.
 
-En el <span class="example">ejemplo:material-flash:</span> del «blog» se han definido las siguientes URLs:
+En una plantilla usaremos la etiqueta [`{% url %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url) para renderizar la URL de un determinado recurso y no tener que escribirla directamente.
 
-```python title="posts/urls.py"
-# ...
-app_name = 'posts'
-
-urlpatterns = [
-    path('', views.post_list, name='post-list'),
-    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
-]
-```
-
-Así las cosas, Django nos permite identificar cada URL mediante `<app_name>:<url_name>`:
-
-- `#!python 'posts:post-list'` identifica la URL del **listado de «posts»**.
-- `#!python 'posts:post-detail'` identifica la URL del **detalle de un «post»**.
-
-En una plantilla usaremos la etiqueta [`{% url %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#url) para renderizar la URL de un determinado recurso. Se diferencian dos casos:
+Como <span class="example">ejemplo:material-flash:</span> vamos a mostrar la manera de ingresar la URL de acceso a todos los «posts» del blog o a uno en concreto. Se diferencian —por tanto— estos dos casos:
 
 === "URL sin parámetros"
 
-    ```htmldjango
+    ```htmldjango title="posts/templates/posts/post/list.html"
     <a href="{% url 'posts:post-list' %}"><!--(1)!-->
         Ver todos los posts
     </a>
@@ -312,7 +297,7 @@ En una plantilla usaremos la etiqueta [`{% url %}`](https://docs.djangoproject.c
 
 === "URL con parámetros"
 
-    ```htmldjango
+    ```htmldjango title="posts/templates/posts/post/detail.html"
     <a href="{% url 'posts:post-detail' post.slug %}"><!--(1)!-->
         {{ post.title }}
     </a>
@@ -432,7 +417,7 @@ Django nos ofrece **dos modos** de incluir la plantilla anterior:
     ...
     ```
 
-### Varios { #misc-tags }
+### Otras etiquetas { #misc-tags }
 
 A continuación se muestran otras etiquetas de plantilla disponibles en Django:
 
@@ -491,16 +476,16 @@ A continuación se muestran otras etiquetas de plantilla disponibles en Django:
 
 === "`now`"
 
-    [`{% now %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#now) :material-arrow-right: Muestra la fecha/hora actual (admite [modificadores de formato](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#std-templatefilter-date)):
+    [`{% now %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#now) :material-arrow-right: Muestra la fecha/hora actual (requiere [modificadores de formato](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#std-templatefilter-date)):
 
     ```htmldjango
-    {% now %}<!--(1)!-->
+    {% now "c" %}<!--(1)!-->
     {% now "d-m-Y" %}<!--(2)!-->
     {% now "l M/j/y" %}<!--(3)!-->
     ```
     { .annotate }
     
-    1. `2025-10-04 10:56:23.668338`
+    1. `2025-10-04T10:56:23.668338`
     2. `04-10-2025`
     3. `Friday Oct/4/25`
 
@@ -528,7 +513,6 @@ A continuación se muestran otras etiquetas de plantilla disponibles en Django:
         <p>This won't be {{ var }} rendered</p>
     {% endverbatim %}
     ```
-
 
 ### Etiquetas personalizadas { #custom-tags }
 

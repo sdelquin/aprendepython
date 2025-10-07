@@ -65,7 +65,7 @@ def add_post(request):
             return redirect('posts:post-list')#(7)!
         else:
             return HttpResponse('Title and content are required!')#(8)!
-    return render(request, 'posts/add_post.html')#(9)!
+    return render(request, 'posts/post/add.html')#(9)!
 ```
 { .annotate }
 
@@ -259,7 +259,7 @@ def add_post(request):
             return redirect('posts:post-list')#(6)!
     else:
         form = AddPostForm()#(7)!
-    return render(request, 'posts/add_post.html', dict(form=form))#(8)!
+    return render(request, 'posts/post/add.html', dict(form=form))#(8)!
 ```
 { .annotate }
 
@@ -348,7 +348,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
                 return redirect('posts:post-list')#(3)!
         else:
             form = AddPostForm()#(4)!
-        return render(request, 'posts/add_post.html', dict(form=form))#(5)!
+        return render(request, 'posts/post/add.html', dict(form=form))#(5)!
     ```
     { .annotate }
 
@@ -374,7 +374,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
         if (form := AddPostForm(request.POST or None)).is_valid():#(1)!
             form.save()#(2)!
             return redirect('posts:post-list')#(3)!
-        return render(request, 'posts/add_post.html', dict(form=form))#(4)!
+        return render(request, 'posts/post/add.html', dict(form=form))#(4)!
     ```
     { .annotate }
 
@@ -407,7 +407,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
                 return redirect('posts:post-list')#(5)!
         else:
             form = AddPostForm()#(6)!
-        return render(request, 'posts/add_post.html', dict(form=form))#(7)!
+        return render(request, 'posts/post/add.html', dict(form=form))#(7)!
     ```
     { .annotate }
 
@@ -428,7 +428,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
 
     En un formulario de modelo, salvo casos excepcionales, deberíamos guardar el objeto de modelo con `save()` y no acceder a través de `cleaned_data`.
 
-### Formularios de edición { #edit-forms }
+#### Formularios de edición { #edit-forms }
 
 Es habitual que, además de crear formularios para añadir/crear objetos, necesitemos formularios para editar/modificar dichos objetos.
 
@@ -506,6 +506,8 @@ def edit_post(request, post_slug: str):#(1)!
 9. Renderizamos la plantilla pasando el «post» y el formulario como contexto y la devolvemos.
 
 ## Widgets { #widgets }
+
+<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
 
 Un «widget» es la representación Django de componente HTML para formulario. El «widget» maneja el renderizado del HTML y la extración de datos desde el correspondiente diccionario GET/POST.
 
@@ -696,7 +698,7 @@ def add_post(request):
             return redirect('posts:post-list')
     else:
         form = AddPostForm()
-    return render(request, 'posts/add_post.html', dict(form=form))#(7)!
+    return render(request, 'posts/post/add.html', dict(form=form))#(7)!
 ```
 { .annotate }
 
@@ -747,7 +749,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
                 return redirect('home')
         else:
             form = AddPostForm()
-        return render(request, 'posts/add_post.html', dict(form=form))
+        return render(request, 'posts/post/add.html', dict(form=form))
     ```
     { .annotate }
 
@@ -796,7 +798,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
                 return redirect('home')
         else:
             form = AddPostForm(request.user)#(3)!
-        return render(request, 'posts/add_post.html', dict(form=form))
+        return render(request, 'posts/post/add.html', dict(form=form))
     ```
     { .annotate }
 

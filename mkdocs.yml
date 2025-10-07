@@ -183,10 +183,10 @@ nav:
               - third-party/webdev/django/setup.md
               - third-party/webdev/django/apps.md
               - third-party/webdev/django/models.md
+              - third-party/webdev/django/admin.md
               - third-party/webdev/django/urls.md
               - third-party/webdev/django/views.md
               - third-party/webdev/django/templates.md
-              - third-party/webdev/django/admin.md
               - third-party/webdev/django/forms.md
               - third-party/webdev/django/static.md
               - third-party/webdev/django/auth.md

@@ -168,13 +168,62 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 | `#!python path('<uuid:token>', ...)` | `/075194d3-6885-417e-a8a8-6c931e272f00/`  | Casa con cualquier UUID y retorna un objeto [UUID](https://docs.python.org/3/library/uuid.html#uuid.UUID) |
 | `#!python path('<path:resource_path>', ...)` | `/products/tech/logitech-keyboard/`  | Casa con cualquier cadena de caracteres cinluyendo el separador `/` y retorna un `#!python str` |
 
+## Redirección { #redirect }
+
+Se considera una mala práctica «hardcodear»[^1] las URLs directamente (tanto en vistas como en plantillas) ya que, ante un determinado cambio de una URL en el futuro, tendremos que localizar todas las ocurrencias de dicha URL en el código y modificarlas.
+
+Para resolver esta problemática, Django nos «anima» a utilizar **nombres de URLs** en la función [`path()`](https://docs.djangoproject.com/en/stable/ref/urls/#path) dentro de los distintos ficheros `urls.py`.
+
+En el <span class="example">ejemplo:material-flash:</span> anterior del «blog» se han definido las siguientes URLs:
+
+```python title="posts/urls.py"
+# ...
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='post-list'),
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+]
+```
+
+Así las cosas, Django nos permite identificar cada URL mediante `<app_name>:<url_name>`:
+
+- `#!python 'posts:post-list'` identifica la URL del **listado de «posts»**.
+- `#!python 'posts:post-detail'` identifica la URL del **detalle de un «post»**.
+
+En una vista usaremos la función [`redirect()`](https://docs.djangoproject.com/en/stable/topics/http/shortcuts/#redirect) para hacer redirecciones y pasar el control a otra URL:
+
+=== "URL sin parámetros"
+
+    ```python
+    from django.shortcuts import redirect    
+
+
+    def my_view(request):
+        # ...
+        return redirect('posts:post-list')
+    ```
+
+=== "URL con parámetros"
+
+    ```python
+    from django.shortcuts import redirect    
+
+
+    def my_view(request):
+        # ...
+        return redirect('posts:post-detail', post_slug=post.slug)
+    ```
+
+??? tip "Redirección permanente"
+
+    Django aplica por defecto una **redirección temporal** [302](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/302). Si lo que se quiere es realizar una **redirección permanente** [301](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/301) habrá que usar el argumento `#!python permanent=True` en la función `redirect()`.
+
+Como era esperable, también podremos redirigir a cualquier otra URL externa que queramos: `#!python redirect('https://python.org')`.
+
 ## URL desde nombre { #reverse }
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
-
-Se considera una mala práctica «hardcodear»[^1] las URLs directamente ya que, ante un determinado cambio de una URL en el futuro, tendremos que localizar todas las ocurrencias de dicha URL en el código y modificarlas.
-
-Por ello Django nos «anima» a utilizar **nombres de URLs** en la función [`path()`](https://docs.djangoproject.com/en/stable/ref/urls/#path) dentro de los distintos ficheros `urls.py`.
 
 Pero si lo que queremos es el paso «inverso» de obtener la URL a partir de su nombre tendremos que usar la función [`reverse()`](https://docs.djangoproject.com/en/stable/ref/urlresolvers/#reverse).
 
@@ -200,72 +249,6 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> previo d
     { .annotate }
 
     1. También se pueden pasar los argumentos mediante `#!python args=`
-
-## Redirección { #redirect }
-
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
-
-Django nos ofrece la función [`redirect()`](https://docs.djangoproject.com/en/stable/topics/http/shortcuts/#redirect) para hacer redirecciones. Esta función puede ser invocada de ~~tres~~ cuatro formas distintas según el argumento utilizado.
-
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que redireccionamos a la URL de un «post»:
-
-=== "Pasando un modelo :octicons-database-16:"
-
-    ```pycon
-    >>> from django.shortcuts import redirect    
-    >>> from posts.models import Post
-
-    >>> post = Post.objects.get(slug='this-is-test-post')
-    >>> redirect(post)#(1)!
-    ```
-    { .annotate }
-    
-    1.  - Django obtiene la URL llamando a [`post.get_absolute_url()`](models.md#canonical-url) y hace la redirección.
-        - En este caso se haría una redirección a `/posts/this-is-a-test-post`.
-
-=== "Pasando una vista :octicons-eye-16:"
-
-    ```pycon
-    >>> from django.shortcuts import redirect    
-    >>> from posts.views import post_detail
-
-    >>> redirect(post_detail, post_slug='this-is-a-test-post')#(1)!
-    ```
-    { .annotate }
-    
-    1.  - Django obtiene la URL llamando a [`reverse()`](#reverse) sobre la vista indicada.
-        - Si la vista recibe argumentos, se pueden pasar en la propia llamada.
-        - En este caso se haría una redirección a `/posts/this-is-a-test-post`.
-
-=== "Pasando un nombre de URL :material-checkbox-multiple-blank-circle-outline:"
-
-    ```pycon
-    >>> from django.shortcuts import redirect    
-    >>> from django.urls import reverse    
-
-    >>> redirect(reverse('post-detail', kwargs={'post_slug': 'this-is-a-test-post'}))#(1)!
-    ```
-    { .annotate }
-    
-    1.  - Aquí es necesario usar la función [`reverse()`](#reverse) para obtener la URL a partir del nombre.
-        - En este caso se haría una redirección a `/posts/this-is-a-test-post`.
-
-=== "Pasando una URL :fontawesome-solid-arrows-to-dot:"
-
-    ```pycon
-    >>> from django.shortcuts import redirect    
-
-    >>> redirect('https://www.djangoproject.com/')#(1)!
-    ```
-    { .annotate }
-    
-    1.  - La URL se indica de forma explícita como argumento.
-        - Puede ser una URL relativa o absoluta.
-        - En este caso se haría una redirección a `https://www.djangoproject.com/`.
-    
-??? tip "Redirección permanente"
-
-    Django aplica por defecto una **redirección temporal**. Si lo que se quiere es realizar una **redirección permanente** habrá que usar el argumento `#!python permanent=True` en la función `redirect()`.
     
 ## Accesos directos en primer nivel { #main-shortcuts }
 
