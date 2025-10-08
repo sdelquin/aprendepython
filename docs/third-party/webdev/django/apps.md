@@ -47,12 +47,8 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
     ```
 
     ??? abstract "justfile"
-    
-        ```makefile
-        # Create a new app
-        startapp app="":
-            uv run manage.py makemigrations {{app}}
-        ```
+
+        Consulta la receta [`startapp`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 !!! tip "Nombres en plural"
 

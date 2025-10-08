@@ -23,7 +23,7 @@ Este tipo de formularios se construyen a partir de una **plantilla HTML**.
 Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos un formulario en una plantilla para añadir un nuevo «post» en un «blog». Tendríamos algo similar a lo siguiente:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
-<form method="post"><!--(1)!-->
+<form method="post" novalidate><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     <input type="text" name="post-title"><!--(3)!-->
     <textarea name="post-content"></textarea><!--(4)!-->
@@ -217,11 +217,12 @@ class AddPostForm(forms.Form):#(1)!
     - Una clase de formulario debe heredar de `#!python django.forms.Form`.
 2. Los campos se definen «manualmente» pero utilizando los [tipos de campos para formularios](https://docs.djangoproject.com/en/stable/ref/forms/fields/#built-in-field-classes) que ofrece Django.
 3.  - Los campos se definen «manualmente» pero utilizando los [tipos de campos para formularios](https://docs.djangoproject.com/en/stable/ref/forms/fields/#built-in-field-classes) que ofrece Django.
+    - Aquí deberíamos usar un «TextField» pero no existe como tal (en los campos de formulario). La forma de «solucionarlo» sería modificando el [«widget»](#widgets) asociado.
 
 Ahora veamos cuál es el código que debemos introducir en la plantilla:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
-<form method="post"><!--(1)!-->
+<form method="post" novalidate><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     {{ form }}<!--(3)!-->
     <input type="submit" value="Enviar"><!--(4)!-->
@@ -316,7 +317,7 @@ class AddPostForm(forms.ModelForm):#(1)!
 Ahora veremos cómo es el código de la plantilla:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
-<form method="post"><!--(1)!-->
+<form method="post" novalidate><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     {{ form }}<!--(3)!-->
     <input type="submit" value="Enviar"><!--(4)!-->
@@ -455,7 +456,7 @@ La presentación de este modelo en **la plantilla** no difiere mucho de lo que y
 ```htmldjango title="posts/templates/posts/post/edit.html"
 <h1>Editando post "{{ post.title }}"</h1><!--(1)!-->
 
-<form method="post"><!--(2)!-->
+<form method="post" novalidate><!--(2)!-->
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Guardar">
@@ -486,7 +487,7 @@ def edit_post(request, post_slug: str):#(1)!
             return redirect('posts:post-list')#(7)!
     else:
         form = EditPostForm(instance=post)#(8)!
-    return render(request, 'posts/edit_post.html', dict(post=post, form=form))#(9)!
+    return render(request, 'posts/post/edit.html', dict(post=post, form=form))#(9)!
 ```
 { .annotate }
 

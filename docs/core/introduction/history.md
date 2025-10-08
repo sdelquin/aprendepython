@@ -45,7 +45,103 @@ De acuerdo con este breve viaje por la historia, la programación —obviamente�
 
 Desde la década de 1950 se han sucedido multitud de lenguajes de programación que cada vez incorporan más funcionalidades destinadas a cubrir las necesidades del desarrollo de aplicaciones. A continuación se muestra una tabla con la historia de los lenguajes de programación más destacados:
 
-![Cronología lenguajes de programación](images/history/proglangs.svg)
+=== "1950"
+
+    - [RAL](https://en.wikipedia.org/wiki/Autocode)
+    - [Autocoder](https://en.wikipedia.org/wiki/Autocoder)
+    - [IPL](https://en.wikipedia.org/wiki/Information_Processing_Language)
+    - [FLOW-MATIC](https://en.wikipedia.org/wiki/FLOW-MATIC)
+    - [Fortran](https://fortran-lang.org/)
+    - [COMTRAN](https://en.wikipedia.org/wiki/COMTRAN)
+    - [LISP](https://lisp-lang.org/)
+    - [FACT](https://en.wikipedia.org/wiki/FACT_(computer_language))
+    - [COBOL](https://www.cobol.org/)
+    - [RPG](https://en.wikipedia.org/wiki/IBM_RPG)
+
+=== "1960"
+
+    - [APL](https://aplwiki.com/)
+    - [Simula](https://en.wikipedia.org/wiki/Simula)
+    - [SNOBOL](https://en.wikipedia.org/wiki/SNOBOL)
+    - [CPL](https://en.wikipedia.org/wiki/CPL_(programming_language))
+    - [BASIC](https://en.wikipedia.org/wiki/BASIC)
+    - [PL/I](https://en.wikipedia.org/wiki/PL/I)
+    - [BCPL](https://en.wikipedia.org/wiki/BCPL)
+    - [Logo](https://en.wikipedia.org/wiki/Logo_(programming_language))
+    - [B](https://en.wikipedia.org/wiki/B_(programming_language))
+
+=== "1970"
+
+    - [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language))
+    - [Forth](https://forth-standard.org/)
+    - [C](https://en.wikipedia.org/wiki/C_(programming_language))
+    - [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk)
+    - [Prolog](https://www.swi-prolog.org/)
+    - [ML](https://en.wikipedia.org/wiki/ML_(programming_language))
+    - [Scheme](https://schemers.org/)
+    - [SQL](https://en.wikipedia.org/wiki/SQL)
+    - [Modula-2](https://en.wikipedia.org/wiki/Modula-2)
+
+=== "1980"
+
+    - [C++](https://isocpp.org/)
+    - [Ada](https://en.wikipedia.org/wiki/Ada_(programming_language))
+    - [Common Lisp (C-LISP)](https://common-lisp.net/)
+    - [MATLAB](https://www.mathworks.com/products/matlab.html)
+    - [Eiffel](https://en.wikipedia.org/wiki/Eiffel_(programming_language))
+    - [Objective-C](https://en.wikipedia.org/wiki/Objective-C)
+    - [Erlang](https://www.erlang.org/)
+    - [Perl](https://www.perl.org/)
+    - [Tcl](https://www.tcl.tk/)
+    - [Mathematica](https://www.wolfram.com/mathematica/)
+    - [FL](https://en.wikipedia.org/wiki/FL_(programming_language))
+
+=== "1990"
+
+    - [Haskell](https://www.haskell.org/)
+    - [Python](https://www.python.org/)
+    - [Visual Basic](https://en.wikipedia.org/wiki/Visual_Basic)
+    - [HTML](https://html.spec.whatwg.org/)
+    - [Ruby](https://www.ruby-lang.org/)
+    - [Lua](https://www.lua.org/)
+    - [R](https://www.r-project.org/)
+    - [Java](https://www.java.com/)
+    - [Delphi](https://www.embarcadero.com/products/delphi)
+    - [JavaScript](https://developer.mozilla.org/docs/Web/JavaScript)
+    - [PHP](https://www.php.net/)
+    - [WebDNA](https://en.wikipedia.org/wiki/WebDNA)
+    - [Rebol](https://www.rebol.com/)
+    - [CLOS](https://en.wikipedia.org/wiki/Common_Lisp_Object_System)
+
+=== "2000"
+
+    - [ActionScript](https://en.wikipedia.org/wiki/ActionScript)
+    - [C#](https://learn.microsoft.com/dotnet/csharp/)
+    - [VB.NET](https://learn.microsoft.com/dotnet/visual-basic/)
+    - [F#](https://fsharp.org/)
+    - [Groovy](https://groovy-lang.org/)
+    - [Scala](https://www.scala-lang.org/)
+    - [Factor](https://factorcode.org/)
+    - [Scratch](https://scratch.mit.edu/)
+    - [Clojure](https://clojure.org/)
+    - [Go](https://go.dev/)
+
+=== "2010"
+
+    - [Rust](https://www.rust-lang.org/)
+    - [Dart](https://dart.dev/)
+    - [Kotlin](https://kotlinlang.org/)
+    - [Elixir](https://elixir-lang.org/)
+    - [TypeScript](https://www.typescriptlang.org/)
+    - [Julia](https://julialang.org/)
+    - [Swift](https://developer.apple.com/swift/)
+    - [Raku](https://raku.org/)
+
+=== "2020"
+
+    - [Carbon](https://github.com/carbon-language/carbon-lang)
+    - [Gleam](https://gleam.run/)
+    - [Mojo](https://www.modular.com/mojo)    
 
 El **número** actual de lenguajes de programación depende de lo que se considere un lenguaje de programación y a quién se pregunte:
 

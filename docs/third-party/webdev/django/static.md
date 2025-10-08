@@ -72,16 +72,34 @@ Para acceder a ficheros estáticos desde una plantilla Django debemos utilizar l
 
 Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <span class="example">ejemplo:material-flash:</span> anterior del «blog»:
 
-```htmldjango 
+```htmldjango title="shared/templates/base.html" hl_lines="1 9 14 19"
 {% load static %}<!--(1)!-->
 
-<link rel="stylesheet" href="{% static 'css/base.css' %}"><!--(2)!-->
-<img src="{% static 'images/logo.svg' %}"/><!--(3)!-->
-<img src="{% static 'posts/images/like.png' %}"/><!--(4)!-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"><!--(2)!-->
+  </head>
+
+  <body>
+    <header>
+        <img src="{% static 'images/logo.svg' %}"/><!--(3)!-->
+    </header>
+
+    <p>
+        I like this post
+        <img src="{% static 'posts/images/like.png' %}"/><!--(4)!-->
+    </p>
+  </body>
+</html>
 ```
 { .annotate }
 
-1. Es necesario cargar la etiqueta `static`.
+1.  - Es necesario cargar la etiqueta `static`.
+    - Debería escribirse al principio de la plantilla, eso sí, siempre después de [`{% extends %}`](templates.md#inheritance) que debe ser la primera..
 2. URL generada: `/static/css/base.css`
 3. URL generada: `/static/images/logo.svg`
 4. URL generada: :material-arrow-right-box: `/static/posts/images/like.png`

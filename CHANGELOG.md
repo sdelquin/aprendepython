@@ -2,6 +2,21 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## Version 2.0.10
+
+Publicada el 08-10-2025
+
+- Añade documentación específica de `justfile` para Django.
+- Completa documentación de:
+  - Fundamentos del lenguaje: Algo de historia.
+  - Fundamentos del lenguaje: Números.
+  - Fundamentos del lenguaje: Cadenas de texto.
+  - Django: Aplicaciones.
+  - Django: Formularios.
+  - Django: Modelos.
+  - Django: Puesta en marcha.
+  - Django: Estáticos.
+
 ## Version 2.0.9
 
 Publicada el 07-10-2025

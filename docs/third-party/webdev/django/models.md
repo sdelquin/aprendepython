@@ -180,13 +180,8 @@ Tras cualquier modificación del fichero `models.py` es necesario:
         1. Admite la posibilidad de indicar una aplicación como argumento para crear únicamente las migraciones de dicha aplicación.
 
         ??? abstract "justfile"
-        
-            ```makefile
-            alias mm:=makemigrations
-            # Make model migrations
-            makemigrations app="":
-                uv run manage.py makemigrations {{app}}
-            ```
+
+            Consulta la receta [`makemigrations`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 === ":two: Aplicar migración"
 
@@ -211,13 +206,8 @@ Tras cualquier modificación del fichero `models.py` es necesario:
         1. Admite la posibilidad de indicar una aplicación como argumento para aplicar únicamente las migraciones de dicha aplicación.
 
         ??? abstract "justfile"
-        
-            ```makefile
-            alias m:=migrate
-            # Apply model migrations
-            migrate app="":
-                uv run manage.py migrate {{app}}
-            ```
+
+            Consulta la receta [`migrate`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 ### Ficheros de migración { #migration-files }
 
@@ -337,12 +327,7 @@ Django nos ofrece la posibilidad de comprobar el registro de migraciones:
 
     ??? abstract "justfile"
     
-        ```makefile
-        alias sm:=showmigrations
-        # Show migrations
-        showmigrations app="":
-            uv run manage.py showmigrations {{app}}
-        ```
+        Consulta la receta [`showmigrations`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 :material-check-all:{ .blue } Aquellas migraciones marcadas con :octicons-x-12:{.hl} significa que ya se han aplicado.
 
@@ -486,13 +471,8 @@ Django nos permite abrir una «shell» (intérprete interactivo de Python) con l
     ```
 
     ??? abstract "justfile"
-    
-        ```makefile
-        alias sh:=shell
-        # Open project (django) shell
-        shell:
-            uv run manage.py shell
-        ```
+
+        Consulta la receta [`shell`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 Como puede verse en el fragmento de código anterior, Django importa automáticamente(1) distintos objetos de nuestro proyecto. En el caso concreto de nuestro «blog» se han importado los siguientes:
 { .annotate }
@@ -588,13 +568,8 @@ Django nos permite abrir una «shell» de base de datos (interfaz de comandos de
     ```
 
     ??? abstract "justfile"
-    
-        ```makefile
-        alias dbsh:=dbshell
-        # Open database shell
-        dbshell:
-            uv run manage.py dbshell
-        ```
+
+        Consulta la receta [`dbshell`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 Podemos comprobar con una sencilla consulta SQL que el objeto se ha creado correctamente en la base de datos:
 

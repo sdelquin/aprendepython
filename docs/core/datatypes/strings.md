@@ -341,6 +341,9 @@ Es posible extraer «trozos» («rebanadas»)[^1] de una cadena de texto. Tenemo
 
     Se indica con la sintaxis `#!python [start:end]`
 
+    ![Dark image](images/strings/string-slicing-dark.svg#only-dark)
+    ![Light image](images/strings/string-slicing-light.svg#only-light)
+
     ```pycon
     >>> proverb = 'Agua pasada no mueve molino'
     >>> proverb[5:11]
@@ -414,6 +417,10 @@ Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 { .annotate }
 
 1. La cadena vacía siempre tiene longitud 0.
+
+!!! exercise "Ejercicio"
+
+    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `half-turn`
 
 ### Pertenencia de un elemento { #in }
 
