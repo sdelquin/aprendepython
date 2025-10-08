@@ -193,6 +193,7 @@ nav:
               - third-party/webdev/django/i18n.md
               - third-party/webdev/django/extras.md
               - third-party/webdev/django/api.md
+              - third-party/webdev/django/justfile.md
       - PDF:
           - third-party/pdf/index.md
           - third-party/pdf/weasyprint.md
