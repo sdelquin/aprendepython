@@ -561,6 +561,39 @@ Traceback (most recent call last):
 ValueError: substring not found
 ```
 
+Es posible indicar un **rango** sobre el que buscar. Para ello podemos indicar los índices de comienzo y/o fin sobre las funciones ya vistas.
+
+Por <span class="example">ejemplo:material-flash:</span> utilizamos `#!python find()` para buscar la palabra «tu» en la letra de la canción anterior:
+
+```pycon
+>>> lyrics = """Quizás porque mi niñez
+... Sigue jugando en tu playa
+... Y escondido tras las cañas
+... Duerme mi primer amor
+... Llevo tu luz y tu olor
+... Por dondequiera que vaya"""
+
+>>> lyrics.find('tu')#(1)!
+40
+
+>>> lyrics.find('tu', 41)#(2)!
+104
+
+>>> lyrics.find('tu', 105, 200)#(3)!
+113
+```
+{ .annotate }
+
+1. El primer «tu» está en la posición 40.
+2. Buscamos a partir de la posición 41 y encuentra el segundo «tu» en la posición 104.
+3. Buscamos entre la posición 105 y la posición 200 y encuentra el tercer «tu» en la posición 113.
+
+!!! info "Por la derecha :fontawesome-solid-hand-point-right:"
+
+    Django proporciona las funciones [`rfind()`](https://docs.python.org/3/library/stdtypes.html#str.rfind) y [`rindex()`](https://docs.python.org/3/library/stdtypes.html#str.rindex) que se comportan de manera análoga a las ya explicadas pero empiezan la búsqueda **por la derecha** de la cadena de texto.
+
+### Contar ocurrencias { #count }
+
 Para contabilizar el **número de veces que aparece** una subcadena utilizamos la función `count()`:
 
 ```pycon
@@ -742,6 +775,16 @@ Los «f-strings» proporcionan una gran variedad de **opciones de formateado**: 
     >>> f'{mount_height:010d}'
     '0000003718'
     ```
+    
+    ??? tip "zfill :fontawesome-brands-creative-commons-zero:"
+    
+        Django proporciona la función [`zfill()`](https://docs.python.org/3/library/stdtypes.html#str.zfill) que rellena la cadena de texto (como número) con la cantidad indicada de ceros:
+
+        ```pycon
+        >>> value = '3718'
+        >>> value.zfill(10)
+        '0000003718'
+        ```
 
 === "Formateando flotantes"
 
@@ -774,6 +817,16 @@ Los «f-strings» proporcionan una gran variedad de **opciones de formateado**: 
     { .annotate }
     
     1. Por defecto se muestran **6 cifras decimales**.
+
+    ??? tip "zfill :fontawesome-brands-creative-commons-zero:"
+    
+        Django proporciona la función [`zfill()`](https://docs.python.org/3/library/stdtypes.html#str.zfill) que rellena la cadena de texto (como número) con la cantidad indicada de ceros:
+
+        ```pycon
+        >>> PI = '3.1415926'
+        >>> PI.zfill(10)
+        '03.1415926'
+        ```
 
 === "Formateando cadenas"
 
