@@ -63,8 +63,8 @@ En este apartado veremos cómo acceder a ficheros estáticos tanto desde una pla
 
 Hay dos variables importantes en `settings.py` que definen el comportamiento de los estáticos en un proyecto Django:
 
-- [`STATIC_URL`](https://docs.djangoproject.com/en/5.2/ref/settings/#std-setting-STATIC_URL): Define la URL que se utilizará cuando hagamos referencia a un fichero estático. Su valor por defecto es `#!python 'static/'`.
-- [`STATICFILES_DIRS`](https://docs.djangoproject.com/en/5.2/ref/settings/#std-setting-STATICFILES_DIRS): Define directorios adicionales donde Django irá a buscar ficheros estáticos. Su valor por defecto es `#!python []`.
+- [`STATIC_URL`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-STATIC_URL): Define la URL que se utilizará cuando hagamos referencia a un fichero estático. Su valor por defecto es `#!python 'static/'`.
+- [`STATICFILES_DIRS`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-STATICFILES_DIRS): Define directorios adicionales donde Django irá a buscar ficheros estáticos. Su valor por defecto es `#!python []`.
 
 ### Estáticos en plantillas { #template-usage }
 
@@ -103,6 +103,29 @@ Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <sp
 2. URL generada: `/static/css/base.css`
 3. URL generada: `/static/images/logo.svg`
 4. URL generada: :material-arrow-right-box: `/static/posts/images/like.png`
+
+=== "Tab"
+
+    
+
+!!! tip "Caché"
+
+    Los navegadores web tratan de cachear[^1] todo el contenido que pueden para así acelerar la carga de las páginas. Es por ello que, a veces, no verás reflejados los cambios en ciertos ficheros estáticos.
+    
+    Si es tu caso, puedes probar a recargar el navegador sin caché:
+
+    === "Windows :fontawesome-brands-windows:"
+
+        <kbd>Ctrl + F5</kbd>
+    
+    === "Linux :simple-linux:"
+    
+        <kbd>Ctrl + F5</kbd>
+        
+    === "macOS :simple-apple:"
+    
+        <kbd>Cmd + Shift + R</kbd>          
+
 
 ### Estáticos en vistas { #view-usage }
 
@@ -229,3 +252,5 @@ Suponiendo que disponemos de una [plantilla base](templates.md#inheritance) tend
 6. Cargamos los scripts de Bootstrap.
 
 :material-check-all:{ .blue } A partir de aquí ya podremos usar todos los recursos que nos proporciona Bootstrap para diseñar una interfaz de usuario moderna, responsiva y funcional.
+
+[^1]: Guardar copias de datos de forma temporal en una ubicación de almacenamiento más rápida.

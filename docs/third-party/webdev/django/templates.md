@@ -10,6 +10,10 @@ Las [plantillas en Django](https://docs.djangoproject.com/en/stable/topics/templ
 
 Las plantillas constituyen la **capa de presentación** del [modelo por capas](webdev.md#layer-model) visto en la introducción al desarrollo web.
 
+!!! tip "Nombres de plantillas"
+
+    Las plantillas son ficheros HTML cuyo nombre se escribe habitualmente en formato [`kebab-case`](https://developer.mozilla.org/en-US/docs/Glossary/Kebab_case), es decir, en **minúsculas** separados por **guiones medios**. Por <span class="example">ejemplo:material-flash:</span> `flight-departures.html`
+
 ## Ubicación { #location }
 
 Cuando hacemos referencia a una plantilla —habitualmente desde una [vista](views.md)— mediante una ruta (relativa), Django utiliza la siguiente estrategia para localizar la plantilla indicada:
@@ -77,7 +81,7 @@ flowchart TD
 
 !!! danger "TemplateDoesNotExist"
 
-    Uno de los errores más habituales desarrollando proyectos Django es el de [`TemplateDoesNotExist`](https://docs.djangoproject.com/en/5.2/topics/templates/#django.template.TemplateDoesNotExist), que nos indica que no es posible encontrar la plantilla en la ruta indicada.
+    Uno de los errores más habituales desarrollando proyectos Django es el de [`TemplateDoesNotExist`](https://docs.djangoproject.com/en/stable/topics/templates/#django.template.TemplateDoesNotExist), que nos indica que no es posible encontrar la plantilla en la ruta indicada.
 
 Una tabla resumen que puede aclarar distintos escenarios:
 

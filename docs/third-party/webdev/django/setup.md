@@ -66,7 +66,7 @@ Es altamente recomendable utilizar un [entorno virtual](../../../core/devenv/rea
     Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](https://docs.astral.sh/uv/guides/projects/) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
 
     ```console
-    $ uv init --bare #(1)!
+    $ uv init --bare --no-workspace #(1)!
     Initialized project `blog`
     ```
     { .annotate }
@@ -184,6 +184,10 @@ Para verificar que todo está en orden podemos comprobar el estado del proyecto 
     $ uv run manage.py check
     System check identified no issues (0 silenced).
     ```
+    
+    ??? abstract "justfile"
+
+        Consulta la receta [`check`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 Antes de arrancar nuestro proyecto Django por primera vez, necesitamos aplicar las [migraciones](models.md#migrations). Aunque se verán con más profundidad en futuras secciones, en este punto podemos entender que hay una serie de acciones a llevar a cabo en la base de datos para que Django pueda disponer de una estructura sobre la que trabajar.
 
@@ -243,6 +247,10 @@ Para ello ejecutamos el siguiente comando:
       Applying sessions.0001_initial... OK
     ```
 
+    ??? abstract "justfile"
+
+        Consulta la receta [`migrate`](justfile.md#django-justfile) para incluirla en tu `justfile`.
+
 Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** de Django:
 
 === "*venv* :octicons-package-24:{.blue}"
@@ -259,7 +267,7 @@ Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** d
     Quit the server with CONTROL-C.
     
     WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
-    For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+    For more information on production servers see: https://docs.djangoproject.com/en/stable/howto/deployment/
     ```
 
 === "*uv* &nbsp;:simple-uv:{.uv}"
@@ -276,8 +284,12 @@ Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** d
     Quit the server with CONTROL-C.
     
     WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
-    For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+    For more information on production servers see: https://docs.djangoproject.com/en/stable/howto/deployment/
     ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`dev`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 Siempre y cuando no haya surgido algún inconveniente de última hora, con esto ya tendremos accesible el proyecto en la URL http://127.0.0.1:8000/ (1)
 { .annotate }
@@ -297,6 +309,10 @@ Siempre y cuando no haya surgido algún inconveniente de última hora, con esto 
     ```bash
     pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
     ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`kill`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 ### Interfaz administrativa { #admin }
 
@@ -325,6 +341,10 @@ Para poder acceder a dicha interfaz administrativa, obviamente necesitaremos una
     Password (again):
     Superuser created successfully.
     ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`create-su`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 Ahora ya podremos acceder a la **interfaz administrativa**[^3] en la URL http://127.0.0.1:8000/admin/ con las credenciales anteriores.
 

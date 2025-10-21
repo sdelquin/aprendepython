@@ -333,7 +333,7 @@ Django nos ofrece la posibilidad de comprobar el registro de migraciones:
 
 ## Base de datos { #database }
 
-La configuración de la base de datos del proyecto se encuentra en la variable [`DATABASES`](https://docs.djangoproject.com/en/5.2/ref/settings/#std-setting-DATABASES) del fichero `settings.py` y (por defecto) tiene este aspecto:
+La configuración de la base de datos del proyecto se encuentra en la variable [`DATABASES`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-DATABASES) del fichero `settings.py` y (por defecto) tiene este aspecto:
 
 ```python title="main/settings.py"
 DATABASES = {
@@ -597,7 +597,11 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que `p` es u
 >>> p.save()
 ```
 
-Cuando se trata de [claves ajenas](#foreign-keys) el procedimiento es igual salvo que estamos asignando un objeto de modelo a un atributo. Rescatando el <span class="example">ejemplo:material-flash:</span> de los comentarios de un «post» tendríamos lo siguiente:
+#### Guardando objetos con claves ajenas { #save-objects-fk }
+
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+
+Cuando se trata de [claves ajenas](#foreign-keys) el procedimiento es igual salvo que estamos asignando un objeto de modelo a un atributo. Suponiendo un <span class="example">ejemplo:material-flash:</span> de «blog» que contemple comentarios sobre un «post» tendríamos lo siguiente:
 
 ```pycon hl_lines="10"
 >>> post = Post.create(
@@ -673,6 +677,20 @@ En el siguiente <span class="example">ejemplo:material-flash:</span> vamos a rec
     except Post.DoesNotExist as err:
         print('Sorry the post you need does not exist')
     ```
+
+Es posible que en cierta documentación de Django encuentres la siguiente «fórmula» para obtener un único objeto:
+
+```python
+post = Post.objects.filter(pk=7).first()#(1)!
+```
+{ .annotate }
+
+1. Utilizamos la función [`first()`](#first-last).
+
+Hay que diferenciar dos casos:
+
+1. Si el «post» que buscamos existe, lo obtendremos en la variable `post`.
+2. Si el «post» que buscamos no existe, obtendremos `#!python None` (a diferencia de `get()` donde se lanza una excepción).
 
 #### Excluyendo objetos { #exclude-objects }
 
@@ -765,6 +783,19 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
 1.  - En **SQLite :simple-sqlite:** ignora mayúsculas/minúsculas.
     - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
     
+#### Recuperando objetos con claves ajenas { #retrieve-objects-fk }
+
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+
+En un escenario de [claves ajenas](#foreign-keys) podemos filtrar por los campos del objeto «relacionado».
+
+Por <span class="example">ejemplo:material-flash:</span> supongamos que queremos recuperar todos los comentarios de los «posts» que empiecen por la palabra «Hoy»:
+
+```pycon
+>>> Comment.objects.filter(post__title__startswith('Hoy'))
+```
+
+:material-check-all:{ .blue } Para acceder a un campo de un objeto relacionado (_clave ajena_) hay que utilizar doble subguión. Véase `post__title`.
 
 ### Borrando objetos { #delete-objects }
 
@@ -814,6 +845,19 @@ Si queremos por <span class="example">ejemplo:material-flash:</span> sacar el n�
 
     Aunque el resultado es el mismo que utilizando `.count()`, esta consulta es mucho más costosa ya que se recuperan todos los objetos de la tabla (`#!sql SELECT * FROM posts_post`) y luego se cuentan.
 
+#### Comprobando existencia { #existence }
+
+No siempre buscamos contar el número de resultados sino que únicamente necesitamos saber si **existen** o no objetos para una determinada consulta. Es por ello que Django ofrece el método [`exists()`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet.exists) que devuelve `#!python True` o `#!python False`.
+
+Por <span class="example">ejemplo:material-flash:</span> si queremos saber si existen «posts» que comienzan por la letra «A»:
+
+```pycon
+>>> from posts.models import Post
+
+>>> if Post.objects.filter(title__startswith='A').exists():
+...     print('Hay posts que empiezan por la letra A')
+```
+
 ### Ordenando resultados { #ordering }
 
 Es muy habitual querer ordenar el resultado de una consulta por uno o varios campos. Para ello Django nos ofrece la función [`order_by()`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#order-by).
@@ -835,6 +879,92 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos
     Por defecto el método `order_by()` ordena de forma **ascendente** por los campos indicados. Si queremos aplicar una ordenación **descendente** basta con añadir un _guión medio_ `-` delante del campo.
 
     Por <span class="example">ejemplo:material-flash:</span> `#!python Post.objects.order_by('-title')` ordenaría los «posts» por su título de forma descendente (es decir de la `Z` a la `A`).
+
+#### Primeros y últimos { #first-last }
+
+Django ofrece varias funciones para acceder a los primeros y últimos objetos de una consulta que cumplan ciertas condiciones:
+
+=== "`first`"
+
+    [`first`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#first) devuelve el primer objeto del [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) correspondiente. Por <span class="example">ejemplo:material-flash:</span> para obtener el primer «post» por orden de _título_ haríamos:
+
+    ```pycon
+    >>> Post.objects.order_by('title').first()
+    ```
+
+=== "`last`"
+
+    [`last`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#last) devuelve el último objeto del [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) correspondiente. Por <span class="example">ejemplo:material-flash:</span> para obtener el último «post» por orden de _título_ haríamos:
+
+    ```pycon
+    >>> Post.objects.order_by('title').last()
+    ```
+
+=== "`earliest`"
+
+    [`earliest`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#earliest) devuelve el objeto del [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) con el menor valor del campo indicado. Por <span class="example">ejemplo:material-flash:</span> para obtener el «post» con menor _clave primaria_ haríamos:
+
+    ```pycon
+    >>> Post.objects.earliest('pk')
+    ```
+
+=== "`latest`"
+
+    [`latest`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#latest) devuelve el objeto del [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) con el mayor valor del campo indicado. Por <span class="example">ejemplo:material-flash:</span> para obtener el «post» con mayor _clave primaria_ haríamos:
+
+    ```pycon
+    >>> Post.objects.latest('pk')
+    ```
+
+### Actualizando objetos { #update }
+
+Django proporciona el método [`update()`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet.update) para **actualizar múltiples objetos a la vez**.
+
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos borrar el contenido de todos los «posts» de nuestro «blog». Para ello podemos utilizar esta aproximación:
+
+```pycon
+>>> Post.objects.update(content='')#(1)!
+10
+```
+{ .annotate }
+
+1.  - El método devuelve el número de objetos afectados.
+    - Es posible indicar varios atributos a actualizar simultáneamente.
+    - Obviamente también se puede utilizar sobre una operación de [filtrado](#retrieve-some).
+
+### Refrescando objetos { #refresh }
+
+Hay ocasiones en las que los valores de un objeto (de modelo) no están sincronizados con sus correspondientes en la base de datos. Para actualizar dichos atributos, Django ofrece el método [`refresh_from_db()`](https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.arefresh_from_db).
+
+Por <span class="example">ejemplo:material-flash:</span> un «post» que se actualiza en la base de datos pero no en memoria:
+
+```pycon
+>>> from posts.models import Post
+
+>>> post = Post.objects.get(slug='first-post')#(1)!
+
+>>> post.content#(2)!
+'First post'
+
+>>> Post.objects.filter(slug='first-post').update(content='Updated content')#(3)!
+1
+
+>>> post.content#(4)!
+'First post'
+
+>>> post.refresh_from_db()#(5)!
+
+>>> post.content#(6)!
+'Updated content'
+```
+{ .annotate }
+
+1. Recuperamos un determinado «post» de nuestro «blog».
+2. Comprobamos su contenido.
+3. Actualizamos su contenido (en la base de datos).
+4. Comprobamos su contenido (en memoria) que no está sincronizado con la base de datos.
+5. Refrescamos el objeto desde la base de datos.
+6. Comprobamos que qhora su contenido (en memoria) sí coincide con el que tiene la base de datos.
 
 ## Tipos enumerados { #enums }
 
@@ -1282,12 +1412,14 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
 
 === "Añadir :octicons-diff-added-16:"
 
+    Utilizamos el método [`add()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.add) para añdir objetos relacionados:
+
     ```pycon title="Añadir etiquetas a un «post»"
     >>> post_python.labels.add(label_tech)#(1)!
     ```
     { .annotate }
     
-    1. También se pueden añadir varias a la etiquetas a la vez:
+    1.  También se pueden añadir varias a la etiquetas a la vez:
 
         ```pycon
         >>> post_python.labels.add(label_tech, label_ai)
@@ -1298,7 +1430,7 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
     ```
     { .annotate }
     
-    2. También se pueden añadir varios «posts» a la vez:
+    1. También se pueden añadir varios «posts» a la vez:
 
         ```pycon
         >>> label_ai.posts.add(post_python, post_midjourney)
@@ -1306,14 +1438,15 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
 
 === "Crear y añadir :material-creation-outline:"
 
+    Utilizamos el método [`create()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.create) para crear y añdir objetos relacionados:
+
     ```pycon title="Crear etiqueta y añadirla a un «post»"
     >>> post_python.labels.create(name='Technology', slug='tech')#(1)!
     <Label: Technology>
     ```
     { .annotate }
     
-    1.  - Utilizamos el método `create()` que **devuelve el objeto creado**.
-        - Hay que darle valor a todos los atributos obligatorios de la etiqueta.
+    1.  Hay que darle valor a todos los atributos obligatorios de la etiqueta.
 
     ```pycon title="Crear «post» y añadirlo a una etiqueta"
     >>> label_ai.posts.create(title='Midjourney', content='Awesome images')#(1)!
@@ -1321,8 +1454,25 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
     ```
     { .annotate }
     
-    1.  - Utilizamos el método `create()` que **devuelve el objeto creado**.
-        - Hay que darle valor a todos los atributos obligatorios del «post».
+    1.  Hay que darle valor a todos los atributos obligatorios del «post».
+
+=== "Fijar :material-screw-flat-top:"
+
+    Utilizamos el método [`set()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.set) para fijar objetos relacionados:
+
+    ```pycon title="Fijar las etiquetas de un «post»"
+    >>> post_python.labels.set([label_tech, label_ai])#(1)!
+    ```
+    { .annotate }
+    
+    1. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
+
+    ```pycon title="Fijar los «posts» de una etiqueta"
+    >>> label_ai.posts.set([post_python, post_midjourney])#(1)!
+    ```
+    { .annotate }
+    
+    1. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
     
 === "Consultar :material-magnify:"
 
@@ -1344,12 +1494,14 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
 
 === "Eliminar :material-delete:"
 
+    Utilizamos el método [`remove()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.remove) para eliminar objetos relacionados:
+
     ```pycon title="Eliminar etiquetas de un «post»"
     >>> post_python.labels.remove(label_ai)#(1)!
     ```
     { .annotate }
     
-    1. Para eliminar **todas** las etiquetas de un «post»:
+    1.  Para eliminar **todas** las etiquetas de un «post» utilizamos el método [`clear()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.clear):
         
         ```pycon
         >>> post_python.labels.clear()
@@ -1360,7 +1512,7 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
     ```
     { .annotate }
     
-    1. Para eliminar **todos** los «posts» de una etiqueta:
+    1.  Para eliminar **todos** los «posts» de una etiqueta utilizamos el método [`clear()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.clear):
         
         ```pycon
         >>> label_ai.posts.clear()
@@ -1553,6 +1705,32 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
     
     1. Utilizamos el método `create()` que **devuelve el objeto creado**.
     2. Hay que darle valor a todos los atributos obligatorios del «post».
+    3. Especificamos el/los campo(s) de la relación intermedia.
+
+=== "Fijar :material-screw-flat-top:"
+
+    ```pycon title="Fijar las etiquetas de un «post»"
+    >>> post_python.labels.set(#(1)!
+    ... [label_tech, label_ai],#(2)!
+    ... through_defaults={'labelled_because': 'Python is cool tech'}#(3)!
+    )
+    ```
+    { .annotate }
+    
+    1. Utilizamos el método `set()` que **fija objetos relacionados**.
+    2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
+    3. Especificamos el/los campo(s) de la relación intermedia.
+
+    ```pycon title="Fijar los «posts» de una etiqueta"
+    >>> label_ai.posts.set(#(1)!
+    ... [post_python, post_midjourney],#(2)!
+    ... through_defaults={'labelled_because': 'Python is cool tech'}#(3)!
+    )
+    ```
+    { .annotate }
+    
+    1. Utilizamos el método `set()` que **fija objetos relacionados**.
+    2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
     3. Especificamos el/los campo(s) de la relación intermedia.
 
 === "Consultar :material-magnify:"

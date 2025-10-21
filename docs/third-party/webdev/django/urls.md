@@ -168,6 +168,80 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 | `#!python path('<uuid:token>', ...)` | `/075194d3-6885-417e-a8a8-6c931e272f00/`  | Casa con cualquier UUID y retorna un objeto [UUID](https://docs.python.org/3/library/uuid.html#uuid.UUID) |
 | `#!python path('<path:resource_path>', ...)` | `/products/tech/logitech-keyboard/`  | Casa con cualquier cadena de caracteres cinluyendo el separador `/` y retorna un `#!python str` |
 
+### Conversores personalizados { #custom-path-converters }
+
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+
+Django permite ~~crear~~ registrar [conversores de rutas personalizados](https://docs.djangoproject.com/en/stable/topics/http/urls/#registering-custom-path-converters) de tal forma que obtenemos un objeto del tipo (clase) deseado directamente en la vista.
+
+Y además es muy fácil de implementar. Lo único que necesitamos es escribir una clase con dos métodos concretos y registrarla convenientemente.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un **conversor personalizado** para un «post» de un «blog» a partir de su _slug_:
+
+=== "Conversor"
+
+    ```python title="posts/converters.py"
+    from .models import Post#(1)!
+
+
+    class PostConverter:#(2)!
+        regex = r'[\w-]+'#(3)!
+
+        def to_python(self, post_slug: str) -> Post:#(4)!
+            try:
+                return Post.objects.get(slug=post_slug)
+            except Post.DoesNotExist:
+                # handle error
+
+        def to_url(self, post: Post) -> str:#(5)!
+            return post.slug
+    ```
+    { .annotate }
+    
+    1. Importamos el modelo sobre el que vamos a trabajar.
+    2. Aunque sólo es una convención, si el modelo es `Model` llamamos `ModelConverter` al conversor.
+    3. Hay que especificar la [expresión regular](../../../stdlib/text-processing/re.md) que captura el patrón en la URL.
+    4. Este método convierte el patrón capturado `#!python str` en el objeto correspondiente.
+    5. Este método convierte el objeto en la subruta de la URL.
+
+=== "URLs"
+
+    ```python title="posts/urls.py" hl_lines="1 3 7 11"
+    from django.urls import path, register_converter#(1)!
+
+    from . import converters, views#(2)!
+
+
+    app_name = 'posts'
+    register_converter(converters.PostConverter, 'post')#(3)!
+
+    urlpatterns = [
+        path('', views.post_list, name='post-list')
+        path('<post:post>/', views.post_detail, name='post-detail')#(4)!
+    ]
+    ```    
+    { .annotate }
+    
+    1. Necesitamos importar la función `register_converter()` para registrar el conversor.
+    2. Necesitamos importar el módulo `converters` de conversores personalizados.
+    3. Registramos el conversor asignándole un identificador que utilizaremos en la ruta.
+    4. Indicamos que estamos capturando un objeto de tipo «post» con el conversor previamente registrado.
+
+=== "Vista"
+
+    ```python title="posts/views.py" hl_lines="6"
+    from django.shortcuts import render
+
+    from .models import Post
+
+
+    def post_detail(request, post: Post):#(1)!
+        return render(request, 'posts/post/detail.html', {'post': post})
+    ```
+    { .annotate }
+    
+    1. Directamente la vista está recibiendo un objeto de modelo `Post`.
+
 ## Redirección { #redirect }
 
 Se considera una mala práctica «hardcodear»[^1] las URLs directamente (tanto en vistas como en plantillas) ya que, ante un determinado cambio de una URL en el futuro, tendremos que localizar todas las ocurrencias de dicha URL en el código y modificarlas.
@@ -304,6 +378,62 @@ urlpatterns = [
 1.  - Simulamos una vista mediante una función [lambda](../../../core/modularity/functions.md#lambda).
     - Como no usamos el supuesto parámetro `request` escribimos `_` como primer argumento.
     - Poner la redirección «lambda» en primer lugar es una _buena práctica_ para visualizar más claramente las URLs.
+
+## Pasar argumentos a una vista { #args-to-view }
+
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+
+Hay ocasiones en las que interesa pasar argumentos a una vista desde la propia URL.
+
+Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambiamos el estado de publicación** de un determinado «post» en un «blog»:
+
+=== "URLs"
+
+    ```python title="posts/urls.py" hl_lines="11 17"
+    from django.urls import path
+
+    from . import views
+
+
+    urlpatterns = [
+        path(
+            '<slug:post_slug>/status/approved/',
+            views.change_post_status,
+            name='change-post-status',
+            kwargs={'post_status': Post.Status.APPROVED}#(1)!
+        ),
+        path(
+            '<slug:post_slug>/status/published/',
+            views.change_post_status,
+            name='change-post-status',
+            kwargs={'post_status': Post.Status.PUBLISHED}#(2)!
+        ),
+    ]
+    ```
+    { .annotate }
+    
+    1. Pasamos los argumentos que recibe la vista como nominales.
+    2. Pasamos los argumentos que recibe la vista como nominales.
+
+=== "Vista"
+
+    ```python title="posts/views.py" hl_lines="6 9"
+    from django.http import HttpResponse
+
+    from .models import Post
+
+
+    def change_post_status(request, post_slug: str, post_status: Post.Status):#(1)!
+        try:
+            post = Post.objects.get(slug=post_slug)
+            post.status = post_status
+            post.save()
+        except Post.DoesNotExist:
+            return HttpResponse('Post does not exist')
+    ```
+    { .annotate }
+    
+    1. El parámetro `post_status` vendrá establecido desde `posts/urls.py`.
 
 ## Expresiones regulares { #regex }
 

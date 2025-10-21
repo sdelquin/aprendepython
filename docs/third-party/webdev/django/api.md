@@ -305,7 +305,7 @@ A la hora de elegir cuál debemos aplicar se podrían seguir estas sencillas ins
 
 En el apartado de [formularios](forms.md#template-forms) ya hemos visto algo sobre CSRF.
 
-Para poder trabajar de forma «sencilla» con la API vamos a introducir el decorador [`csrf_exempt`](https://docs.djangoproject.com/es/5.1/ref/csrf/#django.views.decorators.csrf.csrf_exempt). Django proporciona este decorador para dejar exenta a una vista de aplicarle los mecanismos de seguridad sobre CSRF:
+Para poder trabajar de forma «sencilla» con la API vamos a introducir el decorador [`csrf_exempt`](https://docs.djangoproject.com/es/stable/ref/csrf/#django.views.decorators.csrf.csrf_exempt). Django proporciona este decorador para dejar exenta a una vista de aplicarle los mecanismos de seguridad sobre CSRF:
 
 ```python
 from django.views.decorators.csrf import csrf_exempt

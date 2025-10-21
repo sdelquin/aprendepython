@@ -23,6 +23,13 @@ dev:
 
 # Run development server with external access
 dev0:
+    #!/usr/bin/env bash
+    IP=$(ip -br a | perl -lane 'print $1 if /^enp/ && $F[2] =~ m{([^/]+)}')
+    if grep -q $IP main/settings.py; then
+        uv run ./manage.py runserver 0.0.0.0:8000
+    else
+        echo "Add \"$IP\" to ALLOWED_HOSTS in main/settings.py"
+    fi
     uv run manage.py runserver 0.0.0.0:80
 
 alias c:=check
