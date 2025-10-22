@@ -966,18 +966,34 @@ Por <span class="example">ejemplo:material-flash:</span> un «post» que se actu
 5. Refrescamos el objeto desde la base de datos.
 6. Comprobamos que qhora su contenido (en memoria) sí coincide con el que tiene la base de datos.
 
+En realidad la operación `refresh_from_db()` es la opuesta a [`save()`](#save-objects):
+
+```mermaid
+flowchart TD
+    model@{ shape: div-rect, label: "Model instance" } --->|"<tt>save</tt>"| database@{ shape: cyl, label: "Database" }
+    database --->|"<tt>refresh_from_db</tt>"| model
+```
+
 ## Tipos enumerados { #enums }
 
 <span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
 
 Django nos permite definir [tipos enumerados](https://docs.djangoproject.com/en/stable/ref/models/fields/#enumeration-types) que establecen un conjunto (normalmente pequeño) de posibles valores.
 
+Un tipo enumerado se define por dos componentes: una **etiqueta** (nombre largo) y un **valor** (código corto). Lo que hace Django es almacenar en la base de datos únicamente el **valor**, mientras que la «etiqueta» se establece en la definición del campo.
+
+Por <span class="example">ejemplo:material-flash:</span> un tipo enumerado para representación de colores:
+
+| Etiqueta | Valor |
+| --- | --- |
+| Rojo | `#FF0000` |
+| Verde | `#00FF00` |
+| Azul | `#0000FF` |
+
 Se ofrecen dos variantes:
 
-- Tipos enumerados basados en **cadenas de texto**.
-- Tipos enumerados basados en **números enteros**.
-
-Lo que hace Django es almacenar en en la base de datos únicamente el **valor**, mientras que la «etiqueta» se establece en la definición del campo.
+:one: Tipos enumerados basados en **cadenas de texto**.  
+:two: Tipos enumerados basados en **números enteros**.
 
 ### Enumerados textuales { #textchoices }
 
@@ -1117,7 +1133,11 @@ class Post(models.Model):
 
 Una de las mayores fortalezas de los [Sistemas Gestores de Bases de Datos Relacionales](https://es.wikipedia.org/wiki/Sistema_de_gesti%C3%B3n_de_bases_de_datos_relacionales) RDBMS es la de poder «relacionar» entidades (_modelos_) mediante el uso de **claves ajenas**.
 
-Django nos ofrece muchas [funcionalidades](https://docs.djangoproject.com/en/stable/ref/models/fields/#module-django.db.models.fields.related) en este sentido.
+Django nos ofrece muchas [funcionalidades](https://docs.djangoproject.com/en/stable/ref/models/fields/#module-django.db.models.fields.related) en este sentido, que podemos agrupar en tres escenarios:
+
+:one: Relaciones uno a muchos  
+:two: Relaciones uno a uno  
+:three: Relaciones muchos a muchos
 
 ### Relaciones uno a muchos { #one-to-many }
 
@@ -1128,12 +1148,13 @@ erDiagram
     POST ||--o{ COMMENT : has
 ```
 
-> :material-alarm-light-outline: Un «post» tiene cero o muchos comentarios, pero un comentario está relacionado con un único «post».
+> :material-alarm-light-outline:{.hl} Un «post» tiene cero o muchos comentarios, pero un comentario está relacionado con un único «post».
 
 Para relacionar ambos modelos usamos un campo de tipo [`ForeignKey`](https://docs.djangoproject.com/en/stable/ref/models/fields/#foreignkey):
 
 ```python title="posts/models.py"
 from django.db import models
+
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
@@ -1164,16 +1185,23 @@ Analicemos cada parámetro de `ForeignKey` por separado:
 
     El parámetro [`related_name`](https://docs.djangoproject.com/en/stable/topics/db/queries/#backwards-related-objects) establece el nombre que podremos usar en el «otro lado de la relación» para recuperar todos los objetos vinculados.
 
-    En este <span class="example">ejemplo:material-flash:</span> del «blog», podríamos obtener los comentarios de un «post» de la siguiente manera:
+    Es una buena práctica que este parámetro se llame como la clase en la que está incluido pero **en minúsculas** y **en plural**:
 
-    ```pycon hl_lines="5"
+    ![Dark image](images/models/related_name-dark.svg#only-dark)
+    ![Light image](images/models/related_name-light.svg#only-light)
+
+    A través del «related name» es posible obtener todos los objetos relacionados. En el <span class="example">ejemplo:material-flash:</span> de los comentarios de un «post» tendríamos:
+
+    ```pycon hl_lines="4"
     >>> from posts.models import Post
 
-    >>> post = Post.objects.get(slug='django-related-models')
-
-    >>> post.comments.all()
+    >>> post = Post.objects.get(slug='django-is-awesome')
+    >>> post.comments.all()#(1)!
     <QuerySet [<Comment: This is cool>, <Comment: I don't understand it>, <Comment: Please explain it again>]>
     ```
+    { .annotate }
+
+    1. La forma ~~anti~~ natural podría sería: `#!python Comment.objects.filter(post=post)`
 
     :material-check-all:{ .blue } `related_name` no es un parámetro requerido, pero es ^^altamente recomendable^^ incluirlo.
 
@@ -1194,25 +1222,6 @@ Analicemos cada parámetro de `ForeignKey` por separado:
     | [`models.SET_DEFAULT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_DEFAULT) | Pone un valor por defecto en la clave ajena (necesario definir `default`). |
     | [`models.SET`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET) | Pone un valor dado en la clave ajena. |
     | [`models.DO_NOTHING`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DO_NOTHING) | No hace nada. Deja que la base de datos gestione el error de integridad. |
-
-#### Nombre relacionado { #related-name }
-
-Es una buena práctica que el parámetro `related_name` se llame como la clase en la que está incluido pero **en minúsculas** y **en plural**:
-
-![Dark image](images/models/related_name-dark.svg#only-dark)
-![Light image](images/models/related_name-light.svg#only-light)
-
-A través del «related name» es posible obtener todos los objetos relacionados. En el <span class="example">ejemplo:material-flash:</span> de los comentarios de un «post» tendríamos:
-
-```pycon hl_lines="4"
->>> from posts.models import Post
-
->>> post = Post.objects.get(pk=1)
->>> post.comments.all()#(1)!
-```
-{ .annotate }
-
-1. La forma ~~anti~~ natural podría sería: `#!python Comment.objects.filter(post=post)`
 
 ##### Colisión { #related-name-clash }
 
@@ -1271,7 +1280,7 @@ erDiagram
     USER ||--o{ COMMENT : writes
 ```
 
-> :material-alarm-light-outline: Un usuario escribe cero o muchos comentarios, pero un comentario lo escribe un único usuario.
+> :material-alarm-light-outline:{.hl} Un usuario escribe cero o muchos comentarios, pero un comentario lo escribe un único usuario.
 
 Por tanto, tendremos que añadir una **clave ajena** al usuario en el modelo de comentario:
 
@@ -1279,8 +1288,8 @@ Por tanto, tendremos que añadir una **clave ajena** al usuario en el modelo de 
 from django.conf import settings
 from django.db import models
 
+
 class Comment(models.Model):
-    alias = models.CharField(max_length=128)
     content = models.TextField(max_length=256)
     post = models.ForeignKey(
         'posts.Post',
@@ -1317,7 +1326,7 @@ erDiagram
     USER ||--|| PROFILE : has
 ```
 
-> :material-alarm-light-outline: Un usuario tiene un único perfil y cada perfil sólo pertenece a un usuario.
+> :material-alarm-light-outline:{.hl} Un usuario tiene un único perfil y cada perfil sólo pertenece a un usuario.
 
 Como se puede observar, se trata de una relación `1:1` por lo que vamos a utilizar la clase [`OneToOneField()`](#one-to-one) que proporciona Django. La implementación sería la siguiente:
 
@@ -1328,8 +1337,8 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        related_name='profile',#(1)!
+        settings.AUTH_USER_MODEL,#(1)!
+        related_name='profile',#(2)!
         on_delete=models.CASCADE
     )
     occupation = models.CharField(max_length=256, blank=True)
@@ -1337,7 +1346,8 @@ class Profile(models.Model):
 ```
 { .annotate }
 
-1.  Al ser un `OneToOneField()` el `related_name` debería ser el nombre de la clase a la que pertenece en **minúsculas singular**.
+1. Se podría poner directamente `#!python 'auth.User'` aunque este acceso [está más desacoplado](auth.md#user-model).
+2. Al ser un `OneToOneField()` el `related_name` debería ser el nombre de la clase a la que pertenece en **minúsculas singular**.
 
 !!! note "Acceso al perfil"
 

@@ -37,6 +37,7 @@
 *[PDF]: Portable Document Format
 *[PNG]: Portable Network Graphics
 *[PC]: Personal Computer
+*[PBKDF2]: Password-Based Key Derivation Function 2
 *[RAM]: Random Access Memory
 *[RDBMS]: Relational Database Management System
 *[RHS]: Right Hand Side

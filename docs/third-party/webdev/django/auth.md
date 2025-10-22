@@ -6,7 +6,7 @@ icon: material/key-chain-variant
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
-Django proporciona un [sistema de autenticación](https://docs.djangoproject.com/en/stable/topics/auth/default/) — incorporado en el propio framework — que facilita en gran medida la gestión de accesos y de usuarios.
+Django proporciona un [sistema de autenticación](https://docs.djangoproject.com/en/stable/topics/auth/default/) —incorporado en el propio framework— que facilita en gran medida la gestión de accesos y de usuarios.
 
 ## Usuario { #user }
 
@@ -20,6 +20,17 @@ Existe un modelo [`User`](https://docs.djangoproject.com/en/stable/ref/contrib/a
 | [`last_name`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_name) | Apellido(s) |
 | [`email`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_name) | Correo electrónico |
 
+??? tip "Password"
+
+    El **password** se almacena [«hasheado»](https://docs.djangoproject.com/en/stable/topics/auth/passwords/#password-management-in-django) en la base de datos. Django utiliza —por defecto— el algoritmo [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) con una función «hash» [SHA256](https://es.wikipedia.org/wiki/SHA-2), aunque se podría cambiar. El formato utilizado es: `<algorithm>$<iterations>$<salt>$<hash>`
+
+    Un <span class="example">ejemplo:material-flash:</span> de «password» en la base de datos sería:
+
+    ```pycon
+    >>> user.password
+    'pbkdf2_sha256$1000000$Y9opN6ZKNLMm9E1vAPrBzi$dNDnlbmN+phNora6ZUnok05NTH7BEgWjpg/mqulk3Yw='
+    ```
+
 ### Acceso al modelo { #user-model }
 
 Este modelo se encuentra en la clase `#!python django.contrib.auth.models.User`, pero es posible «suplantarla» con un modelo propio de usuario. Es por ello que ^^no se recomienda^^ acceder directamente a esta clase a través de un `import` sino utilizar otros «atajos» más genéricos.
@@ -28,8 +39,8 @@ Para **acceder al modelo de usuario** disponemos de dos vías:
 
 | Para uso en... | Importación | Acceso | Descripción | Valor por defecto |
 | --- | --- | --- | --- | --- |
-| Claves ajenas | `#!python from django.conf import settings` | `settings.AUTH_USER_MODEL` | Cadena de texto cualificada | `#!python 'auth.User'` |
-| Vistas y/o formularios | `#!python from django.contrib.auth import get_user_model`  | `get_user_model()` | Función que devuelve el modelo | `django.contrib.auth.models.User` |
+| [Claves ajenas](models.md#foreign-keys) | `#!python from django.conf import settings` | `settings.AUTH_USER_MODEL` | Cadena de texto cualificada | `#!python 'auth.User'` |
+| [Vistas](views.md) y/o [formularios](forms.md) | `#!python from django.contrib.auth import get_user_model`  | `get_user_model()` | Función que devuelve el modelo | `django.contrib.auth.models.User` |
 
 ### Acceso a la instancia { #user-instance }
 
@@ -37,16 +48,65 @@ Para **acceder a la instancia del usuario logeado** en Django disponemos de dos 
 
 | Para uso en... | Acceso |
 | --- | --- |
-| Vistas | `request.user` |
-| Plantillas | `#!htmldjango {{ user }}` |
+| [Vistas](views.md) | `request.user` |
+| [Plantillas](templates.md) | `#!htmldjango {{ user }}` |
+
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que accedemos a la instancia de un usuario:
+
+```pycon
+>>> from django.contrib.auth import get_user_model
+>>> User = get_user_model()
+
+>>> guido = User.objects.get(username='guido')
+
+>>> guido
+<User: guido>
+>>> guido.first_name
+'Guido'
+>>> guido.last_name
+'van Rossum'
+```
+
+!!! info "Usuario anónimo"
+
+    Cuando el usuario que interactúa con la web aún no está autenticado, Django lo identifica como [`AnonymousUser`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#anonymoususer-object).
+
+## Aplicación { #app }
+
+Se recomienda [crear una aplicación](apps.md#creation) `accounts` (o similar) donde implementar todos los artefactos necesarios para la autenticación de usuarios.
+
+En las URLs de primer nivel deberíamos incluir algo así:
+
+```python title="main/urls.py" hl_lines="7"
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('posts/', include('posts.urls')),
+    path('', include('accounts.urls')),
+]
+```
+
+De tal forma que tendremos acceso «directo» a las funcionalidades de autenticación desde la raíz de la URL:
+
+- `/login/`
+- `/logout/`
+- `/signup/`
+
+!!! warning "Nombre"
+
+    No podemos llamar `auth` a esta aplicación porque entraría en conflicto con la aplicación [`django.contrib.auth`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django-contrib-auth) de Django.
 
 ## Login { #login }
 
-Para implementar el procedimiento de **inicio de sesión** debemos llevar a cabo distintas tareas.
+Para implementar el procedimiento de **inicio de sesión** debemos desarrollar varios elementos:
 
-??? tip "accounts"
-
-    Se recomienda crear una aplicación `accounts` donde implementar todos los artefactos necesarios de cara al inicio de sesión «login».
+- [x] Formulario.
+- [x] Plantilla.
+- [x] Vista.
+- [x] URL.
+- [x] Enlace.
 
 ### Formulario de login { #login-form }
 
@@ -56,13 +116,16 @@ from django import forms
 
 class LoginForm(forms.Form):
     username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput)#(1)!
 ```
+{ .annotate }
+
+1. El [«widget»](forms.md/#widgets) nos permite cambiar el elemento HTML al renderizar el campo de formulario.
 
 ### Plantilla de login { #login-template }
 
 ```htmldjango title="accounts/templates/accounts/login.html"
-<form method="post" action="{% url 'login' %}">
+<form method="post">
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Login">
@@ -78,58 +141,49 @@ from django.urls import reverse
 
 from .forms import LoginForm
 
-
 def user_login(request):#(1)!
-    FALLBACK_REDIRECT = reverse('index')
+    FALLBACK_REDIRECT = 'index'#(2)!
 
-    if request.user.is_authenticated:#(2)!
-        return redirect(FALLBACK_REDIRECT)
+    if request.user.is_authenticated:#(3)!
+        return redirect(reverse(FALLBACK_REDIRECT))
     if request.method == 'POST':
-        if (form := LoginForm(request.POST)).is_valid():#(3)!
+        if (form := LoginForm(request.POST)).is_valid():#(4)!
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            if user := authenticate(request, username=username, password=password):#(4)!
-                login(request, user)#(5)!
-                return redirect(request.GET.get('next', FALLBACK_REDIRECT))#(6)!
+            if user := authenticate(request, username=username, password=password):#(5)!
+                login(request, user)#(6)!
+                return redirect(request.GET.get('next', reverse(FALLBACK_REDIRECT)))#(7)!
             else:
-                form.add_error(None, 'Incorrect username or password.')#(7)!
+                form.add_error(None, 'Incorrect username or password.')#(8)!
     else:
         form = LoginForm()
-    return render(
-        request,
-        'accounts/login.html',
-        dict(form=form),
-    )
+    return render( request, 'accounts/login.html', {'form': form})
 ```
 { .annotate }
 
 1. No podemos llamar `login` a nuestra vista ya que entraría en conflicto con la función [`login`](https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.login) de Django.
-2. Si el usuario ya está autenticado lo redirigimos a una URL predefinida.
-3. El formulario debe estar validado para poder continuar.
-4. La función [`authenticate`](https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.authenticate) de Django verifica si las credenciales de usuario son correctas. En tal caso devuelve el usuario en cuestión. En otro caso devuelve `#!python None`.
-5. La función [`login`](https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.login) de Django se encarga de «logear» (iniciar sesión) al usuario.
-6. Si todo ha ido bien redirigimos a la siguiente URL `next` (si es que existe) o a la URL por defecto `FALLBACK_REDIRECT`, en otro caso.
-7.  - Añadimos un error al formulario indicando que las credenciales son incorrectas.
+2. Indica aquí un nombre de URL a la que redirigir (por defecto).
+3. Si el usuario ya está autenticado lo redirigimos a una URL predefinida.
+4. El formulario debe estar validado para poder continuar.
+5. La función [`authenticate`](https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.authenticate) de Django verifica si las credenciales de usuario son correctas. En tal caso devuelve el usuario en cuestión. En otro caso devuelve `#!python None`.
+6. La función [`login`](https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.login) de Django se encarga de «logear» (iniciar sesión) al usuario.
+7. Si todo ha ido bien redirigimos a la siguiente URL `next` (si es que existe) o a la URL por defecto `FALLBACK_REDIRECT`, en otro caso.
+8.  - Añadimos un error al formulario indicando que las credenciales son incorrectas.
     - El primer parámetro de la función `add_error()` es el campo al que queremos añadir el error, y el segundo parámetro es el mensaje de error en sí mismo.
     - Como estos errores son «generales» a todo el formulario, indicamos `#!python None` en el campo.
 
 ### URL de login { #login-url }
 
-Debemos añadir en las [URLs de primer nivel](urls.md#main-urls) la ruta (y la vista) para gestionar el inicio de sesión:
-
-```python title="main/urls.py"
+```python title="accounts/urls.py" hl_lines="6"
 from django.urls import path
 
-import accounts.views
+from . import views
 
 urlpatterns = [
-    path('login/', accounts.views.user_login, name='login'),#(1)!
+    path('login/', views.user_login, name='login'),
 ]
 ```
-{ .annotate }
 
-1.  - Puede ser interesante crear una aplicación `accounts` para «empaquetar» toda la lógica de negocio que tiene que ver con autenticación.
-    - :fontawesome-solid-triangle-exclamation:{ .yellow } No podemos llamar `auth` a la aplicación porque entraría en conflicto con la aplicación [`django.contrib.auth`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django-contrib-auth) de Django.
 
 !!! info "LOGIN_URL"
 
@@ -157,30 +211,27 @@ En algún punto de nuestras plantillas deberemos añadir un enlace para iniciar 
 
 ## Logout { #logout }
 
-Para implementar el procedimiento de **cierre de sesión** debemos llevar a cabo distintas tareas.
+Para implementar el procedimiento de **cierre de sesión** debemos desarrollar varios elementos:
 
-??? tip "accounts"
-
-    Se recomienda crear una aplicación `accounts` donde implementar todos los artefactos necesarios de cara al cierre de sesión «logout».
-
-### Formulario de logout { #logout-form }
-
-No es necesario implementar un formulario para cierre de sesión.
-
-### Plantilla de logout { #logout-template }
-
-No es necesario implementar una plantilla para cierre de sesión.
+- [ ] Formulario.
+- [ ] Plantilla.
+- [x] Vista.
+- [x] URL.
+- [x] Enlace.
 
 ### Vista de logout { #logout-view }
 
 ```python title="accounts/views.py"
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.urls import reverse
 
 
 def user_logout(request):
+    FALLBACK_REDIRECT = 'index'
+
     logout(request)#(1)!
-    return redirect('home')
+    return redirect(reverse(FALLBACK_REDIRECT))
 ```
 { .annotate }
 
@@ -188,21 +239,15 @@ def user_logout(request):
 
 ### URL de logout { #logout-url }
 
-Debemos añadir en las [URLs de primer nivel](urls.md#main-urls) la ruta (y la vista) para gestionar el cierre de sesión:
-
-```python title="main/urls.py"
+```python title="accounts/urls.py" hl_lines="6"
 from django.urls import path
 
-import accounts.views
+from . import views
 
 urlpatterns = [
-    path('logout/', accounts.views.user_logout, name='logout'),#(1)!
+    path('logout/', views.user_logout, name='logout'),
 ]
 ```
-{ .annotate }
-
-1.  - Puede ser interesante crear una aplicación `accounts` para «empaquetar» toda la lógica de negocio que tiene que ver con autenticación.
-    - :fontawesome-solid-triangle-exclamation:{ .yellow } No podemos llamar `auth` a la aplicación porque entraría en conflicto con la aplicación [`django.contrib.auth`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django-contrib-auth) de Django.
 
 ### Enlace de logout { #logout-link }
 
@@ -217,11 +262,13 @@ En algún punto de nuestras plantillas deberemos añadir un enlace para cerrar s
 
 ## Registro { #signup }
 
-Para implementar el procedimiento de **registro de usuario** debemos llevar a cabo distintas tareas.
+Para implementar el procedimiento de **registro de usuario** debemos desarrollar varios elementos:
 
-??? tip "accounts"
-
-    Se recomienda crear una aplicación `accounts` donde implementar todos los artefactos necesarios de cara al registro «signup».
+- [x] Formulario.
+- [x] Plantilla.
+- [x] Vista.
+- [x] URL.
+- [x] Enlace.
 
 ### Formulario de registro { #signup-form }
 
@@ -288,7 +335,7 @@ class SignupForm(forms.ModelForm):
 ### Plantilla de registro { #signup-template }
 
 ```htmldjango title="accounts/templates/accounts/signup.html"
-<form method="post" action="{% url 'signup' %}">
+<form method="post">
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Sign up">
@@ -305,37 +352,36 @@ from .forms import SignupForm
 
 
 def user_signup(request):
+    FALLBACK_REDIRECT = 'index'
+
+    if request.user.is_authenticated:#(1)!
+        return redirect(reverse(FALLBACK_REDIRECT))
     if request.method == 'POST':
         if (form := SignupForm(request.POST)).is_valid():
-            user = form.save()#(1)!
-            login(request, user)#(2)!
-            return redirect('home')
+            user = form.save()#(2)!
+            login(request, user)#(3)!
+            return redirect(FALLBACK_REDIRECT)
     else:
         form = SignupForm()
-    return render(request, 'accounts/signup.html', dict(form=form))
+    return render(request, 'accounts/signup.html', {'form': form})
 ```
 { .annotate }
 
-1. Guardamos el formulario de modelo con lo que obtenemos una instancia de usuario.
-2. «Logear» al usuario tras el registro es algo opcional. Depende del contexto.
+1. Si el usuario ya está autenticado lo redirigimos a una URL predefinida.
+2. Guardamos el formulario de modelo con lo que obtenemos una instancia de usuario.
+3. «Logear» al usuario tras el registro es algo opcional. Depende del contexto.
 
 ### URL de registro { #signup-url }
 
-Debemos añadir en las [URLs de primer nivel](urls.md#main-urls) la ruta (y la vista) para gestionar el registro de usuario:
-
-```python title="main/urls.py"
+```python title="main/urls.py" hl_lines="6"
 from django.urls import path
 
-import accounts.views
+from . import views
 
 urlpatterns = [
-    path('signup/', accounts.views.user_signup, name='signup'),#(1)!
+    path('signup/', views.user_signup, name='signup')
 ]
 ```
-{ .annotate }
-
-1.  - Puede ser interesante crear una aplicación `accounts` para «empaquetar» toda la lógica de negocio que tiene que ver con autenticación.
-    - :fontawesome-solid-triangle-exclamation:{ .yellow } No podemos llamar `auth` a la aplicación porque entraría en conflicto con la aplicación [`django.contrib.auth`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django-contrib-auth) de Django.
 
 ### Enlace de registro { #signup-link }
 

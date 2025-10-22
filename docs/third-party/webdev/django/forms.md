@@ -236,6 +236,17 @@ Ahora veamos cuál es el código que debemos introducir en la plantilla:
 3. Con esto basta para que se renderice el contenido del formulario en HTML.
 4. Es necesario incluir un botón para enviar el formulario.
 
+??? example "Renderizando formularios"
+
+    Existen varias opciones para renderizar un formulario Django en una plantilla:
+
+    | Método | Descripción |
+    | --- | --- |
+    | `#!htmldjango {{ form }}` | Tabla HTML automática |
+    | `#!htmldjango {{ form.as_p }}` | Cada campo en un `<p>` |
+    | `#!htmldjango {{ form.as_ul }}` | Cada campo en un `<ul><li>` |
+    | Personalizado :material-power: | [Documentación oficial de Django](https://docs.djangoproject.com/en/stable/topics/forms/#working-with-form-templates) |
+
 Por último veamos cómo implementar la vista que debe procesar el formulario:
 
 ```python title="posts/views.py"
@@ -260,7 +271,7 @@ def add_post(request):
             return redirect('posts:post-list')#(6)!
     else:
         form = AddPostForm()#(7)!
-    return render(request, 'posts/post/add.html', dict(form=form))#(8)!
+    return render(request, 'posts/post/add.html', {'form': form})#(8)!
 ```
 { .annotate }
 
@@ -331,6 +342,17 @@ Ahora veremos cómo es el código de la plantilla:
 3. Con esto basta para que se renderice el contenido del formulario en HTML.
 4. Es necesario incluir un botón para enviar el formulario.
 
+??? example "Renderizando formularios"
+
+    Existen varias opciones para renderizar un formulario Django en una plantilla:
+
+    | Método | Descripción |
+    | --- | --- |
+    | `#!htmldjango {{ form }}` | Tabla HTML automática |
+    | `#!htmldjango {{ form.as_p }}` | Cada campo en un `<p>` |
+    | `#!htmldjango {{ form.as_ul }}` | Cada campo en un `<ul><li>` |
+    | Personalizado :material-power: | [Documentación oficial de Django](https://docs.djangoproject.com/en/stable/topics/forms/#working-with-form-templates) |
+
 Por último veamos cómo implementar la [vista](views.md) que debe procesar el formulario:
 
 === "Estructura estándar :octicons-organization-24:"
@@ -349,7 +371,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
                 return redirect('posts:post-list')#(3)!
         else:
             form = AddPostForm()#(4)!
-        return render(request, 'posts/post/add.html', dict(form=form))#(5)!
+        return render(request, 'posts/post/add.html', {'form': form})#(5)!
     ```
     { .annotate }
 
@@ -375,7 +397,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
         if (form := AddPostForm(request.POST or None)).is_valid():#(1)!
             form.save()#(2)!
             return redirect('posts:post-list')#(3)!
-        return render(request, 'posts/post/add.html', dict(form=form))#(4)!
+        return render(request, 'posts/post/add.html', {'form': form})#(4)!
     ```
     { .annotate }
 
@@ -408,7 +430,7 @@ Por último veamos cómo implementar la [vista](views.md) que debe procesar el f
                 return redirect('posts:post-list')#(5)!
         else:
             form = AddPostForm()#(6)!
-        return render(request, 'posts/post/add.html', dict(form=form))#(7)!
+        return render(request, 'posts/post/add.html', {'form': form})#(7)!
     ```
     { .annotate }
 
@@ -487,7 +509,7 @@ def edit_post(request, post_slug: str):#(1)!
             return redirect('posts:post-list')#(7)!
     else:
         form = EditPostForm(instance=post)#(8)!
-    return render(request, 'posts/post/edit.html', dict(post=post, form=form))#(9)!
+    return render(request, 'posts/post/edit.html', {'post': post, 'form': form})#(9)!
 ```
 { .annotate }
 
@@ -508,11 +530,60 @@ def edit_post(request, post_slug: str):#(1)!
 
 ## Widgets { #widgets }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
 Un «widget» es la representación Django de componente HTML para formulario. El «widget» maneja el renderizado del HTML y la extración de datos desde el correspondiente diccionario GET/POST.
 
 Django proporciona una gran cantidad de [widgets «built-in»](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#built-in-widgets). Cuando definimos un campo de formulario, este tiene asignado un [«widget» por defecto](#fields), pero tenemos la posibilidad personalizar el «widget» o incluso de asignar otro.
+
+### Widgets predefinidos { #builtin-widgets }
+
+Para acceder a cada «widget» basta con importarlo desde: `#!python from django import forms` y luego `#!python forms.TextInput` ...
+
+=== "Para manejo de texto"
+
+    | «Widget» | HTML | Destino | Atributos |
+    | --- | --- | --- | --- |
+    | [`TextInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#textinput) | `#!html <input type="text" ...>` | Texto corto | |
+    | [`NumberInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#numberinput) | `#!html <input type="number" ...>` | Número | |
+    | [`EmailInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#emailinput) | `#!html <input type="email" ...>` | Correo electrónico | |
+    | [`URLInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#urlinput) | `#!html <input type="url" ...>` | URL | |
+    | [`ColorInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#colorinput) | `#!html <input type="color" ...>` | Color | |
+    | [`SearchInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#searchinput) | `#!html <input type="search" ...>` | Búsqueda | |
+    | [`TelInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#telinput) | `#!html <input type="tel" ...>` | Teléfono | |
+    | [`PasswordInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#passwordinput) | `#!html <input type="password" ...>` | Contraseña | |
+    | [`HiddenInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#hiddeninput) | `#!html <input type="hidden" ...>` | Campo oculto | |
+    | [`DateInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#dateinput) | `#!html <input type="text" ...>` | Fecha | `format` |
+    | [`DateTimeInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#datetimeinput) | `#!html <input type="text" ...>` | Fecha/Hora | `format` |
+    | [`TimeInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#timeinput) | `#!html <input type="text" ...>` | Hora | `format` |
+    | [`Textarea`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#textarea) | `#!html <textarea>...</textarea>` | Texto largo | |
+
+=== "Para selectores"
+
+    | «Widget» | HTML | Destino | Atributos |
+    | --- | --- | --- | --- |
+    | [`CheckboxInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#checkboxinput) | `#!html <input type="checkbox" ...>` | Verificación | `check_text` |
+    | [`Select`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#select) | `#!html <select><option ...>...</select>` | Selección | `choices` |
+    | [`NullBooleanSelect`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#nullbooleanselect) | `#!html <select><option ...>...</select>` | Selección de opciones booleanas | |
+    | [`SelectMultiple`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#selectmultiple) | `#!html <select><option ...>...</select>` | Selección de múltiples opciones | |
+    | [`RadioSelect`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#radioselect) | `#!html <select><option ...>...</select>` | Selección (radial) | |
+    | [`CheckboxSelectMultiple`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#checkboxselectmultiple) | `#!html <select><option ...>...</select>` | Verificación de múltiples opciones | |
+
+=== "Para subida de ficheros"
+
+    | «Widget» | HTML | Destino | Atributos |
+    | --- | --- | --- | --- |
+    | [`FileInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#fileinput) | `#!html <input type="file" ...>` | Subida de ficheros | |
+    | [`ClearableFileInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#fileinput) | `#!html <input type="file" ...>` | Subida de ficheros (con borrado) | |
+    
+=== "Compuestos"
+
+    | «Widget» | HTML | Destino | Atributos |
+    | --- | --- | --- | --- |
+    | [`MultipleHiddenInput`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#multiplehiddeninput) | `#!html <input type="hidden" ...>` | Múltiples campos ocultos | |
+    | [`SplitDateTimeWidget`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#splitdatetimewidget) | `#!html <input type="date" ...>` | Fecha y hora divididos | `date_format`<br>`time_format`<br>`date_attrs`<br>`time_attrs` |
+    | [`SplitHiddenDateTimeWidget`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#splithiddendatetimewidget) | `#!html <input type="date" ...>` | Fecha y hora divididos (ocultos) | `date_format`<br>`time_format`<br>`date_attrs`<br>`time_attrs` |
+    | [`SelectDateWidget`](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#selectdatewidget) | `#!html <input type="date" ...>` | Fecha (compuesta por mes, día y año) | `years`<br>`months`<br>`empty_label` |
 
 ### Modificando widgets { #modify-widgets }
 
@@ -657,6 +728,8 @@ Hay ocasiones en las que nos interesa personalizar el guardado de un formulario 
 
 Vamos a retomar el <span class="example">ejemplo:material-flash:</span> del [formulario de modelo](#model-forms) `AddPostForm` donde pretendíamos convertir a «slug» el título del «post» antes de guardarlo definitivamente en disco.
 
+La idea que hay detrás de esta nueva aproximación es **encapsular** el código «adicional» (personalizado) en el propio método `save()` del formulario de modelo:
+
 ```python title="posts/forms.py" hl_lines="10-14"
 from django import forms
 from django.utils.text import slugify
@@ -699,7 +772,7 @@ def add_post(request):
             return redirect('posts:post-list')
     else:
         form = AddPostForm()
-    return render(request, 'posts/post/add.html', dict(form=form))#(7)!
+    return render(request, 'posts/post/add.html', {'form': form})#(7)!
 ```
 { .annotate }
 
@@ -750,7 +823,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
                 return redirect('home')
         else:
             form = AddPostForm()
-        return render(request, 'posts/post/add.html', dict(form=form))
+        return render(request, 'posts/post/add.html', {'form': form})
     ```
     { .annotate }
 
@@ -799,7 +872,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
                 return redirect('home')
         else:
             form = AddPostForm(request.user)#(3)!
-        return render(request, 'posts/post/add.html', dict(form=form))
+        return render(request, 'posts/post/add.html', {'form': form})
     ```
     { .annotate }
 

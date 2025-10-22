@@ -328,47 +328,49 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> previo d
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
-En las [URLs de primer nivel](#main-urls) podemos ir más allá del típico «include». En este sentido se abren dos posibilidades:
+En las [URLs de primer nivel](#main-urls) podemos ir más allá del típico «include». En este sentido se abren varias posibilidades:
 
-1. Apuntar a vistas.
-2. Redireccionar a URLs.
+:one: Apuntar a vistas.  
+:two: Redireccionar a URLs.  
+:three: Renderizar plantillas.
 
 ### Apuntar a vistas { #view-target }
 
 Es posible que queramos «apuntar» una determinada URL en `main/urls.py`{ .green } a una cierta vista de una aplicación concreta.
 
-Esto por <span class="example">ejemplo:material-flash:</span> es muy habitual en las operaciones de [autenticación](auth.md). Suponiendo que el **inicio de sesión** y **cierre de sesión** están en una aplicación llamada `accounts`, tendríamos algo parecido a esto en las **URLs de primer nivel**:
+Supongamos por <span class="example">ejemplo:material-flash:</span> que disponemos de una vista de contacto (información acerca de la web) en la aplicación `shared` y que queremos apuntar directamente a dicha vista desde las URLs de primer nivel:
 
-```python title="main/urls.py"
+```python title="main/urls.py" hl_lines="9"
 from django.contrib import admin
+from django.urls import path, include
 
-import account.views#(1)!
+import shared.views#(1)!
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', account.views.user_login, name='login')#(2)!
-    path('logout/', account.views.user_logout, name='logout')#(3)!
+    path('posts/', include('posts.urls'))
+    path('contact/', shared.views.contact, name='contact')#(2)!
 ]
 ```
 { .annotate }
 
 1. En `main/urls.py` se recomienda importar las vistas de esta forma para evitar «colisiones» con otros espacios de nombres.
-2. Se apunta a la vista de «login» de la aplicación `account`.
-3. Se apunta a la vista de «logout» de la aplicación `account`.
+2. Se apunta a la vista de «contact» de la aplicación `shared`.
 
 ### Redireccionar a URLs { #url-redirect }
 
-Desde el propio fichero `urls.py` puede resultar cómodo hacer una redirección «sencilla».
+Es posible que queramos redireccionar una determinada URL en `main/urls.py`{ .green } a otra URL (habitualmente a través de su nombre).
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> un escenario en el que queremos redirigir la URL raíz de nuestro blog `/` al listado de «posts» que hay en la plataforma:
 
-```python title="main/urls.py" hl_lines="6"
+```python title="main/urls.py" hl_lines="7"
+from django.contrib import admin
 from django.shortcuts import redirect
-from django.urls import path
+from django.urls import path, include
 
 
 urlpatterns = [
-    path('', lambda _: redirect('posts:post-list'))#(1)!
+    path('', lambda _: redirect('posts:post-list'), name='index')#(1)!
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls'))
 ]
@@ -377,6 +379,30 @@ urlpatterns = [
 
 1.  - Simulamos una vista mediante una función [lambda](../../../core/modularity/functions.md#lambda).
     - Como no usamos el supuesto parámetro `request` escribimos `_` como primer argumento.
+    - Poner la redirección «lambda» en primer lugar es una _buena práctica_ para visualizar más claramente las URLs.
+
+### Renderizar plantillas { #render-redirect }
+
+Es posible que queramos renderizar una plantilla directamente desde `main/urls.py`{ .green }.
+
+En un <span class="example">ejemplo:material-flash:</span> donde tengamos una plantilla «estática» que ^^no dependa del contexto^^, podemos aplicar esta técnica de manera sencilla. Supongamos que queremos renderizar una página de índice:
+
+```python title="main/urls.py" hl_lines="7"
+from django.contrib import admin
+from django.shortcuts import render
+from django.urls import path, include
+
+
+urlpatterns = [
+    path('', lambda r: render(r, 'index.html'), name='index')#(1)!
+    path('admin/', admin.site.urls),
+    path('posts/', include('posts.urls'))
+]
+```
+{ .annotate }
+
+1.  - Simulamos una vista mediante una función [lambda](../../../core/modularity/functions.md#lambda).
+    - Necesitamos el parámetro `request` por eso escribimos `r` como primer argumento.
     - Poner la redirección «lambda» en primer lugar es una _buena práctica_ para visualizar más claramente las URLs.
 
 ## Pasar argumentos a una vista { #args-to-view }
