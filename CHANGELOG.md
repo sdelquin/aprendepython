@@ -2,6 +2,26 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## Version 2.1.0
+
+Publicada el 24-10-2025
+
+Crea documentación de:
+  - API: Middleware.
+
+Completa documentación de:
+  - Fundamentos del lenguaje: Cadenas de texto.
+  - Django: API.
+  - Django: Autenticación.
+  - Django: Estáticos.
+  - Django: Extras.
+  - Django: Formularios.
+  - Django: Justfile.
+  - Django: Modelos.
+  - Django: Plantillas.
+  - Django: Puesta en marcha.
+  - Django: URLs.
+
 ## Version 2.0.10
 
 Publicada el 08-10-2025
