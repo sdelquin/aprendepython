@@ -1116,7 +1116,7 @@ erDiagram
 
 > :material-alarm-light-outline:{.hl} Un «post» tiene cero o muchos comentarios, pero un comentario está relacionado con un único «post».
 
-Para relacionar ambos modelos usamos un campo de tipo [`ForeignKey`](https://docs.djangoproject.com/en/stable/ref/models/fields/#foreignkey):
+Partimos de un modelo de «post» habitual:
 
 ```python title="posts/models.py"
 from django.db import models
@@ -1128,14 +1128,19 @@ class Post(models.Model):
     content = models.TextField()
 ```
 
-```python title="comments/models.py" hl_lines="4-8"
+Para relacionar ambos modelos usamos un campo de tipo [`ForeignKey`](https://docs.djangoproject.com/en/stable/ref/models/fields/#foreignkey):
+
+```python title="comments/models.py" hl_lines="7-11"
+from django.db import models
+
+
 class Comment(models.Model):
     alias = models.CharField(max_length=128)
-    content = models.TextField(max_length=256)
+    content = models.TextField()
     post = models.ForeignKey(
-        'posts.Post',
-        related_name='comments',
-        on_delete=models.CASCADE
+        'posts.Post',             # Modelo relacionado
+        related_name='comments',  # Nombre relacionado
+        on_delete=models.CASCADE  # Acción de borrado
     )
 ```
 
@@ -1264,7 +1269,7 @@ from django.db import models
 
 
 class Comment(models.Model):
-    content = models.TextField(max_length=256)
+    content = models.TextField()
     post = models.ForeignKey(
         'posts.Post',
         related_name='comments',
@@ -1389,7 +1394,7 @@ erDiagram
 Como se puede observar, se trata de una relación `1:1` por lo que vamos a utilizar la clase [`OneToOneField()`](#one-to-one) que proporciona Django. La implementación sería la siguiente:
 
 ```python title="users/models.py" hl_lines="6-10"
-from django import models
+from django.db import models
 from django.conf import settings
 
 
@@ -1853,15 +1858,18 @@ Las dos opciones de las que disponemos son [`FileField`](https://docs.djangoproj
 
 Vamos a partir de un <span class="example">ejemplo:material-flash:</span> en el que modelamos un «post» añadiendo una imagen de _portada_. Para ello añadimos un nuevo campo `cover` al modelo que será de tipo `ImageField`:
 
-```python title="posts/models.py" hl_lines="8"
-from django import models
+```python title="posts/models.py" hl_lines="8-11"
+from django.db import models
 
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(unique=True, max_length=256)
     content = models.TextField()
-    cover = models.ImageField(uploads_to='covers', default='covers/nocover.png')
+    cover = models.ImageField(
+        uploads_to='covers',
+        default='covers/nocover.png'
+    )
 ```
 
 Analicemos cada parámetro de `ImageField` por separado:
@@ -1896,7 +1904,7 @@ Analicemos cada parámetro de `ImageField` por separado:
 
 ### Ruta del fichero { #file-field-path }
 
-Django ofrece la posibilidad de modificar la configuración [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) para indicar la ruta «base» donde se va a almacenar este tipo de valores en el **sistema de ficheros**.
+Django ofrece la posibilidad de modificar la configuración [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) para indicar la ruta «base» donde se van a almacenar este tipo de recursos en el **sistema de ficheros**.
 
 Suele ser una **buena práctica** establecer `#!python '/media'` como la carpeta para la subida de ficheros:
 
@@ -1907,7 +1915,13 @@ MEDIA_ROOT = BASE_DIR / 'media'#(1)!
 
 1. `BASE_DIR` es una variable definida al comienzo de `settings.py` y que contiene la **ruta absoluta** a la raíz de nuestro proyecto Django.
 
-Por tanto, si subimos un fichero `#!python 'tech.png'` como portada de un «post», la ruta en el sistema de ficheros donde se guardará será `<project-path>/media/covers/tech.png`.
+Por tanto, si subimos un fichero `#!python 'tech.jpg'` como portada de un «post», la ruta en el sistema de ficheros donde se guardará (partiendo del raíz del proyecto) será:
+
+``` title="blog"
+media
+└── covers
+    └── tech.jpg
+```
 
 !!! note "Ruta en disco"
 
@@ -1915,7 +1929,7 @@ Por tanto, si subimos un fichero `#!python 'tech.png'` como portada de un «post
 
 ### URL del fichero { #file-field-url }
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pasamos un objeto `post` de tipo `Post` a una plantilla para renderizar su contenido. El acceso a la URL del fichero es muy sencillo:
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pasamos un objeto `post` de tipo `Post` a una plantilla para renderizar su contenido. El acceso a la URL de la portada del «post» es muy sencillo:
 
 ```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="3"
 <div class="post">
@@ -1936,7 +1950,7 @@ MEDIA_URL = 'media/'
 
 !!! note "URL de acceso"
 
-    Si subimos un fichero `#!python 'tech.png'` como portada de un «post», la ^^URL de acceso^^ será `#!python http://<project-domain>/media/covers/tech.png`.
+    Si subimos un fichero `#!python 'tech.jpg'` como portada de un «post», la ^^URL de acceso^^ será: `#!python http://localhost:8000/media/covers/tech.jpg`.
 
 ### Servidor de desarrollo { #file-fields-devserver }
 
@@ -1966,7 +1980,7 @@ Una de las operaciones más habituales cuando manejamos `FileField` o `ImageFiel
 
 #### Gestión del formulario { #file-uploads-form }
 
-En este caso vamos a poner un <span class="example">ejemplo:material-flash:</span> de añadir un «post» utilizando un [formulario de modelo](forms.md#model-forms) para ello:
+En este caso vamos a poner el <span class="example">ejemplo:material-flash:</span> de añadir un «post» que tiene imagen de portada («cover») utilizando un [formulario de modelo](forms.md#model-forms) para ello:
 
 ```python title="posts/forms.py"
 from django import forms
@@ -2130,7 +2144,7 @@ Hemos visto ya [cómo ordenar resultados de consultas](#ordering) pero Django ta
 Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos que todos los «posts» de nuestro «blog» se ordenen siempre por su título de forma ascendente. Tendríamos que hacer lo siguiente:
 
 ```python title='posts/models.py' hl_lines="9-10"
-from django import models
+from django.db import models
 
 
 class Post(models.Model):
