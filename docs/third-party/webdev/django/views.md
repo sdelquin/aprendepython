@@ -158,15 +158,24 @@ La clase [`HttpResponse`](https://docs.djangoproject.com/en/stable/ref/request-r
 
 Para ello usaremos el atributo `status_code` con un valor numérico (_del código de estado_) que podemos encontrar en [este enlace](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
-Por <span class="example">ejemplo:material-flash:</span> si queremos indicar que un determinado recurso no se encuentra, lo podemos implementar así:
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos incorporar este enfoque en el detalle de un «post» de un «blog»:
 
-```python hl_lines="5"
+```python title="posts/views.py" hl_lines="13"
+from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Post
 
-def my_view(request):
-    # ...
-    return HttpResponse(status_code=404)
+
+def post_detail(request, post_slug: str):
+    try:
+        post = Post.objects.get(slug=post_slug)
+    except Post.DoesNotExist:
+        return HttpResponse(
+            f"Post with slug '{post.slug}' does not exist",
+            status_code=404
+        )
+    return render(request, 'posts/post/detail.html', {'post': post})
 ```
 
 Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-subclasses) para cubrir los códigos de estado HTTP más habituales:
@@ -180,20 +189,40 @@ Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.c
 | [405](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) | Method Not Allowed | `HttpResponseNotAllowed()` |
 | [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | `HttpResponseServerError()` |
 
+Por tanto, el <span class="example">ejemplo:material-flash:</span> anterior de «post» no encontrado se podría reescribir de la siguiente manera:
+
+```python title="posts/views.py" hl_lines="11-13"
+from django.shortcuts import render
+from django.http import HttpResponseNotFound
+
+from .models import Post
+
+
+def post_detail(request, post_slug: str):
+    try:
+        post = Post.objects.get(slug=post_slug)
+    except Post.DoesNotExist:
+        return HttpResponseNotFound(
+            f"Post with slug '{post.slug}' does not exist"
+        )
+    return render(request, 'posts/post/detail.html', {'post': post})
+```
+
 ### Consulta no encontrada { #not-found-query }
 
 Django proporciona un «shortcut» (atajo) para cuando queremos [recuperar un objeto](models.md#retrieve-one) pero —en vez de lanzar una excepción de tipo `DoesNotExist`— devolver un [`Http404`](https://docs.djangoproject.com/en/stable/topics/http/views/#django.http.Http404).
 
-Por <span class="example">ejemplo:material-flash:</span>, supongamos una vista que recupera un «post» de la base de datos a partir de su «slug»:
+Por <span class="example">ejemplo:material-flash:</span> podemos reescribir la vista que recupera un «post» de la base de datos a partir de su «slug»:
 
 ```python title="posts/views.py" hl_lines="1 7"
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
 from .models import Post
 
 
 def post_detail(request, post_slug: str):
     post = get_object_or_404(Post, slug=post_slug)#(1)!
+    return render(request, 'posts/post/detail.html', {'post': post})
 ```
 { .annotate }
 

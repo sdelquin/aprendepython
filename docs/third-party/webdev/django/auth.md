@@ -75,7 +75,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que accedem
 
 Se recomienda [crear una aplicación](apps.md#creation) `accounts` (o similar) donde implementar todos los artefactos necesarios para la autenticación de usuarios.
 
-En las URLs de primer nivel deberíamos incluir algo así:
+En las [URLs de primer nivel](urls.md#main-urls) deberíamos incluir algo así:
 
 ```python title="main/urls.py" hl_lines="7"
 from django.contrib import admin
@@ -137,22 +137,22 @@ class LoginForm(forms.Form):
 ```python title="accounts/views.py"
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
-from django.urls import reverse
 
 from .forms import LoginForm
+
 
 def user_login(request):#(1)!
     FALLBACK_REDIRECT = 'index'#(2)!
 
     if request.user.is_authenticated:#(3)!
-        return redirect(reverse(FALLBACK_REDIRECT))
+        return redirect(FALLBACK_REDIRECT)
     if request.method == 'POST':
         if (form := LoginForm(request.POST)).is_valid():#(4)!
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             if user := authenticate(request, username=username, password=password):#(5)!
                 login(request, user)#(6)!
-                return redirect(request.GET.get('next', reverse(FALLBACK_REDIRECT)))#(7)!
+                return redirect(request.GET.get('next', FALLBACK_REDIRECT))#(7)!
             else:
                 form.add_error(None, 'Incorrect username or password.')#(8)!
     else:
@@ -174,16 +174,19 @@ def user_login(request):#(1)!
 
 ### URL de login { #login-url }
 
-```python title="accounts/urls.py" hl_lines="6"
+```python title="accounts/urls.py" hl_lines="10"
 from django.urls import path
 
 from . import views
+
+# No definimos nombre de aplicación porque queremos que las
+# URLs de autenticación sean globales (sin espacio de nombres).
+# app_name = 'accounts'
 
 urlpatterns = [
     path('login/', views.user_login, name='login'),
 ]
 ```
-
 
 !!! info "LOGIN_URL"
 
@@ -196,7 +199,7 @@ urlpatterns = [
 
     1. Vale tanto una URL como una URL nombrada.
 
-    :material-check-all:{ .blue } Da igual el «lugar» en el que pongamos estas variables dentro de `settings.py`. Una buena práctica sería **agrupar** aquellas configuraciones que tengan que ver entre sí.
+    :material-check-all:{ .blue } Da igual el «lugar» en el que pongamos estas variables dentro de `settings.py`. Una buena práctica sería **agrupar** aquellas configuraciones que tengan relación.
 
 ### Enlace de login { #login-link }
 
@@ -224,14 +227,13 @@ Para implementar el procedimiento de **cierre de sesión** debemos desarrollar v
 ```python title="accounts/views.py"
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-from django.urls import reverse
 
 
 def user_logout(request):
     FALLBACK_REDIRECT = 'index'
 
     logout(request)#(1)!
-    return redirect(reverse(FALLBACK_REDIRECT))
+    return redirect(FALLBACK_REDIRECT)
 ```
 { .annotate }
 
@@ -281,8 +283,8 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ('username', 'password', 'first_name', 'last_name', 'email')
-        widgets = dict(password=forms.PasswordInput)#(1)!
-        help_texts = dict(username=None)#(2)!
+        widgets = {'password': forms.PasswordInput}#(1)!
+        help_texts = {'username': None}#(2)!
     
     def save(self, *args, **kwargs):#(3)!
         user = super().save(commit=False)#(4)!
@@ -316,8 +318,8 @@ class SignupForm(forms.ModelForm):
             model = get_user_model()
             fields = ('username', 'password', 'first_name', 'last_name', 'email')
             required = ('username', 'password', 'first_name', 'last_name', 'email')
-            widgets = dict(password=forms.PasswordInput)
-            help_texts = dict(username=None)
+            widgets = {'password': forms.PasswordInput}
+            help_texts = {'username': None}
         
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -355,7 +357,7 @@ def user_signup(request):
     FALLBACK_REDIRECT = 'index'
 
     if request.user.is_authenticated:#(1)!
-        return redirect(reverse(FALLBACK_REDIRECT))
+        return redirect(FALLBACK_REDIRECT)
     if request.method == 'POST':
         if (form := SignupForm(request.POST)).is_valid():
             user = form.save()#(2)!

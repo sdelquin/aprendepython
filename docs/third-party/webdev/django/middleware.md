@@ -16,9 +16,9 @@ graph LR
 
 ## Middleware disponible { #available-middleware }
 
-Django proporciona una serie de [«middleware» predefinido](https://docs.djangoproject.com/en/stable/ref/middleware/) que podemos **activar** según necesidad.
+Django proporciona una serie de [«middleware» predefinido](https://docs.djangoproject.com/en/stable/ref/middleware/) que podemos **activar** bajo demanda.
 
-Si nos fijamos en un proyecto nuevo de Django podremos observar que muchos de estos «middleware» ya se encuentran activados por defecto:
+Si nos fijamos en un proyecto nuevo («fresh») de Django podremos observar que muchos de estos «middleware» ya se encuentran activados por defecto:
 
 ```python title="main/settings.py"
 MIDDLEWARE = [
@@ -53,7 +53,7 @@ Cada «middleware» define una o varias clases que aportan distintas funcionalid
 
 El [«middleware» de mensajes](https://docs.djangoproject.com/en/stable/ref/contrib/messages/) permite crear y publicar mensajes en nuestro proyecto web de manera rápida y sencilla.
 
-Django ya lo tiene habilitado _por defecto_, pero si no fuera así, para activarlo simplemente tendríamos que añadirlo a la lista `MIDDLEWARE` en el fichero de configuraciones:
+Django ya lo tiene habilitado _por defecto_, pero si no fuera así, para activarlo simplemente tendríamos que añadirlo a la lista [`MIDDLEWARE`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MIDDLEWARE) en el fichero de configuraciones:
 
 ```python title="main/settings.py" hl_lines="7"
 MIDDLEWARE = [
@@ -67,15 +67,17 @@ MIDDLEWARE = [
 ]
 ```
 
-Mediante este «middleware» Django proporciona un objeto `messages` que contendrá la lista de mensajes que queremos notificar. Para cada mensaje podemos indicar el [nivel informativo](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#message-tags) asociado. Dentro de `django.contrib.messages` existen las siguientes constantes:
+Mediante este «middleware» Django proporciona un objeto `messages` que contendrá la lista de mensajes que queremos notificar.
 
-| Nivel | Etiqueta |
-| --- | --- |
-| `DEBUG` | `debug` |
-| `INFO` | `info` |
-| `SUCCESS` | `success` |
-| `WARNING` | `warning` |
-| `ERROR` | `error` |
+Para cada mensaje podemos indicar el [nivel informativo](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#message-tags) asociado. El módulo `messages` dentro de `django.contrib.messages` contiene las siguientes constantes:
+
+| Nivel | Etiqueta | Objetivo |
+| --- | --- | --- |
+| `DEBUG` | `debug` | Mensaje de depuración |
+| `INFO` | `info` | Mensajes informativo |
+| `SUCCESS` | `success` | Mensaje de operación exitosa |
+| `WARNING` | `warning` | Mensaje de advertencia |
+| `ERROR` | `error` | Mensaje de error |
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos notificar al usuario que el «post» de un «blog» ha sido borrado satisfactoriamente:
 

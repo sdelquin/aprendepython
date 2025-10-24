@@ -18,15 +18,15 @@ A continuación se muestra un `justfile` con _recetas_ para un proyecto Django, 
 
 ```makefile title="justfile" linenums="1"
 # Run development server
-dev:
-    uv run manage.py runserver
+dev port="8000":
+    uv run manage.py runserver {{ port }}
 
 # Run development server with external access
-dev0:
+dev0 port="8000":
     #!/usr/bin/env bash
     IP=$(ip -br a | perl -lane 'print $1 if /^enp/ && $F[2] =~ m{([^/]+)}')
     if grep -q $IP main/settings.py; then
-        uv run ./manage.py runserver 0.0.0.0:8000
+        uv run ./manage.py runserver 0.0.0.0:{{ port }}
     else
         echo "Add \"$IP\" to ALLOWED_HOSTS in main/settings.py"
     fi
@@ -47,10 +47,10 @@ alias m:=migrate
 migrate app="":
     uv run manage.py migrate {{app}}
 
-# Create a superuser (or update it if already exists)
+# Create a superuser (or update if already exists)
 create-su username="admin" password="admin" email="admin@example.com":
     #!/usr/bin/env bash
-    uv run manage.py shell -c '
+    uv run manage.py shell -v0 -c '
     from django.contrib.auth.models import User
     user, _ = User.objects.get_or_create(username="{{ username }}")
     user.email = "{{ email }}"
@@ -60,6 +60,20 @@ create-su username="admin" password="admin" email="admin@example.com":
     user.save()
     ' 
     echo "✔ Created superuser → {{ username }}:{{ password }}"
+
+# Create a normal user (or update if already exists)
+create-user username password email:
+    #!/usr/bin/env bash
+    uv run manage.py shell -v0 -c '
+    from django.contrib.auth.models import User
+    user, _ = User.objects.get_or_create(username="{{ username }}")
+    user.email = "{{ email }}"
+    user.set_password("{{ password }}") 
+    user.is_superuser = False
+    user.is_staff = False
+    user.save()
+    '
+    echo "✔ Created user → {{ username }}:{{ password }}"
 
 # Add a new app and install it on settings.py
 startapp app:
@@ -110,16 +124,6 @@ rm-venv:
 # Kill existent manage.py processes
 kill:
     pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
-
-# Clean data
-[private]
-clean-data:
-    #!/usr/bin/env bash
-    uv run manage.py shell -c '
-    from tasks.models import Task
-
-    Task.objects.all().delete()
-    ' 
 
 # Launch tests
 test pytest_args="":

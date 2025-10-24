@@ -115,7 +115,7 @@ class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):#(1)!
         super().__init__(*args, **kwargs)#(2)!
         self.helper = FormHelper()#(3)!
-        self.helper.attrs = dict(novalidate=True)#(4)!
+        self.helper.attrs = {'novalidate': True}#(4)!
         self.helper.layout = Layout(#(5)!
             FloatingField('username'),#(6)!
             FloatingField('password'),#(7)!
@@ -166,8 +166,8 @@ class SignupForm(forms.ModelForm):
         model = get_user_model()
         fields = ('username', 'password', 'first_name', 'last_name', 'email')
         required = ('username', 'password', 'first_name', 'last_name', 'email')
-        widgets = dict(password=forms.PasswordInput)
-        help_texts = dict(username=None)
+        widgets = {'password': forms.PasswordInput}
+        help_texts = {'username': None}
 
     def __init__(self, *args, **kwargs):#(1)!
         super().__init__(*args, **kwargs)#(2)!
@@ -176,7 +176,7 @@ class SignupForm(forms.ModelForm):
             self.fields[field].required = True
 
         self.helper = FormHelper()#(3)!
-        self.helper.attrs = dict(novalidate=True)#(4)!
+        self.helper.attrs = {'novalidate': True}#(4)!
         self.helper.layout = Layout(#(5)!
             FloatingField('username'),#(6)!
             FloatingField('password'),#(7)!

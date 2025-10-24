@@ -532,7 +532,7 @@ def edit_post(request, post_slug: str):#(1)!
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
-Un «widget» es la representación Django de componente HTML para formulario. El «widget» maneja el renderizado del HTML y la extración de datos desde el correspondiente diccionario GET/POST.
+Un «widget» es la representación Django de un componente HTML para formulario. El «widget» maneja el renderizado del HTML y la extración de datos desde el correspondiente diccionario GET/POST.
 
 Django proporciona una gran cantidad de [widgets «built-in»](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#built-in-widgets). Cuando definimos un campo de formulario, este tiene asignado un [«widget» por defecto](#fields), pero tenemos la posibilidad personalizar el «widget» o incluso de asignar otro.
 
@@ -593,8 +593,9 @@ Retomando el <span class="example">ejemplo:material-flash:</span> de los «posts
 
 === "Formulario de clase :material-form-select:"
 
-    ```python title="posts/forms.py" hl_lines="5"
+    ```python title="posts/forms.py" hl_lines="6"
     from django import forms
+
 
     class AddPostForm(forms.Form):
         title = forms.CharField()
@@ -608,19 +609,24 @@ Retomando el <span class="example">ejemplo:material-flash:</span> de los «posts
 === "Formulario de modelo :material-form-dropdown:"
 
     ```python title="posts/forms.py" hl_lines="5"
+    from django import forms
+    
+    from .models import Post
+
+
     class AddPostForm(forms.ModelForm):
         class Meta:
             model = Post
             fields = ('title', 'content')
-            widgets = { 'content': forms.Textarea() }#(1)!
+            widgets = {'content': forms.Textarea()}#(1)!
     ```
     { .annotate }
     
     1. El atributo `widgets` de la clase `Meta` nos permite asignar un diccionario donde las claves sean los nombres de los campos y los valores sean los «widgets» que queremos asignar.
 
-### Modificando atributos { #modify-attributes }
+### Modificando atributos HTML { #modify-html-attributes }
 
-Para modificar los atributos HTML de un «widget» podemos hacer uso de la propiedad `attrs` que disponen todos los «widgets». El método para llevar esto a cabo depende de si estamos trabajando con un [formulario de clase](#class-forms) o con un [formulario de modelo](#model-forms).
+Para modificar los atributos HTML de un «widget» podemos hacer uso de la propiedad `attrs` de la que disponen todos los «widgets». El método para llevar esto a cabo depende de si estamos trabajando con un [formulario de clase](#class-forms) o con un [formulario de modelo](#model-forms).
 
 Continuando con el <span class="example">ejemplo:material-flash:</span> de los «posts» de un blog, veamos cómo modificar el ^^identificador^^ del **campo título** y la ^^clase^^ del **campo contenido**:
 
@@ -629,6 +635,9 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
     Una primera aproximación sería modificar la definición de los campos:
 
     ```python title="posts/forms.py"
+    from django import forms
+
+
     class AddPostForm(forms.Form):
         title = forms.CharField(widget=forms.TextInput(attrs={'id': 'post-title'}))
         content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
@@ -637,6 +646,9 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
     Pero también es posible hacerlo de manera programática:
 
     ```python title="posts/forms.py"
+    from django import forms
+
+
     class AddPostForm(forms.Form):
         title = forms.CharField()
         content = forms.CharField(widget=forms.Textarea)
@@ -650,6 +662,11 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
     Una primera aproximación sería modificar la definición en la clase `Meta`:
 
     ```python title="posts/forms.py"
+    from django import forms
+
+    from .models import Post
+
+
     class AddPostForm(forms.ModelForm):
         class Meta:
             model = Post
@@ -663,6 +680,11 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
     Pero también es posible hacerlo de manera programática:
 
     ```python title="posts/forms.py"
+    from django import forms
+
+    from .models import Post
+
+
     class AddPostForm(forms.ModelForm):
         class Meta:
             model = Post
@@ -709,14 +731,21 @@ Uno de los «widgets» que suele ser más complicado de ajustar es el de fecha/h
 
 Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos un formulario de clase para añadir un post que incluye _fecha de publicación_:
 
-```python title="posts/forms.py" hl_lines="4"
+```python title="posts/forms.py" hl_lines="7"
+from django import forms
+
+
 class AddPostForm(forms.Form):
     title = forms.CharField()
     content = forms.CharField(widget=forms.Textarea)
     published_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 ```
 
-Con esta configuración obtendremos un control interactivo para seleccionar la fecha. Este ajuste también es aplicable tanto a campos de tipo `DateTimeField()` como a formularios de modelo.
+Con esta configuración obtendremos un control interactivo para seleccionar la fecha:
+
+![DateInput](./images/forms/dateinput.jpg)
+
+:material-check-all:{ .blue } Este ajuste también es aplicable tanto a campos de tipo `DateTimeField()` como a formularios de modelo.
 
 ## Guardar de forma personalizada { #override-save }
 
@@ -772,11 +801,15 @@ def add_post(request):
             return redirect('posts:post-list')
     else:
         form = AddPostForm()
-    return render(request, 'posts/post/add.html', {'form': form})#(7)!
+    return render(request, 'posts/post/add.html', {'form': form})
 ```
 { .annotate }
 
 1. Toda la «lógica» de generación del «slug» queda encapsulada en el propio formulario.
+
+!!! info "Modelo"
+
+    Una aproximación más genérica (y sostenible) sería centralizar los cambios a la hora de [guardar el propio modelo](models.md#override-save).
 
 ### Escenario con claves ajenas { #override-save-fk }
 
@@ -790,9 +823,11 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
     La forma más «directa» de realizar esta tarea sería la siguiente:
 
-    ```python title="posts/forms.py" hl_lines="10-14"
+    ```python title="posts/forms.py" hl_lines="12-16"
     from django import forms
     from django.utils.text import slugify
+
+    from .models import Post
 
 
     class AddPostForm(forms.ModelForm):
@@ -815,7 +850,12 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
     Ahora podremos simplificar el código de la vista correspondiente:
 
-    ```python title="posts/views.py" hl_lines="4"
+    ```python title="posts/views.py" hl_lines="9"
+    from django.shortcuts import redirect, render
+
+    from .forms import AddPostForm
+
+
     def add_post(request):
         if request.method == 'POST':
             if (form := AddPostForm(request.POST)).is_valid():
@@ -864,7 +904,12 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
     Ahora podremos simplificar el código de la vista correspondiente:
 
-    ```python title="posts/views.py" hl_lines="4"
+    ```python title="posts/views.py" hl_lines="8-9 12"
+    from django.shortcuts import redirect, render
+
+    from .forms import AddPostForm
+
+
     def add_post(request):
         if request.method == 'POST':
             if (form := AddPostForm(request.user, request.POST)).is_valid():#(1)!

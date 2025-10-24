@@ -2109,7 +2109,7 @@ Vamos a analizar herramientas ya vistas —entendiendo mejor su funcionamiento i
 === "Diccionarios"
 
     ```pycon
-    >>> tool = dict(a=1, b=1)
+    >>> tool = {'a': 1, 'b': 1}
     
     >>> iter(tool) is not None#(1)!
     True

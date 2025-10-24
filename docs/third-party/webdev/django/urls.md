@@ -299,7 +299,7 @@ Como era esperable, también podremos redirigir a cualquier otra URL externa que
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
-Pero si lo que queremos es el paso «inverso» de obtener la URL a partir de su nombre tendremos que usar la función [`reverse()`](https://docs.djangoproject.com/en/stable/ref/urlresolvers/#reverse).
+Hay ocasiones en las que nos interesa obtener una URL a partir de su nombre (alias). Para ello, Django proporciona la función [`reverse()`](https://docs.djangoproject.com/en/stable/ref/urlresolvers/#reverse).
 
 Continuando con el <span class="example">ejemplo:material-flash:</span> previo del «blog», supongamos que queremos obtener el nombre de ciertas URLs. El uso de la función `reverse()` depende de si la URL tiene o no parámetros:
 
@@ -317,13 +317,17 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> previo d
     ```pycon
     >>> from django.urls import reverse
 
-    >>> reverse('posts:post-detail', kwargs={'post_slug': 'test'})#(1)!
+    >>> reverse('posts:post-detail', args=['test'])#(1)!
+    '/posts/test/'
+
+    >>> reverse('posts:post-detail', kwargs={'post_slug': 'test'})#(2)!
     '/posts/test/'
     ```
     { .annotate }
 
-    1. También se pueden pasar los argumentos mediante `#!python args=`
-    
+    1. Aproximación usando [parámetros posicionales](../../../core/modularity/functions.md#args).
+    2. Aproximación usando [parámetros nominales](../../../core/modularity/functions.md#kwargs).
+
 ## Accesos directos en primer nivel { #main-shortcuts }
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
@@ -357,6 +361,10 @@ urlpatterns = [
 1. En `main/urls.py` se recomienda importar las vistas de esta forma para evitar «colisiones» con otros espacios de nombres.
 2. Se apunta a la vista de «contact» de la aplicación `shared`.
 
+!!! info "Caso de uso"
+
+    Este enfoque es más adecuado cuando la plantilla a renderizar ^^requiere de datos^^ que sean procesados desde la vista.
+
 ### Redireccionar a URLs { #url-redirect }
 
 Es posible que queramos redireccionar una determinada URL en `main/urls.py`{ .green } a otra URL (habitualmente a través de su nombre).
@@ -381,6 +389,10 @@ urlpatterns = [
     - Como no usamos el supuesto parámetro `request` escribimos `_` como primer argumento.
     - Poner la redirección «lambda» en primer lugar es una _buena práctica_ para visualizar más claramente las URLs.
 
+!!! info "Caso de uso"
+
+    Este enfoque es más adecuado cuando queramos que la URL (del navegador) cambie en la propia redirección y pase el control a otra vista.
+
 ### Renderizar plantillas { #render-redirect }
 
 Es posible que queramos renderizar una plantilla directamente desde `main/urls.py`{ .green }.
@@ -404,6 +416,10 @@ urlpatterns = [
 1.  - Simulamos una vista mediante una función [lambda](../../../core/modularity/functions.md#lambda).
     - Necesitamos el parámetro `request` por eso escribimos `r` como primer argumento.
     - Poner la redirección «lambda» en primer lugar es una _buena práctica_ para visualizar más claramente las URLs.
+
+!!! info "Caso de uso"
+
+    Este enfoque es más adecuado cuando la plantilla a renderizar ^^no requiere de datos^^ que sean procesados desde la vista.
 
 ## Pasar argumentos a una vista { #args-to-view }
 

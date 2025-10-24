@@ -104,10 +104,6 @@ Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <sp
 3. URL generada: `/static/images/logo.svg`
 4. URL generada: :material-arrow-right-box: `/static/posts/images/like.png`
 
-=== "Tab"
-
-    
-
 !!! tip "Caché"
 
     Los navegadores web tratan de cachear[^1] todo el contenido que pueden para así acelerar la carga de las páginas. Es por ello que, a veces, no verás reflejados los cambios en ciertos ficheros estáticos.

@@ -367,8 +367,8 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(primary_key=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, primary_key=True)
+    content = models.TextField()
 ```
 
 ### Valores únicos { #unique }
@@ -382,8 +382,8 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 ```
 
 ??? info "Claves candidatas"
@@ -403,8 +403,8 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 
     class Meta:#(1)!
         unique_together = ['title', 'slug']
@@ -597,26 +597,6 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que `p` es u
 >>> p.save()
 ```
 
-#### Guardando objetos con claves ajenas { #save-objects-fk }
-
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
-
-Cuando se trata de [claves ajenas](#foreign-keys) el procedimiento es igual salvo que estamos asignando un objeto de modelo a un atributo. Suponiendo un <span class="example">ejemplo:material-flash:</span> de «blog» que contemple comentarios sobre un «post» tendríamos lo siguiente:
-
-```pycon hl_lines="10"
->>> post = Post.create(
-...     title='Django makes it very simple',
-...     slug='django-makes-it-very-simple',
-...     content='You can save related objects quite fast'
-... )
-
->>> comment = Comment.create(
-...     alias='sdelquin',
-...     content='You are absolutely right!',
-...     post=post
-... )
-```
-
 ### Recuperando objetos { #retrieve-objects }
 
 #### Todos los objetos { #retrieve-all }
@@ -783,20 +763,6 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
 1.  - En **SQLite :simple-sqlite:** ignora mayúsculas/minúsculas.
     - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
     
-#### Recuperando objetos con claves ajenas { #retrieve-objects-fk }
-
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
-
-En un escenario de [claves ajenas](#foreign-keys) podemos filtrar por los campos del objeto «relacionado».
-
-Por <span class="example">ejemplo:material-flash:</span> supongamos que queremos recuperar todos los comentarios de los «posts» que empiecen por la palabra «Hoy»:
-
-```pycon
->>> Comment.objects.filter(post__title__startswith('Hoy'))
-```
-
-:material-check-all:{ .blue } Para acceder a un campo de un objeto relacionado (_clave ajena_) hay que utilizar doble subguión. Véase `post__title`.
-
 ### Borrando objetos { #delete-objects }
 
 Una vez que tenemos localizado el objeto que queremos borrar, es muy sencillo ya que simplemente tendremos que invocar al método [`delete()`](https://docs.djangoproject.com/en/stable/topics/db/queries/#deleting-objects):
@@ -1135,9 +1101,9 @@ Una de las mayores fortalezas de los [Sistemas Gestores de Bases de Datos Relaci
 
 Django nos ofrece muchas [funcionalidades](https://docs.djangoproject.com/en/stable/ref/models/fields/#module-django.db.models.fields.related) en este sentido, que podemos agrupar en tres escenarios:
 
-:one: Relaciones uno a muchos  
-:two: Relaciones uno a uno  
-:three: Relaciones muchos a muchos
+:one: Relaciones uno a muchos → $1:N$  
+:two: Relaciones uno a uno → $1:1$  
+:three: Relaciones muchos a muchos → $N:N$
 
 ### Relaciones uno a muchos { #one-to-many }
 
@@ -1158,8 +1124,8 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 ```
 
 ```python title="comments/models.py" hl_lines="4-8"
@@ -1175,53 +1141,42 @@ class Comment(models.Model):
 
 Analicemos cada parámetro de `ForeignKey` por separado:
 
-=== "Modelo relacionado :material-file-link:"
+:one: [Modelo relacionado](#related-model)  
+:two: [Nombre relacionado](#related-name)  
+:three: [Acción de borrado](#delete-action) 
 
-    - El primer parámetro que recibe `ForeignKey` es el modelo que vamos a relacionar.
-    - Si se indica en formato «string» hay que especificarlo como: `#!python '<app>.<Model>'`.
-    - También podemos importar el modelo y hacer referencia directa.
+#### Modelo relacionado { #related-model }
 
-=== "Nombre relacionado :material-key-link:"
+El primer parámetro que recibe `ForeignKey` es el modelo que vamos a relacionar.
 
-    El parámetro [`related_name`](https://docs.djangoproject.com/en/stable/topics/db/queries/#backwards-related-objects) establece el nombre que podremos usar en el «otro lado de la relación» para recuperar todos los objetos vinculados.
+Hay dos formas de indicarlo:
 
-    Es una buena práctica que este parámetro se llame como la clase en la que está incluido pero **en minúsculas** y **en plural**:
+1. Si se indica en formato «string» hay que especificarlo como: `#!python '<app>.<Model>'`.
+2. También podemos importar el modelo y hacer referencia directa.
 
-    ![Dark image](images/models/related_name-dark.svg#only-dark)
-    ![Light image](images/models/related_name-light.svg#only-light)
+#### Nombre relacionado { #related-name }
 
-    A través del «related name» es posible obtener todos los objetos relacionados. En el <span class="example">ejemplo:material-flash:</span> de los comentarios de un «post» tendríamos:
+El parámetro [`related_name`](https://docs.djangoproject.com/en/stable/topics/db/queries/#backwards-related-objects) establece el nombre que podremos usar en el «otro lado de la relación» para recuperar todos los objetos vinculados.
 
-    ```pycon hl_lines="4"
-    >>> from posts.models import Post
+Es una buena práctica que este parámetro se llame como la clase en la que está incluido pero **en minúsculas** y **en plural**:
 
-    >>> post = Post.objects.get(slug='django-is-awesome')
-    >>> post.comments.all()#(1)!
-    <QuerySet [<Comment: This is cool>, <Comment: I don't understand it>, <Comment: Please explain it again>]>
-    ```
-    { .annotate }
+![Dark image](images/models/related_name-dark.svg#only-dark)
+![Light image](images/models/related_name-light.svg#only-light)
 
-    1. La forma ~~anti~~ natural podría sería: `#!python Comment.objects.filter(post=post)`
+A través del «related name» es posible obtener todos los objetos relacionados. Imaginemos que en el <span class="example">ejemplo:material-flash:</span> del «blog» necesitamos obtener todos los comentarios de un determinado «post»:
 
-    :material-check-all:{ .blue } `related_name` no es un parámetro requerido, pero es ^^altamente recomendable^^ incluirlo.
+```pycon hl_lines="4"
+>>> from posts.models import Post
 
-=== "Acción de borrado :material-delete-sweep:"
+>>> post = Post.objects.get(slug='django-is-awesome')
+>>> post.comments.all()#(1)!
+<QuerySet [<Comment: This is cool>, <Comment: I don't understand it>, <Comment: Please explain it again>]>
+```
+{ .annotate }
 
-    El parámetro [`on_delete`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey.on_delete) especifica qué acción debe tomar Django cuando se borra el objeto relacionado.
-    
-    > En el <span class="example">ejemplo:material-flash:</span> anterior, vendría a significar, qué hacemos con los comentarios de un «post» que acabamos de «borrar».
-    
-    Los posibles valores de este parámetro se muestran en la siguiente tabla:
+1. La forma ~~anti~~ natural podría sería: `#!python Comment.objects.filter(post=post)`
 
-    | Valor | Acción |
-    | --- | --- |
-    | [`models.CASCADE`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CASCADE) | Borrado en cascada de todos los objetos relacionados. |
-    | [`models.PROTECT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.PROTECT) | Impide el borrado si existen objetos relacionados. |
-    | [`models.RESTRICT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.RESTRICT) | Impide el borrado si existen objetos relacionados (con matices). |
-    | [`models.SET_NULL`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_NULL) | Pone a `#!sql NULL` la clave ajena (sólo si admite nulos). |
-    | [`models.SET_DEFAULT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_DEFAULT) | Pone un valor por defecto en la clave ajena (necesario definir `default`). |
-    | [`models.SET`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET) | Pone un valor dado en la clave ajena. |
-    | [`models.DO_NOTHING`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DO_NOTHING) | No hace nada. Deja que la base de datos gestione el error de integridad. |
+:material-check-all:{ .blue } `related_name` no es un parámetro requerido, pero es ^^altamente recomendable^^ incluirlo.
 
 ##### Colisión { #related-name-clash }
 
@@ -1250,12 +1205,31 @@ class Post(models.Model):
     editor = models.ForeignKey('members.Member', related_name='editor_posts')
 ```
 
+#### Acción de borrado { #delete-action }
+
+El parámetro [`on_delete`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ForeignKey.on_delete) especifica qué acción debe tomar Django cuando se borra el objeto relacionado.
+
+> En el <span class="example">ejemplo:material-flash:</span> anterior, vendría a significar, qué hacemos con los comentarios de un «post» que acabamos de «borrar».
+
+Los posibles valores de este parámetro se muestran en la siguiente tabla:
+
+| Valor | Acción |
+| --- | --- |
+| [`models.CASCADE`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CASCADE) | Borrado en cascada de todos los objetos relacionados. |
+| [`models.PROTECT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.PROTECT) | Impide el borrado si existen objetos relacionados. |
+| [`models.RESTRICT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.RESTRICT) | Impide el borrado si existen objetos relacionados (con matices). |
+| [`models.SET_NULL`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_NULL) | Pone a `#!sql NULL` la clave ajena (sólo si admite nulos). |
+| [`models.SET_DEFAULT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_DEFAULT) | Pone un valor por defecto en la clave ajena (necesario definir `default`). |
+| [`models.SET`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET) | Pone un valor dado en la clave ajena. |
+| [`models.DO_NOTHING`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DO_NOTHING) | No hace nada. Deja que la base de datos gestione el error de integridad. |
+
 #### Claves ajenas nulas { #null-fk }
 
 Si en el <span class="example">ejemplo:material-flash:</span> anterior, pudieran existir ^^comentarios sin «post»^^, tendríamos que modificar ligeramente el modelo para admitir _valores nulos_:
 
-```python title="comments/models.py" hl_lines="10-11"
+```python title="comments/models.py" hl_lines="11-12"
 from django.db import models
+
 
 class Comment(models.Model):
     alias = models.CharField(max_length=128)
@@ -1307,6 +1281,90 @@ class Comment(models.Model):
 1. Consulta [acceso al modelo de usuario](auth.md#user-model).
 2. Si borramos un usuario se borrarán todos sus comentarios.
 
+#### Operaciones con claves ajenas { #operations-fk }
+
+Veamos a continuación diferentes operaciones que podemos realizar con claves ajenas sobre el <span class="example">ejemplo:material-flash:</span> concreto de los comentarios de un «post» dentro de un «blog»:
+
+=== "Creación :octicons-diff-added-24:"
+
+    Creamos un «post» y a continuación creamos un comentario vinculado a dicho «post»:
+
+    ```pycon hl_lines="13"
+    >>> from posts.models import Post
+    >>> from comments.models import Comment
+
+    >>> post = Post.create(
+    ...     title='Django makes it very simple',
+    ...     slug='django-makes-it-very-simple',
+    ...     content='You can save related objects quite fast'
+    ... )
+    
+    >>> comment = Comment.create(
+    ...     alias='sdelquin',
+    ...     content='You are absolutely right!',
+    ...     post=post#(1)!
+    ... )
+    ```
+    { .annotate }
+    
+    1. Al final no deja de ser un atributo más al que asignamos un valor (objeto de clase `Post`).
+
+=== "Asignación :fontawesome-solid-sign-in:"
+
+    Dado un «post» y un «comentario», vinculamos (asignamos) el comentario al «post»:
+
+    ```pycon hl_lines="7-8"
+    >>> from posts.models import Post
+    >>> from comments.models import Comment
+    
+    >>> post = Post.objects.get(slug='django-is-awesome')
+    >>> comment = Comments.objects.get(content='Yes indeed!')
+
+    >>> comment.post = post#(1)!
+    >>> comment.save()
+    ```
+    { .annotate }
+    
+    1. Al final no deja de ser un atributo más al que asignamos un valor (objeto de clase `Post`).
+
+=== "Consulta :material-magnify:"
+
+    Consultamos todos los comentarios de aquellos «posts» que empiecen por la palabra «Future»:
+    
+    ```pycon hl_lines="3"
+    >>> from comments.models import Comment
+
+    >>> Comment.objects.filter(post__title__startswith('Future'))#(1)!
+    ```
+    { .annotate }
+    
+    1. Para acceder a un campo de un objeto relacionado (_clave ajena_) hay que utilizar doble subguión. Véase `post__title`.
+
+=== "Borrado :material-delete:"
+
+    :one: Borramos todos los comentarios de un determinado «post»:
+
+    ```pycon hl_lines="4"
+    >>> from posts.models import Post
+    
+    >>> post = Post.objects.get(slug='django-is-awesome')
+    >>> post.comments.delete()#(1)!
+    ```
+    { .annotate }
+    
+    1. Utilizamos [`related-name`](#related-name) para acceder a la *relación inversa*.
+
+    :two: Borramos (desvinculamos) un determinado comentario de un «post»:
+
+    ```pycon hl_lines="1"
+    >>> comment.post = None#(1)!
+    >>> comment.save()
+    ```
+    { .annotate }
+    
+    1. Esto sólo se podrá hacer si pueden existir comentarios "húerfanos" (consultar [claves ajenas nulas](#null-fk)).
+
+
 ### Relaciones uno a uno { #one-to-one }
 
 Django ofrece la posibilidad de definir [relaciones uno a uno](https://docs.djangoproject.com/en/stable/topics/db/examples/one_to_one/#one-to-one-relationships) utilizando la clase [`OneToOneField()`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.OneToOneField).
@@ -1330,7 +1388,7 @@ erDiagram
 
 Como se puede observar, se trata de una relación `1:1` por lo que vamos a utilizar la clase [`OneToOneField()`](#one-to-one) que proporciona Django. La implementación sería la siguiente:
 
-```python title="users/models.py" hl_lines="6-9"
+```python title="users/models.py" hl_lines="6-10"
 from django import models
 from django.conf import settings
 
@@ -1381,7 +1439,7 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    content = models.TextField(max_length=256)
+    content = models.TextField()
     labels = models.ManyToManyField(#(1)!
         'labels.Label',#(2)!
         related_name='posts',#(3)!
@@ -1793,15 +1851,16 @@ Entre los distintos [campos](#fields) que podemos utilizar en un modelo Django e
 
 Las dos opciones de las que disponemos son [`FileField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#filefield) e [`ImageField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#imagefield).
 
-Vamos a partir de un <span class="example">ejemplo:material-flash:</span> en el que modelamos un «post» añadiendo una imagen de _portada_. Para ello usaremos un nuevo atributo `cover` que será un `ImageField`:
+Vamos a partir de un <span class="example">ejemplo:material-flash:</span> en el que modelamos un «post» añadiendo una imagen de _portada_. Para ello añadimos un nuevo campo `cover` al modelo que será de tipo `ImageField`:
 
-```python title="posts/models.py" hl_lines="7"
+```python title="posts/models.py" hl_lines="8"
 from django import models
+
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(unique=True, max_length=256)
+    content = models.TextField()
     cover = models.ImageField(uploads_to='covers', default='covers/nocover.png')
 ```
 
@@ -1809,7 +1868,7 @@ Analicemos cada parámetro de `ImageField` por separado:
 
 === "`uploads_to` :material-upload:"
 
-    El atributo `uploads_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a `settings.MEDIA_ROOT` que, por defecto, es la raíz de nuestro proyecto.
+    El atributo `uploads_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) que, por defecto, es la raíz de nuestro proyecto.
 
     Es decir que si tenemos `#!python uploads_to='covers'` esto crearía una carpeta `covers` en el raíz de nuestro proyecto con las imágenes (_portadas_) de los «posts» que vayamos creando.
     
@@ -1817,34 +1876,42 @@ Analicemos cada parámetro de `ImageField` por separado:
 
     Suele ser una buena práctica (dependiendo del contexto) definir un valor por defecto para la imagen.
 
-    En el <span class="example">ejemplo:material-flash:</span> anterior hemos establecido `#!python default='covers/nocover.png'`. Esto quiere decir que cuando se guarde un nuevo objeto «post» sin especificar una portada, se asignará dicho valor, que será una _ruta relativa_ a `settings.MEDIA_ROOT`.
+    En el <span class="example">ejemplo:material-flash:</span> anterior hemos establecido `#!python default='covers/nocover.png'`. Esto quiere decir que cuando se guarde un nuevo objeto «post» sin especificar una portada, se asignará dicho valor, que será una _ruta relativa_ a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT).
 
-!!! warning "pillow"
+??? warning "Dependencias si trabajamos con imágenes"
 
     Cuando trabajamos con campos de tipo `ImageField` debemos instalar el paquete [pillow](https://pillow.readthedocs.io/en/stable/):
 
-    ```console
-    $ pip install pillow
-    ```
+    === "*venv* :octicons-package-24:{.blue}"
+    
+        ```console
+        $ pip install pillow
+        ```
+    
+    === "*uv* &nbsp;:simple-uv:{.uv}"
+
+        ```console
+        $ uv add pillow
+        ```
 
 ### Ruta del fichero { #file-field-path }
 
-Django ofrece la posibilidad de modificar la configuración `settings.MEDIA_ROOT` para indicar la ruta «base» donde se va a almacenar este tipo de valores en el **sistema de ficheros**.
+Django ofrece la posibilidad de modificar la configuración [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) para indicar la ruta «base» donde se va a almacenar este tipo de valores en el **sistema de ficheros**.
 
-!!! tip "MEDIA_ROOT"
+Suele ser una **buena práctica** establecer `#!python '/media'` como la carpeta para la subida de ficheros:
 
-    Suele ser habitual establecer `#!python 'media'` como la carpeta para la subida de ficheros:
+```python title="main/settings.py"
+MEDIA_ROOT = BASE_DIR / 'media'#(1)!
+```
+{ .annotate }
 
-    ```python title="main/settings.py"
-    MEDIA_ROOT = BASE_DIR / 'media'#(1)!
-    ```
-    { .annotate }
-
-    1. `BASE_DIR` es una variable definida al comienzo de `settings.py` y que contiene la **ruta absoluta** a la raíz de nuestro proyecto Django.
+1. `BASE_DIR` es una variable definida al comienzo de `settings.py` y que contiene la **ruta absoluta** a la raíz de nuestro proyecto Django.
 
 Por tanto, si subimos un fichero `#!python 'tech.png'` como portada de un «post», la ruta en el sistema de ficheros donde se guardará será `<project-path>/media/covers/tech.png`.
 
-:material-check-all:{ .blue } Dado un objeto `post` de tipo `Post` podemos acceder a la ^^ruta en disco^^ de su fichero de portada mediante `post.avatar.path`.
+!!! note "Ruta en disco"
+
+    Dado un objeto `post` de tipo `Post` podemos acceder a la ^^ruta en disco^^ de su fichero de portada mediante `post.cover.path`.
 
 ### URL del fichero { #file-field-url }
 
@@ -1861,23 +1928,23 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pas
 
 1. El campo `cover` (`ImageField`) dispone de un atributo `url` que devuelve la URL de la imagen.
 
-!!! tip "MEDIA_URL"
+Suele ser una **buena práctica** establecer `#!python '/media'` como la URL de acceso a los ficheros subidos:
 
-    Suele ser habitual establecer `#!python 'media/'` como la URL de acceso a los ficheros subidos:
+```python title="main/settings.py"
+MEDIA_URL = 'media/'
+```
 
-    ```python title="main/settings.py"
-    MEDIA_URL = 'media/'
-    ```
+!!! note "URL de acceso"
 
-:material-check-all:{ .blue } Por tanto, si subimos un fichero `#!python 'tech.png'` como portada de un «post», la URL de acceso será `#!python http://<project-domain>/media/covers/tech.png`.
+    Si subimos un fichero `#!python 'tech.png'` como portada de un «post», la ^^URL de acceso^^ será `#!python http://<project-domain>/media/covers/tech.png`.
 
 ### Servidor de desarrollo { #file-fields-devserver }
 
-Es muy posible que después de todas estas configuraciones aún no logres ver correctamente la imagen de portada de este «post». Esto se debe muy posiblemente a que el _servidor de desarrollo_ no está configurado para ello.
+Es posible que después de todas estas configuraciones aún no logres ver correctamente la imagen de portada de este «post». Esto puede deberse a que el _servidor de desarrollo_ no está configurado para ello.
 
-Si es tu caso, debes agregar cierta configuración en las URLs de primer nivel:
+Si es tu caso, debes agregar cierta configuración en las [URLs de primer nivel](urls.md#main-urls):
 
-```python title="main/urls.py" hl_lines="6"
+```python title="main/urls.py" hl_lines="1-2 6"
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -1897,6 +1964,22 @@ urlpattners = [
 
 Una de las operaciones más habituales cuando manejamos `FileField` o `ImageField` es la [subida de ficheros](https://docs.djangoproject.com/en/stable/topics/http/file-uploads/#basic-file-uploads) para poder actualizar el campo correspondiente.
 
+#### Gestión del formulario { #file-uploads-form }
+
+En este caso vamos a poner un <span class="example">ejemplo:material-flash:</span> de añadir un «post» utilizando un [formulario de modelo](forms.md#model-forms) para ello:
+
+```python title="posts/forms.py"
+from django import forms
+
+from .models import Post
+
+
+class AddPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'content', 'cover')
+```
+
 #### Gestión de la plantilla { #file-uploads-templates }
 
 Cuando definimos un formulario en una plantilla que va a contener algún campo de fichero, es fundamental definir el atributo `enctype` del formulario para que todo funcione correctamente.
@@ -1913,7 +1996,7 @@ A continuación se muestra un <span class="example">ejemplo:material-flash:</spa
 
 #### Gestión de la vista { #file-uploads-views }
 
-A la hora de procesar la subida de un campo de fichero en una vista, debemos tener en cuenta que la información correspondiente se encuentra en `request.FILES`.
+A la hora de procesar la subida de un campo de fichero en una vista, debemos tener en cuenta que la información correspondiente se encuentra en el diccionario [`request.FILES`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpRequest.FILES).
 
 A continuación se implementa un <span class="example">ejemplo:material-flash:</span> de vista para procesar el formulario anterior de creación de un nuevo «post»:
 
@@ -1930,7 +2013,7 @@ def add_post(request):
             return redirect('posts:post-list')
     else:
         form = AddPostForm()
-    return render(request, 'posts/post/add.html', dict(form=form))
+    return render(request, 'posts/post/add.html', {'form': form})
 ```
 { .annotate }
 
@@ -1952,8 +2035,8 @@ from django.utils.text import slugify
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 
     def save(self, *args, **kwargs):#(1)!
         self.slug = slugify(self.title)#(2)!
@@ -1971,13 +2054,13 @@ Django proporciona un atributo [`_state`](https://docs.djangoproject.com/en/stab
 
 ```python title="posts/models.py" hl_lines="11"
 from django.db import models
-from  import slugify
+from django.utils.text import slugify
 
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 
     def save(self, *args, **kwargs):
         if self._state.adding:#(1)!
@@ -2000,14 +2083,14 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> del «po
 
 ```python title="posts/models.py" hl_lines="11-12"
 from django.db import models
-from django.utils.text import slugify
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 
     def get_absolute_url(self):
         return reverse('posts:post-detail', kwargs={'slug': self.slug})#(1)!
@@ -2016,27 +2099,27 @@ class Post(models.Model):
 
 1. La función [reverse](urls.md#reverse) ya nos devuelve la URL correspondiente.
 
-!!! tip "Redirección"
+### Redirección de modelo { #model-redirect }
 
-    Además de las [redirecciones](urls.md#redirect) ya vistas, Django nos permite hacer una redirección sobre una instancia de un modelo. En ese caso se usará la URL canónica del objeto como URL de destino.
+Además de las [redirecciones](urls.md#redirect) ya vistas, Django nos permite hacer una redirección sobre una instancia de un modelo. En ese caso se usará la URL canónica del objeto como URL de destino.
 
-    Veamos un <span class="example">ejemplo:material-flash:</span> sobre un «post» del «blog»:
+Veamos un <span class="example">ejemplo:material-flash:</span> sobre un «post» del «blog»:
 
-    ```python title="posts/views.py"
-    from django.shortcuts import redirect    
+```python title="posts/views.py"
+from django.shortcuts import redirect    
 
-    from .models import Post
+from .models import Post
 
-    
-    def post_detail(request, post_slug: str):
-        # ...
-        post = Post.objects.get(slug=post_slug)
-        return redirect(post)#(1)!
-    ```
-    { .annotate }
-    
-    1.  - Django obtiene la URL llamando a [`post.get_absolute_url()`](models.md#canonical-url) y hace la redirección.
-        - En este caso se haría una redirección a `/posts/this-is-a-test-post`.
+
+def post_detail(request, post_slug: str):
+    # ...
+    post = Post.objects.get(slug=post_slug)
+    return redirect(post)#(1)!
+```
+{ .annotate }
+
+1.  - Django obtiene la URL llamando a [`post.get_absolute_url()`](models.md#canonical-url) y hace la redirección.
+    - En este caso se haría una redirección a `/posts/this-is-a-test-post/`.
 
 ## Ordenación por defecto { #default-ordering }
 
@@ -2052,8 +2135,8 @@ from django import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
 
     class Meta:#(1)!
         ordering = ['title']#(2)!

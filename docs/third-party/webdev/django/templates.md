@@ -385,6 +385,10 @@ Ahora vamos a crear una ^^plantilla derivada^^ (desde esta plantilla base) que s
 
     Cuando estamos «heredando» de otra plantilla, todo el contenido que pongamos en la plantilla derivada debe ir dentro de algún bloque extendido. En otro caso, el contenido que quede fuera no se renderizará.
 
+!!! warning "Etiquetas y herencia"
+
+    Las etiquetas de «carga» de módulos (por <span class="example">ejemplo:material-flash:</span> `#!htmldjango {% load static %}`) **no se heredan**, por lo que deben escribirse también en las plantillas derivadas.
+
 ### Inclusión { #include }
 
 Django nos permite externalizar partes de una plantilla a un fichero, para luego incluirlo desde la propia plantilla. Para ello se utiliza la etiqueta [`{% include %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#include).
