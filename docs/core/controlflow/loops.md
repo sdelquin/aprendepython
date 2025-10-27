@@ -514,6 +514,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de **2 bucles ani
 
     Podemos añadir todos los niveles de anidamiento que queramos. Eso sí, hay que tener en cuenta que cada nuevo nivel de anidamiento supone un importante aumento de la [complejidad ciclomática](https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica) de nuestro código, lo que se traduce en mayores tiempos de ejecución.
 
+    :simple-readdotcv: Revisa [este artículo](https://samwho.dev/big-o/) de [Sam Rose](https://samwho.dev/) sobre **Notación O** (*orden de crecimiento*).
+
 !!! exercise "Ejercicio"
 
     [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `mosaic`

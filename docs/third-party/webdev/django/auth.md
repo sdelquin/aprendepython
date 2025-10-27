@@ -125,7 +125,7 @@ class LoginForm(forms.Form):
 ### Plantilla de login { #login-template }
 
 ```htmldjango title="accounts/templates/accounts/login.html"
-<form method="post">
+<form method="post" novalidate>
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Login">
@@ -337,7 +337,7 @@ class SignupForm(forms.ModelForm):
 ### Plantilla de registro { #signup-template }
 
 ```htmldjango title="accounts/templates/accounts/signup.html"
-<form method="post">
+<form method="post" novalidate>
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Sign up">
