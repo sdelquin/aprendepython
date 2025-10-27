@@ -1867,18 +1867,18 @@ class Post(models.Model):
     slug = models.SlugField(unique=True, max_length=256)
     content = models.TextField()
     cover = models.ImageField(
-        uploads_to='covers',
+        upload_to='covers',
         default='covers/nocover.png'
     )
 ```
 
 Analicemos cada parámetro de `ImageField` por separado:
 
-=== "`uploads_to` :material-upload:"
+=== "`upload_to` :material-upload:"
 
-    El atributo `uploads_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) que, por defecto, es la raíz de nuestro proyecto.
+    El atributo `upload_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) que, por defecto, es la raíz de nuestro proyecto.
 
-    Es decir que si tenemos `#!python uploads_to='covers'` esto crearía una carpeta `covers` en el raíz de nuestro proyecto con las imágenes (_portadas_) de los «posts» que vayamos creando.
+    Es decir que si tenemos `#!python upload_to='covers'` esto crearía una carpeta `covers` en el raíz de nuestro proyecto con las imágenes (_portadas_) de los «posts» que vayamos creando.
     
 === "`default` :material-book-arrow-left:"
 
@@ -2091,7 +2091,7 @@ class Post(models.Model):
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
 
-Django nos ofrece la posibilidad de asignar a cada instancia de modelo una URL canónica[^4]. Para ello debemos implementar el método [`get_absolute_url`](https://docs.djangoproject.com/en/stable/ref/models/instances/#get-absolute-url).
+Django nos ofrece la posibilidad de asignar a cada instancia de modelo una URL canónica[^4]. Para ello debemos implementar el método [`get_absolute_url()`](https://docs.djangoproject.com/en/stable/ref/models/instances/#get-absolute-url).
 
 Continuando con el <span class="example">ejemplo:material-flash:</span> del «post», podríamos definir su URL canónica de la siguiente manera:
 
@@ -2107,33 +2107,50 @@ class Post(models.Model):
     content = models.TextField()
 
     def get_absolute_url(self):
-        return reverse('posts:post-detail', kwargs={'slug': self.slug})#(1)!
+        return reverse('posts:post-detail', args=[self.slug])#(1)!
 ```
 { .annotate }
 
 1. La función [reverse](urls.md#reverse) ya nos devuelve la URL correspondiente.
 
-### Redirección de modelo { #model-redirect }
+### URL canónica en vistas { #canonical-url-in-views }
 
 Además de las [redirecciones](urls.md#redirect) ya vistas, Django nos permite hacer una redirección sobre una instancia de un modelo. En ese caso se usará la URL canónica del objeto como URL de destino.
 
-Veamos un <span class="example">ejemplo:material-flash:</span> sobre un «post» del «blog»:
+Supongamos el típico <span class="example">ejemplo:material-flash:</span> en el que, después de dar de alta un «post» de un «blog» redirigimos al detalle de dicho «post»:
 
-```python title="posts/views.py"
+```python title="posts/views.py" hl_lines="11"
 from django.shortcuts import redirect    
 
+from .forms import AddPostForm
 from .models import Post
 
 
-def post_detail(request, post_slug: str):
-    # ...
-    post = Post.objects.get(slug=post_slug)
-    return redirect(post)#(1)!
+def add_post(request):
+    if request.method == 'POST':
+        if (form := AddPostForm(request.POST)).is_valid():
+            post = form.save()
+            return redirect(post)#(1)!
+    else:
+        form = AddPostForm()
+    return render(request, 'posts/post/add.html', {'form': form})
 ```
 { .annotate }
 
 1.  - Django obtiene la URL llamando a [`post.get_absolute_url()`](models.md#canonical-url) y hace la redirección.
     - En este caso se haría una redirección a `/posts/this-is-a-test-post/`.
+
+### URL canónica en plantillas { #canonical-url-in-templates }
+
+Podemos reaprovechar el método `get_absolute_url()` para utilizarlo en plantillas. En el siguiente <span class="example">ejemplo:material-flash:</span> creamos un enlace a cada «post»:
+
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="3"
+{% for posts in posts %}
+    <div class="post">
+        <a href="{{ post.get_absolute_url }}">{{ post }}</a>
+    </div>
+{% endfor %}
+```
 
 ## Ordenación por defecto { #default-ordering }
 

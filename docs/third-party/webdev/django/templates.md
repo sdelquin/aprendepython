@@ -120,6 +120,16 @@ def post_detail(request, post_slug: str):
 
 1. En el contexto se fija el «post» que vamos a utilizar en la plantilla.
 
+!!! note "Sin paréntesis"
+
+    Si queremos hacer uso de una función/método dentro de una plantilla, **no se ponen los paréntesis en la llamada**:
+
+    ```htmldjango
+    <h2>post.title.upper</h2>
+    ```
+
+    De aquí se deriva el hecho de que **no se pueden pasar parámetros** a funciones/métodos en plantillas. Para eso habría que hacer uso de [filtros](#filters).
+
 ## Etiquetas { #tags }
 
 Django proporciona una serie de [etiquetas](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-tag-reference) para usar en plantillas. Estas etiquetas ofrecen distintas funcionalidades y se caracterizan por usar sintaxis `{% tag %}`.
