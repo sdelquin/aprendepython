@@ -2001,7 +2001,7 @@ Cuando definimos un formulario en una plantilla que va a contener algún campo d
 A continuación se muestra un <span class="example">ejemplo:material-flash:</span> de un formulario para añadir un «post» a nuestra aplicación «blog»:
 
 ```htmldjango title="posts/templates/posts/post/add.html" hl_lines="1"
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Add">
