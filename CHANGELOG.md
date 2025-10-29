@@ -2,6 +2,20 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## Version 2.1.1
+
+Publicada el 29-10-2025
+
+Completa documentación de:
+  - Fundamentos del lenguaje: Bucles.
+  - Django: Autenticación.
+  - Django: Modelos.
+  - Django: Plantillas.
+  - Django: Formularios.
+  - Django: URLs.
+  - Django: Middleware.
+  - Django: Justfile.
+
 ## Version 2.1.0
 
 Publicada el 24-10-2025
