@@ -18,10 +18,12 @@ A continuación se muestra un `justfile` con _recetas_ para un proyecto Django, 
 
 ```makefile title="justfile" linenums="1"
 # Run development server
+[group('server')]
 dev port="8000":
     uv run manage.py runserver {{ port }}
 
 # Run development server with external access
+[group('server')]
 dev0 port="8000":
     #!/usr/bin/env bash
     IP=$(ip -br a | perl -lane 'print $1 if /^enp/ && $F[2] =~ m{([^/]+)}')
@@ -34,20 +36,24 @@ dev0 port="8000":
 
 alias c:=check
 # Check Django project
+[group('migrations')]
 check:
     uv run manage.py check
 
 alias mm:=makemigrations
 # Make model migrations
+[group('migrations')]
 makemigrations app="":
     uv run manage.py makemigrations {{app}}
 
 alias m:=migrate
 # Apply model migrations
+[group('migrations')]
 migrate app="":
     uv run manage.py migrate {{app}}
 
 # Create a superuser (or update if already exists)
+[group('data')]
 create-su username="admin" password="admin" email="admin@example.com":
     #!/usr/bin/env bash
     uv run manage.py shell -v0 -c '
@@ -62,6 +68,7 @@ create-su username="admin" password="admin" email="admin@example.com":
     echo "✔ Created superuser → {{ username }}:{{ password }}"
 
 # Create a normal user (or update if already exists)
+[group('data')]
 create-user username password email:
     #!/usr/bin/env bash
     uv run manage.py shell -v0 -c '
@@ -76,6 +83,7 @@ create-user username password email:
     echo "✔ Created user → {{ username }}:{{ password }}"
 
 # Add a new app and install it on settings.py
+[group('config')]
 startapp app:
     #!/usr/bin/env bash
     uv run manage.py startapp {{ app }}
@@ -86,21 +94,25 @@ startapp app:
 
 alias sh:=shell
 # Open project (django) shell
+[group('shell')]
 shell:
     uv run manage.py shell
 
 alias dbsh:=dbshell
 # Open database shell
+[group('shell')]
 dbshell:
     uv run manage.py dbshell
 
 # Setup new project
+[group('config')]
 setup: && migrate create-su set-tz
     #!/usr/bin/env bash
     uv sync
     uv run django-admin startproject main .
 
 # Set Django TimeZone
+[group('config')]
 set-tz timezone="Atlantic/Canary":
     #!/usr/bin/env bash
     sed -i -E "s@(TIME_ZONE).*@\1 = '{{ timezone }}'@" ./main/settings.py
@@ -110,6 +122,7 @@ set-tz timezone="Atlantic/Canary":
 
 # Remove migrations and database. Reset DB artefacts.
 [confirm("⚠️ All migrations and database will be removed. Continue? [yN]:")]
+[group('migrations')]
 reset-db: && makemigrations migrate create-su
     #!/usr/bin/env bash
     find . -path "*/migrations/*.py" ! -path "./.venv/*" ! -name "__init__.py" -delete
@@ -118,14 +131,17 @@ reset-db: && makemigrations migrate create-su
 
 # Remove virtualenv
 [confirm("⚠️ Virtualenv './venv' will be removed. Continue? [yN]:")]
+[group('utils')]
 rm-venv:
     rm -fr .venv
 
 # Kill existent manage.py processes
+[group('utils')]
 kill:
     pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
 
 # Launch tests
+[group('utils')]
 test pytest_args="":
     uv run pytest -s {{ pytest_args }}
 ```
