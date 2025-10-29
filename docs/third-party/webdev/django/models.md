@@ -414,6 +414,18 @@ class Post(models.Model):
 1.  - La clase interior `Meta` permite indicarle a Django [ciertas opciones](https://docs.djangoproject.com/en/stable/ref/models/options/#model-meta-options) para un modelo.
     - Por una cuestión de «estilo» se suele escribir justo debajo de los atributos del modelo.
 
+??? example "Marca y modelo"
+
+    Un <span class="example">ejemplo:material-flash:</span> quizás más evidente de _valores únicos juntos_ sea el de **marca** y **modelo** en una aplicación de gestión de productos. Obviamente la marca de un producto se puede repetir, y el modelo de un producto se puede repetir, pero lo que no puede pasar es que se repitan ambos. En otras palabras, **marca-modelo** deben ser únicas:
+
+    |  #  |   Marca    |  Modelo  |                Estado                 |
+    | --- | ---------- | -------- | ------------------------------------- |
+    | 1   | Logitech   | ^^K120^^ | :material-check:{.green}              |
+    | 2   | Samsung    | ^^K120^^ | :material-check:{.green}              |
+    | 3   | ^^Lenovo^^ | Z562     | :material-check:{.green}              |
+    | 4   | ^^Lenovo^^ | W208     | :material-check:{.green}              |
+    | 5   | Logitech   | K120     | :material-cancel:{.red} (colisión #1) |
+
 ## Campos opcionales { #optional-fields }
 
 Hay ocasiones en las que necesitamos que ciertos campos del modelo puedan quedar vacíos, es lo que conocemos como **campos opcionales**. La cuestión aquí es que la definición de «vacío» en la base de datos no siempre es tan evidente.
@@ -1185,7 +1197,7 @@ A través del «related name» es posible obtener todos los objetos relacionados
 
 ##### Colisión { #related-name-clash }
 
-Hay ocasiones en las que se puede producir una **colisión** si tenemos dos `claves ajenas` al mismo modelo y con el mismo `related_name`.
+Hay ocasiones en las que se puede producir una **colisión** si tenemos **dos claves ajenas apuntando al mismo modelo**{.hl} y con el mismo `related_name`.
 
 Pensemos en un <span class="example">ejemplo:material-flash:</span> donde reflejamos el _escritor_ y el _editor_ de un «post»:
 
@@ -1230,7 +1242,7 @@ Los posibles valores de este parámetro se muestran en la siguiente tabla:
 
 #### Claves ajenas nulas { #null-fk }
 
-Si en el <span class="example">ejemplo:material-flash:</span> anterior, pudieran existir ^^comentarios sin «post»^^, tendríamos que modificar ligeramente el modelo para admitir _valores nulos_:
+Si en el <span class="example">ejemplo:material-flash:</span> anterior, pudieran existir ^^comentarios sin «post»^^ (huérfanos), tendríamos que modificar ligeramente el modelo para admitir _valores nulos_:
 
 ```python title="comments/models.py" hl_lines="11-12"
 from django.db import models
@@ -1856,7 +1868,7 @@ Entre los distintos [campos](#fields) que podemos utilizar en un modelo Django e
 
 Las dos opciones de las que disponemos son [`FileField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#filefield) e [`ImageField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#imagefield).
 
-Vamos a partir de un <span class="example">ejemplo:material-flash:</span> en el que modelamos un «post» añadiendo una imagen de _portada_. Para ello añadimos un nuevo campo `cover` al modelo que será de tipo `ImageField`:
+Vamos a partir de un <span class="example">ejemplo:material-flash:</span> en el que modelamos un «post» con una imagen de _portada_ («cover»). Para ello añadimos un nuevo campo `cover` de tipo `ImageField`:
 
 ```python title="posts/models.py" hl_lines="8-11"
 from django.db import models
@@ -1879,6 +1891,20 @@ Analicemos cada parámetro de `ImageField` por separado:
     El atributo `upload_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) que, por defecto, es la raíz de nuestro proyecto.
 
     Es decir que si tenemos `#!python upload_to='covers'` esto crearía una carpeta `covers` en el raíz de nuestro proyecto con las imágenes (_portadas_) de los «posts» que vayamos creando.
+
+    !!! example "Carpetas organizadas por fecha"
+    
+        Con el parámetro `upload_to` es posible indicar la creación de carpetas (con fechas) a la hora de subir ficheros:
+
+        ```python hl_lines="2"
+        cover = models.ImageField(
+            upload_to='covers/%Y/%m/%d/',
+            default='covers/nocover.png'
+        )
+        ```
+
+        En este caso las imágenes se subirán a `MEDIA_ROOT/covers/2025/10/29/`.  
+        Las carpetas se pueden personalizar con el formato de [`strftime`](https://docs.python.org/3/library/time.html#time.strftime).
     
 === "`default` :material-book-arrow-left:"
 
@@ -1906,7 +1932,7 @@ Analicemos cada parámetro de `ImageField` por separado:
 
 Django ofrece la posibilidad de modificar la configuración [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) para indicar la ruta «base» donde se van a almacenar este tipo de recursos en el **sistema de ficheros**.
 
-Suele ser una **buena práctica** establecer `#!python '/media'` como la carpeta para la subida de ficheros:
+Suele ser una **buena práctica** establecer `/media` como la carpeta para la subida de ficheros. Para ello modificamos la siguiente variable de la configuración del proyecto:
 
 ```python title="main/settings.py"
 MEDIA_ROOT = BASE_DIR / 'media'#(1)!
@@ -1915,7 +1941,7 @@ MEDIA_ROOT = BASE_DIR / 'media'#(1)!
 
 1. `BASE_DIR` es una variable definida al comienzo de `settings.py` y que contiene la **ruta absoluta** a la raíz de nuestro proyecto Django.
 
-Por tanto, si subimos un fichero `#!python 'tech.jpg'` como portada de un «post», la ruta en el sistema de ficheros donde se guardará (partiendo del raíz del proyecto) será:
+Por tanto, si subimos un fichero `#!python 'tech.jpg'` como portada de un «post», la ruta en el sistema de ficheros donde se guardará (partiendo de la raíz del proyecto) será:
 
 ``` title="blog"
 media
@@ -1925,7 +1951,7 @@ media
 
 !!! note "Ruta en disco"
 
-    Dado un objeto `post` de tipo `Post` podemos acceder a la ^^ruta en disco^^ de su fichero de portada mediante `post.cover.path`.
+    Dado un objeto `post` de tipo `Post` podemos acceder a la ^^ruta (absoluta) en disco^^ de su imagen de portada mediante `post.cover.path`.
 
 ### URL del fichero { #file-field-url }
 
@@ -1942,7 +1968,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pas
 
 1. El campo `cover` (`ImageField`) dispone de un atributo `url` que devuelve la URL de la imagen.
 
-Suele ser una **buena práctica** establecer `#!python '/media'` como la URL de acceso a los ficheros subidos:
+Suele ser una **buena práctica** establecer `/media` como la URL de acceso a los ficheros subidos. Para ello modificamos la siguiente variable de la configuración del proyecto:
 
 ```python title="main/settings.py"
 MEDIA_URL = 'media/'
@@ -1956,7 +1982,7 @@ MEDIA_URL = 'media/'
 
 Es posible que después de todas estas configuraciones aún no logres ver correctamente la imagen de portada de este «post». Esto puede deberse a que el _servidor de desarrollo_ no está configurado para ello.
 
-Si es tu caso, debes agregar cierta configuración en las [URLs de primer nivel](urls.md#main-urls):
+Si es tu caso, debes agregar la siguiente configuración en las [URLs de primer nivel](urls.md#main-urls):
 
 ```python title="main/urls.py" hl_lines="1-2 6"
 from django.conf import settings
@@ -1982,7 +2008,7 @@ Una de las operaciones más habituales cuando manejamos `FileField` o `ImageFiel
 
 En este caso vamos a poner el <span class="example">ejemplo:material-flash:</span> de añadir un «post» que tiene imagen de portada («cover») utilizando un [formulario de modelo](forms.md#model-forms) para ello:
 
-```python title="posts/forms.py"
+```python title="posts/forms.py" hl_lines="9"
 from django import forms
 
 from .models import Post
@@ -1996,7 +2022,7 @@ class AddPostForm(forms.ModelForm):
 
 #### Gestión de la plantilla { #file-uploads-templates }
 
-Cuando definimos un formulario en una plantilla que va a contener algún campo de fichero, es fundamental definir el atributo `enctype` del formulario para que todo funcione correctamente.
+Cuando definimos un formulario en una plantilla que va a contener algún campo de fichero, es fundamental definir el atributo [`enctype`](https://www.w3schools.com/tags/att_form_enctype.asp) del formulario para que todo funcione correctamente.
 
 A continuación se muestra un <span class="example">ejemplo:material-flash:</span> de un formulario para añadir un «post» a nuestra aplicación «blog»:
 
@@ -2004,7 +2030,7 @@ A continuación se muestra un <span class="example">ejemplo:material-flash:</spa
 <form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Add">
+    <input type="submit" value="Add post">
 </form>
 ```
 

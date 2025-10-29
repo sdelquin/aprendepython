@@ -181,6 +181,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
 === "Conversor"
 
     ```python title="posts/converters.py"
+    from django.shortcuts import get_object_or_404
+
     from .models import Post#(1)!
 
 
@@ -188,12 +190,9 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
         regex = r'[\w-]+'#(3)!
 
         def to_python(self, post_slug: str) -> Post:#(4)!
-            try:
-                return Post.objects.get(slug=post_slug)
-            except Post.DoesNotExist:
-                # handle error
+            return get_object_or_404(Post, slug=post_slug)#(5)!
 
-        def to_url(self, post: Post) -> str:#(5)!
+        def to_url(self, post: Post) -> str:#(6)!
             return post.slug
     ```
     { .annotate }
@@ -202,7 +201,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     2. Aunque sólo es una convención, si el modelo es `Model` llamamos `ModelConverter` al conversor.
     3. Hay que especificar la [expresión regular](../../../stdlib/text-processing/re.md) que captura el patrón en la URL.
     4. Este método convierte el patrón capturado `#!python str` en el objeto correspondiente.
-    5. Este método convierte el objeto en la subruta de la URL.
+    5. Ver [consulta no encontrada](views.md#not-found-query).
+    6. Este método convierte el objeto en la subruta de la URL.
 
 === "URLs"
 
@@ -439,16 +439,16 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
 
     urlpatterns = [
         path(
-            '<slug:post_slug>/status/approved/',
+            '<slug:post_slug>/status/private/',
             views.change_post_status,
             name='change-post-status',
-            kwargs={'post_status': Post.Status.APPROVED}#(1)!
+            kwargs={'post_private': True}#(1)!
         ),
         path(
-            '<slug:post_slug>/status/published/',
+            '<slug:post_slug>/status/public/',
             views.change_post_status,
             name='change-post-status',
-            kwargs={'post_status': Post.Status.PUBLISHED}#(2)!
+            kwargs={'post_private': False}#(2)!
         ),
     ]
     ```
@@ -465,17 +465,17 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
     from .models import Post
 
 
-    def change_post_status(request, post_slug: str, post_status: Post.Status):#(1)!
+    def change_post_status(request, post_slug: str, post_private: bool):#(1)!
         try:
             post = Post.objects.get(slug=post_slug)
-            post.status = post_status
+            post.private = post_private
             post.save()
         except Post.DoesNotExist:
             return HttpResponse('Post does not exist')
     ```
     { .annotate }
     
-    1. El parámetro `post_status` vendrá establecido desde `posts/urls.py`.
+    1. El parámetro `post_private` vendrá establecido desde `posts/urls.py`.
 
 ## Expresiones regulares { #regex }
 

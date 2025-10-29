@@ -67,7 +67,7 @@ MIDDLEWARE = [
 ]
 ```
 
-Mediante este «middleware» Django proporciona un objeto `messages` que contendrá la lista de mensajes que queremos notificar.
+Mediante este «middleware» Django proporciona un objeto `messages` (disponible en vistas y plantillas) que contendrá la lista de mensajes que queremos notificar.
 
 Para cada mensaje podemos indicar el [nivel informativo](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#message-tags) asociado. El módulo `messages` dentro de `django.contrib.messages` contiene las siguientes constantes:
 

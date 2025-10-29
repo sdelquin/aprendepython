@@ -534,11 +534,11 @@ def edit_post(request, post_slug: str):#(1)!
 
 Un «widget» es la representación Django de un componente HTML para formulario. El «widget» maneja el renderizado del HTML y la extración de datos desde el correspondiente diccionario GET/POST.
 
-Django proporciona una gran cantidad de [widgets «built-in»](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#built-in-widgets). Cuando definimos un campo de formulario, este tiene asignado un [«widget» por defecto](#fields), pero tenemos la posibilidad personalizar el «widget» o incluso de asignar otro.
+Django proporciona una gran cantidad de [widgets «built-in»](https://docs.djangoproject.com/en/stable/ref/forms/widgets/#built-in-widgets). Cuando definimos un campo de formulario, este tiene asignado un [«widget» por defecto](#fields), pero tenemos la posibilidad de personalizar el «widget» o incluso de asignar otro.
 
 ### Widgets predefinidos { #builtin-widgets }
 
-Para acceder a cada «widget» basta con importarlo desde: `#!python from django import forms` y luego `#!python forms.TextInput` ...
+Para acceder a cada «widget» basta con importarlo desde: `#!python from django import forms` y luego usarlo (por ejemplo) con `#!python forms.TextInput` ...
 
 === "Para manejo de texto"
 
@@ -869,7 +869,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
     1. El primer parámetro que pasamos al método de guardado es el usuario.
 
-=== "Lógica de constructor"
+=== "Lógica adicional"
 
     Es posible que necesitemos realizar alguna lógica adicional en el constructor:
 

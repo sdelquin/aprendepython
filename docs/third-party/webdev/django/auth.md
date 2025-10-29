@@ -51,7 +51,7 @@ Para **acceder a la instancia del usuario logeado** en Django disponemos de dos 
 | [Vistas](views.md) | `request.user` |
 | [Plantillas](templates.md) | `#!htmldjango {{ user }}` |
 
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que accedemos a la instancia de un usuario:
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que accedemos a la instancia de un usuario a través del modelo:
 
 ```pycon
 >>> from django.contrib.auth import get_user_model
@@ -84,15 +84,18 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
-    path('', include('accounts.urls')),
+    path('', include('accounts.urls')),#(1)!
 ]
 ```
+{ .annotate }
 
-De tal forma que tendremos acceso «directo» a las funcionalidades de autenticación desde la raíz de la URL:
+1. Se recomienda poner esta línea la última de `urlpatterns` ya que casa con cualquier patrón y al ponerla en otro lugar invalidaría el resto de rutas.
 
-- `/login/`
-- `/logout/`
-- `/signup/`
+De esta forma tendremos acceso «directo» a las funcionalidades de autenticación desde la raíz de la URL:
+
+- `http://misitioweb.com/login/`
+- `http://misitioweb.com/logout/`
+- `http://misitioweb.com/signup/`
 
 !!! warning "Nombre"
 
@@ -125,12 +128,15 @@ class LoginForm(forms.Form):
 ### Plantilla de login { #login-template }
 
 ```htmldjango title="accounts/templates/accounts/login.html"
-<form method="post" novalidate>
+<form method="post" novalidate><!--(1)!-->
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Login">
 </form>
 ```
+{ .annotate }
+
+1. Añadir [`novalidate`](https://www.w3schools.com/tags/att_form_novalidate.asp) desactiva las comprobaciones JavaScript para que el envío llegue al servidor y realizar el procesamiento correspondiente (gestión de errores).
 
 ### Vista de login { #login-view }
 
@@ -337,12 +343,15 @@ class SignupForm(forms.ModelForm):
 ### Plantilla de registro { #signup-template }
 
 ```htmldjango title="accounts/templates/accounts/signup.html"
-<form method="post" novalidate>
+<form method="post" novalidate><!--(1)!-->
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Sign up">
 </form>
 ```
+{ .annotate }
+
+1. Añadir [`novalidate`](https://www.w3schools.com/tags/att_form_novalidate.asp) desactiva las comprobaciones JavaScript para que el envío llegue al servidor y realizar el procesamiento correspondiente (gestión de errores).
 
 ### Vista de registro { #signup-view }
 
