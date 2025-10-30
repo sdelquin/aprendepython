@@ -9,6 +9,7 @@ Publicada el DD-MM-YYYY
 Crea documentación de:
   - Django: Vistas
     - Vistas de error personalizadas
+  - Django: Índice de contenidos
 
 Completa documentación de:
   - Django: URLs

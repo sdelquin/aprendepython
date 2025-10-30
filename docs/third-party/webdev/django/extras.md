@@ -57,7 +57,7 @@ urlpatterns = [
 
 Una vez que lancemos el _servidor de desarrollo_ ya estaremos en disposición de trabajar con nuestro proyecto y ver los cambios en el navegador con **recarga automática**.
 
-## Crispy Forms { #cripsy-forms }
+## Crispy Forms { #crispy-forms }
 
 [`django-crispy-forms`](https://django-crispy-forms.readthedocs.io/en/latest/) es un paquete Python que proporciona utilidades para renderizar formularios de una manera elegante y reutilizable en Django.
 
