@@ -79,7 +79,7 @@ Para cada mensaje podemos indicar el [nivel informativo](https://docs.djangoproj
 | `WARNING` | `warning` | Mensaje de advertencia |
 | `ERROR` | `error` | Mensaje de error |
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos notificar al usuario que el «post» de un «blog» ha sido borrado satisfactoriamente:
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos notificar al usuario que el «post» de un «blog» ha sido borrado satisfactoriamente (o no):
 
 === "Vista"
 
