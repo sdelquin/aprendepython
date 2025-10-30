@@ -2,6 +2,18 @@
 
 Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<minor>.<patch>`).
 
+## Version X.X.X
+
+Publicada el DD-MM-YYYY
+
+Crea documentación de:
+  - Django: Vistas
+    - Vistas de error personalizadas
+
+Completa documentación de:
+  - Django: URLs
+    - Aclaración de conversores personalizados.
+
 ## Version 2.1.1
 
 Publicada el 29-10-2025

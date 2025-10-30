@@ -200,9 +200,11 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     1. Importamos el modelo sobre el que vamos a trabajar.
     2. Aunque sólo es una convención, si el modelo es `Model` llamamos `ModelConverter` al conversor.
     3. Hay que especificar la [expresión regular](../../../stdlib/text-processing/re.md) que captura el patrón en la URL.
-    4. Este método convierte el patrón capturado `#!python str` en el objeto correspondiente.
+    4.  - Este método convierte el patrón capturado `#!python str` en el objeto correspondiente.
+        - URL :material-arrow-right-thin: Python
     5. Ver [consulta no encontrada](views.md#not-found-query).
-    6. Este método convierte el objeto en la subruta de la URL.
+    6.  - Este método convierte el objeto a la subruta correspondiente de la URL.
+        - Python :material-arrow-right-thin: URL
 
 === "URLs"
 
@@ -241,6 +243,18 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     { .annotate }
     
     1. Directamente la vista está recibiendo un objeto de modelo `Post`.
+
+=== "Plantilla"
+
+    ```htmldjango title="posts/post/detail.html" hl_lines="4"
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+
+    <a href="{% url 'posts:delete-post' post %}">Delete post</a><!--(1)!-->
+    ```
+    { .annotate }
+    
+    1. Ahora ya no pasamos el «slug» del «post», sino directamente un objeto de tipo `Post` que Django sabrá como convertir a URL.
 
 ## Redirección { #redirect }
 

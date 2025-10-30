@@ -182,12 +182,19 @@ Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.c
 
 | `status_code` | Significado | Clase |
 | --- | --- | --- |
-| [400](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) | Bad request | `HttpResponseBadRequest()` |
+| [400](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) | Bad request | [`HttpResponseBadRequest()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseBadRequest) |
 | [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) | Unauthorized | |
-| [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) | Forbidden | `HttpResponseForbidden()` |
-| [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) | Not Found | `HttpResponseNotFound()` |
-| [405](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) | Method Not Allowed | `HttpResponseNotAllowed()` |
-| [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | `HttpResponseServerError()` |
+| [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) | Forbidden | [`HttpResponseForbidden()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseForbidden) |
+| [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) | Not Found | [`HttpResponseNotFound()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotFound) |
+| [405](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) | Method Not Allowed | [`HttpResponseNotAllowed()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotAllowed) |
+| [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | [`HttpResponseServerError()`](https://docs.djangoproject.com/en/5.2/ref/request-response/#django.http.HttpResponseServerError) |
+
+!!! info "401 vs 403"
+
+    Suele ser fuente de confusión, diferenciar los códigos de estado HTTP 401 y 403. Vamos a aclararlo:
+
+    - **401 (Unauthorized)** :material-arrow-right-bold: «No estás autenticado (no has demostrado quién eres)». <span class="example">Ejemplo:material-flash:</span> `@login_required`
+    - **403 (Forbidden)** :material-arrow-right-bold: «Sí estás autenticado, pero no tienes permiso para acceder a este recurso». <span class="example">Ejemplo:material-flash:</span> `/admin/`
 
 Por tanto, el <span class="example">ejemplo:material-flash:</span> anterior de «post» no encontrado se podría reescribir de la siguiente manera:
 
@@ -227,3 +234,84 @@ def post_detail(request, post_slug: str):
 { .annotate }
 
 1. El primer parámetro es el modelo y el segundo es el filtro/condición a aplicar.
+
+### Vistas de error personalizadas { #custom-error-views }
+
+Cuando Django devuelve una respuesta con código de estado HTTP distinto a 200, muestra una página de error predefinida, y en muchos casos, no del todo «estética» según se mire.
+
+Pero existe la posibilidad de personalizar esas [vistas predefinidas de error](https://docs.djangoproject.com/en/stable/ref/views/#error-views) para incorporar lógica adicional y/o nuevos diseños de plantilla.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> para personalizar la vista y plantilla para un **código de error 404** (no encontrado), aunque sería análogo para cualquier otro:
+
+=== "Vista"
+
+    ```python title="shared/views.py"
+    from django.shortcuts import render
+
+
+    def custom_404(request, exception):#(1)!
+        context = {}#(2)!
+        return render(request, '404.html', context, status=404)#(3)!
+    ```
+    { .annotate }
+    
+    1.  - Este nombre de vista no es obligatorio. Puede ser cualquiera.
+        - Además de la petición HTTP se recibe la excepción levantada.
+    2. Como cualquier otra vista, podemos definir un contexto para pasar a la plantilla.
+    3.  - Indicamos la plantilla a renderizar.
+        - El parámetro `status` define el código de estado de la respuesta.
+
+=== "Plantilla"
+
+    ```htmldjango title="shared/templates/404.html"
+    <h1>Blog: 404</h1>
+    <p>
+        {{ error_message|default:"The resource you are looking for does not exist }}
+    </p>
+    ```
+
+=== "URLs"
+
+    ```python title="main/urls.py" hl_lines="4"
+    from django.contrib import admin
+    from django.urls import include, path
+    
+    handler404 = 'shared.views.custom_404'#(1)!
+    
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('posts/', include('posts.urls')),
+    ]
+    ```    
+    { .annotate }
+    
+    1. La variable [`handler404`](https://docs.djangoproject.com/en/1.8/ref/urls/#handler404) establece la vista que procesa errores 404.
+
+Es muy probable que con la configuración anterior sigas sin poder ver la página 404 personalizada. Esto se debe a que en modo «debug» Django proporciona otro tipo de plantillas con mayor información para desarrollo.
+
+Para poder probar este tipo de respuestas en desarrollo, debemos «simular» un entorno de producción de la siguiente manera:
+
+```python title="main/settings.py"
+# ...
+DEBUG = False#(1)!
+
+ALLOWED_HOSTS = ['localhost']#(2)!
+# ...
+```
+{ .annotate }
+
+1. Necesitamos indicar que no estamos en depuración (desarrollo).
+2. Django obliga a permitir «hosts» de acceso cuando el modo depuración está deshabilitado: *CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.*{.red}
+
+Ahora sí que ya debería de funcionar la personalización del error 404. Para ello bastaría con acceder a una URL del estilo http://localhost:8000/posts/este-post-no-existe/
+
+#### Manejadores de error { #error-handlers }
+
+Django nos ofrece los siguientes manejadores de error para poder personalizar las respuestas:
+
+| Error | Manejador |
+| --- | --- |
+| 400 | [`handler400`](https://docs.djangoproject.com/en/stable/ref/urls/#handler400) |
+| 403 | [`handler403`](https://docs.djangoproject.com/en/stable/ref/urls/#handler403) |
+| 404 | [`handler404`](https://docs.djangoproject.com/en/stable/ref/urls/#handler404) |
+| 500 | [`handler500`](https://docs.djangoproject.com/en/stable/ref/urls/#handler500) |
