@@ -45,7 +45,7 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
     - [Autenticación](auth.md)
 - Modelos
     - [Claves ajenas (1:N y 1:1)](models.md#foreign-keys)
-    - [Campos de ficheros](models.md#file-fields)
+    - [Campos de fichero](models.md#file-fields)
     - [Guardar modelos de forma personalizada](models.md#override-save)
     - [URL canónica](models.md#canonical-url)
     - [Ordenación por defecto](models.md#default-ordering)
