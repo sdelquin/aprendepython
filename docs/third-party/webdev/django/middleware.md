@@ -83,7 +83,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 === "Vista"
 
-    ```python title="posts/views.py" hl_lines="1 10 12"
+    ```python title="posts/views.py" hl_lines="1 11 13"
     from django.contrib import messages#(1)!
     from django.shortcuts import render
 
@@ -93,6 +93,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
     def delete_post(request, post_slug: str):
         try:
             post = Post.objects.get(slug=post_slug)
+            post.delete()
             messages.success(request, 'Post deleted successfully')#(2)!
         except Post.DoesNotExist:
             messages.error(request, 'Post does not exist')#(3)!
