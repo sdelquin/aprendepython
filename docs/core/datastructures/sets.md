@@ -181,6 +181,14 @@ Traceback (most recent call last):
 KeyError: 'Sinatra'
 ```
 
+!!! tip "Borrado sin errores"
+
+    Existe una función que permite borrar elementos de un conjunto sin quejarse cuando no existan:
+
+    ```python
+    >>> beatles.discard('Sinatra')
+    ```
+
 ### Longitud de un conjunto { #length }
 
 Podemos conocer el número de elementos ([cardinalidad](https://es.wikipedia.org/wiki/Cardinalidad)) que tiene un conjunto mediante la función `#!python len()`.
@@ -355,6 +363,15 @@ Se definen las siguientes operaciones «aritméticas» entre conjuntos:
     1. Equivalente: `#!python A.symmetric_difference(B)`
 
 </div>
+
+Todos las operaciones anteriores admiten una versión funcional:
+
+| Operación | Equivalente | Actualizando $A$ |
+| --- | --- | --- |
+| $A \cap B$ | `#!python A.intersection(B)` | `#!python A.intersection_update(B)` |
+| $A \cup B$ | `#!python A.union(B)` | `#!python A.update(B)` |
+| $A \setminus B$ | `#!python A.difference(B)` | `#!python A.difference_update(B)` |
+| $A \triangle B$ | `#!python A.symmetric_difference(B)` | `#!python A.symmetric_difference_update(B)` |
 
 ### Inclusión { #inclusion }
 

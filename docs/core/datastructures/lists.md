@@ -664,6 +664,28 @@ Existe _una variante_ de `split()` en la que indicamos el **número máximo de d
 
 :material-check-all:{ .blue } También existe la función `rsplit()` que se comporta exactamente igual que la función `split()` pero **empezando por la derecha**.
 
+##### Diviendo líneas { #splitlines }
+
+Otro caso de uso muy habitual es querer dividir un fragmento de texto por sus saltos de línea. Para ello Python nos proporciona la función [`splitlines()`](https://docs.python.org/es/3/library/stdtypes.html#str.splitlines)(1).
+{ .annotate }
+
+1. Admite un parámetro `keepends` (`#!python bool`) que indica si queremos mantener los saltos de línea o no.
+
+Por <span class="example">ejemplo:material-flash:</span>, supongamos que tenemos una estrofa de la canción [«Cómo hablar» de Amaral](https://www.youtube.com/watch?v=DjkLlTLMNDs) y queremos obtener una lista con cada frase:
+
+```python
+>>> lyrics = """Si volviera a nacer, si empezara de nuevo
+... Volvería a buscarte en mi nave del tiempo
+... Es el destino quien nos lleva y nos guia
+... Nos separa y nos une a traves de la vida"""
+
+>>> lyrics.splitlines()
+['Si volviera a nacer, si empezara de nuevo',
+ 'Volvería a buscarte en mi nave del tiempo',
+ 'Es el destino quien nos lleva y nos guia',
+ 'Nos separa y nos une a traves de la vida']
+```
+
 !!! exercise "Ejercicio"
 
     [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `num-words`

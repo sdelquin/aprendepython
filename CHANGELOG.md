@@ -7,6 +7,8 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 Publicada el DD-MM-YYYY
 
 Crea documentación de:
+  - Estructuras de datos: Listas
+    - splitlines()
   - Django: Vistas
     - Vistas de error personalizadas.
     - Decorando vistas.
@@ -18,6 +20,8 @@ Crea documentación de:
     - Acciones de administración.
 
 Completa documentación de:
+  - Estructuras de datos: Conjuntos
+    - Teoría de conjuntos.
   - Django: URLs
     - Aclaración de conversores personalizados.
   - Django: Autenticación
