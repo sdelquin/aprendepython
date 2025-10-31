@@ -150,6 +150,60 @@ def view(request):
 2.  - Aunque existen [múltiples métodos HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) para una petición, lo habitual es trabajar con dos de ellos: [`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) y [`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
     - En cualquier caso si se quiere asegurar que es un método `GET` basta con indicarlo explícitamente :material-arrow-right-box: `#!python if request.method == 'GET':`
 
+## Decorando vistas { #view-decorators }
+
+Los [decoradores](../../../core/modularity/functions.md#decorators) en Python permite modificar el comportamiento de una función de un modo poco intrusivo y bastante elegante.
+
+Hay escenarios en los que vemos que se repite un determinado bloque de código y que podría ser razonable refactorizar. Obviamente una primera opción es extraer a una función, pero un decorador también puede ser una buena estrategia.
+
+En el <span class="example">ejemplo:material-flash:</span> del «blog» pensemos que en cada vista que maneja un «post» (detalle, borrado o edición) tenemos que localizar dicho «post» mediante su «slug». A continuación se muestra una posible implementación mediante *decoradores*:
+
+=== "Decorador"
+
+    ```python title="posts/decorators.py" hl_lines="9"
+    from django.http import HttpResponse
+    
+    from .models import Post
+    
+    
+    def post_handle(view):
+        def wrapper(request, post_slug, *args, **kwargs):#(1)!
+            try:
+                request.post = Post.objects.get(slug=post_slug)#(2)!
+            except Post.DoesNotExist:
+                return HttpResponse(f'Post with slug "{post_slug}" does not exist!')
+            return view(request, post_slug, *args, **kwargs)
+    
+        return wrapper
+    ```
+    { .annotate }
+    
+    1. Los dos primeros parámetros posicionales coinciden con los parámetros de la vista.
+    2. Para poder disponer del «post» en la vista, inyectamos el «post» en el objeto `request`.
+
+=== "Vista"
+
+    ```python title="posts/views.py"
+    from django.shortcuts import render
+    
+    from .decorators import post_handle#(1)!
+
+
+    @post_handle#(2)!
+    def post_detail(request, post_slug: str):
+        return render(request, 'posts/post/detail.html', {'post': request.post})#(3)!
+    ```
+    { .annotate }
+    
+    1. Importamos el decorador correspondiente.
+    2. Decoramos la vista.
+    3. Utilizamos el «post» previamente inyectado en la propia petición («request») HTTP.
+
+Hay otras formas de llevar a cabo aproximaciones similares:
+
+- [Conversores personalizados en URLs](urls.md#custom-path-converters).
+- [Middleware](middleware.md).
+
 ## Tipos de respuestas { #response-types }
 
 <span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
@@ -187,7 +241,7 @@ Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.c
 | [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) | Forbidden | [`HttpResponseForbidden()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseForbidden) |
 | [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) | Not Found | [`HttpResponseNotFound()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotFound) |
 | [405](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) | Method Not Allowed | [`HttpResponseNotAllowed()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotAllowed) |
-| [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | [`HttpResponseServerError()`](https://docs.djangoproject.com/en/5.2/ref/request-response/#django.http.HttpResponseServerError) |
+| [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | [`HttpResponseServerError()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseServerError) |
 
 !!! info "401 vs 403"
 

@@ -59,6 +59,8 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
     - [Pasar argumentos a una vista](urls.md#args-to-view)
 - Middleware
     - [Middleware](middleware.md)
+- Interfaz administrativa
+    - [Acciones de administración](admin.md#admin-actions)
 
 ## Django avanzado { #advanced }
 

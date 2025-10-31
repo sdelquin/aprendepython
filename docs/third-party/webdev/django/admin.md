@@ -44,7 +44,7 @@ Cuando [registramos un modelo](#register), sus objetos aparecen en la interfaz a
 
 :material-check-all:{ .blue } Por lo tanto es siempre recomendable implementar el método `#!python __str__()` de nuestros modelos.
 
-Pero es muy habitual querer mostrar los campos del objeto en vez de su representación «string» en la interfaz administrativa. Para ello haremos uso del atributo de clase `list_display`.
+Pero es muy habitual querer mostrar los campos del objeto (que interesen) en vez de su representación «string» en la interfaz administrativa. Para ello haremos uso del atributo de clase `list_display`.
 
 Si seguimos con el <span class="example">ejemplo:material-flash:</span> del «post» de un blog, tendríamos lo siguiente:
 
@@ -56,12 +56,162 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('slug', 'title', 'contents')#(1)!
+    list_display = ('title', 'slug')#(1)!
 ```
 { .annotate }
 
 1.  - Se puede usar tanto una **tupla** como una **lista**.
-    - `slug`, `title` y `contents` son campos del modelo `Post`.
+    - `title` y `slug` son campos del modelo `Post`.
+
+Este sería el resultado en la interfaz administrativa:
+
+![Dark image](images/admin/list_display-dark.png#only-dark)
+![Light image](images/admin/list_display-light.png#only-light)
+
+## Campos de búsqueda { #search-fields }
+
+Django nos permite habilitar la búsqueda de objetos en la interfaz administrativa. Para ello simplemente tenemos que hacer uso del atributo [`search_fields`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields).
+
+Por <span class="example">ejemplo:material-flash:</span> vamos a añadir búsqueda de «posts» a través de su título y/o contenido:
+
+```python title="posts/admin.py" hl_lines="9"
+from django.contrib import admin
+
+from .models import Post
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    search_fields = ('title', 'content')#(1)!
+```
+{ .annotate }
+
+1.  - Se puede usar tanto una **tupla** como una **lista**.
+    - `title` y `content` son campos del modelo `Post`.
+
+Con este pequeño cambio veremos que aparece un cuadro de búsqueda en la interfaz administrativa:
+
+![Dark image](images/admin/search_fields-dark.png#only-dark)
+![Light image](images/admin/search_fields-light.png#only-light)
+
+## Filtros de lista { #list-filter }
+
+Otra de las funcionalidades que ofrece Django en la interfaz administrativa es añadir filtros de lista sobre determinados campos del modelo. Para ello tenemos que utilizar el atributo [`list_display`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display).
+
+Pensemos en un <span class="example">ejemplo:material-flash:</span> de «post» al que hemos añadido un campo `published` que indica si el «post» está o no publicado:
+
+```python title="posts/models.py" hl_lines="8"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+    published = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+```
+
+Podemos añadir un filtro sobre dicho campo para consultar más fácilmente aquellos «posts» públicos y/o privados:
+
+```python title="posts/admin.py" hl_lines="10"
+from django.contrib import admin
+
+from .models import Post
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    search_fields = ('title', 'content')
+    list_filter = ('published',)#(1)!
+```
+{ .annotate }
+
+1.  - Se puede usar tanto una **tupla** como una **lista**.
+    - `published` es un campo del modelo `Post`.
+
+Ahora ya disponemos de un «widget» donde poder filtrar:
+
+![Dark image](images/admin/list_filter-dark.png#only-dark)
+![Light image](images/admin/list_filter-light.png#only-light)
+
+## Campos autocompletados { #prepopulated-fiels }
+
+Otra de las funcionalidades existentes en la interfaz administrativa de Django es rellenar campos de manera automática a partir del valor de otros campos. Para conseguir este resultado tendremos que utilizar el atributo [`prepopulated_fields`](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.prepopulated_fields).
+
+Por <span class="example">ejemplo:material-flash:</span> podríamos querer que el «slug» de un «post» se autocomplete mediante su título:
+
+```python title="posts/admin.py" hl_lines="11"
+from django.contrib import admin
+
+from .models import Post
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    search_fields = ('title', 'content')
+    list_filter = ('published',)
+    prepopulated_fields = {'slug': ('title',)}#(1)!
+```
+{ .annotate }
+
+1.  La estructura esperada es un **diccionario** donde:
+
+    - Cada clave es un campo a autocompletar.
+    - Cada valor es un iterable (lista o tupla) de campos desde los que se toma el contenido para autocompletar.
+
+Con esto conseguimos que a medida que escribimos el título de un «post» se vaya autocompletando su «slug» correspondiente:
+
+![Dark image](images/admin/prepopulated_fields-dark.gif#only-dark)
+![Light image](images/admin/prepopulated_fields-light.gif#only-light)
+
+## Acciones de administración { #admin-actions }
+
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+
+En la interfaz administrativa de Django podemos realizar acciones sobre objetos de modelo. Estas acciones están predefinidas (añadir, borrar, editar, etc.), pero tenemos la posibilidad de incorporar nuevas acciones de administración personalizadas.
+
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pretendemos regenerar todos los «slugs» de los «posts» existentes en nuestra base de datos, a partir de cada uno de sus títulos:
+
+```python title="posts/admin.py" hl_lines="17"
+from django.contrib import admin
+from django.utils.text import slugify
+
+from .models import Post
+
+
+@admin.action(description='Regenerate slug (from title) for selected posts')#(1)!
+def regenerate_slug(modeladmin, request, queryset):#(2)!
+    for post in queryset:#(3)!
+        post.slug = slugify(post.title)#(4)!
+        post.save()
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    actions = [regenerate_slug]#(5)!
+```
+{ .annotate }
+
+1. Hay que registrar la acción indicando una descripción coherente.
+2. La función recibe:
+    - El modelo de administración (`PostAdmin` en este caso).
+    - La petición HTTP.
+    - El «queryset» con los objetos seleccionados desde la interfaz administrativa.
+3. Recorremos todos los «posts» de la consulta.
+4. Actualizamos su «slug».
+5. El atributo `actions` define una lista de acciones.
+
+De esta manera nos aparecerá una nueva acción a la hora de gestionar los «posts» en la interfaz administrativa:
+
+![Dark image](images/admin/admin-action-dark.png#only-dark)
+![Light image](images/admin/admin-action-light.png#only-light)
 
 ## Relaciones muchos a muchos { #many-to-many }
 
@@ -186,8 +336,16 @@ class Command(BaseCommand):#(3)!
 
 Para ejecutar el comando creado basta con ir a la terminal y escribir lo siguiente:
 
-```console
-$ ./manage.py delete_comments 45 23 17
-```
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py delete_comments 45 23 17
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py delete_comments 45 23 17
+    ```
 
 > Con esto estaríamos borrando todos los comentarios de los «posts» con clave primaria #45, #23 y #17.

@@ -10,15 +10,31 @@ Django proporciona un [sistema de autenticación](https://docs.djangoproject.com
 
 ## Usuario { #user }
 
-Existe un modelo [`User`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#user-model) que ya viene predefinido en Django. A continuación se muestran sus atributos más destacados:
+Existe un modelo [`User`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#user-model) que ya viene predefinido en Django. A continuación se muestran sus principales características:
 
-| Atributo | Descripción |
-| --- | --- |
-| [`username`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.username) | Nombre de usuario |
-| [`password`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.password) | Contraseña |
-| [`first_name`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.first_name) | Nombre |
-| [`last_name`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_name) | Apellido(s) |
-| [`email`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_name) | Correo electrónico |
+=== "Datos personales"
+
+    | Campo | Descripción | Modo |
+    | --- | --- | --- |
+    | [`username`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.username) | Nombre de usuario | :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+    | [`password`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.password) | Contraseña | :material-alpha-w-box:{.green} |
+    | [`first_name`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.first_name) | Nombre |  :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+    | [`last_name`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_name) | Apellido(s) |  :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+    | [`email`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_name) | Correo electrónico |  :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+
+=== "Autenticación"
+
+    | Campo | Descripción | Modo |
+    | --- | --- | --- |
+    | [`is_staff`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.is_staff) | Establece si el usuario tiene acceso a la interfaz administrativa | :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+    | [`is_active`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.is_active) | Establece si el usuario puede logearse | :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+    | [`is_superuser`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.is_superuser) | Establece si el usuario es *superusuario* | :material-alpha-r-box:{.red}:material-alpha-w-box:{.green} |
+    | [`last_login`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.last_login) | Fecha y hora del último inicio de sesión | :material-alpha-r-box:{.red} |
+    | [`date_joined`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.date_joined) | Fecha y hora de la creación de la cuenta | :material-alpha-r-box:{.red} |
+    | [`is_authenticated`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.is_authenticated) | Indica si el usuario está autenticado | :material-alpha-r-box:{.red} |
+    | [`set_password()`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.set_password) | Establece la contraseña del usuario | :material-alpha-w-box:{.green} |
+    | [`check_password()`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.check_password) | Comprueba la contraseña del usuario | :material-alpha-r-box:{.red} |
+
 
 ??? tip "Password"
 
@@ -30,6 +46,8 @@ Existe un modelo [`User`](https://docs.djangoproject.com/en/stable/ref/contrib/a
     >>> user.password
     'pbkdf2_sha256$1000000$Y9opN6ZKNLMm9E1vAPrBzi$dNDnlbmN+phNora6ZUnok05NTH7BEgWjpg/mqulk3Yw='
     ```
+
+    :material-check-all:{ .blue } Django incorpora una serie de [validadores para la contraseña](https://docs.djangoproject.com/en/stable/topics/auth/passwords/#enabling-password-validation) que aseguran su fortaleza.
 
 ### Acceso al modelo { #user-model }
 

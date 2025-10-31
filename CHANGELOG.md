@@ -8,12 +8,20 @@ Publicada el DD-MM-YYYY
 
 Crea documentación de:
   - Django: Vistas
-    - Vistas de error personalizadas
+    - Vistas de error personalizadas.
+    - Decorando vistas.
   - Django: Índice de contenidos
+  - Django: Interfaz administrativa
+    - Campos de búsqueda.
+    - Filtros de lista.
+    - Campos autocompletados.
+    - Acciones de administración.
 
 Completa documentación de:
   - Django: URLs
     - Aclaración de conversores personalizados.
+  - Django: Autenticación
+    - Atributos del modelo User.
 
 ## Version 2.1.1
 

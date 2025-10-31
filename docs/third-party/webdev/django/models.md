@@ -2444,7 +2444,7 @@ Django proporciona una serie de [validadores predefinidos](https://docs.djangopr
 
 Por <span class="example">ejemplo:material-flash:</span> supongamos que los «posts» de un «blog» pueden ser valorados de 1 a 5. Podríamos definir el modelo de la siguiente manera:
 
-```python title="posts/models.py" hl_lines="8"
+```python title="posts/models.py" hl_lines="8-10"
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator#(1)!
 
