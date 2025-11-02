@@ -6,6 +6,11 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+Completa documentación de:
+  - Django: Plantillas
+    - Etiquetas personalizadas.
+    - Filtros personalizados.
+
 ## Version 2.1.2
 
 Publicada el 31-10-2025

@@ -618,6 +618,10 @@ Lo que nos quedaría es utilizar la etiqueta creada en alguna plantilla:
     
     1. Por <span class="example">ejemplo:material-flash:</span> :material-arrow-right-box: `#!htmldjango {% post_list min_rating=5 %}`
 
+!!! warning "Reiniciar servidor de desarrollo"
+
+    Si ves que no te reconoce la etiqueta personalizada que acabas de implementar, reinicia el servidor de desarrollo.
+
 ## Filtros { #filters }
 
 Django nos proporciona una enorme cantidad de [filtros](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-filter-reference) para utilizar en plantillas. Estos filtros ofrecen funcionalidades muy interesantes dependiendo del contexto que queramos abordar.
@@ -725,6 +729,7 @@ A continuación planteamos un <span class="example">ejemplo:material-flash:</spa
 
 ```python title="posts/templatetags/post_extras.py"
 from django import template
+
 from posts.models import Post
 
 register = template.Library()
@@ -761,7 +766,7 @@ def post_size(post: Post, metric: str = 'by-words') -> int:#(2)!
 
 Lo que nos quedaría es utilizar el filtro creado en alguna plantilla:
 
-```htmldjango title="posts/templates/posts/index.html" hl_lines="1 6"
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="1 6"
 {% load post_extras %}<!--(1)!-->
 
 <div class="posts">
@@ -781,6 +786,54 @@ Lo que nos quedaría es utilizar el filtro creado en alguna plantilla:
 ??? example "Múltiples argumentos"
 
     Si se diera el caso de necesitar **desarrollar alguna funcionalidad en plantilla con más de dos argumentos** y que su comportamiento fuera «similar» al de un filtro personalizado, Django ofrece la posibilidad de implementar [etiquetas personalizadas simples](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#django.template.Library.simple_tag).
+
+#### Devolviendo HTML { #custom-filters-html }
+
+Hay ocasiones en las que nos interesa implementar un filtro que devuelva código HTML. En principio lo haríamos de la misma forma que se ha visto anteriormente devolviendo una cadena de texto con el código HTML correspondiente.
+
+Pero hay que tener en cuenta que, por razones de seguridad, Django *escapa* dicho HTML y no lo veremos renderizado en la plantilla final. Es por ello que debemos hacer uso de la función [`mark_safe`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.safestring.mark_safe).
+
+Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un determinado «post» con un formato HTML destacado:
+
+=== "Filtro"
+
+    ```python title="posts/templatetags/post_extras.py" hl_lines="2 13"
+    from django import template
+    from django.utils.html import mark_safe#(1)!
+
+
+    from posts.models import Post
+
+    register = template.Library()
+
+
+    @register.filter
+    def post_link(post: Post) -> str:
+        html = f'<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>'
+        return mark_safe(html)#(2)!
+    ```
+    { .annotate }
+    
+    1. Importamos la función necesaria.
+    2. Marcamos como seguro el código HTML a devolver.
+
+=== "Plantilla"
+
+    ```htmldjango title="posts/templates/posts/post/list.html" hl_lines="1 6"
+    {% load post_extras %}
+
+    <div class="posts">
+        {% for post in posts %}
+            <div class="post">
+                {{ post|post_link }}
+            </div>
+        {% endfor %}
+    </div>
+    ```
+
+!!! warning "Reiniciar servidor de desarrollo"
+
+    Si ves que no te reconoce el filtro personalizado que acabas de implementar, reinicia el servidor de desarrollo.
 
 ## Procesadores de contexto { #context-processors }
 
