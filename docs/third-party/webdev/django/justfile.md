@@ -144,6 +144,15 @@ kill:
 [group('utils')]
 test pytest_args="":
     uv run pytest -s {{ pytest_args }}
+
+# Generate random secret key
+[group('production')]
+secret-key:
+    #!/usr/bin/env bash
+    uv run manage.py shell -v0 -c '
+    from django.core.management.utils import get_random_secret_key
+    print(get_random_secret_key())
+    '
 ```
 
 ## Invocar recetas { #invoke-recipes }

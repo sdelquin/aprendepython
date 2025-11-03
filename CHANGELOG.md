@@ -10,6 +10,8 @@ Completa documentación de:
   - Django: Plantillas
     - Etiquetas personalizadas.
     - Filtros personalizados.
+  - Django: Justfile
+    - Receta para generar "secret key".
 
 ## Version 2.1.2
 
