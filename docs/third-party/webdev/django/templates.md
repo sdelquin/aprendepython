@@ -791,7 +791,10 @@ Lo que nos quedaría es utilizar el filtro creado en alguna plantilla:
 
 Hay ocasiones en las que nos interesa implementar un filtro que devuelva código HTML. En principio lo haríamos de la misma forma que se ha visto anteriormente devolviendo una cadena de texto con el código HTML correspondiente.
 
-Pero hay que tener en cuenta que, por razones de seguridad, Django *escapa* dicho HTML y no lo veremos renderizado en la plantilla final. Es por ello que debemos hacer uso de la función [`mark_safe`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.safestring.mark_safe).
+Pero hay que tener en cuenta ciertos aspectos de seguridad:
+
+1. Si el código HTML que vamos a devolver desde el filtro contiene potencial información proveniente del usuario (vía formulario por ejemplo), es altamente recomendable utilizar la función [`format_html`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.html.format_html) que se encarga de escapar sus argumentos. Evitaríamos por ejemplo ataques XSS.
+2. Si el código HTML que vamos a devolver contiene información confiable, necesitamos «marcarlo como seguro» para que Django realmente lo renderice en la plantilla final. Para ello haríamos uso de la función [`mark_safe`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.safestring.mark_safe).
 
 Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un determinado «post» con un formato HTML destacado:
 
@@ -799,7 +802,7 @@ Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un d
 
     ```python title="posts/templatetags/post_extras.py" hl_lines="2 13"
     from django import template
-    from django.utils.html import mark_safe#(1)!
+    from django.utils.html import format_html#(1)!
 
 
     from posts.models import Post
@@ -809,13 +812,12 @@ Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un d
 
     @register.filter
     def post_link(post: Post) -> str:
-        html = f'<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>'
-        return mark_safe(html)#(2)!
+        return format_html('<a href="{}">{}</a>', post.get_absolute_url, post.title)#(2)!
     ```
     { .annotate }
     
-    1. Importamos la función necesaria.
-    2. Marcamos como seguro el código HTML a devolver.
+    1. Importamos la función `format_html` necesaria para «securizar» nuestro código.
+    2. Interpolamos los atributos necesarios del «post».
 
 === "Plantilla"
 
