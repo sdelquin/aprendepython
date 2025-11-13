@@ -7,6 +7,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 Publicada el DD-MM-YYYY
 
 Completa documentación de:
+  - Entornos de desarrollo: Contexto real
+    - Corrección sobre uv.
+  - Estructuras de datos: Tuplas
+    - Aclaración sobre funciones.
   - Django: Plantillas
     - Etiquetas personalizadas.
     - Filtros personalizados.

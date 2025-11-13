@@ -213,7 +213,7 @@ La [documentación](https://docs.astral.sh/uv/) está muy bien conseguida. A con
 
     ---
     ```console
-    $ uv init --no-package
+    $ uv init --bare
     ```
     Este comando crea la estructura necesaria de ficheros para que se pueda mantener el estado del proyecto de manera ^^local^^. El fichero principal de esta configuración es `pyproject.toml`.
 

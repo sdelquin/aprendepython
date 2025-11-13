@@ -138,8 +138,11 @@ Con las tuplas podemos realizar [todas las operaciones que vimos con listas](lis
 
 Un par de detalles:
 
-- Sí es posible aplicar `sorted()` o `reversed()` sobre una tupla ya que no estamos modificando su valor sino creando un nuevo objeto.
+<div class="annotate" markdown>
+- Sí es posible aplicar `sorted()` o `reversed()` sobre una tupla ya que no estamos modificando su valor sino creando un nuevo objeto.(1)
 - La comparación de tuplas funciona exactamente igual que la [comparación de listas](lists.md#compare).
+</div>
+1. Estas funciones devuelven **una lista** en vez de una tupla.
 
 ## Desempaquetado de tuplas { #unpack }
 
