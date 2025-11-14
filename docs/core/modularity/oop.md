@@ -428,21 +428,21 @@ A modo de <span class="example">ejemplo:material-flash:</span> podemos suponer q
 
 ```pycon
 >>> class Droid:
-...     obeys_onwer = True#(1)!
+...     obeys_owner = True#(1)!
 ...
 
 >>> good_droid = Droid()
->>> good_droid.obeys_onwer#(2)!
+>>> good_droid.obeys_owner#(2)!
 True
 
 >>> t1000 = Droid()
->>> t1000.obeys_onwer
+>>> t1000.obeys_owner
 True
->>> t1000.obeys_onwer = False#(3)!
->>> t1000.obeys_onwer
+>>> t1000.obeys_owner = False#(3)!
+>>> t1000.obeys_owner
 False
 
->>> Droid.obeys_onwer#(4)!
+>>> Droid.obeys_owner#(4)!
 True
 ```
 { .annotate }

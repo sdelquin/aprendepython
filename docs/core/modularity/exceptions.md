@@ -124,10 +124,10 @@ Conocerlas es importante ya que nos permitirá gestionar mejor los posibles erro
 | `TypeError` | Operación sobre un objeto de tipo inapropiado | `#!python 'x' / 3` |
 | `ValueError` | Operación sobre un objeto de tipo correcto pero valor inapropiado | `#!python int('x')` |
 | `ZeroDivisionError` | Segundo argumento de división o módulo es cero | `#!python 1 / 0` |
-| `OSError` | Error al usar una función del sistema operativo (E/S) | `#!python open('null.txt')` |
-| `RecursionError` | Alcanzado el máximo nivel de recursión | |
-| `StopIteration` | Fin del protocolo de iteración | |
-| `NotImplementedError` | La operación debe ser implementada | |
+| `FileNotFoundError` | Error al abrir (modo lectura) un fichero que no existe | `#!python open('data.txt')` |
+| `RecursionError` | Alcanzado el máximo nivel de recursión | `#!python while True:` |
+| `StopIteration` | Fin del protocolo de iteración | `#!python for item in items:` |
+| `NotImplementedError` | La operación debe ser implementada | `#!python def method(self):` |
 
 #### Agrupando excepciones { #group-exceptions }
 
