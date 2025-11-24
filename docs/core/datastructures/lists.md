@@ -348,22 +348,22 @@ Python nos ofrece varios mecanismos para combinar dos listas, en función del re
     
     1. Esto es equivalente a: `#!python shopping += fruitshop`
 
-Hay que tener en cuenta que `extend()` funciona adecuadamente si pasamos **una lista como argumento**. En otro caso, quizás los resultados no sean los esperados.
+    Hay que tener en cuenta que `extend()` funciona adecuadamente si pasamos **una lista como argumento**. En otro caso, quizás los resultados no sean los esperados.
 
-Veamos un <span class="example">ejemplo:material-flash:</span>:
+    Veamos un <span class="example">ejemplo:material-flash:</span>:
 
-```pycon
->>> shopping = ['Agua', 'Huevos', 'Aceite']
+    ```pycon
+    >>> shopping = ['Agua', 'Huevos', 'Aceite']
 
->>> shopping.extend('Limón')#(1)!
+    >>> shopping.extend('Limón')#(1)!
 
->>> shopping
-['Agua', 'Huevos', 'Aceite', 'L', 'i', 'm', 'ó', 'n']
-```
-{ .annotate }
+    >>> shopping
+    ['Agua', 'Huevos', 'Aceite', 'L', 'i', 'm', 'ó', 'n']
+    ```
+    { .annotate }
 
-1.  - `extend()` «recorre» (o itera) sobre cada uno de los elementos del objeto en cuestión.
-    - Al ser una _cadena de texto_ cada elemento es un carácter.
+    1.  - `extend()` «recorre» (o itera) sobre cada uno de los elementos del objeto en cuestión.
+        - Al ser una _cadena de texto_ cada elemento es un carácter.
 
 Se podría pensar en utilizar `append()` **para combinar listas**. La realidad es que no funciona exactamente como esperamos; la segunda lista se añadiría **como una sublista** de la principal.
 
