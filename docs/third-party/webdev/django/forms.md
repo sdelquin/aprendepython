@@ -930,72 +930,99 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
 <span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
 
-Django permite añadir [validación personalizada](https://docs.djangoproject.com/en/stable/ref/forms/validation/) a los formularios. La validación de un un formulario se puede hacer en varios contextos:
+Django permite añadir [validación personalizada](https://docs.djangoproject.com/en/stable/ref/forms/validation/) a los formularios. La validación de un formulario se puede hacer en varios contextos:
 
-1. Validación individual.
-2. Validación cruzada.
+:one: [Validación individual](#single-validation)  
+:two: [Validación cruzada](#cross-validation) 
 
 ### Validación individual { #single-validation }
 
-En este tipo de validación analizamos cada campo por separado. Si el formulario dispone de un campo llamado `foo` se podrá personalizar su validación implementando el método de instancia `clean_foo()`.
+En este tipo de validación analizamos cada campo por separado. Si el formulario dispone de un campo llamado `foo` se podrá personalizar su validación implementando el ^^método de instancia^^ `clean_foo()`.
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos añadir una validación al campo _email_ en un [formulario de registro](auth.md#signup-form) para que no pueda haber dos usuarios con la misma dirección de correo electrónico.
+Partiendo de un «blog» veamos un <span class="example">ejemplo:material-flash:</span> de [formulario para añadir «post»](#model-forms) donde queremos validar que el título del «post» no esté completamente en mayúsculas:
 
-```python title="accounts/forms.py" hl_lines="3 11-15"
+```python title="posts/forms.py" hl_lines="11-14"
 from django import forms
-from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
+
+from .models import Post
 
 
-class SignupForm(forms.ModelForm):
+class AddPostForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()
-        fields = ('username', 'password', 'first_name', 'last_name', 'email')
+        model = Post
+        fields = ('title', 'content')
 
-    def clean_email(self):#(1)!
-        email = self.cleaned_data['email']#(2)!
-        if self._meta.model.objects.filter(email=email).count() > 0:#(3)!
-            raise ValidationError('A user with that email already exists.')#(4)!
-        return email#(5)!
+    def clean_title(self):#(1)!
+        if (title := self.cleaned_data.get('title')).isupper():#(2)!
+            raise forms.ValidationError('Title cannot be all uppercase.')#(3)!
+        return title#(4)!
 ```
 { .annotate }
 
-1. Dado que queremos ~~limpiar~~ validar el campo `email` tendremos que implementar el método de instancia `clean_email()`.
-2. Extraemos el valor del campo `email`.
-3.  - Hacemos una consulta para ver si existe algún usuario con el mismo _email_.
-    - Estamos usando un «atajo» para acceder al [modelo de usuario](auth.md#user-model) mediante `self._meta.model`.
-4. Lanzamos una excepción de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror) cuando queremos informar de un error de validación.
-5. :fontawesome-solid-triangle-exclamation:{ .red } **Siempre** debemos devolver el valor del campo.
+1. Dado que queremos ~~limpiar~~ validar el campo `title` tendremos que implementar el método de instancia `clean_title()`.
+2.  - Extraemos el valor del campo `title`.
+    - Comprobamos si está completamente en mayúsculas.
+3. Lanzamos una excepción de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror) cuando queremos informar de un error de validación.
+4. :fontawesome-solid-triangle-exclamation:{ .red } **Siempre** debemos devolver el valor del campo.
+
+??? example "Validación de email"
+
+    Un caso de uso interesante se podría dar en un [formulario de registro](auth.md#signup-form) tratando de evitar que dos usuarios utilicen la misma dirección de correo electrónico:
+
+    ```python title="accounts/forms.py" hl_lines="10-14"
+    from django import forms
+    from django.contrib.auth import get_user_model
+
+
+    class SignupForm(forms.ModelForm):
+        class Meta:
+            model = get_user_model()
+            fields = ('username', 'password', 'first_name', 'last_name', 'email')
+
+        def clean_email(self):#(1)!
+            email = self.cleaned_data['email']#(2)!
+            if self._meta.model.objects.filter(email=email).count() > 0:#(3)!
+                raise forms.ValidationError('A user with that email already exists.')#(4)!
+            return email#(5)!
+    ```
+    { .annotate }
+
+    1. Dado que queremos ~~limpiar~~ validar el campo `email` tendremos que implementar el método de instancia `clean_email()`.
+    2. Extraemos el valor del campo `email`.
+    3.  - Hacemos una consulta para ver si existe algún usuario con el mismo _email_.
+        - Estamos usando un «atajo» para acceder al [modelo de usuario](auth.md#user-model) mediante `self._meta.model`.
+    4. Lanzamos una excepción de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror) cuando queremos informar de un error de validación.
+    5. :fontawesome-solid-triangle-exclamation:{ .red } **Siempre** debemos devolver el valor del campo.
 
 ### Validación cruzada { #cross-validation }
 
 Cuando la validación que queremos hacer involucra más de un campo, es adecuado implementar un método de instancia `clean()` para esta tarea.
 
-Continuando con el <span class="example">ejemplo:material-flash:</span> anterior del formulario de registro, supongamos ahora que queremos validar que el `first_name` del usuario coincida con el `username` pero en formato _título_:
+Continuando con el <span class="example">ejemplo:material-flash:</span> anterior, supongamos ahora que queremos validar que alguna de las palabras del título del «post» aparezcan en su contenido:
 
-```python title="accounts/forms.py" hl_lines="3 11-15"
+```python title="posts/forms.py" hl_lines="11-15"
 from django import forms
-from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
+
+from .models import Post
 
 
-class SignupForm(forms.ModelForm):
+class AddPostForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()
-        fields = ('username', 'password', 'first_name', 'last_name', 'email')
+        model = Post
+        fields = ['title', 'content']
 
     def clean(self):#(1)!
-        username = self.cleaned_data['username']#(2)!
-        first_name = self.cleaned_data['first_name']#(3)!
-        if first_name != username.title():#(4)!
-            raise ValidationError('First name must be like username as title.')#(5)!
+        title = self.cleaned_data.get('title')#(2)!
+        content = self.cleaned_data.get('content')#(3)!
+        if not any(w in content for w in title.split()):#(4)!
+            raise forms.ValidationError('Content must contain at least one word from the title.')#(5)!
 ```
 { .annotate }
 
 1. Validación «cruzada» por tanto tendremos que implementar el método de instancia `clean()`.
-2. Extraemos el nombre de usuario.
-3. Extramos el nombre «de pila».
-4. Comprobamos que coincidan en formato «título».
+2. Extraemos el título del «post».
+3. Extraemos el contenido del «post».
+4. Comprobamos que alguna palabra del título se encuentre en el contenido del «post».
 5. Lanzamos una excepción de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror) cuando queremos informar de un error de validación.
 
 ??? info "Acceso a errores"
