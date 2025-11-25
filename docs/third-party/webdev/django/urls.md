@@ -499,32 +499,69 @@ A la hora de definir los patrones en las URLs, Django nos permite utilizar [expr
 
 En este escenario, en vez de utilizar la función `path()` usaremos la función [`re_path()`](https://docs.djangoproject.com/en/stable/ref/urls/#django.urls.re_path) que, como su propio nombre indica, nos permite definir rutas (URLs) mediante expresiones regulares (`re`).
 
-Planteamos un <span class="example">ejemplo:material-flash:</span> en el que queremos mostrar los «posts» de un «blog» con una determinada **categoría**, pero con el matiz de que el _código de categoría_ es un «string» de 4 letras mayúsculas:
+Planteamos un <span class="example">ejemplo:material-flash:</span> en el que queremos mostrar los «posts» de un «blog» con una determinada **categoría**, pero con el matiz de que el _código de categoría_ es un «string» de 3 letras mayúsculas:
 
-```python title="posts/urls.py"
-from django.urls import re_path#(1)!
-from . import views
+=== "posts/models.py"
 
-urlpatterns = [
-    re_path(#(2)!
-        r'^(?P<category_code>[A-Z]{4})/$',#(3)!
-        views.post_by_category,
-        name='post-by-category'
-    )
-]
-```
-{ .annotate }
+    ```python hl_lines="5 10"
+    from django.db import models
+    
+    
+    class Post(models.Model):
+        DEFAULT_CATEGORY = 'GEN'
+    
+        title = models.CharField(max_length=256)
+        slug = models.SlugField(max_length=256)
+        content = models.TextField()
+        category = models.CharField(max_length=3, default=DEFAULT_CATEGORY)
+    
+        def __str__(self):
+            return self.title
+    ```
 
-1. Importamos la función.
-2. Utilizamos la función como el resto de patrones.
-3.  - Es conveniente usar [cadenas en crudo](../../../core/datatypes/strings.md#raw) para las expresiones regulares.
-    - También es recomendable empezar la cadena con `^` (_comienzo de línea_) y acabarla con `$` (_final de línea_) para delimitar el patrón.
-    - Se utiliza un [grupo de captura nominal](https://docs.python.org/3/howto/regex.html#non-capturing-and-named-groups) `(?P<name>)` para el parámetro correspondiente.
-    - La expresión regular viene a continuación. En este caso `[A-Z]{4}` indica cuatro apariciones de cualquier letra en mayúsculas.
+=== "posts/urls.py"
+
+    ```python
+    from django.urls import re_path#(1)!
+
+    from . import views
+
+    app_name = 'posts'
+
+
+    urlpatterns = [
+        re_path(#(2)!
+            r'^(?P<category_code>[A-Z]{4})/$',#(3)!
+            views.post_by_category,
+            name='post-by-category'
+        )
+    ]
+    ```
+    { .annotate }
+
+    1. Importamos la función.
+    2. Utilizamos la función como el resto de patrones.
+    3.  - Es conveniente usar [cadenas en crudo](../../../core/datatypes/strings.md#raw) para las expresiones regulares.
+        - También es recomendable empezar la cadena con `^` (_comienzo de línea_) y acabarla con `$` (_final de línea_) para delimitar el patrón.
+        - Se utiliza un [grupo de captura nominal](https://docs.python.org/3/howto/regex.html#non-capturing-and-named-groups) `(?P<name>)` para el parámetro correspondiente.
+        - La expresión regular viene a continuación. En este caso `[A-Z]{4}` indica cuatro apariciones de cualquier letra en mayúsculas.
+
+=== "posts/views.py"
+
+    ```python
+    from django.shortcuts import render
+
+    from .models import Post
+
+
+    def post_by_category(request, category_code: str):
+        posts = Post.objects.filter(category=category_code)
+        return render(request, 'posts/post/list.html', {'posts': posts})
+    ```    
 
 ??? tip "Mezclando patrones"
 
-    Cuando usamos `re_path()` tenemos que utilizar expresiones regulares en toda la URL. No es posible mezclar patronces «convencionales» con patrones expresión regular.
+    Cuando usamos `re_path()` tenemos que utilizar expresiones regulares en toda la URL. No es posible mezclar patrones «convencionales» con patrones expresión regular.
 
 
 [^1]: «Hardcodear» significa escribir literales/valores directamente en el código.

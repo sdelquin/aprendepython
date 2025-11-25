@@ -60,6 +60,7 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
 - Middleware
     - [Middleware](middleware.md)
 - Interfaz administrativa
+    - [Claves ajenas](admin.md#foreign-key)
     - [Acciones de administración](admin.md#admin-actions)
 
 ## Django avanzado { #advanced }
