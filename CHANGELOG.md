@@ -6,11 +6,31 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 2.2.0
+
+Publicada el 25-11-2025
+
 Completa documentación de:
   - Modularidad: Programación orientada a objetos
     - Corrige typos.
   - Modularidad: Excepciones
     - Corrige excepciones predefinidas.
+  - Estructuras de datos: Listas
+    - Corrige ubicación de sección de extender listas.
+  - Django: Modelos
+    - Corrige relaciones muchos a muchos.
+  - Django: Interfaz administrativa
+    - Amplía claves ajenas para admin.
+  - Django: URLs
+    - Completa URLs con expresiones regulares.
+  - Django: Plantillas
+    - Corrige etiquetas y filtros personalizados.
+  - Django: Formularios
+    - Corrigue validación.
+  - Django: Estáticos
+    - Corrige fallos menores en Bootstrap.
+  - Django: Internacionalización
+    - Amplía y corrige ficheros de idioma.
 
 ## Version 2.1.3
 
