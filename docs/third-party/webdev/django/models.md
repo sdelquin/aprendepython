@@ -1685,13 +1685,13 @@ class PostLabelingDetail(models.Model):
         on_delete=models.CASCADE,
     )
     reason = models.CharField(max_length=256)#(3)!
-    labelled_at = models.DateTimeField(auto_now_add=True)#(4)!
+    labeled_at = models.DateTimeField(auto_now_add=True)#(4)!
 
     class Meta:
         unique_together = ('post', 'label')#(5)!
 
     def __str__(self):
-        return f'{self.reason} ({self.labelled_at.strftime("%d-%m-%Y")})'
+        return f'{self.reason} ({self.labeled_at.strftime("%d-%m-%Y")})'
 ```
 { .annotate }
 
@@ -1785,10 +1785,10 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```
     { .annotate }
     
-    1. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
-    2. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
-    3. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
-    4. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    1. No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    2. No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    3. No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    4. No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Añadir «relacionalmente» :octicons-diff-added-16:"
 
@@ -1803,7 +1803,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. Utilizamos el método `add()` para añadir ^^una etiqueta^^.
     2. Indicamos la etiqueta a añadir.
     3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
     ```pycon title="Añadir «posts» a una etiqueta"
     >>> label_ai.posts.add(#(1)!
@@ -1816,7 +1816,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. Utilizamos el método `add()` para añadir ^^un «post»^^.
     2. Indicamos el «post» a añadir.
     3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Crear y añadir :material-creation-outline:"
 
@@ -1832,7 +1832,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. Utilizamos el método `create()` que **devuelve el objeto creado**.
     2. Hay que darle valor a todos los atributos obligatorios de la etiqueta.
     3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
     
     ```pycon title="Crear un «post» y añadirlo a una etiqueta"
     >>> label_ai.posts.create(#(1)!
@@ -1846,7 +1846,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. Utilizamos el método `create()` que **devuelve el objeto creado**.
     2. Hay que darle valor a todos los atributos obligatorios del «post».
     3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Reemplazar :material-file-replace:"
 
@@ -1861,7 +1861,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. Utilizamos el método `set()` que **reemplaza objetos relacionados**.
     2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos.
     3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
     ```pycon title="Reemplazar los «posts» de una etiqueta"
     >>> label_ai.posts.set(#(1)!
@@ -1874,7 +1874,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. Utilizamos el método `set()` que **reemplaza objetos relacionados**.
     2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos.
     3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Eliminar :material-delete:"
 
@@ -1919,36 +1919,38 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
 
     ```pycon title="Consultar los detalles de etiquetado de un «post»"
-    >>> post_python.post_labeling_reasons.all()#(1)!
+    >>> post_python.post_labeling_details.all()#(1)!
     <QuerySet [<PostLabelingDetail: Python is cool tech (23-11-2025)>,
                <PostLabelingDetail: Python is the language for AI (23-11-2025)>]>
     ```
     { .annotate }
     
-    1. Es posible iterar sobre los detalles de etiquetado de un «post»:
-        ```pycon
-        >>> for detail in post_python.post_labeling_details.all():
-        ...     print(detail.reason)
-        ...
-        Python is cool tech
-        Python is the language for AI
+    1. <span class="example">Ejemplo:material-flash:</span> en plantilla:
+        ```htmldjango title="posts/templates/posts/post/detail.html"
+        <h1>{{ post }}</h1><!--(1)!-->
+        <h2>Labels</h2>
+        <ul class="labels">
+            {% for detail in post.post_labeling_details.all %}
+                <li>
+                    <b>{{ detail.label }}</b> <!--(2)!-->
+                    <span class="post-labeling-detail">
+                        {{ detail }}<!--(3)!-->
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
         ```
+        { .annotate }
+        
+        1. Nos valemos de `#!python Post.__str__()`
+        2. Nos valemos de `#!python Label.__str__()`
+        3. Nos valemos de `#!python PostLabelingDetail.__str__()`
 
     ```pycon title="Consultar los detalles de etiquetado de un «post» (desde la etiqueta)"
-    >>> label_ai.post_labeling_details.all()#(1)!
+    >>> label_ai.post_labeling_details.all()
     <QuerySet [<PostLabelingDetail: Python is the language for AI (23-11-2025)>,
                <PostLabelingDetail: Midjourney is generative AI (23-11-2025)>]> 
     ``` 
-    { .annotate }
-    
-    1. Es posible iterar sobre los detalles de etiquetado de un «post» (desde la etiqueta):
-        ```
-        >>> for detail in label_ai.post_labeling_details.all():
-        ...     print(detail.reason)
-        ...
-        Python is the language for AI
-        Midjourney is generative AI
-        ```
     
 !!! info "Interfaz administrativa"
 
