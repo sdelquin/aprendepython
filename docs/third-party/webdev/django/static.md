@@ -180,14 +180,14 @@ Hay varias maneras de instalar Bootstrap y de integrarlo en un proyecto Django. 
 
 Lo primero será [instalar](https://getbootstrap.com/docs/5.3/getting-started/download/#npm) los paquetes _JavaScript_ correspondientes:
 
-```bash
-npm install bootstrap bootstrap-icons #(1)!
+```console
+$ npm install bootstrap bootstrap-icons #(1)!
 ```
 { .annotate }
 
 1. Desde el raíz de nuestro proyecto Django.
 
-El comando anterior creará una carpeta `node_modules` con **multitud** de ficheros y carpetas, correspondientes a los paquetes instalados y a todas sus dependencias.
+El comando anterior creará una carpeta `node_modules` con **multitud** de ficheros y subcarpetas, correspondientes a los paquetes *Node* instalados y a todas sus dependencias.
 
 También creará dos ficheros `package.json` y `package-lock.json` donde quedan fijadas las versiones de los paquetes instalados.
 
