@@ -489,19 +489,7 @@ Django nos permite abrir una «shell» (intérprete interactivo de Python) con l
 Como puede verse en el fragmento de código anterior, Django importa automáticamente(1) distintos objetos de nuestro proyecto. En el caso concreto de nuestro «blog» se han importado los siguientes:
 { .annotate }
 
-1.  Para mostrar los «import» automáticos hay que ejecutar:
-
-    === "*venv* :octicons-package-24:{.blue}"
-
-        ```console
-        $ ./manage.py shell -v2
-        ```
-    
-    === "*uv* &nbsp;:simple-uv:{.uv}"
-
-        ```console
-        $ uv run manage.py shell -v2
-        ```
+1.  Para mostrar los «import» automáticos se puede añadir la opción: `manage.py shell -v2`
 
 ```python hl_lines="1"
 from posts.models import Post
@@ -960,26 +948,21 @@ Django nos permite definir [tipos enumerados](https://docs.djangoproject.com/en/
 
 Un tipo enumerado se define por dos componentes: una **etiqueta** (nombre largo) y un **valor** (código corto). Lo que hace Django es almacenar en la base de datos únicamente el **valor**, mientras que la «etiqueta» se establece en la definición del campo.
 
-Por <span class="example">ejemplo:material-flash:</span> un tipo enumerado para representación de colores:
+Django ofrece dos variantes:
 
-| Etiqueta | Valor |
-| --- | --- |
-| Rojo | `#FF0000` |
-| Verde | `#00FF00` |
-| Azul | `#0000FF` |
-
-Se ofrecen dos variantes:
-
-:one: Tipos enumerados basados en **cadenas de texto**.  
-:two: Tipos enumerados basados en **números enteros**.
+:one: Tipos enumerados basados en **cadenas de texto** → [Enumerados textuales](#textchoices).  
+:two: Tipos enumerados basados en **números enteros** → [Enumerados enteros](#integerchoices).
 
 ### Enumerados textuales { #textchoices }
 
 En este escenario se utiliza un campo `CharField` y se definen los posibles valores mediante el parámetro `choices` a través de una subclase de `models.TextChoices`.
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos clasificar los «posts» del «blog» por categorías:
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos clasificar los «posts» del «blog» por **categorías**:
 
-```python title="posts/models.py"
+```python title="posts/models.py" hl_lines="4-10 15-19"
+from django.db import models
+
+
 class Post(models.Model):
     class Category(models.TextChoices):#(1)!
         SOCIETY = 'SOC', 'Society'#(2)!
@@ -988,6 +971,9 @@ class Post(models.Model):
         CULTURE = 'CUL', 'Culture'
         TECH = 'TEC', 'Technology'
     
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
     category = models.CharField(#(3)!
         max_length=3,#(4)!
         choices=Category,#(5)!
@@ -1029,22 +1015,30 @@ La clase interior `Category` es de tipo [`TextChoices`](https://github.com/djang
 ['SOCIETY', 'EDUCATION', 'HEALTH', 'CULTURE', 'TECH']
 ```
 
-Dado un objeto de tipo `Post` podemos también operar sobre su categoría:
+Veamos la forma de acceder a la categoría de un determinado «post»:
 
-```pycon
->>> post.category
-Post.Category.SOCIETY
+=== "Código corto"
 
->>> post.category.label
-'Society'
+    ```pycon hl_lines="4-5" 
+    >>> from posts.models import Post
+    >>> post = Post.objects.first()
 
->>> post.get_category_display()#(1)!
-'Society'
-```
-{ .annotate }
+    >>> post.category
+    'SOC'
+    ```
 
-1.  - Usa esta aproximación en plantillas de Django :material-arrow-right-box: `#!htmldjango {{ post.get_category_display }}`.
-    - Si el atributo enumerado es `foo` siempre exisitirá un método `#!python obj.get_foo_display()`.
+=== "Nombre largo"
+
+    ```pycon hl_lines="4-5" 
+    >>> from posts.models import Post
+    >>> post = Post.objects.first()
+
+    >>> post.get_category_display()#(1)!
+    'Society'
+    ```
+    { .annotate }
+
+    1.  - Si el atributo enumerado es `foo` siempre exisitirá un método `#!python obj.get_foo_display()`.
 
 Para **comprobar el valor** de un tipo enumerado debemos hacer uso de la clase interior. Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos verificar si un determinado «post» es _educativo_:
 
@@ -1071,9 +1065,12 @@ Para **comprobar el valor** de un tipo enumerado debemos hacer uso de la clase i
 
 En este escenario se utiliza un campo `IntegerField` y se definen los posibles valores mediante el parámetro `choices` a través de una subclase de `models.IntegerChoices`.
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos valorar la calidad de los «posts» del «blog» en base a una escala predeterminada:
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos valorar la **calidad** de los «posts» del «blog» en base a una escala predeterminada:
 
-```python title="posts/models.py"
+```python title="posts/models.py" hl_lines="5-10 15-18"
+from django.db import models
+
+
 class Post(models.Model):
     class Rating(models.IntegerChoices):#(1)!
         VERY_BAD = 1#(2)!
@@ -1082,6 +1079,9 @@ class Post(models.Model):
         GOOD = 4
         EXCELLENT = 5
     
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
     rating = models.IntegerField(#(3)!
         choices=Rating,#(4)!
         default=Rating.AVERAGE#(5)!
@@ -1103,7 +1103,27 @@ class Post(models.Model):
 
 !!! tip "Graduación"
 
-    Cuando el campo toma una serie de valores concretos que «semánticamente» tienen un orden (de menor a mayor) es posible que un **tipo enumerado entero** sea una buena solución.
+    Cuando el campo toma una serie de valores concretos que «semánticamente» tienen un orden (de menor a mayor) es posible que un **tipo enumerado entero** sea una buena solución:
+
+    ```pycon hl_lines="16-17"
+    >>> from posts.models import Post
+
+    >>> post1 = Post.objects.first()
+    >>> post2 = Post.objects.last()
+
+    >>> post1.rating
+    3
+    >>> post2.rating
+    1
+
+    >>> post1.get_rating_display()
+    'Average'
+    >>> post2.get_rating_display()
+    'Very Bad'
+
+    >>> post1.rating > post2.rating
+    True
+    ```
 
 ## Claves ajenas { #foreign-keys }
 
@@ -1168,8 +1188,11 @@ El primer parámetro que recibe `ForeignKey` es el modelo que vamos a relacionar
 
 Hay dos formas de indicarlo:
 
-1. Si se indica en formato «string» hay que especificarlo como: `#!python '<app>.<Model>'`.
+<div class="annotate" markdown>
+1. Si se indica en formato «string» hay que especificarlo como: `#!python '<app>.<Model>'`. (1)
 2. También podemos importar el modelo y hacer referencia directa.
+</div>
+1. Esto permite evitar los llamados «circular imports».
 
 #### Nombre relacionado { #related-name }
 
@@ -1441,21 +1464,30 @@ erDiagram
 
 > :material-alarm-light-outline: Un «post» tiene cero o muchas etiquetas y una etiqueta puede estar en cero o muchos «posts».
 
-Para relacionar ambos modelos usamos un campo de tipo [`ManyToManyField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ManyToManyField):
+Lo primero será crear las etiquetas a través de un sencillo modelo `Label`:
 
 ```python title="labels/models.py"
 from django.db import models
+
 
 class Label(models.Model):
     name = models.CharField(max_length=128)
     slug = models.SlugField(max_length=128, unique=True)
 ```
 
-```python title="posts/models.py" hl_lines="6-10"
+!!! tip "Aplicación independiente"
+
+    El hecho de que una etiqueta pueda tener sentido fuera de los «posts» (por ejemplo aplicarse también a otros elementos) indica que podríamos crear una aplicación `labels` para almacenar los modelos.
+
+Para relacionar los «posts» con las etiquetas usaremos un campo de tipo [`ManyToManyField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ManyToManyField):
+
+```python title="posts/models.py" hl_lines="8-12"
 from django.db import models
+
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
     content = models.TextField()
     labels = models.ManyToManyField(#(1)!
         'labels.Label',#(2)!
@@ -1489,15 +1521,23 @@ Lo primero será crear etiquetas y «posts»:
 >>> label_tech = Label.objects.create(name='Technology', slug='tech')
 >>> label_ai = Label.objects.create(name='Artificial Intelligence', slug='ai')
 
->>> post_python = Post.objects.create(title='Python', content='Now is better than never')
->>> post_midjourney = Post.objects.create(title='Midjourney', content='Awesome images')
+>>> post_python = Post.objects.create(
+...     title='Python',
+...     slug='python',
+...     content='Now is better than never'
+... )
+>>> post_midjourney = Post.objects.create(
+...     title='Midjourney',
+...     slug='midjourney',
+...     content='Awesome images'
+... )
 ```
 
-Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a muchos»:
+Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «muchos a muchos»:
 
 === "Añadir :octicons-diff-added-16:"
 
-    Utilizamos el método [`add()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.add) para añdir objetos relacionados:
+    Utilizamos el método [`add()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.add) para añadir objetos relacionados:
 
     ```pycon title="Añadir etiquetas a un «post»"
     >>> post_python.labels.add(label_tech)#(1)!
@@ -1523,7 +1563,7 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
 
 === "Crear y añadir :material-creation-outline:"
 
-    Utilizamos el método [`create()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.create) para crear y añdir objetos relacionados:
+    Utilizamos el método [`create()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.create) para crear y añadir objetos relacionados:
 
     ```pycon title="Crear etiqueta y añadirla a un «post»"
     >>> post_python.labels.create(name='Technology', slug='tech')#(1)!
@@ -1541,42 +1581,24 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
     
     1.  Hay que darle valor a todos los atributos obligatorios del «post».
 
-=== "Fijar :material-screw-flat-top:"
+=== "Reemplazar :material-file-replace:"
 
-    Utilizamos el método [`set()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.set) para fijar objetos relacionados:
+    Utilizamos el método [`set()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.set) para reemplazar objetos relacionados:
 
-    ```pycon title="Fijar las etiquetas de un «post»"
+    ```pycon title="Reemplazar las etiquetas de un «post»"
     >>> post_python.labels.set([label_tech, label_ai])#(1)!
     ```
     { .annotate }
     
-    1. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
+    1. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos.
 
-    ```pycon title="Fijar los «posts» de una etiqueta"
+    ```pycon title="Reemplazar los «posts» de una etiqueta"
     >>> label_ai.posts.set([post_python, post_midjourney])#(1)!
     ```
     { .annotate }
     
-    1. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
+    1. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos.
     
-=== "Consultar :material-magnify:"
-
-    ```pycon title="Consultar las etiquetas de un «post»"
-    >>> post_python.labels.all()#(1)!
-    <QuerySet [<Label: Artificial intelligence>, <Label: Technology>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
-
-    ```pycon title="Consultar los «posts» de una etiqueta"
-    >>> label_ai.posts.all()#(1)!
-    <QuerySet [<Post: Python>, <Post: Midjourney>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
-
 === "Eliminar :material-delete:"
 
     Utilizamos el método [`remove()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.remove) para eliminar objetos relacionados:
@@ -1602,17 +1624,40 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
         ```pycon
         >>> label_ai.posts.clear()
         ```
+
+=== "Consultar :material-magnify:"
+
+    ```pycon title="Consultar las etiquetas de un «post»"
+    >>> post_python.labels.all()#(1)!
+    <QuerySet [<Label: Technology>, <Label: Artificial Intelligence>]>
+    ```
+    { .annotate }
     
+    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
+
+    ```pycon title="Consultar los «posts» de una etiqueta"
+    >>> label_ai.posts.all()#(1)!
+    <QuerySet [<Post: Midjourney>, <Post: Python>]>
+    ```
+    { .annotate }
+    
+    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
+    
+!!! info "Interfaz administrativa"
+
+    Para habilitar modelos «muchos a muchos» en la interfaz administrativa [consulta esta documentación](admin.md#many-to-many).
+
 #### Relaciones muchos a muchos con modelo intermedio { #many-to-many-with-intermediary }
 
 Hay ocasiones en las que la relación «muchos a muchos» debe incluir **atributos adicionales**. Para ello Django nos ofrece la posibilidad de añadir un [modelo intermedio](https://docs.djangoproject.com/en/stable/topics/db/models/#intermediary-manytomany) en el campo `ManyToManyField()`.
 
-Si continuamos con el <span class="example">ejemplo:material-flash:</span> anterior, supongamos que ahora necesitamos registrar **la razón del etiquetado** de un determinado «post». Veamos cómo se implementarían los modelos:
+Si continuamos con el <span class="example">ejemplo:material-flash:</span> anterior, supongamos que ahora queremos registrar **los detalles del etiquetado** de un determinado «post». Veamos cómo proceder.
 
 El modelo para las etiquetas no sufre cambios:
 
 ```python title="labels/models.py"
 from django.db import models
+
 
 class Label(models.Model):
     name = models.CharField(max_length=128)
@@ -1622,50 +1667,62 @@ class Label(models.Model):
         return self.name
 ```
 
-Se define un nuevo modelo «razón» que tendrá ese rol «intermedio»:
+Pero ahora se define un nuevo modelo que representa el «detalle de etiquetado del post» y que tendrá ese rol «intermedio»:
 
-```python title="reasons/models.py" hl_lines="14"
+```python title="posts/models.py"
 from django.db import models
 
-class Reason(models.Model):
+
+class PostLabelingDetail(models.Model):
     post = models.ForeignKey(#(1)!
         'posts.Post',
-        related_name='seals',
+        related_name='post_labeling_details',
         on_delete=models.CASCADE,
     )
     label = models.ForeignKey(#(2)!
         'labels.Label',
-        related_name='seals',
+        related_name='post_labeling_details',
         on_delete=models.CASCADE,
     )
-    labelled_because = models.CharField(max_length=256)#(3)!
+    reason = models.CharField(max_length=256)#(3)!
+    labelled_at = models.DateTimeField(auto_now_add=True)#(4)!
+
+    class Meta:
+        unique_together = ('post', 'label')#(5)!
 
     def __str__(self):
-        return f'{self.post} ⇔ {self.label} ({self.labelled_because})'
+        return f'{self.reason} ({self.labelled_at.strftime("%d-%m-%Y")})'
 ```
 { .annotate }
 
 1. Esta [clave ajena](#foreign-keys) proviene del modelo `Post`.
 2. Esta [clave ajena](#foreign-keys) proviene del modelo `Label`.
 3. Este atributo adicional nos permite registrar la razón del etiquetado.
+4. Este atributo adicional nos permite registrar la fecha del etiquetado.
+5.  - De esta forma sólo permitimos una única razón de etiquetado (por «post» y etiqueta).
+    - Consulta [valores únicos juntos](#unique-together).
 
-El modelo para los «posts» incorpora el atributo `through`:
+!!! tip "Modelo dentro de aplicación"
 
-```python title="posts/models.py" hl_lines="9"
+    El hecho de que el modelo `PostLabelingDetail` viva en la aplicación `posts` se explica porque es un caso de etiquetado específico para «posts» que no tendría sentido para otro tipo de objetos y, por lo tanto, no conlleva la creación de una nueva aplicación.
+
+El modelo para los «posts» incorpora ahora el atributo `through` con el modelo intermedio que se va a utilizar:
+
+```python title="posts/models.py" hl_lines="12"
 from django.db import models
+
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+    published = models.BooleanField(default=False)
     labels = models.ManyToManyField(
         'labels.Label',
         related_name='posts',
-        through='reasons.Reason',
+        through='posts.PostLabelingDetail',
         blank=True,
     )
-
-    def __str__(self):
-        return self.title
 ```
 
 Lo primero será crear etiquetas y «posts»:
@@ -1677,165 +1734,148 @@ Lo primero será crear etiquetas y «posts»:
 >>> label_tech = Label.objects.create(name='Technology', slug='tech')
 >>> label_ai = Label.objects.create(name='Artificial Intelligence', slug='ai')
 
->>> post_python = Post.objects.create(title='Python', content='Now is better than never')
->>> post_midjourney = Post.objects.create(title='Midjourney', content='Awesome images')
+>>> post_python = Post.objects.create(
+...     title='Python',
+...     slug='python',
+...     content='Now is better than never'
+... )
+>>> post_midjourney = Post.objects.create(
+...     title='Midjourney',
+...     slug='midjourney',
+...     content='Awesome images'
+... )
 ```
 
-Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a muchos»:
+Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «muchos a muchos con modelo intermedio»:
 
 === "Añadir «manualmente» :fontawesome-solid-hammer:"
 
-    Al crear objetos en la relación intermedia `Reason` estaremos añadiendo etiquetas a «posts» (y viceversa):
+    Al crear objetos en la relación intermedia `PostLabelingDetail` estaremos añadiendo etiquetas a «posts» (y viceversa):
 
     ```pycon
-    >>> reason_python_tech = Reason.objects.create(
+    >>> from posts.models import PostLabelingDetail
+
+    >>> PostLabelingDetail.objects.create(
     ...     post=post_python,
     ...     label=label_tech,
-    ...     labelled_because='Python is cool tech'
+    ...     reason='Python is cool tech'#(1)!
     ... )
-    >>> reason_python_ai = Reason.objects.create(
+    <PostLabelingDetail: Python is cool tech (23-11-2025)>
+
+    >>> PostLabelingDetail.objects.create(
     ...     post=post_python,
     ...     label=label_ai,
-    ...     labelled_because='Python is the language for AI'
+    ...     reason='Python is the language for AI'#(2)!
     ... )
-    >>> reason_midjourney_tech = Reason.objects.create(
+    <PostLabelingDetail: Python is the language for AI (23-11-2025)>
+
+    >>> PostLabelingDetail.objects.create(
     ...     post=post_midjourney,
     ...     label=label_tech,
-    ...     labelled_because='Midjourney is high tech'
+    ...     reason='Midjourney is high tech'#(3)!
     ... )
-    >>> reason_midjourney_ai = Reason.objects.create(
+    <PostLabelingDetail: Midjourney is high tech (23-11-2025)>
+
+    >>> PostLabelingDetail.objects.create(
     ...     post=post_midjourney,
     ...     label=label_ai,
-    ...     labelled_because='Midjourney is generative AI'
+    ...     reason='Midjourney is generative AI'#(4)!
     ... )
+    <PostLabelingDetail: Midjourney is generative AI (23-11-2025)>
     ```
+    { .annotate }
+    
+    1. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    2. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    3. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    4. No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Añadir «relacionalmente» :octicons-diff-added-16:"
 
     ```pycon title="Añadir etiquetas a un «post»"
     >>> post_python.labels.add(#(1)!
-    ... label_tech,#(2)!
-    ... through_defaults={'labelled_because': 'Python is cool tech'}#(3)!
-    )
+    ...     label_tech,#(2)!
+    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ... )
     ```    
     { .annotate }
     
     1. Utilizamos el método `add()` para añadir ^^una etiqueta^^.
     2. Indicamos la etiqueta a añadir.
-    3. Especificamos el/los campo(s) de la relación intermedia.
-
-    ??? tip "Añadir varias etiquetas a la vez"
-    
-        ```pycon
-        >>> post_midjourney.labels.set(#(1)!
-        ... [label_tech, label_ai],#(2)!
-        ... through_defaults={'labelled_because': 'Python loves AI & Tech'}#(3)!
-        )
-        ```
-        { .annotate }
-        
-        1. Utilizamos el método `set()` para añadir ^^varias etiquetas^^ a la vez.
-        2. Indicamos las etiquetas a añadir como una lista.
-        3. Especificamos el/los campo(s) de la relación intermedia. Estos valores se aplican a **todos los objetos añadidos**.
+    3.  - Especificamos el/los campo(s) de la relación intermedia.
+        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
     ```pycon title="Añadir «posts» a una etiqueta"
     >>> label_ai.posts.add(#(1)!
-    ... post_python,#(2)!
-    ... through_defaults={'labelled_because': 'Python is the language for AI'}#(3)!
-    )     
+    ...     post_python,#(2)!
+    ...     through_defaults={'reason': 'Python is the language for AI'}#(3)!
+    ... )     
     ```
     { .annotate }
     
     1. Utilizamos el método `add()` para añadir ^^un «post»^^.
     2. Indicamos el «post» a añadir.
-    3. Especificamos el/los campo(s) de la relación intermedia.
-
-    ??? tip "Añadir varios «posts» a la vez"
-
-        ```pycon
-        >>> label_tech.posts.set(#(1)!
-        ... [post_python, post_midjourney],#(2)!
-        ... through_defaults={'labelled_because': 'Tech is all around in Python & Midjourney'}#(3)!
-        )
-        ```
-        { .annotate }
-        
-        1. Utilizamos el método `set()` para añadir ^^varios «posts»^^ a la vez.
-        2. Indicamos los «posts» a añadir como una lista.
-        3. Especificamos el/los campo(s) de la relación intermedia. Estos valores se aplican a **todos los objetos añadidos**.
+    3.  - Especificamos el/los campo(s) de la relación intermedia.
+        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Crear y añadir :material-creation-outline:"
 
     ```pycon title="Crear una etiqueta y añadirla a un «post»"
     >>> post_python.labels.create(#(1)!
-    ... name='Technology', slug='tech',#(2)!
-    ... through_defaults={'labelled_because': 'Python is cool tech'}#(3)!
-    )
+    ...     name='Technology', slug='tech',#(2)!
+    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ... )
     <Label: Technology>
     ```
     { .annotate }
     
     1. Utilizamos el método `create()` que **devuelve el objeto creado**.
     2. Hay que darle valor a todos los atributos obligatorios de la etiqueta.
-    3. Especificamos el/los campo(s) de la relación intermedia.
+    3.  - Especificamos el/los campo(s) de la relación intermedia.
+        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
     
     ```pycon title="Crear un «post» y añadirlo a una etiqueta"
     >>> label_ai.posts.create(#(1)!
-    ... title='Midjourney', content='Awesome images',#(2)!
-    ... through_defaults={'labelled_because': 'Midjourney is generative AI'}#(3)!
-    )
+    ...     title='Midjourney', content='Awesome images',#(2)!
+    ...     through_defaults={'reason': 'Midjourney is generative AI'}#(3)!
+    ... )
     <Post: Midjourney>
     ```
     { .annotate }
     
     1. Utilizamos el método `create()` que **devuelve el objeto creado**.
     2. Hay que darle valor a todos los atributos obligatorios del «post».
-    3. Especificamos el/los campo(s) de la relación intermedia.
+    3.  - Especificamos el/los campo(s) de la relación intermedia.
+        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
-=== "Fijar :material-screw-flat-top:"
+=== "Reemplazar :material-file-replace:"
 
-    ```pycon title="Fijar las etiquetas de un «post»"
+    ```pycon title="Reemplazar las etiquetas de un «post»"
     >>> post_python.labels.set(#(1)!
-    ... [label_tech, label_ai],#(2)!
-    ... through_defaults={'labelled_because': 'Python is cool tech'}#(3)!
-    )
+    ...     [label_tech, label_ai],#(2)!
+    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ... )
     ```
     { .annotate }
     
-    1. Utilizamos el método `set()` que **fija objetos relacionados**.
-    2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
-    3. Especificamos el/los campo(s) de la relación intermedia.
+    1. Utilizamos el método `set()` que **reemplaza objetos relacionados**.
+    2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos.
+    3.  - Especificamos el/los campo(s) de la relación intermedia.
+        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
-    ```pycon title="Fijar los «posts» de una etiqueta"
+    ```pycon title="Reemplazar los «posts» de una etiqueta"
     >>> label_ai.posts.set(#(1)!
-    ... [post_python, post_midjourney],#(2)!
-    ... through_defaults={'labelled_because': 'Python is cool tech'}#(3)!
-    )
+    ...     [post_python, post_midjourney],#(2)!
+    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ... )
     ```
     { .annotate }
     
-    1. Utilizamos el método `set()` que **fija objetos relacionados**.
-    2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos que se fijarán.
-    3. Especificamos el/los campo(s) de la relación intermedia.
+    1. Utilizamos el método `set()` que **reemplaza objetos relacionados**.
+    2. Pasamos un [iterable](../../../core/modularity/oop.md#iterables) de objetos.
+    3.  - Especificamos el/los campo(s) de la relación intermedia.
+        - No es necesario añadir `labelled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
-=== "Consultar :material-magnify:"
-
-    ```pycon title="Consultar las etiquetas de un «post»"
-    >>> post_python.labels.all()#(1)!
-    <QuerySet [<Label: Artificial intelligence>, <Label: Technology>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
-
-    ```pycon title="Consultar los «posts» de una etiqueta"
-    >>> label_ai.posts.all()#(1)!
-    <QuerySet [<Post: Python>, <Post: Midjourney>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
-    
 === "Eliminar :material-delete:"
 
     ```pycon title="Eliminar etiquetas de un «post»"
@@ -1859,6 +1899,60 @@ Ahora veamos cómo realizar distintas operaciones sobre el campo «muchos a much
         ```pycon
         >>> label_ai.posts.clear()
         ```
+
+=== "Consultar :material-magnify:"
+
+    ```pycon title="Consultar las etiquetas de un «post»"
+    >>> post_python.labels.all()#(1)!
+    <QuerySet [<Label: Technology>, <Label: Artificial Intelligence>]>
+    ```
+    { .annotate }
+    
+    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
+
+    ```pycon title="Consultar los «posts» de una etiqueta"
+    >>> label_ai.posts.all()#(1)!
+    <QuerySet [<Post: Midjourney>, <Post: Python>]>
+    ```
+    { .annotate }
+    
+    1. También se puede aplicar [`filter()`](#retrieve-some), [`get()`](#retrieve-one) o [`exclude()`](#exclude-objects).
+
+    ```pycon title="Consultar los detalles de etiquetado de un «post»"
+    >>> post_python.post_labeling_reasons.all()#(1)!
+    <QuerySet [<PostLabelingDetail: Python is cool tech (23-11-2025)>,
+               <PostLabelingDetail: Python is the language for AI (23-11-2025)>]>
+    ```
+    { .annotate }
+    
+    1. Es posible iterar sobre los detalles de etiquetado de un «post»:
+        ```pycon
+        >>> for detail in post_python.post_labeling_details.all():
+        ...     print(detail.reason)
+        ...
+        Python is cool tech
+        Python is the language for AI
+        ```
+
+    ```pycon title="Consultar los detalles de etiquetado de un «post» (desde la etiqueta)"
+    >>> label_ai.post_labeling_details.all()#(1)!
+    <QuerySet [<PostLabelingDetail: Python is the language for AI (23-11-2025)>,
+               <PostLabelingDetail: Midjourney is generative AI (23-11-2025)>]> 
+    ``` 
+    { .annotate }
+    
+    1. Es posible iterar sobre los detalles de etiquetado de un «post» (desde la etiqueta):
+        ```
+        >>> for detail in label_ai.post_labeling_details.all():
+        ...     print(detail.reason)
+        ...
+        Python is the language for AI
+        Midjourney is generative AI
+        ```
+    
+!!! info "Interfaz administrativa"
+
+    Para habilitar modelos «muchos a muchos» en la interfaz administrativa [consulta esta documentación](admin.md#many-to-many-with-intermediary).
 
 ## Campos de fichero { #file-fields }
 
@@ -2375,7 +2469,7 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
 ### Registrar una señal { #signal-register }
 
-Vamos a ilustrar con un <span class="example">ejemplo:material-flash:</span> la forma de trabajar con señales en Django. Partiendo de una aplicación de «blog», queremos implementar un artefacto software que, cada vez que se cree un nuevo «post», enviemos un correo al administrador notificando este hecho.
+Vamos a ilustrar mediante un <span class="example">ejemplo:material-flash:</span> la forma de trabajar con señales en Django. Partiendo de una aplicación de «blog», queremos implementar un artefacto software que, cada vez que se cree un nuevo «post», enviemos un correo al administrador notificando este hecho.
 
 Lo primero será **registrar la señal** que en este caso se trata de `post_save`:
 
@@ -2398,7 +2492,7 @@ def notify_administrator_with_new_post(sender, instance, created, **kwargs):#(6)
 1. Importamos la señal `post_save`.
 2. Para registrar la señal necesitamos el decorador `receiver`.
 3. Importamos el modelo sobre el que vamos a trabajar.
-4. Importamos la función que envía mensajes (_ficticio, sólo a efectos de demostración_).
+4. Importamos la función que [envía correos](extras.md#sending-email) (_ficticio, sólo a efectos de demostración_).
 5. Registramos la señal `post_save` sobre la clase `Post`.
 6. Definimos la función que se va a ejecutar, teniendo en cuenta los parámetros necesarios.
 7. En este caso, sólo nos interesa aplicar la lógica cuando se crea una nueva instancia de «post».
@@ -2424,7 +2518,10 @@ class PostsConfig(AppConfig):
 
 1. El método `ready()` nos indica el momento en el que la aplicación `posts` está disponible.
 2.  - Importamos las señales previamente definidas.
-    - Si el «linter» se queja de esta línea (_import_) podemos añadir el comentario `#!python # noqa` para evitarlo.
+    - Si el «linter» se queja de esta línea (_import_) podemos añadir comentario y solucionarlo de la siguiente manera:
+        ```python
+        from . import signals  # noqa
+        ```
 
 ## Validadores { #validators }
 
@@ -2444,17 +2541,24 @@ Django proporciona una serie de [validadores predefinidos](https://docs.djangopr
 
 Por <span class="example">ejemplo:material-flash:</span> supongamos que los «posts» de un «blog» pueden ser valorados de 1 a 5. Podríamos definir el modelo de la siguiente manera:
 
-```python title="posts/models.py" hl_lines="8-10"
-from django.db import models
+```python title="posts/models.py" hl_lines="1 6 11-14"
 from django.core.validators import MaxValueValidator, MinValueValidator#(1)!
+from django.db import models
 
 
 class Post(models.Model):
+    DEFAULT_RANK = 3
+
     title = models.CharField(max_length=256)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
     rank = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)]#(2)!
+        validators=[MinValueValidator(1), MaxValueValidator(5)],#(2)!
+        default=DEFAULT_RANK,
     )
+
+    def __str__(self):
+        return self.title
 ```
 { .annotate }
 
@@ -2467,28 +2571,43 @@ También es posible definir validadores personalizados. Se trata únicamente de 
 
 Continuando con <span class="example">ejemplo:material-flash:</span> del «blog» supongamos que nos interesa validar que el título de un «post» siempre se escriba en _formato título_:
 
-```python title="posts/models.py" hl_lines="5-7 11"
-from django.db import models
-from django.core.exceptions import ValidationError#(1)!
+=== "Validador"
 
+    ```python title="posts/validators.py"
+    from django.core.exceptions import ValidationError#(1)!
+    
+    
+    def validate_title(value: str):#(2)!
+        if not value.istitle():#(3)!
+            raise ValidationError(f'{value} is not in title format')#(4)!
+    ```
+    { .annotate }
 
-def validate_title(value: str):#(2)!
-    if not value.istitle():#(3)!
-        raise ValidationError(f'{value} is not in title format')#(4)!
+    1. Los errores de validación hay que indicarlos mediante objetos de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror).
+    2. El validador es simplemente una función que recibe `value` (valor a validar).
+    3. Comprobamos si el valor (_título del «post»_) está en formato _título_.
+    4. Lanzamos una excepción con el mensaje de error correspondiente.
 
+=== "Modelo"
 
-class Post(models.Model):
-    title = models.CharField(max_length=256, validators=[validate_title])#(5)!
-    content = models.TextField(max_length=256)
-```
-{ .annotate }
+    ```python title="posts/models.py" hl_lines="3 7"
+    from django.db import models
+    
+    from .validators import validate_title#(1)!
+    
+    
+    class Post(models.Model):
+        title = models.CharField(max_length=256, validators=[validate_title])#(2)!
+        slug = models.SlugField(max_length=256)
+        content = models.TextField()
+    
+        def __str__(self):
+            return self.title
+    ```
+    { .annotate }
 
-1. Los errores de validación hay que indicarlos mediante objetos de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror).
-2.  - El validador es simplemente una función que recibe `value` (valor a validar).
-    - Si el validador es más complejo/largo o disponemos de muchos validadores cabría crear un `validators.py` para ello.
-3. Comprobamos si el valor (_título del «post»_) está en formato _título_.
-4. Lanzamos una excepción con el mensaje de error correspondiente.
-5. Asignamos el validador personalizado al campo del título del «post».
+    1. Importamos el validador personalizado que hemos creado.
+    2. Asignamos el validador personalizado al campo del título del «post».
 
 !!! warning "Comportamiento de los validadores"
 
