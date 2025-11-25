@@ -141,7 +141,7 @@ Ahora ya disponemos de un «widget» donde poder filtrar:
 
 ## Campos autocompletados { #prepopulated-fiels }
 
-Otra de las funcionalidades existentes en la interfaz administrativa de Django es rellenar campos de manera automática a partir del valor de otros campos. Para conseguir este resultado tendremos que utilizar el atributo [`prepopulated_fields`](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.prepopulated_fields).
+Otra de las funcionalidades existentes en la interfaz administrativa de Django es rellenar campos de manera automática a partir del valor de otros campos. Para conseguir este resultado tendremos que utilizar el atributo [`prepopulated_fields`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.prepopulated_fields).
 
 Por <span class="example">ejemplo:material-flash:</span> podríamos querer que el «slug» de un «post» se autocomplete mediante su título:
 
@@ -213,13 +213,87 @@ De esta manera nos aparecerá una nueva acción a la hora de gestionar los «pos
 ![Dark image](images/admin/admin-action-dark.png#only-dark)
 ![Light image](images/admin/admin-action-light.png#only-light)
 
-## Relaciones muchos a muchos { #many-to-many }
+## Claves ajenas { #foreign-key }
+
+<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+
+### Relaciones uno a muchos { #one-to-many }
+
+Es habitual manejar claves ajenas en nuestros modelos. Por defecto, Django las muestra en la interfaz administrativa como **desplegables** donde seleccionar la instancia correspondiente.
+
+Como <span class="example">ejemplo:material-flash:</span> vamos a partir de [este escenario](models.md#one-to-many) en el que un «post» puede tener varios comentarios.
+
+El aspecto del formulario para añadir un comentario sería el siguiente:
+
+![Dark image](images/admin/fk_dropdown-dark.png#only-dark)
+![Light image](images/admin/fk_dropdown-light.png#only-light)
+
+Veamos otras maneras de presentar la clave ajena a «post» para que sea más accesible:
+
+=== "Búsqueda en ventana"
+
+    Mediante el atributo [`raw_id_fields`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.raw_id_fields) se pueden definir un conjunto de campos para los que se habilita una **búsqueda en ventana**.
+
+    ```python title="comments/admin.py" hl_lines="8"
+    from django.contrib import admin
+    
+    from .models import Comment
+    
+    
+    @admin.register(Comment)
+    class CommentAdmin(admin.ModelAdmin):
+        raw_id_fields = ('post',)
+    ```
+
+    El formulario para añadir un comentario quedaría de la siguiente manera:
+
+    ![Dark image](images/admin/raw_id_fields-dark.png#only-dark)
+    ![Light image](images/admin/raw_id_fields-light.png#only-light)
+    
+=== "Búsqueda con autocompletado"
+
+    Mediante el atributo [`autocomplete_fields`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.autocomplete_fields) se pueden definir un conjunto de campos para los que se habilita una **búsqueda con autocompletado** (a medida que se escribe).
+    
+    ```python title="comments/admin.py" hl_lines="8"
+    from django.contrib import admin
+    
+    from .models import Comment
+    
+    
+    @admin.register(Comment)
+    class CommentAdmin(admin.ModelAdmin):
+        autocomplete_fields = ('post',)
+    ```
+
+    ??? danger "Error `admin.E040`"
+    
+        Es probable que el código anterior lance el siguiente error: `<class 'comments.admin.CommentAdmin'>: (admin.E040) PostAdmin must define "search_fields", because it's referenced by CommentAdmin.autocomplete_fields`.
+
+        Si es así, lo que debemos hacer para solucionarlo es habilitar campos de búsqueda para los «posts»:
+
+        ```python title="posts/models.py" hl_lines="8"
+        from django.contrib import admin
+        
+        from .models import Post
+        
+        
+        @admin.register(Post)
+        class PostAdmin(admin.ModelAdmin):
+            search_fields = ('title', 'content')
+        ```
+
+    El formulario para añadir un comentario quedaría de la siguiente manera:
+
+    ![Dark image](images/admin/autocomplete_fields-dark.png#only-dark)
+    ![Light image](images/admin/autocomplete_fields-light.png#only-light)
+
+### Relaciones muchos a muchos { #many-to-many }
 
 <span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
 
 Cuando disponemos de campos `ManyToMany` en nuestros modelos, Django presenta un **control de selección múltiple** que, en muchas ocasiones, es suficiente para manipular los datos.
 
-Pero podemos mejorarlo muy fácilmente. Partiendo del <span class="example">ejemplo:material-flash:</span> en el que [un «post» puede tener muchas etiquetas](models.md#many-to-many), haríamos lo siguiente:
+Pero podemos mejorarlo muy fácilmente. Partiendo del <span class="example">ejemplo:material-flash:</span> en el que [un «post» puede tener varias etiquetas](models.md#many-to-many), haríamos lo siguiente:
 
 ```python title="posts/admin.py" hl_lines="8"
 from django.contrib import admin
@@ -232,45 +306,53 @@ class PostAdmin(admin.ModelAdmin):
     filter_horizontal = ('labels',)
 ```
 
-:material-check-all:{ .blue } Este simple línea añade a la interfaz administrativa **dos paneles (horizontales)** con las _etiquetas disponibles_ y las _etiquetas elegidas_ a la hora de editar/crear un nuevo «post».
+Esta simple línea añade a la interfaz administrativa **dos paneles (horizontales)** con las _etiquetas disponibles_ y las _etiquetas elegidas_ a la hora de editar/crear un nuevo «post»:
 
-### Relaciones muchos a muchos con modelo intermedio { #many-to-many-with-intermediary }
+![Dark image](images/admin/filter_horizontal-dark.png#only-dark)
+![Light image](images/admin/filter_horizontal-light.png#only-light)
+
+#### Relaciones muchos a muchos con modelo intermedio { #many-to-many-with-intermediary }
 
 Para poder visualizar (y gestionar) de mejor manera las [relaciones muchos a muchos con modelo intermedio](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#working-with-many-to-many-intermediary-models) dentro de la interfaz administrativa, Django proporciona unos artefactos denominados «inlines».
 
 La idea detrás de esto es poder «presentar» en la misma página del objeto aquellos otros objetos relacionados con el primero que conformen esta relación muchos a muchos.
 
-Para ilustrar el modo de uso con un <span class="example">ejemplo:material-flash:</span>, vamos a retomar [este escenario](models.md#many-to-many-with-intermediary) en el que un «post» puede tener múltiples etiquetas y se añade una **razón** por la que asignar las etiquetas a los «posts»:
+Para ilustrar el modo de uso con un <span class="example">ejemplo:material-flash:</span>, vamos a retomar [este escenario](models.md#many-to-many-with-intermediary) en el que un «post» puede tener varias etiquetas y se añade el **detalle** del etiquetado (al asignar etiquetas a «posts»):
 
-```python title="posts/admin.py"
+```python title="posts/admin.py" hl_lines="6-8 13"
 from django.contrib import admin
 
-from .models import Label, Reason, Post
+from .models import Post, PostLabelingDetail
 
 
-@admin.register(Label)#(1)!
-class LabelAdmin(admin.ModelAdmin):
-    pass
+class PostLabelingDetailInline(admin.TabularInline):#(1)!
+    model = PostLabelingDetail#(2)!
+    extra = 1#(3)!
 
 
-class ReasonInline(admin.TabularInline):#(2)!
-    model = Reason#(3)!
-    extra = 1#(4)!
-
-
-@admin.register(Post)#(5)!
+@admin.register(Post)#(4)!
 class PostAdmin(admin.ModelAdmin):
-    inlines = [ReasonInline]#(6)!
+    inlines = [PostLabelingDetailInline]#(5)!
 ```
 { .annotate }
 
-1. El modelo `Label` se registra con normalidad.
-2.   - El modelo `Reason` (_modelo intermedio_) se registra mediante [`admin.TabularInline`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.TabularInline).
+1.  - El modelo `PostLabelingDetail` (_modelo intermedio_) se registra mediante [`admin.TabularInline`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.TabularInline).
     - También se puede usar aquí la clase [`admin.StackedInline`](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.StackedInline) que [cambia la disposición](https://stackoverflow.com/a/74438061) de los elementos.
-3. Es obligatorio especificar el modelo mediante el atributo de clase `model`.
-4. El atributo `extra` define el número _adicional_ de entradas del modelo.
-5. Registramos el modelo `Post`.
-6. El atributo `inlines` nos permite definir los «slots» de objetos `Reason` que aparecerán en la interfaz administrativa de `Post`.
+
+        ![Dark image](images/admin/stacked_inline-dark.png#only-dark)
+        ![Light image](images/admin/stacked_inline-light.png#only-light)
+
+2. Es obligatorio especificar el modelo mediante el atributo de clase `model`.
+3. El atributo `extra` define el número _adicional_ de entradas del modelo.
+4. Registramos el modelo `Post`.
+5. El atributo `inlines` nos permite definir los «slots» de objetos `PostLabelingDetail` que aparecerán en la interfaz administrativa de `Post`.
+
+Esta simple línea añade a la interfaz administrativa **un panel** con los detalles del etiquetado (**tabulados**) a la hora de editar/crear un nuevo «post»:
+
+![Dark image](images/admin/tabular_inline-dark.png#only-dark)
+![Light image](images/admin/tabular_inline-light.png#only-light)
+
+Obviamente también podemos hacer uso de `raw_id_fields` o `autocomplete_fields` ([relaciones 1:N](#one-to-many)) en la clase `PostLabelingDetailInline` con el objetivo de mejorar la búsqueda de etiquetas.
 
 ## Comandos de gestión { #management-commands }
 
