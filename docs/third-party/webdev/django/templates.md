@@ -130,6 +130,37 @@ def post_detail(request, post_slug: str):
 
     De aquí se deriva el hecho de que **no se pueden pasar parámetros** a funciones/métodos en plantillas. Para eso habría que hacer uso de [filtros](#filters).
 
+### Salida vacía
+
+En una plantilla de Django, cuando la variable (o función) a la que estamos accediendo **no existe** **no se produce ningún error**. En tal caso, no se muestra nada por pantalla. Hay que tenerlo en cuenta para saber cómo proceder.
+
+Esto se debe a que la opción [`string_if_invalid`](https://docs.djangoproject.com/en/stable/ref/templates/api/#how-invalid-variables-are-handled) de `main/settings.py` establece lo que se muestra cuando no existe la variable (o función) y por defecto su valor es la cadena vacía `#!python ''`.
+
+Si queremos modificar ese comportamiento bastaría con modificar la configuración indicada.
+
+Supongamos por <span class="example">ejemplo:material-flash:</span> que ahora queremos mostrar el mensaje `Missing variable: <variable>` cada vez que una variable (o función) no estuviera definida. Para ello haríamos:
+
+```python title="main/settings.py" hl_lines="12"
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'string_if_invalid': 'Missing variable: %s',#(1)!
+        },
+    },
+]
+```
+{ .annotate }
+
+1. El modificador `#!python '%s'` hace referencia a la variable que estamos intentando renderizar.
+
 ## Etiquetas { #tags }
 
 Django proporciona una serie de [etiquetas](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#built-in-tag-reference) para usar en plantillas. Estas etiquetas ofrecen distintas funcionalidades y se caracterizan por usar sintaxis `{% tag %}`.
@@ -544,13 +575,14 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 El **modelo** del que partimos es el siguiente:
 
-```python title="posts/models.py"
+```python title="posts/models.py" hl_lines="8"
 from django.db import models
 
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
     rating = models.FloatField(default=0)
 
     def __str__(self):
@@ -594,11 +626,11 @@ def post_list(min_rating: int = 0):#(2)!
 
     Las etiquetas personalizadas deben ubicarse en una carpeta `templatetags` dentro de la aplicación correspondiente.
     
-    Es «habitual» que si la aplicación se llama `foos` (por <span class="example">ejemplo:material-flash:</span>) las etiquetas personalizadas estén en `foo/templatetags/foo_extras.py` (_aunque el nombre del módulo es arbritrario_).
+    Es «habitual» que si la aplicación se llama `foos` (por <span class="example">ejemplo:material-flash:</span>) las etiquetas personalizadas estén en `foos/templatetags/foo_extras.py` (_aunque el nombre del módulo es arbritrario_).
 
 Lo que nos quedaría es utilizar la etiqueta creada en alguna plantilla:
 
-```htmldjango title="posts/templates/posts/index.html" hl_lines="1 4"
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="1 4"
 {% load post_extras %}<!--(1)!-->
 
 <div class="posts">
@@ -723,9 +755,9 @@ En la siguiente tabla se muestran todos los filtros de plantilla que ofrece Djan
 
 Django permite crear [filtros personalizados](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#writing-custom-template-filters) más allá de los predefinidos («built-in»).
 
-A diferencia de las [etiquetas](#custom-tags) los filtros reciben **uno o dos argumentos**. El primer argumento es el valor de la variable a la que aplicamos el filtro y el segundo argumento es opcional y permite modificar el comportamiento predefinido.
+A diferencia de las [etiquetas](#custom-tags) los filtros ^^deben recibir^^ **un argumento** (y eventualmente otro). El primer argumento es el valor de la variable a la que aplicamos el filtro y el segundo argumento es opcional y permite modificar el comportamiento predefinido.
 
-A continuación planteamos un <span class="example">ejemplo:material-flash:</span> en el que se crea un filtro personalizado para calcular el tamaño de un «post» en función de varias métricas:
+A continuación planteamos un <span class="example">ejemplo:material-flash:</span> en el que se crea un filtro personalizado para calcular el «tamaño» de un «post» en función de varias métricas:
 
 ```python title="posts/templatetags/post_extras.py"
 from django import template
@@ -739,7 +771,7 @@ register = template.Library()
 def post_size(post: Post, metric: str = 'by-words') -> int:#(2)!
     match metric:
         case 'by-words':
-            size = len(w for w in post.content.split())
+            size = len(post.content.split())
         case 'by-chars':
             size = len(post.content)
         case _:
@@ -762,7 +794,7 @@ def post_size(post: Post, metric: str = 'by-words') -> int:#(2)!
 
     Los filtros personalizadas deben ubicarse en una carpeta `templatetags` dentro de la aplicación correspondiente.
     
-    Es «habitual» que si la aplicación se llama `foos` (por <span class="example">ejemplo:material-flash:</span>) los filtros personalizados estén en `foo/templatetags/foo_extras.py` (_aunque el nombre del módulo es arbritrario_).
+    Es «habitual» que si la aplicación se llama `foos` (por <span class="example">ejemplo:material-flash:</span>) los filtros personalizados estén en `foos/templatetags/foo_extras.py` (_aunque el nombre del módulo es arbritrario_).
 
 Lo que nos quedaría es utilizar el filtro creado en alguna plantilla:
 
@@ -843,7 +875,7 @@ Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un d
 
 La explicación de que en las plantillas tengamos acceso a los datos de depuración, a la petición HTTP, a la autenticación o a los mensajes, es que existen unos artefactos llamados [procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#using-requestcontext) que se encargan de **inyectar cierta información** en el contexto de la plantilla.
 
-Estos _procesadores de contexto_ se indican en el fichero de configuración del proyecto, y por defecto toma los siguientes valores:
+Estos _procesadores de contexto_ se especifican en el fichero de configuración del proyecto —`TEMPLATES` → `OPTIONS` → `context_processors`— y por defecto es _una lista_ que toma los siguientes valores:
 
 ```python title="main/settings.py" hl_lines="7-12"
 TEMPLATES = [
@@ -865,7 +897,7 @@ TEMPLATES = [
 
 ### Procesadores de contexto personalizados { #custom-context-processors }
 
-Django permite escribir nuestros [propios procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#writing-your-own-context-processors) con el objetivo de inyectar en «todas» las plantillas ciertos datos comunes.
+Django permite implementar nuestros [propios procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#writing-your-own-context-processors) con el objetivo de inyectar en «todas» las plantillas ciertos datos comunes.
 
 Planteamos un <span class="example">ejemplo:material-flash:</span> en el que estamos diseñando un «blog» y queremos tener acceso en todo momento al último «post» que se ha publicado.
 
