@@ -14,15 +14,20 @@ Existe un ecosistema enorme de **paquetes de terceros** que ofrecen funcionalida
 
 ### Instalación { #django-reload-install }
 
-Una vez que **actives el entorno virtual** puedes ejecutar el siguiente comando:
+La instalación del paquete es muy sencilla:
 
-```console
-pip install django-browser-reload
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-??? note "requirements.txt"
+    ```console
+    $ source .venv/bin/activate
+    $ pip install django-browser-reload
+    ```
 
-    Recuerda [añadir la dependencia](setup.md#requirements) `django-browser-reload` a `requirements.txt`.
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-browser-reload
+    ```
 
 ### Configuración { #django-reload-config }
 
@@ -44,24 +49,26 @@ MIDDLEWARE = [
 
 También debemos añadir cierta configuración a las [URLs de primer nivel](urls.md#main-urls):
 
-```python title="main/urls.py" hl_lines="5"
+```python title="main/urls.py"
 from django.urls import include, path
+
 
 urlpatterns = [
     # ...
     path('__reload__/', include('django_browser_reload.urls')),
+    # ...
 ]
 ```
 
 ### Modo de uso { #django-reload-usage }
 
-Una vez que lancemos el _servidor de desarrollo_ ya estaremos en disposición de trabajar con nuestro proyecto y ver los cambios en el navegador con **recarga automática**.
+Una vez que lancemos el _servidor de desarrollo_ ya estaremos en disposición de trabajar con nuestro proyecto y ver los cambios en el navegador con **recarga automática** cada vez que modifiquemos algún archivo.
 
 ## Crispy Forms { #crispy-forms }
 
 [`django-crispy-forms`](https://django-crispy-forms.readthedocs.io/en/latest/) es un paquete Python que proporciona utilidades para renderizar formularios de una manera elegante y reutilizable en Django.
 
-Este paquete permite trabajar con [distintos «frameworks» _CSS_](https://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs). Uno de los más utilizados es **Bootstrap**. En esta sección veremos cómo manejar formularios e integrarlos con estas herramientas.
+Este paquete permite trabajar con [distintos «frameworks» CSS](https://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs). Uno de los más utilizados es **Bootstrap**. En esta sección veremos cómo manejar formularios e integrarlos con estas herramientas.
 
 ### Instalación { #crispy-forms-install }
 
@@ -69,15 +76,20 @@ Lo primero será [integrar Bootstrap](static.md#bootstrap) en nuestro proyecto.
 
 Hecho esto y dado que vamos a trabajar con Bootstrap, podemos utilizar directamente el paquete [`crispy-bootstrap5`](https://github.com/django-crispy-forms/crispy-bootstrap5) que, como su nombre indica, nos va a permitir usar Bootstrap v5 y que también nos instalará (como dependencia) el paquete `django-crispy-forms`.
 
-Una vez que **actives el entorno virtual** puedes ejecutar el siguiente comando:
+La instalación del paquete es muy sencilla:
 
-```console
-pip install crispy-bootstrap5
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-??? note "requirements.txt"
+    ```console
+    $ source .venv/bin/activate
+    $ pip install crispy-bootstrap5
+    ```
 
-    Recuerda [añadir la dependencia](setup.md#requirements) `crispy-bootstrap5` a `requirements.txt`.
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add crispy-bootstrap5
+    ```
 
 ### Configuración { #crispy-forms-config }
 
@@ -101,151 +113,163 @@ Como <span class="example">ejemplo:material-flash:</span> de uso de `crispy-form
 
 #### Login { #crispy-forms-login }
 
-```python title="accounts/forms.py" hl_lines="11-19"
-from crispy_bootstrap5.bootstrap5 import FloatingField
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
-from django import forms
+Veamos la implementación del inicio de sesión:
+
+=== "Formulario de clase"
+
+    ```python title="accounts/forms.py" hl_lines="11-19"
+    from crispy_bootstrap5.bootstrap5 import FloatingField
+    from crispy_forms.helper import FormHelper
+    from crispy_forms.layout import Layout, Submit
+    from django import forms
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    class LoginForm(forms.Form):
+        username = forms.CharField()
+        password = forms.CharField(widget=forms.PasswordInput)
 
-    def __init__(self, *args, **kwargs):#(1)!
-        super().__init__(*args, **kwargs)#(2)!
-        self.helper = FormHelper()#(3)!
-        self.helper.attrs = {'novalidate': True}#(4)!
-        self.helper.layout = Layout(#(5)!
-            FloatingField('username'),#(6)!
-            FloatingField('password'),#(7)!
-            Submit('login', 'Login', css_class='w-100 mt-2 mb-2'),#(8)!
-        )
-```
-{ .annotate }
+        def __init__(self, *args, **kwargs):#(1)!
+            super().__init__(*args, **kwargs)#(2)!
+            self.helper = FormHelper()#(3)!
+            self.helper.attrs = {'novalidate': True}#(4)!
+            self.helper.layout = Layout(#(5)!
+                FloatingField('username'),#(6)!
+                FloatingField('password'),#(7)!
+                Submit('login', 'Login', css_class='w-100 mt-2 mb-2'),#(8)!
+            )
+    ```
+    { .annotate }
 
-1. Será necesario sobreescribir el constructor del formulario para definir las características del renderizado.
-2. No puede faltar la llamada al constructor de la clase base.
-3. La clase [`FormHelper`](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html) define el comportamiento del renderizado del formulario en `django-crispy-forms`.
-4. Añadimos el atributo `novalidate` al formulario para indicar que [no se valide desde HTML](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation).
-5. Utilizamos la clase [`Layout`](https://django-crispy-forms.readthedocs.io/en/latest/layouts.html) que permite cambiar la forma en la que se renderizan los campos del formulario en `django-crispy-forms`.
-6. Incluimos en el «layout» el campo `username` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-7. Incluimos en el «layout» el campo `password` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-8.  - Incluimos en el «layout» un botón para enviar el formulario utilizando [`Submit`](https://django-crispy-forms.readthedocs.io/en/latest/api_layout.html#layout.Submit).
-    - Es posible incluir clases CSS al control HTML mediante el parámetro `css_class`.
+    1. Será necesario sobreescribir el constructor del formulario para definir las características del renderizado.
+    2. No puede faltar la llamada al constructor de la clase base.
+    3. La clase [`FormHelper`](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html) define el comportamiento del renderizado del formulario en `django-crispy-forms`.
+    4. Añadimos el atributo `novalidate` al formulario para indicar que [no se valide desde HTML](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation).
+    5. Utilizamos la clase [`Layout`](https://django-crispy-forms.readthedocs.io/en/latest/layouts.html) que permite cambiar la forma en la que se renderizan los campos del formulario en `django-crispy-forms`.
+    6. Incluimos en el «layout» el campo `username` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    7. Incluimos en el «layout» el campo `password` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    8.  - Incluimos en el «layout» un botón para enviar el formulario utilizando [`Submit`](https://django-crispy-forms.readthedocs.io/en/latest/api_layout.html#layout.Submit).
+        - Es posible incluir clases CSS al control HTML mediante el parámetro `css_class`.
 
-```htmldjango title="accounts/templates/accounts/login.html" hl_lines="1 17"
-{% load crispy_forms_tags %}<!--(1)!-->
+=== "Plantilla"
 
-<div class="row justify-content-center mt-5">
-  <div class="col-md-4">
-    <div class="card border-dark">
-      <h4 class="card-header">
-        Login
-      </h4>
-      <div class="card-body">
-        {% crispy form %}<!--(2)!-->
-      </div>
-      <div class="card-footer">
-        Don't have an account? <a href="{% url 'signup' %}">Sign up</a> here.
-      </div>
+    ```htmldjango title="accounts/templates/accounts/login.html" hl_lines="1 17"
+    {% load crispy_forms_tags %}<!--(1)!-->
+
+    <div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card border-dark">
+        <h4 class="card-header">
+            Login
+        </h4>
+        <div class="card-body">
+            {% crispy form %}<!--(2)!-->
+        </div>
+        <div class="card-footer">
+            Don't have an account? <a href="{% url 'signup' %}">Sign up</a> here.
+        </div>
+        </div>
     </div>
-  </div>
-</div>
-```
-{ .annotate }
+    </div>
+    ```
+    { .annotate }
 
-1. Cargamos las utilidades para plantillas del paquete `crispy-forms`.
-2. Así de fácil se renderiza TODO el formulario :material-emoticon-happy:
+    1. Cargamos las utilidades para plantillas del paquete `crispy-forms`.
+    2. Así de fácil se renderiza TODO el formulario :material-emoticon-happy:
 
 #### Registro { #crispy-forms-signup }
 
-```python title="accounts/forms.py" hl_lines="9-10 15-24" 
-class SignupForm(forms.ModelForm):
-    class Meta:
-        model = get_user_model()
-        fields = ('username', 'password', 'first_name', 'last_name', 'email')
-        required = ('username', 'password', 'first_name', 'last_name', 'email')
-        widgets = {'password': forms.PasswordInput}
-        help_texts = {'username': None}
+Veamos la implementación del inicio de sesión:
 
-    def __init__(self, *args, **kwargs):#(1)!
-        super().__init__(*args, **kwargs)#(2)!
+=== "Formulario de modelo"
 
-        for field in self.Meta.required:
-            self.fields[field].required = True
-
-        self.helper = FormHelper()#(3)!
-        self.helper.attrs = {'novalidate': True}#(4)!
-        self.helper.layout = Layout(#(5)!
-            FloatingField('username'),#(6)!
-            FloatingField('password'),#(7)!
-            FloatingField('first_name'),#(8)!
-            FloatingField('last_name'),#(9)!
-            FloatingField('email'),#(10)!
-            Submit('signup', 'Sign up', css_class='btn-info w-100 mt-2 mb-2'),#(11)!
-        )
-
-    def save(self, *args, **kwargs):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password'])
-        user = super().save(*args, **kwargs)
-        return user
-```
-{ .annotate }
-
-1. Será necesario sobreescribir el constructor del formulario para definir las características del renderizado.
-2. No puede faltar la llamada al constructor de la clase base.
-3. La clase [`FormHelper`](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html) define el comportamiento del renderizado del formulario en `django-crispy-forms`.
-4. Añadimos el atributo `novalidate` al formulario para indicar que [no se valide desde HTML](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation).
-5. Utilizamos la clase [`Layout`](https://django-crispy-forms.readthedocs.io/en/latest/layouts.html) que permite cambiar la forma en la que se renderizan los campos del formulario en `django-crispy-forms`.
-6. Incluimos en el «layout» el campo `username` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-7. Incluimos en el «layout» el campo `password` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-8. Incluimos en el «layout» el campo `first_name` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-9. Incluimos en el «layout» el campo `last_name` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-10. Incluimos en el «layout» el campo `email` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
-11.  - Incluimos en el «layout» un botón para enviar el formulario utilizando [`Submit`](https://django-crispy-forms.readthedocs.io/en/latest/api_layout.html#layout.Submit).
-    - Es posible incluir clases CSS al control HTML mediante el parámetro `css_class`.
-
-```htmldjango title="accounts/templates/accounts/signup.html" hl_lines="1 10"
-{% load crispy_forms_tags %}<!--(1)!-->
-
-<div class="row justify-content-center mt-5">
-  <div class="col-md-4">
-    <div class="card border-dark">
-      <h4 class="card-header">
-        Sign up
-      </h4>
-      <div class="card-body">
-        {% crispy form %}<!--(2)!-->
-      </div>
-      <div class="card-footer">
-        Already have an account? <a href="{% url 'login' %}">Login</a> here.
-      </div>
-    </div>
-  </div>
-</div>
-```
-{ .annotate }
-
-1. Cargamos las utilidades para plantillas del paquete `crispy-forms`.
-2. Así de fácil se renderiza TODO el formulario :material-emoticon-happy:
-
-!!! example "Campos de fichero"
-
-    Cuando implementamos un formulario que incluye campos de fichero, `crispy-forms` lo renderiza mostrando el fichero actual asignado y un botón para «limpiar» el contenido del mismo (siempre que no sea obligatorio).
-
-    Para modificar este comportamiento y simplemente mostrar un control de selección de fichero, podemos modificar el «widget». Veamos un <span class="example">ejemplo:material-flash:</span> con **la imagen de «avatar»** en un _perfil de un usuario_:
-
-    ```python title="users/forms.py" hl_lines="6"
-    class EditProfileForm(forms.ModelForm):
+    ```python title="accounts/forms.py" hl_lines="9-10 15-24" 
+    class SignupForm(forms.ModelForm):
         class Meta:
-            model = Profile
-            fields = ['avatar', 'bio']
-            widgets = {
-                'avatar': forms.FileInput(attrs={'accept': 'image/*'}),
-            }
+            model = get_user_model()
+            fields = ('username', 'password', 'first_name', 'last_name', 'email')
+            required = ('username', 'password', 'first_name', 'last_name', 'email')
+            widgets = {'password': forms.PasswordInput}
+            help_texts = {'username': None}
+
+        def __init__(self, *args, **kwargs):#(1)!
+            super().__init__(*args, **kwargs)#(2)!
+
+            for field in self.Meta.required:
+                self.fields[field].required = True
+
+            self.helper = FormHelper()#(3)!
+            self.helper.attrs = {'novalidate': True}#(4)!
+            self.helper.layout = Layout(#(5)!
+                FloatingField('username'),#(6)!
+                FloatingField('password'),#(7)!
+                FloatingField('first_name'),#(8)!
+                FloatingField('last_name'),#(9)!
+                FloatingField('email'),#(10)!
+                Submit('signup', 'Sign up', css_class='btn-info w-100 mt-2 mb-2'),#(11)!
+            )
+
+        def save(self, *args, **kwargs):
+            user = super().save(commit=False)
+            user.set_password(self.cleaned_data['password'])
+            user = super().save(*args, **kwargs)
+            return user
     ```
+    { .annotate }
+
+    1. Será necesario sobreescribir el constructor del formulario para definir las características del renderizado.
+    2. No puede faltar la llamada al constructor de la clase base.
+    3. La clase [`FormHelper`](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html) define el comportamiento del renderizado del formulario en `django-crispy-forms`.
+    4. Añadimos el atributo `novalidate` al formulario para indicar que [no se valide desde HTML](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation).
+    5. Utilizamos la clase [`Layout`](https://django-crispy-forms.readthedocs.io/en/latest/layouts.html) que permite cambiar la forma en la que se renderizan los campos del formulario en `django-crispy-forms`.
+    6. Incluimos en el «layout» el campo `username` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    7. Incluimos en el «layout» el campo `password` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    8. Incluimos en el «layout» el campo `first_name` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    9. Incluimos en el «layout» el campo `last_name` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    10. Incluimos en el «layout» el campo `email` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    11.  - Incluimos en el «layout» un botón para enviar el formulario utilizando [`Submit`](https://django-crispy-forms.readthedocs.io/en/latest/api_layout.html#layout.Submit).
+        - Es posible incluir clases CSS al control HTML mediante el parámetro `css_class`.
+
+=== "Plantilla"
+
+    ```htmldjango title="accounts/templates/accounts/signup.html" hl_lines="1 10"
+    {% load crispy_forms_tags %}<!--(1)!-->
+
+    <div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card border-dark">
+        <h4 class="card-header">
+            Sign up
+        </h4>
+        <div class="card-body">
+            {% crispy form %}<!--(2)!-->
+        </div>
+        <div class="card-footer">
+            Already have an account? <a href="{% url 'login' %}">Login</a> here.
+        </div>
+        </div>
+    </div>
+    </div>
+    ```
+    { .annotate }
+
+    1. Cargamos las utilidades para plantillas del paquete `crispy-forms`.
+    2. Así de fácil se renderiza TODO el formulario :material-emoticon-happy:
+
+    !!! example "Campos de fichero"
+
+        Cuando implementamos un formulario que incluye campos de fichero, `crispy-forms` lo renderiza mostrando el fichero actual asignado y un botón para «limpiar» el contenido del mismo (siempre que no sea obligatorio).
+
+        Para modificar este comportamiento y simplemente mostrar un control de selección de fichero, podemos modificar el «widget». Veamos un <span class="example">ejemplo:material-flash:</span> con **la imagen de «avatar»** en un _perfil de un usuario_:
+
+        ```python title="users/forms.py" hl_lines="6"
+        class EditProfileForm(forms.ModelForm):
+            class Meta:
+                model = Profile
+                fields = ['avatar', 'bio']
+                widgets = {
+                    'avatar': forms.FileInput(attrs={'accept': 'image/*'}),
+                }
+        ```
 
 ## Sorl Thumbnail { #sorl-thumbnail }
 
@@ -253,15 +277,20 @@ class SignupForm(forms.ModelForm):
 
 ### Instalación { #sorl-thumbnail-install }
 
-Una vez que **actives el entorno virtual** puedes ejecutar el siguiente comando:
+La instalación del paquete es muy sencilla:
 
-```console
-pip install sorl-thumbnail
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-??? note "requirements.txt"
+    ```console
+    $ source .venv/bin/activate
+    $ pip install sorl-thumbnail
+    ```
 
-    Recuerda [añadir la dependencia](setup.md#requirements) `sorl-thumbnail` a `requirements.txt`.
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add sorl-thumbnail
+    ```
 
 ### Configuración { #sorl-thumbnail-config }
 
@@ -275,7 +304,7 @@ INSTALLED_APPS = (
 )
 ```
 
-!!! note "Cuidado con nombre"
+!!! note "Cuidado con el nombre"
 
     Cuidado porque la cadena que debemos añadir a `INSTALLED_APPS` es `'sorl.thumbnail'` (_con punto en el medio_).
 
@@ -308,25 +337,30 @@ Imaginemos por <span class="example">ejemplo:material-flash:</span> que estamos 
 3. Utilizamos la variable `thumb` creada anteriormente y mostramos la imagen.
 4. Hay que cerrar la etiqueta.
 
-Desde esta forma habremos creado una miniatura de 200x200 píxeles para mostrar la imagen de portada del «post» en cuestión.
+De esta forma habremos creado una miniatura de 200x200 píxeles para mostrar la imagen de portada del «post» en cuestión.
 
 ## Django Markdownify { #django-markdownify }
 
-[`django-markdownify`](https://django-markdownify.readthedocs.io/en/latest/) es un paquete Python que se integra con Django y ofrece un filtro de plantilla para convertir Markdown en HTML.
+[`django-markdownify`](https://django-markdownify.readthedocs.io/en/latest/) es un paquete Python que se integra con Django y ofrece un [filtro de plantilla](templates.md#filters) para convertir **Markdown en HTML**.
 
 ### Instalación { #django-markdownify-install }
 
-Una vez que **actives el entorno virtual** puedes ejecutar el siguiente comando:
+La instalación del paquete es muy sencilla:
 
-```console
-pip install django-markdownify
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-??? note "requirements.txt"
+    ```console
+    $ source .venv/bin/activate
+    $ pip install django-markdownify
+    ```
 
-    Recuerda [añadir la dependencia](setup.md#requirements) `django-markdownify` a `requirements.txt`.
-  
-:material-check-all:{ .blue } Este paquete depende de [Python-Markdown](https://python-markdown.github.io/) que se instala automáticamente. Puede ser útil para usar su función [`markdown.markdown`](https://python-markdown.github.io/reference/) en vistas u otros componentes.
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-markdownify
+    ```
+
+:material-check-all:{ .blue } Este paquete depende de [Python-Markdown](https://python-markdown.github.io/) que se instala automáticamente. En este último paquete encontramos la función [`markdown.markdown`](https://python-markdown.github.io/reference/) que puede ser útil en vistas u otros componentes.
 
 ### Configuración { #django-markdownify-config }
 
@@ -370,7 +404,7 @@ INSTALLED_APPS = (
 
 ### Modo de uso { #django-markdownify-usage }
 
-El modo de uso es realmente sencillo. Veamos un <span class="example">ejemplo:material-flash:</span> en el que partimos de un objeto «post» cuyo contenido está en formato _markdown_:
+El modo de uso es realmente sencillo. Veamos un <span class="example">ejemplo:material-flash:</span> en el que partimos de un objeto «post» cuyo contenido está en formato _markdown_. Con el siguiente fragmento de código conseguiremos que el contenido del «post» se convierta a HTML:
 
 ```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="1 4"
 {% load markdownify %}
@@ -389,15 +423,20 @@ Lo habitual es indicar al usuario de que la tarea «en cuestión» ya se está p
 
 ### Instalación { #django-rq-install }
 
-Una vez que **actives el entorno virtual** puedes ejecutar el siguiente comando:
+La instalación del paquete es muy sencilla:
 
-```console
-pip install django-rq
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-??? note "requirements.txt"
+    ```console
+    $ source .venv/bin/activate
+    $ pip install django-rq
+    ```
 
-    Recuerda [añadir la dependencia](setup.md#requirements) `django-rq` a `requirements.txt`.
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-rq
+    ```
   
 :material-check-all:{ .blue } Es necesario igualmente [tener instalado el servicio Redis :simple-redis:](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/).
 
@@ -450,69 +489,192 @@ urlpatterns = [
 
 Por último aplicamos las migraciones correspondientes a la aplicación:
 
-```console hl_lines="1"
-$ ./manage.py migrate django_rq
-Operations to perform:
-  Apply all migrations: django_rq
-Running migrations:
-  Applying django_rq.0001_initial... OK
-```
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console hl_lines="1"
+    $ ./manage.py migrate django_rq
+    Operations to perform:
+    Apply all migrations: django_rq
+    Running migrations:
+    Applying django_rq.0001_initial... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console hl_lines="1"
+    $ uv run manage.py migrate django_rq
+    Operations to perform:
+    Apply all migrations: django_rq
+    Running migrations:
+    Applying django_rq.0001_initial... OK
+    ```
 
 ### Modo de uso { #django-rq-usage }
 
 Para desacoplar una tarea y enviarla a la cola de mensajes hay que realizar tres pasos:
 
-1. Marcar la función en cuestión como una tarea.
-2. Invocar el «desacople» de la misma.
-3. Levantar un «worker» RQ para atender peticiones.
+:one: Marcar la función en cuestión como una tarea.  
+:two: Invocar el «desacople» de la tarea.  
+:three: Levantar un «worker» RQ para atender peticiones.
 
-=== "Definir tarea :material-office-building:"
+Veamos un <span class="example">ejemplo:material-flash:</span> en el proyecto del «blog». La idea es que cada vez que se almacene un nuevo «post» desacoplemos una **tarea que calcula estadísticas**:
 
-    ```python title="tasks.py"
+=== "Tarea"
+
+    ```python title="posts/tasks.py"
     from django_rq import job#(1)!
-
-    @job#(2)!
-    def heavy_processing():#(3)!
-      ...
+    
+    import posts.models as pm#(2)!
+    
+    
+    @job#(3)!
+    def post_stats() -> None:#(4)!
+        posts = pm.Post.objects.all()
+        num_posts = posts.count()
+        tot_content_length = sum(len(post.content) for post in posts)
+        avg_content_length = tot_content_length / num_posts if num_posts > 0 else 0
+        print(f'Total Posts: {num_posts}')
+        print(f'Average Content Length: {avg_content_length:.2f} characters')
+    
     ```
     { .annotate }
     
     1. Importamos el decorador.
-    2. Marcamos la función como una tarea _django-rq_.
-    3.  - Definimos la función normalmente.
-        - En este caso no tiene parámetros, pero se podrían definir aquellos parámetros necesarios.
+    2.  - Deberíamos importar con `#!python from .models import Post` pero nos llevaría a un *import circular*.
+        - Para resolverlo, realizamos la importación de esta manera.
+        - El alias `#!python as` es opcional.
+    3. Marcamos la función como una tarea _django-rq_.
+    4.  - Definimos la función normalmente.
+        - En este caso la función no tiene parámetros pero se podrían definir aquellos parámetros necesarios.
         - En el caso de pasar argumentos estos deben ser **serializables**. Por defecto se [utiliza el módulo `pickle` como serializador](https://python-rq.org/docs/jobs/#job--queue-creation-with-custom-serializer), pero se podrían definir otros serializadores alternativos.
 
-=== "Invocar tarea :octicons-megaphone-16:"
 
-    ```python
-    from .tasks import heavy_processing#(1)!
+=== "Modelo"
 
-    heavy_processing.delay()#(2)!
+    ```python title="posts/models.py" hl_lines="4 15-19"
+    from django.db import models
+    from django.utils.text import slugify
+    
+    from . import tasks#(1)!
+    
+    
+    class Post(models.Model):
+        title = models.CharField(max_length=256)
+        slug = models.SlugField(max_length=256)
+        content = models.TextField()
+    
+        def __str__(self):
+            return self.title
+    
+        def save(self, *args, **kwargs):
+            if not self.slug:
+                self.slug = slugify(self.title)
+            super().save(*args, **kwargs)
+            tasks.post_stats.delay()#(2)!
     ```
     { .annotate }
     
-    1. Importamos la función propia.
-    2. Desacoplamos la tarea.
+    1. Importamos el módulo de tareas.
+    2. ~~Invocamos~~ Desacoplamos la tarea.
 
-=== "Lanzar «worker» :octicons-gear-16:"
+Ahora es necesario **levantar el proceso** que atiende las peticiones de tareas desatendidas:
+
+=== "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    ./manage.py rqworker
+    $ source .venv/bin/activate
+    $ ./manage.py rqworker
     ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py rqworker
+    ```
+
+La salida debería ser similar a la siguiente:
+
+```console
+18:31:45 Worker 06a7fa349ea0459aa9c38e0a2132a201: started with PID 89082, version 2.6.1
+18:31:45 Worker 06a7fa349ea0459aa9c38e0a2132a201: subscribing to channel rq:pubsub:06a7fa349ea0459aa9c38e0a2132a201
+18:31:45 *** Listening on default...
+18:31:45 Worker 06a7fa349ea0459aa9c38e0a2132a201: cleaning registries for queue: default
+```
+
+En el momento de guardar nuevos «posts» podremos observar que la tarea se «encola» y se atiende por *django-rq* de la forma esperada:
+
+=== "Django"
+
+    ```pycon
+    >>> Post.objects.create(title='Django is awesome', content='Django makes it easier to build better web apps')
+    <Post: Django is awesome>
+    >>> Post.objects.create(title='Python is great', content='Python makes it funnier to write software')
+    <Post: Python is great>
+    ```    
+
+=== "Django RQ"
+
+    ```console hl_lines="1-3 7-9"
+    10:42:35 default: posts.tasks.post_stats() (aa15b6b7-d369-46aa-a14a-58334f3f6740)
+    Total Posts: 1
+    Average Content Length: 47.00 characters
+    10:42:35 Successfully completed posts.tasks.post_stats() job in 0:00:00.006705s on worker 75f316d097dc425abfece73b18a0c702
+    10:42:35 default: Job OK (aa15b6b7-d369-46aa-a14a-58334f3f6740)
+    10:42:35 Result is kept for 500 seconds
+    10:44:18 default: posts.tasks.post_stats() (d57539ea-a169-4671-9ac4-fa892135f8ac)
+    Total Posts: 2
+    Average Content Length: 44.00 characters
+    10:44:18 Successfully completed posts.tasks.post_stats() job in 0:00:00.007005s on worker 75f316d097dc425abfece73b18a0c702
+    10:44:18 default: Job OK (d57539ea-a169-4671-9ac4-fa892135f8ac)
+    10:44:18 Result is kept for 500 seconds
+    ```
+
+#### Recargar tras cambios { #django-rq-hotreload }
+
+El comando `./manage.py rqworker` no recarga el proceso cuando hay cambios en el código.
+
+Para solucionarlo, podemos hacer uso del paquete [`watchdog`](https://github.com/gorakhargosh/watchdog) que se encarga de «escuchar» cambios en el código y recargar los procesos indicados. Su instalación es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ source .venv/bin/activate
+    $ pip install watchdog
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add --dev watchdog #(1)!
+    ```
+    { .annotate }
     
-    ??? tip "Recargar tras cambios"
+    1. Dado que es una utilidad exclusivamente para la fase de desarrollo, utilizamos el modificador `--dev` para indicar que sólo se instale en dicho contexto.
 
-        El comando `./manage.py rqworker` no recarga el proceso cuando hay cambios en el código. Suponiendo que las tareas RQ las estamos escribiendo en ficheros `tasks.py` podrías usar el siguiente comando para un _entorno de desarrollo_:
+Suponiendo que las tareas RQ las estamos escribiendo en ficheros `tasks.py` se podría usar el siguiente comando `watchdog` para recargar los cambios:
 
-        ```bash
-        watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker #(1)!
-        ```
-        { .annotate }
-        
-        1. Si quisiéramos recargar tras modificar cualquier fichero Python tendríamos que modificar el argumento: `--pattern=*.py`
+=== "*venv* :octicons-package-24:{.blue}"
 
-        :material-check-all:{ .blue } El comando `watchmedo` está disponible instalando el paquete [`watchdog`](https://github.com/gorakhargosh/watchdog) mediante `pip install watchdog`.
+    ```console
+    $ source .venv/bin/activate
+    $ watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker #(1)!
+    ```
+    { .annotate }
+
+    1. Si quisiéramos recargar tras un cambio en cualquier fichero Python tendríamos que modificar el argumento: `--pattern=*.py`
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker #(1)!
+    ```
+    { .annotate }
+
+    1. Si quisiéramos recargar tras un cambio en cualquier fichero Python tendríamos que modificar el argumento: `--pattern=*.py`
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`rq`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 ## Enviar correo { #sending-email }
 
@@ -532,7 +694,8 @@ DEFAULT_FROM_EMAIL = 'default-from-email'#(1)!
 { .annotate }
 
 1.  - Se trata del correo electrónico origen que verá el usuario notificado.
-    - Aunque este dato no es olibatorio, resulta cómodo fijarlo aquí y poder usarlo en el resto de la aplicación.
+    - Aunque este dato no es oligatorio, resulta cómodo fijarlo aquí y poder usarlo en el resto de la aplicación.
+    - Suele ser habitual algo del estilo `#!python 'noreply@example.com'`
 
 #### Brevo { #brevo }
 
@@ -542,14 +705,14 @@ Una vez dados de alta en _Brevo_, podemos acceder a la [sección de configuraci�
 
 | Configuración | Valor |
 | --- | --- |
-| `EMAIL_HOST` | smtp-relay.brevo.com |
+| `EMAIL_HOST` | `#!python 'smtp-relay.brevo.com'` |
 | `EMAIL_PORT` | 587 |
 | `EMAIL_HOST_USER` | Tu correo electrónico de la cuenta [brevo.com](https://brevo.com) |
-| `EMAIL_HOST_PASSWORD` | Valor de clave SMTP |
+| `EMAIL_HOST_PASSWORD` | Valor de clave SMTP<br>:warning: Sólo aparecerá la primera vez (guárdala en sitio seguro) |
 
 !!! danger "EMAIL_HOST_PASSWORD"
 
-    Nunca expongas el contenido de `EMAIL_HOST_PASSWORD` ni lo incluyas en el control de versiones de tu proyecto.
+    Nunca expongas el contenido de `EMAIL_HOST_PASSWORD` ni lo incluyas en el control de versiones de tu proyecto. El paquete [`prettyconf`](../../../third-party/config/prettyconf.md) puede ser de gran ayuda.
 
 ### Modo de uso { #sending-email-usage }
 
@@ -566,8 +729,11 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
         to=['recipient@example.com'],
     )
 
-    email.send()
+    email.send()#(1)!
     ```
+    { .annotate }
+    
+    1. Esta función devuelve un `#!python 1` si todo ha ido bien y un valor distinto si ha habido algún error.
 
 === "Envío con HTML"
 
@@ -581,8 +747,11 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
     )
     email.content_subtype = 'html'
     
-    email.send()
+    email.send()#(1)!
     ```
+    { .annotate }
+    
+    1. Esta función devuelve un `#!python 1` si todo ha ido bien y un valor distinto si ha habido algún error.
 
 === "Envío con HTML y adjunto"
 
@@ -595,10 +764,14 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
         to=['recipient@example.com'],
     )
     email.content_subtype = 'html'
-    email.attach_file('report.pdf')
+    email.attach_file('report.pdf')#(1)!
     
-    email.send()
+    email.send()#(2)!
     ```
+    { .annotate }
+    
+    1. Puedes usar *ruta relativa* o *ruta absoluta* al fichero en cuestión.
+    2. Esta función devuelve un `#!python 1` si todo ha ido bien y un valor distinto si ha habido algún error.
 
 ??? tip "Múltiples destinatarios"
 
@@ -614,15 +787,20 @@ Además ofrece un **«color picker»** muy agradable para seleccionar el color d
 
 ### Instalación { #django-colorfield-install }
 
-Una vez que **actives el entorno virtual** puedes ejecutar el siguiente comando:
+La instalación del paquete es muy sencilla:
 
-```console
-pip install django-colorfield
-```
+=== "*venv* :octicons-package-24:{.blue}"
 
-??? note "requirements.txt"
+    ```console
+    $ source .venv/bin/activate
+    $ pip install django-colorfield
+    ```
 
-    Recuerda [añadir la dependencia](setup.md#requirements) `django-colorfield` a `requirements.txt`.
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-colorfield
+    ```
 
 ### Configuración { #django-colorfield-config }
 
@@ -640,9 +818,18 @@ INSTALLED_APPS = (
 
     Sólo en un escenario de producción, debes ejecutar también el siguiente comando para recopilar los ficheros estáticos y que el selector de color en la interfaz administrativa funcione correctamente:
 
-    ```console
-    python manage.py collectstatic
-    ```
+    === "*venv* :octicons-package-24:{.blue}"
+
+        ```console
+        $ source .venv/bin/activate
+        $ ./manage.py collectstatic
+        ```
+
+    === "*uv* &nbsp;:simple-uv:{.uv}"
+
+        ```console
+        $ uv run manage.py collectstatic
+        ```
 
 ### Modo de uso { #django-color-usage }
 
@@ -650,14 +837,15 @@ Este paquete proporciona la clase [`ColorField`](https://github.com/fabiocaccamo
 
 Veamos un <span class="example">ejemplo:material-flash:</span> para almacenar el ^^color de la categoría de un «post»^^ en un proyecto de «blog»:
 
-```python title="categories/models.py" hl_lines="8"
+```python title="categories/models.py" hl_lines="9"
 from colorfield.fields import ColorField
 from django.db import models
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=256, unique=True)
-    slug = models.SlugField(max_length=256, unique=True)
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
     color = ColorField(default='#FF0000')#(1)!
 ```
 { .annotate }

@@ -188,6 +188,11 @@ makemessages locale="es":
 [group('i18n')]
 compilemessages:
     uv run manage.py compilemessages -i .venv
+
+# Launch Django RQ worker (development) through watchdog
+[group('redis')]
+rq:
+    uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker 
 ```
 
 ## Invocar recetas { #invoke-recipes }
