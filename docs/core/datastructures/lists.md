@@ -1261,7 +1261,7 @@ Python nos ofrece, entre otras[^2], estas **tres funciones matemáticas** básic
     **Ejemplo:**
 
     - Entrada :material-arrow-left-box: `32 56 21 99 12 17`
-    - Salida :material-arrow-right-box: `40.17`
+    - Salida :material-arrow-right-box: `39.50`
 
     :octicons-light-bulb-16:{ .yellow } Ten en cuenta que `sys.argv` es una lista (como otra cualquiera) y que admite [troceado de listas](#slicing).
 
