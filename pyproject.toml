@@ -1,6 +1,6 @@
 [project]
 name = "aprendepython"
-version = "2.2.0"
+version = "2.2.1"
 requires-python = ">=3.13"
 dependencies = ["mkdocs-material>=9.6.8", "mkdocs-minify-plugin>=0.8.0"]
 

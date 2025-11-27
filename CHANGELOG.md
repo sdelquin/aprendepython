@@ -6,6 +6,32 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 2.2.1
+
+Publicada el 27-11-2025
+
+Completa documentación de:
+  - Django: Modelos
+    - Corrige typos.
+  - Django: Extras
+    - Corrige pequeños detalles en documentación.
+    - Elimina indicación recurrente de activación de entorno virtual.
+  - Django: Justfile
+    - Añade receta para Django-RQ.
+  - Estructuras de datos: Listas
+    - Corrige typos.
+  - Django: Interfaz administrativa
+    - Corrige typos.
+  - Django: Plantillas
+    - Corrige typos.
+  - Django: URLs
+    - Corrige typos.
+  - Configuraciones: Pretty Conf
+    - Corrige pequeños errores.
+  - PDF: Weasyprint
+    - Corrige errores.
+    - Mejora documentación.
+
 ## Version 2.2.0
 
 Publicada el 25-11-2025
