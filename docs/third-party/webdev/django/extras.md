@@ -19,7 +19,6 @@ La instalación del paquete es muy sencilla:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install django-browser-reload
     ```
 
@@ -81,7 +80,6 @@ La instalación del paquete es muy sencilla:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install crispy-bootstrap5
     ```
 
@@ -282,7 +280,6 @@ La instalación del paquete es muy sencilla:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install sorl-thumbnail
     ```
 
@@ -350,7 +347,6 @@ La instalación del paquete es muy sencilla:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install django-markdownify
     ```
 
@@ -428,7 +424,6 @@ La instalación del paquete es muy sencilla:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install django-rq
     ```
 
@@ -582,7 +577,6 @@ Ahora es necesario **levantar el proceso** que atiende las peticiones de tareas 
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ ./manage.py rqworker
     ```
 
@@ -638,7 +632,6 @@ Para solucionarlo, podemos hacer uso del paquete [`watchdog`](https://github.com
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install watchdog
     ```
 
@@ -656,7 +649,6 @@ Suponiendo que las tareas RQ las estamos escribiendo en ficheros `tasks.py` se p
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker #(1)!
     ```
     { .annotate }
@@ -792,7 +784,6 @@ La instalación del paquete es muy sencilla:
 === "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    $ source .venv/bin/activate
     $ pip install django-colorfield
     ```
 
@@ -821,7 +812,6 @@ INSTALLED_APPS = (
     === "*venv* :octicons-package-24:{.blue}"
 
         ```console
-        $ source .venv/bin/activate
         $ ./manage.py collectstatic
         ```
 
