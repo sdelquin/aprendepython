@@ -386,7 +386,7 @@ class Command(BaseCommand):#(3)!
             post.comments.delete()#(11)!
 
             self.stdout.write(#(12)!
-                self.style.SUCCESS('Successfully deleted all comments for post #{post.pk}')
+                self.style.SUCCESS(f'Successfully deleted all comments for post #{post.pk}')
             )
 ```
 { .annotate }
