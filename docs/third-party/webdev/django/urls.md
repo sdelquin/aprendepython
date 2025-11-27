@@ -531,7 +531,7 @@ Planteamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
     urlpatterns = [
         re_path(#(2)!
-            r'^(?P<category_code>[A-Z]{4})/$',#(3)!
+            r'^(?P<category_code>[A-Z]{3})/$',#(3)!
             views.post_by_category,
             name='post-by-category'
         )
