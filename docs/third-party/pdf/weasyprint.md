@@ -8,27 +8,47 @@ icon: material/file-document-arrow-right-outline
 
 ## Instalación { #install }
 
-```console
-pip install weasyprint
-```
+La instalación del paquete es muy sencilla:
 
-??? example ":simple-apple: macOS"
-
-    En determinadas versiones de **macOS** es necesario instalar ciertos paquetes de sistema para que _weasyprint_ funcione correctamente:
+=== "*venv* :octicons-package-24:{.blue}"
 
     ```console
-    brew install pango glib
+    $ pip install weasyprint
     ```
 
-    Si el problema persiste, es posible que haya que realizar algunos [ajustes de enlaces simbólicos](https://github.com/Kozea/WeasyPrint/issues/1448#issuecomment-925549118):
+=== "*uv* &nbsp;:simple-uv:{.uv}"
 
     ```console
-    sudo ln -s /opt/homebrew/opt/glib/lib/libgobject-2.0.0.dylib /usr/local/lib/gobject-2.0
-    sudo ln -s /opt/homebrew/opt/pango/lib/libpango-1.0.dylib /usr/local/lib/pango-1.0
-    sudo ln -s /opt/homebrew/opt/harfbuzz/lib/libharfbuzz.dylib /usr/local/lib/harfbuzz
-    sudo ln -s /opt/homebrew/opt/fontconfig/lib/libfontconfig.1.dylib /usr/local/lib/fontconfig-1
-    sudo ln -s /opt/homebrew/opt/pango/lib/libpangoft2-1.0.dylib /usr/local/lib/pangoft2-1.0
+    $ uv add weasyprint
     ```
+
+### Requisitos del sistema
+
+Este paquete necesita ciertos paquetes de sistema para su correcto funcionamiento:
+
+=== ":simple-linux: Linux"
+
+    ```console
+    $ sudo apt-get install -y libglib2.0-0 libpango-1.0-0 libpangoft2-1.0-0
+    ```
+
+=== ":simple-apple: macOS"
+
+    ```console
+    $ brew install pango glib
+    ```
+
+    ??? example "Enlaces simbólicos"
+
+        Si aparecen problemas, es posible que haya que realizar algunos [ajustes de enlaces simbólicos](https://github.com/Kozea/WeasyPrint/issues/1448#issuecomment-925549118):
+
+        ```console
+        sudo ln -s /opt/homebrew/opt/glib/lib/libgobject-2.0.0.dylib /usr/local/lib/gobject-2.0
+        sudo ln -s /opt/homebrew/opt/pango/lib/libpango-1.0.dylib /usr/local/lib/pango-1.0
+        sudo ln -s /opt/homebrew/opt/harfbuzz/lib/libharfbuzz.dylib /usr/local/lib/harfbuzz
+        sudo ln -s /opt/homebrew/opt/fontconfig/lib/libfontconfig.1.dylib /usr/local/lib/fontconfig-1
+        sudo ln -s /opt/homebrew/opt/pango/lib/libpangoft2-1.0.dylib /usr/local/lib/pangoft2-1.0
+        ```
 
 ## Modo de uso { #usage }
 
@@ -36,15 +56,21 @@ Aunque existen [otros casos de uso](https://doc.courtbouillon.org/weasyprint/sta
 
 Para ello vamos a hacer uso de la clase [`HTML`](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.HTML) que proporciona _WeasyPrint_:
 
-```python
-from weasyprint import HTML#(1)!
+```pycon
+>>> from weasyprint import HTML#(1)!
 
-HTML(string=html_content).write_pdf('report.pdf')#(2)!
+>>> html_content = """
+... <h1>This is WeasyPrint</h1>
+... <p>A powerfull package to generate PDF from HTML</p>
+... """#(2)!
+
+>>> HTML(string=html_content).write_pdf('report.pdf')#(3)!
 ```
 { .annotate }
 
 1. Importamos la clase `HTML`.
-2.  - También es posible usar `HTML` con parámetro posicional. En ese caso _WeasyPrint_ tratará de averiguar si se trata de un nombre de fichero, de una URL absoluta o de un [`file object`](https://docs.python.org/3/glossary.html#term-file-object).
+2. Creamos una cadena de texto con código HTML.
+3.  - También es posible invocar la clase `HTML` usando un único **parámetro posicional**. En ese caso _WeasyPrint_ tratará de averiguar si se trata de un nombre de fichero, de una URL absoluta o de un [`file object`](https://docs.python.org/3/glossary.html#term-file-object).
     - Usamos el método [`write_pdf()`](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.HTML.write_pdf) para generar el PDF de salida, indicando su ruta.
 
 ### URL base { #base-url }
@@ -55,9 +81,11 @@ Su uso depende del tipo de aplicación que estemos desarrolando:
 
 === "Aplicaciones de escritorio"
 
-    ```python
-    base_url = f'file://{absolute_path_to_assets}/'#(1)!
-    HTML('input.html', base_url=base_url).write_pdf('output.pdf')
+    ```pycon
+    >>> from weasyprint import HTML
+
+    >>> base_url = f'file://{absolute_path_to_assets}/'#(1)!
+    >>> HTML('input.html', base_url=base_url).write_pdf('output.pdf')
     ```
     { .annotate }
     
@@ -65,9 +93,11 @@ Su uso depende del tipo de aplicación que estemos desarrolando:
 
 === "Aplicaciones web"
 
-    ```python
-    base_url = f'http://{absolute_path_to_assets}/'#(1)!
-    HTML('input.html', base_url=base_url).write_pdf('output.pdf')
+    ```pycon
+    >>> from weasyprint import HTML
+
+    >>> base_url = f'http://{absolute_path_to_assets}/'#(1)!
+    >>> HTML('input.html', base_url=base_url).write_pdf('output.pdf')
     ```
     { .annotate }
     
@@ -75,4 +105,11 @@ Su uso depende del tipo de aplicación que estemos desarrolando:
 
     !!! tip "Django"
     
-        En [Django](../webdev/django/webdev.md#django) podemos utilizar la función [`request.build_absolute_uri()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpRequest.build_absolute_uri) para este cometido.
+        En [Django](../webdev/django/webdev.md#django) podemos utilizar la función [`request.build_absolute_uri()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpRequest.build_absolute_uri) para este cometido:
+
+        ```python title="views.py"
+        from weasyprint import HTML
+
+        def make_report(request):
+            HTML('input.html', base_url=request.build_absolute_uri()).write_pdf('output.pdf')
+        ```

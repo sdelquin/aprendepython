@@ -10,9 +10,19 @@ Es habitual no incluir credenciales o datos sensibles en el control de versiones
 
 ## Instalación { #install }
 
-```console
-pip install prettyconf
-```
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install prettyconf
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add prettyconf
+    ```
 
 ## Modo de uso { #usage }
 
