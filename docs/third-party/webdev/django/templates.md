@@ -900,7 +900,7 @@ TEMPLATES = [
 
 ### Procesadores de contexto personalizados { #custom-context-processors }
 
-Django permite implementar nuestros [propios procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#writing-your-own-context-processors) con el objetivo de inyectar en «todas» las plantillas ciertos datos comunes.
+Django nos permite implementar nuestros [propios procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#writing-your-own-context-processors) con el objetivo de inyectar en «todas» las plantillas ciertos datos comunes.
 
 Planteamos un <span class="example">ejemplo:material-flash:</span> en el que estamos diseñando un «blog» y queremos tener acceso en todo momento al último «post» que se ha publicado.
 
@@ -911,10 +911,9 @@ from posts.models import Post
 
 
 def last_post(request) -> dict:#(1)!
-    try:
-        return {'last_post': Post.objects.last()}#(2)!
-    except Post.DoesNotExist:
-        return {}#(3)!
+    if post := Post.objects.last():#(2)!
+        return {'last_post': post}#(3)!
+    return {}#(4)!
 ```
 { .annotate }
 
@@ -923,9 +922,9 @@ def last_post(request) -> dict:#(1)!
     - Siempre devuelve un **diccionario**.
 2.  - Lógica del procesador de contexto.
     - En este caso se busca el último «post» de la base de datos.
-    - Se devuelve un diccionario.
+3.  - Se devuelve un diccionario.
     - El objeto `last_post` estará disponible en **todas las plantillas** de forma automática.
-3. En caso de errores se devuelve el diccionario vacío.
+4. En caso de errores se devuelve el diccionario vacío.
 
 Para que Django «conozca» la existencia de este procesador de contexto debemos indicar su ^^ruta completa^^ en el fichero `settings.py` del proyecto:
 
@@ -950,6 +949,12 @@ TEMPLATES = [
 
 De esta forma, en **todas las plantillas** del proyecto tendremos disponible el objeto `last_post` con el último «post» publicado en el «blog»:
 
-```htmldjango
-{{ last_post }}
+```htmldjango title="shared/templates/base.html" hl_lines="6"
+<header>
+    <h1>The ultimate blog</h1>
+</header>
+
+<section class="last-post">
+    {{ last_post }}
+</section>
 ```

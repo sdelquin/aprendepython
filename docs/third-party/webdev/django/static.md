@@ -174,6 +174,8 @@ Lo más habitual es utilizar ficheros estáticos directamente en plantillas, per
 
 [Bootstrap :simple-bootstrap:](https://getbootstrap.com/) ofrece un conjunto de herramientas que facilitan el desarrollo de interfaces «frontend» para aplicaciones web.
 
+> En el momento de la escritura de este documento, **Bootstrap** figura entre los 30 proyectos con más :star: de GitHub[^2].
+
 ### Instalación { #install-bootstrap }
 
 Hay varias maneras de instalar Bootstrap y de integrarlo en un proyecto Django. En esta sección veremos cómo implantarlo usando [npm :simple-npm:](https://www.npmjs.com/) y acceso a ficheros estáticos.
@@ -189,11 +191,21 @@ $ npm install bootstrap bootstrap-icons #(1)!
 
 El comando anterior creará una carpeta `node_modules` con **multitud** de ficheros y subcarpetas, correspondientes a los paquetes *Node* instalados y a todas sus dependencias.
 
-También creará dos ficheros `package.json` y `package-lock.json` donde quedan fijadas las versiones de los paquetes instalados.
-
 !!! warning "Control de versiones"
 
     Recuerda excluir la carpeta `node_modules` del control de versiones añadiéndola al fichero `.gitignore` de tu proyecto.
+
+<div class="annotate" markdown>
+También crearán dos ficheros de seguimiento de paquetes (1):
+
+- `package.json` que almacena las versiones (mínimas) de los paquetes instalados.
+- `package-lock.json` que almacena las dependencias de los paquetes instalados.
+</div>
+
+1. En el caso de utilizar [`uv`](https://docs.astral.sh/uv/) (gestión de paquetería Python), podríamos decir que:
+
+    - `package.json` $\approx$ `pyproject.toml`
+    - `package-lock.json` $\approx$ `uv.lock`
 
 ### Configuración { #config-bootstrap }
 
@@ -206,7 +218,8 @@ STATICFILES_DIRS = [BASE_DIR / 'node_modules']#(1)!
 ```
 { .annotate }
 
-1. Esta variable permite añadir **rutas extras** donde Django irá a buscar ficheros estáticos.
+1.  - Esta variable permite añadir **rutas extras** donde Django irá a buscar ficheros estáticos.
+    - Puedes añadirla donde quieras, pero un buen lugar podría ser junto a la variable `STATIC_URL`.
 
 ### Plantillas { #templates-bootstrap }
 
@@ -247,6 +260,7 @@ Suponiendo que disponemos de una [plantilla base](templates.md#inheritance) tend
 5. La clase [`container`](https://getbootstrap.com/docs/5.3/layout/containers/) es el bloque fundamental de Bootstrap.
 6. Cargamos los scripts de Bootstrap.
 
-:material-check-all:{ .blue } A partir de aquí ya podremos usar todos los recursos que nos proporciona Bootstrap para diseñar una interfaz de usuario moderna, responsiva y funcional.
+:material-check-all:{ .blue } A partir de aquí ya podremos usar [todos los recursos](https://getbootstrap.com/docs/) que nos proporciona Bootstrap para diseñar una interfaz de usuario moderna, responsiva y funcional.
 
 [^1]: Guardar copias de datos de forma temporal en una ubicación de almacenamiento más rápida.
+[^2]: Información via [git-stars.org](https://git-stars.org/es/repositories).
