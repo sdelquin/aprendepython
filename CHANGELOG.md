@@ -6,6 +6,19 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 2.2.2
+
+Publicada el 01-12-2025
+
+Completa documentación de:
+  - Django: Estáticos
+    - Corrige errores menores.
+  - Django: Plantillas
+    - Corrige errores menores.
+  - Django: Internacionalización
+    - Traducción en URLs.
+    - Etiqueta personalizada para selección de idioma.
+
 ## Version 2.2.1
 
 Publicada el 27-11-2025
