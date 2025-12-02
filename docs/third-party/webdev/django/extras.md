@@ -8,6 +8,33 @@ icon: material/battery-charging-30
 
 Existe un ecosistema enorme de **paquetes de terceros** que ofrecen funcionalidades extras a Django. En esta sección veremos algunos de los más interesantes.
 
+??? tip "INSTALLED_APPS"
+
+    La mayoría de paquetes requiere añadir sus aplicaciones a `settings.py`. Es por ello que se recomienda seguir una mínima estructura similar a la siguiente:
+
+    ```python title="main/settings.py"
+    INSTALLED_APPS = [
+        # DJANGO APPS
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        ...
+
+        # THIRD PARTY APPS
+        'django_browser_reload',
+        'django_rq',
+        ...
+
+        # CUSTOM APPS
+        'posts.apps.PostsConfig',
+        'accounts.apps.AccountsConfig',
+        ...
+    ]
+    ```
+
 ## Django Reload { #django-reload }
 
 [`django-browser-reload`](https://github.com/adamchainz/django-browser-reload) es un paquete Python que recarga la web del proyecto en el navegador cada vez que detecta un cambio en los ficheros de código, **sin necesidad** de hacerlo _manualmente_.
@@ -25,7 +52,7 @@ La instalación del paquete es muy sencilla:
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
     ```console
-    $ uv add django-browser-reload
+    $ uv add --dev django-browser-reload
     ```
 
 ### Configuración { #django-reload-config }
@@ -107,7 +134,26 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 ### Modo de uso { #crispy-forms-usage }
 
-Como <span class="example">ejemplo:material-flash:</span> de uso de `crispy-forms` vamos a implementar formularios y plantillas para [inicio de sesión](auth.md#login) y [registro de usuario](auth.md#signup).
+La forma más simple de utilizar este paquete es mediante el **filtro** [`|crispy`](https://django-crispy-forms.readthedocs.io/en/latest/filters.html).
+
+Si tomamos como <span class="example">ejemplo:material-flash:</span> el [formulario de modelo para añadir un «post»](forms.md#model-forms) en un «blog», la plantilla nos quedaría de la siguiente manera:
+
+```htmldjango title="posts/templates/posts/post/add.html" hl_lines="1 4"
+{% load crispy_forms_tags %}<!--(1)!-->
+
+<form method="post">
+    {{ form|crispy }}<!--(2)!-->
+    <button type="submit" class="btn btn-primary">Add post</button>
+</form>
+```
+{ .annotate }
+
+1. Cargamos el filtro «crispy».
+2. Renderizamos el formulario mediante `crispy-forms`.
+
+Pero existe una aproximación más personalizable y es utilizar la **etiqueta de plantilla** [`{% crispy %}`](https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html).
+
+Como <span class="example">ejemplo:material-flash:</span> de uso de esta etiqueta vamos a implementar formularios y plantillas para [inicio de sesión](auth.md#login) y [registro de usuario](auth.md#signup).
 
 #### Login { #crispy-forms-login }
 
@@ -115,7 +161,7 @@ Veamos la implementación del inicio de sesión:
 
 === "Formulario de clase"
 
-    ```python title="accounts/forms.py" hl_lines="11-19"
+    ```python title="accounts/forms.py" hl_lines="1-3 11-19"
     from crispy_bootstrap5.bootstrap5 import FloatingField
     from crispy_forms.helper import FormHelper
     from crispy_forms.layout import Layout, Submit
@@ -150,24 +196,27 @@ Veamos la implementación del inicio de sesión:
 
 === "Plantilla"
 
-    ```htmldjango title="accounts/templates/accounts/login.html" hl_lines="1 17"
+    ```htmldjango title="accounts/templates/accounts/login.html" hl_lines="2 12"
+    {% extends "base.html" %}
     {% load crispy_forms_tags %}<!--(1)!-->
 
+    {% block content %}
     <div class="row justify-content-center mt-5">
-    <div class="col-md-4">
-        <div class="card border-dark">
-        <h4 class="card-header">
-            Login
-        </h4>
-        <div class="card-body">
-            {% crispy form %}<!--(2)!-->
-        </div>
-        <div class="card-footer">
-            Don't have an account? <a href="{% url 'signup' %}">Sign up</a> here.
-        </div>
+        <div class="col-md-4">
+            <div class="card border-dark">
+            <h4 class="card-header">
+                Login
+            </h4>
+            <div class="card-body">
+                {% crispy form %}<!--(2)!-->
+            </div>
+            <div class="card-footer">
+                Don't have an account? <a href="{% url 'signup' %}">Sign up</a> here.
+            </div>
+            </div>
         </div>
     </div>
-    </div>
+    {% endblock %}
     ```
     { .annotate }
 
@@ -176,11 +225,11 @@ Veamos la implementación del inicio de sesión:
 
 #### Registro { #crispy-forms-signup }
 
-Veamos la implementación del inicio de sesión:
+Veamos la implementación del inicio de sesión (con todos los campos requeridos):
 
 === "Formulario de modelo"
 
-    ```python title="accounts/forms.py" hl_lines="9-10 15-24" 
+    ```python title="accounts/forms.py" hl_lines="5 9-24" 
     class SignupForm(forms.ModelForm):
         class Meta:
             model = get_user_model()
@@ -229,24 +278,27 @@ Veamos la implementación del inicio de sesión:
 
 === "Plantilla"
 
-    ```htmldjango title="accounts/templates/accounts/signup.html" hl_lines="1 10"
+    ```htmldjango title="accounts/templates/accounts/signup.html" hl_lines="2 12"
+    {% extends "base.html" %}
     {% load crispy_forms_tags %}<!--(1)!-->
 
+    {% block content}
     <div class="row justify-content-center mt-5">
-    <div class="col-md-4">
-        <div class="card border-dark">
-        <h4 class="card-header">
-            Sign up
-        </h4>
-        <div class="card-body">
-            {% crispy form %}<!--(2)!-->
-        </div>
-        <div class="card-footer">
-            Already have an account? <a href="{% url 'login' %}">Login</a> here.
-        </div>
+        <div class="col-md-4">
+            <div class="card border-dark">
+            <h4 class="card-header">
+                Sign up
+            </h4>
+            <div class="card-body">
+                {% crispy form %}<!--(2)!-->
+            </div>
+            <div class="card-footer">
+                Already have an account? <a href="{% url 'login' %}">Login</a> here.
+            </div>
+            </div>
         </div>
     </div>
-    </div>
+    {% endblock %}
     ```
     { .annotate }
 
@@ -257,7 +309,7 @@ Veamos la implementación del inicio de sesión:
 
         Cuando implementamos un formulario que incluye campos de fichero, `crispy-forms` lo renderiza mostrando el fichero actual asignado y un botón para «limpiar» el contenido del mismo (siempre que no sea obligatorio).
 
-        Para modificar este comportamiento y simplemente mostrar un control de selección de fichero, podemos modificar el «widget». Veamos un <span class="example">ejemplo:material-flash:</span> con **la imagen de «avatar»** en un _perfil de un usuario_:
+        Para modificar este comportamiento y simplemente mostrar un control de selección de fichero, podemos [modificar el «widget»](forms.md#modify-widgets). Veamos un <span class="example">ejemplo:material-flash:</span> con **la imagen de «avatar»** en un _perfil de un usuario_:
 
         ```python title="users/forms.py" hl_lines="6"
         class EditProfileForm(forms.ModelForm):
@@ -304,6 +356,28 @@ INSTALLED_APPS = (
 !!! note "Cuidado con el nombre"
 
     Cuidado porque la cadena que debemos añadir a `INSTALLED_APPS` es `'sorl.thumbnail'` (_con punto en el medio_).
+
+Por último aplicamos las migraciones correspondientes a la aplicación:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console hl_lines="1"
+    $ ./manage.py migrate thumbnail
+    Operations to perform:
+      Apply all migrations: thumbnail
+    Running migrations:
+      Applying thumbnail.0001_initial... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console hl_lines="1"
+    $ uv run manage.py migrate thumbnail
+    Operations to perform:
+      Apply all migrations: thumbnail
+    Running migrations:
+      Applying thumbnail.0001_initial... OK
+    ```
 
 ### Modo de uso { #sorl-thumbnail-usage }
 
@@ -390,9 +464,9 @@ INSTALLED_APPS = (
                 'li',
                 'ol',
                 'p',
-                'pre'
+                'pre',
                 'strong',
-                'ul'
+                'ul',
             ]
         }
     } 
@@ -432,8 +506,15 @@ La instalación del paquete es muy sencilla:
     ```console
     $ uv add django-rq
     ```
-  
-:material-check-all:{ .blue } Es necesario igualmente [tener instalado el servicio Redis :simple-redis:](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/).
+
+!!! success "Redis"
+
+    Es necesario igualmente [tener instalado el servicio Redis :simple-redis:](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/). Para probar si tienes el servicio instalado y bien configurado en tu sistema basta con hacer:
+
+    ```console
+    $ redis-cli ping
+    PONG
+    ```
 
 ### Configuración { #django-rq-config }
 
@@ -770,6 +851,55 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
     En el caso de querer enviar el mismo correo a múltiples destinatarios, podemos usar el parámetro `to` (_formato lista_) del constructor sobre `EmailMessage()`.
 
     Pero una forma más «eficiente» de llevarlo a cabo es utilizando la función [`send_mass_mail()`](https://docs.djangoproject.com/en/stable/topics/email/#send-mass-mail) que sólo abre una única conexión con el servidor SMTP.
+
+#### Plantillas de correo { #email-templates }
+
+Una estrategia bastante interesante es escribir la plantilla de correo (como una plantilla normal de Django) pero usando *Markdown* y luego renderizarla mediante [Django Markdownify](#django-markdownify).
+
+Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que preparamos una plantilla de correo para informar de que nuevo «post» se ha añadido al «blog» desde la vista correspondiente:
+
+=== "Plantilla"
+
+    ```markdown title="posts/templates/posts/emails/add.md"
+    Hi there!
+
+    We are exited to announce that a new post has added to our blog:
+    **{{ post }}**
+
+    Keep in touch!
+    Best regards.
+    ```
+
+=== "Vista"
+
+    ```python title="posts/views.py" hl_lines="2-3 11-14"
+    from django.shortcuts import redirect, render
+    from django.template.loader import render_to_string#(1)!
+    from markdown import markdown#(2)!
+
+
+    @login_required
+    def add_post(request):
+        if request.method == 'POST':
+            if (form := AddPostForm(request.POST)).is_valid():
+                post = form.save()
+                content = markdown(render_to_string(#(3)!
+                    'posts/emails/add.md',#(4)!
+                    {'post': post}#(5)!
+                ))
+                # handle "content" (maybe an email?)
+                return redirect('posts:post-list')
+        else:
+            form = AddPostForm()
+        return render(request, 'posts/post/add.html', {'form': form})
+    ```    
+    { .annotate }
+    
+    1. Necesitamos la función [`render_to_string()`](https://docs.djangoproject.com/en/stable/topics/templates/#django.template.loader.render_to_string) que devuelve la plantilla renderizada como *cadena de texto*.
+    2. El paquete `markdown` nos permite pasar de *Markdown* a HTML.
+    3. Renderizamos la plantilla usando funcionalidades de Django y luego la convertimos desde *Markdown* a HTML.
+    4. Pasamos la ruta a la plantilla de correo.
+    5. El contexto vendrá definido por el «post» que acabamos de crear.
 
 ## Django ColorField { #django-colorfield }
 
