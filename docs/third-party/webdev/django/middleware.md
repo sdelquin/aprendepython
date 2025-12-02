@@ -152,86 +152,44 @@ Más allá de los [«middleware» existentes](#available-middleware) en Django, 
 
 Lo único que necesitamos hacer es escribir una clase sobreescribiendo unos ciertos métodos predefinidos y activar el citado «middleware».
 
-Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que queremos mostrar al usuario una determinada página cada vez que se produzca un error (excepción) en cualquier parte de nuestro proyecto Django. Esto, obviamente se podría hacer en cada punto concreto del código, pero en este caso sería interesante implementar un «middleware» que lo gestionara.
-
-=== "Excepción"
-
-    ```python title="shared/exceptions.py"
-    from django.shortcuts import render
-
-
-    class BlogError(Exception):#(1)!
-        def __init__(self, message: str, status_code: int):
-            self.message = message
-            self.status_code = status_code
-        
-        def __str__(self):
-            return f'{self.status_code} {self.message}'
-        
-        def render(self, request):
-            return render(request, 'shared/error.html', {'error': self})
-    ```
-    { .annotate }
-    
-    1. No es obligatorio crear una excepción para implementar un «middleware». Simplemente para este ejemplo era necesario.
+Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que queremos medir el tiempo de carga de cada petición en el proyecto del «blog»:
 
 === "Middleware"
 
     ```python title="shared/middleware.py"
-    from .exceptions import BlogError
+    import time
+    import logging
+
+    logger = logging.getLogger(__name__)#(1)!
 
 
-    class BlogErrorMiddleware:#(1)!
-        def __init__(self, get_response):#(2)!
+    class RequestTimeMiddleware:#(2)!
+        def __init__(self, get_response):#(3)!
             self.get_response = get_response
         
-        def __call__(self, request):#(3)!
-            # Código a ejecutar para cada petición
-            # ANTES de que se llame a la vista (y otros middleware)
+        def __call__(self, request):#(4)!
+            # Code execution before view calling ↓
+            start_time = time.time()
+            # View calling ↓
             response = self.get_response(request)
-            # Código a ejectuar para cada petición/respuesta
-            # DESPUÉS de que se llame a la vista
+            # Code execution after view calling ↓
+            duration = time.time() - start_time
+            logger.info(f'Request to {request.path} took {duration:.4f} seconds')
             return response
         
-        def process_exception(self, request, exception):#(4)!
-            if isinstance(exception, BlogError):
-                return exception.render(request)
-            return None
+        def process_exception(self, request, exception):#(5)!
+            ...
     ```    
     { .annotate }
     
-    1. Por convención se suele añadir el sufijo `Middleware` al nombre de la clase que implementa el «middleware».
-    2. El constructor recibe la función [`get_response()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#init-get-response).
-    3.  - Podríamos decir que el método `__call__()` es el punto más interesante donde podemos modificar «cosas».
+    1. Utilizamos las herramientas de [logging](https://docs.djangoproject.com/en/stable/topics/logging/) que proporciona Django.
+    2. Por convención se suele añadir el sufijo `Middleware` al nombre de la clase que implementa el «middleware».
+    3. El constructor recibe la función [`get_response()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#init-get-response).
+    4.  - Podríamos decir que el método `__call__()` es el punto más interesante donde podemos modificar «cosas».
         - Recibe la petición HTTP como `request`.
-    4.  - El método [`process_exception()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-exception) se llama cuando una vista lanza una excepción.
+    5.  - El método [`process_exception()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-exception) se llama cuando una vista lanza una excepción.
         - Recibe la petición HTTP como `request` y la excepción lanzada como `exception`.
     
-    !!! info "Procesando la plantilla"
-    
-        También se puede implementar el método [`process_template_response()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-template-response) que se llama justo después de que la vista ha terminado su ejecución y ha retornado el «render» de una plantilla.
-
-=== "Plantilla"
-
-    ```htmldjango title="shared/templates/error.html" hl_lines="13"
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title></title>
-        <!-- <link rel="stylesheet" href="css/main.css" /> -->
-        <!-- <link rel="icon" href="images/favicon.png" /> -->
-    </head>
-
-    <body>
-        <h1>Error</h1>
-        <p><strong>{{ error.status_code }}</strong> {{ error.message }}</p>
-        <!-- <script src="js/scripts.js"></script> -->
-    </body>
-    </html> 
-    ```
-
 === "Activación"
 
     ```python title="main/settings.py" hl_lines="9"
@@ -243,25 +201,8 @@ Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que que
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        'shared.middleware.BlogErrorMiddleware'
+        'shared.middleware.RequestTimeMiddleware'
     ] 
     ```
 
-Lo que tiene de bueno este esquema, es que en cualquier punto de una vista podemos elevar la excepción `BlogError` y todo lo demás sucede «automágicamente»:
-
-```python title="posts/views.py" hl_lines="10"
-from shared.exceptions import BlogError
-
-from .models import Post
-
-
-def post_detail(request, post_slug: str):
-    try:
-        post = Post.objects.get(slug=post_slug)
-    except Post.DoesNotExist:
-        raise BlogError('Post does not exist', 404)#(1)!
-    return render(request, 'posts/post/detail.html', {'post': post})
-```
-{ .annotate }
-
-1. En este punto el «middleware» `BlogErrorMiddleware` hará su trabajo y terminará renderizando una página con el error en cuestión.
+Ahora cada vez que se realice una petición a nuestro «blog» quedará registrado su tiempo de carga por pantalla.
