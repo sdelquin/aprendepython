@@ -189,6 +189,11 @@ makemessages locale="es":
 compilemessages:
     uv run manage.py compilemessages -i .venv
 
+# Open Poedit
+[group('i18n')]
+poedit app locale="es":
+    poedit ./{{ app }}/locale/{{ locale }}/LC_MESSAGES/django.po
+
 # Launch Django RQ worker (development) through watchdog
 [group('redis')]
 rq:
