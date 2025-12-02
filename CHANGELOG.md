@@ -6,6 +6,18 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 2.2.3
+
+Publicada el 02-12-2025
+
+- Django: Internacionalización
+  - Añade documentación de poedit.
+  - Añade receta justfile para poedit.
+- Django: Extras
+  - Completa documentación y corrige errores menores.
+- Django: Middleware
+  - Cambia ejemplo de middleware personalizado.
+
 ## Version 2.2.2
 
 Publicada el 01-12-2025
