@@ -24,7 +24,7 @@ La instalación del paquete es muy sencilla:
 
 ### Requisitos del sistema
 
-Este paquete necesita ciertos paquetes de sistema para su correcto funcionamiento:
+Este paquete necesita ciertas dependencias de sistema para su correcto funcionamiento:
 
 === ":simple-linux: Linux"
 
@@ -56,22 +56,80 @@ Aunque existen [otros casos de uso](https://doc.courtbouillon.org/weasyprint/sta
 
 Para ello vamos a hacer uso de la clase [`HTML`](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.HTML) que proporciona _WeasyPrint_:
 
-```pycon
->>> from weasyprint import HTML#(1)!
+=== "Desde *string*"
 
->>> html_content = """
-... <h1>This is WeasyPrint</h1>
-... <p>A powerfull package to generate PDF from HTML</p>
-... """#(2)!
+    ```pycon
+    >>> from weasyprint import HTML#(1)!
 
->>> HTML(string=html_content).write_pdf('report.pdf')#(3)!
-```
-{ .annotate }
+    >>> html_content = """
+    ... <h1>This is WeasyPrint</h1>
+    ... <p>A powerfull package to generate PDF from HTML</p>
+    ... """#(2)!
 
-1. Importamos la clase `HTML`.
-2. Creamos una cadena de texto con código HTML.
-3.  - También es posible invocar la clase `HTML` usando un único **parámetro posicional**. En ese caso _WeasyPrint_ tratará de averiguar si se trata de un nombre de fichero, de una URL absoluta o de un [`file object`](https://docs.python.org/3/glossary.html#term-file-object).
-    - Usamos el método [`write_pdf()`](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.HTML.write_pdf) para generar el PDF de salida, indicando su ruta.
+    >>> HTML(string=html_content).write_pdf('report.pdf')#(3)!
+    ```
+    { .annotate }
+
+    1. Importamos la clase `HTML`.
+    2. Creamos una cadena de texto con código HTML.
+    3.  - El parámetro `string` nos permite pasar una cadena de texto.
+        - Usamos el método [`write_pdf()`](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.HTML.write_pdf) para generar el PDF de salida, indicando su ruta.
+    
+=== "Desde fichero"
+
+    ```pycon
+    >>> from weasyprint import HTML#(1)!
+
+    >>> !cat report.html#(2)!
+    <h1>This is WeasyPrint</h1>
+    <p>A powerfull package to generate PDF from HTML</p>
+    
+    >>> HTML('report.html').write_pdf('report.pdf')#(3)!
+    ```
+    { .annotate }
+
+    1. Importamos la clase `HTML`.
+    2. Partimos de un fichero de texto ya creado.
+    3.  - Cuando utilizamos un **parámetro posicional** _WeasyPrint_ trata de averiguar si se trata de un nombre de fichero, de una URL absoluta o de un [`file object`](https://docs.python.org/3/glossary.html#term-file-object).
+        - Usamos el método [`write_pdf()`](https://doc.courtbouillon.org/weasyprint/stable/api_reference.html#weasyprint.HTML.write_pdf) para generar el PDF de salida, indicando su ruta.
+    
+### Hojas de estilo { #css }
+
+Nada impide que incorporemos a nuestro «informe» estilos CSS para añadir una mejor presentación:
+
+=== "HTML"
+
+    ```python title="report.html"
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="report.css">
+      <title>WeasyPrint</title>
+    </head>
+    <body>
+      <h1>This is WeasyPrint</h1>
+      <p>A powerfull package to generate PDF from HTML</p>
+    </body>
+    </html> 
+    ```    
+
+=== "CSS"
+
+    ```css title="report.css"
+    body {
+      color: lightblue;
+    } 
+    ```
+
+=== "Python"
+
+    ```pycon
+    >>> from weasyprint import HTML
+
+    >>> HTML('report.html').write_pdf('report.pdf')
+    ```    
 
 ### URL base { #base-url }
 
