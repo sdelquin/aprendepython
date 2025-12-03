@@ -30,10 +30,10 @@ Su modo de uso es muy sencillo:
 
 === "Valor obligatorio"
 
-    ```python title="settings.py"
-    from prettyconf import config
+    ```pycon
+    >>> from prettyconf import config
 
-    PASSWD = config('PASSWORD')#(1)!
+    >>> PASSWD = config('PASSWORD')#(1)!
     ```
     { .annotate }
     
@@ -43,10 +43,10 @@ Su modo de uso es muy sencillo:
     
 === "Valor opcional"
 
-    ```python title="settings.py"
-    from prettyconf import config
+    ```pycon
+    >>> from prettyconf import config
 
-    UNAME = config('USERNAME', default='guido')#(1)!
+    >>> UNAME = config('USERNAME', default='guido')#(1)!
     ```
     { .annotate }
     
@@ -92,6 +92,24 @@ Pero es posible indicar **conversiones explícitas** en la propia llamada a la f
 3. Desde cadenas de texto separadas por **comas**.
 4. Desde cadena de texto con objeto JSON.
 
+!!! warning "Valores por defecto"
+
+    Un error bastante común se produce a la hora de definir valores por defecto a los que se aplican conversiones personalizadas.
+
+    En el siguiente <span class="example">ejemplo:material-flash:</span> definimos una lista como valor por defecto, pero quizás el resultado no es lo que realmente esperamos:
+
+    ```pycon
+    >>> config('PRUEBA', default=['a', 'b', 'c'], cast=config.list)
+    ['abc']
+    ```
+
+    Lo que seguramente tendríamos que hacer es asignar el valor por defecto como una cadena de texto que ya luego el «cast» se encargará de convertir:
+
+    ```pycon
+    >>> config('PRUEBA', default='a,b,c', cast=config.list)
+    ['a', 'b', 'c']
+    ```
+
 ### Conversiones personalizadas { #custom-casts }
 
 Además de las conversiones predefinidas es posible crear conversiones personalizadas mediante una función propia.
@@ -102,8 +120,11 @@ Por <span class="example">ejemplo:material-flash:</span>, supongamos una configu
 def geoloc(loc: str) -> tuple[float, float]:
     return tuple(float(v) for v in loc.split(','))
 
-TEIDE_GPS = config('TEIDE_GPS', cast=geoloc)
+TEIDE_GPS = config('TEIDE_GPS', cast=geoloc)#(1)!
 ```
+{ .annotate }
+
+1. Es habitual usar [funciones anónimas lambda](../../core/modularity/functions.md#lambda) para estos propósitos.
 
 Con esto podríamos «leer» un fichero de configuración tipo:
 
