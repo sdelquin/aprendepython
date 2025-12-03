@@ -774,14 +774,15 @@ DEFAULT_FROM_EMAIL = 'default-from-email'#(1)!
 
 Basándome en mi experiencia, y sin buscar ningún tipo de publicidad (no me llevo nada), me gustaría comentar aquí el caso de [Brevo](https://www.brevo.com/es/) que proporciona [credenciales «gratuitas»](https://www.brevo.com/es/pricing/) para poder hacer uso de sus servicios SMTP.
 
-Una vez dados de alta en _Brevo_, podemos acceder a la [sección de configuración SMTP](https://app.brevo.com/settings/keys/smtp) y tendremos la posibilidad de encontrar los datos de configuración que necesitamos para el envío de correo:
+Una vez dados de alta en _Brevo_, tendremos que acceder a la [sección de configuración SMTP](https://app.brevo.com/settings/keys/smtp) y **Generar una nueva clave SMTP**. Con esto ya dispondremos de los datos necesarios para configurar el envío de correo:
 
 | Configuración | Valor |
 | --- | --- |
 | `EMAIL_HOST` | `#!python 'smtp-relay.brevo.com'` |
 | `EMAIL_PORT` | 587 |
-| `EMAIL_HOST_USER` | Tu correo electrónico de la cuenta [brevo.com](https://brevo.com) |
+| `EMAIL_HOST_USER` | Correo de «Iniciar Sesión/Login» de tu configuración SMTP<br>Típicamente algo en la forma `a7f45c86e@smtp-brevo.com` |
 | `EMAIL_HOST_PASSWORD` | Valor de clave SMTP<br>:warning: Sólo aparecerá la primera vez (guárdala en sitio seguro) |
+| `DEFAULT_FROM_EMAIL` | El correo electrónico que usaste para crear la cuenta [brevo.com](https://brevo.com) |
 
 !!! danger "EMAIL_HOST_PASSWORD"
 
@@ -793,16 +794,17 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
 
 === "Envío simple"
 
-    ```python
-    from django.core.mail import EmailMessage
+    ```pycon
+    >>> from django.core.mail import EmailMessage
 
-    email = EmailMessage(
-        subject='Email test',
-        body='Hello there! This is the email body',
-        to=['recipient@example.com'],
-    )
+    >>> email = EmailMessage(
+    ...     subject='Email test',
+    ...     body='Hello there! This is the email body',
+    ...     to=['recipient@example.com'],
+    ... )
 
-    email.send()#(1)!
+    >>> email.send()#(1)!
+    1
     ```
     { .annotate }
     
@@ -811,16 +813,17 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
 === "Envío con HTML"
 
     ```python hl_lines="8"
-    from django.core.mail import EmailMessage
+    >>> from django.core.mail import EmailMessage
     
-    email = EmailMessage(
-        subject='Email test',
-        body='<h3>Hello there!</h3> <p>This is the email body</p>',
-        to=['recipient@example.com'],
-    )
-    email.content_subtype = 'html'
+    >>> email = EmailMessage(
+    ...     subject='Email test',
+    ...     body='<h3>Hello there!</h3> <p>This is the email body</p>',
+    ...     to=['recipient@example.com'],
+    ... )
+    >>> email.content_subtype = 'html'
     
-    email.send()#(1)!
+    >>> email.send()#(1)!
+    1
     ```
     { .annotate }
     
@@ -829,17 +832,18 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
 === "Envío con HTML y adjunto"
 
     ```python hl_lines="9"
-    from django.core.mail import EmailMessage
+    >>> from django.core.mail import EmailMessage
     
-    email = EmailMessage(
-        subject='Email test',
-        body='<h3>Hello there!</h3> <p>This is the email body</p>',
-        to=['recipient@example.com'],
-    )
-    email.content_subtype = 'html'
-    email.attach_file('report.pdf')#(1)!
+    >>> email = EmailMessage(
+    ...     subject='Email test',
+    ...     body='<h3>Hello there!</h3> <p>This is the email body</p>',
+    ...     to=['recipient@example.com'],
+    ... )
+    >>> email.content_subtype = 'html'
+    >>> email.attach_file('report.pdf')#(1)!
     
-    email.send()#(2)!
+    >>> email.send()#(2)!
+    1
     ```
     { .annotate }
     
@@ -856,7 +860,7 @@ Existen varias maneras de enviar correo a través de Django, pero aquí vamos a 
 
 Una estrategia bastante interesante es escribir la plantilla de correo (como una plantilla normal de Django) pero usando *Markdown* y luego renderizarla mediante [Django Markdownify](#django-markdownify).
 
-Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que preparamos una plantilla de correo para informar de que nuevo «post» se ha añadido al «blog» desde la vista correspondiente:
+Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que preparamos una plantilla de correo para informar de que un nuevo «post» se ha añadido al «blog» desde la vista correspondiente:
 
 === "Plantilla"
 
@@ -872,9 +876,11 @@ Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en e
 
 === "Vista"
 
-    ```python title="posts/views.py" hl_lines="2-3 11-14"
+    ```python title="posts/views.py" hl_lines="3 5 13-16"
+    from django.core.mail import EmailMessage
     from django.shortcuts import redirect, render
     from django.template.loader import render_to_string#(1)!
+
     from markdown import markdown#(2)!
 
 
@@ -883,11 +889,16 @@ Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en e
         if request.method == 'POST':
             if (form := AddPostForm(request.POST)).is_valid():
                 post = form.save()
-                content = markdown(render_to_string(#(3)!
+                body = markdown(render_to_string(#(3)!
                     'posts/emails/add.md',#(4)!
                     {'post': post}#(5)!
                 ))
-                # handle "content" (maybe an email?)
+                email = EmailMessage(
+                    subject='New post',
+                    body=body,
+                    to=['super@blog.com']
+                )
+                email.send()#(6)!
                 return redirect('posts:post-list')
         else:
             form = AddPostForm()
@@ -900,6 +911,7 @@ Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en e
     3. Renderizamos la plantilla usando funcionalidades de Django y luego la convertimos desde *Markdown* a HTML.
     4. Pasamos la ruta a la plantilla de correo.
     5. El contexto vendrá definido por el «post» que acabamos de crear.
+    6. Idealmente habría que [desacoplar esta tarea](#django-rq).
 
 ## Django ColorField { #django-colorfield }
 
