@@ -152,7 +152,7 @@ Más allá de los [«middleware» existentes](#available-middleware) en Django, 
 
 Lo único que necesitamos hacer es escribir una clase sobreescribiendo unos ciertos métodos predefinidos y activar el citado «middleware».
 
-Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que queremos medir el tiempo de carga de cada petición en el proyecto del «blog»:
+Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que queremos **medir el tiempo de carga** de cada petición en el proyecto del «blog»:
 
 === "Middleware"
 
@@ -175,9 +175,9 @@ Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que que
             # Code execution after view calling ↓
             duration = time.time() - start_time
             logger.info(f'Request to {request.path} took {duration:.4f} seconds')
-            return response
+            return response#(5)!
         
-        def process_exception(self, request, exception):#(5)!
+        def process_exception(self, request, exception):#(6)!
             ...
     ```    
     { .annotate }
@@ -187,7 +187,8 @@ Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que que
     3. El constructor recibe la función [`get_response()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#init-get-response).
     4.  - Podríamos decir que el método `__call__()` es el punto más interesante donde podemos modificar «cosas».
         - Recibe la petición HTTP como `request`.
-    5.  - El método [`process_exception()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-exception) se llama cuando una vista lanza una excepción.
+    5. Es fundamental que este método devuelva siempre la **respuesta** HTTP.
+    6.  - El método [`process_exception()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-exception) se llama cuando una vista lanza una excepción.
         - Recibe la petición HTTP como `request` y la excepción lanzada como `exception`.
     
 === "Activación"
