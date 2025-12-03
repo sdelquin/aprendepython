@@ -6,6 +6,19 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 2.2.4
+
+Publicada el 03-12-2025
+
+- Django: Extras
+  - Corrige configuración de Brevo.
+- Configuraciones: Pretty Conf
+  - Añade documentación sobre valores por defecto.
+- PDF: WeasyPrint
+  - Añade documentación sobre CSS.
+- Django: Middleware
+  - Corrige errores menores.
+
 ## Version 2.2.3
 
 Publicada el 02-12-2025
