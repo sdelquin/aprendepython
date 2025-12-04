@@ -158,37 +158,33 @@ Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que que
 
     ```python title="shared/middleware.py"
     import time
-    import logging
-
-    logger = logging.getLogger(__name__)#(1)!
-
-
-    class RequestTimeMiddleware:#(2)!
-        def __init__(self, get_response):#(3)!
+    
+    
+    class RequestTimeMiddleware:#(1)!
+        def __init__(self, get_response):#(2)!
             self.get_response = get_response
-        
-        def __call__(self, request):#(4)!
+    
+        def __call__(self, request):#(3)!
             # Code execution before view calling ↓
             start_time = time.time()
             # View calling ↓
             response = self.get_response(request)
             # Code execution after view calling ↓
-            duration = time.time() - start_time
-            logger.info(f'Request to {request.path} took {duration:.4f} seconds')
-            return response#(5)!
-        
-        def process_exception(self, request, exception):#(6)!
-            ...
+            duration = (time.time() - start_time) * 1000
+            print(f'⏱️ Request to {request.path} took {duration:.4f} ms')
+            return response#(4)!
+    
+        def process_exception(self, request, exception):#(5)!
+            pass
     ```    
     { .annotate }
     
-    1. Utilizamos las herramientas de [logging](https://docs.djangoproject.com/en/stable/topics/logging/) que proporciona Django.
-    2. Por convención se suele añadir el sufijo `Middleware` al nombre de la clase que implementa el «middleware».
-    3. El constructor recibe la función [`get_response()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#init-get-response).
-    4.  - Podríamos decir que el método `__call__()` es el punto más interesante donde podemos modificar «cosas».
+    1. Por convención se suele añadir el sufijo `Middleware` al nombre de la clase que implementa el «middleware».
+    2. El constructor recibe la función [`get_response()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#init-get-response).
+    3.  - Podríamos decir que el método `__call__()` es el punto más interesante donde podemos modificar «cosas».
         - Recibe la petición HTTP como `request`.
-    5. Es fundamental que este método devuelva siempre la **respuesta** HTTP.
-    6.  - El método [`process_exception()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-exception) se llama cuando una vista lanza una excepción.
+    4. Es fundamental que este método devuelva siempre la **respuesta** HTTP.
+    5.  - El método [`process_exception()`](https://docs.djangoproject.com/en/stable/topics/http/middleware/#process-exception) se llama cuando una vista lanza una excepción.
         - Recibe la petición HTTP como `request` y la excepción lanzada como `exception`.
     
 === "Activación"
@@ -206,4 +202,9 @@ Imaginemos un <span class="example">ejemplo:material-flash:</span> en el que que
     ] 
     ```
 
-Ahora cada vez que se realice una petición a nuestro «blog» quedará registrado su tiempo de carga por pantalla.
+Ahora cada vez que se realice una petición a nuestro «blog» quedará registrado su tiempo de carga por pantalla:
+
+```console
+⏱️ Request to /es/posts/ took 4.9818 ms
+[04/Dec/2025 09:25:21] "GET /es/posts/ HTTP/1.1" 200 229
+```
