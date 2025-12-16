@@ -210,7 +210,7 @@ Hay otras formas de llevar a cabo aproximaciones similares:
 
 La clase [`HttpResponse`](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-objects) permite indicar el código de estado de la respuesta. Esto hace posible ser más exactos en el mensaje que trasladamos a un cliente.
 
-Para ello usaremos el atributo `status_code` con un valor numérico (_del código de estado_) que podemos encontrar en [este enlace](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
+Para ello usaremos el atributo `status` con un valor numérico (_del código de estado_) que podemos encontrar en [este enlace](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos incorporar este enfoque en el detalle de un «post» de un «blog»:
 
@@ -227,14 +227,14 @@ def post_detail(request, post_slug: str):
     except Post.DoesNotExist:
         return HttpResponse(
             f"Post with slug '{post.slug}' does not exist",
-            status_code=404
+            status=404
         )
     return render(request, 'posts/post/detail.html', {'post': post})
 ```
 
 Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-subclasses) para cubrir los códigos de estado HTTP más habituales:
 
-| `status_code` | Significado | Clase |
+| `status` | Significado | Clase |
 | --- | --- | --- |
 | [400](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) | Bad request | [`HttpResponseBadRequest()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseBadRequest) |
 | [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) | Unauthorized | |

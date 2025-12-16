@@ -106,7 +106,7 @@ dbshell:
 
 # Setup new project
 [group('config')]
-setup: && migrate create-su set-tz
+setup: && migrate create-su set-tz set-media
     #!/usr/bin/env bash
     uv sync
     uv run django-admin startproject main .
@@ -119,6 +119,15 @@ set-tz timezone="Atlantic/Canary":
     if [ $? -eq 0 ]; then
         echo "✔ Fixed TIME_ZONE='{{ timezone }}' and LANGUAGE_CODE='es-es'"
     fi
+
+# Set media settings
+[group('config')]
+set-media:
+    #!/usr/bin/env bash
+    echo "" >> ./main/settings.py
+    echo "MEDIA_ROOT = BASE_DIR / 'media'" >> ./main/settings.py
+    echo "MEDIA_URL = 'media/'" >> ./main/settings.py
+    echo "✔ Media settings added to settings.py"
 
 # Remove migrations
 [confirm("⚠️ All migrations will be removed. Continue? [yN]:")]
