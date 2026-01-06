@@ -6,10 +6,11 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
-- Django: Justfile
-  - Añade receta para fijar configuraciones de MEDIA.
-- Django: Vistas
-  - Corrige error en parámetro status_code de HttpResponse.
+## Version 3.0.0
+
+Publicada el 06-01-2026
+
+Migración de todo el sitio web a Zensical.
 
 ## Version 2.2.4
 
