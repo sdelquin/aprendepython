@@ -1,14 +1,17 @@
 ---
 icon: material/view-module
+tags:
+  - Fundamentos del lenguaje
+  - Modularidad
+  - Módulos
 ---
 
 # Módulos { #modules }
 
-![Fork](images/modules/lego.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Xavi Cabrera](https://unsplash.com/@xavi_cabrera) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/modules/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Escribir pequeños trozos de código puede resultar interesante para realizar determinadas pruebas o funcionalidades sencillas. Pero a la larga, **nuestros programas tenderán a crecer** y será necesario agrupar el código en piezas/artefactos más manejables.
 

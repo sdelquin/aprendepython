@@ -1,10 +1,14 @@
 ---
 icon: material/checkbox-multiple-blank-outline
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Plantillas { #templates }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Las [plantillas en Django](https://docs.djangoproject.com/en/stable/topics/templates/) se utilizan para preparar el contenido final (habitualmente HTML) que se hará llegar al usuario de la aplicación web.
 
@@ -565,7 +569,7 @@ A continuación se muestran otras etiquetas de plantilla disponibles en Django:
 
 ### Etiquetas personalizadas { #custom-tags }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Django permite crear [etiquetas personalizadas](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#writing-custom-template-tags) más allá de las predefinidas («built-in»).
 
@@ -751,7 +755,7 @@ En la siguiente tabla se muestran todos los filtros de plantilla que ofrece Djan
     
 ### Filtros personalizados { #custom-filters }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Django permite crear [filtros personalizados](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#writing-custom-template-filters) más allá de los predefinidos («built-in»).
 
@@ -874,7 +878,7 @@ Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un d
 
 ## Procesadores de contexto { #context-processors }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 La explicación de que en las plantillas tengamos acceso a los datos de depuración, a la petición HTTP, a la autenticación o a los mensajes, es que existen unos artefactos llamados [procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#using-requestcontext) que se encargan de **inyectar cierta información** en el contexto de la plantilla.
 

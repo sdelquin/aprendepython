@@ -1,14 +1,17 @@
 ---
 icon: material/set-center
+tags:
+  - Fundamentos del lenguaje
+  - Estructuras de datos
+  - Conjuntos
 ---
 
 # Conjuntos { #sets }
 
-![Chain](images/sets/hug-chain.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Duy Pham](https://unsplash.com/es/@miinyuii) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/sets/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Un **conjunto** en Python es una estructura de datos que almacena valores **únicos** y **sin orden** establecido. Mantiene muchas similitudes con el [concepto matemático de conjunto](https://es.wikipedia.org/wiki/Conjunto).
 
@@ -155,7 +158,7 @@ El siguiente fragmento de código nos demuestra claramente que, aunque lo intent
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `tuple-set`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `tuple-set`
 
 ### Borrar elementos { #remove }
 
@@ -205,7 +208,7 @@ De vueltas con el <span class="example">ejemplo:material-flash:</span> de «The 
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `diverse-word`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `diverse-word`
 
 ### Iterar sobre un conjunto { #iterate }    
 
@@ -245,7 +248,7 @@ True
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `half-out`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `half-out`
 
 ### Ordenar un conjunto { #sort }
 
@@ -439,7 +442,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que constru
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `common-consonants`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `common-consonants`
 
 ## Conjuntos inmutables { #frozensets }
 
@@ -512,7 +515,7 @@ Sin embargo, podríamos conseguir lo que buscamos si, en vez de listas, usáramo
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `is-binary`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `is-binary`
 
 
 [^1]: La ordenación de los elementos de un conjunto no está definida en el estándar de Python. Otra cuestión es que exista una ordenación por su «hash» para la implementación concreta de CPython.

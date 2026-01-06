@@ -1,14 +1,17 @@
 ---
 icon: material/code-block-tags
+tags:
+  - Paquetes de terceros
+  - Scraping
+  - Beautiful Soup
 ---
 
 # Beautiful Soup { #beautifulsoup }
 
-![Soup](images/beautifulsoup/soup.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Ella Olsson](https://unsplash.com/@ellaolsson) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/beautifulsoup/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) es un paquete ampliamente utilizado en técnicas de «scraping»[^1] sobre contenido HTML y similares.
 

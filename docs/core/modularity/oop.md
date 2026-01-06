@@ -1,14 +1,17 @@
 ---
 icon: material/temple-buddhist-outline
+tags:
+  - Fundamentos del lenguaje
+  - Modularidad
+  - Programación orientada a objetos
 ---
 
 # Programación orientada a objetos { #oop }
 
-![Fork](images/oop/things.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Rabie Madaci](https://unsplash.com/es/@rbmadaci) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/oop/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 La programación orientada a objetos ([POO](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos)) o en sus siglas inglesas OOP es una manera de programar (paradigma) que permite llevar al código mecanismos similares a los utilizados con entidades de la vida real.
 
@@ -215,7 +218,7 @@ AttributeError: 'Droid' object has no attribute 'name'
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `mobile-phone`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `mobile-phone`
 
 ## Atributos { #attributes }
 
@@ -950,7 +953,7 @@ Porque el método mágico que se ejecuta cuando mostramos un objeto en el intér
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fraction`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fraction`
 
 #### Gestores de contexto { #context-manager }
 
@@ -1443,7 +1446,7 @@ Comprobemos el funcionamiento del código anterior:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `file-inheritance`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `file-inheritance`
 
 ### Agregación y composición { #aggcomp }
 
@@ -1625,7 +1628,7 @@ Ahora podemos instanciar la clase anterior y probar su comportamiento:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `infinite-list`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `infinite-list`
 
 ### Diccionarios { #dicts }
 
@@ -1760,7 +1763,7 @@ Cuando utilizamos un bucle `for` para recorrer los elementos de un iterable, ocu
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fibonacci-iterable`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fibonacci-iterable`
 
 #### Iterables desde fuera { #iterables-outside }
 
@@ -2280,7 +2283,7 @@ Droid: SN=2
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fibonacci-itergen`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fibonacci-itergen`
 
 ## Anatomía de una clase { #class-anatomy }
 
@@ -2304,10 +2307,10 @@ class CustomClass:
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `dna`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `istack`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `iqueue`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `date`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `dna`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `istack`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `iqueue`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `date`
 
 
 

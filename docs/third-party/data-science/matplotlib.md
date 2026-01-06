@@ -1,14 +1,17 @@
 ---
 icon: material/chart-scatter-plot
+tags:
+  - Paquetes de terceros
+  - Ciencia de datos
+  - Matplotlib
 ---
 
 # Matplotlib
 
-![](images/matplotlib/mandala.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Customerbox](https://unsplash.com/@customerbox) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/matplotlib/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [`matplotlib`](https://matplotlib.org/) es el módulo Python más utilizado en el ámbito de ciencia de datos para representaciones gráficas.
 

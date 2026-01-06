@@ -1,14 +1,17 @@
 ---
 icon: material/calculator
+tags:
+  - Fundamentos del lenguaje
+  - Tipos de datos
+  - Números
 ---
 
 # Números { #numbers }
 
-![Dices](images/numbers/dices.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Brett Jordan](https://unsplash.com/es/@brett_jordan) (Unsplash)
+![Banner](images/numbers/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 En esta sección veremos los tipos de datos númericos que ofrece Python centrándonos en **booleanos**, **enteros** y **flotantes**.
 
@@ -146,7 +149,7 @@ Veamos algunas expresiones donde se aplica esta prioridad de operadores:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `add`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `add`
 
 #### Asignación aumentada { #augmented-assignment }
 
@@ -375,7 +378,7 @@ Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `quadratic`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `quadratic`
 
 ### Límite de un entero { #int-limit }
 
@@ -537,7 +540,7 @@ True
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `sin-approx`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `sin-approx`
 
 ### Errores de aproximación { #approx-errors }
 
@@ -728,19 +731,19 @@ Cuenta con **16** símbolos para representar los valores: `0`, `1`, `2`, `3`, `4
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `circle-area`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `sphere-volume`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `triangle-area`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `interest-rate`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `euclid-distance`
-6. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `century-year`
-7. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `red-square`
-7. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `igic`
-8. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `super-fast`
-9. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `move-twice`
-10. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `pillars`
-11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `clock-time`
-13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `ring-area`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `circle-area`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `sphere-volume`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `triangle-area`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `interest-rate`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `euclid-distance`
+6. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `century-year`
+7. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `red-square`
+7. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `igic`
+8. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `super-fast`
+9. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `move-twice`
+10. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `pillars`
+11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `clock-time`
+13. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `ring-area`
 
 
 [^1]: No siempre es una raíz cuadrada porque se invierten numerador y denominador.

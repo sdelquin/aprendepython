@@ -1,5 +1,9 @@
 ---
 icon: octicons/code-16
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Desarrollo web { #webdev }

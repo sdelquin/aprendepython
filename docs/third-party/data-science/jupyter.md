@@ -1,14 +1,17 @@
 ---
 icon: simple/jupyter
+tags:
+  - Paquetes de terceros
+  - Ciencia de datos
+  - Jupyter
 ---
 
 # Jupyter { #jupyter }
 
-![Jupyter](images/jupyter/jupyter.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [NASA](https://unsplash.com/@nasa) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/jupyter/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 El módulo [`jupyter`](https://jupyter.org/) proporciona un **entorno de desarrollo integrado** para ciencia de datos (incluso generalista), que no es exclusivo de Python, sino que además admite otros lenguajes ([«kernels»](#kernel-menu)) en su «backend».
 

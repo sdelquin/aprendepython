@@ -1,10 +1,14 @@
 ---
 icon: material/api
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # API { #api }
 
-<span class="djversion specialized">:simple-django: Especializado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-target-variant: Django especializado</span>
 
 En el ecosistema Django podemos encontrar un paquete muy «conocido» llamado [Django Rest Framework - DRF](https://www.django-rest-framework.org/) que está enfocado al desarrollo de una API. Desde luego es una muy buena opción para determinados escenarios.
 

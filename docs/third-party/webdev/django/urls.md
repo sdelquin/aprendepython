@@ -1,10 +1,14 @@
 ---
 icon: fontawesome/solid/arrows-to-dot
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # URLs { #urls }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Cuando Django recibe una petición HTTP lo primero que hace es intentar encontrar el patrón que coincide con la URL solicitada:
 
@@ -170,7 +174,7 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 
 ### Conversores personalizados { #custom-path-converters }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Django permite ~~crear~~ registrar [conversores de rutas personalizados](https://docs.djangoproject.com/en/stable/topics/http/urls/#registering-custom-path-converters) de tal forma que obtenemos un objeto del tipo (clase) deseado directamente en la vista.
 
@@ -311,7 +315,7 @@ Como era esperable, también podremos redirigir a cualquier otra URL externa que
 
 ## URL desde nombre { #reverse }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Hay ocasiones en las que nos interesa obtener una URL a partir de su nombre (alias). Para ello, Django proporciona la función [`reverse()`](https://docs.djangoproject.com/en/stable/ref/urlresolvers/#reverse).
 
@@ -344,7 +348,7 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> previo d
 
 ## Accesos directos en primer nivel { #main-shortcuts }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 En las [URLs de primer nivel](#main-urls) podemos ir más allá del típico «include». En este sentido se abren varias posibilidades:
 
@@ -437,7 +441,7 @@ urlpatterns = [
 
 ## Pasar argumentos a una vista { #args-to-view }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Hay ocasiones en las que interesa pasar argumentos a una vista desde la propia URL.
 
@@ -493,7 +497,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
 
 ## Expresiones regulares { #regex }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 A la hora de definir los patrones en las URLs, Django nos permite utilizar [expresiones regulares](https://docs.djangoproject.com/en/stable/topics/http/urls/#using-regular-expressions). Es una técnica muy potente ya que permite ir más allá de los formatos «básicos» y definir reglas más específicas.
 

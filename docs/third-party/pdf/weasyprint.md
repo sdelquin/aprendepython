@@ -1,8 +1,17 @@
 ---
 icon: material/file-document-arrow-right-outline
+tags:
+  - Paquetes de terceros
+  - PDF
+  - WeasyPrint
 ---
 
 # WeasyPrint { #weasyprint }
+
+![Banner](images/weasyprint/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [WeasyPrint](https://doc.courtbouillon.org/weasyprint/stable/) es un paquete Python que permite generar ficheros PDF. Pensado especialmente para entornos de desarrollo, convierte ficheros HTML en formato PDF.
 

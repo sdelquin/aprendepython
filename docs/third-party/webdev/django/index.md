@@ -1,8 +1,17 @@
 ---
 icon: simple/django
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Django
+
+![Banner](images/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 Django :simple-django:{ .green .beat } es un framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador (MVC). Fue desarrollado originalmente para gestionar páginas web orientadas a noticias de la World Company de Lawrence, Kansas, y fue liberada al público bajo una licencia BSD en julio de 2005; el framework fue nombrado en alusión al guitarrista de jazz gitano Django Reinhardt.
 
@@ -10,16 +19,16 @@ Django :simple-django:{ .green .beat } es un framework de desarrollo web de cód
 
 Los contenidos de esta sección están organizados de la siguiente manera:
 
-:one: [Django básico :baby:](#basic)  
-:two: [Django intermedio :firefighter:](#intermediate)  
-:three: [Django avanzado :scientist:](#advanced)  
-:four: [Django especializado :ninja:](#specialized)
+:one: [Django básico](#basic)  
+:two: [Django intermedio](#intermediate)  
+:three: [Django avanzado](#advanced)  
+:four: [Django especializado](#specialized)
 
 Los contenidos de cada bloque se identifican por una **insignia**. Existe una secuenciación de los epígrafes que es relevante, ya que se establece un orden lógico en el desarrollo de los contenidos.
 
 ## Django básico { #basic }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 - [Puesta en marcha](setup.md)
 - [Aplicaciones](apps.md)
@@ -33,7 +42,7 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
 
 ## Django intermedio { #intermediate }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 - URLs
     - [URLs desde nombre](urls.md#reverse)
@@ -65,7 +74,7 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
 
 ## Django avanzado { #advanced }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 - Modelos
     - [Tipos enumerados](models.md#enums)
@@ -104,6 +113,6 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
 
 ## Django especializado { #specialized }
 
-<span class="djversion specialized">:simple-django: Especializado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-target-variant: Django especializado</span>
 
 - [API](api.md)

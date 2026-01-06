@@ -1,14 +1,17 @@
 ---
 icon: simple/pandas
+tags:
+  - Paquetes de terceros
+  - Ciencia de datos
+  - Pandas
 ---
 
 # Pandas { #pandas }
 
-![Panda](../images/pandas/panda.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Sid Balachandran](https://unsplash.com/@itookthose) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](../images/pandas/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [`pandas`](https://pandas.pydata.org/docs/) es un paquete «open-source» especializada en la manipulación y el análisis de datos, ofreciendo estructuras de datos y operaciones para trabajar de forma sencilla y potente con gran cantidad de información.
 

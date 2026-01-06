@@ -14,7 +14,7 @@ jobs:
       - name: Build docker image
         run: docker build . -t aprendepython
       - name: Build documentation
-        run: docker run --rm -v .:/docs aprendepython
+        run: docker run --rm -it -v ${PWD}:/docs zensical/zensical build
       - name: Sync files with production server
         uses: burnett01/rsync-deployments@4.1
         with:

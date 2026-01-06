@@ -1,14 +1,17 @@
 ---
 icon: octicons/link-16
+tags:
+  - Fundamentos del lenguaje
+  - Estructuras de datos
+  - Tuplas
 ---
 
 # Tuplas { #tuples }
 
-![Chain](images/tuples/chain.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [engin akyurt](https://unsplash.com/es/@enginakyurt) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/tuples/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 El concepto de **tupla** es muy similar al de [lista](lists.md). Aunque hay algunas diferencias menores, lo fundamental es que, mientras una _lista_ es mutable y se puede modificar, una _tupla_ no admite cambios y por lo tanto, es **inmutable**.
 

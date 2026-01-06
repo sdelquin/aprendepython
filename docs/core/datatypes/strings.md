@@ -1,14 +1,17 @@
 ---
 icon: material/text-box
+tags:
+  - Fundamentos del lenguaje
+  - Tipos de datos
+  - Cadenas de texto
 ---
 
 # Cadenas de texto { #strings }
 
-![Dices](images/strings/newspaper.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Roman Kraft](https://unsplash.com/@romankraft) (Unsplash)
+![Banner](images/strings/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Las cadenas de texto son **secuencias de caracteres**. También se les conoce como «strings» y nos permiten almacenar información textual de manera muy cómoda.
 
@@ -248,7 +251,7 @@ str
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `calc-basic`    
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `calc-basic`    
 
 ## Operaciones con «strings» { #operations }
 
@@ -420,7 +423,7 @@ Veamos algunos <span class="example">ejemplos:material-flash:</span>:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `half-turn`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `half-turn`
 
 ### Pertenencia de un elemento { #in }
 
@@ -609,7 +612,7 @@ Para contabilizar el **número de veces que aparece** una subcadena utilizamos l
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `lost-word`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `lost-word`
 
 ### Reemplazar texto { #replace }
 
@@ -928,7 +931,7 @@ Pero si quisiéramos ver la representación del objeto, tal y como se almacena i
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fstring-format`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fstring-format`
 
 ## Caracteres Unicode { #unicode }
 
@@ -984,7 +987,7 @@ Python nos permite convertir de...
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `find-unicode`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `find-unicode`
 
 ### ASCII { #ascii }
 
@@ -1054,18 +1057,18 @@ True
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `format-hexcolor`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `swap-name`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `samba-split`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `nif-digit`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `n-repeat`
-6. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `str-metric`
-7. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `h2md`
-8. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `count-sheeps`
-9. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `strip1`
-10. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `find-integral`
-11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `multiply-jack`
-12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `first-last-digit`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `format-hexcolor`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `swap-name`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `samba-split`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `nif-digit`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `n-repeat`
+6. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `str-metric`
+7. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `h2md`
+8. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `count-sheeps`
+9. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `strip1`
+10. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `find-integral`
+11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `multiply-jack`
+12. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `first-last-digit`
 
 
 

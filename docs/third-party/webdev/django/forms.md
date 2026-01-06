@@ -1,10 +1,14 @@
 ---
 icon: material/form-select
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Formularios { #forms }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Los [formularios](https://www.w3schools.com/html/html_forms.asp) son componentes web que permiten al usuario introducir información en una aplicación web. Veremos cómo manejar y gestionar los formularios a través de Django.
 
@@ -530,7 +534,7 @@ def edit_post(request, post_slug: str):#(1)!
 
 ## Widgets { #widgets }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Un «widget» es la representación Django de un componente HTML para formulario. El «widget» maneja el renderizado del HTML y la extración de datos desde el correspondiente diccionario GET/POST.
 
@@ -749,7 +753,7 @@ Con esta configuración obtendremos un control interactivo para seleccionar la f
 
 ## Guardar de forma personalizada { #override-save }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Hay ocasiones en las que nos interesa personalizar el guardado de un formulario para modificar determinados atributos o realizar otras acciones. Esto se consigue sobreescribiendo el método `save()` del formulario.
 
@@ -928,7 +932,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
 ## Validación { #validation }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Django permite añadir [validación personalizada](https://docs.djangoproject.com/en/stable/ref/forms/validation/) a los formularios. La validación de un formulario se puede hacer en varios contextos:
 

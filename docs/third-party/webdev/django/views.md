@@ -1,10 +1,14 @@
 ---
 icon: octicons/eye-16
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Vistas { #views }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 En el [MVC](webdev.md#web-framework) de Django se podría decir que las **vistas** se corresponden con los **controladores**. En esta sección veremos cómo manejar las vistas y explotar sus principales funcionalidades.
 
@@ -206,7 +210,7 @@ Hay otras formas de llevar a cabo aproximaciones similares:
 
 ## Tipos de respuestas { #response-types }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 La clase [`HttpResponse`](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-objects) permite indicar el código de estado de la respuesta. Esto hace posible ser más exactos en el mensaje que trasladamos a un cliente.
 

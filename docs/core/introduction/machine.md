@@ -1,14 +1,17 @@
 ---
 icon: octicons/cpu-24
+tags:
+  - Fundamentos del lenguaje
+  - Introducción
+  - Hablando con la máquina
 ---
 
 # Hablando con la máquina { #talking-to-machine }
 
-![Motor](images/machine/engine.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Garett Mizunaka](https://unsplash.com/@garett3) (Unsplash)
+![Banner](images/machine/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Los ordenadores son dispositivos complejos pero están diseñados para hacer una cosa bien: **ejecutar aquello que se les indica**. La cuestión radica en cómo indicarle a una máquina lo que queremos que haga. Esas indicaciones se llaman técnicamente **instrucciones** y se expresan en un **lenguaje**. Podríamos decir que _programar consiste en escribir instrucciones para que sean ejecutadas por un ordenador_. El lenguaje que utilizamos para ello se denomina _lenguaje de programación_.
 

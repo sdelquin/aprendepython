@@ -1,14 +1,17 @@
 ---
 icon: octicons/rocket-16
+tags:
+  - Fundamentos del lenguaje
+  - Entornos de desarrollo
+  - Contexto real
 ---
 
 # Contexto real { #real-context }
 
-![Desktop](images/real-context/spacex.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [SpaceX](https://unsplash.com/es/@spacex) (Unsplash)
+![Banner](images/real-context/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Hemos visto que [Thonny](thonny.md) es una herramienta especialmente diseñada para el aprendizaje de Python, integrando diferentes módulos que facilitan su gestión. Si bien lo podemos utilizar para un desarrollo más «serio», se suele recurrir a un flujo de trabajo algo diferente en **contextos más reales**.
 

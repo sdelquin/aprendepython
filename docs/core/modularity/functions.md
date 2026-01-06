@@ -1,14 +1,17 @@
 ---
 icon: material/function
+tags:
+  - Fundamentos del lenguaje
+  - Modularidad
+  - Funciones
 ---
 
 # Funciones { #functions }
 
-![Fork](images/functions/machine.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Nathan Dumlao](https://unsplash.com/es/@nate_dumlao) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/functions/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 El concepto de **función** es básico en prácticamente cualquier lenguaje de programación. Se trata de un artefacto que nos permite agrupar código. Persigue dos objetivos claros:
 
@@ -238,7 +241,7 @@ Veamos otro <span class="example">ejemplo:material-flash:</span> de función per
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `sum-squares`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `sum-squares`
 
 ### Argumentos posicionales { #args }
 
@@ -406,7 +409,7 @@ Es importante tener presente que **los valores por defecto en los parámetros se
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `factorial`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `factorial`
 
 ### Número variable de argumentos { #variable-arguments }
 
@@ -594,7 +597,7 @@ Si bien Python nos da flexibilidad para pasar argumentos a nuestras funciones en
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `consecutive-freqs`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `consecutive-freqs`
 
 ### Funciones como parámetros { #func-as-params }
 
@@ -859,7 +862,7 @@ En el siguiente <span class="example">ejemplo:material-flash:</span> se define u
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `mcount`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `mcount`
 
 ## Tipos de funciones { #func-types }
 
@@ -956,7 +959,7 @@ Ahora veamos el comportamiento de la ordenación en función de la clave indicad
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `order-by-age`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `order-by-age`
 
 #### Enfoque funcional { #functional-approach }
 
@@ -1154,7 +1157,7 @@ generator
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `genfun-squares`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `genfun-squares`
 
 #### Expresiones generadoras { #genexp }
 
@@ -1201,7 +1204,7 @@ Una expresión generadora se puede explicitar[^9], sumar, buscar su máximo o su
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `genexp-squares`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `genexp-squares`
 
 ### Funciones interiores { #inner-functions }
 
@@ -1457,7 +1460,7 @@ El planteamiento varía según el número de argumentos que queramos manipular. 
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `deco-abs`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `deco-abs`
 
 #### Múltiples decoradores { #multiple-decorators }
 
@@ -1690,7 +1693,7 @@ Ahora podemos aplicarlo variando la base de representación:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `deco-sort`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `deco-sort`
 
 ### Funciones recursivas { #recursion }
 
@@ -1778,7 +1781,7 @@ graph TD
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `factorial-recursive`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `factorial-recursive`
 
 Otra aproximación a la recursividad se da en problemas donde tenemos que **procesar una secuencia de elementos**.
 
@@ -1895,24 +1898,24 @@ Chris Staudinger (cofundador de [Level Up Coding](https://blog.levelupcoding.com
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `num-in-interval`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `extract-evens`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `split-case`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `perfect`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `palindrome`
-6. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `count-vowels-recursive`
-7. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `pangram`
-8. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `cycle-alphabet`
-9. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `bubble-sort`
-10. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `consecutive-seq`
-11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `magic-square`
-12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `nested-add`
-13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fibonacci-recursive`
-14. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `hyperfactorial`
-15. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fibonacci-generator`
-16. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `palindrome-recursive`
-17. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `deco-positive`
-18. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `slice-recursive`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `num-in-interval`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `extract-evens`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `split-case`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `perfect`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `palindrome`
+6. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `count-vowels-recursive`
+7. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `pangram`
+8. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `cycle-alphabet`
+9. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `bubble-sort`
+10. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `consecutive-seq`
+11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `magic-square`
+12. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `nested-add`
+13. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fibonacci-recursive`
+14. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `hyperfactorial`
+15. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fibonacci-generator`
+16. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `palindrome-recursive`
+17. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `deco-positive`
+18. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `slice-recursive`
 
 
 

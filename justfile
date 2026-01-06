@@ -1,12 +1,15 @@
-# Run dirty development server
-rundirty port="8000":
-    uv run mkdocs serve -a localhost:{{ port }} --dirty
-
 # Run development server
-runserver port="8000":
-    uv run mkdocs serve -a localhost:{{ port }}
+serve: clean
+    uv run zensical serve
 
-alias b:=build
-# Build docs
-build:
-    uv run mkdocs build --clean
+# Build site native-way
+build: clean
+    uv run zensical build
+
+# Build site docker-way
+docker: clean
+    docker run --rm -it -v ${PWD}:/docs zensical/zensical build
+
+# Clean temp files
+clean:
+    rm -fr .cache site

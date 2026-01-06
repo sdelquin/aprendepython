@@ -1,10 +1,14 @@
 ---
 icon: material/battery-charging-30
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Extras { #extras }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Existe un ecosistema enorme de **paquetes de terceros** que ofrecen funcionalidades extras a Django. En esta sección veremos algunos de los más interesantes.
 

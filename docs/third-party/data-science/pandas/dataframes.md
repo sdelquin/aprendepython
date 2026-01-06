@@ -1,5 +1,9 @@
 ---
 icon: octicons/table-24
+tags:
+  - Paquetes de terceros
+  - Ciencia de datos
+  - Pandas
 ---
 
 # DataFrames { #dataframes }

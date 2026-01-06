@@ -1,8 +1,17 @@
 ---
 icon: material/image-filter-center-focus-weak
+tags:
+  - Paquetes de terceros
+  - Configuraciones
+  - Pretty Conf
 ---
 
 # Pretty Conf { #prettyconf }
+
+![Banner](images/prettyconf/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [`prettyconf`](https://prettyconf.readthedocs.io/en/latest/index.html) es un paquete Python que facilita la creación de ficheros de configuración mediante la parametrización de sus variables.
 

@@ -1,14 +1,17 @@
 ---
 icon: material/code-braces
+tags:
+  - Fundamentos del lenguaje
+  - Estructuras de datos
+  - Diccionarios
 ---
 
 # Diccionarios { #dicts }
 
-![Chain](images/dicts/dictionary.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Aaron Burden](https://unsplash.com/@aaronburden) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/dicts/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 Podemos trasladar el concepto de _diccionario_ de la vida real al mundo Python. Al fin y al cabo un diccionario es un objeto que contiene palabras, y cada palabra tiene asociado un significado. Haciendo el paralelismo, diríamos que en Python un diccionario es también un objeto indexado por **claves** (las palabras) que tienen asociados unos **valores** (los significados).
 
@@ -262,7 +265,7 @@ A continuación se muestra un <span class="example">ejemplo:material-flash:</spa
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `extract-cities`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `extract-cities`
 
 ### Pertenencia de una clave { #in }
 
@@ -285,7 +288,7 @@ False
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `count-letters`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `count-letters`
 
 ### Longitud de un diccionario { #length }
 
@@ -394,7 +397,7 @@ En función de los [elementos que podemos obtener](#get-items), Python proporcio
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `avg-population`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `avg-population`
 
 ### Borrar elementos { #remove }
 
@@ -479,7 +482,7 @@ Python nos ofrece varios mecanismos para borrar elementos en un diccionario:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `merge-dicts`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `merge-dicts`
 
 ### Combinar diccionarios { #combine }
 
@@ -628,7 +631,7 @@ También podemos aplicar **condiciones** a estas comprensiones. Continuando con 
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `split-marks`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `split-marks`
 
 ## Objetos «hashables» { #hashables }
 
@@ -669,19 +672,19 @@ TypeError: unhashable type: 'list'
 
 ## Ejercicios
 
-1.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `group-words`
-2.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `same-dict-values`
-3.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `dict-from-list`
-4.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `clear-dict-values`
-5.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fix-keys`
-6.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `order-stock`
-7.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `inventory-updates`
-8.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `sort-dict`
-9.  [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `money-back`
-10. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `money-back-max`
-11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `first-ntimes`
-12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fix-id`
-13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `dict-pull`
+1.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `group-words`
+2.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `same-dict-values`
+3.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `dict-from-list`
+4.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `clear-dict-values`
+5.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fix-keys`
+6.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `order-stock`
+7.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `inventory-updates`
+8.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `sort-dict`
+9.  [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `money-back`
+10. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `money-back-max`
+11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `first-ntimes`
+12. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fix-id`
+13. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `dict-pull`
 
 
 

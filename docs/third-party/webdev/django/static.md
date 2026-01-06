@@ -1,10 +1,14 @@
 ---
 icon: material/folder-outline
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Estáticos { #static }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Los ficheros estáticos («assets») son ficheros que no necesitan un preprocesamiento y que se utilizan «tal cual son». Nos estamos refiriendo a:
 
@@ -170,7 +174,7 @@ Lo más habitual es utilizar ficheros estáticos directamente en plantillas, per
 
 ## Bootstrap { #bootstrap }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 [Bootstrap :simple-bootstrap:](https://getbootstrap.com/) ofrece un conjunto de herramientas que facilitan el desarrollo de interfaces «frontend» para aplicaciones web.
 

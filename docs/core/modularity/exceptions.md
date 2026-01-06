@@ -1,14 +1,17 @@
 ---
 icon: octicons/bug-24
+tags:
+  - Fundamentos del lenguaje
+  - Modularidad
+  - Excepciones
 ---
 
 # Excepciones { #exceptions }
 
-![Fork](images/exceptions/icecream.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Sarah Kilian](https://unsplash.com/@rojekilian) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/exceptions/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 En programación, una excepción es un **evento anómalo o inesperado** que ocurre durante la ejecución de un programa y que **interrumpe su flujo normal**. Generalmente, las excepciones indican errores o situaciones inusuales, como intentos de dividir por cero, acceso a índices fuera de rango o fallos al abrir un archivo inexistente.
 
@@ -194,11 +197,11 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de aplicación de
     
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `getint-iterative`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `getint-iterative`
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `getint-recursive`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `getint-recursive`
 
 ### Instancias de excepción { #exception-instance }
 
@@ -498,4 +501,4 @@ AssertionError: Result must be positive
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `poker-card`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `poker-card`

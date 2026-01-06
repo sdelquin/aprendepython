@@ -3,16 +3,15 @@
 Aprende el lenguaje de programación ^^Python^^ :material-snake:{ .slide .green } y descubre un **mundo de posibilidades**.
 
 ![Monty Python](assets/images/monty-python.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-solid-image: Monty Python. Fuente: [noticiascyl](https://www.noticiascyl.com/t/1700231/monty-python-vuelven-leon)
+///caption
+Monty Python © Imagen generada con Inteligencia Artificial
+///
 
 El contenido de esta página está organizado en tres grandes bloques:
 
-- [x] [Fundamentos del lenguaje](/core/index.md)
-- [x] [Librería estándar](/stdlib/index.md)
-- [x] [Paquetes de terceros](/third-party/index.md)
+1. [Fundamentos del lenguaje](/core/index.md)
+2. [Librería estándar](/stdlib/index.md)
+3. [Paquetes de terceros](/third-party/index.md)
 
 ---
 
@@ -20,18 +19,18 @@ Si quieres **apoyar este proyecto** te dejo dos vías:
 
 <div class="grid cards" markdown>
 
--   GitHub :simple-github:{ .acc .beat }
+-   **GitHub** :simple-github:{ .acc .beat }
 
 
     ---
 
-    [Dando una estrella :material-star-plus:](https://github.com/sdelquin/aprendepython)
+    [Dando una estrella :material-star-plus:](https://github.com/sdelquin/aprendepython){ .md-button .md-button--primary }
 
--   Buy me a coffee :simple-buymeacoffee:{ .acc .beat }
+-   **Buy me a coffee** :simple-buymeacoffee:{ .acc .beat }
     
     ---
 
-    [Pagándome un café :material-hand-coin:](https://buymeacoffee.com/sdelquin)
+    [Pagándome un café :material-hand-coin:](https://buymeacoffee.com/sdelquin){ .md-button .md-button--primary }
 
 </div>
 

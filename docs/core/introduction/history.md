@@ -1,14 +1,17 @@
 ---
 icon: octicons/git-commit-16
+tags:
+  - Fundamentos del lenguaje
+  - Introducción
+  - Algo de historia
 ---
 
 # Algo de historia { #brief-history }
 
-![Coliseo](images/history/coliseum.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Dario Veronesi](https://unsplash.com/es/@dariovero_) (Unsplash)
+![Banner](images/history/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 La historia de la programación está relacionada directamente con la aparición de los computadores, que ya desde el siglo XV tuvo sus inicios con la construcción de una máquina que realizaba operaciones básicas y raíces cuadradas ([Gottfried Wilheml von Leibniz](https://es.wikipedia.org/wiki/Gottfried_Leibniz)); aunque en realidad la primera gran influencia hacia la creación de los computadores fue la máquina diferencial para el cálculo de polinomios, proyecto no concluido de [Charles Babbage](https://es.wikipedia.org/wiki/Charles_Babbage) (1793-1871) con el apoyo de [Lady Ada Countess of Lovelace](https://es.wikipedia.org/wiki/Ada_Lovelace) (1815-1852), primera persona que incursionó en la programación y de quien proviene el nombre del lenguaje de programación [ADA](<https://es.wikipedia.org/wiki/Ada_(lenguaje_de_programaci%C3%B3n)>) creado por el DoD en la década de 1970.
 
@@ -30,10 +33,10 @@ La siguiente tabla es un ~~resumen~~ _granito de arena_ de los principales hitos
 | 1946 | [John W. Mauchly](https://es.wikipedia.org/wiki/John_William_Mauchly) | Junto a [John P. Eckert](https://es.wikipedia.org/wiki/John_Presper_Eckert) desarrolló una **computadora electrónica** completamente operacional a gran escala llamada **ENIAC**.                                                                                                                                                                                                  |
 | 1946 | [John Von Neumann](https://es.wikipedia.org/wiki/John_von_Neumann)    | Propuso guardar en **memoria** no solo la **información**, sino también los **programas**, acelerando los procesos.                                                                                                                                                                                                           |
 
-<figure markdown="span">
-  ![Ada Lovelace](images/history/ada-lovelace.jpg){ width="300" }
-  <figcaption>Ada Lovelace: primera programadora de la historia</figcaption>
-</figure>
+![Ada Lovelace](images/history/ada-lovelace.jpg){ width="300" }
+///caption
+Ada Lovelace: primera programadora de la historia
+///
 
 A partir de los años 50 los avances en las ciencias de la computación se aceleraron de manera significativa. Se reemplazaron los [tubos de vacío](https://es.wikipedia.org/wiki/Computadora_de_tubos_de_vac%C3%ADo) por [transistores](https://es.wikipedia.org/wiki/Transistor) en 1958 y en el mismo año, se sustituyeron por [circuitos integrados](https://es.wikipedia.org/wiki/Circuito_integrado); y en 1961 se miniaturizaron en **chips de silicio**. En 1971 apareció el primer microprocesador de Intel; y en 1973 el primer sistema operativo CP/M. El primer computador personal es comercializado por IBM en el año 1980.
 

@@ -1,14 +1,17 @@
 ---
 icon: material/regex
+tags:
+  - Librería estándar
+  - Procesamiento de texto
+  - re
 ---
 
 # re { #re }
 
-![Fork](images/re/floor.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Alice Butenko](https://unsplash.com/@alivka) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/re/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 !!! quote "Paradoja"
 
@@ -471,8 +474,8 @@ Hay que tener en cuenta ciertos matices al utilizar corchetes `#!python []` en u
     
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `vowel-words`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `valid-float`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `valid-email`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `calc-from-str`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `valid-url`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `vowel-words`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `valid-float`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `valid-email`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `calc-from-str`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `valid-url`

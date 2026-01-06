@@ -1,0 +1,3 @@
+# Aprendizaje
+
+Los paquetes de terceros de Python orientados al aprendizaje del propio lenguaje y a la práctica mediante ejercicios son importantes porque amplían las posibilidades educativas más allá de lo que ofrece la biblioteca estándar. Estas herramientas ayudan a comprender mejor la sintaxis, las buenas prácticas y los conceptos fundamentales de Python a través de entornos interactivos, validación automática de ejercicios, análisis de errores y retroalimentación inmediata. Además, facilitan un aprendizaje más guiado y motivador, ya que permiten practicar de forma progresiva, simular situaciones reales de programación y adoptar hábitos profesionales desde etapas tempranas, lo que contribuye a una formación más sólida y eficaz en el lenguaje Python.

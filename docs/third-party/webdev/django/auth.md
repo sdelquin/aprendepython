@@ -1,10 +1,14 @@
 ---
 icon: material/key-chain-variant
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Autenticación { #auth }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Django proporciona un [sistema de autenticación](https://docs.djangoproject.com/en/stable/topics/auth/default/) —incorporado en el propio framework— que facilita en gran medida la gestión de accesos y de usuarios.
 

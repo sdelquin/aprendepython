@@ -1,5 +1,9 @@
 ---
 icon: octicons/pivot-column-24
+tags:
+  - Paquetes de terceros
+  - Ciencia de datos
+  - Pandas
 ---
 
 # Series { #series }

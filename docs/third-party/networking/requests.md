@@ -1,14 +1,17 @@
 ---
 icon: material/download-network
+tags:
+  - Paquetes de terceros
+  - Redes
+  - Requests
 ---
 
 # Requests { #requests }
 
-![Wing](images/requests/wing.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Frame Harirak](https://unsplash.com/@framemily) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/requests/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [`requests`](https://docs.python-requests.org/) es es uno de los paquetes más famosos del ecosistema Python. Como dice su lema «HTTP for Humans» permite realizar peticiones HTTP de una forma muy sencilla y realmente potente.
 

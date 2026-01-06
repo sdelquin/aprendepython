@@ -7,6 +7,9 @@
 
 /* LIGHT MODE */
 [data-md-color-scheme="default"] {
+  /* Modification of theme colors */
+  /* --md-code-hl-comment-color: var(--md-primary-fg-color); */
+
   /* Custom colors */
   --blue-color: rgb(23, 143, 255);
   --green-color: rgb(29, 187, 53);
@@ -21,8 +24,6 @@
   --red-transparent-color: rgba(248, 65, 65, 0.5);
   --yellow-transparent-color: rgba(216, 210, 25, 0.5);
   --pink-transparent-color: rgba(177, 36, 137, 0.5);
-  /* Modification of theme colors */
-  --md-code-hl-comment-color: var(--md-primary-fg-color);
 
   .blue {
     color: var(--blue-color);
@@ -46,6 +47,9 @@
 
 /* DARK MODE */
 [data-md-color-scheme="slate"] {
+  /* Modification of theme colors */
+  /* --md-code-hl-comment-color: var(--md-accent-fg-color); */
+
   /* Custom colors */
   --blue-color: rgb(0, 133, 255);
   --green-color: rgb(32, 203, 73);
@@ -53,6 +57,7 @@
   --red-color: rgb(233, 44, 44);
   --yellow-color: rgb(231, 231, 21);
   --pink-color: rgb(196, 44, 153);
+
   /* Transparent custom colors */
   --blue-transparent-color: rgba(0, 133, 255, 0.5);
   --green-transparent-color: rgba(32, 203, 73, 0.5);
@@ -60,8 +65,6 @@
   --red-transparent-color: rgba(233, 44, 44, 0.5);
   --yellow-transparent-color: rgba(231, 231, 21, 0.5);
   --pink-transparent-color: rgba(196, 44, 153, 0.5);
-  /* Modification of theme colors */
-  --md-code-hl-comment-color: var(--md-primary-fg-color);
 
   .blue {
     color: var(--blue-color);
@@ -153,9 +156,9 @@
 .md-typeset details.exercise {
   border-color: rgb(156, 18, 158);
 }
-.md-typeset .exercise > .admonition-title,
-.md-typeset .exercise > summary {
-  background-color: rgba(156, 18, 158, 0.1);
+.md-typeset .admonition.exercise,
+.md-typeset details.exercise {
+  background-color: rgba(156, 18, 158, 0.15);
 }
 .md-typeset .exercise > .admonition-title::before,
 .md-typeset .exercise > summary::before {
@@ -184,26 +187,14 @@ span.pyversion {
   }
 }
 
-span.djversion {
+span.dj-level {
   width: fit-content;
   display: block;
   font-size: smaller;
-  color: white;
-  padding: 0.1rem 0.4rem 0.1rem 0.4rem;
+  color: rgb(230, 230, 230);
+  padding: 0.03rem 0.3rem 0.03rem 0.3rem;
   border-radius: 0.2rem;
-  /* https://codyhouse.co/nuggets/css-gradient-borders */
-  &.basic {
-    background: linear-gradient(to right, #2c3b98, #21cffa) border-box;
-  }
-  &.intermediate {
-    background: linear-gradient(to right, #159842, #aca513) border-box;
-  }
-  &.advanced {
-    background: linear-gradient(to right, #de227a, #0e3ecc) border-box;
-  }
-  &.specialized {
-    background: linear-gradient(to right, #14b2c0, #ef55ed) border-box;
-  }
+  background: gray;
 }
 
 /* https://github.com/squidfunk/mkdocs-material/issues/3453#issuecomment-2407192662 */

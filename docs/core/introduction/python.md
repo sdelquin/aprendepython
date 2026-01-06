@@ -1,14 +1,17 @@
 ---
 icon: fontawesome/brands/python
+tags:
+  - Fundamentos del lenguaje
+  - Introducción
+  - Python
 ---
 
 # Python { #python }
 
-![Python](images/python/python.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Markéta Marcellová](https://unsplash.com/@marketamarcellova) (Unsplash)
+![Banner](images/python/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 [Python](https://www.python.org/) es un **lenguaje de programación** de [alto nivel](https://aprendepython.es/core/introduction/machine/#python) creado a principios de los años 90 por [Guido van Rossum](https://es.wikipedia.org/wiki/Guido_van_Rossum) que trabajaba por aquella época en el _Centro para las Matemáticas y la Informática de los Países Bajos_ ([CWI](https://www.cwi.nl/en/)).
 
@@ -95,6 +98,9 @@ Afortunadamente Python ya superó hace muchos años esa idea de ser un lenguaje 
 Son muchas las empresas, instituciones y organismos que utilizan Python en su día a día para mejorar sus sistemas de información. Veamos algunas de las más relevantes:
 
 ![Who uses Python](./images/python/who-uses-python.svg)
+///caption
+Empresas u organizaciones que usan Python
+///
 
 ### Rankings { #rankings }
 

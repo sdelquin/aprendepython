@@ -1,10 +1,14 @@
 ---
 icon: material/middleware-outline
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Middleware { #middleware }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Un [«middleware»](https://docs.djangoproject.com/en/stable/topics/http/middleware/) —en el contexto de Django— es un artefacto de software que se sitúa entre la petición y la respuesta HTTP y permite alterar la entrada o la salida a conveniencia de manera global.
 
@@ -146,7 +150,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 ## Middleware personalizado { #custom-middleware }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Más allá de los [«middleware» existentes](#available-middleware) en Django, es posible implementar un «middleware» personalizado para aquellas tareas que sean necesarias aplicar de manera global en el ciclo petición/respuesta.
 

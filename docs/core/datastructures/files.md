@@ -1,14 +1,17 @@
 ---
 icon: material/file-cabinet
+tags:
+  - Fundamentos del lenguaje
+  - Estructuras de datos
+  - Ficheros
 ---
 
 # Ficheros { #files }
 
-![Chain](images/files/files.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Maksym Kaharlytskyi](https://unsplash.com/@qwitka) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/files/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Aunque los ficheros encajarían más en un apartado de «entrada/salida» ya que representan un **medio de almacenamiento persistente**, también podrían ser vistos como _estructuras de datos_, puesto que nos permiten guardar información y asignarle un cierto formato.
 
@@ -381,19 +384,19 @@ Para abrir un fichero en **modo añadido** utilizamos la función `#!python open
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `wc`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `read-csv`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `txt2md`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `avg-temps`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `find-words`
-6. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `sum-matrix`
-7. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `longest-word`
-8. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `word-freq`
-9. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `get-line`
-10. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `replace-chars`
-11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `histogram-txt`
-12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `submarine`
-13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `common-words`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `wc`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `read-csv`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `txt2md`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `avg-temps`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `find-words`
+6. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `sum-matrix`
+7. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `longest-word`
+8. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `word-freq`
+9. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `get-line`
+10. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `replace-chars`
+11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `histogram-txt`
+12. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `submarine`
+13. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `common-words`
 
 [^1]: Es muy frecuente encontrar en la documentación el término «handler» para referirse al objeto manejador del fichero.
 [^2]: Los manejadores de ficheros son estructuras de datos [iterables](../modularity/oop.md#iterables).

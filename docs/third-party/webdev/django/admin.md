@@ -1,10 +1,14 @@
 ---
 icon: fontawesome/solid/wand-magic-sparkles
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Interfaz administrativa { #admin }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Como se ha [comentado previamente](./setup.md#admin) Django proporciona una interfaz administrativa para manejar los modelos de nuestro proyecto, prácticamente sin esfuerzo.
 
@@ -172,7 +176,7 @@ Con esto conseguimos que a medida que escribimos el título de un «post» se va
 
 ## Acciones de administración { #admin-actions }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 En la interfaz administrativa de Django podemos realizar acciones sobre objetos de modelo. Estas acciones están predefinidas (añadir, borrar, editar, etc.), pero tenemos la posibilidad de incorporar nuevas acciones de administración personalizadas.
 
@@ -215,7 +219,7 @@ De esta manera nos aparecerá una nueva acción a la hora de gestionar los «pos
 
 ## Claves ajenas { #foreign-key }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 ### Relaciones uno a muchos { #one-to-many }
 
@@ -289,7 +293,7 @@ Veamos otras maneras de presentar la clave ajena a «post» para que sea más ac
 
 ### Relaciones muchos a muchos { #many-to-many }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Cuando disponemos de campos `ManyToMany` en nuestros modelos, Django presenta un **control de selección múltiple** que, en muchas ocasiones, es suficiente para manipular los datos.
 
@@ -356,7 +360,7 @@ Obviamente también podemos hacer uso de `raw_id_fields` o `autocomplete_fields`
 
 ## Comandos de gestión { #management-commands }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Django ofrece la posibilidad de añadir [comandos personalizados](https://docs.djangoproject.com/en/stable/howto/custom-management-commands/) para ser ejecutados mediante `./manage.py <command>`. Hay escenarios en los que esto es realmente útil.
 

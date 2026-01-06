@@ -1,5 +1,9 @@
 ---
 icon: material/list-box
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Justfile { #justfile }

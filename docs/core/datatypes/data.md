@@ -1,14 +1,17 @@
 ---
 icon: fontawesome/solid/memory
+tags:
+  - Fundamentos del lenguaje
+  - Tipos de datos
+  - Datos
 ---
 
 # Datos { #data }
 
-![Binary Heart](images/data/binheart.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Alexander Sinn](https://unsplash.com/es/@swimstaralex) (Unsplash)
+![Banner](images/data/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Los programas están formados por **código** y **datos**[^1]. Pero a nivel interno de la memoria del ordenador (RAM) no son más que una secuencia de bits `100101101...` La interpretación de estos bits depende del lenguaje de programación, que almacena en la memoria no sólo el puro dato sino distintos metadatos[^2].
 

@@ -1,14 +1,17 @@
 ---
 icon: material/call-split
+tags:
+  - Fundamentos del lenguaje
+  - Control de flujo
+  - Condicionales
 ---
 
 # Condicionales { #conditionals }
 
-![Fork](images/conditionals/arrows.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Dreamlike Street](https://unsplash.com/es/@dreamlikestreet) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/conditionals/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 En esta sección estudiaremos las sentencias `if` y `match-case` de _Python_ junto a las distintas variantes que pueden asumir, pero antes de eso introduciremos algunas cuestiones generales de _escritura de código_.
 
@@ -283,7 +286,7 @@ Véanse las **tablas de la verdad** para cada operador lógico:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `leap-year`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `leap-year`
 
 ### Cortocircuito lógico { #short-circuit }
 
@@ -399,7 +402,7 @@ De hecho, si lo pensamos, estamos reproduciendo bastante bien el _lenguaje natur
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `marvel-akinator`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `marvel-akinator`
 
 ### Valor nulo { #none }
 
@@ -660,7 +663,7 @@ Esto se debe a que Python trata a las constantes `#!python RED_HEXA GREEN_HEXA B
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `simple-op`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `simple-op`
 
 ### Patrones avanzados { #advanced-patterns }
 
@@ -875,11 +878,11 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que com
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `rps`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `min3values`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `blood-donation`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `facemoji`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `shortcuts`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `rps`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `min3values`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `blood-donation`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `facemoji`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `shortcuts`
 
 
 

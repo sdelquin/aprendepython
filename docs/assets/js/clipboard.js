@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.body.addEventListener("click", function (event) {
     // Verifica si se hizo clic en un botón de copiar
-    const copyButton = event.target.closest("button.md-clipboard");
+    const copyButton = event.target.closest("button.md-code__button");
     if (!copyButton) return;
 
     // Encuentra el bloque de código asociado
@@ -10,7 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!codeBlock) return;
 
     // Obtiene el texto del bloque de código
-    let codeText = codeBlock.innerText;
+    const selectedLines = codeBlock.querySelectorAll("span.hll");
+    if (selectedLines.length > 0) {
+      // Si hay líneas resaltadas, copia solo esas líneas
+      var codeText = Array.from(selectedLines)
+        .map((line) => line.textContent || line.innerText)
+        .join("\n");
+    } else {
+      // Si no hay líneas resaltadas, copia todo el bloque de código
+      var codeText = codeBlock.textContent || codeBlock.innerText;
+    }
 
     // Filtra y elimina los prompts ">>>", "...", y "$" al inicio de las líneas
     codeText = codeText

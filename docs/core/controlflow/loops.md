@@ -1,14 +1,17 @@
 ---
 icon: material/dots-circle
+tags:
+  - Fundamentos del lenguaje
+  - Control de flujo
+  - Bucles
 ---
 
 # Bucles { #loops }
 
-![Big wheel](images/loops/big-wheel.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Gary Lopater](https://unsplash.com/es/@glopater) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/loops/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 Cuando queremos hacer algo más de una vez, necesitamos recurrir a un **bucle**. En esta sección veremos las distintas sentencias en Python que nos permiten repetir un bloque de código.
 
@@ -232,7 +235,7 @@ En comparación con el enfoque «clásico» del bucle `#!python while`:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `m5-limited`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `m5-limited`
 
 ## La sentencia `for` { #for }
 
@@ -295,7 +298,7 @@ y
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `count-vowels`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `count-vowels`
 
 ### Secuencias de números { #range }
 
@@ -364,7 +367,7 @@ Veamos distintos casos de uso:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `prime`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `prime`
 
 #### Usando el guión bajo { #underscore }
 
@@ -390,7 +393,7 @@ Repeat me 10 times!
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `pow`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `pow`
 
 ## Bucles anidados { #nested-loops }
 
@@ -399,11 +402,9 @@ Como ya vimos en las [sentencias condicionales](conditionals.md#if), el **anidam
 En el caso de los bucles también es posible hacer anidamiento, tanto para bucles [`while`](#while) como para bucles [`for`](#for).
 
 ![Matrioskas](images/loops/matrioskas.png)
-(1)
-{ .annotate }
-
-1.  - Muñecas rusas «Matrioskas» para ejemplificar el anidamiento.
-    - :fontawesome-regular-copyright: [Marina Yufereva](https://www.revista.escaner.cl/node/7197) :material-at: [Escáner Cultural](https://www.revista.escaner.cl/)
+///caption
+Muñecas rusas © [Marina Yufereva](https://www.revista.escaner.cl/node/7197) (Escáner Cultural)
+///
 
 Veamos un <span class="example">ejemplo:material-flash:</span> de **2 bucles anidados** en el que generamos **todas las tablas de multiplicar**:
 
@@ -518,26 +519,26 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de **2 bucles ani
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `mosaic`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `mosaic`
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `letdig`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `m3-sum-limited`
-3. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `repeat-please`
-4. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `one-tree`
-5. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `chess-horse`
-6. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `domino`
-7. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fmin`
-8. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `ascii-table`
-9. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `guess-number`
-10. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `gcd`
-11. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `hamming`
-12. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `cartesian`
-13. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `cumprod-sq`
-14. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `isalpha`
-15. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `kpower`
-16. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `fibonacci`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `letdig`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `m3-sum-limited`
+3. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `repeat-please`
+4. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `one-tree`
+5. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `chess-horse`
+6. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `domino`
+7. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fmin`
+8. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `ascii-table`
+9. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `guess-number`
+10. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `gcd`
+11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `hamming`
+12. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `cartesian`
+13. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `cumprod-sq`
+14. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `isalpha`
+15. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `kpower`
+16. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `fibonacci`
 
 
 [^1]: Esta condición del bucle se conoce como **condición de parada**.

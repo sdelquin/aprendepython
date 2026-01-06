@@ -1,14 +1,17 @@
 ---
 icon: material/code-string
+tags:
+  - Librería estándar
+  - Procesamiento de texto
+  - string
 ---
 
 # string { #string }
 
-![Fork](images/string/ball.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Steve Johnson](https://unsplash.com/@steve_j) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/string/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 El módulo [string](https://docs.python.org/es/3/library/string.html) proporciona **operaciones y constantes** muy útiles para manejo de [cadenas de texto](../../core/datatypes/strings.md), además de distintas estrategias de **formateado de cadenas**.
 
@@ -30,7 +33,7 @@ Las constantes definidas en este módulo son las siguientes:
 
 !!! exercise "Ejercicio"
 
-    [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `all-ascii`
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `all-ascii`
 
 ## Plantillas { #templates }
 

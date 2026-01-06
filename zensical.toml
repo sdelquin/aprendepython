@@ -1,0 +1,257 @@
+# ==============================================================================
+# PROJECT
+# ==============================================================================
+
+[project]
+site_name = "Aprende Python"
+site_description = "La guía definitiva en español para aprender Python."
+site_author = "sdelquin"
+site_url = "https://aprendepython.es"
+copyright = """
+Copyright &copy; 2026 Sergio Delgado Quintero
+"""
+
+repo_url = "https://github.com/sdelquin/aprendepython"
+repo_name = "sdelquin/aprendepython"
+
+extra_css = ["assets/css/custom.css"]
+extra_javascript = [
+    "assets/js/clipboard.js",
+    "javascripts/mathjax.js",
+    "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
+]
+
+[project.theme.icon]
+repo = "material/github"
+
+# ==============================================================================
+# NAVIGATION
+# ==============================================================================
+
+[[project.nav]]
+"Inicio" = "index.md"
+
+[[project.nav]]
+"Fundamentos del lenguaje" = [
+    "core/index.md",
+    {"Introducción" = [
+        "core/introduction/index.md",
+        "core/introduction/machine.md",
+        "core/introduction/history.md",
+        "core/introduction/python.md",
+    ]},
+    {"Entornos de desarrollo" = [
+        "core/devenv/index.md",
+        "core/devenv/thonny.md",
+        "core/devenv/real-context.md",
+        "core/devenv/vscode.md",
+    ]},
+    {"Tipos de datos" = [
+        "core/datatypes/index.md",
+        "core/datatypes/data.md",
+        "core/datatypes/numbers.md",
+        "core/datatypes/strings.md",
+    ]},
+    {"Control de flujo" = [
+        "core/controlflow/index.md",
+        "core/controlflow/conditionals.md",
+        "core/controlflow/loops.md",
+    ]},
+    {"Estructuras de datos" = [
+        "core/datastructures/index.md",
+        "core/datastructures/lists.md",
+        "core/datastructures/tuples.md",
+        "core/datastructures/dicts.md",
+        "core/datastructures/sets.md",
+        "core/datastructures/files.md",
+    ]},
+    {"Modularidad" = [
+        "core/modularity/index.md",
+        "core/modularity/functions.md",
+        "core/modularity/oop.md",
+        "core/modularity/exceptions.md",
+        "core/modularity/modules.md",
+    ]},
+]
+
+[[project.nav]]
+"Librería estándar" = [
+    "stdlib/index.md",
+    {"Procesamiento de texto" = [
+        "stdlib/text-processing/index.md",
+        "stdlib/text-processing/re.md",
+        "stdlib/text-processing/string.md",
+    ]},
+    {"Acceso a datos" = [
+        "stdlib/data-access/index.md",
+        "stdlib/data-access/sqlite.md",
+    ]},
+]
+
+[[project.nav]]
+"Paquetes de terceros" = [
+    "third-party/index.md",
+    {"Aprendizaje" = [
+        "third-party/learning/index.md",
+        "third-party/learning/pypas.md",
+    ]},
+    {"Ciencia de datos" = [
+        "third-party/data-science/index.md",
+        "third-party/data-science/jupyter.md",
+        "third-party/data-science/numpy.md",
+        {"Pandas" = [
+            "third-party/data-science/pandas/index.md",
+            "third-party/data-science/pandas/series.md",
+            "third-party/data-science/pandas/dataframes.md",
+        ]},
+        "third-party/data-science/matplotlib.md",
+    ]},
+    {"Configuraciones" = [
+        "third-party/config/index.md",
+        "third-party/config/prettyconf.md",
+    ]},
+    {"Desarrollo web" = [
+        "third-party/webdev/index.md",
+        {"Django" = [
+            "third-party/webdev/django/index.md",
+            "third-party/webdev/django/webdev.md",
+            "third-party/webdev/django/setup.md",
+            "third-party/webdev/django/apps.md",
+            "third-party/webdev/django/models.md",
+            "third-party/webdev/django/admin.md",
+            "third-party/webdev/django/urls.md",
+            "third-party/webdev/django/views.md",
+            "third-party/webdev/django/templates.md",
+            "third-party/webdev/django/forms.md",
+            "third-party/webdev/django/static.md",
+            "third-party/webdev/django/auth.md",
+            "third-party/webdev/django/i18n.md",
+            "third-party/webdev/django/extras.md",
+            "third-party/webdev/django/middleware.md",
+            "third-party/webdev/django/api.md",
+            "third-party/webdev/django/justfile.md",
+        ]},
+    ]},
+    {"PDF" = [
+        "third-party/pdf/index.md",
+        "third-party/pdf/weasyprint.md",
+    ]},
+    {"Redes" = [
+        "third-party/networking/index.md",
+        "third-party/networking/requests.md",
+    ]},
+    {"Scraping" = [
+        "third-party/scraping/index.md",
+        "third-party/scraping/beautifulsoup.md",
+        "third-party/scraping/selenium.md",
+    ]},
+]
+
+# ==============================================================================
+# THEME
+# ==============================================================================
+
+[project.theme]
+language = "es"
+logo = "assets/images/aprendepython-logo.svg"
+favicon = "assets/images/aprendepython-logo.svg"
+features = [
+    "announce.dismiss",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    "content.tooltips",
+    "navigation.expand",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.path",
+    "navigation.prune",
+    "navigation.tabs",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "toc.follow",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+# ==============================================================================
+# TEMA CLARO
+# ==============================================================================
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+primary = "indigo"
+accent = "teal"
+
+# ==============================================================================
+# TEMA OSCURO
+# ==============================================================================
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+primary = "indigo"
+accent = "teal"
+
+# ==============================================================================
+# ENLACES SOCIAL
+# ==============================================================================
+
+[[project.extra.social]]
+icon = "material/human-greeting-variant"
+link = "https://sdelquin.matraka.es"
+
+# ==============================================================================
+# MARKDOWN EXTENSIONS
+# ==============================================================================
+
+[project.markdown_extensions.abbr]
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.arithmatex]
+generic = true
+[project.markdown_extensions.pymdownx.betterem]
+smart_enable = "all"
+[project.markdown_extensions.pymdownx.caret]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.keys]
+[project.markdown_extensions.pymdownx.mark]
+[project.markdown_extensions.pymdownx.smartsymbols]
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.pymdownx.tilde]
+[project.markdown_extensions.pymdownx.snippets]
+auto_append = ["includes/abbreviations.md"]
+[project.markdown_extensions.pymdownx.blocks.caption]

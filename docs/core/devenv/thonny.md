@@ -1,14 +1,17 @@
 ---
 icon: material/baby-carriage
+tags:
+  - Fundamentos del lenguaje
+  - Entornos de desarrollo
+  - Thonny
 ---
 
 # Thonny { #thonny }
 
-![Desktop](images/thonny/desktop.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Freddie Marriage](https://unsplash.com/es/@fredmarriage) (Unsplash)
+![Banner](images/thonny/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 [Thonny](https://thonny.org/) es un programa muy interesante para empezar a aprender Python porque ofrece un entorno amigable en el que sólo te debes preocupar por escribir código y mejorar tus detrezas en Python.
 
@@ -29,6 +32,10 @@ Para instalar Thonny debemos [acceder a su web](https://thonny.org/) y descargar
 Una vez terminada la instalación ya podemos lanzar la aplicación que se verá parecida a la siguiente imagen:
 
 ![Thonny empty](images/thonny/thonny-empty.png)
+///caption
+Aspecto de Thonny una vez arrancado
+///
+
 
 !!! tip "Aspecto"
 

@@ -1,14 +1,17 @@
 ---
 icon: material/microsoft-visual-studio-code
+tags:
+  - Fundamentos del lenguaje
+  - Entornos de desarrollo
+  - Visual Studio Code
 ---
 
 # Visual Studio Code { #vscode }
 
-![Pencil](images/vscode/pencil.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Kelly Sikkema](https://unsplash.com/@kellysikkema) (Unsplash)
+![Banner](images/vscode/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
 
 [Visual Studio Code](https://code.visualstudio.com/) (también conocido por _VSCode_) es un entorno de desarrollo integrado IDE gratuito y de código abierto desarrollado por **Microsoft** :material-microsoft: que ha ganado mucha relevancia en los últimos años. Permite trabajar fácilmente con multitud de lenguajes de programación y dispone de una gran cantidad de extensiones.
 
@@ -18,7 +21,7 @@ VSCode está disponible para distintos sistemas operativos con paquetes autoinst
 
 ## Extensiones { #extensions }
 
-VSCode proporciona muchas extensiones que facilitan la escritura de código **Python :material-language-python:**. Personalmente recomiendo las siguientes:
+VSCode proporciona muchas extensiones que facilitan la escritura de código **Python :material-language-python:**{.green}. Personalmente recomiendo las siguientes:
 
 - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) → Soporte para el lenguaje Python con múltiples características.
 - [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) → Linter[^1] y formateador de código para Python (extremadamente rápido): [astral.sh/ruff](https://astral.sh/ruff).
@@ -99,20 +102,32 @@ A continuación pondremos un **punto de ruptura** (también llamado «breakpoint
 En este ejemplo ponemos un punto de ruptura en la ^^línea 10^^:
 
 ![VSCode Debug Breakpoint](images/vscode/vscode-debug-breakpoint.png)
+///caption
+Punto de ruptura en VSCode
+///
 
 También es posible añadir **puntos de ruptura condicionales** pulsando con el botón derecho y luego «Add Conditional Breakpoint»:
 
 ![VSCode Debug conditional Breakpoint](images/vscode/vscode-debug-cbreakpoint.png)
+///caption
+Condiciones para punto de ruptura en VSCode
+///
 
 ### Lanzar la depuración { #launch-debug }
 
 Ahora ya podemos lanzar la depuración pulsando la tecla ++f5++. Nos aparecerá el siguiente mensaje en el que dejaremos la opción por defecto «Archivo de Python» y pulsamos ++enter++:
 
 ![VSCode Debug Config](images/vscode/vscode-debug-config.png)
+///caption
+Configuración de depuración en VSCode
+///
 
 Ahora ya se inicia el «modo depuración» y veremos una pantalla similar a la siguiente:
 
 ![VSCode Debug Zones](images/vscode/vscode-debug-zones.png)
+///caption
+Paneles de depuración en VSCode
+///
 
 Zonas de la interfaz en modo depuración:
 

@@ -1,14 +1,17 @@
 ---
 icon: simple/sqlite
+tags:
+  - Librería estándar
+  - Acceso a datos
+  - sqlite
 ---
 
 # sqlite { #sqlite }
 
-![Hard disk](images/sqlite/hdd.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Jandira Sonnendeck](https://unsplash.com/@jandira_sonnendeck) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/sqlite/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 ## ¿Qué es SQLite? { #what-is-sqlite }
 
@@ -937,8 +940,8 @@ Volvemos a lanzar la misma sentencia SQL pero ahora utilizando este nuevo mecani
 
 ## Ejercicios { #exercises }
 
-1. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `todo`
-2. [pypas](https://pypas.es) &nbsp;:fontawesome-solid-hand-holding-heart:{ .slide } `twitter`
+1. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `todo`
+2. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `twitter`
 
 
 [^1]: [Herramienta cliente de sqlite](https://www.sqlite.org/cli.html) para terminal.

@@ -1,14 +1,17 @@
 ---
 icon: simple/selenium
+tags:
+  - Paquetes de terceros
+  - Scraping
+  - Selenium
 ---
 
 # Selenium { #selenium }
 
-![Asistente robot](images/selenium/robot-assistant.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Andy Kelly](https://unsplash.com/@askkell) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/selenium/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [Selenium](https://www.selenium.dev/) es un proyecto que permite **automatizar navegadores**. Está principalmente enfocado al testeo de aplicaciones web pero también permite desarrollar potentes **flujos de trabajo** como es el caso de las **técnicas de scraping**.
 

@@ -1,10 +1,14 @@
 ---
 icon: material/engine-outline
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Puesta en marcha { #setup }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 ## Entorno de trabajo { #workspace }
 

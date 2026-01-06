@@ -1,14 +1,17 @@
 ---
 icon: simple/numpy
+tags:
+  - Paquetes de terceros
+  - Ciencia de datos
+  - NumPy
 ---
 
 # NumPy { #numpy }
 
-![Blocks](images/numpy/blocks.jpg)
-(1)
-{ .annotate }
-
-1. :fontawesome-regular-copyright: [Vlado Paunovic](https://unsplash.com/@vlado) :material-at: [Unsplash](https://unsplash.com) 
+![Banner](images/numpy/banner.jpg)
+///caption
+Imagen generada con Inteligencia Artificial
+///
 
 [`numpy`](https://numpy.org/) es el paquete fundamental para computación científica en Python y manejo de arrays numéricos multi-dimensionales.
 

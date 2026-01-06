@@ -1,10 +1,14 @@
 ---
 icon: octicons/database-24
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Modelos { #models }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Como hemos visto en las [características de Django](../django/webdev.md#django-features) existe un **ORM** que vincula tablas de la base de datos con objetos de Python.
 
@@ -392,7 +396,7 @@ class Post(models.Model):
 
 #### Valores únicos juntos { #unique-together }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Aunque quizás no sea del todo realista, supongamos un <span class="example">ejemplo:material-flash:</span> en el que no pueden haber dos «posts» con el mismo título y «slug».
 
@@ -942,7 +946,7 @@ flowchart TD
 
 ## Tipos enumerados { #enums }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Django nos permite definir [tipos enumerados](https://docs.djangoproject.com/en/stable/ref/models/fields/#enumeration-types) que establecen un conjunto (normalmente pequeño) de posibles valores.
 
@@ -1127,7 +1131,7 @@ class Post(models.Model):
 
 ## Claves ajenas { #foreign-keys }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Una de las mayores fortalezas de los [Sistemas Gestores de Bases de Datos Relacionales](https://es.wikipedia.org/wiki/Sistema_de_gesti%C3%B3n_de_bases_de_datos_relacionales) RDBMS es la de poder «relacionar» entidades (_modelos_) mediante el uso de **claves ajenas**.
 
@@ -1453,7 +1457,7 @@ class Profile(models.Model):
 
 ### Relaciones muchos a muchos { #many-to-many }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Planteamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que asignamos _etiquetas_ a los «posts» de nuestro «blog»:
 
@@ -1958,7 +1962,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
 
 ## Campos de fichero { #file-fields }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Entre los distintos [campos](#fields) que podemos utilizar en un modelo Django están los **campos de fichero** que permiten almacenar (vincular) un fichero a un objeto.
 
@@ -2158,7 +2162,7 @@ def add_post(request):
 
 ## Guardar de forma personalizada { #override-save }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Hay ocasiones en las que nos interesa personalizar el guardado de un modelo para modificar determinados atributos o realizar otras acciones. Esto se consigue sobreescribiendo el método [`save()`](https://docs.djangoproject.com/en/stable/topics/db/models/#overriding-model-methods) del modelo.
 
@@ -2211,7 +2215,7 @@ class Post(models.Model):
 
 ## URL canónica { #canonical-url }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Django nos ofrece la posibilidad de asignar a cada instancia de modelo una URL canónica[^4]. Para ello debemos implementar el método [`get_absolute_url()`](https://docs.djangoproject.com/en/stable/ref/models/instances/#get-absolute-url).
 
@@ -2276,7 +2280,7 @@ Podemos reaprovechar el método `get_absolute_url()` para utilizarlo en plantill
 
 ## Ordenación por defecto { #default-ordering }
 
-<span class="djversion intermediate">:simple-django: Intermedio :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
 Hemos visto ya [cómo ordenar resultados de consultas](#ordering) pero Django también ofrece la posibilidad de definir una **ordenación por defecto** para los modelos.
 
@@ -2305,7 +2309,7 @@ class Post(models.Model):
 
 ## Señales { #signals }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Las [señales](https://docs.djangoproject.com/en/stable/topics/signals/) en Django permiten realizar acciones cuando suceden determinados eventos. Los más habituales están relacionados con _modificación de modelos_.
 
@@ -2527,7 +2531,7 @@ class PostsConfig(AppConfig):
 
 ## Validadores { #validators }
 
-<span class="djversion advanced">:simple-django: Avanzado :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
 Hay ocasiones en las que necesitamos añadir restricciones adicionales a los [campos](#fields) que proporciona Django. Para ello podemos hacer uso de los [validadores](https://docs.djangoproject.com/en/stable/ref/validators/).
 

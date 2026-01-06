@@ -1,10 +1,14 @@
 ---
 icon: material/application-outline
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
 ---
 
 # Aplicaciones { #apps }
 
-<span class="djversion basic">:simple-django: Básico :material-tag-multiple-outline:</span>
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
 Un proyecto Django está formado por aplicaciones. En este contexto podemos entender una aplicación como un «módulo» o «sección» de nuestro sitio web.
 
