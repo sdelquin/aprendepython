@@ -6,11 +6,18 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.0.1
+
+Publicada el 08-01-2026
+
+- pypas
+  - Añade documentación de nuevos comandos.
+
 ## Version 3.0.0
 
 Publicada el 06-01-2026
 
-Migración de todo el sitio web a Zensical.
+- Migración de todo el sitio web a Zensical.
 
 ## Version 2.2.4
 
