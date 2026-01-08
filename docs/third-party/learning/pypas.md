@@ -152,6 +152,14 @@ Cada ejercicio dispone de un _slug_ (palabra) que lo identifica unívocamente.
     └── vendor.py
     ```
 
+!!! tip "Ejercicio público"
+
+    Si estás [autenticado](#auth) tendrás acceso únicamente a los ejercicios definidos en el _frame_ activo en cada momento. Pero aún así es posible acceder a cualquier ejercicio «público» utilizando un modificador:
+
+    ```console
+    $ pypas get -p add
+    ```
+
 ## Enunciado de un ejercicio { #doc }
 
 Una vez dentro de la carpeta del ejercicio, podemos visualizar el enunciado del ejercicio mediante el siguiente comando:
@@ -232,6 +240,8 @@ $ pypas update
 
 Se hará automáticamente una copia de seguridad (local) de aquellos ficheros (propios) que puedan ser sobreescritos.
 
+:material-check-all:{ .blue } Tras la actualización, se mostrará un **mensaje informativo** con las _release notes_ que incluye ^^anotaciones de cada versión^^ desde la actual hasta la última disponible.
+
 !!! warning "Dentro de la carpeta"
 
     :material-folder-open: Este comando requiere estar dentro de la carpeta del ejercicio :material-arrow-right-bold: `#!console cd <ejercicio>`
@@ -245,6 +255,24 @@ $ pypas zip
 ```
 
 El comando anterior genera un fichero `<ejercicio>.zip` dentro de la propia carpeta del ejercicio con todos los ficheros (exluyendo ciertos ficheros «temporales» o «auxiliares»).
+
+!!! warning "Dentro de la carpeta"
+
+    :material-folder-open: Este comando requiere estar dentro de la carpeta del ejercicio :material-arrow-right-bold: `#!console cd <ejercicio>`
+
+## Información de un ejercicio { #exercise }
+
+Puede ser interesante conocer información sobre el ejercicio que estamos trabajando. Para ello es suficiente con ejecutar el siguiente comando:
+
+```console
+$ pypas exercise
+```
+
+Si se quiere mostrar el historial de versiones (_releases_) podemos utilizar un modificador:
+
+```console
+$ pypas exercise -r
+```
 
 !!! warning "Dentro de la carpeta"
 
@@ -264,6 +292,14 @@ Es posible eliminar el «token» de autenticación ejecutando el comando:
 
 ```console
 $ pypas unauth
+```
+
+### Información de autenticación { #auth-info }
+
+Para conocer el estado de la autenticación, basta con ejecutar el mismo comando sin argumentos:
+
+```console
+$ pypas auth
 ```
 
 ## Entregar un ejercicio { #put }
