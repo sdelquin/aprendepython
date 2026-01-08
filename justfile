@@ -13,3 +13,7 @@ docker: clean
 # Clean temp files
 clean:
     rm -fr .cache site
+
+# Bump version: component = [major, minor, patch]
+bump component:
+    uv version --bump {{component}}
