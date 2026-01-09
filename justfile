@@ -1,6 +1,6 @@
 # Run development server
-serve: clean
-    uv run zensical serve
+serve port="8000": clean
+    uv run zensical serve -a localhost:{{port}}
 
 # Build site native-way
 build: clean
