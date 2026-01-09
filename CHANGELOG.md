@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Estructuras de datos: Listas
+  - Añade ejercicios al principio del capítulo.
+
 ## Version 3.0.1
 
 Publicada el 08-01-2026

@@ -202,6 +202,10 @@ Python nos ofrece varios mecanismos para invertir los elementos de una lista, en
     
     1. Se ha modificado la lista original.
 
+!!! exercise "Ejercicio"
+
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `slicerev`
+
 ### Añadir al final de la lista { #append }
 
 Una de las operaciones más utilizadas en listas es **añadir elementos al final** de las mismas. Para ello Python nos ofrece la función `#!python append()`. Se trata de un método «destructivo» que modifica la lista original.
@@ -542,6 +546,10 @@ Python nos ofrece varios mecanismos para borrar una lista por completo:
 !!! info "Recolector de basura"
 
     La memoria que queda «en el limbo» después de asignar un nuevo valor a la lista es detectada por el [recolector de basura](https://dev.to/pragativerma18/understanding-pythons-garbage-collection-and-memory-optimization-4mi2) de Python, quien se encarga de liberar aquellos datos que no están referenciados por ninguna variable.
+
+!!! exercise "Ejercicio"
+
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `qletters`
 
 ### Encontrar un elemento { #find }
 
