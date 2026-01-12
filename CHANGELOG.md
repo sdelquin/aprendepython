@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Django: Modelos
+  - Añade otra manera de añadir objetos en muchos a muchos.
+
 ## Version 3.0.2
 
 Publicada el 12-01-2026

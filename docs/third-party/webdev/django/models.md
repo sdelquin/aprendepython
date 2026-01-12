@@ -1551,7 +1551,11 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1.  También se pueden añadir varias a la etiquetas a la vez:
 
         ```pycon
+        >>> # Por separado
         >>> post_python.labels.add(label_tech, label_ai)
+
+        >>> # Desde un iterable (queryset)
+        >>> post_python.labels.add(*labels)
         ```
 
     ```pycon title="Añadir «posts» a una etiqueta"
@@ -1562,7 +1566,11 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     1. También se pueden añadir varios «posts» a la vez:
 
         ```pycon
+        >>> # Por separado
         >>> label_ai.posts.add(post_python, post_midjourney)
+
+        >>> # Desde un iterable (queryset)
+        >>> label_ai.posts.add(*posts)
         ```
 
 === "Crear y añadir :material-creation-outline:"
