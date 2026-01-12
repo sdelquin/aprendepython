@@ -10,9 +10,35 @@ tags:
 
 <span class="dj-level">:material-target-variant: Django especializado</span>
 
-En el ecosistema Django podemos encontrar un paquete muy «conocido» llamado [Django Rest Framework - DRF](https://www.django-rest-framework.org/) que está enfocado al desarrollo de una API. Desde luego es una muy buena opción para determinados escenarios.
+Una API (Interfaz de Programación de Aplicaciones) es un conjunto de reglas y definiciones que permite que diferentes aplicaciones o sistemas se comuniquen entre sí de manera estandarizada. Funciona como un intermediario que recibe solicitudes, las procesa según lo establecido y devuelve respuestas, facilitando el intercambio de datos o funcionalidades sin que los sistemas necesiten conocer cómo está construido el otro internamente. Gracias a las APIs, es posible integrar servicios externos, reutilizar funciones y desarrollar aplicaciones más rápidas, escalables y seguras.
 
-Pero en esta sección no vamos a desarrollar DRF sino que vamos a explicar mecanismos implícitos en Django para implementar una API. Al final y al cabo no deja de ser un potente «backend» con gran cantidad de utilidades.
+En otras palabras, en una especie de **contrato** que se establece entre dos artefactos de software que quieren intercambiar información. Podemos hablar de un **protocolo** por el que se define la manera de solicitar y devolver datos.
+
+![API Handshake](./images/api/api-handshake.svg)
+
+## Paquetes existentes { #packages }
+
+En el universo Python, existen varios paquetes de terceros muy relevantes dedicados a la implementación de APIs:
+
+<div class="grid cards" markdown>
+
+-   Integrados con Django :octicons-link-16:
+
+    ---
+
+    - [x] [Django Rest Framework - DRF](https://www.django-rest-framework.org/): Se integra perfectamente con un proyecto Django y facilita enormemente la integración de la API con el resto de componentes del «framework».
+    - [x] [Django Ninja](https://django-ninja.dev/): Buena integración en Django. Desarrollo rápido y sencillo de cara a la implementación de APIs. Su rendimiento es muy destacado.
+    
+-   Independientes de Django :octicons-unlink-16:
+
+    ---
+
+    - [x] [FastAPI](https://fastapi.tiangolo.com/): _Framework_ para desarrollo web con alto rendimiento y fácil de aprender. Ha tomado mucha relevancia en los últimos años. Se acerca a 100K :octicons-star-16: :simple-github:.
+    - [x] [Flask](https://flask.palletsprojects.com/en/stable/): Aunque no se trata de un _framework_ específico para desarrollo de APIs, se ha popularizado como un paquete muy potente para desarrollo web en el que también se pueden implementar APIs.
+
+</div>
+
+:material-check-all:{ .blue } Pero en esta sección **no vamos a utilizar paquetes/módulos ya existentes** sino que vamos a explicar mecanismos implícitos en Django para implementar una API. Al fin y al cabo no deja de ser un potente «backend» con mucha versatilidad.
 
 ## Serialización { #serialization }
 
@@ -20,9 +46,9 @@ La serialización es el proceso de convertir un objeto o estructura de datos en 
 
 En el contexto de una API, serializar un objeto se traduce en **convertirlo a una cadena de texto**. Esta representación puede venir en distintos formatos. El más habitual suele ser JSON.
 
-En el ámbito de Python, un objeto JSON vendría a ser un [diccionario](../../../core/datastructures/dicts.md) o una [lista de diccionarios](../../../core/datastructures/lists.md) en formato [cadena de texto](../../../core/datatypes/strings.md).
+En el ámbito de Python, un objeto JSON vendría a ser un [diccionario](../../../core/datastructures/dicts.md) (_instancia única_) o una [lista de diccionarios](../../../core/datastructures/lists.md) (_conjunto de instancias_) en formato [cadena de texto](../../../core/datatypes/strings.md).
 
-### JSON { #json }
+### JSON { #serialization-json }
 
 Python dispone del paquete [`json`](https://docs.python.org/es/3/library/json.html) dentro de la _librería estándar_ que permite codificar y decodificar objetos en formato JSON:
 
@@ -48,37 +74,37 @@ A la hora de la transformación Python :material-arrow-right-box: JSON **no todo
 
 Veamos un <span class="example">ejemplo:material-flash:</span> de transformación:
 
-=== "Python"
+<div class="grid" markdown>
 
-    ```python
-    {
-        'name': 'Ana',
-        'age': 25,
-        'city': 'Barcelona',
-        'is_student': True,
-        'marks': [8.5, 9.0, 7.5],
-        'extra': None
-    }
-    ```
+```python title="Python"
+{
+    'name': 'Ana',
+    'age': 25,
+    'city': 'Barcelona',
+    'is_student': True,
+    'marks': [8.5, 9.0, 7.5],
+    'extra': None
+}
+```
 
-=== "JSON"
+```json title="JSON"
+{
+    "name": "Ana",
+    "age": 25,
+    "city": "Barcelona",
+    "is_student": true,
+    "marks": [8.5, 9.0, 7.5],
+    "extra": null
+}
+```
 
-    ```json
-    {
-        "name": "Ana",
-        "age": 25,
-        "city": "Barcelona",
-        "is_student": false,
-        "marks": [8.5, 9.0, 7.5],
-        "extra": null
-    }
-    ```
+</div>
     
 ### Modelos { #serialize-models }
 
-Por norma general, una API trabajará con modelos (base de datos) que tendremos que serializar para transmitir desde el lado servidor al al lado cliente. Como ya se ha citado, lo más habitual es hacerlo en formato JSON.
+Por norma general, una API trabajará con modelos (base de datos) que tendremos que serializar para transmitir desde el lado servidor al lado cliente. Como ya se ha citado, lo más habitual es hacerlo en formato JSON.
 
-Veamos a continuación una propuesta de **serializador (base) para instancias de modelo**, del que luego podremos derivar distintos serializadores concretos:
+Veamos a continuación una propuesta de **serializador (base) para instancias de modelo**, del que luego podremos derivar (_heredar_) distintos serializadores concretos:
 
 ```python title="shared/serializers.py"
 import json
@@ -119,12 +145,12 @@ class BaseSerializer(ABC):#(1)!
     def to_json(self) -> str:#(9)!
         return json.dumps(self.serialize())
 
-    def json_response(self) -> str:#(10)!
+    def json_response(self) -> JsonResponse:#(10)!
         return JsonResponse(self.serialize(), safe=False)#(11)!
 ```
 { .annotate }
 
-1. Definimos la clase como _abstracta_ para que no se puede crear una instancia de esta clase base.
+1. Definimos la clase como _abstracta_ para que no se pueda crear una instancia de esta clase base.
 2. Datos a serializar (**instancias de modelo**), que puede ser tanto un único objeto como un iterable de objetos.
 3. Se puede pasar un iteriable de campos para utilizar únicamente ese subconjunto a la hora de serializar.
 4. Es posible pasar la _petición HTTP_ desde una vista si queremos construir URLs absolutas en ciertos campos.
@@ -147,8 +173,8 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 ```
@@ -185,18 +211,254 @@ class PostSerializer(BaseSerializer):#(2)!
 10. - No es posible serializar directamente un objeto [`datetime`](https://docs.python.org/3/library/datetime.html#datetime.datetime).
     - Por ello utilizamos el método [`isoformat()`](https://docs.python.org/3/library/datetime.html#datetime.datetime.isoformat) que devuelve una _cadena de texto_ con la representación del objeto.
 
-Un objeto «post» quedaría serializado de la siguiente manera:
+Ahora veamos todo esto en funcionamiento. Primero empezaremos por crear algunos «posts» para poder trabajar:
 
-```python
-{
-    'id': 63,
-    'title': 'How to implement APIs in Python',
-    'slug': 'how-to-implement-apis-in-python'
-    'content': 'Remember that first step is to serialize data',
-    'created_at': '2019-05-18T15:17:08.132263',
-    'updated_at': '2024-02-09T12:45:03.197632',
-}
+```pycon
+>>> NUM_POSTS = 3
+
+>>> for n in range(1, NUM_POSTS + 1):
+...     Post.objects.create(
+...         title=f'API: Post {n}',
+...         slug=f'api-post-{n}',
+...         content=f'Django API {n}'
+...     )
+...
+
+>>> Post.objects.filter(slug__startswith='api')
+<QuerySet [<Post: API: Post 1>, <Post: API: Post 2>, <Post: API: Post 3>]>
 ```
+
+Ahora ya podemos proceder a la **serialización**:
+
+=== "Instancia :material-cube-outline:"
+
+    ```pycon hl_lines="7-12"
+    >>> from posts.serializers import PostSerializer
+    
+    >>> post = Post.objects.filter(slug__startswith='api').first()
+
+    >>> serializer = PostSerializer(post)#(1)!
+    >>> serializer.serialize()
+    {'id': 1,
+     'title': 'API: Post 1',
+     'slug': 'api-post-1',
+     'content': 'Django API 1',
+     'created_at': '2026-01-10T10:48:27.735961+00:00',
+     'updated_at': '2026-01-10T10:48:27.735982+00:00'}
+    ```
+    { .annotate }
+    
+    1. Al construir el serializador pasamos la instancia del «post».
+
+=== "Iterable :fontawesome-solid-cubes:"
+
+    ```pycon hl_lines="7-24"
+    >>> from posts.serializers import PostSerializer
+
+    >>> posts = Post.objects.filter(slug__startswith='api')
+    
+    >>> serializer = PostSerializer(posts)#(1)!
+    >>> serializer.serialize()
+    [{'id': 1,
+      'title': 'API: Post 1',
+      'slug': 'api-post-1',
+      'content': 'Django API 1',
+      'created_at': '2026-01-10T10:48:27.735961+00:00',
+      'updated_at': '2026-01-10T10:48:27.735982+00:00'},
+     {'id': 2,
+      'title': 'API: Post 2',
+      'slug': 'api-post-2',
+      'content': 'Django API 2',
+      'created_at': '2026-01-10T10:48:27.736955+00:00',
+      'updated_at': '2026-01-10T10:48:27.736965+00:00'},
+     {'id': 3,
+      'title': 'API: Post 3',
+      'slug': 'api-post-3',
+      'content': 'Django API 3',
+      'created_at': '2026-01-10T10:48:27.737453+00:00',
+      'updated_at': '2026-01-10T10:48:27.737459+00:00'}]
+    ```
+    { .annotate }
+    
+    1. Al construir el serializador pasamos el ~~iterable~~ _queryset_ de «posts».
+
+#### Claves ajenas { #serialize-fk-models }
+
+¿Qué ocurre cuando tenemos que serializar un modelo que incluye una clave ajena? Básicamente que tendremos que incluir la serialización de la clave ajena en la propia serialización del modelo.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> de clave ajena donde [los «posts» tienen comentarios](models.md#one-to-many):
+
+```python title="comments/models.py"
+from django.db import models
+
+
+class Comment(models.Model):
+    alias = models.CharField(max_length=128)
+    content = models.TextField()
+    post = models.ForeignKey(
+        'posts.Post',
+        related_name='comments',
+        on_delete=models.CASCADE
+    )
+```
+
+Ahora vamos a crear su serializador:
+
+```python title="comments/serializers.py" hl_lines="10"
+from posts.serializers import PostSerializer
+from shared.serializers import BaseSerializer
+
+
+class CommentSerializer(BaseSerializer):
+    def serialize_instance(self, instance):
+        return {
+            'alias': instance.alias,
+            'content': instance.content,
+            'post': PostSerializer(instance.post).serialize(),#(1)!
+        }
+```
+{ .annotate }
+
+1. Utilizamos el serializador ya creado con el atributo `post` del comentario.
+
+Antes de continuar vamos a crear un comentario para poder usarlo a la hora de serializar:
+
+```pycon
+>>> post = Post.objects.filter(slug__startswith='api').first()
+
+>>> comment = Comment.objects.create(
+...     alias='guido',
+...     content='Just a comment',
+...     post=post
+... )
+...
+```
+
+A continuación se muestra cómo proceder con la serialización a partir del comentario creado previamente:
+
+```pycon hl_lines="5-12"
+>>> from comments.serializers import CommentSerializer
+
+>>> serializer = CommentSerializer(comment)
+>>> serializer.serialize()#(1)!
+{'alias': 'guido',
+ 'content': 'Just a comment',
+ 'post': {'id': 1,
+  'title': 'API: Post 1',
+  'slug': 'api-post-1',
+  'content': 'Django API 1',
+  'created_at': '2026-01-10T10:48:27.735961+00:00',
+  'updated_at': '2026-01-10T10:48:27.735982+00:00'}}
+```
+{ .annotate }
+
+1. Nótese en la salida el serializador anidado para el atributo `post`.
+
+#### Campos de fichero { #serialize-files }
+
+Hay modelos que contienen [campos de fichero](models.md#file-fields) (_identificados por una ruta_). Los más habituales son `ImageField` o `FileField`. En estos casos, cuando serializamos una instancia del modelo debemos tener en cuenta estos campos y serializarlos como una **ruta absoluta** (incluyendo dominio) para que sea sencillo de consumir desde cualquier cliente.
+
+Tratemos el <span class="example">ejemplo:material-flash:</span> de un modelo `Post` que contiene una **imagen de portada**:
+
+```python title="posts/models.py" hl_lines="10-13"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    cover = models.ImageField(
+        upload_to='covers',
+        default='covers/nocover.png'
+    )
+```
+
+A la hora de implementar su serializador hay que reconocer que uno de sus campos es de «tipo fichero» con lo que necesitamos convertir su ruta:
+
+```python title="posts/serializers.py" hl_lines="13"
+from shared.serializers import BaseSerializer
+
+
+class PostSerializer(BaseSerializer):
+    def serialize_instance(self, instance) -> dict:
+        return {
+            'id': instance.pk,
+            'title': instance.title,
+            'slug': instance.slug,
+            'content': instance.content,
+            'created_at': instance.created_at.isoformat(),
+            'updated_at': instance.updated_at.isoformat(),
+            'cover': self.build_url(instance.cover.url)#(1)!
+        }
+```
+{ .annotate }
+
+1. Utilizamos el método `build_url()` del [serializador base](#serialize-models) `BaseSerializer`.
+
+Antes de continuar vamos a crear un «post» para poder usarlo a la hora de serializar:
+
+```pycon
+>>> Post.objects.create(
+...     title='Django API with ImageField',
+...     slug='django-api-with-imagefield',
+...     content='Remember to serialize url path for ImageField',
+...     cover='example.png'
+... )
+```
+
+Veamos el serializador en funcionamiento:
+
+=== "Desde REPL <span class="green">❯❯❯</span>"
+
+    ```pycon hl_lines="13"
+    >>> from posts.serializers import PostSerializer
+
+    >>> post = Post.objects.get(slug='django-api-with-imagefield')
+
+    >>> serializer = PostSerializer(post)#(1)!
+    >>> serializer.serialize()
+    {'id': 4,
+    'title': 'Django API with ImageField',
+    'slug': 'django-api-with-imagefield',
+    'content': 'Remember to serialize url path for ImageField',
+    'created_at': '2026-01-11T11:57:24.500618+00:00',
+    'updated_at': '2026-01-11T11:57:24.500659+00:00',
+    'cover': '/media/example.png'}
+    ```
+    { .annotate }
+    
+    1. La ruta de salida no incluye la URL completa (con dominio) porque no hemos pasado la petición (_request_) al constructor del serializador.
+
+=== "Desde una vista :material-alpha-v-circle:{.pink}"
+
+    ```python title="posts/views.py" hl_lines="6"
+    from .models import Post
+    from .serializers import PostSerializer
+
+    def post_detail(request, post_slug: str):
+        post = Post.objects.get(slug=post_slug)
+        serializer = PostSerializer(post, request=request)#(1)!
+        serializer.serialize()
+    ```
+    { .annotate }
+    
+    1. La ruta de salida incluye la URL completa (con dominio) porque hemos pasado la petición (_request_) al constructor del serializador.
+
+    En este caso la salida sería algo como:
+
+    ```python hl_lines="7"
+    {'id': 4,
+     'title': 'Django API with ImageField',
+     'slug': 'django-api-with-imagefield',
+     'content': 'Remember to serialize url path for ImageField',
+     'created_at': '2026-01-11T11:57:24.500618+00:00',
+     'updated_at': '2026-01-11T11:57:24.500659+00:00',
+     'cover': 'http://localhost:8000/media/example.png'}
+    ```
+
 
 ## Gestión de peticiones { #request-management }
 
@@ -208,7 +470,7 @@ El diseño de las URLs de una API no dista especialmente del diseño habitual de
 
 En el contexto de una API se suele hablar de [«entrypoint»](https://smartbear.com/learn/performance-monitoring/api-endpoints/) (punto de entrada) al referirnos a una URL concreta.
 
-Algo ~~importante~~ interesante sería usar el prefijo `/api` en el diseño de nuestras URLs para la API. Esto no implica generar una única aplicación `api` en la que tengamos toda la lógica de negocio. Se pueden seguir creando aplicaciones que respondan a la semántica de nuestr contexto para luego redirigir a las vistas correspondientes.
+Algo ~~importante~~ interesante sería usar el prefijo `/api` en el diseño de nuestras URLs para la API. Esto no implica generar una única aplicación `api` en la que tengamos toda la lógica de negocio. Se pueden seguir creando aplicaciones que respondan a la semántica de nuestro contexto para luego redirigir a las vistas correspondientes.
 
 En el <span class="example">ejemplo:material-flash:</span> de un «blog» podríamos organizar las URLs de primer nivel de la siguiente manera:
 
@@ -220,7 +482,6 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/posts/', include('posts.urls')),
-    path('api/categories/', include('categories.urls')),
 ]
 ```
 
@@ -295,14 +556,14 @@ En el caso de que se realice una petición HTTP con un método no permitido, Dja
 
 Simplificando mucho, podríamos implementar una API únicamente sobre dos métodos HTTP: `GET` y `POST`.
 
-A la hora de elegir cuál debemos aplicar se podrían seguir estas sencillas instrucciones:
+A la hora de elegir cuál debemos aplicar se podrían seguir estas sencillas reglas:
 
-| Lectura :octicons-database-24: | Escritura :octicons-database-24: | Método HTTP |
+| Lectura :material-database-arrow-up: | Escritura :material-database-arrow-down: | Método HTTP |
 | --- | --- | --- |
-| | | `GET`{ .green } |
-| ✔ | | `GET`{ .green } |
-| | ✔ | `POST`{ .blue } |
-| ✔ | ✔ | `POST`{ .blue } |
+| - | - | **GET** |
+| :fontawesome-solid-r:{.green} | - | **GET** |
+| - | :fontawesome-solid-w:{.red} | **POST** |
+| :fontawesome-solid-r:{.green} | :fontawesome-solid-w:{.red} | **POST** |
 
 
 ### CSRF { #csrf }
@@ -326,9 +587,9 @@ def csrf_exempt_view(request):
 
 #### Recibiendo un JSON { #json-receive }
 
-Habitualmente una API recibe datos en formato JSON en el «body» (cuerpo) de una petición POST.
+Habitualmente una API recibe datos en formato JSON dentro del «body» (cuerpo) de una petición POST. En el caso concreto de Django, dichos datos se inyectan en el atributo [`body`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpRequest.body) de la petición `HttpRequest`.
 
-Django inyecta dichos datos en el atributo [`body`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpRequest.body) de `HttpRequest`. Necesitaremos **deserializarlos** para obtener el objeto Python correspondiente:
+Necesitaremos **deserializar**[^1] el atributo `request.body` para obtener el objeto Python correspondiente:
 
 ```python
 import json
@@ -349,10 +610,9 @@ Como se ha comentado previamente, una API que serializa datos **suele** devolver
 Para ello, Django nos proporciona el objeto [`JsonResponse`](https://docs.djangoproject.com/en/stable/ref/request-response/#jsonresponse-objects) que recibe un objeto Python serializable y devuelve una respuesta con la representación de dicho objeto en formato JSON:
 
 ```python
-from django.http import JsonResponse
 import datetime
 
-from posts.models import Post
+from django.http import JsonResponse
 
 
 def now(request):
@@ -363,28 +623,31 @@ def now(request):
 1.  - Si lo que fuéramos a serializar no fuera un diccionario, habría que pasar `#!python safe=False`
     - Admite un parámetro `status` para indicar el código de estado de la respuesta HTTP.
 
+La respuesta de la vista `#!python now()` sería algo como:
+
+```python
+<JsonResponse status_code=200, "application/json">
+ └ content: {"now": "2026-01-11T11:19:06.909181"}
+```
+
 ##### Códigos de estado HTTP { #http-status-code }
 
 Los [códigos de estado HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) permiten enviar en la respuesta (JSON o HTTP) una indicación del ^^resultado de la operación solicitada^^. Aunque existen una gran variedad de códigos de estado, en [esta tabla](views.md#response-types) se resumen los más importantes.
 
-Por tanto, para hacer uso de estos códigos de estado al enviar una respuesta JSON, podríamos recurrir a ciertas partes del siguiente código:
+Cuando todo va bien el código utilizado suele ser **200**{.green}, pero en el caso de error tenemos distintas alternativas a nuestra disposición. Para el caso de una respuesta JSON, Django nos ofrece estas posibilidades:
 
 ```python
 from django.http import JsonResponse
 
 return JsonResponse({'error': 'Message for Bad request'}, status=400)
-return JsonResponse({'error': 'Message for Unauthorized'}, status=401)#(1)!
-return JsonResponse({'error': 'Message for Forbidden'}, status=403)#(2)!
+return JsonResponse({'error': 'Message for Unauthorized'}, status=401)
+return JsonResponse({'error': 'Message for Forbidden'}, status=403)
 return JsonResponse({'error': 'Message for Not Found'}, status=404)
 return JsonResponse({'error': 'Message for Method Not Allowed'}, status=405)
 return JsonResponse({'error': 'Message for Internal Server Error'}, status=500)
 ```
-{ .annotate }
 
-1. «Unauthorized» indica que el usuario no se ha [autenticado](#auth) correctamente.
-2. «Forbidden» indica que el usuario sí se ha [autenticado](#auth) correctamente pero que no tiene permisos para acceder al recurso solicitado.
-
-:material-check-all:{ .blue } Cuando no se especifica el parámetro `status` en `JsonResponse` su valor por defecto es [`200`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) indicando que todo ha ido bien.
+:material-check-all:{ .blue } Cuando no se especifica el parámetro `status` en `JsonResponse` su valor por defecto es [`200`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).
 
 ## Autenticación { #auth }
 
@@ -392,14 +655,14 @@ Es posible que existan ciertas operaciones en una API que requieran autenticaci�
 
 La autenticación en una API se puede llevar a cabo mediante distintos métodos:
 
-- Autenticación básica con nombre de usuario y contraseña.
-- Autenticación mediante «bearer token» (token portador).
+- Autenticación básica con **nombre de usuario** y **contraseña**.
+- Autenticación mediante **«bearer token»** (_token portador_).
 - [Autentación JWT](https://auth0.com/blog/how-to-handle-jwt-in-python/).
 - [Autenticación OAuth 2.0](https://medium.com/@fyattani/api-authentication-using-oauth-in-python-5d3b6a6778f2).
 
 !!! info "Bearer Token"
 
-    En este apartado nos centraremos en autenticación mediante **«bearer token»** («token» portador). Se trata de un esquema relativamente sencillo de implementar pero que ofrece la funcionalidad necesaria.
+    En este apartado nos centraremos en autenticación mediante **«bearer token»** (_token portador_). Se trata de un esquema relativamente sencillo de implementar pero que ofrece la funcionalidad necesaria.
 
 ### Modelo { #bearer-token-model } 
 
@@ -504,7 +767,7 @@ _OAuth 2.0_ define en el [RFC 6750](https://oauth.net/2/bearer-tokens/#:~:text=B
 
 Necesitaremos algún artefacto que se encargue de controlar el acceso de un ~~cliente~~ usuario mediante la comprobación del «token» de autenticación.
 
-Aunque esta funcionalidad se puede implementar mediante cualquier otro mecanismo, parece que encaja bien en un **decorador**, ya que lo vamos a aplicar sobre distintas vistas del proyecto.
+Aunque esta funcionalidad se puede implementar mediante cualquier otro mecanismo, parece que aquí encaja bien en un **decorador**, lo que nos permite aplicarlo sobre distintas vistas del proyecto.
 
 A continuación se presenta _una propuesta de decorador_ para gestionar el acceso mediante «bearer token»:
 
@@ -517,6 +780,7 @@ from .models import Token
 
 
 def auth_required(func):
+    # Bearer Token como UUID
     BEARER_TOKEN_REGEX = (
         r'Bearer (?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})'#(1)!
     )
@@ -637,3 +901,82 @@ A continuación se muestran algunas **vistas** (API) sobre el <span class="examp
     3. Si el JSON es inválido, devolvemos una respuesta JSON con el código HTTP correspondiente y mensaje informativo de error.
     4. Creamos un nuevo objeto «post» extrayendo los valores de los campos.
     5. Devolvemos una respuesta JSON con el identificador del «post» creado.
+
+## Thunder Client { #thunder-client }
+
+A la hora de probar nuestras APIs podemos utilizar multitud de clientes (aplicaciones) que nos ofrecen funcionalidades como definir el tipo de petición, incorporar cabeceras, modificar el «payload», etc.
+
+Para el contexto concreto de [VSCode](../../../core/devenv/vscode.md) cabe mencionar [Thunder Client:material-flash:](https://www.thunderclient.com/). Se trata de una extensión muy sencilla y ligera que nos permite «atacar» la API sin salir del propio entorno IDE.
+
+![Thunder Client](./images/api/thunder-client.png)
+///caption
+Interfaz de usuario de Thunder Client
+///
+
+Aunque dispone de distintos [planes de pago](https://www.thunderclient.com/pricing) la capa gratuita es suficiente para las tareas básicas en la fase de desarrollo.
+
+## CORS { #cors }
+
+CORS (Cross-Origin Resource Sharing) es un mecanismo de seguridad de los navegadores que controla desde qué orígenes (dominio, protocolo o puerto distintos) una página web puede solicitar recursos a un servidor. Por defecto, un navegador bloquea las peticiones entre orígenes diferentes para evitar riesgos de seguridad, pero con CORS el servidor puede indicar explícitamente que sí confía en ciertos orígenes y permitirles el acceso. Esto se hace mediante encabezados HTTP especiales, que básicamente le dicen al navegador: «estas páginas externas pueden usar mis datos».
+
+Es bastante probable que en el desarrollo de una aplicación web, el _frontend_ esté desarrollado en un determinado «framework» _JavaScript_ mientras que el _backend_ está desarrollado en otra tecnología (_Django_ :heart:{ .beat }). Por tanto ambos servicios están trabajando desde orígenes distintos y necesitamos añadir una gestión CORS el consumo de la API desde el _frontend_ hacia el _backend_ no sea problemática.
+
+Para ello disponemos del paquete [django-cors-headers](https://github.com/adamchainz/django-cors-headers). Su puesta en funcionamiento es bastante sencilla.
+
+### Instalación { #cors-install }
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install django-cors-headers
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-cors-headers
+    ```
+
+### Activación { #cors-activation }
+
+Ahora activamos la aplicación y añadimos el «middleware» correspondiente en `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = [
+    ...,
+    "corsheaders",
+    ...,
+]
+
+MIDDLEWARE = [
+    ...,
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    ...,
+]
+```
+
+### Configuración { #cors-config }
+
+Necesitamos indicar qué dominios (y puertos) estarán permitidos para CORS.
+
+Como <span class="example">ejemplo:material-flash:</span> vamos a suponer que el _frontend_ se está desarrollando en [Vue :material-vuejs:](https://vuejs.org/) y que el _backend_ se está desarrollando en [Django :simple-django:](https://www.djangoproject.com/).
+
+Tendremos que añadir la siguiente configuración a `settings.py`:
+
+```python title="main/settings.py"
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",#(1)!
+    "http://localhost:8000",#(2)!
+]
+```
+{ .annotate }
+
+1. El puerto por defecto de _Vue_ (en desarrollo) suele ser el 3000.
+2. El puerto por defecto de _Django_ (en desarrollo) suele ser el 8000.
+
+!!! info "Producción"
+
+    La configuración anterior está pensada para un **entorno de desarrollo**. Obviamente al pasar a producción hay que tener en cuenta los dominios desde los que se están exponiendo las aplicaciones web.
+
+[^1]: Deserializar JSON es convertir un texto en formato JSON en una estructura de datos utilizable por un programa (como objetos o diccionarios).

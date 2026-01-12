@@ -9,6 +9,7 @@
 *[CSR]: Client Side Rendering
 *[CSRF]: Cross Site Request Forgery
 *[CSS]: Cascading Style Sheets
+*[CORS]: Cross-Origin Resource Sharing
 *[DoD]: Department of Defense (United States)
 *[DOM]: Document Object Model
 *[DPI]: Dots Per Inch
