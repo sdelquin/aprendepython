@@ -6,8 +6,14 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.0.2
+
+Publicada el 12-01-2026
+
 - Estructuras de datos: Listas
   - Añade ejercicios al principio del capítulo.
+- Django: API
+  - Añade nuevo contenido y corrige errores.
 
 ## Version 3.0.1
 
