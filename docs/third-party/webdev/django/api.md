@@ -99,6 +99,41 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de transformació
 ```
 
 </div>
+
+A continuación se muestra el proceso de serialización/deserialización utilizando las herramientas que nos proporciona Python:
+
+```pycon
+>>> import json
+
+>>> data = {
+...     'name': 'Ana',
+...     'age': 25,
+...     'city': 'Barcelona',
+...     'is_student': True,
+...     'marks': [8.5, 9.0, 7.5],
+...     'extra': None
+... }
+...
+
+>>> serialized = json.dumps(data)
+>>> type(serialized)
+str
+>>> print(serialized)
+{"name": "Ana", "age": 25, "city": "Barcelona", "is_student": true, "marks": [8.5, 9.0, 7.5], "extra": null}
+
+>>> deserialized = json.loads(serialized)
+>>> type(deserialized)
+dict
+>>> deserialized
+{'name': 'Ana',
+ 'age': 25,
+ 'city': 'Barcelona',
+ 'is_student': True,
+ 'marks': [8.5, 9.0, 7.5],
+ 'extra': None}
+>>> data == deserialized
+True
+```
     
 ### Modelos { #serialize-models }
 
@@ -284,9 +319,12 @@ Ahora ya podemos proceder a la **serialización**:
 
 #### Claves ajenas { #serialize-fk-models }
 
-¿Qué ocurre cuando tenemos que serializar un modelo que incluye una clave ajena? Básicamente que tendremos que incluir la serialización de la clave ajena en la propia serialización del modelo.
+¿Qué ocurre cuando tenemos que serializar un modelo que incluye una clave ajena? Aquí hay dos propuestas razonables:
 
-Veamos un <span class="example">ejemplo:material-flash:</span> de clave ajena donde [los «posts» tienen comentarios](models.md#one-to-many):
+1. Serializar el objeto anidado mediante el **identificador de su clave primaria**.
+2. Serializar el objeto anidado con todos sus campos a través de un **«sub-serializador»**.
+
+La primera opción es bastante directa, es por ello que nos centraremos en la segunda. Veamos un <span class="example">ejemplo:material-flash:</span> de clave ajena donde [los «posts» tienen comentarios](models.md#one-to-many):
 
 ```python title="comments/models.py"
 from django.db import models
@@ -356,9 +394,20 @@ A continuación se muestra cómo proceder con la serialización a partir del com
 
 #### Campos de fichero { #serialize-files }
 
-Hay modelos que contienen [campos de fichero](models.md#file-fields) (_identificados por una ruta_). Los más habituales son `ImageField` o `FileField`. En estos casos, cuando serializamos una instancia del modelo debemos tener en cuenta estos campos y serializarlos como una **ruta absoluta** (incluyendo dominio) para que sea sencillo de consumir desde cualquier cliente.
+Hay modelos que contienen [campos de fichero](models.md#file-fields) (_identificados por una ruta_). Los más habituales son `ImageField` o `FileField`.
 
-Tratemos el <span class="example">ejemplo:material-flash:</span> de un modelo `Post` que contiene una **imagen de portada**:
+¿Qué podemos hacer con estos campos a la hora de serializar? Aquí hay dos propuestas razonables:
+
+<div class="annotate" markdown>
+1. Serializar el campo como un _string_ [Base64](https://www.base64-image.de/).(1)
+2. Serializar el campo **como una URL** al servidor donde se puede visualizar su contenido.
+</div>
+1. Por <span class="example">ejemplo:material-flash:</span> un cuadrado rojo :red_square: de 4x4 píxeles tendría la siguiente representación en Base64:
+```console
+iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAEElEQVR4nGP8z4AATAxEcQAz0QEHOoQ+uAAAAABJRU5ErkJggg==
+```
+
+La primera opción quizás sea algo exótica, es por ello que nos centraremos en la segunda. Tratemos el <span class="example">ejemplo:material-flash:</span> de un modelo `Post` que contiene una **imagen de portada**:
 
 ```python title="posts/models.py" hl_lines="10-13"
 from django.db import models
@@ -376,7 +425,7 @@ class Post(models.Model):
     )
 ```
 
-A la hora de implementar su serializador hay que reconocer que uno de sus campos es de «tipo fichero» con lo que necesitamos convertir su ruta:
+A la hora de implementar su serializador hay que reconocer que uno de sus campos es de «tipo fichero» con lo que necesitamos acceder a su ruta y construir la URL:
 
 ```python title="posts/serializers.py" hl_lines="13"
 from shared.serializers import BaseSerializer
@@ -462,7 +511,7 @@ Veamos el serializador en funcionamiento:
 
 ## Gestión de peticiones { #request-management }
 
-Al implementar una API hay que tener en cuenta varios aspectos a la hora de gestionar las peticiones.
+Cuando implementamos una API hay que tener en cuenta varios aspectos a la hora de gestionar las peticiones.
 
 ### URLs { #urls }
 
@@ -470,11 +519,11 @@ El diseño de las URLs de una API no dista especialmente del diseño habitual de
 
 En el contexto de una API se suele hablar de [«entrypoint»](https://smartbear.com/learn/performance-monitoring/api-endpoints/) (punto de entrada) al referirnos a una URL concreta.
 
-Algo ~~importante~~ interesante sería usar el prefijo `/api` en el diseño de nuestras URLs para la API. Esto no implica generar una única aplicación `api` en la que tengamos toda la lógica de negocio. Se pueden seguir creando aplicaciones que respondan a la semántica de nuestro contexto para luego redirigir a las vistas correspondientes.
+Algo ~~importante~~ interesante sería usar el prefijo `/api` en el diseño de nuestras URLs para la API. Esto ^^no implica^^ generar una única aplicación `api` en la que tengamos toda la lógica de negocio. Se pueden seguir creando aplicaciones que respondan a la semántica de nuestro problema para luego redirigir a las vistas correspondientes.
 
-En el <span class="example">ejemplo:material-flash:</span> de un «blog» podríamos organizar las URLs de primer nivel de la siguiente manera:
+En el <span class="example">ejemplo:material-flash:</span> de un «blog» podríamos organizar las URLs de primer nivel (para la API de «posts») de la siguiente manera:
 
-```python title="main/urls.py"
+```python title="main/urls.py" hl_lines="7"
 from django.contrib import admin
 from django.urls import include, path
 
@@ -495,8 +544,15 @@ A partir de aquí habría que ir definiendo las URLs para cada recurso:
 | `/api/posts/this-is-django/` | Detalle del «post» con «slug» `this-is-django` |
 | `/api/posts/this-is-django/delete/` | Borrar el «post» con «slug» `this-is-django` |
 | ... | ... |
+
+El diseño de las URLs de una API puede llegar a ser un proceso «artesanal» que depende del contexto del problema y de los recursos que se quieran publicar. Pero siempre hay una serie de reglas fijas que nos ayudan a su implementación.
         
-:material-check-all:{ .blue } El diseño de las URLs de una API puede llegar a ser un proceso «artesanal» que depende del contexto del problema y de los recursos que se quieran ofrecer.
+!!! note "Versiones"
+
+    Es muy recomendable versionar la API para evitar romper clientes existentes:
+
+    `/api/v1/posts/`  
+    `/api/v2/posts/`
 
 ### Métodos HTTP { #http-methods }
 
@@ -513,7 +569,9 @@ Existen distintos [métodos HTTP](https://restfulapi.net/http-methods/) (o verbo
 | `OPTIONS` | Devuelve los métodos HTTP permitidos en un recurso. |
 | `TRACE` | Devuelve la solicitud recibida para diagnóstico. |
 
-:material-check-all:{ .blue } Aunque no es obligatorio utilizar estos métodos, sí se considera una buena práctica porque sigue el estándar de diseño de APIs y puede facilitar su diseño e implementación.
+!!! info "Buena práctica"
+
+    Aunque no es obligatorio utilizar estos métodos, sí se considera una **buena práctica** porque sigue el estándar de diseño de APIs y puede facilitar su diseño e implementación.
 
 Django [ofrece funcionalidades](https://docs.djangoproject.com/en/stable/topics/http/decorators/#allowed-http-methods) para obligar a que una determinada vista sólo acepte ciertos métodos HTTP:
 
@@ -651,18 +709,16 @@ return JsonResponse({'error': 'Message for Internal Server Error'}, status=500)
 
 ## Autenticación { #auth }
 
-Es posible que existan ciertas operaciones en una API que requieran autenticación.
+Es posible que existan ciertas operaciones en una API que requieran autenticación: ¿Movimientos bancarios? ¿Calificaciones de un examen? ¿Citas médicas?
 
 La autenticación en una API se puede llevar a cabo mediante distintos métodos:
 
-- Autenticación básica con **nombre de usuario** y **contraseña**.
-- Autenticación mediante **«bearer token»** (_token portador_).
-- [Autentación JWT](https://auth0.com/blog/how-to-handle-jwt-in-python/).
-- [Autenticación OAuth 2.0](https://medium.com/@fyattani/api-authentication-using-oauth-in-python-5d3b6a6778f2).
+- [ ] Autenticación básica con **nombre de usuario** y **contraseña**.
+- [ ] [Autentación JWT](https://auth0.com/blog/how-to-handle-jwt-in-python/).
+- [ ] [Autenticación OAuth 2.0](https://medium.com/@fyattani/api-authentication-using-oauth-in-python-5d3b6a6778f2).
+- [x] Autenticación mediante **«bearer token»** (_token portador_).
 
-!!! info "Bearer Token"
-
-    En este apartado nos centraremos en autenticación mediante **«bearer token»** (_token portador_). Se trata de un esquema relativamente sencillo de implementar pero que ofrece la funcionalidad necesaria.
+En este apartado ^^nos centraremos en autenticación mediante **«bearer token»** (_token portador_)^^. Se trata de un esquema relativamente sencillo de implementar pero que ofrece la funcionalidad necesaria.
 
 ### Modelo { #bearer-token-model } 
 
@@ -696,31 +752,56 @@ class Token(models.Model):
 
 ### Obtener token { #get-auth-token }
 
-Para obtener el «token» de autenticación tendremos que implementar una vista que reciba usuario y contraseña a través de un JSON sobre una petición POST:
+El cliente se autentica contra el servidor con nombre de usuario y contraseña, y si todo ha ido bien, recibe el _bearer token_:
+
+```mermaid
+sequenceDiagram
+    participant c as Client
+    participant s as Server
+    c->>s: ¡Hola! Quiero autenticarme
+    s-->>c: Necesito nombre de usuario y contraseña
+    c->>s: guido | 1234
+    s-->>c: Correcto. Tu token es A65FF32B8
+```
+
+Para obtener el «token» de autenticación tendremos que implementar una vista que reciba **usuario y contraseña** a través de un JSON mediante una petición **POST**:
 
 ```python title="users/views.py"
+import json
+
 from django.contrib.auth import authenticate
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 
 @csrf_exempt
 @require_POST
 def auth(request):
     payload = json.loads(request.body)#(1)!
-    if user := authenticate(#(2)!
-        username=payload['username'], password=payload['password']
-    ):
-        return JsonResponse({'token': user.token.key})#(3)!
-    return JsonResponse({'error': 'Invalid credentials'}, status=401)#(4)!
+    try:
+        username = payload['username']#(2)!
+        password = payload['password']#(3)!
+    except KeyError:
+        return JsonResponse({'error': 'Missing credentials'}, status=400)#(4)!
+    if user := authenticate(username=username, password=password):#(5)!
+        try:
+            return JsonResponse({'token': user.token.key})#(6)!
+        except ObjectDoesNotExist:
+            return JsonResponse({'error': 'Token not found'}, status=404)#(7)!
+    return JsonResponse({'error': 'Invalid credentials'}, status=401)#(8)!
 ```
 { .annotate }
 
 1. Decodificamos el contenido JSON de la petición.
-2. Comprobamos las credenciales de usuario enviadas en el JSON.
-3. Si todo ha ido bien, devolvemos el «token» de autenticación.
-4. En caso de error devolvemos un mensaje informativo con el [código de respuesta HTTP](views.md#response-types) a **401**.
+2. Extraemos el _nombre de usuario_ desde el _payload_ de la petición.
+3. Extraemos la _contraseña_ desde el _payload_ de la petición.
+4. Si falta alguno de los campos devolvemos una respuesta con código de error.
+5. Comprobamos las credenciales de usuario enviadas en el JSON.
+6. Si todo ha ido bien, devolvemos el «token» de autenticación.
+7. Si no se ha dado de alta un token para este usuario, devolvemos una respuesta con código de error.
+8. En caso de error devolvemos un mensaje informativo con el [código de respuesta HTTP](views.md#response-types) a **401**.
 
 Obviamente habrá que definir una URL que gestione esta petición. Una propuesta podría ser `/api/auth/`:
 
@@ -737,6 +818,18 @@ urlpatterns = [
 ```
 
 ### Comprobar token { #check-auth-token }
+
+En cada petición que el cliente realiza al servidor debe incorporar su _bearer token_:
+
+```mermaid
+sequenceDiagram
+    participant c as Client
+    participant s as Server
+    c->>s: ¡Hola! Quiero añadir un post /api/posts/add/
+    s-->>c: Pues vas a tener que incluir tu token
+    c->>s: Bearer A65FF32B8
+    s-->>c: Correcto. Te has autenticado y el post se ha creado
+```
 
 _OAuth 2.0_ define en el [RFC 6750](https://oauth.net/2/bearer-tokens/#:~:text=Bearer%20Tokens%20are%20the%20predominant,such%20as%20JSON%20Web%20Tokens.) un estándar de autenticación mediante [bearer token](https://www.oauth.com/oauth2-servers/making-authenticated-requests/). En dicha especificación se indica que el «token» debe viajar en la **cabecera de la petición HTTP** (Headers) con un formato determinado:
 
@@ -781,39 +874,61 @@ from .models import Token
 
 def auth_required(func):
     # Bearer Token como UUID
-    BEARER_TOKEN_REGEX = (
-        r'Bearer (?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})'#(1)!
+    BEARER_TOKEN_REGEX = (#(1)!
+        r'Bearer (?P<token>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})'
     )
 
     def wrapper(request, *args, **kwargs):
-        if not (m := re.fullmatch(BEARER_TOKEN_REGEX, request.headers.get('Authorization', ''))):#(2)!
-            return JsonResponse({'error': 'Invalid authentication token'}, status=400)#(3)!
+        bearer_token = request.headers.get('Authorization', '')#(2)!
+        if not (m := re.fullmatch(BEARER_TOKEN_REGEX, bearer_token)):#(3)!
+            return JsonResponse({'error': 'Invalid authentication token'}, status=400)#(4)!
         try:
-            token = Token.objects.get(key=m['token'])#(4)!
+            token = Token.objects.get(key=m['token'])#(5)!
         except Token.DoesNotExist:
-            return JsonResponse({'error': 'Unregistered authentication token'}, status=401)#(5)!
-        request.user = token.user#(6)!
-        return func(request, *args, **kwargs)#(7)!
+            return JsonResponse({'error': 'Unregistered authentication token'}, status=401)#(6)!
+        request.user = token.user#(7)!
+        return func(request, *args, **kwargs)#(8)!
 
     return wrapper
 ```
 { .annotate }
 
 1. Definimos una expresión regular para el formato que debe tener «bearer token».
-2. - Extraemos de las cabeceras el contenido de la clave `Authorization`.
-    - Comprobamos si casa con la expresión regular definida previamente.
-3. Si no se cumple el formato se devuelve una respuesta 400 indicando que el valor del «token» no es válido.
-4. Buscamos el «token» en la base de datos.
-5. Si no existe el token se devuelve una respuesta 401 indicando que el «token» no está registrado.
-6.  - Inyectamos el usuario en la `request` para poder manejarlo posteriormente en la vista.
+2. Extraemos de las cabeceras el contenido de la clave `Authorization`.
+3. Comprobamos si casa con la expresión regular definida previamente.
+4. Si no se cumple el formato se devuelve una respuesta 400 indicando que el valor del «token» no es válido.
+5. Buscamos el «token» en la base de datos.
+6. Si no existe el token se devuelve una respuesta 401 indicando que el «token» no está registrado.
+7.  - Inyectamos el usuario en la `request` para poder manejarlo posteriormente en la vista.
     - Este paso no es obligatorio, pero puede ser útil.
-7. Proseguimos con la ejecución de la función decorada (_vista_).
+8. Proseguimos con la ejecución de la función decorada (_vista_).
 
-## Ejemplos de vistas { #view-examples }
+## Ejemplos de puntos de entrada { #entrypoints-examples }
 
-A continuación se muestran algunas **vistas** (API) sobre el <span class="example">ejemplo:material-flash:</span> de un «blog»:
+A continuación se muestran algunos **puntos de entrada** (_entrypoints_) con _url_ y vista, sobre el <span class="example">ejemplo:material-flash:</span> de un «blog»:
 
-=== "Ver todos los «posts» :material-view-list:"
+### Listado de «posts» { #post-list }
+
+Punto de entrada `/api/posts/` mediante petición `GET` para obtener un listado de todos los «posts» del blog:
+
+=== "URL"
+
+    ```python title="posts/urls.py" hl_lines="9"
+    from django.urls import path
+    
+    from . import views
+    
+    app_name = 'posts'
+    
+    
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('add/', views.add_post, name='add-post'),
+    ]
+    ```
+
+=== "Vista"
 
     ```python title="posts/views.py"
     from django.views.decorators.csrf import csrf_exempt
@@ -836,7 +951,28 @@ A continuación se muestran algunas **vistas** (API) sobre el <span class="examp
     2. Utilizamos el serializador propio sobre la «queryset» de «posts».
     3. Retornamos mediante el método del serializador que ya devuelve una respuesta JSON.
 
-=== "Detalle de un «post» :octicons-eye-16:"
+### Detalle de un «post» { #post-detail }
+
+Punto de entrada `/api/posts/{slug}/` mediante petición `GET` para obtener el detalle de un «post» del blog:
+
+=== "URL"
+
+    ```python title="posts/urls.py" hl_lines="10"
+    from django.urls import path
+    
+    from . import views
+    
+    app_name = 'posts'
+    
+    
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('add/', views.add_post, name='add-post'),
+    ]
+    ```
+
+=== "Vista"
 
     ```python title="posts/views.py"
     from django.http import JsonResponse
@@ -864,7 +1000,28 @@ A continuación se muestran algunas **vistas** (API) sobre el <span class="examp
     3. Utilizamos el serializador propio sobre la instancia del «post».
     4. Retornamos mediante el método del serializador que ya devuelve una respuesta JSON.
 
-=== "Dar de alta un «post» :octicons-diff-added-24:"
+### Alta de un «post» { #add-post }
+
+Punto de entrada `/api/posts/add/` mediante petición `POST` para dar de alta un «post» del blog:
+
+=== "URL"
+
+    ```python title="posts/urls.py" hl_lines="11"
+    from django.urls import path
+    
+    from . import views
+    
+    app_name = 'posts'
+    
+    
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('add/', views.add_post, name='add-post'),
+    ]
+    ```
+
+=== "Vista"
 
     ```python title="posts/views.py"
     import json
