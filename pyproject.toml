@@ -1,6 +1,6 @@
 [project]
 name = "aprendepython"
-version = "3.0.4"
+version = "3.0.5"
 requires-python = ">=3.14"
 dependencies = [
     "zensical>=0.0.17",
