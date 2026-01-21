@@ -486,7 +486,7 @@ Si intentamos añadir una [lista](./lists.md) como clave de un diccionario obten
 
 ```pycon hl_lines="8"
 >>> periodic_table = set()
->>> metals = ['Fe', 'Mg', 'Au', 'Au', 'Zn']
+>>> metals = ['Fe', 'Mg', 'Au', 'Ag', 'Zn']
 
 >>> periodic_table.add(metals)#(1)!
 Traceback (most recent call last):
@@ -503,14 +503,14 @@ Sin embargo, podríamos conseguir lo que buscamos si, en vez de listas, usáramo
 ```pycon
 >>> periodic_table = set()
 
->>> metals = ('Fe', 'Mg', 'Au', 'Au', 'Zn')
+>>> metals = ('Fe', 'Mg', 'Au', 'Ag', 'Zn')
 >>> periodic_table.add(metals)
 
 >>> non_metals = ('C', 'H', 'O', 'F', 'Cl')
 >>> periodic_table.add(non_metals)
 
 >>> periodic_table
-{('Fe', 'Mg', 'Au', 'Au', 'Zn'), ('C', 'H', 'O', 'F', 'Cl')}
+{('Fe', 'Mg', 'Au', 'Ag', 'Zn'), ('C', 'H', 'O', 'F', 'Cl')}
 ```
 
 !!! exercise "Ejercicio"
