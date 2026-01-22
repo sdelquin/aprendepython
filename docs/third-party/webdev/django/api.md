@@ -554,76 +554,6 @@ El diseño de las URLs de una API puede llegar a ser un proceso «artesanal» qu
     `/api/v1/posts/`  
     `/api/v2/posts/`
 
-### Métodos HTTP { #http-methods }
-
-Existen distintos [métodos HTTP](https://restfulapi.net/http-methods/) (o verbos) que acompañan a una petición HTTP y que definen la forma en la que viaja la información y el tipo de operación a realizar.
-
-| Método | Descripción |
-| --- | --- |
-| `GET` | Solicita datos del servidor (solo lectura). |
-| `POST` | Envía datos al servidor para crear un recurso. |
-| `PUT` | Actualiza un recurso existente o lo crea si no existe. |
-| `PATCH` | Modifica parcialmente un recurso existente. |
-| `DELETE` | Elimina un recurso del servidor. |
-| `HEAD` | Similar a GET, pero solo devuelve los encabezados. |
-| `OPTIONS` | Devuelve los métodos HTTP permitidos en un recurso. |
-| `TRACE` | Devuelve la solicitud recibida para diagnóstico. |
-
-!!! info "Buena práctica"
-
-    Aunque no es obligatorio utilizar estos métodos, sí se considera una **buena práctica** porque sigue el estándar de diseño de APIs y puede facilitar su diseño e implementación.
-
-Django [ofrece funcionalidades](https://docs.djangoproject.com/en/stable/topics/http/decorators/#allowed-http-methods) para obligar a que una determinada vista sólo acepte ciertos métodos HTTP:
-
-=== "Sólo `GET`"
-
-    ```python
-    from django.views.decorators.http import require_GET
-
-    @require_GET
-    def only_get_view(request):
-        # ...
-    ```
-
-=== "Sólo `POST`"
-
-    ```python
-    from django.views.decorators.http import require_POST
-
-    @require_POST
-    def only_post_view(request):
-        # ...
-    ```
-
-=== "`GET` o `POST`"
-
-    ```python
-    from django.views.decorators.http import require_http_methods
-
-    @require_http_methods(['GET', 'POST'])#(1)!
-    def only_get_or_post_view(request):
-        # ...
-    ```
-    { .annotate }
-    
-    1. Obviamente aquí se pueden indicar otros verbos HTTP.
-
-En el caso de que se realice una petición HTTP con un método no permitido, Django devolverá una respuesta [`HttpResponseNotAllowed`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotAllowed).
-
-#### GET y POST { #get-post }
-
-Simplificando mucho, podríamos implementar una API únicamente sobre dos métodos HTTP: `GET` y `POST`.
-
-A la hora de elegir cuál debemos aplicar se podrían seguir estas sencillas reglas:
-
-| Lectura :material-database-arrow-up: | Escritura :material-database-arrow-down: | Método HTTP |
-| --- | --- | --- |
-| - | - | **GET** |
-| :fontawesome-solid-r:{.green} | - | **GET** |
-| - | :fontawesome-solid-w:{.red} | **POST** |
-| :fontawesome-solid-r:{.green} | :fontawesome-solid-w:{.red} | **POST** |
-
-
 ### CSRF { #csrf }
 
 En el apartado de [formularios](forms.md#template-forms) ya hemos visto algo sobre CSRF.
@@ -707,6 +637,98 @@ return JsonResponse({'error': 'Message for Internal Server Error'}, status=500)
 
 :material-check-all:{ .blue } Cuando no se especifica el parámetro `status` en `JsonResponse` su valor por defecto es [`200`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).
 
+### Métodos HTTP { #http-methods }
+
+Existen distintos [métodos HTTP](https://restfulapi.net/http-methods/) (o verbos) que acompañan a una petición HTTP y que definen la forma en la que viaja la información y el tipo de operación a realizar.
+
+| Método | Descripción |
+| --- | --- |
+| `GET` | Solicita datos del servidor (solo lectura). |
+| `POST` | Envía datos al servidor para crear un recurso. |
+| `PUT` | Actualiza un recurso existente o lo crea si no existe. |
+| `PATCH` | Modifica parcialmente un recurso existente. |
+| `DELETE` | Elimina un recurso del servidor. |
+| `HEAD` | Similar a GET, pero solo devuelve los encabezados. |
+| `OPTIONS` | Devuelve los métodos HTTP permitidos en un recurso. |
+| `TRACE` | Devuelve la solicitud recibida para diagnóstico. |
+
+!!! info "Buena práctica"
+
+    Aunque no es obligatorio utilizar estos métodos, sí se considera una **buena práctica** porque sigue el estándar de diseño de APIs y puede facilitar su diseño e implementación.
+
+#### GET y POST { #get-post }
+
+Simplificando mucho, podríamos implementar una API únicamente sobre dos métodos HTTP: `GET` y `POST`.
+
+A la hora de elegir cuál debemos aplicar se podrían seguir estas sencillas reglas:
+
+| Lectura :material-database-arrow-up: | Escritura :material-database-arrow-down: | Método HTTP |
+| --- | --- | --- |
+| - | - | **GET** |
+| :fontawesome-solid-r:{.green} | - | **GET** |
+| - | :fontawesome-solid-w:{.red} | **POST** |
+| :fontawesome-solid-r:{.green} | :fontawesome-solid-w:{.red} | **POST** |
+
+Django [ofrece funcionalidades](https://docs.djangoproject.com/en/stable/topics/http/decorators/#allowed-http-methods) para obligar a que una determinada vista sólo acepte ciertos métodos HTTP: `#!python @require_GET`, `#!python @require_POST` y `#!python @require_http_methods`. En el caso de que se realice una petición HTTP con un método no permitido, Django devolverá una respuesta [`HttpResponseNotAllowed`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotAllowed).
+
+Esto puede ser que no nos encaje exactamente con el diseño de nuestra API ya que, al estar basada en respuestas JSON, no vale devolver una `HttpResponse`. Hay varias aproximaciones para solucionarlo. Aquí se presenta una propuesta de [decorador](../../../core/modularity/functions.md#decorators) para ello:
+
+=== "Decorador"
+
+    ```python title="shared/decorators.py" hl_lines="10-13"
+    from http import HTTPStatus
+
+    from django.http import JsonResponse
+
+
+    def require_http_methods(*methods):
+        def decorator(func):
+            def wrapper(request, *args, **kwargs):
+                if request.method not in methods:
+                    return JsonResponse(
+                        {'error': 'Method not allowed'},
+                        status=HTTPStatus.METHOD_NOT_ALLOWED,
+                    )
+                return func(request, *args, **kwargs)
+            return wrapper
+        return decorator
+    ```
+
+=== "Vista solo `GET`"
+
+    ```python
+    from shared.decorators import require_http_methods
+
+
+    @require_http_methods('GET')
+    def only_get_view(request):
+        # ...
+    ```    
+
+=== "Vista solo `POST`"
+
+    ```python
+    from shared.decorators import require_http_methods
+
+
+    @require_http_methods('POST')
+    def only_post_view(request):
+        # ...
+    ```    
+
+=== "Vista `GET` o `POST`"
+
+    ```python
+    from shared.decorators import require_http_methods
+
+
+    @require_http_methods('GET', 'POST')
+    def only_get_or_post_view(request):
+        # ...
+    ```    
+
+
+
 ## Autenticación { #auth }
 
 Es posible que existan ciertas operaciones en una API que requieran autenticación: ¿Movimientos bancarios? ¿Calificaciones de un examen? ¿Citas médicas?
@@ -773,35 +795,35 @@ from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+
+from shared.decorators import require_http_methods
 
 
 @csrf_exempt
-@require_POST
+@require_http_methods('POST')
 def auth(request):
     payload = json.loads(request.body)#(1)!
-    try:
-        username = payload['username']#(2)!
-        password = payload['password']#(3)!
-    except KeyError:
-        return JsonResponse({'error': 'Missing credentials'}, status=400)#(4)!
-    if user := authenticate(username=username, password=password):#(5)!
+    username = payload['username']#(2)!
+    password = payload['password']#(3)!
+    if user := authenticate(username=username, password=password):#(4)!
         try:
-            return JsonResponse({'token': user.token.key})#(6)!
+            return JsonResponse({'token': user.token.key})#(5)!
         except ObjectDoesNotExist:
-            return JsonResponse({'error': 'Token not found'}, status=404)#(7)!
-    return JsonResponse({'error': 'Invalid credentials'}, status=401)#(8)!
+            return JsonResponse({'error': 'Token not found'}, status=404)#(6)!
+    return JsonResponse({'error': 'Invalid credentials'}, status=401)#(7)!
 ```
 { .annotate }
 
-1. Decodificamos el contenido JSON de la petición.
-2. Extraemos el _nombre de usuario_ desde el _payload_ de la petición.
-3. Extraemos la _contraseña_ desde el _payload_ de la petición.
-4. Si falta alguno de los campos devolvemos una respuesta con código de error.
-5. Comprobamos las credenciales de usuario enviadas en el JSON.
-6. Si todo ha ido bien, devolvemos el «token» de autenticación.
-7. Si no se ha dado de alta un token para este usuario, devolvemos una respuesta con código de error.
-8. En caso de error devolvemos un mensaje informativo con el [código de respuesta HTTP](views.md#response-types) a **401**.
+1.  - Decodificamos el contenido JSON de la petición.
+    - Se podría controlar errores de tipo `JSONDecodeError`.
+2.  - Extraemos el _nombre de usuario_ desde el _payload_ de la petición.
+    - Se podría controlar errores de tipo `KeyError`.
+3.  - Extraemos la _contraseña_ desde el _payload_ de la petición.
+    - Se podría controlar errores de tipo `KeyError`.
+4. Comprobamos las credenciales de usuario enviadas en el JSON.
+5. Si todo ha ido bien, devolvemos el «token» de autenticación.
+6. Si no se ha dado de alta un token para este usuario, devolvemos una respuesta con código de error.
+7. En caso de error devolvemos un mensaje informativo con el [código de respuesta HTTP](views.md#response-types) a **401**.
 
 Obviamente habrá que definir una URL que gestione esta petición. Una propuesta podría ser `/api/auth/`:
 
@@ -932,14 +954,14 @@ Punto de entrada `/api/posts/` mediante petición `GET` para obtener un listado 
 
     ```python title="posts/views.py"
     from django.views.decorators.csrf import csrf_exempt
-    from django.views.decorators.http import require_GET
 
+    from shared.decorators import require_http_methods
     from .models import Post
     from .serializers import PostSerializer
 
 
     @csrf_exempt
-    @require_GET
+    @require_http_methods('GET')
     def post_list(request):
         posts = Post.objects.all()#(1)!
         serializer = PostSerializer(posts)#(2)!
@@ -977,14 +999,14 @@ Punto de entrada `/api/posts/{slug}/` mediante petición `GET` para obtener el d
     ```python title="posts/views.py"
     from django.http import JsonResponse
     from django.views.decorators.csrf import csrf_exempt
-    from django.views.decorators.http import require_GET
 
+    from shared.decorators import require_http_methods
     from .models import Post
     from .serializers import PostSerializer
 
 
     @csrf_exempt
-    @require_GET
+    @require_http_methods('GET')
     def post_detail(request, post_slug: str):
         try:
             post = Post.objects.get(slug=post_slug)#(1)!
@@ -1028,16 +1050,16 @@ Punto de entrada `/api/posts/add/` mediante petición `POST` para dar de alta un
 
     from django.http import JsonResponse
     from django.views.decorators.csrf import csrf_exempt
-    from django.views.decorators.http import require_POST
     from django.utils.text import slugify
 
+    from shared.decorators import require_http_methods
     from users.decorators import auth_required
 
     from .models import Post
 
 
     @csrf_exempt
-    @require_POST
+    @require_http_methods('POST')
     @auth_required#(1)!
     def add_post(request):
         try:
