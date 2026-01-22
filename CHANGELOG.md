@@ -6,6 +6,13 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.0.6
+
+Publicada el 22-01-2026
+
+- Django: API
+  - Mejora implementación de comprobación de métodos HTTP.
+
 ## Version 3.0.5
 
 Publicada el 19-01-2026
