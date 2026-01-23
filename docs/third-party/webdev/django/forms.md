@@ -703,6 +703,10 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
             self.fields['content'].widget.attrs.update({'class': 'form-control'})
     ```
 
+!!! note "Nota"
+
+    Dentro del constructor (o cualquier otro método de instancia), es posible recorrer los campos del formulario mediante `#!python self.fields`, un iterable que devuelve objetos de tipo [`Field`](https://docs.djangoproject.com/en/stable/ref/forms/fields/#django.forms.Field).
+
 Si queremos modificar atributos de todos los campos visibles del formulario, podemos aplicar lo siguiente:
 
 ```python title="posts/forms.py"
@@ -726,7 +730,7 @@ class AddPostForm(forms.ModelForm):#(1)!
 1. También es aplicable a formularios de clase que hereden de `forms.Form`.
 2. Debemos implementar el constructor del formulario para realizar cambios cuando se construye cada instancia.
 3. Llamada al constructor de la clase base `forms.ModelForm`.
-4. Recorremos los campos visibles del formulario. Fuente: https://stackoverflow.com/a/29717314
+4. Recorremos los [campos visibles](https://docs.djangoproject.com/en/stable/topics/forms/#looping-over-hidden-and-visible-fields) del formulario.
 5. Asignamos la clase CSS `form-control`.
 
 #### Campos de tipo fecha/hora { #datetime-widgets }
