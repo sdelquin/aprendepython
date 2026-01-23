@@ -383,6 +383,8 @@ Por último aplicamos las migraciones correspondientes a la aplicación:
       Applying thumbnail.0001_initial... OK
     ```
 
+Esta migración creará una nueva tabla en la base de datos llamada `thumbnail_kvstore` donde se almacenarán las referencias a las miniaturas.
+
 ### Modo de uso { #sorl-thumbnail-usage }
 
 Aunque existen [múltiples casos de uso](https://sorl-thumbnail.readthedocs.io/en/latest/template.html) la forma más habitual de usar `sorl-thumbnail` es crear una miniatura en una plantilla.
@@ -413,6 +415,26 @@ Imaginemos por <span class="example">ejemplo:material-flash:</span> que estamos 
 4. Hay que cerrar la etiqueta.
 
 De esta forma habremos creado una miniatura de 200x200 píxeles para mostrar la imagen de portada del «post» en cuestión.
+
+### Gestión de miniaturas { #thumbnail-management }
+
+El paquete `sorl-thumbnail` almacena las miniaturas en la ruta `MEDIA_ROOT/THUMBNAIL_PREFIX`:
+
+- [x] [`MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) [suele definirse](models.md#file-field-path) como `media/`
+- [x] [`THUMBNAIL_PREFIX`](https://sorl-thumbnail.readthedocs.io/en/latest/reference/settings.html#thumbnail-prefix) tiene valor por defecto `cache/`
+
+Por tanto la carpeta resultante donde se guardan las miniaturas generadas sería `/media/cache/`.
+
+#### Comandos de gestión de miniaturas { #thumbnail-management-commands }
+
+El paquete `sorl-thumbnail` ofrece distintos [comandos de gestión](https://sorl-thumbnail.readthedocs.io/en/latest/management.html) para borrar miniaturas, resetear la base de datos, hacer limpieza etc.
+
+De menor a mayor grado de «agresividad» en el borrado tenemos estos comandos:
+
+- [`manage.py thumbnail cleanup`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-cleanup)
+- [`manage.py thumbnail clear`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-clear)
+- [`manage.py thumbnail clear_delete_referenced`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-clear-delete-referenced)
+- [`manage.py thumbnail clear_delete_all`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-clear-delete-all)
 
 ## Django Markdownify { #django-markdownify }
 
