@@ -6,6 +6,21 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.0.7
+
+Publicada el 23-01-2026
+
+- Estructuras de datos: Diccionarios
+  - Añade función `setdefault()`
+- Django: Extras
+  - Añade gestión de miniaturas en Sorl Thumbnail.
+- Django: Estáticos
+  - Añade creación de modales con Bootstrap.
+- Django: Formularios
+  - Nota informativa sobre accesos a campos desde constructor.
+- Django: Modelos
+  - Añade validación cruzada de campos de modelo.
+
 ## Version 3.0.6
 
 Publicada el 22-01-2026
