@@ -244,6 +244,35 @@ rae = {
      'montuvio': 'Campesino de la costa'}
     ```
 
+!!! info "Valor por defecto"
+
+    Python ofrece la función [`setdefault()`](https://docs.python.org/dev/library/stdtypes.html#dict.setdefault) cuyo comportamiento es el siguiente:
+
+    1. Si la clave indicada existe, se devuelve su valor.
+    2. Si la clave indicada no existe, se añade la clave con el valor indicado.
+
+    Veamos un <span class="example">ejemplo:material-flash:</span>:
+
+    ```pycon
+    >>> rae = {
+    ...     'bifronte': 'De dos frentes o dos caras',
+    ...     'anarcoide': 'Que tiende al desorden',
+    ...     'montuvio': 'Campesino de la costa'
+    ... }
+    
+    >>> rae.setdefault('poniente', 'Viento del oeste')
+    'Viento del oeste'
+    
+    >>> rae
+    {'bifronte': 'De dos frentes o dos caras',
+     'anarcoide': 'Que tiende al desorden',
+     'montuvio': 'Campesino de la costa',
+     'poniente': 'Viento del oeste'}
+    
+    >>> rae.setdefault('poniente', 'Viento del oeste')
+    'Viento del oeste'    
+    ```
+
 #### Patrón creación { #create-pattern }
 
 Una forma muy habitual de trabajar con diccionarios es empezar con uno vacío e ir añadiendo elementos poco a poco. Se podría hablar de un **patrón creación**.
