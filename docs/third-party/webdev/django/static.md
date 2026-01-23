@@ -266,5 +266,100 @@ Suponiendo que disponemos de una [plantilla base](templates.md#inheritance) tend
 
 :material-check-all:{ .blue } A partir de aquí ya podremos usar [todos los recursos](https://getbootstrap.com/docs/) que nos proporciona Bootstrap para diseñar una interfaz de usuario moderna, responsiva y funcional.
 
+### Modales { #boostrap-modals }
+
+La implementación de **ventanas modales** suele ser una estrategia interesante para confirmar acciones y mostrar mensajes informativos.
+
+A continuación se presenta una _propuesta_ de modal con _Bootstrap_ mediante una [etiqueta personalizada](templates.md#custom-tags) poniendo como <span class="example">ejemplo:material-flash:</span> de uso su aplicación al ^^borrar un «post» del «blog»^^:
+
+=== "Etiqueta"
+
+    ```python title="shared/templates/shared_extras.py"
+    import uuid
+
+    from django import template
+    from django.urls import reverse
+
+    register = template.Library()
+
+
+    @register.inclusion_tag('includes/modal.html')
+    def modal(
+        btn_text,#(1)!
+        url,#(2)!
+        *url_args,#(3)!
+        title='Attention',#(4)!
+        body='Are you sure to continue?',#(5)!
+        action='Continue',#(6)!
+        btn_classes='btn btn-primary',#(7)!
+        btn_icon='',#(8)!
+    ):
+        url = reverse(url, args=url_args)
+        modal_id = uuid.uuid4()
+        return dict(
+            modal_id=modal_id,
+            title=title,
+            body=body,
+            action=action,
+            url=url,
+            btn_text=btn_text,
+            btn_classes=btn_classes,
+            btn_icon=btn_icon,
+        )
+    ```
+    { .annotate }
+    
+    1. Texto del botón que lanza el modal.
+    2. Nombre de URL a ejecutar si se «confirma» el modal.
+    3. Argumentos para conformar la URL.
+    4. Título de la ventana modal.
+    5. Texto para el cuerpo de la ventana modal.
+    6. Texto del botón de confirmación en la ventana modal.
+    7. Clases CSS a aplicar sobre el botón que lanza el modal.
+    8. Icono a mostrar en el botón que lanza el modal.
+
+=== "Plantilla"
+
+    ```htmldjango title="shared/templates/includes/modal.html"
+    <!-- ↓ Button to launch modal -->
+    <button type="button" class="{{ btn_classes }}" data-bs-toggle="modal" data-bs-target="#{{ modal_id }}">
+      <i class="{{ btn_icon }}"></i>
+      {{ btn_text }}
+    </button>
+    
+    <!-- ↓ Modal window -->
+    <div class="modal fade" id="{{ modal_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ title }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ body }}
+          </div>
+          <div class="modal-footer">
+            <a href="{{ url }}" class="btn btn-primary">{{ action }}</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    ```
+
+=== "Modo de uso"
+
+    ```htmldjango title="posts/templates/posts/post/delete.html"
+    {% modal
+        "Delete post"
+        "posts:delete-post" post.slug
+        title="Confirm"
+        body="Do you want to delete this post?"
+        btn_classes="btn btn-danger btn-sm"
+        btn_icon="bi bi-journal-x"
+    %}
+    ```    
+
+
 [^1]: Guardar copias de datos de forma temporal en una ubicación de almacenamiento más rápida.
 [^2]: Información via [git-stars.org](https://git-stars.org/es/repositories).
