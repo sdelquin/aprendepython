@@ -2537,13 +2537,22 @@ class PostsConfig(AppConfig):
         from . import signals  # noqa
         ```
 
-## Validadores { #validators }
+## Validación { #validation }
 
 <span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
-Hay ocasiones en las que necesitamos añadir restricciones adicionales a los [campos](#fields) que proporciona Django. Para ello podemos hacer uso de los [validadores](https://docs.djangoproject.com/en/stable/ref/validators/).
+Cada campo de un modelo Django ya incorpora (por defecto) una serie de validaciones: por <span class="example">ejemplo:material-flash:</span> un campo `PositiveIntegerField()` debe ser un número entero mayor que cero.
 
-### Validadores predefinidos { #builtin-validators }
+Pero existen ocasiones en las que queremos añadir nuevas validaciones a los campos existentes. Hay dos enfoques para ello:
+
+:one: [Validación individual](#single-validation)  
+:two: [Validación cruzada](#cross-validation)
+
+### Validación individual { #single-validation }
+
+La **validación individual** nos sirve para validar el valor de _cada campo por separado_ haciendo uso de [validadores](https://docs.djangoproject.com/en/stable/ref/validators/).
+
+#### Validadores predefinidos { #builtin-validators }
 
 Django proporciona una serie de [validadores predefinidos](https://docs.djangoproject.com/en/stable/ref/validators/#built-in-validators). A continuación se muestran algunos de ellos:
 
@@ -2564,7 +2573,7 @@ class Post(models.Model):
     DEFAULT_RANK = 3
 
     title = models.CharField(max_length=256)
-    slug = models.SlugField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
     content = models.TextField()
     rank = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],#(2)!
@@ -2579,7 +2588,7 @@ class Post(models.Model):
 1. Importamos los validadores.
 2. Establecemos los validadores en la definición del campo.
 
-### Validadores personalizados { #custom-validators }
+#### Validadores personalizados { #custom-validators }
 
 También es posible definir validadores personalizados. Se trata únicamente de definir una **función** que recibe el valor del campo y realiza las comprobaciones correspondiente.
 
@@ -2612,7 +2621,7 @@ Continuando con <span class="example">ejemplo:material-flash:</span> del «blog�
     
     class Post(models.Model):
         title = models.CharField(max_length=256, validators=[validate_title])#(2)!
-        slug = models.SlugField(max_length=256)
+        slug = models.SlugField(max_length=256, unique=True)
         content = models.TextField()
     
         def __str__(self):
@@ -2626,6 +2635,34 @@ Continuando con <span class="example">ejemplo:material-flash:</span> del «blog�
 !!! warning "Comportamiento de los validadores"
 
     Los validadores **no se ejecutan** cuando guardamos «directamente» un modelo, sólo se ejecutan cuando creamos [formularios de modelo](forms.md#model-forms) y tratamos de guardar una instancia del mismo.
+
+### Validación cruzada { #cross-validation }
+
+La **validación cruzada** nos sirve para validar el valor de _un campo en relación a otros_ haciendo uso del método [`clean()`](https://docs.djangoproject.com/en/stable/ref/models/instances/#django.db.models.Model.clean).
+
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos validar en un «post» que ^^siempre coincida su «slug» con la transformación correcta de su título^^:
+
+```python title="posts/models.py" hl_lines="16-18"
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils.text import slugify
+
+from .validators import validate_title
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+    
+    def clean(self):
+        if self.slug != slugify(self.title):
+            raise ValidationError("Slug does not match with title's slugify")
+```
+
 
 [^1]: En la práctica hay [ciertos aspectos](https://docs.djangoproject.com/en/stable/ref/databases/) a tener en cuenta cuando usamos distintos sistemas gestores de bases de datos.
 [^2]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable

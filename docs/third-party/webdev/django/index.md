@@ -81,7 +81,7 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
     - [Relaciones muchos a muchos](models.md#many-to-many)
     - [Relaciones muchos a muchos (con modelo intermedio)](models.md#many-to-many-with-intermediary)
     - [Señales](models.md#signals)
-    - [Validadores](models.md#validators)
+    - [Validación](models.md#validation)
 - Interfaz administrativa
     - [Relaciones muchos a muchos](admin.md#many-to-many)
     - [Comandos de gestión](admin.md#management-commands)
