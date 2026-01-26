@@ -6,6 +6,13 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.1.1
+
+Publicada el 26-01-2026
+
+- Django: Modelos
+  - Añade notas sobre _fixtures_.
+
 ## Version 3.1.0
 
 Publicada el 26-01-2026
