@@ -6,6 +6,14 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.1.0
+
+Publicada el 26-01-2026
+
+- Desechar el viejo fichero de configuración `mkdocs.yml`.
+- Django: Producción
+  - Añade notas sobre Django en producción.
+
 ## Version 3.0.7
 
 Publicada el 23-01-2026
