@@ -2663,8 +2663,228 @@ class Post(models.Model):
             raise ValidationError("Slug does not match with title's slugify")
 ```
 
+## Fixtures { #fixtures }
+
+Una «fixture» es una colección de ficheros que contienen el contenido serializado[^5] de la base de datos. Django ofrece [herramientas](https://docs.djangoproject.com/en/stable/topics/db/fixtures/) para poder gestionar _fixtures_.
+
+Partiremos del <span class="example">ejemplo:material-flash:</span> del «post» en un «blog»:
+
+```python title="posts/models.py"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Antes de nada, vamos a cargar algo de información en la base de datos para tener contenido sobre el que trabajar:
+
+```pycon
+>>> Post.objects.create(
+...     title="Small Changes",
+...     slug="small-changes",
+...     content="Small daily changes can lead to big results."
+... )
+<Post: Small Changes>
+
+>>> Post.objects.create(
+...     title="Learning Takes Time",
+...     slug="learning-takes-time",
+...     content="Technology moves fast, but real learning takes time."
+... )
+<Post: Learning Takes Time>
+
+>>> Post.objects.create(
+...     title="Thinking in Code",
+...     slug="thinking-in-code",
+...     content="Writing code is also a way of thinking."
+... )
+<Post: Thinking in Code>
+
+>>> Post.objects.create(
+...     title="Useful Mistakes",
+...     slug="useful-mistakes",
+...     content="Not every error is a failure."
+... )
+<Post: Useful Mistakes>
+
+>>> Post.objects.create(
+...     title="Curiosity",
+...     slug="curiosity",
+...     content="Great ideas are born from curiosity."
+... )
+<Post: Curiosity>
+```
+
+### Generar fixtures { #dump-fixtures }
+
+Para generar (volcar) las _fixtures_ debemos hacer uso del comando [`manage.py dumpdata`](https://docs.djangoproject.com/en/stable/ref/django-admin/#django-admin-dumpdata). El formato de salida por defecto es JSON:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py dumpdata --indent 2 posts
+    [
+    {
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+        "title": "Small Changes",
+        "slug": "small-changes",
+        "content": "Small daily changes can lead to big results."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+        "title": "Learning Takes Time",
+        "slug": "learning-takes-time",
+        "content": "Technology moves fast, but real learning takes time."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+        "title": "Thinking in Code",
+        "slug": "thinking-in-code",
+        "content": "Writing code is also a way of thinking."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+        "title": "Useful Mistakes",
+        "slug": "useful-mistakes",
+        "content": "Not every error is a failure."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+        "title": "Curiosity",
+        "slug": "curiosity",
+        "content": "Great ideas are born from curiosity."
+    }
+    }
+    ]
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py dumpdata --indent 2 posts
+    [
+    {
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+        "title": "Small Changes",
+        "slug": "small-changes",
+        "content": "Small daily changes can lead to big results."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+        "title": "Learning Takes Time",
+        "slug": "learning-takes-time",
+        "content": "Technology moves fast, but real learning takes time."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+        "title": "Thinking in Code",
+        "slug": "thinking-in-code",
+        "content": "Writing code is also a way of thinking."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+        "title": "Useful Mistakes",
+        "slug": "useful-mistakes",
+        "content": "Not every error is a failure."
+    }
+    },
+    {
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+        "title": "Curiosity",
+        "slug": "curiosity",
+        "content": "Great ideas are born from curiosity."
+    }
+    }
+    ]
+    ```
+
+!!! note "Argumentos"
+
+    Los argumentos utilizados en `manage.py dumpdata` son los siguientes:
+
+    - `--indent 2`: la salida se formatea más «bonita» con una indentación de 2 espacios.
+    - `posts`: nombre de aplicación desde la que se volcarán las _fixtures_
+
+    También se puede indicar `app_label.ModelName` para volcar las _fixtures_ de un modelo en concreto.
+
+Si en vez de mostrar el resultado «por pantalla» queremos volcarlo a un fichero podemos hacerlo con:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py dumpdata --indent 2 posts -o posts.json
+    [...........................................................................]
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py dumpdata --indent 2 posts -o posts.json
+    [...........................................................................]
+    ```
+
+Efectivamente el fichero generado es un JSON:
+
+```console
+$ file posts.json
+posts.json: JSON data
+```
+
+### Cargar fixtures { #load-fixtures }
+
+Para cargar las _fixtures_ debemos hacer uso del comando [`manage.py loaddata`](https://docs.djangoproject.com/en/stable/ref/django-admin/#django-admin-loaddata). Simplemente hay que indicar el archivo JSON donde se encuentra la información:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py loaddata posts.json
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py loaddata posts.json
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    
+
 
 [^1]: En la práctica hay [ciertos aspectos](https://docs.djangoproject.com/en/stable/ref/databases/) a tener en cuenta cuando usamos distintos sistemas gestores de bases de datos.
 [^2]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable
 [^3]: Es importante manejar el módulo [`pathlib`](https://docs.python.org/3/library/pathlib.html) de la librería estándar para manejar rutas en el sitema de ficheros.
 [^4]: Una URL canónica es la URL que mejor representa un determinado recurso web.
+[^5]: La información se convierte en una secuencia estructurada de datos (por ejemplo, texto o bytes) para poder guardarse, transmitirse o reconstruirse después.
