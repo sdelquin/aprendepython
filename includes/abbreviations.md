@@ -46,12 +46,14 @@
 *[SMTP]: Simple Mail Transfer Protocol
 *[SPA]: Single Page Application
 *[SQL]: Structured Query Language
+*[SSH]: Secure Shell
 *[SSR]: Server Side Rendering
 *[SVG]: Scalable Vector Graphics
 *[TIOBE]: The Importance Of Being Earnest
 *[TPU]: Tensor Processing Unit
 *[URL]: Uniform Resource Locators
 *[UUID]: Universally Unique Identifier
+*[VPS]: Virtual Private Server
 *[WSGI]: Web Server Gateway Interface
 *[WSL]: Windows Subsystem for Linux
 *[XSS]: Cross Site Scripting

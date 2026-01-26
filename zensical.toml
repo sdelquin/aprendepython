@@ -130,6 +130,7 @@ repo = "material/github"
             "third-party/webdev/django/middleware.md",
             "third-party/webdev/django/api.md",
             "third-party/webdev/django/justfile.md",
+            "third-party/webdev/django/production.md",
         ]},
     ]},
     {"PDF" = [
