@@ -2665,6 +2665,8 @@ class Post(models.Model):
 
 ## Fixtures { #fixtures }
 
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
 Una «fixture» es una colección de ficheros que contienen el contenido serializado[^5] de la base de datos. Django ofrece [herramientas](https://docs.djangoproject.com/en/stable/topics/db/fixtures/) para poder gestionar _fixtures_.
 
 Partiremos del <span class="example">ejemplo:material-flash:</span> del «post» en un «blog»:
