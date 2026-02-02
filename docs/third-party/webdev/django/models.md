@@ -1044,7 +1044,7 @@ Veamos la forma de acceder a la categoría de un determinado «post»:
 
     1.  - Si el atributo enumerado es `foo` siempre exisitirá un método `#!python obj.get_foo_display()`.
 
-Para **comprobar el valor** de un tipo enumerado debemos hacer uso de la clase interior. Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos verificar si un determinado «post» es _educativo_:
+Para **comprobar el valor de un tipo enumerado** debemos hacer uso de la clase interior. Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos verificar si un determinado «post» es _educativo_:
 
 === "Forma incorrecta :material-thumb-down:"
 
@@ -1062,6 +1062,27 @@ Para **comprobar el valor** de un tipo enumerado debemos hacer uso de la clase i
     from posts.models import Post
 
     if post.category == Post.Category.EDUCATION:
+        # ...
+    ```
+
+Para **comprobar si el valor está dentro de un enumerado** también debemos hacer uso de la clase interior. Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos verificar si un determinado valor es una categoría de «post»:
+
+=== "Forma incorrecta :material-thumb-down:"
+
+    ```python
+    if 'EDU' in ['SOC', 'EDU', 'HLT', 'CUL', 'TEC']:#(1)!
+        # ...
+    ```
+    { .annotate }
+    
+    1. Si en un futuro modificamos el valor (_código corto_) de la categoría, nos veremos obligados a reemplazar el literal `#!python 'EDU'` en todo nuestro código.
+
+=== "Forma correcta :material-thumb-up:"
+
+    ```python
+    from posts.models import Post
+
+    if 'EDU' in Post.Category:
         # ...
     ```
 
@@ -2220,6 +2241,28 @@ class Post(models.Model):
 1.  - Si `_state.adding` es `#!python True` :material-arrow-right-box: El objeto se está **creando**.
     - Si `_state.adding` es `#!python False` :material-arrow-right-box: El objeto se está **actualizando**.
     - Históricamente se ha usado la condición `#!python if self.pk is None:` para comprobar que el objeto aún no está en la base de datos.
+
+### Editable { #editable }
+
+Todos los campos de un modelo son editables desde la [interfaz administrativa](admin.md) salvo que se indique lo contrario.
+
+Supongamos por <span class="example">ejemplo:material-flash:</span> que no queremos que el «slug» de un «post» se pueda modificar directamente desde la interfaz administrativa. Para ello debemos añadir el parámetro [`editable`](https://docs.djangoproject.com/en/6.0/ref/models/fields/#editable) en la definición del campo:
+
+```python title="posts/models.py" hl_lines="7"
+from django.db import models
+from django.utils.text import slugify
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True, editable=False)
+    content = models.TextField()
+
+    def save(self, *args, **kwargs):
+        if self._state.adding:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+```
 
 ## URL canónica { #canonical-url }
 
