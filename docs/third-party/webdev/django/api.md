@@ -134,7 +134,7 @@ dict
 >>> data == deserialized
 True
 ```
-    
+
 ### Modelos { #serialize-models }
 
 Por norma general, una API trabajará con modelos (base de datos) que tendremos que serializar para transmitir desde el lado servidor al lado cliente. Como ya se ha citado, lo más habitual es hacerlo en formato JSON.
@@ -316,6 +316,11 @@ Ahora ya podemos proceder a la **serialización**:
     { .annotate }
     
     1. Al construir el serializador pasamos el ~~iterable~~ _queryset_ de «posts».
+
+!!! tip "Decimal"
+
+    Para evitar problemas con los [campos Django](models.md#fields) de tipo `Decimal`, se recomienda convertirlos a `#!python float` a la hora de serializar.
+    
 
 #### Claves ajenas { #serialize-fk-models }
 
