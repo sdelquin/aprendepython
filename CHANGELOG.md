@@ -6,6 +6,17 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.1.2
+
+Publicada el 02-02-2026
+
+- Actualiza la versión de Zensical a [0.0.20](https://github.com/zensical/zensical/releases/tag/v0.0.20).
+- Django: Modelos
+  - Añade documentación sobre `editable`
+  - Añade forma correcta de comprobar la pertenencia de un valor enumerado.
+- Django: API
+  - Añade aclaración sobre serialización de campos `Decimal`.
+
 ## Version 3.1.1
 
 Publicada el 26-01-2026
