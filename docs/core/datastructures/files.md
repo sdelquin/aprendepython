@@ -355,6 +355,10 @@ TypeError: write() argument must be str, not int
 1. La función `#!python write()` sólo admite _cadenas de texto_.
 2. La función `#!python write()` sólo admite _cadenas de texto_.
 
+!!! info "Escribiendo líneas"
+
+    Python proporciona la función [`f.writelines()`](https://docs.python.org/3/library/io.html#io.IOBase.writelines) que nos permite escribir un _iterable_ de líneas al fichero de una sola vez. Los saltos de línea no se añaden automáticamente.
+
 ### Usando contextos { #contexts }
 
 Python proporciona [gestores de contexto](../modularity/oop.md#context-manager) como aproximación al manejo de ficheros. En este escenario usaremos la sentencia `#!python with` y el contexto creado se ocupará de abrir y cerrar el fichero automáticamente (**incluso si ha habido cualquier error**).
@@ -375,6 +379,27 @@ Veamos cómo aplicarlo con el <span class="example">ejemplo:material-flash:</spa
 !!! tip "Uso de contextos"
 
     Aunque estos contextos también se pueden utilizar en modo lectura, son ^^realmente importantes cuando escribimos datos en un fichero^^, ya que nos aseguran el cierre del mismo y evitamos pérdidas de datos.
+
+#### Múltiples ficheros { #multiple-files }
+
+Cuando tenemos que abrir varios ficheros utilizando _gestores de contexto_ tenemos dos opciones: **anidamiento** o **misma línea**:
+
+=== "Anidamiento"
+
+    ```python
+    >>> with open('file1', 'w') as f1:
+    ...     with open('file2', 'w') as f2:
+    ...         # file management
+    ```
+
+=== "Misma línea"
+
+    ```python
+    >>> with open('file1', 'w') as f1, open('file2', 'w') as f2:
+    ...     # file management
+    ```
+
+Esto vale tanto para apertura de ficheros en _modo lectura_ como en _modo escritura_.
 
 ### Añadiendo líneas { #append }
 
@@ -397,6 +422,7 @@ Para abrir un fichero en **modo añadido** utilizamos la función `#!python open
 11. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `histogram-txt`
 12. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `submarine`
 13. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `common-words`
+14. [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `split-file`
 
 [^1]: Es muy frecuente encontrar en la documentación el término «handler» para referirse al objeto manejador del fichero.
 [^2]: Los manejadores de ficheros son estructuras de datos [iterables](../modularity/oop.md#iterables).
