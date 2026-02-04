@@ -6,6 +6,15 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.1.3
+
+Publicada el 04-02-2026
+
+- Estructuras de datos: Ficheros
+  - Añade documentación sobre `writelines()`.
+  - Añade documentación sobre apertura de múltiples ficheros con contextos.
+  - Añade nuevo ejercicio de ficheros `split-file`.
+
 ## Version 3.1.2
 
 Publicada el 02-02-2026
