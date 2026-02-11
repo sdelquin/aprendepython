@@ -251,11 +251,11 @@ Vamos a mostrar un <span class="example">ejemplo:material-flash:</span> definien
 
 ```pycon
 >>> def build_cpu(vendor, num_cores, freq):
-...     return dict(
-...         vendor=vendor,
-...         num_cores=num_cores,
-...         freq=freq
-...     )
+...     return {
+...         'vendor': vendor,
+...         'num_cores': num_cores,
+...         'freq': freq
+...     }
 ...
 ```
 
@@ -356,11 +356,11 @@ Siguiendo con el <span class="example">ejemplo:material-flash:</span> de la CPU,
 
 ```pycon
 >>> def build_cpu(vendor, num_cores, freq=2.0):
-...     return dict(
-...         vendor=vendor,
-...         num_cores=num_cores,
-...         freq=freq
-...     )
+...     return {
+...         'vendor': vendor,
+...         'num_cores': num_cores,
+...         'freq': freq
+...     }
 ...
 ```
 
@@ -388,11 +388,11 @@ Es importante tener presente que **los valores por defecto en los parámetros se
 >>> DEFAULT_FREQ = 2.0
 
 >>> def build_cpu(vendor, num_cores, freq=DEFAULT_FREQ):
-...     return dict(
-...         vendor=vendor,
-...         num_cores=num_cores,
-...         freq=freq
-...     )
+...     return {
+...         'vendor': vendor,
+...         'num_cores': num_cores,
+...         'freq': freq
+...     }
 ...
 
 >>> build_cpu('AMD', 4)
