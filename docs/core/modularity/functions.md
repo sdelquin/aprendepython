@@ -1067,7 +1067,7 @@ Básicamente existen dos implementaciones de generadores:
 
 !!! note "Recordar el estado"
 
-    A diferencia de las funciones ordinarias, los generadores tienen la capacidad de **«recordar» su estado** para recuperarlo en la siguiente iteración y continuar devolviendo nuevos valores.
+    A diferencia de las funciones ordinarias, las **funciones generadoras** tienen la capacidad de **«recordar» su estado** para recuperarlo en la siguiente iteración y continuar devolviendo nuevos valores.
 
 #### Funciones generadoras { #genfun }
 
@@ -1210,7 +1210,7 @@ Una expresión generadora se puede explicitar[^9], sumar, buscar su máximo o su
 
 Está permitido definir una función dentro de otra función. Es lo que se conoce como **función interior**.
 
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que extraemos las palabras de un texto que contienen todas las vocales, haciendo uso de una función interior que nos indica si la palabra contiene todas las vocales:
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que extraemos de un texto aquellas palabras que contienen todas las vocales, haciendo uso de una función interior que nos indica si la palabra contiene todas las vocales:
 
 ```pycon hl_lines="2-3"
 >>> def get_words_with_all_vowels(text: str) -> list[str]:
@@ -1313,7 +1313,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de decorador que 
 ...
 ```
 
-Este decorador lo podemos aplicar a cualquier función. Supongamos que lo queremos aplicar sobre la siguiente:
+Una característica interesante de los decoradores es que los podemos aplicar a cualquier función[^10]. Supongamos que lo queremos aplicar sobre la siguiente:
 
 ```pycon hl_lines="4"
 >>> def add(a, b):
@@ -1412,7 +1412,7 @@ El planteamiento varía según el número de argumentos que queramos manipular. 
     ```pycon
     >>> def args_to_lower(func):
     ...     def wrapper(*args):#(1)!
-    ...         mod_args = [a.upper() if isinstance(a, str) else a for a in args]#(2)!
+    ...         mod_args = [a.lower() if isinstance(a, str) else a for a in args]#(2)!
     ...         return func(*mod_args)#(3)!
     ...     return wrapper
     ...
@@ -1436,7 +1436,7 @@ El planteamiento varía según el número de argumentos que queramos manipular. 
     ```pycon
     >>> def args_to_lower(func):
     ...     def wrapper(*args, **kwargs):#(1)!
-    ...         mod_args = [a.upper() if isinstance(a, str) else a for a in args]#(2)!
+    ...         mod_args = [a.lower() if isinstance(a, str) else a for a in args]#(2)!
     ...         mod_kwargs = {k: v.lower() if isinstance(v, str) else v for k, v in kwargs.items()}#(3)!
     ...         return func(*mod_args, **mod_kwargs)#(4)!
     ...     return wrapper
@@ -1691,6 +1691,56 @@ Ahora podemos aplicarlo variando la base de representación:
         TypeError: basify.<locals>.decorator() takes 1 positional argument but 2 were given
         ```
 
+        Pero existe una forma más elaborada para poder resolver esto, y poder usar el decorador sin paréntesis:
+
+        ```python hl_lines="1 18-19"
+        >>> def basify(_func=None, *, base: int = 10):#(1)!
+        ...     def decorator(func):
+        ...         def wrapper(*args, **kwargs):
+        ...             result = func(*args, **kwargs)
+        ...             match base:
+        ...                 case 2:
+        ...                     result = bin(result)
+        ...                 case 8:
+        ...                     result = oct(result)
+        ...                 case 16:
+        ...                     result = hex(result)
+        ...                 case 10:
+        ...                     result = result
+        ...                 case _:
+        ...                     result = None
+        ...             return result
+        ...         return wrapper
+        ...     if _func is not None and callable(_func):#(2)!
+        ...         return decorator(_func)
+        ...     return decorator#(3)!
+        ...
+        ```
+        { .annotate }
+        
+        1. El primer argumento de `basify()` es opcional y se utiliza para detectar si el decorador se ha aplicado sin paréntesis.
+        2. Si el decorador se ha aplicado sin paréntesis, se llama a `decorator()` directamente con la función a decorar.
+        3. Si el decorador se ha aplicado con paréntesis, se devuelve `decorator()` para que se aplique posteriormente a la función a decorar
+
+        Ahora podríamos aplicar el decorador con o sin paréntesis indistintamente:
+
+        ```pycon hl_lines="1"
+        >>> @basify
+        ... def add(a, b):
+        ...     return a + b
+        ...
+        >>> add(349, 125)
+        474
+
+        >>> @basify(base=16)
+        ... def add(a, b):
+        ...     return a + b
+        ...
+        >>> add(349, 125)
+        '0x1da'
+        ```
+
+
 !!! exercise "Ejercicio"
 
     [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `deco-sort`
@@ -1928,3 +1978,4 @@ Chris Staudinger (cofundador de [Level Up Coding](https://blog.levelupcoding.com
 [^7]: Véase [paradigmas de programación](https://es.wikipedia.org/wiki/Paradigma_de_programaci%C3%B3n).
 [^8]: La función `#!python range()` es un tanto especial. Véase [este artículo](https://treyhunner.com/2018/02/python-range-is-not-an-iterator/) de Trey Hunner.
 [^9]: Cuando hablamos de «explicitar» un generador nos referimos a obtener todos sus valores de forma directa como una lista (o sucedáneo).
+[^10]: Siempre y cuando la «estructura» (de parámetros) de la función sea compatible con la definición de la función interior del decorador.
