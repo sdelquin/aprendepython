@@ -6,6 +6,12 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.1.5
+
+Publicada el 01-03-2026
+
+Corrige ruta de _assets_ JavaScript para MathJax.
+
 ## Version 3.1.4
 
 Publicada el 26-02-2026
