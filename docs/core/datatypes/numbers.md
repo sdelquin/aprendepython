@@ -122,11 +122,11 @@ ZeroDivisionError: division by zero
 
 Es de buen estilo de programación **dejar un espacio** entre cada operador. Además hay que tener en cuenta que podemos obtener errores dependiendo de la operación (más bien de los operandos) que estemos utilizando, como es el caso de la _división por cero_.
 
-#### Prioridad { #priority }
+#### Precendencia { #precendence }
 
-Cada operador tiene una **prioridad** que hace que se ejecute antes (o después) de otro operador:
+La **precedencia** o **prioridad** de los operadores es un concepto fundamental a la hora de interpretar las expresiones. Cada operador tiene una **precedencia** que hace que se ejecute antes (o después) de otro operador:
 
-| Prioridad | Operador |
+| Precendencia | Operador |
 | --- | --- |
 | :material-size-xxl: | `()` |
 | :material-size-xl: | `**` |
@@ -134,7 +134,7 @@ Cada operador tiene una **prioridad** que hace que se ejecute antes (o después)
 | :material-size-m: | `*` `/` `//` `%` |
 | :material-size-s: | `+` `-` |
 
-Veamos algunas expresiones donde se aplica esta prioridad de operadores:
+Veamos algunas expresiones donde se aplica esta precedencia de operadores:
 
 ```pycon
 >>> 2 ** 2 + 4 / 2
