@@ -25,7 +25,117 @@ VSCode proporciona muchas extensiones que facilitan la escritura de código **Py
 
 - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) → Soporte para el lenguaje Python con múltiples características.
 - [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) → Linter[^1] y formateador de código para Python (extremadamente rápido): [astral.sh/ruff](https://astral.sh/ruff).
-- [Mypy Type Checker](https://marketplace.visualstudio.com/items?itemName=ms-python.mypy-type-checker) → Chequeador de tipos estáticos para Python: [mypy-lang.org](https://mypy-lang.org/).
+- [Ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty) → Servidor de lenguaje + Chequeador de tipos para Python: [astra.sh/ty](https://docs.astral.sh/ty/).
+
+### Ficheros de configuración { #extensions-configuration }
+
+A continuación se muestran los ficheros de configuración _que yo utilizo_ para estas extensiones. Por supuesto, cada persona puede personalizarlos a su gusto:
+
+=== "VSCode"
+
+    ```yaml title="settings.json"
+    {
+        "python.languageServer": "None",#(1)!
+        "python.analysis.ignore": ["*"],#(2)!
+        "[python]": {
+          "editor.formatOnSave": true,#(3)!
+          "editor.defaultFormatter": "charliermarsh.ruff",#(4)!
+          "editor.codeActionsOnSave": {#(5)!
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit",
+          },
+        },
+    }
+    ```
+    { .annotate }
+    
+    1. Deshabilitamos el servidor de lenguaje de Python que viene por defecto en la extensión oficial de Microsoft para Python para que no interfiera con **ty**.
+    2. Deshabilitamos el análisis de código que viene por defecto en la extensión oficial de Microsoft para Python para que no interfiera con **ruff**.
+    3. Habilitamos el formateo automático al guardar.
+    4. Indicamos que el formateador por defecto para Python es **ruff**.
+    5. Indicamos que al guardar se apliquen las acciones de organizar «imports» y arreglar todo lo posible.
+
+    Ubicación del fichero de configuración de VSCode:
+
+    === ":fontawesome-brands-windows: Windows"
+    
+        `%APPDATA%\Code\User\settings.json`
+
+    === ":simple-apple: MacOS"
+
+        `~/Library/Application Support/Code/User/settings.json`
+
+    === ":simple-linux: Linux"
+
+        `~/.config/Code/User/settings.json`
+
+=== "Ruff"
+
+    ```toml title="ruff.toml"
+    line-length = 100#(1)!
+    
+    [lint]
+    extend-select = ["Q", "ARG001"]#(2)!
+    
+    [lint.flake8-quotes]
+    inline-quotes = "single"#(3)!
+    
+    [format]
+    quote-style = "single"#(4)!
+    
+    [lint.flake8-unused-arguments]
+    ignore-variadic-names = true#(5)!
+    ```    
+    { .annotate }
+    
+    1. [https://docs.astral.sh/ruff/settings/#line-length](https://docs.astral.sh/ruff/settings/#line-length)
+    2. [https://docs.astral.sh/ruff/settings/#lint_extend-select](https://docs.astral.sh/ruff/settings/#lint_extend-select)
+    3. [https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_inline-quotes](https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_inline-quotes)
+    4. [https://docs.astral.sh/ruff/settings/#format_quote-style](https://docs.astral.sh/ruff/settings/#format_quote-style)
+    5. [https://docs.astral.sh/ruff/settings/#lint_flake8-unused-arguments_ignore-variadic-names](https://docs.astral.sh/ruff/settings/#lint_flake8-unused-arguments_ignore-variadic-names)
+
+    Ubicación del fichero de configuración de Ruff:
+
+    === ":fontawesome-brands-windows: Windows"
+    
+        `%APPDATA%\ruff\ruff.toml`
+
+    === ":simple-apple: MacOS"
+
+        `~/.config/ruff/ruff.toml`
+
+    === ":simple-linux: Linux"
+
+        `~/.config/ruff/ruff.toml`
+
+=== "Ty"
+
+    ```toml title="ty.toml"
+    [rules]
+    unresolved-attribute = "ignore"#(1)!
+    invalid-parameter-default = "ignore"#(2)!
+    possibly-missing-attribute = "ignore"#(3)!
+    ```
+    { .annotate }
+    
+    1. [https://docs.astral.sh/ty/reference/rules/#unresolved-attribute](https://docs.astral.sh/ty/reference/rules/#unresolved-attribute)
+    2. [https://docs.astral.sh/ty/reference/rules/#invalid-parameter-default](https://docs.astral.sh/ty/reference/rules/#invalid-parameter-default)
+    3. [https://docs.astral.sh/ty/reference/rules/#possibly-missing-attribute](https://docs.astral.sh/ty/reference/rules/#possibly-missing-attribute)
+
+    Ubicación del fichero de configuración de Ty:
+
+    === ":fontawesome-brands-windows: Windows"
+    
+        `%APPDATA%\ty\ty.toml`
+
+    === ":simple-apple: MacOS"
+
+        `~/.config/ty/ty.toml`
+
+    === ":simple-linux: Linux"
+
+        `~/.config/ty/ty.toml`
+    
 
 ## Atajos de teclado { #shortcuts }
 
