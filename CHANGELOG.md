@@ -6,6 +6,22 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.1.6
+
+Publicada el 03-03-2026
+
+- Introducción: Python
+	- Actualiza rankings.
+	- Añade fondo de pantalla personalizado sobre Zen de Python.
+- Entornos de desarrollo: Contexto real
+	- Corrige errores menores.
+- Entornos de desarrollo: Visual Studio Code
+	- Añade configuraciones vscode, ruff y ty.
+- Tipos de datos: Datos
+	- Añade documentación sobre precarga de datos.
+- Tipos de datos: Números
+	- Corrige notas sobre precedencia de operadores.
+
 ## Version 3.1.5
 
 Publicada el 01-03-2026
