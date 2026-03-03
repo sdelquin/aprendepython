@@ -387,6 +387,59 @@ Por tanto, podemos clasificar los **tipos de datos** en Python según su **natur
 
     El hecho de que un tipo de datos sea inmutable significa que no podemos modificar su valor «in-situ», pero siempre podremos asignarle un nuevo valor (hacerlo apuntar a otra zona de memoria).
 
+## Precarga de objetos { #preload }
+
+En Python, algunos objetos se cargan en memoria de forma automática (_«preloading»_) al iniciar el intérprete. Esto se hace para optimizar el rendimiento del lenguaje, ya que estos objetos son muy utilizados en la mayoría de los programas.
+
+Entre estos objetos precargados se encuentran:
+
+=== "Números"
+
+    Todos los números enteros entre `-5` y `256` (inclusive)[^5], definidos en el [código fuente de _CPython_](https://github.com/python/cpython/blob/main/Include/internal/pycore_runtime_init_generated.h) a través de la estructura `_Py_small_ints_INIT`.
+
+    Esto se puede comprobar fácimente con la función `id()`:
+
+    ```pycon
+    >>> id(-5)
+    4371891880
+    >>> id(-5)
+    4371891880
+
+    >>> id(125)
+    4371896040
+    >>> id(125)
+    4371896040
+
+    >>> id(347)
+    4415707120
+    >>> id(347)
+    4415701232
+    ```
+
+=== "Cadenas de texto"
+
+    Los caracteres del [código ASCII extendido](https://www.ascii-code.com/) (letras mayúsculas, minúsculas, dígitos y algunos símbolos), con códigos entre `0` y `255` (inclusive), definidos en el [código fuente de _CPython_](https://github.com/python/cpython/blob/main/Include/internal/pycore_runtime_init_generated.h) a través de las estructuras `_Py_str_ascii_INIT` y `_Py_str_latin1_INIT`.
+
+    Esto se puede comprobar fácimente con la función `id()`:
+
+    ```pycon
+    >>> id('a')
+    4371958760
+    >>> id('a')
+    4371958760
+
+    >>> id('?')
+    4371957128
+    >>> id('?')
+    4371957128
+
+    >>> id('😊')
+    4393408496
+    >>> id('😊')
+    4415814576
+    ```
+
+
 ## Funciones «built-in» { #built-in-functions }
 
 Hemos ido usando una serie de [funciones](../modularity/functions.md) sin ser especialmente conscientes de ello. Esto se debe a que son funciones «built-in» o incorporadas por defecto en el propio lenguaje Python.
@@ -603,3 +656,4 @@ Type:      builtin_function_or_method
 [^2]: Los metadatos son datos que describen otros datos.
 [^3]: Para ser exactos, sí se pueden utilizar otros caracteres, e incluso emojis en los nombres de variables, aunque no suele ser una práctica extendida, ya que podría dificultar la legibilidad.
 [^4]: Esto es un detalle de implementación de CPython.
+[^5]: A partir de <span class="pyversion"><a href="https://docs.python.org/3.15/">Python <span class="version">:octicons-tag-24: 3.15</span></a></span> se amplia el número de enteros precargados al rango $[-5, 1024]$
