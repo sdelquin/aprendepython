@@ -28,7 +28,7 @@ A partir de su [definición de la Wikipedia](https://es.wikipedia.org/wiki/Pytho
 
 - Python es un lenguaje de programación **interpretado** y **multiplataforma** cuya filosofía hace hincapié en una sintaxis que favorezca un **código legible**.
 - Se trata de un lenguaje de programación **multiparadigma**, ya que soporta **orientación a objetos**, **programación imperativa** y, en menor medida, **programación funcional**.
-- En base a su campo obetivo, se trata de un lenguaje de **propósito general**.
+- En base a su campo objetivo, se trata de un lenguaje de **propósito general**.
 
 ### Ventajas { #advantages }
 
@@ -68,9 +68,17 @@ A partir de su [definición de la Wikipedia](https://es.wikipedia.org/wiki/Pytho
 
 ## Uso de Python { #python-usage }
 
-Al ser un lenguaje de ^^propósito general^^, podemos encontrar aplicaciones en prácticamente en todos los ámbitos:
+Al ser un lenguaje de ^^propósito general^^, podemos encontrar aplicaciones en prácticamente todos los ámbitos.
 
-- Análisis de datos.
+Las «cuatro patas» de Python son:
+
+- [x] Desarrollo Web.
+- [x] Administración de Sistemas y Automatización de Tareas.
+- [x] Ciencia de Datos.
+- [x] Inteligencia Artificial y Machine Learning.
+
+Pero también se puede usar Python para:
+
 - Aplicaciones de escritorio.
 - Bases de datos relacionales / NoSQL
 - Buenas prácticas de programación / Patrones de diseño.
@@ -79,12 +87,9 @@ Al ser un lenguaje de ^^propósito general^^, podemos encontrar aplicaciones en 
 - Desarrollo de aplicaciones multimedia.
 - Desarrollo de juegos.
 - Desarrollo en dispositivos embebidos.
-- Desarrollo web.
-- DevOps / Administración de sistemas / Scripts de automatización.
+- DevOps.
 - Gráficos por ordenador.
-- Inteligencia artificial.
 - Internet de las cosas.
-- Machine Learning.
 - Programación de parsers / scrapers / crawlers.
 - Programación de redes.
 - Propósitos educativos.
@@ -108,13 +113,13 @@ Existen ránkings y estudios de mercado que sitúan a Python como uno de los len
 
 === "TIOBE"
 
-    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **septiembre de 2025** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
+    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **febrero de 2026** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
 
     | Puesto | Lenguaje |  Uso   |
     | ------ | -------- | ------ |
-    | 1      | Python   | 25.98% |
-    | 2      | C++      | 8.80%  |
-    | 3      | C        | 8.65%  |
+    | 1      | Python   | 21.81% |
+    | 2      | C        | 11.05% |
+    | 3      | C++      | 8.55%  |
 
 === "Stack Overflow"
 
@@ -128,23 +133,23 @@ Existen ránkings y estudios de mercado que sitúan a Python como uno de los len
 
 === "GitHub"
 
-    En el momento de la escritura de este documento, la última actualización del [informe sobre tecnologías en la plataforma GitHub](https://github.blog/news-insights/octoverse/octoverse-2024/#the-most-popular-programming-languages) es de **octubre de 2024** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de JavaScript y TypeScript.
+    En el momento de la escritura de este documento, la última actualización del [informe sobre tecnologías en la plataforma GitHub](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/#the-top-programming-languages-of-2025-typescript-jumps-to-1-while-python-takes-2) es de **octubre de 2025** en la que **Python ocupaba el segundo puesto** de los ^^lenguajes de programación más usados^^, por detrás de TypeScript y por delante de JavaScript.
 
     | Puesto |  Lenguaje  |
     | ------ | ---------- |
-    | 1      | Python     |
-    | 2      | JavaScript |
-    | 3      | TypeScript |
+    | 1      | TypeScript |
+    | 2      | Python     |
+    | 3      | JavaScript |
 
 === "IEEE Spectrum"
 
-    En el momento de la escritura de este documento, la última actualización del [ranking anual IEEE Spectrum sobre lenguajes de programación](https://spectrum.ieee.org/top-programming-languages-2024) es de **agosto de 2024** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más populares^^, por delante de Java y JavaScript.
+    En el momento de la escritura de este documento, la última actualización del [ranking anual IEEE Spectrum sobre lenguajes de programación](https://spectrum.ieee.org/top-programming-languages-2025) es de **septiembre de 2025** en la que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más populares^^, por delante de Java y C++.
 
-    | Puesto |  Lenguaje  | Popularidad |
-    | ------ | ---------- | ----------- |
-    | 1      | Python     | 1           |
-    | 2      | Java       | 0.4855      |
-    | 3      | JavaScript | 0.4451      |
+    | Puesto | Lenguaje | Popularidad |
+    | ------ | -------- | ----------- |
+    | 1      | Python   | 1           |
+    | 2      | Java     | 0.4986      |
+    | 3      | C++      | 0.3669      |
 
 ## Versiones de Python { #python-releases }
 
@@ -212,7 +217,7 @@ Cada cierto tiempo se reúnen en «sprints»[^3] donde toman decisiones sobre el
 
 El cambio **de Python 2 a Python 3** fue bastante «traumático» ya que **se perdió la compatibilidad** en muchas de las estructuras del lenguaje. Los [«core-developers»](#core-developers), con _Guido van Rossum_ a la cabeza, vieron la necesidad de aplicar estas modificaciones en beneficio del rendimiento y expresividad del lenguaje de programación. Este cambio implicaba que el código escrito en Python 2 no funcionaría (de manera inmediata) en Python 3.
 
-El pasado **1 de enero de 2020** finalizó oficialmente el **soporte a la versión 2.7** del lenguaje de programación Python. Es por ello que se recomienda lo siguiente:
+El **1 de enero de 2020** [finalizó oficialmente](https://www.python.org/doc/sunset-python-2/) el **soporte a la versión 2.7** del lenguaje de programación Python. Es por ello que se recomienda lo siguiente:
 
 1. Si aún desarrollas aplicaciones escritas en Python 2, deberías migrar a Python 3.
 2. Si vas a desarrollar una nueva aplicación, deberías hacerlo directamente en Python 3.
@@ -297,11 +302,11 @@ Existen una serie de _reglas_ «filosóficas» que indican una **manera de hacer
 
 !!! tip "Fondo de pantalla"
 
-    Si quieres darle un toque a tu escritorio, puedes descargar este [fondo de pantalla](https://www.gnome-look.org/p/1042303) del Zen de Python que queda muy chulo.
+    Si quieres darle un toque a tu escritorio, puedes descargar este [fondo de pantalla](./images/python/zen-python.png)[^5] del Zen de Python que queda muy chulo.
 
 ### Consejos para programar { #programming-advices }
 
-Por aquí te dejo una lista de consejos muy interesantes cuando nos enfrentamos a la _ardua tarea de programar_[^5]:
+Por aquí te dejo una lista de consejos muy interesantes cuando nos enfrentamos a la _ardua tarea de programar_[^6]:
 
 1. Escribir código es el último paso del proceso.
 2. Para resolver problemas: pizarra mejor que teclado.
@@ -335,4 +340,5 @@ Por aquí te dejo una lista de consejos muy interesantes cuando nos enfrentamos 
 [^2]: El primer «commit» de CPython registrado por Guido van Rossum está disponible en [Github](https://github.com/python/cpython/commit/7f777ed95a19224294949e1b4ce56bbffcb1fe9f).
 [^3]: Ciclo de trabajo de duración fija enfocado en desarrollar determinados aspectos software.
 [^4]: Dícese de algo/alguien que sigue las convenciones de Python.
-[^5]: Consejos obtenidos de la cuenta :simple-x: de [@codewithvoid](https://twitter.com/codewithvoid).
+[^5]: Imagen generada con Inteligencia Artificial.
+[^6]: Consejos obtenidos de la cuenta :simple-x: de [@codewithvoid](https://twitter.com/codewithvoid).
