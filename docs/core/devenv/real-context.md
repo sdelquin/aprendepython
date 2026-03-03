@@ -56,10 +56,7 @@ Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herrami
     $ pip install pytest  # pytest es sólo un ejemplo
     ```
 
-    En el caso de querer **instalar dependencias desde un fichero** `requirements.txt`(1) tendríamos que ejecutar:
-    { .annotate }
-
-    1. Como regla general los proyectos hechos en Python suelen tener un fichero `requirements.txt` con las dependencias del proyecto. Un paquete por cada línea con la opción de fijar su versión.
+    En el caso de querer **instalar dependencias desde un fichero**[^2] tendríamos que ejecutar:
 
     ```console
     $ pip install -r requirements.txt
@@ -67,7 +64,7 @@ Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herrami
 
     !!! tip "Caché"
 
-        Utiliza el siguiente comando si quieres deshabilitar la caché[^2] a la hora de instalar paquetes:
+        Utiliza el siguiente comando si quieres deshabilitar la caché[^3] a la hora de instalar paquetes:
 
         ```console
         $ pip install --no-cache-dir pytest
@@ -104,7 +101,7 @@ $ source .venv/bin/activate #(3)!
 ```
 
 1. Entrar en la carpeta de nuestro proyecto.
-2. Este comando crea una carpeta `.venv`[^3] con los ficheros que constituyen el entorno virtual.
+2. Este comando crea una carpeta `.venv`[^4] con los ficheros que constituyen el entorno virtual.
 3. Activar el entorno virtual. A partir de aquí todo lo que se instale quedará dentro del entorno virtual.
 
 !!! note "VIRTUAL_ENV"
@@ -265,6 +262,7 @@ Cabe destacar aquí el concepto de **Entorno de Desarrollo Integrado**, más con
     - [Eclipse :simple-eclipseide:](https://www.eclipse.org/) :material-plus: [PyDev](https://www.pydev.org/)
     - [IntelliJ IDEA :simple-intellijidea:](https://www.jetbrains.com/help/idea/getting-started.html) :material-plus: [Python Plugin](https://www.jetbrains.com/help/idea/plugin-overview.html)
     - [Visual Studio :material-microsoft-visual-studio:](https://visualstudio.microsoft.com/es/vs/) :material-plus: [Python Tools](https://visualstudio.microsoft.com/es/vs/features/python/)
+    - [Zed :simple-zedindustries:](https://zed.dev/) :material-plus: [Python Support](https://zed.dev/docs/languages/python)
     - [Visual Studio Code :material-microsoft-visual-studio-code:](https://code.visualstudio.com/) :material-plus: [Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 
 === "Editores/IDEs específicos para Python"
@@ -281,9 +279,9 @@ Cada editor tiene sus características (ventajas e inconvenientes). Supongo que 
 
 ### Jupyter { #jupyter }
 
-[Jupyter :simple-jupyter:](https://jupyter.org/) es un proyecto «open-source» que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque **suele estar más enfocado a ciencia de datos**: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización o «machine-learning»[^4].
+[Jupyter :simple-jupyter:](https://jupyter.org/) es un proyecto «open-source» que permite crear y compartir documentos que contienen código, ecuaciones, visualizaciones y texto narrativo. Podemos utilizarlo para propósito general aunque **suele estar más enfocado a ciencia de datos**: limpieza y transformación de datos, simulación numérica, modelado estadístico, visualización o «machine-learning»[^5].
 
-Podemos verlo como un intérprete de Python (contiene un «kernel»[^5] que permite ejecutar código) con la capacidad de incluir documentación en formato [Markdown :material-language-markdown-outline:](https://markdown.es/) lo que potencia sus funcionalidades y lo hace adecuado para preparar cualquier tipo de material vinculado con lenguajes de programación.
+Podemos verlo como un intérprete de Python (contiene un «kernel»[^6] que permite ejecutar código) con la capacidad de incluir documentación en formato [Markdown :material-language-markdown-outline:](https://markdown.es/) lo que potencia sus funcionalidades y lo hace adecuado para preparar cualquier tipo de material vinculado con lenguajes de programación.
 
 !!! example "Kernels"
 
@@ -300,7 +298,7 @@ Permite trabajo colaborativo y dispone de [una capa gratuita](https://replit.com
     <figcaption>Interfaz de repl.it para Python</figcaption>
 </figure>
 
-En su versión gratuita[^6] («Starter») repl.it ofrece:
+En su versión gratuita[^7] («Starter») repl.it ofrece:
 
 - 2Gb de almacenamiento en disco.
 - 2Gb de memoria RAM.
@@ -324,11 +322,10 @@ La instalación de WSL tendría que ser tan fácil como :material-powershell:`#!
 
 
 
-
-
 [^1]: También llamada «vanilla installation» ya que es la que viene por defecto y en la que no se realiza ninguna personalización.
-[^2]: La caché de pip es un almacenamiento temporal que acelera la instalación de paquetes.
-[^3]: Es una **convención** llamar `.venv` al directorio/carpeta que contiene el entorno virtual Python.
-[^4]: Término inglés utilizado para hacer referencia a algoritmos de aprendizaje automático.
-[^5]: Proceso específico para un lenguaje de programación que ejecuta instrucciones y actúa como interfaz de entrada/salida.
-[^6]: Información disponible a la fecha de escritura de este documento. Puede no ser correcta a la fecha de lectura del mismo.
+[^2]: Como regla general los proyectos hechos en Python suelen tener un fichero `requirements.txt` con las dependencias del proyecto. Un paquete por cada línea con la opción de fijar su versión.
+[^3]: La caché de pip es un almacenamiento temporal que acelera la instalación de paquetes.
+[^4]: Es una **convención** llamar `.venv` al directorio/carpeta que contiene el entorno virtual Python.
+[^5]: Término inglés utilizado para hacer referencia a algoritmos de aprendizaje automático.
+[^6]: Proceso específico para un lenguaje de programación que ejecuta instrucciones y actúa como interfaz de entrada/salida.
+[^7]: Información disponible a la fecha de escritura de este documento. Puede no ser correcta a la fecha de lectura del mismo.
