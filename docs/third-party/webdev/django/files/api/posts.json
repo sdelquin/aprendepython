@@ -1,0 +1,52 @@
+[
+{
+  "model": "posts.post",
+  "pk": 1,
+  "fields": {
+    "title": "Small Changes",
+    "slug": "small-changes",
+    "content": "Small daily changes can lead to big results.",
+    "category": 1
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 2,
+  "fields": {
+    "title": "Learning Takes Time",
+    "slug": "learning-takes-time",
+    "content": "Technology moves fast, but real learning takes time.",
+    "category": 2
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 3,
+  "fields": {
+    "title": "Thinking in Code",
+    "slug": "thinking-in-code",
+    "content": "Writing code is also a way of thinking.",
+    "category": 1
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 4,
+  "fields": {
+    "title": "Useful Mistakes",
+    "slug": "useful-mistakes",
+    "content": "Not every error is a failure.",
+    "category": 2
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 5,
+  "fields": {
+    "title": "Curiosity",
+    "slug": "curiosity",
+    "content": "Great ideas are born from curiosity.",
+    "category": 2
+  }
+}
+]

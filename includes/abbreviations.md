@@ -41,6 +41,7 @@
 *[PBKDF2]: Password-Based Key Derivation Function 2
 *[RAM]: Random Access Memory
 *[RDBMS]: Relational Database Management System
+*[RFC]: Request For Comments
 *[RHS]: Right Hand Side
 *[RST]: Restructured Text
 *[SMTP]: Simple Mail Transfer Protocol

@@ -1,0 +1,29 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$HOu6XaqEphwyfFLSfPGIIr$HII6HgG5CArkOKeLHcaUk/ZVKYUOePG9z1fr4c+eVmo=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "guido",
+      "first_name": "Guido",
+      "last_name": "van Rossum",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-02-24T16:42:04Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.token",
+    "pk": 1,
+    "fields": {
+      "key": "40e5f786-1210-45f5-9e5d-f76925a9e98a",
+      "user": 2,
+      "created_at": "2026-02-24T16:43:10.433Z"
+    }
+  }
+]

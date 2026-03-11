@@ -1,0 +1,26 @@
+[
+{
+  "model": "categories.category",
+  "pk": 1,
+  "fields": {
+    "name": "Design",
+    "slug": "design"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 2,
+  "fields": {
+    "name": "Learning",
+    "slug": "learning"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 3,
+  "fields": {
+    "name": "Configuration",
+    "slug": "configuration"
+  }
+}
+]

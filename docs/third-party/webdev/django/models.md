@@ -2901,7 +2901,7 @@ Si en vez de mostrar el resultado «por pantalla» queremos volcarlo a un ficher
     [...........................................................................]
     ```
 
-Efectivamente el fichero generado es un JSON:
+Efectivamente el fichero generado [`posts.json`](files/posts.json) es un JSON:
 
 ```console
 $ file posts.json
@@ -2926,6 +2926,9 @@ Para cargar las _fixtures_ debemos hacer uso del comando [`manage.py loaddata`](
     Installed 5 object(s) from 1 fixture(s)
     ```
     
+!!! tip "Ubicación de «fixtures»"
+
+    Si no se indica una ruta al fichero de «fixtures», Django lo buscará primero en la carpeta actual de trabajo y, si no lo encuentra, en la carpeta `fixtures` de cada una de las aplicaciones instaladas en el proyecto.
 
 
 [^1]: En la práctica hay [ciertos aspectos](https://docs.djangoproject.com/en/stable/ref/databases/) a tener en cuenta cuando usamos distintos sistemas gestores de bases de datos.
