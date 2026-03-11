@@ -6,6 +6,13 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.0
+
+Publicada el 11-03-2026
+
+- Django: API
+  - Migración de apuntes a [Django Ninja](https://django-ninja.dev/).
+
 ## Version 3.1.6
 
 Publicada el 03-03-2026
