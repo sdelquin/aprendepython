@@ -6,6 +6,12 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.1
+
+Publicada el DD-MM-YYYY
+
+- Actualiza la versión de Zensical a [0.0.27](https://github.com/zensical/zensical/releases/tag/v0.0.27).
+
 ## Version 3.2.0
 
 Publicada el 11-03-2026
