@@ -8,7 +8,7 @@ Publicada el DD-MM-YYYY
 
 ## Version 3.2.1
 
-Publicada el DD-MM-YYYY
+Publicada el 15-03-2026
 
 - Actualiza la versión de Zensical a [0.0.27](https://github.com/zensical/zensical/releases/tag/v0.0.27).
 
