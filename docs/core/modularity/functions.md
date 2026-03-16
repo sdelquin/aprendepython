@@ -993,8 +993,8 @@ Python nos ofrece tres funciones que encajan verdaderamente bien en este enfoque
         Este comportamiento se puede implementar igualmente con una [lista por comprensión](../datastructures/lists.md#comprehension):
 
         ```pycon
-        >>> [x**2 for x in range(1, 6)]
-        [1, 4, 9, 16, 25]
+        >>> [2*x for x in range(1, 6)]
+        [2, 4, 6, 8, 10]
         ```
 
 === "`filter()`"
