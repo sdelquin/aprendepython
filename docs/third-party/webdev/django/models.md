@@ -169,6 +169,9 @@ Tras cualquier modificación del fichero `models.py` es necesario:
 
         ```console
         $ ./manage.py makemigrations #(1)!
+        Migrations for 'posts':
+          posts/migrations/0001_initial.py
+            + Create model Post
         ```
         { .annotate }
         
@@ -178,6 +181,9 @@ Tras cualquier modificación del fichero `models.py` es necesario:
 
         ```console
         $ uv run manage.py makemigrations #(1)!
+        Migrations for 'posts':
+          posts/migrations/0001_initial.py
+            + Create model Post
         ```
         { .annotate }
         
@@ -195,6 +201,10 @@ Tras cualquier modificación del fichero `models.py` es necesario:
 
         ```console
         $ ./manage.py migrate #(1)!
+        Operations to perform:
+          Apply all migrations: posts
+        Running migrations:
+          Applying posts.0001_initial... OK
         ```
         { .annotate }
         
@@ -204,6 +214,10 @@ Tras cualquier modificación del fichero `models.py` es necesario:
 
         ```console
         $ uv run manage.py migrate #(1)!
+        Operations to perform:
+          Apply all migrations: posts
+        Running migrations:
+          Applying posts.0001_initial... OK
         ```
         { .annotate }
         
@@ -334,6 +348,153 @@ Django nos ofrece la posibilidad de comprobar el registro de migraciones:
         Consulta la receta [`showmigrations`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
 :material-check-all:{ .blue } Aquellas migraciones marcadas con :octicons-x-12:{.hl} significa que ya se han aplicado.
+
+### Revertir migraciones { #rollback }
+
+Para plantear un escenario inicial, vamos por <span class="example">ejemplo:material-flash:</span> a hacer un pequeño cambio sobre el modelo `Post` ampliando el tamaño de los campos `title` y `slug`:
+
+```python title="posts/models.py" hl_lines="5-6"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=300)
+    slug = models.SlugField(max_length=300)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Ahora _creamos la migración_:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py makemigrations posts
+    Migrations for 'posts':
+      posts/migrations/0002_alter_post_slug_alter_post_title.py
+        ~ Alter field slug on post
+        ~ Alter field title on post
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py makemigrations posts
+    Migrations for 'posts':
+      posts/migrations/0002_alter_post_slug_alter_post_title.py
+        ~ Alter field slug on post
+        ~ Alter field title on post
+    ```
+
+Y a continuación _aplicamos la migración_:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0002_alter_post_slug_alter_post_title... OK    
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0002_alter_post_slug_alter_post_title... OK    
+    ```
+
+Si visualizamos el [registro de migraciones](#migration-log) veremos que esta última migración ya se ha aplicado:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console hl_lines="4"
+    $ ./manage.py showmigrations posts
+    posts
+     [X] 0001_initial
+     [X] 0002_alter_post_slug_alter_post_title
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console hl_lines="4"
+    $ uv run manage.py showmigrations posts
+    posts
+     [X] 0001_initial
+     [X] 0002_alter_post_slug_alter_post_title
+    ```
+
+En este punto podríamos querer **revertir** («rollback») la última migración. Para ello simplemente migramos al punto de la historia que necesitemos:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py migrate posts 0001#(1)!
+    Operations to perform:
+      Target specific migration: 0001_initial, from posts
+    Running migrations:
+      Rendering model states... DONE
+      Unapplying posts.0002_alter_post_slug_alter_post_title... OK
+    
+    $ uv run manage.py showmigrations posts #(2)!
+    posts
+     [X] 0001_initial
+     [ ] 0002_alter_post_slug_alter_post_title
+    ```
+    { .annotate }
+    
+    1. Indicamos el número de la migración a la que «regresar».
+    2. Como era de esperar, la migración ya no aparece aplicada.
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py migrate posts 0001#(1)!
+    Operations to perform:
+      Target specific migration: 0001_initial, from posts
+    Running migrations:
+      Rendering model states... DONE
+      Unapplying posts.0002_alter_post_slug_alter_post_title... OK
+    
+    $ uv run manage.py showmigrations posts #(2)!
+    posts
+     [X] 0001_initial
+     [ ] 0002_alter_post_slug_alter_post_title
+    ```
+    { .annotate }
+    
+    1. Indicamos el número de la migración a la que «regresar».
+    2. Como era de esperar, la migración ya no aparece aplicada.
+
+La migración se ha revertido correctamente. Si quisiéramos eliminar del registro la migración `0002` bastaría con eliminar el fichero:
+
+```console
+$ rm posts/migrations/0002_alter_post_slug_alter_post_title.py
+```
+
+Ahora si volvemos a comprobar el registro de migraciones, vemos que todo está como esperaríamos:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py showmigrations posts
+    posts
+     [X] 0001_initial
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py showmigrations posts
+    posts
+     [X] 0001_initial
+    ```
 
 ## Base de datos { #database }
 
