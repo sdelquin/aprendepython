@@ -174,7 +174,6 @@ features = [
     "navigation.tabs",
     "navigation.top",
     "navigation.tracking",
-    "search.highlight",
     "toc.follow",
 ]
 
