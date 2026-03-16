@@ -231,6 +231,10 @@ class AddPostForm(forms.Form):#(1)!
 3.  - Los campos se definen «manualmente» pero utilizando los [tipos de campos para formularios](https://docs.djangoproject.com/en/stable/ref/forms/fields/#built-in-field-classes) que ofrece Django.
     - Aquí deberíamos usar un «TextField» pero no existe como tal (en los campos de formulario). La forma de «solucionarlo» sería modificando el [«widget»](#widgets) asociado.
 
+!!! warning "Campos opcionales"
+
+    Por defecto, todos los campos que incluyamos en un formulario son obligatorios. Si queremos indicar que alguno de ellos es **opcional** debemos utilizar el parámetro `#!python required=False`.
+
 Ahora veamos cuál es el código que debemos introducir en la plantilla:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
