@@ -796,7 +796,7 @@ Obtendremos un error ya que un objeto de tipo «string» no dispone de un atribu
 ...
 ...     def __eq__(self, other) -> bool:
 ...         if isinstance(other, Droid):#(1)!
-...             return self.name == droid.name
+...             return self.name == other.name
 ...         return False
 ...
 ```
@@ -806,15 +806,15 @@ Obtendremos un error ya que un objeto de tipo «string» no dispone de un atribu
 
 Ahora se puede comprobar que todo funciona según lo esperado:
 
-```pycon
->>> droid1 = Droid('IG-88', 56548988761)
->>> droid2 = Droid('HK-47', 56548988761)
-
->>> droid1 == 'IG-88'
-False
+```pycon hl_lines="7-8"
+>>> droid1 = Droid('C-3PO', 43974973242)
+>>> droid2 = Droid('C-3PO', 85094905984)
 
 >>> droid1 == droid2
 True
+
+>>> droid1 == 'C-3PO'
+False
 ```
 
 A continuación se presenta una tabla con métodos mágicos para operadores:
