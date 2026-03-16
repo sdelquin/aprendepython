@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .split("\n")
       .filter(
         (line) =>
-          line.startsWith(">>>") ||
+          line.startsWith(">") || // Contempla ">>>" y ">"
           line.startsWith("...") ||
-          line.startsWith("$")
+          line.startsWith("$"),
       ) // Solo instrucciones
-      .map((line) => line.replace(/^(>>>|\.\.\.|\$)\s?/, "")) // Elimina ">>>", "..." o "$"
+      .map((line) => line.replace(/^(>+|\.\.\.|\$)\s?/, "")) // Elimina ">", ">>>", "..." o "$"
       .join("\n");
 
     // Si el bloque no es de sesión interactiva o Bash, copia todo el contenido
