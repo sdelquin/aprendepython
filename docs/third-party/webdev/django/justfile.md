@@ -10,7 +10,36 @@ tags:
 
 [just](https://github.com/casey/just) es un lanzador de comandos. Aunque no es imprescindible para desarrollar proyectos software, es altamente recomendable incluirlo porque permite automatizar muchas tareas que son habituales en el día a día.
 
-Basta con tener [instalada la herramienta `just`](https://github.com/casey/just?tab=readme-ov-file#pre-built-binaries) y crear un fichero `justfile` en el raíz de nuestro proyecto. Este fichero se compone de «recetas» identificadas por un nombre que luego podemos ejecutar desde línea de comandos.
+## Instalación { #just-install }
+
+Hay [múltiples vías](https://github.com/casey/just?tab=readme-ov-file#installation) para instalar `uv`:
+
+=== ":fontawesome-brands-windows: Windows"
+
+    ```ps1con
+    > winget install -e --id Casey.Just#(1)!
+    ```
+    { .annotate }
+    
+    1. Instalación mediante [`winstall`](https://winstall.app/apps/Casey.Just).
+
+=== ":simple-apple: MacOS"
+
+    ```console
+    $ mkdir -p ~/.local/bin
+    $ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/local/bin
+    $ export PATH="$PATH:$HOME:/.local/bin"
+    ```
+
+=== ":simple-linux: Linux"
+
+    ```console
+    $ mkdir -p ~/.local/bin
+    $ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/local/bin
+    $ export PATH="$PATH:$HOME:/.local/bin"
+    ```
+
+Una vez con la herramienta instalada, basta con crear un fichero `justfile` en el raíz de nuestro proyecto. Este fichero se compone de «recetas» identificadas por un nombre que luego podemos ejecutar desde línea de comandos.
 
 !!! tip "Alias"
 
