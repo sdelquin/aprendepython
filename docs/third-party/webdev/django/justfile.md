@@ -137,6 +137,11 @@ alias dbsh:=dbshell
 dbshell:
     uv run manage.py dbshell
 
+# Launch a database command (enclosed with '')
+[group('shell')]
+dbcmd command:
+    uv run manage.py dbshell -- '{{ command }}'
+
 # Setup new project
 [group('config')]
 setup: && migrate create-su set-tz set-media

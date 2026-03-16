@@ -618,6 +618,14 @@ content = Awesome features of the last release of Django
 
     Prueba el modificador `.mode box` en sqlite3 para ver los resultados de las consultas en modo caja.
 
+??? abstract "justfile (para comando)"
+
+    También dispones de la receta [`dbcmd`](justfile.md#django-justfile) que permite ejecutar directamente un comando sobre la base de datos sin necesidad de entrar en el cliente. Por <span class="example">ejemplo:material-flash:</span>:
+
+    ```console
+    $ just dbcmd 'SELECT * FROM posts_post'
+    ```
+
 ### Guardando objetos { #save-objects }
 
 El método `save()` nos permite guardar los cambios realizados en una instancia de un modelo. Por tanto podemos modificar los valores de sus campos y reflejarlos en la base de datos.
