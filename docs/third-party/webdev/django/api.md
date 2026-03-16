@@ -287,7 +287,7 @@ Muy recomendable para evitar romper clientes existentes:
 
 :eight: Manejo de estados y errores
 
-- Usa [códigos HTTP](views.md#response-types) correctos (200, 401, 403, 404, 405, 500).
+- Usa [códigos HTTP](views.md#response-types) correctos (200, 401, 403, 404, 405, 409, 500).
 - Los errores deben devolverse en el cuerpo de la respuesta, no en la ruta.
 
 ## Esquemas { #schemas }
@@ -1623,7 +1623,7 @@ Por lo tanto, vamos a implementar un punto de entrada en nuestra API que permita
 
 === "URLs"
 
-    ```python title="api/urls.py" hl_lines="6"
+    ```python title="main/urls.py" hl_lines="6"
     from ninja import NinjaAPI
     
     api = NinjaAPI()
