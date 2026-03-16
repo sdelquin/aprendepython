@@ -150,6 +150,26 @@ En este sentido **es recomendable** [crear una aplicación](#creation) `shared`{
     $ uv run manage.py startapp shared
     ```
 
+Tendremos igualmente que instalar la aplicación `shared` en `settings.py`:
+
+```python title="main/settings.py" hl_lines="10"
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # CUSTOM
+    'posts.apps.PostsConfig',#(1)!
+    'shared.apps.SharedConfig',#(2)!
+]
+```
+{ .annotate }
+
+1. `/posts/apps.py` clase `PostsConfig`
+2. `/shared/apps.py` clase `SharedConfig`
+
 !!! info "shared"
 
     El nombre `shared` para esta aplicación de «recursos compartidos» es uno de tantos que se pueden elegir. Obviamente no es obligatorio y queda a decisión del equipo de desarrollo.
