@@ -27,10 +27,18 @@ Este tipo de formularios se construyen a partir de una **plantilla HTML**.
 Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos un formulario en una plantilla para añadir un nuevo «post» en un «blog». Tendríamos algo similar a lo siguiente:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
+<h1>Add post</h1>
+
 <form method="post" novalidate><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
-    <input type="text" name="post-title"><!--(3)!-->
-    <textarea name="post-content"></textarea><!--(4)!-->
+    <p>
+        Title:<br>
+        <input type="text" name="post-title"><!--(3)!-->
+    </p>
+    <p>
+        Content:<br>
+        <textarea name="post-content" cols="40" rows="10"></textarea><!--(4)!-->
+    </p>
     <input type="submit" value="Enviar"><!--(5)!-->
 </form>
 ```
@@ -226,6 +234,8 @@ class AddPostForm(forms.Form):#(1)!
 Ahora veamos cuál es el código que debemos introducir en la plantilla:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
+<h1>Add post</h1>
+
 <form method="post" novalidate><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     {{ form }}<!--(3)!-->
@@ -332,6 +342,8 @@ class AddPostForm(forms.ModelForm):#(1)!
 Ahora veremos cómo es el código de la plantilla:
 
 ```htmldjango title="posts/templates/posts/post/add.html"
+<h1>Add post</h1>
+
 <form method="post" novalidate><!--(1)!-->
     {% csrf_token %}<!--(2)!-->
     {{ form }}<!--(3)!-->
