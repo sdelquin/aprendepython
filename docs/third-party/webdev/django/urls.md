@@ -170,7 +170,7 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 | `#!python path('<int:post_id>', ...)` | `/4673/`  | Casa con 0 o un entero positivo y retorna `#!python int` |
 | `#!python path('<slug:product_slug>', ...)` | `/display-23-inches/`  | Casa con un «slug» y retorna `#!python str` |
 | `#!python path('<uuid:token>', ...)` | `/075194d3-6885-417e-a8a8-6c931e272f00/`  | Casa con cualquier UUID y retorna un objeto [UUID](https://docs.python.org/3/library/uuid.html#uuid.UUID) |
-| `#!python path('<path:resource_path>', ...)` | `/products/tech/logitech-keyboard/`  | Casa con cualquier cadena de caracteres cinluyendo el separador `/` y retorna un `#!python str` |
+| `#!python path('<path:resource_path>', ...)` | `/products/tech/logitech-keyboard/`  | Casa con cualquier cadena de caracteres incluyendo el separador `/` y retorna un `#!python str` |
 
 ### Conversores personalizados { #custom-path-converters }
 
