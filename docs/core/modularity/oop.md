@@ -740,7 +740,7 @@ Para el caso de los operadores también existe un método mágico asociado (que 
 
 ```mermaid
 flowchart LR
-    code["<tt>a == b</tt>"] --->|⚡| eq["<tt>\_\_eq__</tt>"]
+    code["<tt>a == b</tt>"] --->|⚡| eq["<tt>__eq__</tt>"]
 ```
 
 Extrapolando esta idea a nuestro universo _StarWars_, podríamos establecer que **dos droides son iguales si su nombre es igual**, independientemente de que tengan distintos números de serie:
