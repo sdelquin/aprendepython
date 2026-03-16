@@ -551,7 +551,35 @@ Para crear un nuevo objeto (y almacenarlo en la base de datos) mediante el ORM d
 
 #### Shell de base de datos { #dbshell }
 
-Django nos permite abrir una «shell» de base de datos (interfaz de comandos del sistema gestor) con las configuraciones del proyecto ya cargadas:
+Django nos permite abrir una «shell» de base de datos (interfaz de comandos del sistema gestor) con las configuraciones del proyecto ya cargadas.
+
+Suponiendo que estamos usando la configuración por defecto de SQLite, primero debemos tener instalado el cliente de SQLite en nuestro sistema:
+
+=== ":fontawesome-brands-windows: Windows"
+
+    ```ps1con
+    > winget install -e --id SQLite.SQLite#(1)!
+    ```
+    { .annotate }
+    
+    1. Instalación mediante [`winstall`](https://winstall.app/apps/SQLite.SQLite).
+
+=== ":simple-apple: MacOS"
+
+    ```console
+    $ brew install sqlite #(1)!
+    ```
+    { .annotate }
+    
+    1. Instalación mediante [Homebrew](https://formulae.brew.sh/formula/sqlite).
+
+=== ":simple-linux: Linux"
+
+    ```console
+    $ sudo apt-get install sqlite3
+    ```
+
+Podemos abrir una «shell» de base de datos con el comando:
 
 === "*venv* :octicons-package-24:{.blue}"
 
