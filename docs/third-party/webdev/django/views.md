@@ -236,23 +236,33 @@ def post_detail(request, post_slug: str):
     return render(request, 'posts/post/detail.html', {'post': post})
 ```
 
-Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-subclasses) para cubrir los códigos de estado HTTP más habituales:
+Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.com/en/stable/ref/request-response/#httpresponse-subclasses) para cubrir algunos códigos de estado HTTP habituales:
 
 | `status` | Significado | Clase |
 | --- | --- | --- |
 | [400](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) | Bad request | [`HttpResponseBadRequest()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseBadRequest) |
-| [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) | Unauthorized | |
+| [401](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) | Unauthorized | - |
 | [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) | Forbidden | [`HttpResponseForbidden()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseForbidden) |
 | [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) | Not Found | [`HttpResponseNotFound()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotFound) |
 | [405](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) | Method Not Allowed | [`HttpResponseNotAllowed()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotAllowed) |
+| [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) | Conflicto | - |
 | [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | [`HttpResponseServerError()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseServerError) |
 
-!!! info "401 vs 403"
+Diferencias relevantes:
+
+=== "401 vs 403"
 
     Suele ser fuente de confusión, diferenciar los códigos de estado HTTP 401 y 403. Vamos a aclararlo:
 
     - **401 (Unauthorized)** :material-arrow-right-bold: «No estás autenticado (no has demostrado quién eres)». <span class="example">Ejemplo:material-flash:</span> `@login_required`
     - **403 (Forbidden)** :material-arrow-right-bold: «Sí estás autenticado, pero no tienes permiso para acceder a este recurso». <span class="example">Ejemplo:material-flash:</span> `/admin/`
+
+=== "400 vs 409"
+
+    Suele ser fuente de confusión, diferenciar los códigos de estado HTTP 400 y 409. Vamos a aclararlo:
+
+    - **400 (Bad Request)** :material-arrow-right-bold: «La petición no se ha podido procesar porque la petición es incorrecta». <span class="example">Ejemplo:material-flash:</span> falta un campo obligatorio en un formulario.
+    - **409 (Conflict)** :material-arrow-right-bold: «La petición es correcta, pero no se ha podido procesar debido a un conflicto con el estado actual del recurso». <span class="example">Ejemplo:material-flash:</span> intentar crear un recurso que ya existe.
 
 Por tanto, el <span class="example">ejemplo:material-flash:</span> anterior de «post» no encontrado se podría reescribir de la siguiente manera:
 
