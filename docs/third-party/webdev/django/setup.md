@@ -374,14 +374,24 @@ Aunque existen [plantillas prediseñadas `.gitignore`](https://github.com/github
 .venv #(1)!
 db.sqlite3 #(2)!
 *.pyc #(3)!
-.mypy_cache #(4)!
+*_cache/ #(4)!
+__pycache__/ #(5)!
+static/ #(6)!
+media/ #(7)!
+*.log #(8)!
+.env #(9)!
 ```
 { .annotate }
 
 1. Carpeta que contiene el [entorno virtual](#virtualenv).
 2. Nombre (por defecto) de la base de datos [sqlite](../../../stdlib/data-access/sqlite.md) en Django.
 3. Ficheros con [«bytecode»](../../../core/introduction/machine.md#compilers) compilado de Python.
-4. Caché de [mypy](https://mypy-lang.org/) (si procede).
+4. Varias carpetas de caché (`.mypy_cache`, `.pytest_cache`, `ruff_cache`)
+5. Carpeta específica de caché para Python.
+6. Carpeta de [archivos estáticos](static.md).
+7. Carpeta de [archivos media](models.md#file-field-path).
+8. Archivos de auditoría/registro.
+9. Archivo de [configuraciones](../../config/prettyconf.md).
 
 ## Requerimientos { #requirements }
 
