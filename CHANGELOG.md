@@ -6,6 +6,41 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.2
+
+Publicada el 16-03-2026
+
+- Configuración Zensical
+	- Eliminar el resaltado de búsqueda.
+- Django: API
+	- Corrige errores menores.
+	- Añade documentación sobre error 409.
+- Modularidad: Funciones
+	- Corrige errores menores.
+- Tipos de datos: Cadenas de texto.
+	- Añade opciones de `count()`
+- Django: Justfile
+	- Añade instrucciones de instalación.
+	- Añade receta para `dbcmd`.
+- Django: Aplicaciones
+	- Añade configuración de app `shared`.
+- Django: Modelos
+	- Añade notas sobre instalación de cliente SQLite.
+	- Añade receta `just` para lanzar comando de base de datos.
+	- Añade documentación sobre revertir migraciones.
+- Modularidad: Programación orientada a objetos.
+	- Corrige ejemplos de métodos mágicos en operadores.
+	- Corrige ejemplos de gestores de contexto.
+- Django: URLs
+	- Corrige error ortográfico.
+- Django: Formularios
+	- Mejora ejemplos de formularios.
+	- Añade nota sobre campos opcionales.
+- Estructuras de datos: Ficheros
+	- Añade notas sobre los modos de apertura extendidos.
+- Django: Puesta en marcha
+	- Mejora contenido del `.gitignore` para proyectos Django.
+
 ## Version 3.2.1
 
 Publicada el 15-03-2026
