@@ -600,15 +600,20 @@ Por <span class="example">ejemplo:material-flash:</span> utilizamos `#!python fi
 Para contabilizar el **número de veces que aparece** una subcadena utilizamos la función `count()`:
 
 ```pycon
->>> lyrics.count('mi')
-2
-
 >>> lyrics.count('tu')
 3
 
->>> lyrics.count('él')
-0
+>>> lyrics.count('tu', 41)#(1)!
+2
+
+>>> lyrics.count('tu', 105, 200)#(2)!
+1
 ```
+{ .annotate }
+
+1. Contamos a partir de la posición 41.
+2. Contamos entre la posición 105 y la 200.
+
 
 !!! exercise "Ejercicio"
 

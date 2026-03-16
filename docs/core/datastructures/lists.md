@@ -621,7 +621,7 @@ Por <span class="example">ejemplo:material-flash:</span> para conocer la cantida
 5
 ```
 
-### Número de ocurrencias { #count }
+### Contar ocurrencias { #count }
 
 Para contar cuántas veces aparece un determinado valor dentro de una lista podemos usar la función `count()`.
 
