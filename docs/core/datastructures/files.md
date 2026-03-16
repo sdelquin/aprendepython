@@ -79,6 +79,10 @@ FileNotFoundError: [Errno 2] No such file or directory: 'foo.txt'
 
 Una vez abierto el fichero ya podemos proceder a leer su contenido. Para ello Python nos ofrece la posibilidad de leer todo el fichero de una vez o bien leerlo línea a línea.
 
+!!! example "Lectura y escritura"
+
+    Es posible utilizar `#!python open(path, 'r+')` para abrir el fichero en modo lectura y escritura simultáneamente.
+
 ### Lectura completa
 
 Siguiendo nuestro <span class="example">ejemplo:material-flash:</span> de temperaturas, veamos cómo leer todo el contenido del fichero de una sola vez. Para esta operación, Python nos provee de dos funciones:
@@ -359,6 +363,10 @@ TypeError: write() argument must be str, not int
 
     Python proporciona la función [`f.writelines()`](https://docs.python.org/3/library/io.html#io.IOBase.writelines) que nos permite escribir un _iterable_ de líneas al fichero de una sola vez. Los saltos de línea no se añaden automáticamente.
 
+!!! example "Escritura y lectura"
+
+    Es posible utilizar `#!python open(path, 'w+')` para abrir el fichero en modo escritura y lectura simultáneamente.
+
 ### Usando contextos { #contexts }
 
 Python proporciona [gestores de contexto](../modularity/oop.md#context-manager) como aproximación al manejo de ficheros. En este escenario usaremos la sentencia `#!python with` y el contexto creado se ocupará de abrir y cerrar el fichero automáticamente (**incluso si ha habido cualquier error**).
@@ -406,6 +414,10 @@ Esto vale tanto para apertura de ficheros en _modo lectura_ como en _modo escrit
 Añadir información a un fichero se podría ver como un _caso especial_ de escribir información; con la diferencia de que no podemos modificar el contenido previo, sino únicamente añadir nuevos datos.
 
 Para abrir un fichero en **modo añadido** utilizamos la función `#!python open()` con el modificador `#!python 'a'`.
+
+!!! example "Añadido y lectura"
+
+    Es posible utilizar `#!python open(path, 'a+')` para abrir el fichero en modo añadido y lectura simultáneamente.
 
 ## Ejercicios { #exercises }
 
