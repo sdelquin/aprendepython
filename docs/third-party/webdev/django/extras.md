@@ -917,12 +917,12 @@ Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en e
                 post = form.save()
                 body = markdown(render_to_string(#(3)!
                     'posts/emails/add.md',#(4)!
-                    {'post': post}#(5)!
+                    {'post': post},#(5)!
                 ))
                 email = EmailMessage(
                     subject='New post',
                     body=body,
-                    to=['super@blog.com']
+                    to=['super@blog.com'],
                 )
                 email.send()#(6)!
                 return redirect('posts:post-list')

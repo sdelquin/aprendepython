@@ -100,7 +100,7 @@ def post_list(request):
     return render(
         request,
         'posts/post/list.html',
-        {'posts': posts}#(3)!
+        {'posts': posts},#(3)!
     )
 ```
 { .annotate }
@@ -131,7 +131,7 @@ def post_detail(request, post_slug: str):
     return render(
         request,
         'posts/post/detail.html',
-        {'post': post}
+        {'post': post},
     )
 ```
 
@@ -231,7 +231,7 @@ def post_detail(request, post_slug: str):
     except Post.DoesNotExist:
         return HttpResponse(
             f"Post with slug '{post.slug}' does not exist",
-            status=404
+            status=404,
         )
     return render(request, 'posts/post/detail.html', {'post': post})
 ```
@@ -278,7 +278,7 @@ def post_detail(request, post_slug: str):
         post = Post.objects.get(slug=post_slug)
     except Post.DoesNotExist:
         return HttpResponseNotFound(
-            f"Post with slug '{post.slug}' does not exist"
+            f"Post with slug '{post.slug}' does not exist",
         )
     return render(request, 'posts/post/detail.html', {'post': post})
 ```

@@ -684,7 +684,7 @@ Para crear un nuevo objeto (y almacenarlo en la base de datos) mediante el ORM d
     >>> p = Post(#(2)!
     ...     title='Check out the new Django version',
     ...     slug='check-out-the-new-django-version',
-    ...     content='Awesome features of the last release of Django'
+    ...     content='Awesome features of the last release of Django',
     ... )
     >>> p.save()#(3)!
     ```
@@ -702,7 +702,7 @@ Para crear un nuevo objeto (y almacenarlo en la base de datos) mediante el ORM d
     >>> p = Post.objects.create(#(2)!
     ...     title='Check out the new Django version',
     ...     slug='check-out-the-new-django-version',
-    ...     content='Awesome features of the last release of Django'
+    ...     content='Awesome features of the last release of Django',
     ... )
     ```
     { .annotate }
@@ -1178,7 +1178,7 @@ class Post(models.Model):
     category = models.CharField(#(3)!
         max_length=3,#(4)!
         choices=Category,#(5)!
-        default=Category.SOCIETY#(6)!
+        default=Category.SOCIETY,#(6)!
     )
 ```
 { .annotate }
@@ -1306,7 +1306,7 @@ class Post(models.Model):
     content = models.TextField()
     rating = models.IntegerField(#(3)!
         choices=Rating,#(4)!
-        default=Rating.AVERAGE#(5)!
+        default=Rating.AVERAGE,#(5)!
     )
 ```
 { .annotate }
@@ -1392,9 +1392,9 @@ class Comment(models.Model):
     alias = models.CharField(max_length=128)
     content = models.TextField()
     post = models.ForeignKey(
-        'posts.Post',             # Modelo relacionado
-        related_name='comments',  # Nombre relacionado
-        on_delete=models.CASCADE  # Acción de borrado
+        'posts.Post',              # Modelo relacionado
+        related_name='comments',   # Nombre relacionado
+        on_delete=models.CASCADE,  # Acción de borrado
     )
 ```
 
@@ -1530,12 +1530,12 @@ class Comment(models.Model):
     post = models.ForeignKey(
         'posts.Post',
         related_name='comments',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,#(1)!
         related_name='comments',
-        on_delete=models.CASCADE#(2)!
+        on_delete=models.CASCADE,#(2)!
     )
 ```
 { .annotate }
@@ -1558,13 +1558,13 @@ Veamos a continuación diferentes operaciones que podemos realizar con claves aj
     >>> post = Post.create(
     ...     title='Django makes it very simple',
     ...     slug='django-makes-it-very-simple',
-    ...     content='You can save related objects quite fast'
+    ...     content='You can save related objects quite fast',
     ... )
     
     >>> comment = Comment.create(
     ...     alias='sdelquin',
     ...     content='You are absolutely right!',
-    ...     post=post#(1)!
+    ...     post=post,#(1)!
     ... )
     ```
     { .annotate }
@@ -1659,7 +1659,7 @@ class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,#(1)!
         related_name='profile',#(2)!
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     occupation = models.CharField(max_length=256, blank=True)
     phone = models.CharField(max_length=16, blank=True)
@@ -1746,12 +1746,12 @@ Lo primero será crear etiquetas y «posts»:
 >>> post_python = Post.objects.create(
 ...     title='Python',
 ...     slug='python',
-...     content='Now is better than never'
+...     content='Now is better than never',
 ... )
 >>> post_midjourney = Post.objects.create(
 ...     title='Midjourney',
 ...     slug='midjourney',
-...     content='Awesome images'
+...     content='Awesome images',
 ... )
 ```
 
@@ -1967,12 +1967,12 @@ Lo primero será crear etiquetas y «posts»:
 >>> post_python = Post.objects.create(
 ...     title='Python',
 ...     slug='python',
-...     content='Now is better than never'
+...     content='Now is better than never',
 ... )
 >>> post_midjourney = Post.objects.create(
 ...     title='Midjourney',
 ...     slug='midjourney',
-...     content='Awesome images'
+...     content='Awesome images',
 ... )
 ```
 
@@ -1988,28 +1988,28 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     >>> PostLabelingDetail.objects.create(
     ...     post=post_python,
     ...     label=label_tech,
-    ...     reason='Python is cool tech'#(1)!
+    ...     reason='Python is cool tech',#(1)!
     ... )
     <PostLabelingDetail: Python is cool tech (23-11-2025)>
 
     >>> PostLabelingDetail.objects.create(
     ...     post=post_python,
     ...     label=label_ai,
-    ...     reason='Python is the language for AI'#(2)!
+    ...     reason='Python is the language for AI',#(2)!
     ... )
     <PostLabelingDetail: Python is the language for AI (23-11-2025)>
 
     >>> PostLabelingDetail.objects.create(
     ...     post=post_midjourney,
     ...     label=label_tech,
-    ...     reason='Midjourney is high tech'#(3)!
+    ...     reason='Midjourney is high tech',#(3)!
     ... )
     <PostLabelingDetail: Midjourney is high tech (23-11-2025)>
 
     >>> PostLabelingDetail.objects.create(
     ...     post=post_midjourney,
     ...     label=label_ai,
-    ...     reason='Midjourney is generative AI'#(4)!
+    ...     reason='Midjourney is generative AI',#(4)!
     ... )
     <PostLabelingDetail: Midjourney is generative AI (23-11-2025)>
     ```
@@ -2025,7 +2025,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```pycon title="Añadir etiquetas a un «post»"
     >>> post_python.labels.add(#(1)!
     ...     label_tech,#(2)!
-    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ...     through_defaults={'reason': 'Python is cool tech'},#(3)!
     ... )
     ```    
     { .annotate }
@@ -2038,7 +2038,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```pycon title="Añadir «posts» a una etiqueta"
     >>> label_ai.posts.add(#(1)!
     ...     post_python,#(2)!
-    ...     through_defaults={'reason': 'Python is the language for AI'}#(3)!
+    ...     through_defaults={'reason': 'Python is the language for AI'},#(3)!
     ... )     
     ```
     { .annotate }
@@ -2053,7 +2053,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```pycon title="Crear una etiqueta y añadirla a un «post»"
     >>> post_python.labels.create(#(1)!
     ...     name='Technology', slug='tech',#(2)!
-    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ...     through_defaults={'reason': 'Python is cool tech'},#(3)!
     ... )
     <Label: Technology>
     ```
@@ -2067,7 +2067,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```pycon title="Crear un «post» y añadirlo a una etiqueta"
     >>> label_ai.posts.create(#(1)!
     ...     title='Midjourney', content='Awesome images',#(2)!
-    ...     through_defaults={'reason': 'Midjourney is generative AI'}#(3)!
+    ...     through_defaults={'reason': 'Midjourney is generative AI'},#(3)!
     ... )
     <Post: Midjourney>
     ```
@@ -2083,7 +2083,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```pycon title="Reemplazar las etiquetas de un «post»"
     >>> post_python.labels.set(#(1)!
     ...     [label_tech, label_ai],#(2)!
-    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ...     through_defaults={'reason': 'Python is cool tech'},#(3)!
     ... )
     ```
     { .annotate }
@@ -2096,7 +2096,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```pycon title="Reemplazar los «posts» de una etiqueta"
     >>> label_ai.posts.set(#(1)!
     ...     [post_python, post_midjourney],#(2)!
-    ...     through_defaults={'reason': 'Python is cool tech'}#(3)!
+    ...     through_defaults={'reason': 'Python is cool tech'},#(3)!
     ... )
     ```
     { .annotate }
@@ -2206,7 +2206,7 @@ class Post(models.Model):
     content = models.TextField()
     cover = models.ImageField(
         upload_to='covers',
-        default='covers/nocover.png'
+        default='covers/nocover.png',
     )
 ```
 
@@ -2225,7 +2225,7 @@ Analicemos cada parámetro de `ImageField` por separado:
         ```python hl_lines="2"
         cover = models.ImageField(
             upload_to='covers/%Y/%m/%d/',
-            default='covers/nocover.png'
+            default='covers/nocover.png',
         )
         ```
 
@@ -2930,35 +2930,35 @@ Antes de nada, vamos a cargar algo de información en la base de datos para tene
 >>> Post.objects.create(
 ...     title="Small Changes",
 ...     slug="small-changes",
-...     content="Small daily changes can lead to big results."
+...     content="Small daily changes can lead to big results.",
 ... )
 <Post: Small Changes>
 
 >>> Post.objects.create(
 ...     title="Learning Takes Time",
 ...     slug="learning-takes-time",
-...     content="Technology moves fast, but real learning takes time."
+...     content="Technology moves fast, but real learning takes time.",
 ... )
 <Post: Learning Takes Time>
 
 >>> Post.objects.create(
 ...     title="Thinking in Code",
 ...     slug="thinking-in-code",
-...     content="Writing code is also a way of thinking."
+...     content="Writing code is also a way of thinking.",
 ... )
 <Post: Thinking in Code>
 
 >>> Post.objects.create(
 ...     title="Useful Mistakes",
 ...     slug="useful-mistakes",
-...     content="Not every error is a failure."
+...     content="Not every error is a failure.",
 ... )
 <Post: Useful Mistakes>
 
 >>> Post.objects.create(
 ...     title="Curiosity",
 ...     slug="curiosity",
-...     content="Great ideas are born from curiosity."
+...     content="Great ideas are born from curiosity.",
 ... )
 <Post: Curiosity>
 ```

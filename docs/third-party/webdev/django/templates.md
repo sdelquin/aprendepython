@@ -836,7 +836,7 @@ Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un d
 
 === "Filtro"
 
-    ```python title="posts/templatetags/post_extras.py" hl_lines="2 12-15"
+    ```python title="posts/templatetags/post_extras.py" hl_lines="2 12-16"
     from django import template
     from django.utils.html import format_html#(1)!
 
@@ -850,7 +850,8 @@ Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un d
     def post_link(post: Post) -> str:
         return format_html(
             '<a href="{}">{}</a>',
-            post.get_absolute_url(), post.title
+            post.get_absolute_url(),
+            post.title,
         )#(2)!
     ```
     { .annotate }

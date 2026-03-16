@@ -460,13 +460,13 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
             '<slug:post_slug>/status/private/',
             views.change_post_status,
             name='change-post-status',
-            kwargs={'post_private': True}#(1)!
+            kwargs={'post_private': True},#(1)!
         ),
         path(
             '<slug:post_slug>/status/public/',
             views.change_post_status,
             name='change-post-status',
-            kwargs={'post_private': False}#(2)!
+            kwargs={'post_private': False},#(2)!
         ),
     ]
     ```
@@ -537,7 +537,7 @@ Planteamos un <span class="example">ejemplo:material-flash:</span> en el que que
         re_path(#(2)!
             r'^(?P<category_code>[A-Z]{3})/$',#(3)!
             views.post_by_category,
-            name='post-by-category'
+            name='post-by-category',
         )
     ]
     ```

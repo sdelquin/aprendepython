@@ -72,7 +72,7 @@ def add_post(request):
             Post.objects.create(#(6)!
                 title=post_title,
                 content=post_content,
-                slug=post_slug
+                slug=post_slug,
             )
             return redirect('posts:post-list')#(7)!
         else:
@@ -280,7 +280,7 @@ def add_post(request):
             Post.objects.create(#(5)!
                 title=post_title,
                 content=post_content,
-                slug=post_slug
+                slug=post_slug,
             )
             return redirect('posts:post-list')#(6)!
     else:
