@@ -6,7 +6,7 @@ tags:
   - Programación orientada a objetos
 ---
 
-# Programación orientada a objetos { #oop }
+# Objetos y clases { #oop }
 
 ![Banner](images/oop/banner.jpg)
 /// caption
