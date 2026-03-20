@@ -87,6 +87,8 @@ flowchart TD
 
     Uno de los errores más habituales desarrollando proyectos Django es el de [`TemplateDoesNotExist`](https://docs.djangoproject.com/en/stable/topics/templates/#django.template.TemplateDoesNotExist), que nos indica que no es posible encontrar la plantilla en la ruta indicada.
 
+    :material-lightbulb:{.acc} Si aparentemente todo está bien y Django no encuentra la plantilla indicada, es posible que se solucione la incidencia **reiniciando el servidor de desarrollo**.
+
 Una tabla resumen que puede aclarar distintos escenarios:
 
 | Si queremos referenciar... | Tendremos que escribir... |
