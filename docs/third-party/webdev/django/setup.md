@@ -10,6 +10,24 @@ tags:
 
 <span class="dj-level">:material-signal-cellular-1: Django básico</span>
 
+## Flujo de procesos { #workflow }
+
+Como bien se señaló en sus [características](webdev.md#django-features), Django se fundamenta en un esquema **MTV** (_Model-Template-View_). Su flujo de procesos es algo del siguiente estilo:
+
+```mermaid
+flowchart LR
+    req{{Petición HTTP}} e1@==> url[URLs]
+    url e2@--> view[Vistas]
+    view e3@<--> model[(Modelos)]
+    view e4@==> resp{{Respuesta HTTP}}
+    view e5@<--> template[Plantillas]
+    e1@{ animate: true }
+    e2@{ animate: true }
+    e3@{ animate: true }
+    e4@{ animate: true }
+    e5@{ animate: true }
+```
+
 ## Entorno de trabajo { #workspace }
 
 Suponiendo que disponemos de [Python](../../../core/devenv/real-context.md#python) ya instalado en nuestra máquina, debemos configurar ciertos aspectos para preparar el entorno de desarrollo de **Django**.
