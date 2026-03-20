@@ -488,7 +488,7 @@ def list_posts(request):
 
 @router.get('/{post_id}', response=PostSchema)#(1)!
 def get_post(request, post_id: int):#(2)!
-    return Post.objects.get(id=post_id)#(3)!
+    return Post.objects.get(pk=post_id)#(3)!
 ```
 { .annotate }
 
@@ -538,7 +538,7 @@ def list_posts(request, category_slug: str = None):#(1)!
 
 @router.get('/{post_id}', response=PostSchema)
 def get_post(request, post_id: int):
-    return Post.objects.get(id=post_id)
+    return Post.objects.get(pk=post_id)
 ```
 { .annotate }
 
@@ -909,7 +909,7 @@ def list_posts(request, category_slug: str = None):
 
 @router.get('/{post_id}', response=PostSchema)
 def get_post(request, post_id: int):
-    return Post.objects.get(id=post_id)
+    return Post.objects.get(pk=post_id)
 ```
 
 Aparecerán dos nuevos parámetros de consulta en el punto de entrada `/api/posts/` para controlar la paginación:
@@ -1075,7 +1075,7 @@ router = Router()
 def create_post(request, post: PostSchemaIn):
     payload = post.dict()
     category_id = payload.pop('category', None)#(1)!
-    category = Category.objects.get(id=category_id) if category_id else None#(2)!
+    category = Category.objects.get(pk=category_id) if category_id else None#(2)!
     post = Post.objects.create(category=category, **payload)#(3)!
     return post
 ```
@@ -1161,7 +1161,7 @@ Haciendo uso de los recursos que proporciona _Pydantic_ para [configuración de 
         if payload.pop('vericode') != VERIFICATION_CODE:#(2)!
             raise ValueError('Invalid verification code')#(3)!
         category_id = payload.pop('category', None)
-        category = Category.objects.get(id=category_id) if category_id else None
+        category = Category.objects.get(pk=category_id) if category_id else None
         post = Post.objects.create(category=category, **payload)
         return post
     ```
@@ -1224,8 +1224,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
     def update_post(request, post_id: int, post: PostSchemaIn):
         payload = post.dict()
         category_id = payload.pop('category', None)
-        category = Category.objects.get(id=category_id) if category_id else None
-        post_obj = Post.objects.get(id=post_id)
+        category = Category.objects.get(pk=category_id) if category_id else None
+        post_obj = Post.objects.get(pk=post_id)
         for attr, value in payload.items():#(1)!
             setattr(post_obj, attr, value)#(2)!
         post_obj.category = category#(3)!
@@ -1317,8 +1317,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
     def partial_update_post(request, post_id: int, post: PostSchemaPatch):
         payload = post.dict(exclude_unset=True)#(1)!
         category_id = payload.pop('category', None)
-        category = Category.objects.get(id=category_id) if category_id else None
-        post_obj = Post.objects.get(id=post_id)
+        category = Category.objects.get(pk=category_id) if category_id else None
+        post_obj = Post.objects.get(pk=post_id)
         for attr, value in payload.items():#(2)!
             setattr(post_obj, attr, value)#(3)!
         post_obj.category = category#(4)!
@@ -1370,7 +1370,7 @@ router = Router()
 
 @router.delete('/{post_id}')
 def delete_post(request, post_id: int):
-    post = Post.objects.get(id=post_id)
+    post = Post.objects.get(pk=post_id)
     post.delete()
     return {'success': True}#(1)!
 ```
@@ -1491,7 +1491,7 @@ router = Router()
 
 @router.get('/{post_id}', response=PostSchemaOut)
 def get_post(request, post_id: int):
-    return get_object_or_404(Post, id=post_id)
+    return get_object_or_404(Post, pk=post_id)
 ```
 
 Si ahora intentamos acceder a un «post» que no existe (por ejemplo, con `id=999`) [http://localhost:8000/api/posts/999](http://localhost:8000/api/posts/999) obtendremos la siguiente respuesta:
@@ -1525,7 +1525,7 @@ def get_post(request, post_id: int):
 
     if post_id in RESTRICTED_POSTS_IDS:
         raise HttpError(403, 'Access to this post is restricted')
-    return get_object_or_404(Post, id=post_id)
+    return get_object_or_404(Post, pk=post_id)
 ```
 
 Si ahora intentamos acceder a uno de los «posts» restringidos (por ejemplo, con `id=1`) [http://localhost:8000/api/posts/1](http://localhost:8000/api/posts/1) obtendremos la siguiente respuesta:
@@ -1741,7 +1741,7 @@ router = Router()
 def create_post(request, post: PostSchemaIn):#(2)!
     payload = post.dict()
     category_id = payload.pop('category', None)
-    category = Category.objects.get(id=category_id) if category_id else None
+    category = Category.objects.get(pk=category_id) if category_id else None
     post = Post.objects.create(category=category, **payload)
     return post
 ```
@@ -1842,7 +1842,7 @@ Una vez [creadas y aplicadas las migraciones](models.md#migrations) del modelo, 
     def create_post(request, post: Form[PostSchemaIn], cover: File[UploadedFile] = None):#(1)!
         payload = post.dict()
         category_id = payload.pop('category', None)
-        category = Category.objects.get(id=category_id) if category_id else None
+        category = Category.objects.get(pk=category_id) if category_id else None
         post = Post.objects.create(category=category, cover=cover, **payload)
         return post
     ```
