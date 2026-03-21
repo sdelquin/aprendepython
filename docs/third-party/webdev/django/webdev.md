@@ -340,7 +340,8 @@ A continuación se muestran las versiones **mayores** de Django con su año de l
 | [:simple-django: 3.0](https://docs.djangoproject.com/en/stable/releases/3.0/) | 2019 |
 | [:simple-django: 4.0](https://docs.djangoproject.com/en/stable/releases/4.0/) | 2021 |
 | [:simple-django: 5.0](https://docs.djangoproject.com/en/stable/releases/5.0/) | 2023 |
-| [:simple-django: 6.0](https://docs.djangoproject.com/en/dev/releases/6.0/) | 2025 :octicons-question-16: |
+| [:simple-django: 6.0](https://docs.djangoproject.com/en/dev/releases/6.0/) | 2025 |
+| [:simple-django: 7.0](https://docs.djangoproject.com/en/dev/releases/7.0/) | 2027 :thinking: |
 
 ### Características { #django-features }
 
