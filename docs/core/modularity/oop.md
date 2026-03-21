@@ -1571,9 +1571,9 @@ flowchart LR
     S((Secuencias)) --> A
     S --> B
     S --> C
-    A["<tt>obj[0]</tt>"] <-.-> getitem{{"<tt>obj.\_\_getitem__(0)</tt>"}}
-    B["<tt>obj[1] = value</tt>"] <-.-> setitem{{"<tt>obj.\_\_setitem__(1, value)</tt>"}}
-    C["<tt>len(obj)</tt>"] <-.-> len{{"<tt>obj.\_\_len__()</tt>"}}
+    A["<tt>obj[0]</tt>"] <-.-> getitem{{"<tt>obj.__getitem__(0)</tt>"}}
+    B["<tt>obj[1] = value</tt>"] <-.-> setitem{{"<tt>obj.__setitem__(1, value)</tt>"}}
+    C["<tt>len(obj)</tt>"] <-.-> len{{"<tt>obj.__len__()</tt>"}}
 ```
 
 Como <span class="example">ejemplo:material-flash:</span>, podemos asumir que los droides de _StarWars_ **están ensamblados con distintas partes/componentes**. Veamos una implementación de este escenario:
