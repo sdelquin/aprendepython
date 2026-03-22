@@ -6,6 +6,23 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.3
+
+Publicada el 22-03-2026
+
+- Actualiza la versión de Zensical a [0.0.28](https://github.com/zensical/zensical/releases/tag/v0.0.28).
+- Modularidad: Programación orientada a objetos
+	- Cambia su nombre a "Objetos y clases".
+- Django: API
+	- Arregla acceso por `pk` en vez de `id` (donde aplique).
+	- Mejora apuntes en toda la sección.
+- Django: Plantillas
+	- Añade pequeña sobre sobre localización de plantillas.
+- Django: Puesta en marcha
+	- Añade diagrama de flujo de procesos.
+- Django: Desarrollo web
+	- Actualiza tabla de versiones de Django.
+
 ## Version 3.2.2
 
 Publicada el 16-03-2026
