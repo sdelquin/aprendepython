@@ -1709,7 +1709,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> del universo _Sta
 ...         self.serial = serial
 ...
 ...     def __repr__(self):
-...         return f'Droid: SN={self.serial}'
+...         return f'Droid: SN{self.serial}'
 ...
 ```
 
@@ -1743,16 +1743,16 @@ Ahora podemos recorrer el iterable y obtener los droides que genera la factoría
 >>> for droid in Geonosis(10):
 ...     print(droid)
 ...
-Droid: SN=0
-Droid: SN=1
-Droid: SN=2
-Droid: SN=3
-Droid: SN=4
-Droid: SN=5
-Droid: SN=6
-Droid: SN=7
-Droid: SN=8
-Droid: SN=9
+Droid: SN0
+Droid: SN1
+Droid: SN2
+Droid: SN3
+Droid: SN4
+Droid: SN5
+Droid: SN6
+Droid: SN7
+Droid: SN8
+Droid: SN9
 ```
 
 Cuando utilizamos un bucle `for` para recorrer los elementos de un iterable, ocurren varias cosas:
@@ -1782,11 +1782,11 @@ Teniendo esto en cuenta, probemos este <span class="example">ejemplo:material-fl
 >>> factory_iterator = iter(factory)#(2)!
 
 >>> next(factory_iterator)#(3)!
-Droid: SN=0
+Droid: SN0
 >>> next(factory_iterator)#(4)!
-Droid: SN=1
+Droid: SN1
 >>> next(factory_iterator)#(5)!
-Droid: SN=2
+Droid: SN2
 
 >>> next(factory_iterator)#(6)!
 Traceback (most recent call last):
@@ -1809,7 +1809,7 @@ Se da la circunstancia de que, en este caso, **no tenemos que crear el iterador*
 
 ```pycon
 >>> next(Geonosis(3))
-Droid: SN=0
+Droid: SN0
 ```
 
 Esto se debe básicamente a que **el iterador es el propio iterable**:
@@ -1830,9 +1830,9 @@ Otra característica importante es que **los iterables se agotan**. Lo podemos c
 >>> for droid in geon:
 ...     print(droid)
 ...
-Droid: SN=0
-Droid: SN=1
-Droid: SN=2
+Droid: SN0
+Droid: SN1
+Droid: SN2
 
 >>> for droid in geon:#(1)!
 ...     print(droid)
@@ -2241,7 +2241,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de **factoría de
 
 1.  - Usamos una [expresión generadora](functions.md#genexp) para construir los droides.
     - Al ser un generador los droides no son creados en este punto, sino cuando se requieran (comportamiento «lazy»).
-2. El iterador que vamos a utilizar es el iterador del generador.
+2.  - El iterador que vamos a utilizar es el iterador del generador.
+    - Dado que un generador es su propio iterador, podríamos devolver directamente `#!python return self.droid`.
 
 Probemos la implementación anterior:
 
@@ -2249,9 +2250,9 @@ Probemos la implementación anterior:
 >>> for droid in Geonosis(3):
 ...     print(droid)
 ...
-Droid: SN=0
-Droid: SN=1
-Droid: SN=2
+Droid: SN0
+Droid: SN1
+Droid: SN2
 ```
 
 ??? tip "Listas como iterables"
@@ -2271,9 +2272,9 @@ Droid: SN=2
     >>> for droid in Geonosis(3):
     ...     print(droid)
     ...
-    Droid: SN=0
-    Droid: SN=1
-    Droid: SN=2
+    Droid: SN0
+    Droid: SN1
+    Droid: SN2
     ```
     { .annotate }
 
