@@ -1485,7 +1485,7 @@ Por <span class="example">ejemplo:material-flash:</span> si intentamos crear un 
 }
 ```
 
-Otro <span class="example">ejemplo:material-flash:</span> sería intetar crear un nuevo «post» con un tipo de dato incorrecto para el campo `category` (por ejemplo, una cadena en lugar de un número):
+Otro <span class="example">ejemplo:material-flash:</span> sería intentar crear un nuevo «post» con un tipo de dato incorrecto para el campo `category` (por ejemplo, una cadena en lugar de un número):
 
 ```json title="Response body (422)"
 {
@@ -1511,7 +1511,7 @@ Por <span class="example">ejemplo:material-flash:</span> si intentamos hacer una
 
 ```json title="Request body"
 {
-  "title": "Invalid JSON",#(1)!
+  "title": "Invalid JSON",//(1)!
 }
 ```
 { .annotate }
@@ -1657,7 +1657,7 @@ class Token(models.Model):
 
 Una vez [creadas y aplicadas las migraciones](models.md#migrations) del modelo, vamos a cargar algunos ^^datos de prueba^^. Para ello trabajaremos con [«fixtures»](models.md#fixtures).
 
-Descargamos el fichero [`users.json`](files/api/users.json) y lo guardamos en la ruta `users/fixtures/users.json` (es posible que debas crear previamente la carpeta `fixtures` dentro de la aplicación `users`). Luego lo cargamos con el siguiente comando:
+Copiamos el contenido del fichero [`users.json`](files/api/users.json) y lo guardamos en la ruta `users/fixtures/users.json` (es posible que debas crear previamente la carpeta `fixtures` dentro de la aplicación `users`). Luego lo cargamos con el siguiente comando:
 
 ```console
 $ uv run manage.py loaddata users
