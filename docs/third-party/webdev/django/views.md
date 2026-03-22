@@ -245,7 +245,8 @@ Pero Django ofrece [ciertas clases ya predefinidas](https://docs.djangoproject.c
 | [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) | Forbidden | [`HttpResponseForbidden()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseForbidden) |
 | [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) | Not Found | [`HttpResponseNotFound()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotFound) |
 | [405](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405) | Method Not Allowed | [`HttpResponseNotAllowed()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseNotAllowed) |
-| [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) | Conflicto | - |
+| [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) | Conflict | - |
+| [422](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422) | Unprocessable Content | - |
 | [500](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) | Internal Server Error | [`HttpResponseServerError()`](https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponseServerError) |
 
 Diferencias relevantes:

@@ -6,6 +6,7 @@
 *[COBOL]: Common Business-Oriented Language
 *[CP/M]: Control Program for Microcomputers
 *[CPU]: Central Processing Unit
+*[CRUD]: Create - Read - Update - Delete
 *[CSR]: Client Side Rendering
 *[CSRF]: Cross Site Request Forgery
 *[CSS]: Cascading Style Sheets

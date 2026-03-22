@@ -88,26 +88,55 @@ La instalación del paquete es muy sencilla:
 
 ## Puesta en marcha { #startup }
 
-Vamos a empezar por [crear un proyecto vacío](setup.md#create-project) en el que trataremos de implementar una API para un «blog».
+Vamos a empezar por [crear un proyecto vacío](setup.md#create-project) en el que trataremos de **implementar una API para un «blog»**.
 
 ```console
 $ mkdir blog-api
 $ cd blog-api
 $ uv init --bare --no-project
 $ uv add django-ninja
-$ uv run django-admin startproject main .
+$ uv run django-admin startproject main . #(1)!
 ```
+{ .annotate }
 
-!!! abstract "Django"
+1. Creamos un proyecto «normal» de Django.
 
-    La instalación de `django-ninja` ya instala (como dependencia) el paquete `django`.
+??? abstract "Django como dependencia"
+
+    La instalación de `django-ninja` ya instala (como dependencia) el paquete `django`:
+
+    ```console hl_lines="8"
+    $ uv add django-ninja
+    Using CPython 3.14.3
+    Creating virtual environment at: .venv
+    Resolved 11 packages in 264ms
+    Installed 9 packages in 173ms
+     + annotated-types==0.7.0
+     + asgiref==3.11.1
+     + django==6.0.3
+     + django-ninja==1.6.2
+     + pydantic==2.12.5
+     + pydantic-core==2.41.5
+     + sqlparse==0.5.5
+     + typing-extensions==4.15.0
+     + typing-inspection==0.4.2
+    ```
 
 ### Aplicaciones { #apps }
 
-El diseño de la base de datos es sencillo: «Un post puede tener una categoría». Por tanto [crearemos dos aplicaciones](apps.md#creation):
+El diseño de la base de datos muy sencillo:
 
-- `categories`: para almacenar las categorías.
-- `posts`: para almacenar los posts.
+```mermaid
+erDiagram
+    Post }o--o| Category : has
+```
+
+> Un «post» tiene 0 o 1 categoría y una categoría puede tener 0 o muchos «posts».
+
+Por tanto [crearemos dos aplicaciones](apps.md#creation):
+
+- `categories` :material-arrow-right-bold: para almacenar las categorías.
+- `posts` :material-arrow-right-bold: para almacenar los posts.
 
 === "Categorías"
 
@@ -122,7 +151,7 @@ El diseño de la base de datos es sencillo: «Un post puede tener una categoría
         slug = models.SlugField(max_length=256, unique=True)
 
         class Meta:
-            verbose_name_plural = 'categories'
+            verbose_name_plural = 'Categories'
 
         def __str__(self):
             return self.name
@@ -130,7 +159,7 @@ El diseño de la base de datos es sencillo: «Un post puede tener una categoría
 
     Una vez [creadas y aplicadas las migraciones](models.md#migrations) del modelo, vamos a cargar algunos ^^datos de prueba^^. Para ello trabajaremos con [«fixtures»](models.md#fixtures).
 
-    Descargamos el fichero [`categories.json`](files/api/categories.json) y lo guardamos en la ruta `categories/fixtures/categories.json` (es posible que debas crear previamente la carpeta `fixtures` dentro de la aplicación `categories`). Luego lo cargamos con el siguiente comando:
+    Copiamos el contenido del fichero [`categories.json`](files/api/categories.json) y lo guardamos en la ruta `categories/fixtures/categories.json` (es posible que debas crear previamente la carpeta `fixtures` dentro de la aplicación `categories`). Luego lo cargamos con el siguiente comando:
 
     ```console
     $ uv run manage.py loaddata categories
@@ -157,7 +186,7 @@ El diseño de la base de datos es sencillo: «Un post puede tener una categoría
         content = models.TextField()
         category = models.ForeignKey(
             'categories.Category',
-            on_delete=models.CASCADE,
+            on_delete=models.SET_NULL,#(1)!
             related_name='posts',
             null=True,
             blank=True,
@@ -166,10 +195,13 @@ El diseño de la base de datos es sencillo: «Un post puede tener una categoría
         def __str__(self):
             return self.title
     ```
+    { .annotate }
+    
+    1. Al eliminar una categoría, «borramos» la asignación sobre el «post».
 
     Una vez [creadas y aplicadas las migraciones](models.md#migrations) del modelo, vamos a cargar algunos ^^datos de prueba^^. Para ello trabajaremos con [«fixtures»](models.md#fixtures).
 
-    Descargamos el fichero [`posts.json`](files/api/posts.json) y lo guardamos en la ruta `posts/fixtures/posts.json` (es posible que debas crear previamente la carpeta `fixtures` dentro de la aplicación `posts`). Luego lo cargamos con el siguiente comando:
+    Copiamos el contenido del fichero [`posts.json`](files/api/posts.json) y lo guardamos en la ruta `posts/fixtures/posts.json` (es posible que debas crear previamente la carpeta `fixtures` dentro de la aplicación `posts`). Luego lo cargamos con el siguiente comando:
 
     ```console
     $ uv run manage.py loaddata posts
@@ -196,6 +228,20 @@ Aunque _Django Ninja_ permite [definir URLs](https://django-ninja.dev/tutorial/)
 
 Veamos un <span class="example">ejemplo:material-flash:</span> de organización de las URLs para nuestro proyecto del «blog»:
 
+=== "Módulo API principal"
+
+    ```python title="main/api.py"
+    from ninja import NinjaAPI
+    
+    api = NinjaAPI()
+    
+    api.add_router('/posts/', 'posts.api.router', tags=['posts'])#(1)!
+    ```
+    { .annotate }
+    
+    1. Añadimos el enrutador de la aplicación `posts` al enrutador principal de la API, indicando la ruta base `/posts/` y una etiqueta `tags` para organizar la documentación.
+
+
 === "URLs de primer nivel"
 
     ```python title="main/urls.py" hl_lines="4 8"
@@ -213,19 +259,6 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de organización 
     
     1. Importamos el módulo API principal
 
-=== "Módulo API principal"
-
-    ```python title="main/api.py"
-    from ninja import NinjaAPI
-    
-    api = NinjaAPI()
-    
-    api.add_router('/posts/', 'posts.api.router', tags=['posts'])#(1)!
-    ```
-    { .annotate }
-    
-    1. Añadimos el enrutador de la aplicación `posts` al enrutador principal de la API, indicando la ruta base `/posts/` y una etiqueta `tags` para organizar la documentación.
-
 === "Módulo API «posts»"
 
     ```python title="posts/api.py"
@@ -236,11 +269,16 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de organización 
     
     @router.get('/')#(1)!
     def list_posts(request):
-        # TODO
+        pass#(2)!
     ```
     { .annotate }
     
     1. Petición GET a `/api/posts/`
+    2. En principio no hacemos nada. A efectos explicativos se verá más tade.
+
+!!! tip "Importar Ninja"
+
+    Aunque el paquete se llama `django-ninja` lo importamos como `#!python import ninja` dentro de un fichero _Python_.
 
 ### Diseño { #entrypoint-design }
 
@@ -248,7 +286,7 @@ A la hora de diseñar los puntos de entrada de una API hay que tener en cuenta v
 
 :one: Utiliza sustantivos, no verbos; con plural para colecciones:
 
-<span class="example">ejemplo:material-flash:</span> En vez de `/getPosts` utiliza `/posts`.
+Por <span class="example">ejemplo:material-flash:</span> utiliza `/posts/` en vez de `/getPosts/`.
 
 :two: Aprovecha los [métodos HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods):
 
@@ -262,32 +300,30 @@ A la hora de diseñar los puntos de entrada de una API hay que tener en cuenta v
 
 :three: Identifica recursos con IDs en la ruta:
 
-<span class="example">ejemplo:material-flash:</span> En vez de `/posts?id=17` utiliza `/posts/17`
+Por <span class="example">ejemplo:material-flash:</span> utiliza `/posts/17` en vez de `/posts?id=17`.
 
-:four: Utiliza «query parameters» para filtros y opciones:
+:four: Utiliza «query parameters» para filtros y opciones: Los parámetros de consulta sirven para filtrar, ordenar o paginar, no para identificar el recurso principal.
 
-Los parámetros de consulta sirven para filtrar, ordenar o paginar, no para identificar el recurso principal: <span class="example">ejemplo:material-flash:</span> `/posts?category=learning`
+Por <span class="example">ejemplo:material-flash:</span> `/posts?category=2` aplicaría un filtro a todos los «posts» para obtener únicamente aquellos cuya categoría tenga `pk=2`.
 
-:five: Representa relaciones de forma jerárquica:
+:five: Representa relaciones de forma jerárquica: Cuando un recurso depende de otro.
 
-Cuando un recurso depende de otro... Por <span class="example">ejemplo:material-flash:</span> `/category/24/posts` representaría los «posts» de la categoría con `pk=24`.
+Por <span class="example">ejemplo:material-flash:</span> `/category/2/posts` representaría los «posts» de la categoría con `pk=2`.
 
-:six: Versiona tu API:
+:six: Versiona tu API: Muy recomendable para evitar romper clientes existentes:
 
-Muy recomendable para evitar romper clientes existentes:
+Por <span class="example">ejemplo:material-flash:</span> `/api/v1/posts/` o `/api/v2/posts/`
 
-<span class="example">ejemplo:material-flash:</span> `/api/v1/posts/` o `/api/v2/posts/`
-
-:seven: URLs simples y predecibles
+:seven: URLs simples y predecibles:
 
 - Usar `kebab-case` es una buena práctica: <span class="example">ejemplo:material-flash:</span> `/api/posts/reset-category`
 - Evita mayúsculas.
 - Evita caracteres especiales.
 - No incluyas formato (`.json`, `.xml`) en la URL.
 
-:eight: Manejo de estados y errores
+:eight: Manejo de estados y errores:
 
-- Usa [códigos HTTP](views.md#response-types) correctos (200, 401, 403, 404, 405, 409, 500).
+- Usa [códigos HTTP](views.md#response-types) correctos (200, 401, 403, 404, 405, 409, 422, 500).
 - Los errores deben devolverse en el cuerpo de la respuesta, no en la ruta.
 
 ## Esquemas { #schemas }
@@ -357,6 +393,14 @@ Vamos a implementar como <span class="example">ejemplo:material-flash:</span> el
             exclude = ['id']
     ```
 
+En este caso nos quedaremos con el **esquema basado en modelo**.
+
+!!! info "Serialización"
+
+    Los esquemas se encargan —entre otras muchas cosas— de serializar/deserializar los objetos en el protocolo de comunicación.
+
+    La serialización en APIs es el proceso de convertir objetos complejos en memoria (estructuras de datos) a un formato estándar y transportable como JSON, XML o binario. Esto permite enviar datos entre cliente y servidor, asegurando la compatibilidad entre diferentes lenguajes y plataformas. La deserialización realiza el paso inverso: reconstruir el objeto a partir del formato recibido.
+
 ## CRUD { #crud }
 
 En desarrollo de software se utiliza el acrónimo **CRUD** para referirse a las operaciones básicas de **Crear**, **Leer**, **Actualizar** y **Borrar** recursos. Estas operaciones se corresponden con los métodos HTTP `POST`, `GET`, `PUT/PATCH` y `DELETE` respectivamente.
@@ -425,7 +469,8 @@ Por tanto, para obtener los resultados de nuestro punto de entrada `/api/posts/`
 
 1. [http://localhost:8000/api/docs](http://localhost:8000/api/docs) mediante la documentación generada por _Django Ninja_.
 2. [http://localhost:8000/api/posts/](http://localhost:8000/api/posts/) en cualquier navegador.
-3. Clientes API (por <span class="example">ejemplo:material-flash:</span> [Thunder Client](https://www.thunderclient.com/)).
+3. Cliente API en línea de comandos: `#!console $ curl -X GET http://localhost:8000/api/posts/`
+4. Cliente API con interfaz gráfica: Por <span class="example">ejemplo:material-flash:</span> [Thunder Client](https://www.thunderclient.com/).
 
 En cualquiera de los casos, la salida esperada debería ser:
 
@@ -498,7 +543,7 @@ def get_post(request, post_id: int):#(2)!
 2. Necesitamos definir el parámetro `post_id` en el manejador.
 3. Consulta del «post» en la base de datos.
 
-Ahora si «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/api/posts/1](http://localhost:8000/api/posts/1) deberíamos obtener el siguiente resultado:
+Si ahora «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/api/posts/1](http://localhost:8000/api/posts/1) deberíamos obtener el siguiente resultado:
 
 ```json
 {
@@ -529,10 +574,10 @@ router = Router()
 
 
 @router.get('/', response=list[PostSchema])
-def list_posts(request, category_slug: str = None):#(1)!
+def list_posts(request, category_id: int = None):#(1)!
     posts = Post.objects.all()
-    if category_slug:#(2)!
-        posts = posts.filter(category__slug=category_slug)#(3)!
+    if category_id:#(2)!
+        posts = posts.filter(category__id=category_id)#(3)!
     return posts
 
 
@@ -543,10 +588,10 @@ def get_post(request, post_id: int):
 { .annotate }
 
 1. Definimos el parámetro `category_slug` como un _query parameter_ opcional (con valor por defecto `None`).
-2. Comprobamos si se ha proporcionado el parámetro `category_slug` en la petición.
+2. Comprobamos si se ha proporcionado el parámetro `category_id` en la petición.
 3. Si se ha proporcionado el parámetro, filtramos los «posts» por la categoría correspondiente.
 
-Ahora si «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/api/posts/?category=design](http://localhost:8000/api/posts/?category=design) deberíamos obtener el siguiente resultado:
+Si ahora «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/api/posts/?category=1](http://localhost:8000/api/posts/?category=design) deberíamos obtener el siguiente resultado:
 
 ```json
 [
@@ -565,7 +610,7 @@ Ahora si «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/
 ]
 ```
 
-Como se puede observar, el resultado se ha filtrado para mostrar únicamente los «posts» que pertenecen a la categoría con `slug=design`.
+Como se puede observar, el resultado se ha filtrado para mostrar únicamente los «posts» que pertenecen a la categoría con `pk=1` (_Diseño_).
 
 !!! info "Parametros"
 
@@ -755,7 +800,7 @@ Para ello debemos utilizar los llamados **«resolvers»**. Si queremos devolver 
 
 
     class PostSchema(ModelSchema):
-        summary: str | None = None#(1)!
+        summary: str#(1)!
     
         class Meta:
             model = Post
@@ -770,7 +815,7 @@ Para ello debemos utilizar los llamados **«resolvers»**. Si queremos devolver 
     ```
     { .annotate }
 
-    1. Definimos el campo `summary` como un campo de tipo `str` opcional (con valor por defecto `None`).
+    1. Definimos el campo `summary` como un campo de tipo `str`.
     2. Incluimos los campos `id`, `title`, `slug` y `content` del modelo `Post`, pero no incluimos el campo `summary` porque lo vamos a calcular de forma dinámica.
     3.  - Definimos el método `resolve_summary` que se encargará de calcular el valor del campo `summary`.
         - Recibe como parámetro el objeto («post») que el esquema está resolviendo.
@@ -1000,7 +1045,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos
     class PostSchemaIn(ModelSchema):
         class Meta:
             model = Post
-            exclude = ['id', 'slug']#(1)!
+            fields = ['title', 'content']#(1)!
     
     
     class PostSchemaOut(ModelSchema):
@@ -1010,7 +1055,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos
     ```
     { .annotate }
     
-    1. Se excluyen los campos `id` y `slug` del esquema de entrada porque el `id` se genera automáticamente al crear el recurso y el `slug` se genera automáticamente a partir del `title` en el método `save()` del modelo.
+    1.  - No se incluyen los campos `id` y `slug` del esquema de entrada porque el `id` se genera automáticamente al crear el recurso y el `slug` se genera automáticamente a partir del `title` en el método `save()` del modelo.
+        - Igualmente no se añade el campo `category` porque se verá en el próximo epígrafe [claves ajenas](#create-fk).
 
 === "Manejador"
 
@@ -1033,7 +1079,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos
     
     1. La respuesta del punto de entrada será un `PostSchemaOut`, que incluye el `id` y el `slug` generados automáticamente al crear el nuevo «post».
     2. El manejador recibe un objeto `post` de tipo `PostSchemaIn`, que contiene los datos necesarios para crear el nuevo «post».
-    3. Creamos el nuevo «post» en la base de datos utilizando los datos proporcionados en el esquema de entrada desplegando el diccionario de datos.
+    3.  - Creamos el nuevo «post» en la base de datos utilizando los datos proporcionados en el esquema de entrada desplegando el diccionario de datos.
+        - Por <span class="example">ejemplo:material-flash:</span> si «post» tiene título _Django handlers_ y contenido _Handlers can manage entrypoints_, `#!python **post.dict()` :material-arrow-right-bold: `#!python title='Django handlers', content='Handlers can manage entrypoints`
 
 Ahora podemos hacer una petición `POST` a [http://localhost:8000/api/posts/](http://localhost:8000/api/posts/) con el siguiente cuerpo (_«json body»_) para crear un nuevo «post»:
 
@@ -1060,30 +1107,54 @@ La respuesta esperada sería la siguiente:
 
 Si queremos asignar una categoría (_clave ajena_) al nuevo «post» que estamos creando, debemos modificar ligeramente el manejador del punto de entrada:
 
-```python title="posts/api.py"
-from ninja import Router
+=== "Esquema"
 
-from categories.models import Category
+    ```python title="posts/schemas.py" hl_lines="9"
+    from ninja import ModelSchema
+    
+    from .models import Post
+    
+    
+    class PostSchemaIn(ModelSchema):
+        class Meta:
+            model = Post
+            fields = ['title', 'content', 'category']#(1)!
+    
+    
+    class PostSchemaOut(ModelSchema):
+        class Meta:
+            model = Post
+            fields = ['id', 'title', 'slug', 'content', 'category']
+    ```
+    { .annotate }
+    
+    1. Añadimos el campo `category` para poder indicar el _identificador de la categoría_ al crear un nuevo «post».
 
-from .models import Post
-from .schemas import PostSchemaIn, PostSchemaOut
+=== "Manejador"
 
-router = Router()
+    ```python title="posts/api.py"
+    from ninja import Router
+
+    from categories.models import Category
+
+    from .models import Post
+    from .schemas import PostSchemaIn, PostSchemaOut
+
+    router = Router()
 
 
-@router.post('/', response=PostSchemaOut)
-def create_post(request, post: PostSchemaIn):
-    payload = post.dict()
-    category_id = payload.pop('category', None)#(1)!
-    category = Category.objects.get(pk=category_id) if category_id else None#(2)!
-    post = Post.objects.create(category=category, **payload)#(3)!
-    return post
-```
-{ .annotate }
+    @router.post('/', response=PostSchemaOut)
+    def create_post(request, post: PostSchemaIn):
+        payload = post.dict()
+        category_id = payload.pop('category', None)#(1)!
+        category = Category.objects.get(pk=category_id) if category_id else None#(2)!
+        return Post.objects.create(category=category, **payload)#(3)!
+    ```
+    { .annotate }
 
-1. Extraemos el identificador de la categoría del cuerpo de la petición.
-2. Obtenemos el objeto `Category` correspondiente al identificador proporcionado (si se ha proporcionado alguno).
-3. Creamos el nuevo «post» con la categoría asignada y el resto de campos.
+    1. Extraemos el identificador de la categoría del cuerpo de la petición.
+    2. Obtenemos el objeto `Category` correspondiente al identificador proporcionado (si se ha proporcionado alguno).
+    3. Creamos el nuevo «post» con la categoría asignada y el resto de campos.
 
 Ahora podemos hacer una petición `POST` a [http://localhost:8000/api/posts/](http://localhost:8000/api/posts/) con el siguiente cuerpo (_«json body»_) para crear un nuevo «post» con categoría asignada:
 
@@ -1197,7 +1268,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
     class PostSchemaIn(ModelSchema):
         class Meta:
             model = Post
-            exclude = ['id', 'slug']#(1)!
+            exclude = ['title', 'content', 'category']
     
     
     class PostSchemaOut(ModelSchema):
@@ -1205,9 +1276,6 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
             model = Post
             fields = ['id', 'title', 'slug', 'content', 'category']
     ```
-    { .annotate }
-    
-    1. En una actualización no deberíamos cambiar el `slug` ni el `id`, por lo que los excluimos del esquema de entrada.
 
 === "Manejador"
 
@@ -1225,18 +1293,18 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
         payload = post.dict()
         category_id = payload.pop('category', None)
         category = Category.objects.get(pk=category_id) if category_id else None
+        payload['category'] = category#(1)!
         post_obj = Post.objects.get(pk=post_id)
-        for attr, value in payload.items():#(1)!
-            setattr(post_obj, attr, value)#(2)!
-        post_obj.category = category#(3)!
+        for attr, value in payload.items():#(2)!
+            setattr(post_obj, attr, value)#(3)!
         post_obj.save()#(4)!
         return post_obj#(5)!
     ```
     { .annotate }
     
-    1. Actualizamos los campos del objeto `post_obj` con los datos proporcionados en la petición utilizando un bucle que recorre los atributos y valores del esquema de entrada.
-    2. Asignamos los nuevos valores a los atributos del objeto `post_obj` utilizando la función `setattr()`.
-    3. Asignamos la categoría al objeto `post_obj` (si se ha proporcionado alguna).
+    1. Añadimos la categoría al «payload» que estamos manejando.
+    2. Recorremos los elementos del «payload».
+    3. Asignamos los nuevos valores a los atributos del objeto `post_obj` utilizando la función `setattr()`.
     4. Guardamos los cambios en la base de datos.
     5. Devolvemos el objeto actualizado como respuesta. Al existir un esquema de salida definido, _Django Ninja_ se encargará de convertir el objeto en el formato adecuado para la respuesta.
 
@@ -1282,13 +1350,13 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
     class PostSchemaIn(ModelSchema):
         class Meta:
             model = Post
-            exclude = ['id', 'slug']
+            fields = ['title', 'content', 'category']
     
     
     class PostSchemaPatch(ModelSchema):#(1)!
         class Meta:
             model = Post
-            exclude = ['id', 'slug']
+            fields = ['title', 'content', 'category']
             fields_optional = '__all__'#(2)!
     
     
@@ -1308,31 +1376,28 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
     from ninja import Router
 
     from .models import Post
-    from .schemas import PostSchemaIn, PostSchemaOut
+    from .schemas import PostSchemaOut, PostSchemaPatch
 
     router = Router()
 
 
     @router.patch('/{post_id}', response=PostSchemaOut)
     def partial_update_post(request, post_id: int, post: PostSchemaPatch):
-        payload = post.dict(exclude_unset=True)#(1)!
+    payload = post.dict(exclude_unset=True)#(1)!
+    if 'category' in payload:#(2)!
         category_id = payload.pop('category', None)
-        category = Category.objects.get(pk=category_id) if category_id else None
-        post_obj = Post.objects.get(pk=post_id)
-        for attr, value in payload.items():#(2)!
-            setattr(post_obj, attr, value)#(3)!
-        post_obj.category = category#(4)!
-        post_obj.save()#(5)!
-        return post_obj#(6)!
+        category = Category.objects.get(id=category_id) if category_id else None
+        payload['category'] = category
+    post_obj = Post.objects.get(id=post_id)
+    for attr, value in payload.items():
+        setattr(post_obj, attr, value)
+    post_obj.save()
+    return post_obj
     ```
     { .annotate }
     
     1. Obtenemos los datos de entrada como diccionario. En este caso, utilizamos `#!python exclude_unset=True` para excluir aquellos campos que no se han proporcionado en la petición, lo que permite realizar una actualización parcial.
-    2. Actualizamos los campos del objeto `post_obj` con los datos proporcionados en la petición utilizando un bucle que recorre los atributos y valores del esquema de entrada.
-    3. Asignamos los nuevos valores a los atributos del objeto `post_obj` utilizando la función `setattr()`.
-    4. Asignamos la categoría al objeto `post_obj` (si se ha proporcionado alguna).
-    5. Guardamos los cambios en la base de datos.
-    6. Devolvemos el objeto actualizado como respuesta. Al existir un esquema de salida definido, _Django Ninja_ se encargará de convertir el objeto en el formato adecuado para la respuesta.
+    2. Solo gestionamos el caso de la categoría si ha sido incluida en la actualización (_payload_).
 
 Supongamos que queremos actualizar parcialmente el «post» con `id=7` para cambiar únicamente su contenido. Para ello, haríamos una petición `PATCH` a [http://localhost:8000/api/posts/7](http://localhost:8000/api/posts/7) con el siguiente cuerpo (_«json body»_):
 
@@ -1372,7 +1437,7 @@ router = Router()
 def delete_post(request, post_id: int):
     post = Post.objects.get(pk=post_id)
     post.delete()
-    return {'success': True}#(1)!
+    return {'detail': 'Post deleted successfully'}#(1)!
 ```
 { .annotate }
 
@@ -1386,7 +1451,7 @@ Supongamos que queremos borrar el «post» con `id=7`. Para ello, haríamos una 
 
 ```json title="Code 200"
 {
-  "success": true
+  "detail": "Post deleted successfully"
 }
 ```
 
@@ -1535,6 +1600,10 @@ Si ahora intentamos acceder a uno de los «posts» restringidos (por ejemplo, co
   "detail": "Access to this post is restricted"
 }
 ```
+
+!!! warning "Elevar excepción"
+
+    Al estar gestionando errores, no se trata de devolver la excepción sino de lanzarla, utilizando para ello `#!python raise HttpError()`.
 
 ## Autenticación { #auth }
 
