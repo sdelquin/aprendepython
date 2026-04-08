@@ -6,6 +6,29 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.4
+
+Publicada el 08-04-2026
+
+- Actualiza la versión de Zensical a [0.0.32](https://github.com/zensical/zensical/releases/tag/v0.0.32).
+- Corrige render de fórmulas matemáticas en anotaciones de código: [zensical/ui](https://github.com/zensical/ui/issues/93)
+- Django: Interfaz administrativa
+	- Corrige typo en registro de modelo.
+- Django: Producción
+	- Añade documentación sobre seguridad.
+- Acceso a datos: sqlite
+	- Mejora documentación sobre tipos de datos en SQLite.
+- Modularidad: Objetos y clases
+	- Aclara uso de anotaciones dentro de clase.
+- Tipos de datos: Cadenas de texto
+	- Añade funciones para identificar espacios.
+- Modularidad: Excepciones
+	- Mejora documentación.
+- Django: Justfile
+	- Corrige algunas recetas para Django.
+- Entornos de desarrollo: Contexto real
+	- Añade notas sobre instalación de uv.
+
 ## Version 3.2.3
 
 Publicada el 22-03-2026
