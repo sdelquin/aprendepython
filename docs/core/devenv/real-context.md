@@ -82,12 +82,6 @@ Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herrami
     $ pip install -U pytest
     ```
 
-Para el caso de [Anaconda](#anaconda) usaríamos el comando:
-
-```console
-$ conda install pytest
-```
-
 ## Entornos virtuales { #virtualenvs }
 
 Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (a nivel del sistema). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, lo que nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos dentro del mismo.
@@ -187,6 +181,11 @@ Veamos algunas de sus ^^funcionalidades^^ más interesantes:
 ### uv { #uv }
 
 **uv** es una herramienta para gestionar paquetería y proyectos de Python. Es [extremadamente rápida](https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md) y está escrita en lenguaje [Rust](https://www.rust-lang.org/es).
+
+Proporciona métodos de **instalación** muy sencillos:
+
+- [Instalación para macOS :simple-apple: y Linux :simple-linux:](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1).
+- [Instalación para Windows :fontawesome-brands-windows:](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2).
 
 La [documentación](https://docs.astral.sh/uv/) está muy bien conseguida. A continuación vamos a mostrar algunas de sus ^^funcionalidades^^ más interesantes:
 
