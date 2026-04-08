@@ -259,13 +259,49 @@ Para poder almacenar de manera segura credenciales o datos confidenciales, GitHu
 
 Mediante `ssh-keygen` debemos crear un par de claves SSH: la pública se almacenará en el servidor VPS correspondiente, y la privada se almacenará en los secretos de la _GitHub Action_ para que se pueda conectar al servidor.
 
-## Logging { #logging }
+## Seguridad { #security }
+
+Es importante llevar a cabo algunas acciones en favor de la seguridad de nuestro proyecto una vez que lo pongamos en producción.
+
+### Modo producción { #production-mode }
+
+Quizás una de las cosas más importantes a la hora de asegurar nuestro proyecto Django en producción es **deshabilitar el modo depuración**. O dicho de otra forma, cambiar el valor de la variable `DEBUG` en las configuraciones.
+
+Una posible aproximación es utilizar el paquete [`prettyconf`](../../../third-party/config/prettyconf.md) y parametrizar el valor de la variable `DEBUG`:
+
+=== "Configuraciones"
+
+    ```python title="main/settings.py"
+    from prettyconf import config
+
+
+    DEBUG = config('DEBUG', default=True, cast=config.boolean)
+    ```
+
+=== "Producción"
+
+    ```ini title=".env"
+    DEBUG=0
+    ```
+
+### Logging { #logging }
 
 Cuando desplegamos un proyecto Django (o cualquier otro) a producción es realmente conveniente disponer de un sistema de [logging](https://docs.djangoproject.com/en/stable/topics/logging/) para registrar errores o mensajes de depuración que nos puedan ayudar a conocer el estado del sistema o a solucionar posibles problemas que surjan.
 
 En este sentido, vamos a añadir un bloque de _logging_ en el fichero de configuraciones del proyecto:
 
 ```python title="main/settings.py"
+from pathlib import Path
+
+from prettyconf import config
+
+# ...
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_NAME = BASE_DIR.name
+
+# ...
+
 if not DEBUG:#(1)!
     LOG_DIR = config('LOGS_DIR', default=BASE_DIR / 'logs', cast=Path)#(2)!
     LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -309,6 +345,99 @@ if not DEBUG:#(1)!
 3. Nombre base de los ficheros de _logging_.
 4. Por defecto el tamaño de cada fichero de _logging_ no puede superar los 2MB.
 5. Se mantienen 3 rotaciones de los ficheros de _logging_.
+
+### Acceso a interfaz administrativa { #admin-security }
+
+Ya hemos visto que Django proporciona una [interfaz administrativa](admin.md) de manera automática. Por defecto la URL de acceso a dicha interfaz es `/admin` que viene definida en el fichero `urls.py`:
+
+```python title="main/urls.py" hl_lines="5"
+from django.contrib import admin
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+```
+
+Muchos ataques están dirigidos a URLs del estilo `/admin` es por ello que se recomienda modificar esta URL en producción a algo distinto para minimizar su impacto.
+
+Una posible aproximación es utilizar el paquete [`prettyconf`](../../../third-party/config/prettyconf.md) y parametrizar la URL de la interfaz administrativa:
+
+=== "Configuraciones"
+
+    ```python title="main/settings.py"
+    from prettyconf import config
+
+
+    ADMIN_URL = config('ADMIN_URL', default='admin/')
+    ```
+
+=== "URLs"
+
+    ```python title="main/urls.py"
+    from django.conf import settings
+    from django.contrib import admin
+
+
+    urlpatterns = [
+        path(f'{settings.ADMIN_URL}', admin.site.urls),
+    ]
+    ```
+
+=== "Producción"
+
+    ```ini title=".env"
+    ADMIN_URL="superadminpanel/" 
+    ```
+
+### Secretos { #secrets }
+
+En la configuración de un proyecto Django existe una variable llamada `SECRET_KEY` que se utiliza internamente para proteger datos y garantizar que ciertas operaciones no puedan ser manipulables (por ejemplo CSRF). Es importante que el valor de esta variable no sea público cuando desplegamos nuestro proyecto Django en producción. 
+
+Una posible aproximación es utilizar el paquete [`prettyconf`](../../../third-party/config/prettyconf.md) y parametrizar el valor de la variable `SECRET_KEY`:
+
+=== "Configuraciones"
+
+    ```python title="main/settings.py"
+    from prettyconf import config
+
+
+    SECRET_KEY = config('SECRET_KEY', default='django-is-awesome')#(1)!
+    ```
+    { .annotate }
+    
+    1. Este valor por defecto no es importante siempre y cuando lo usemos únicamente en desarrollo.
+
+=== "Producción"
+
+    ```ini title=".env"
+    SECRET_KEY="zj-*boyrdsjql(n-@n8xq#@ge^*#vu)q#g+rux80kcw(2*3mc*"
+    ```
+
+??? abstract "justfile"
+
+    Consulta la receta [`secret-key`](justfile.md#django-justfile) para incluirla en tu `justfile`.
+
+### Hosts permitidos { #allowed-hosts }
+
+Otra medida de seguridad que añade Django es restringir el acceso al proyecto en base al dominio. En este sentido existe una variable `ALLOWED_HOSTS` que contiene una lista de los posibles dominios admitidos.
+
+Una posible aproximación es utilizar el paquete [`prettyconf`](../../../third-party/config/prettyconf.md) y parametrizar el valor de la variable `ALLOWED_HOSTS`:
+
+=== "Configuraciones"
+
+    ```python title="main/settings.py"
+    from prettyconf import config
+
+
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=config.list)
+    ```
+
+=== "Producción"
+
+    ```ini title=".env"
+    ALLOWED_HOSTS=aprendepython.es
+    ```
 
 
 [^1]: Un registro A de DNS (Address Record) es el tipo de registro fundamental que mapea un nombre de dominio (como ejemplo.com) a una dirección IPv4 específica (como 192.0.2.1), permitiendo que tu navegador encuentre el servidor correcto para un sitio web, y es esencial para la navegación en internet al traducir nombres legibles por humanos a números de máquina.
