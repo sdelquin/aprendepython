@@ -703,7 +703,7 @@ Hay veces que recibimos información textual de distintas fuentes de las que nec
     False
     ```
 
-=== "Mayúsculas/Minúsculas :material-format-letter-case-upper:"
+=== "Mayus/Minus :material-format-letter-case-upper:"
 
     Detectar mayúsculas/minúsculas en la cadena de texto:
 
@@ -713,6 +713,19 @@ Hay veces que recibimos información textual de distintas fuentes de las que nec
     >>> 'small'.islower()
     True
     >>> 'First Heading'.istitle()
+    True
+    ```
+
+=== "Espacios :material-keyboard-space:"
+
+    Detectar espacios en la cadena de texto:
+
+    ```pycon
+    >>> ' '.isspace()
+    True
+    >>> '\n'.isspace()
+    True
+    >>> '\t'.isspace()
     True
     ```
 
