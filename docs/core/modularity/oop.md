@@ -757,9 +757,16 @@ Extrapolando esta idea a nuestro universo _StarWars_, podríamos establecer que 
 ```
 { .annotate }
 
-1.  - El argumento que recibimos es el droide con el que comparar.
-    - Para evitar un error de tipo (en la anotación) `NameError: name 'Droid' is not defined` es necesario importar esto: `#!python from __future__ import annotations`
+1.  Para evitar un error de tipo (en la anotación) `NameError: name 'Droid' is not defined` es necesario importar esto: `#!python from __future__ import annotations`
 2. La comparación se realiza a nivel de nombre de droide.
+
+!!! warning "name is not defined"
+
+    Para evitar errores de tipo (en la anotación) del estilo `NameError: name 'Droid' is not defined` es necesario:
+
+    ```python
+    from __future__ import annotations
+    ```
 
 Comprobemos entonces si dos droides son iguales:
 
