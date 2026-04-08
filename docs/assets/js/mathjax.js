@@ -17,3 +17,7 @@ document$.subscribe(() => {
   MathJax.texReset();
   MathJax.typesetPromise();
 });
+
+component$.subscribe(({ ref }) => {
+  if (ref.classList.contains("md-annotation")) MathJax.typesetPromise([ref]);
+});
