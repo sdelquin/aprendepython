@@ -74,19 +74,25 @@ Una vez que disponemos de la conexión ya podemos obtener un [`Cursor`](https://
 <sqlite3.Cursor object at 0x1057d4240>
 ```
 
-## Creación de tablas { #create-table }
+## Tipos de datos { #datatypes }
 
-Para poder crear una tabla primero debemos manejar los [tipos de datos SQLite](https://www.sqlite.org/datatype3.html) disponibles. Aunque hay alguno más, con los siguientes nos será suficiente para la inmensa mayoría de diseños de bases de datos que podamos necesitar:
+SQLite dispone de un conjunto muy reducido de [tipos de datos](https://www.sqlite.org/datatype3.html). Aunque hay alguno más, con los siguientes nos será suficiente para la inmensa mayoría de diseños de bases de datos que podamos necesitar:
 
 - [x] `INTEGER` :material-arrow-right-bold: para valores **enteros**.
 - [x] `REAL` :material-arrow-right-bold: para valores **flotantes**.
 - [x] `TEXT` :material-arrow-right-bold: para **cadenas de texto**.
 
-??? warning "INT"
+### Booleanos { #bool }
 
-    Aunque `INT` también está permitido, se desaconseja su uso en favor de `INTEGER` especialmente cuando trabajamos con la librería Python `sqlite3` y no queremos obtener resultados inesperados.
+SQLite no dispone de un tipo especial para valores [booleanos](../../core/datatypes/numbers.md#booleans). Usaremos el tipo `INTEGER` para representar _true_ como **1** y _false_ como **0**.
 
-¿Y cómo represento un valor [booleano](../../core/datatypes/numbers.md#booleans)? Simplemente podemos usar `INTEGER` y ya nos será suficiente para representar 0 (falso) y 1 (verdadero).
+### Fecha y hora { #datetime }
+
+SQLite no dispone de un tipo especial para _fecha y hora_. Usaremos el tipo `TEXT` para representar fecha y hora en formato [`ISO8601`](https://iso8601.com/) como [cadenas de texto](../../core/datatypes/strings.md) `#!python 'YYYY-MM-DD HH:MM:SS.SSS'`.
+
+Sin embargo en SQLite sí que existen [múltiples funciones](https://www.sqlite.org/lang_datefunc.html) para trabajar con fecha y hora.
+
+## Creación de tablas { #create-table }
 
 Durante toda esta sección vamos a trabajar con una tabla de <span class="example">ejemplo:material-flash:</span> que representa las [distintas versiones de Python](https://devguide.python.org/versions/) que han sido liberadas.
 
