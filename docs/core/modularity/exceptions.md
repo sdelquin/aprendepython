@@ -67,7 +67,7 @@ Supongamos el siguiente <span class="example">ejemplo:material-flash:</span> en 
 ```pycon
 >>> def intdiv(a: int, b: int) -> int:
 ...     try:#(1)!
-...         return a // b
+...         return int(a) // b
 ...     except:#(2)!
 ...         print('Please do not divide by zero...')
 ...
@@ -97,7 +97,7 @@ Veamos su implementación:
 ```pycon
 >>> def intdiv(a, b):
 ...     try:
-...         result = a // b
+...         result = int(a) // b
 ...     except TypeError:
 ...         print('Check operands. Some of them seems strange...')
 ...     except ZeroDivisionError:
@@ -111,6 +111,9 @@ Please do not divide by zero...
 
 >>> intdiv(3, '0')
 Check operands. Some of them seems strange...
+
+>>> intdiv('x', 1)
+Ups. Something went wrong...
 ```
 
 #### Excepciones predefinidas { #builtin-exceptions }
@@ -125,7 +128,7 @@ Conocerlas es importante ya que nos permitirá gestionar mejor los posibles erro
 | `IndexError` | Subíndice de secuencia fuera de rango | `#!python (2, 3)[5]` |
 | `KeyError` | Clave de diccionario no encontrada | `#!python {'x': 1, 'y': 2}['z']` |
 | `TypeError` | Operación sobre un objeto de tipo inapropiado | `#!python 'x' / 3` |
-| `ValueError` | Operación sobre un objeto de tipo correcto pero valor inapropiado | `#!python int('x')` |
+| `ValueError` | Operación sobre un objeto de tipo correcto pero valor inapropiado | `#!python int('3.14')` |
 | `ZeroDivisionError` | Segundo argumento de división o módulo es cero | `#!python 1 / 0` |
 | `FileNotFoundError` | Error al abrir (modo lectura) un fichero que no existe | `#!python open('data.txt')` |
 | `RecursionError` | Alcanzado el máximo nivel de recursión | `#!python while True:` |
@@ -139,7 +142,7 @@ Si nos interesa tratar distintas excepciones con el mismo comportamiento, es pos
 ```pycon hl_lines="4"
 >>> def intdiv(a, b):
 ...     try:
-...         result = a // b
+...         result = int(a) // b
 ...     except (TypeError, ZeroDivisionError):
 ...         print('Check operands: Some of them caused errors...')
 ...     except Exception:
@@ -148,6 +151,12 @@ Si nos interesa tratar distintas excepciones con el mismo comportamiento, es pos
 
 >>> intdiv(3, 0)
 Check operands: Some of them caused errors...
+
+>>> intdiv(3, '0')
+Check operands: Some of them caused errors...
+
+>>> intdiv('x', 1)
+Ups. Something went wrong...
 ```
 
 ### Cláusulas adicionales { #additional-clauses }
@@ -360,14 +369,14 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos
 ...
 ```
 
-Ahora prepararemos una función que obtiene el siguiente valor de una serie de números enteros, pero si alguno de los valores no es entero, elevaremos la excepción propia definida previamente:
+Ahora prepararemos una función que incrementa valores numéricos enteros (por defecto en 1), pero si alguno de los valores no es entero, elevaremos la excepción propia definida previamente:
 
-```pycon
->>> def get_next_int(*values) -> list[int]:
+```pycon hl_lines="7"
+>>> def increment(*values, weight = 1) -> list[int]:
 ...     next_values = []
 ...     for value in values:
 ...         if isinstance(value, int):
-...             next_values.append(value + 1)
+...             next_values.append(value + weight) 
 ...         else:
 ...             raise NotIntError(value)
 ...     return next_values
@@ -377,14 +386,14 @@ Ahora prepararemos una función que obtiene el siguiente valor de una serie de n
 Probemos la implementación anterior con un par de casos:
 
 ```pycon hl_lines="10"
->>> get_next_int(1, 8, 2, 3)#(1)!
+>>> increment(1, 8, 2, 3)#(1)!
 [2, 9, 3, 4]
 
->>> get_next_int(1, 8, 2.4, 3)
+>>> increment(1, 8, 2.4, 3)#(2)!
 Traceback (most recent call last):
   Cell In[2], line 1
-    get_next_int(1, 8, 2.4, 3)
-  Cell In[1], line 7 in get_next_int
+    increment(1, 8, 2.4, 3)
+  Cell In[1], line 7 in increment
     raise NotIntError(value)
 NotIntError: 2.4
 ```
@@ -421,7 +430,8 @@ Veamos a continuación varios <span class="example">ejemplos:material-flash:</sp
     ```
     { .annotate }
     
-    1. Si no se aporta un mensaje, la excepción mostrará uno predefinido.
+    1.  - Si no se aporta un mensaje, la excepción mostrará uno predefinido.
+        - En este caso también se puede lanzar la excepción sin paréntesis con `#!python raise NotIntError`
     2. Si se aporta un mensaje, la excepción lo mostrará.
 
 === "Creación de atributos"
@@ -498,6 +508,10 @@ Traceback (most recent call last):
     assert result > 0, 'Result must be positive'
 AssertionError: Result must be positive
 ```
+
+!!! info "Testing"
+
+    Las aserciones son muy utilizadas en **testing** donde se trata de comprobar el correcto funcionamiento de los artefactos implementados.
 
 ## Ejercicios { #exercises }
 
