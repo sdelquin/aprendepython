@@ -59,13 +59,16 @@ dev port="8000":
 [group('server')]
 dev0 port="8000":
     #!/usr/bin/env bash
-    IP=$(ip -br a | perl -lane 'print $1 if /^enp/ && $F[2] =~ m{([^/]+)}')
-    if grep -q $IP main/settings.py; then
+    if [ "{{ os() }}" = "macos" ]; then
+        IP=$(ipconfig getifaddr "$(route get default | awk '/interface: / {print $2}')")
+    else
+        IP=$(ip route get 1 | awk '{print $7; exit}')
+    fi
+    if grep -Eq "ALLOWED_HOSTS.*$IP" main/settings.py .env 2>/dev/null; then
         uv run ./manage.py runserver 0.0.0.0:{{ port }}
     else
-        echo "Add \"$IP\" to ALLOWED_HOSTS in main/settings.py"
+        echo "Add \"$IP\" to ALLOWED_HOSTS in main/settings.py or .env"
     fi
-    uv run manage.py runserver 0.0.0.0:80
 
 alias c:=check
 # Check Django project
@@ -84,6 +87,12 @@ alias m:=migrate
 [group('migrations')]
 migrate app="":
     uv run manage.py migrate {{app}}
+
+alias sm:=showmigrations
+# Show model migrations
+[group('migrations')]
+showmigrations app="":
+    uv run manage.py showmigrations {{app}}
 
 # Create a superuser (or update if already exists)
 [group('data')]
