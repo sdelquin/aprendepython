@@ -6,6 +6,17 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.5
+
+Publicada el 10-04-2026
+
+- Estructuras de datos: Tuplas
+	- Se traslada ejercicio `dec2bin` desde listas.
+- Django: Puesta en marcha
+	- Añade diagrama sobre contenido de carpeta `.venv`
+- Django: Modelos
+	- Añade nota final al revertir migraciones.
+
 ## Version 3.2.4
 
 Publicada el 08-04-2026
