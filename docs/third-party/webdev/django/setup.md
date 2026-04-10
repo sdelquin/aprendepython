@@ -85,7 +85,7 @@ Es altamente recomendable utilizar un [entorno virtual](../../../core/devenv/rea
 
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
-    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](https://docs.astral.sh/uv/guides/projects/) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
+    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](../../../core/devenv/real-context.md#uv) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
 
     ```console
     $ uv init --bare --no-workspace #(1)!
@@ -139,6 +139,21 @@ Suponiendo que ya hemos [creado la carpeta](#project-folder) y el [entorno virtu
         2. Instala `django` (y sus dependencias) en el entorno virtual.
         3. Añade `django` como requerimiento a `pyproject.toml`
         4. Crea el archivo `uv.lock` con las dependencias necesarias.
+
+Podemos inspeccionar el contenido de la carpeta `.venv` donde se ha creado el _entorno virtual_. Mostramos aquellas carpetas y ficheros más relevantes:
+
+```mermaid
+flowchart LR
+    venv[.venv] --> bin[bin<br>scripts]
+    bin --> python{{python}}
+    bin --> django-admin{{django-admin}}
+    venv --> lib
+    lib --> py314[python3.14]
+    py314 --> sp[site-packages]
+    sp --> django
+    sp --> asgiref
+    sp --> sqlparse
+```
 
 ### Creación del proyecto { #create-project }
 
