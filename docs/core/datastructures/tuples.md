@@ -188,6 +188,10 @@ Veamos otro <span class="example">ejemplo:material-flash:</span> en el que utili
     1   2
     ```
 
+!!! exercise "Ejercicio"
+
+    [pypas](../../third-party/learning/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `dec2bin`
+
 ### Intercambio de valores { #swap-values }
 
 Veamos cómo implementar el intercambio de los valores de dos variables:
