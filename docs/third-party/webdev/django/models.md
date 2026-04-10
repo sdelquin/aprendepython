@@ -496,6 +496,21 @@ Ahora si volvemos a comprobar el registro de migraciones, vemos que todo está c
      [X] 0001_initial
     ```
 
+Por último, para volver a dejar todo «como estaba», modificamos de nuevo el tamaño de los campos como se había especificado inicialmente:
+
+```python title="posts/models.py" hl_lines="5-6"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
 ## Base de datos { #database }
 
 La configuración de la base de datos del proyecto se encuentra en la variable [`DATABASES`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-DATABASES) del fichero `settings.py` y (por defecto) tiene este aspecto:
@@ -794,7 +809,7 @@ El método `save()` nos permite guardar los cambios realizados en una instancia 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que `p` es un objeto de tipo `Post` y queremos modificar su título:
 
 ```pycon hl_lines="2"
->>> p.title = 'This is a better title"
+>>> p.title = 'This is a better title'
 >>> p.save()
 ```
 
