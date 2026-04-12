@@ -328,10 +328,10 @@ Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** d
 
         Consulta la receta [`dev`](justfile.md#django-justfile) para incluirla en tu `justfile`.
 
-Siempre y cuando no haya surgido algún inconveniente de última hora, con esto ya tendremos accesible el proyecto en la URL http://127.0.0.1:8000/ (1)
+Siempre y cuando no haya surgido algún inconveniente de última hora, con esto ya tendremos accesible el proyecto en la URL [http://127.0.0.1:8000/](http://127.0.0.1:8000/) (1)
 { .annotate }
 
-1. También estará disponible en http://localhost:8000/
+1. También estará disponible en [http://localhost:8000/](http://localhost:8000/)
 
 !!! question "Detener el servidor"
 
