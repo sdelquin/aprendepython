@@ -3495,6 +3495,169 @@ Para cargar las _fixtures_ debemos hacer uso del comando [`manage.py loaddata`](
 
     Si no se indica una ruta al fichero de «fixtures», Django lo buscará primero en la carpeta actual de trabajo y, si no lo encuentra, en la carpeta `fixtures` de cada una de las aplicaciones instaladas en el proyecto.
 
+## Managers { #managers }
+
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
+Un «manager» de un modelo Django es una especie de manejador que nos permite interactuar con el ORM sobre el modelo en cuestión. El _manager_ por defecto que incorpora Django a todos sus modelos es `objects`.
+
+Así, por <span class="example">ejemplo:material-flash:</span>, podríamos obtener todos los «posts» de nuestra base de datos mediante una [consulta](#retrieve-objects) en el ORM con `#!python Post.objects.all()`.
+
+Pero este escenario se puede ampliar de dos formas distintas:
+
+1. Añadiendo métodos adicionales al _manager_ por defecto.
+2. Añadiendo _managers_ adicionales al _manager_ por defecto.
+
+Vamos a partir del modelo base de `Post` para ejemplificar cada aproximación:
+
+```python title="posts/models.py"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Para disponer de **datos iniciales** en la base de datos, descargamos este fichero [`posts.json`](files/models/posts.json) y [cargamos las «fixtures»](#load-fixtures):
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py loaddata posts #(1)!
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    { .annotate }
+    
+    1. Aunque no estemos indicando la ruta del fichero, por defecto se van a buscar a la carpeta `fixtures/` de cada aplicación del proyecto.
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py loaddata posts #(1)!
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    { .annotate }
+
+    1. Aunque no estemos indicando la ruta del fichero, por defecto se van a buscar a la carpeta `fixtures/` de cada aplicación del proyecto.
+
+### Añadiendo métodos { #manager-custom-methods }
+
+Supongamos que queremos añadir al _manager_ por defecto `objects` un método `with_length()` que nos devuelve los «posts» de la base de datos pero incluyendo una [anotación](https://docs.djangoproject.com/en/stable/topics/db/aggregation/) con el tamaño de cada «post»:
+
+```python title="posts/models.py" hl_lines="2 5-7 18"
+from django.db import models
+from django.db.models.functions import Length#(1)!
+
+
+class PostManager(models.Manager):#(2)!
+    def with_length(self):#(3)!
+        return self.annotate(length=Length('content'))
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    objects = PostManager()#(4)!
+```
+{ .annotate }
+
+1. Importamos este recurso únicamente para aplicar la anotación en la consulta.
+2. Necesitamos implementar una clase (heredando de _manager_).
+3. Este sería el método que añadimos a los existentes.
+4. Asignamos esta nueva clase al _manager_ por defecto `objects`.
+
+Podemos comprobar el funcionamiento de este método de una manera muy sencilla:
+
+```pycon
+>>> for post in Post.objects.with_length():
+...     print(f'{post.title:20s} | {post.length}')
+...
+Small Changes        | 44
+Learning Takes Time  | 52
+Thinking in Code     | 39
+Useful Mistakes      | 29
+Curiosity            | 36
+```
+
+### Añadiendo managers { #manager-custom-managers }
+
+Supongamos que queremos añadir algunos _managers_ que devuelvan los «posts» pero filtrando su contenido por ciertas palabras clave, con lo que facilitar el acceso a los mismos:
+
+```python title="main/posts.py" hl_lines="4-6 9-11 22-24"
+from django.db import models
+
+
+class TechPostManager(models.Manager):#(1)!
+    def get_queryset(self):#(2)!
+        return super().get_queryset().filter(content__icontains='technology')#(3)!
+
+
+class CodePostManager(models.Manager):#(4)!
+    def get_queryset(self):#(5)!
+        return super().get_queryset().filter(content__icontains='code')#(6)!
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    objects = models.Manager()#(7)!
+    tech = TechPostManager()#(8)!
+    code = CodePostManager()#(9)!
+```
+{ .annotate }
+
+1. Implementamos un nuevo _manager_.
+2. Debemos sobreescribir el método `get_queryset()`.
+3. Accedemos a la consulta desde la clase base para luego aplicar el filtro correspondiente.
+4. Implementamos un nuevo _manager_.
+5. Debemos sobreescribir el método `get_queryset()`.
+6. Accedemos a la consulta desde la clase base para luego aplicar el filtro correspondiente.
+7. No queremos «perder» el _manager_ por defecto `objects`.
+8. Creamos un nuevo _manager_ `tech` desde la clase previamente implementada.
+9. Creamos un nuevo _manager_ `code` desde la clase previamente implementada.
+
+Podemos comprobar el funcionamiento de estos _managers_ de una manera muy sencilla:
+
+```pycon hl_lines="10 15"
+>>> for post in Post.objects.all():#(1)!
+...     print(f'{post.title:20s} | {post.content}')
+...
+Small Changes        | Small daily changes can lead to big results.
+Learning Takes Time  | Technology moves fast, but real learning takes time.
+Thinking in Code     | Writing code is also a way of thinking.
+Useful Mistakes      | Not every error is a failure.
+Curiosity            | Great ideas are born from curiosity.
+
+>>> for post in Post.tech.all():#(2)!
+...     print(f'{post.title:20s} | {post.content}')
+...
+Learning Takes Time  | Technology moves fast, but real learning takes time.
+
+>>> for post in Post.code.all():#(3)!
+...     print(f'{post.title:20s} | {post.content}')
+...
+Thinking in Code     | Writing code is also a way of thinking.
+```
+{ .annotate }
+
+1. Seguimos disponiendo del _manager_ por defecto `objects`.
+2. El nuevo _manager_ `tech` nos devuelve solo aquellos «posts» que tengan que ver con tecnología.
+3. El nuevo _manager_ `code` nos devuelve solo aquellos «posts» que tengan que ver con código.
 
 [^1]: En la práctica hay [ciertos aspectos](https://docs.djangoproject.com/en/stable/ref/databases/) a tener en cuenta cuando usamos distintos sistemas gestores de bases de datos.
 [^2]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable
