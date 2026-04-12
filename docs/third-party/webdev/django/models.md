@@ -511,6 +511,310 @@ class Post(models.Model):
         return self.title
 ```
 
+### Migraciones manuales { #manual-migrations }
+
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
+Hay ocasiones en las que necesitamos crear migraciones manuales ([migraciones de datos](https://docs.djangoproject.com/en/6.0/topics/migrations/#data-migrations)) para resolver determinados escenarios durante la vida de un proyecto Django.
+
+Vamos a suponer por <span class="example">ejemplo:material-flash:</span> un escenario en el que partimos de un modelo de «post» como el siguiente:
+
+```python title="posts/models.py"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Para disponer de **datos iniciales** en la base de datos, descargamos este fichero [`posts.json`](files/models/posts.json) y [cargamos las «fixtures»](#load-fixtures):
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py loaddata posts #(1)!
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    { .annotate }
+    
+    1. Aunque no estemos indicando la ruta del fichero, por defecto se van a buscar a la carpeta `fixtures/` de cada aplicación del proyecto.
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py loaddata posts #(1)!
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    { .annotate }
+
+    1. Aunque no estemos indicando la ruta del fichero, por defecto se van a buscar a la carpeta `fixtures/` de cada aplicación del proyecto.
+
+Desde «arriba» nos dicen que ahora los «posts» pasarán a ser identificados unívocamente por un campo `pid` alfanumérico. Por tanto nos vemos obligados a modificar el modelo y añadir dicho atributo:
+
+```python title="posts/models.py" hl_lines="5"
+from django.db import models
+
+
+class Post(models.Model):
+    pid = models.CharField(unique=True)
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Veamos lo que ocurre si intentamos **crear la migración**:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py makemigrations posts
+    It is impossible to add a non-nullable field 'pid' to post without specifying a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+    1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+    2) Quit and manually define a default value in models.py.
+    Select an option: 2
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py makemigrations posts
+    It is impossible to add a non-nullable field 'pid' to post without specifying a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+    1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+    2) Quit and manually define a default value in models.py.
+    Select an option: 2
+    ```
+
+Lo que está ocurriendo aquí es que ya existen «posts» en la correspondiente tabla de la base de datos y Django no puede añadir la columna `pid` sin asignar un valor para las filas existentes. Ni siquiera se le podría dar como valor inicial la cadena vacía porque los valores deben ser únicos.
+
+Por tanto aquí vamos a seguir otra estrategia para resolver este problema:
+
+1. Añadir el campo `pid` como opcional.
+2. Implementar una migración manual para rellenar los datos de `pid`.
+3. Modificar el campo `pid` para que sea requerido y único.
+
+#### Añadir campo opcional { #manual-migrations-add-optional-field }
+
+Modificamos la definición del atributo `pid` para hacerlo **opcional**:
+
+```python title="posts/models.py" hl_lines="5"
+from django.db import models
+
+
+class Post(models.Model):
+    pid = models.CharField(max_length=256, blank=True)
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Creamos y aplicamos la migración correspondiente:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py makemigrations posts
+    Migrations for 'posts':
+      posts/migrations/0002_post_pid.py
+        + Add field pid to post
+    
+    $ ./manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0002_post_pid... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py makemigrations posts
+    Migrations for 'posts':
+      posts/migrations/0002_post_pid.py
+        + Add field pid to post
+    
+    $ uv run manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0002_post_pid... OK
+    ```
+
+#### Rellenar datos { #manual-migrations-fill-data }
+
+Ahora estamos en disposición de crear una migración manual para rellenar los datos del campo `pid`. Para ello hacemos lo siguiente:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py makemigrations --empty posts
+    Migrations for 'posts':
+      posts/migrations/0003_auto_20260411_0901.py
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py makemigrations --empty posts
+    Migrations for 'posts':
+      posts/migrations/0003_auto_20260411_0901.py
+    ```
+
+Editamos la migración creada para añadir el código necesario:
+
+```python title="posts/migrations/0003_auto_20260411_0901.py"
+# Generated by Django 5.2.6 on 2026-04-11 09:01
+
+import hashlib
+
+from django.db import migrations
+
+
+def fill_pid(apps, schema_editor):#(1)!
+    Post = apps.get_model('posts', 'Post')#(2)!
+    for post in Post.objects.all():#(3)!
+        post.pid = hashlib.md5(post.title.encode()).hexdigest()#(4)!
+        post.save()#(5)!
+
+
+def undo_fill_pid(apps, schema_editor):#(6)!
+    Post = apps.get_model('posts', 'Post')#(7)!
+    for post in Post.objects.all():#(8)!
+        post.pid = ''#(9)!
+        post.save()#(10)!
+
+
+class Migration(migrations.Migration):#(11)!
+    dependencies = [#(12)!
+        ('posts', '0002_post_pid'),
+    ]
+
+    operations = [#(13)!
+        migrations.RunPython(fill_pid, undo_fill_pid),#(14)!
+    ]
+```
+{ .annotate }
+
+1. Cada función a aplicar en la migración manual recibe dos parámetros:
+    - [`apps`](https://docs.djangoproject.com/en/6.0/ref/applications/) que contiene un registro de todas las versiones históricas de los modelos.
+    - [`schema_editor`](https://docs.djangoproject.com/en/6.0/ref/schema-editor/) que permite hacer cambios manuales en la base de datos.
+2. Obtenemos el modelo `Post` de la aplicación `posts` (en el momento histórico actual).
+3. Recorremos todos los «posts» existentes actualmente.
+4. Aplicamos un [hash md5](https://es.wikipedia.org/wiki/MD5) al título para obtener el nuevo _identificador de post_.
+5. Guardamos los cambios en la base de datos.
+6. Cada función a aplicar en la migración manual recibe dos parámetros:
+    - [`apps`](https://docs.djangoproject.com/en/6.0/ref/applications/) que contiene un registro de todas las versiones históricas de los modelos.
+    - [`schema_editor`](https://docs.djangoproject.com/en/6.0/ref/schema-editor/) que permite hacer cambios manuales en la base de datos.
+7. Obtenemos el modelo `Post` de la aplicación `posts` (en el momento histórico actual).
+8. Recorremos todos los «posts» existentes actualmente.
+9. Reseteamos el _identificador de post_ como cadena vacía.
+10. Guardamos los cambios en la base de datos.
+11. Esta clase es la migración en sí.
+12. Se establece la dependencia de esta migración justo con la anterior.
+13. Esta variable lleva un registro de las operaciones a realizar en la migración.
+14. Ejecutamos código Python, concretamente dos funciones:
+    - La función `fill_pid()` es el camino «hacia adelante» en la migración.
+    - La función `undo_fill_pid()` es el camino «hacia atrás» en la migración.
+
+Una vez creada esta migración, procedemos a aplicarla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0003_auto_20260411_0901... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0003_auto_20260411_0901... OK
+    ```
+
+Si echamos un vistazo al contenido de la base de datos podremos observar que el campo `pid` de todos los «posts» se ha rellenado correctamente con el valor esperado:
+
+```pycon
+>>> for post in Post.objects.all():
+...     print(f'{post.title:20s} | {post.pid}')
+...
+Small Changes        | 5fba4065cce227573533119c08fd0cfb
+Learning Takes Time  | f639832738dd1b495c00ac0323de6577
+Thinking in Code     | 853b27a8c1fc995e23b6ffdf0ec16fe6
+Useful Mistakes      | 9e92b3e7603272a0e16fe152712a92cd
+Curiosity            | 45ac168eaee7da65d269036c7b5b39e1
+```
+
+#### Modificar campo único { #manual-migrations-change-unique-field }
+
+Dado que ahora el campo `pid` tiene contenido para todos los objetos «post» de la base de datos, podemos modificarlo como **valor único** sin riesgo a tener ningún tipo de problema:
+
+```python title="posts/models.py" hl_lines="5"
+from django.db import models
+
+
+class Post(models.Model):
+    pid = models.CharField(max_length=256, unique=True)
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Creamos y aplicamos la migración correspondiente:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py makemigrations posts
+    Migrations for 'posts':
+      posts/migrations/0004_alter_post_pid.py
+        ~ Alter field pid on post
+    
+    $ ./manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0004_alter_post_pid... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py makemigrations posts
+    Migrations for 'posts':
+      posts/migrations/0004_alter_post_pid.py
+        ~ Alter field pid on post
+    
+    $ uv run manage.py migrate posts
+    Operations to perform:
+      Apply all migrations: posts
+    Running migrations:
+      Applying posts.0004_alter_post_pid... OK
+    ```
+
+Ahora efectivamente ya hemos completado este proceso de migración manual que conlleva varios pasos pero que asegura una consistencia en la base de datos con respecto al modelo que estamos implementado.
+
 ## Base de datos { #database }
 
 La configuración de la base de datos del proyecto se encuentra en la variable [`DATABASES`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-DATABASES) del fichero `settings.py` y (por defecto) tiene este aspecto:
@@ -3113,7 +3417,7 @@ Si en vez de mostrar el resultado «por pantalla» queremos volcarlo a un ficher
     [...........................................................................]
     ```
 
-Efectivamente el fichero generado [`posts.json`](files/posts.json) es un JSON:
+Efectivamente el fichero generado [`posts.json`](files/models/posts.json) es un JSON:
 
 ```console
 $ file posts.json
