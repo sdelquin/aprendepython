@@ -75,7 +75,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('posts/', include('posts.urls'))#(2)!
+    path('posts/', include('posts.urls')),#(2)!
 ]
 ```
 { .annotate }
