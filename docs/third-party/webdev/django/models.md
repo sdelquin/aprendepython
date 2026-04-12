@@ -1029,6 +1029,36 @@ Para crear un nuevo objeto (y almacenarlo en la base de datos) mediante el ORM d
     1. No sería necesario si usamos la [shell](#shell) de Django (importación automática de objetos).
     2. Creación del objeto y consolidación en la base de datos: Todo en la misma llamada.
 
+??? note "Creando más objetos"
+
+    Para disponer de un conjunto más amplio de «posts» en la base de datos, puedes lanzar este fragmento de código:
+
+    ```pycon
+    >>> Post.objects.create(
+    ...     title='Understanding URL routing in Django',
+    ...     slug='understanding-url-routing-in-django',
+    ...     content='Learn how Django URL patterns work and how to organize routes for scalable applications.',
+    ... )
+
+    >>> Post.objects.create(
+    ...     title='Working with function-based views in Django',
+    ...     slug='working-with-function-based-views-in-django',
+    ...     content='Learn how to handle requests and responses using function-based views in Django applications.',
+    ... )
+
+    >>> Post.objects.create(
+    ...     title='Mastering Django templates',
+    ...     slug='mastering-django-templates',
+    ...     content='Understand template inheritance, context variables, and best practices for clean frontend rendering.',
+    ... )
+
+    >>> Post.objects.create(
+    ...     title='Working with forms in Django',
+    ...     slug='working-with-forms-in-django',
+    ...     content='Learn how to create, validate, and process forms using Django forms and ModelForms.',
+    ... )
+    ```
+
 #### Shell de base de datos { #dbshell }
 
 Django nos permite abrir una «shell» de base de datos (interfaz de comandos del sistema gestor) con las configuraciones del proyecto ya cargadas.
@@ -1134,6 +1164,21 @@ Partiendo del <span class="example">ejemplo:material-flash:</span> con el modelo
 
 1.  - El atributo `objects` es el «[manager](https://docs.djangoproject.com/en/stable/topics/db/managers/#django.db.models.Manager)» por defecto.
     - El método `all()` devuelve un [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) (una especie de lista «perezosa» de objetos).
+
+!!! info "SQL"
+
+    Django convierte cada llamada al ORM en su correspondiente instrucción SQL. Esto se puede ver fácilmente accediendo al atributo `query`:
+
+    ```pycon hl_lines="3"
+    >>> qs = Post.objects.all()
+
+    >>> print(qs.query)
+    SELECT "posts_post"."id",
+           "posts_post"."title",
+           "posts_post"."slug",
+           "posts_post"."content"
+    FROM "posts_post"
+    ```
 
 #### Ciertos objetos { #retrieve-some }
 
@@ -1243,9 +1288,9 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
     | [`iexact`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iexact) | Busca el término exacto (ignorando mayúsculas/minúsculas). |
     | [`contains`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#contains) | Busca si contiene el término(1). |
     | [`icontains`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#icontains) | Busca si contiene el término (ignorando mayúsculas/minúsculas). |
-    | [`startswith`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#startswith) | Busca si empieza por un término(1). |
+    | [`startswith`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#startswith) | Busca si empieza por un término(2). |
     | [`istartswith`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#startswith) | Busca si empieza por un término (ignorando mayúsculas/minúsculas). |
-    | [`endswith`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#endswith) | Busca si termina por un término(1). |
+    | [`endswith`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#endswith) | Busca si termina por un término(3). |
     | [`iendswith`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iendswith) | Busca si termina por un término (ignorando mayúsculas/minúsculas). |
     | [`regex`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#regex) | Busca si casa con una expresión regular. |
     | [`iregex`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iregex) | Busca si casa con una expresión regular (ignorando mayúsculas/minúsculas). |
@@ -1280,7 +1325,11 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
     | [`range`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#range) | Busca si está en un rango $(min, max)$ |
     | [`isnull`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#isnull) | Busca si el valor es nulo. |
 </div>
-1.  - En **SQLite :simple-sqlite:** ignora mayúsculas/minúsculas.
+1.  - En **SQLite :simple-sqlite:** [ignora mayúsculas/minúsculas](https://docs.djangoproject.com/en/stable/ref/databases/#substring-matching-and-case-sensitivity).
+    - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
+2.  - En **SQLite :simple-sqlite:** [ignora mayúsculas/minúsculas](https://docs.djangoproject.com/en/stable/ref/databases/#substring-matching-and-case-sensitivity).
+    - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
+3.  - En **SQLite :simple-sqlite:** [ignora mayúsculas/minúsculas](https://docs.djangoproject.com/en/stable/ref/databases/#substring-matching-and-case-sensitivity).
     - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
     
 ### Borrando objetos { #delete-objects }
