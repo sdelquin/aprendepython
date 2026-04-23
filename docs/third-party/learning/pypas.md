@@ -202,7 +202,7 @@ Eventualmente podrías querer ejecutar tu código en vez de lanzar las pruebas. 
 
     Para explicar cómo, vamos a partir del ejercicio `add`. Este sería su `main.py` una vez terminado:
 
-    ```python
+    ```python title="main.py"
     def run(a: int, b: int) -> int:
           result = a + b
           return result
@@ -213,7 +213,7 @@ Eventualmente podrías querer ejecutar tu código en vez de lanzar las pruebas. 
 
     Tendrás que crear un fichero `args.py` dentro de la carpeta del ejercicio con los valores que quieras dar a los **parámetros de la función principal**:    
 
-    ```python
+    ```python title="args.py"
     a = 3
     b = 7
     ```
