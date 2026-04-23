@@ -262,6 +262,10 @@ Veamos cómo sería la inserción anterior utilizando esta técnica, usando...
     
     1. Los «placeholders» se indican mediante **dos puntos y nombre**.
     2. Los valores a sustituir (interpolar) se pasan mediante un **diccionario**.
+
+!!! success "Placeholders"
+
+    Los «placeholders» no solo se utilizan en inserciones, también se ~~pueden~~ deben utilizar en cualquier otra sentencia SQL (consulta, actualización o borrado).
     
 ### Inserciones en lote { #batch-insert }
 
