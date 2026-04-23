@@ -51,17 +51,27 @@ Veamos algunos <span class="example">ejemplos:material-flash:</span> de dicciona
 ... }
 
 >>> empty_dict = {}#(3)!
+
+>>> wrong_dict = {#(4)!
+...     [1, 3, 5]: 'impares',
+...     [2, 4, 6]: 'pares',
+... }
+Traceback (most recent call last):
+  Cell In[4], line 1
+    wrong_dict = {
+TypeError: cannot use 'list' as a dict key (unhashable type: 'list')
 ```
 { .annotate }
 
 1. Un diccionario con claves [cadenas de texto](../datatypes/strings.md) y valores [cadenas de texto](../datatypes/strings.md).
 2. Un diccionario con claves [números enteros](../datatypes/numbers.md#integers) y valores [números enteros](../datatypes/numbers.md#integers).
 3. El **diccionario vacío** (_0 elementos_).
+4. Una lista no puede ser clave de diccionario.
 
 !!! exercise "Ejercicio"
 
     Entra en el intérprete interactivo de Python <span class="green">❯❯❯</span> y crea un diccionario con los nombres (como claves) de 5 personas de tu familia y sus edades (como valores).
-    
+
 ## Conversión { #cast }
 
 Para convertir otros tipos de datos en un diccionario podemos usar la función `#!python dict()`.
@@ -127,6 +137,10 @@ El inconveniente que tiene esta aproximación es que las **claves deben ser iden
                  ^
 SyntaxError: '(' was never closed
 ```
+
+!!! danger "Pitónico"
+
+    La forma pitónica de construir un diccionario es utilizar llaves `#!python {}`. Eso no quiere decir que en determinadas circunstancias se pueda utilizar la función `#!python dict()` pero es menos habitual.
 
 ### Creando con relleno { #dict-filled }
 
@@ -412,8 +426,8 @@ En función de los [elementos que podemos obtener](#get-items), Python proporcio
 === "Iterar sobre claves y valores :octicons-key-16::material-content-save:"
 
     ```pycon
-    >>> for word, meaning in rae.items():
-    ...     print(f'{word}: {meaning}')#(1)!
+    >>> for word, meaning in rae.items():#(1)!
+    ...     print(f'{word}: {meaning}')#(2)!
     ...
     bifronte: De dos frentes o dos caras
     anarcoide: Que tiende al desorden
@@ -422,7 +436,8 @@ En función de los [elementos que podemos obtener](#get-items), Python proporcio
     ```
     { .annotate }
     
-    1. Recuerda el uso de los [«f-strings»](../../core/datatypes/strings.md#fstrings) para formatear cadenas de texto.
+    1. Aquí se produce un [desempaquetado de tuplas](tuples.md#unpack) en cada iteración del bucle.
+    2. Recuerda el uso de los [«f-strings»](../../core/datatypes/strings.md#fstrings) para formatear cadenas de texto.
 
 !!! exercise "Ejercicio"
 
