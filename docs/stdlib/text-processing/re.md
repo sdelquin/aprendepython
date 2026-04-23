@@ -3,10 +3,10 @@ icon: material/regex
 tags:
   - Librería estándar
   - Procesamiento de texto
-  - re
+  - Expresiones regulares
 ---
 
-# re { #re }
+# Expresiones regulares { #re }
 
 ![Banner](images/re/banner.jpg)
 ///caption
@@ -34,7 +34,7 @@ Pero... ¿qué pinta tiene una expresión regular? Veamos un primer <span class=
 La expresión regular anterior nos permite **comprobar que una cadena de texto dada es un DNI válido**. Si analizamos parte por parte tendríamos lo siguiente:
 
 - `^` :material-arrow-right-bold: comienzo de línea.
-- `\d{8}` :material-arrow-right-bold: dígito que se repite 8 veces.
+- `\d{8}` :material-arrow-right-bold: 8 dígitos.
 - `[A-Z]` :material-arrow-right-bold: letra en mayúsculas.
 - `$` :material-arrow-right-bold: final de línea.
 
@@ -73,7 +73,7 @@ Existen una serie de caracteres que tienen un **significado especial** dentro de
 | <span class="hl mono bold">\s<span> | Coincide con cualquier espacio en blanco. Equivalente a `[ \t\n\r\f\v]`. | `#!python r'a\sb'` | `a b`, `a\tb`, `a\nb`, ... | `acb`, `abb`, `aab`, ... |
 | <span class="hl mono bold">\S<span> | Coincide con cualquier carácter que no sea un espacio en blanco. Equivalente a `[^ \t\n\r\f\v]`. | `#!python r'a\Sb'` | `a.b`, `abb`, `aab`, ... | `a b`, `a\tb`, `a\nb`, ... |
 | <span class="hl mono bold">\w<span> | Coincide con cualquier carácter alfanumérico. Equivalente a `[a-zA-Z0-9_]`. | `#!python r'a\wb'` | `aab`, `aAb`, `acb`, ... | `a;b`, `a!b`, `a.b`, ... |
-| <span class="hl mono bold">\w<span> | Coincide con cualquier carácter que no sea un carácter alfanumérico. Equivalente a `[^a-zA-Z0-9_]`. | `#!python r'a\Wb'` | `a;b`, `a!b`, `a.b`, ... | `aab`, `aAb`, `acb`, ... |
+| <span class="hl mono bold">\W<span> | Coincide con cualquier carácter que no sea un carácter alfanumérico. Equivalente a `[^a-zA-Z0-9_]`. | `#!python r'a\Wb'` | `a;b`, `a!b`, `a.b`, ... | `aab`, `aAb`, `acb`, ... |
 | <span class="hl mono bold">\<span> | Permite «escapar» el caracter que le sigue, es decir, quitarle el significado especial que tiene. | `#!python r'a\.b'` | `a.b` | `acb`, `aab`, `abb`, ... |
 
 !!! tip "Cadenas en crudo"
@@ -87,11 +87,36 @@ Existen una serie de caracteres que tienen un **significado especial** dentro de
     Coge papel y lápiz e intenta escribir una expresión regular para los siguientes escenarios:
 
     1. [Documento nacional de identidad en España](https://es.wikipedia.org/wiki/Documento_nacional_de_identidad_(Espa%C3%B1a)).
+
+        - Ten en cuenta que se descartan las letras `I`, `Ñ`, `O`, `U`
+        - Ejemplos: `76548971F`,`45432197W`   
+
     2. [Número de identidad de extranjero en España](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identidad_de_extranjero).
+
+        - Ten en cuenta formatos válidos antiguos y modernos.
+        - Ejemplos: `X43517865A`, `Z6547387T`
+
     3. [Matrículas automovilísticas en España](https://es.wikipedia.org/wiki/Matr%C3%ADculas_automovil%C3%ADsticas_de_Espa%C3%B1a).
+
+        - Ten en cuenta únicamente el formato de matrículas del sistema actual.
+        - Ten en cuenta que las letras utilizadas son las consonantes `B, C, D, F, G, H, J, K, L, M, N, P, R, S, T, V, W, X, Y, Z`.
+        - Puede aparecer uno o varios espacios en blanco entre los dígitos y las letras.
+        - Ejemplos: `5144FTY`, `2131 HBB`
+
     4. [Código de aeropuertos de IATA](https://es.wikipedia.org/wiki/C%C3%B3digo_de_aeropuertos_de_IATA).
+
+        - Ejemplos: `TFN`, `JFK`
+
     5. [Prefijos telefónicos mundiales](https://es.wikipedia.org/wiki/Anexo:Prefijos_telef%C3%B3nicos_mundiales).
+
+        - Ten en cuenta todos los posibles formatos existentes.
+        - Ten en cuenta los prefijos especiales/reservardos.
+        - Ejemplos: `+1-441`, `+678`, `+882-16`
+
     6. [Tamaños de papel ISO-DIN](https://es.wikipedia.org/wiki/Formato_de_papel#Norma_ISO_216_/_DIN_476).
+
+        - Ten en cuenta las series `A`, `B` y `C`.
+        - Ejemplos: `A10`, `B5`, `C8`.
 
 ## Operaciones { #operations }
 
@@ -207,13 +232,13 @@ En el ejemplo anterior hemos estado buscando una única coincidencia. Imaginemos
 ```pycon
 >>> import re
 
->>> text = '''
+>>> text = """
 ... Datos de contacto:
 ...   - Marketing: Rubén López (+49677543181)
 ...   - Ventas: Sara Mondragón (+34681788902)
 ...   - Desarrollo: Eva Blasco (+51682131262)
 ... © Saturno Desarrollos de Software
-... '''
+... """
 
 >>> regex = r'\+?\d{2}\d{9}'
 
@@ -229,13 +254,13 @@ Es posible utilizar **grupos de captura** con la función `findall()`. Imaginemo
 ```pycon
 >>> import re
 
->>> text = '''
+>>> text = """
 ... Datos de contacto:
 ...   - Marketing: Rubén López (+49677543181)
 ...   - Ventas: Sara Mondragón (+34681788902)
 ...   - Desarrollo: Eva Blasco (+51682131262)
 ... © Saturno Desarrollos de Software
-... '''
+... """
 
 >>> regex = r'\+?(\d{2})\d{9}'#(1)!
 
@@ -289,6 +314,8 @@ Veamos dos soluciones a este problema utilizando la función `re.sub()` mediante
 
 === "Grupos de captura posicionales"
 
+    En este caso los grupos de captura se referencian por su posición con `\1`, `\2`, ...
+
     ```pycon
     >>> import re
 
@@ -307,6 +334,8 @@ Veamos dos soluciones a este problema utilizando la función `re.sub()` mediante
     3. La función `re.sub()` recibe la expresión de búsqueda, la expresión de reemplazo y la cadena de texto sobre la que operar.
 
 === "Grupos de captura nominales"
+
+    En este caso los grupos de captura se referencian por su nombre con `\g<name>`, `\g<surname>`, ...
 
     ```pycon
     >>> import re
@@ -436,6 +465,98 @@ En cualquier caso podemos hacer que `re.match()` se comporte como `re.fullmatch(
 
 1.  - `^` indica comienzo de línea.
     - `$` indica final de línea.
+
+#### Manejando expresiones largas { #long-regex }
+
+Hay ocasiones en las que debemos afrontar la elaboración de una expresión regular extensa que incluye varios componentes y puede resultar complicada de leer, o incluso de escribir.
+
+Veamos por <span class="example">ejemplo:material-flash:</span> una expresión regular para **comprobar la fortaleza de una contraseña**:
+
+```pycon hl_lines="3"
+>>> import re
+
+>>> regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]).{8,20}$'
+
+>>> re.match(regex, '1234')
+>>> re.match(regex, 'python-m0lA')
+<re.Match object; span=(0, 11), match='python-m0lA'>
+```
+
+Obviamente resulta difícil de entender al estar escrito todo en una misma línea. Podemos mejorar esta situación desde tres enfoques:
+
+=== "Cadenas multilínea"
+
+    Aquí utilizamos [cadenas multilínea](../../core/datatypes/strings.md#triple-quotes) para construir la expresión regular:
+
+    ```pycon hl_lines="13"
+    >>> regex = r"""
+    ...     ^                                            # inicio de cadena
+    ...     (?=.*[a-z])                                  # al menos una letra minúscula
+    ...     (?=.*[A-Z])                                  # al menos una letra mayúscula
+    ...     (?=.*\d)                                     # al menos un dígito
+    ...     (?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?])   # al menos un símbolo
+    ...     .{8,20}                                      # longitud de 8 a 20 caracteres
+    ...     $                                            # final de cadena
+    ... """
+
+    >>> re.match(regex, '1234')
+
+    >>> re.match(regex, 'python-m0lA', re.VERBOSE)#(1)!
+    <re.Match object; span=(0, 11), match='python-m0lA'>
+    ```
+    { .annotate }
+    
+    1. Es necesario pasar el flag [`re.VERBOSE`](https://docs.python.org/3/library/re.html#re.VERBOSE) para poder usar [cadenas multilínea](../../core/datatypes/strings.md#triple-quotes). En su versión corta se puede escribir `#!python RE.X`
+    
+=== "f-strings"
+
+    Aquí utilizamos [f-strings](../../core/datatypes/strings.md#fstrings) para construir la expresión regular:
+
+    ```pycon hl_lines="7"
+    >>> lowercase = r'(?=.*[a-z])'
+    >>> uppercase = r'(?=.*[A-Z])'
+    >>> digit = r'(?=.*\d)'
+    >>> symbol = r'(?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?])'
+    >>> length = r'.{8,20}'
+    
+    >>> regex = rf'^{lowercase}{uppercase}{digit}{symbol}{length}$'
+    
+    >>> re.match(regex, '1234')
+    
+    >>> re.match(regex, 'python-m0lA')
+    <re.Match object; span=(0, 11), match='python-m0lA'>
+    ```
+
+=== "f-strings multilínea"
+
+    Aquí utilizamos [f-strings](../../core/datatypes/strings.md#fstrings) dentro de una [cadena multilínea](../../core/datatypes/strings.md#triple-quotes) para construir la expresión regular:
+
+    ```pycon
+    >>> lowercase = r'(?=.*[a-z])'
+    >>> uppercase = r'(?=.*[A-Z])'
+    >>> digit = r'(?=.*\d)'
+    >>> symbol = r'(?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?])'
+    >>> length = r'.{8,20}'
+
+    >>> regex = rf"""
+    ...     ^             # inicio de cadena
+    ...     {lowercase}   # al menos una letra minúscula
+    ...     {uppercase}   # al menos una letra mayúscula
+    ...     {digit}       # al menos un dígito
+    ...     {symbol}      # al menos un símbolo
+    ...     {length}      # longitud de 8 a 20 caracteres
+    ...     $             # final de cadena
+    ... """
+    
+    >>> re.match(regex, '1234')
+    
+    >>> re.match(regex, 'python-m0lA', re.VERBOSE)#(1)!
+    <re.Match object; span=(0, 11), match='python-m0lA'>
+    ```
+    { .annotate }
+    
+    1. Es necesario pasar el flag [`re.VERBOSE`](https://docs.python.org/3/library/re.html#re.VERBOSE) para poder usar [cadenas multilínea](../../core/datatypes/strings.md#triple-quotes). En su versión corta se puede escribir `#!python RE.X`
+    
 
 #### Aclaraciones sobre corchetes { #squarebrackets }
 
