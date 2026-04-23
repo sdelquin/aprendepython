@@ -617,8 +617,8 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que impleme
 ```
 { .annotate }
 
-1. Se trata de una variable de clase.
-2. Incrementamos la variable de clase cada vez que se «construye» nuevo droide.
+1. Se trata de un atributo de clase.
+2. Incrementamos el atributo de clase cada vez que se «construye» nuevo droide.
 3. Uso del decorador que define un método de clase.
 4. Los métodos de clase siempre reciben como primer parámetro `cls` haciendo referencia a la propia clase.
 5. Accedemos a la cuenta de droides construidos.
@@ -863,7 +863,13 @@ A continuación se presenta una tabla con métodos mágicos para operadores:
 
     Los métodos mágicos no sólo están restringidos a operadores de comparación o aritméticos. Existen muchos otros en la documentación oficial de Python, donde son llamados [métodos especiales](https://docs.python.org/es/3/reference/datamodel.html#special-method-names).
 
-Veamos otro <span class="example">ejemplo:material-flash:</span> en el que **«sumamos» dos droides** (_esto se podría ver como una fusión_). Supongamos que la suma de dos droides implica: **a)** que el nombre del droide resultante es la concatenación de los nombres de los droides de entrada; **b)** que la energía del droide resultante es la suma de la energía de los droides de entrada:
+Veamos otro <span class="example">ejemplo:material-flash:</span> en el que **«sumamos» dos droides** (_esto se podría ver como una fusión_). Supongamos que la suma de dos droides implica:
+
+1. Que el nombre del droide resultante es el nombre del primer droide.
+2. Que la energía del droide resultante es:
+    1. La suma de las energías de ambos droides, si lo que se está sumando son dos droides.
+    2. La suma de la energía del primer droide más la energía aportada, si lo que se está sumando es un droide y un entero.
+    3. La energía del primer droide, en otro caso.
 
 ```pycon
 >>> class Droid:
