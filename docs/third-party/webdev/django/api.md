@@ -358,7 +358,7 @@ Vamos a implementar como <span class="example">ejemplo:material-flash:</span> el
     
     1. En peticiones API se suele utilizar `id` en vez de `pk`.
 
-=== "Esquema basado en modelo"
+=== "Esquema basado en modelo :octicons-check-circle-16:{.green}"
 
     ```python title="posts/schemas.py"
     from ninja import ModelSchema
@@ -439,7 +439,7 @@ def list_posts(request):#(4)!
 5. Si añadimos un [docstring](../../../core/modularity/functions.md#docs) se verá reflejado en la documentación del punto de entrada.
 6. _Django Ninja_ se encarga de convertir la «queryset» en una lista de `PostSchema` como respuesta, tal y como se indicó en el decorador.
 
-Una vez hecho esto, podemos [levantar el servidor de desarrollo](setup.md#first-launch) y visitar [http://localhost:8000/api/docs](https://localhost:8000/api/docs/). Deberíamos ver una pantalla similar a la siguiente:
+Una vez hecho esto, podemos [levantar el servidor de desarrollo](setup.md#first-launch) y visitar [http://localhost:8000/api/docs](http://localhost:8000/api/docs). Deberíamos ver una pantalla similar a la siguiente:
 
 ![Ninja API inicial](./images/api/ninjaapi-initial.png)
 
@@ -471,6 +471,31 @@ Por tanto, para obtener los resultados de nuestro punto de entrada `/api/posts/`
 2. [http://localhost:8000/api/posts/](http://localhost:8000/api/posts/) en cualquier navegador.
 3. Cliente API en línea de comandos: `#!console $ curl -X GET http://localhost:8000/api/posts/`
 4. Cliente API con interfaz gráfica: Por <span class="example">ejemplo:material-flash:</span> [Thunder Client](https://www.thunderclient.com/).
+
+??? note "cURL"
+
+    [`curl`](https://curl.se/) es una aplicación en línea de comandos que permite realizar peticiones HTTP hacia/desde un servidor. A continuación se muestra la manera de instalarlo para distintos sistemas operativos:
+
+    === ":fontawesome-brands-windows: Windows"
+
+        ```ps1con
+        > winget install -e --id cURL.cURL#(1)!
+        ```
+        { .annotate }
+        
+        1. Instalación mediante [`winstall`](https://winstall.app/apps/Casey.Just).
+
+    === ":simple-apple: MacOS"
+
+        ```console
+        $ brew install curl
+        ```
+
+    === ":simple-linux: Linux"
+
+        ```console
+        $ apt-get install curl
+        ```
 
 En cualquiera de los casos, la salida esperada debería ser:
 
@@ -577,7 +602,7 @@ router = Router()
 def list_posts(request, category_id: int = None):#(1)!
     posts = Post.objects.all()
     if category_id:#(2)!
-        posts = posts.filter(category__id=category_id)#(3)!
+        posts = posts.filter(category__pk=category_id)#(3)!
     return posts
 
 
@@ -587,11 +612,11 @@ def get_post(request, post_id: int):
 ```
 { .annotate }
 
-1. Definimos el parámetro `category_slug` como un _query parameter_ opcional (con valor por defecto `None`).
+1. Definimos el parámetro `category_id` como un _query parameter_ opcional (con valor por defecto `None`).
 2. Comprobamos si se ha proporcionado el parámetro `category_id` en la petición.
 3. Si se ha proporcionado el parámetro, filtramos los «posts» por la categoría correspondiente.
 
-Si ahora «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/api/posts/?category=1](http://localhost:8000/api/posts/?category=design) deberíamos obtener el siguiente resultado:
+Si ahora «atacamos»[^2] este nuevo punto de entrada en [http://localhost:8000/api/posts/?category_id=1](http://localhost:8000/api/posts/?category_id=1) deberíamos obtener el siguiente resultado:
 
 ```json
 [
@@ -789,7 +814,7 @@ En ocasiones, es posible que queramos incluir en la respuesta de la API campos q
 
 Para ello debemos utilizar los llamados **«resolvers»**. Si queremos devolver un campo `field` debemos implementar el [método estático](../../../core/modularity/oop.md#static-methods) `resolve_field()` en el esquema correspondiente.
 
-=== "Campo no existente en el modelo"
+=== "Campo inexistente en el modelo"
 
     Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos incluir un campo `summary` en el esquema del «post» que contenga un resumen del contenido del «post»:
 
@@ -945,10 +970,10 @@ router = Router()
 
 @router.get('/', response=list[PostSchema])
 @paginate
-def list_posts(request, category_slug: str = None):
+def list_posts(request, category_id: str = None):
     posts = Post.objects.all()
-    if category_slug:
-        posts = posts.filter(category__slug=category_slug)
+    if category_id:
+        posts = posts.filter(category__pk=category_id)
     return posts
 
 
