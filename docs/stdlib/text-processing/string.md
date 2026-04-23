@@ -3,10 +3,10 @@ icon: material/code-string
 tags:
   - Librería estándar
   - Procesamiento de texto
-  - string
+  - Operaciones con cadenas
 ---
 
-# string { #string }
+# Operaciones con cadenas { #string }
 
 ![Banner](images/string/banner.jpg)
 ///caption
