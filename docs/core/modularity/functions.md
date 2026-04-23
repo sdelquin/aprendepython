@@ -419,7 +419,7 @@ Python nos ofrece la posibilidad de **empaquetar y desempaquetar argumentos** cu
 
 === "Argumentos variables ^^posicionales^^"
 
-    Supongamos un <span class="example">ejemplo:material-flash:</span> de función que «construye» una hamburguesa :material-hamburger-plus:{.hl}:
+    Supongamos un <span class="example">ejemplo:material-flash:</span> de función que «construye» una hamburguesa :material-hamburger-plus:{.acc}:
 
     ```pycon
     >>> def make_burguer(*ingredients):#(1)!
@@ -451,7 +451,7 @@ Python nos ofrece la posibilidad de **empaquetar y desempaquetar argumentos** cu
 
 === "Argumentos variables ^^nominales^^"
 
-    Supongamos un <span class="example">ejemplo:material-flash:</span> de función que «construye» una hamburguesa :material-hamburger-plus: pero donde no sólo queremos indicar los ingredientes sino las cantidades de cada ingrediente:
+    Supongamos un <span class="example">ejemplo:material-flash:</span> de función que «construye» una hamburguesa :material-hamburger-plus:{.acc} pero donde no sólo queremos indicar los ingredientes sino las cantidades de cada ingrediente:
 
     ```pycon
     >>> def make_burguer(**ingredients):#(1)!
