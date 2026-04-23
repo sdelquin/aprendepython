@@ -112,9 +112,12 @@ Please do not divide by zero...
 >>> intdiv(3, '0')
 Check operands. Some of them seems strange...
 
->>> intdiv('x', 1)
+>>> intdiv('x', 1)#(1)!
 Ups. Something went wrong...
 ```
+{ .annotate }
+
+1. Realmente se está generando una excepción de tipo `#!python ValueError`
 
 #### Excepciones predefinidas { #builtin-exceptions }
 
@@ -155,9 +158,12 @@ Check operands: Some of them caused errors...
 >>> intdiv(3, '0')
 Check operands: Some of them caused errors...
 
->>> intdiv('x', 1)
+>>> intdiv('x', 1)#(1)!
 Ups. Something went wrong...
 ```
+{ .annotate }
+
+1. Realmente se está generando una excepción de tipo `#!python ValueError`
 
 ### Cláusulas adicionales { #additional-clauses }
 
