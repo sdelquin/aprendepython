@@ -6,6 +6,40 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.6
+
+Publicada el 23-04-2026
+
+- Actualiza la versión de Zensical a [0.0.35](https://github.com/zensical/zensical/releases/tag/v0.0.35).
+- Django: Modelos
+	- Añade documentación sobre migraciones manuales.
+	- Añade notas sobre obtener sentencia SQL.
+	- Añade documentación sobre _managers_ de modelo.
+- Librería estándar
+	- Mejora nombres de secciones.
+- Procesamiento de texto: Expresiones regulares
+	- Añade apartado "Manejando expresiones largas"
+	- Corrige errores menores.
+	- Mejora ejercicio de expresiones regulares a papel.
+- Aprendizaje: pypas
+	- Añade nombres de fichero en "Ejecutar un ejercicio".
+- Estructuras de datos: Diccionarios
+	- Añade ejemplo de diccionario no válido con listas como claves.
+	- Nota pitónica sobre creación de diccionarios.
+- Modularidad: Funciones
+	- Corrige errores menores.
+- Modularidad: Objetos y clases
+	- Corrige errores menores.
+	- Corrige enunciado de método `__add__`
+- Modularidad: Excepciones
+	- Corrige errores menores.
+- Acceso a datos: SQLite
+	- Añade comparativa de rendimiento entre `execute()` y `executemany()`.
+	- Corrige errores menores.
+- Django: API
+	- Corrige errores menores.
+	- Añade anotación sobre instalación de `curl`.
+
 ## Version 3.2.5
 
 Publicada el 10-04-2026
