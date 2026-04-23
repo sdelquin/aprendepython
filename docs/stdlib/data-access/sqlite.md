@@ -3,10 +3,10 @@ icon: simple/sqlite
 tags:
   - Librería estándar
   - Acceso a datos
-  - sqlite
+  - SQLite
 ---
 
-# sqlite { #sqlite }
+# SQLite { #sqlite }
 
 ![Banner](images/sqlite/banner.jpg)
 ///caption
@@ -39,6 +39,25 @@ A continuación se muestran algunas de sus **principales características**:
 
 Y muchas otras que se pueden consultar en la [página del proyecto](https://sqlite.org/fullsql.html).
 
+### Tipos de datos { #datatypes }
+
+SQLite dispone de un conjunto muy reducido de [tipos de datos](https://www.sqlite.org/datatype3.html). Aunque hay alguno más, con los siguientes nos será suficiente para la inmensa mayoría de diseños de bases de datos que podamos necesitar:
+
+- [x] `INTEGER` :material-arrow-right-bold: para valores **enteros**.
+- [x] `REAL` :material-arrow-right-bold: para valores **flotantes**.
+- [x] `TEXT` :material-arrow-right-bold: para **cadenas de texto**.
+
+#### Booleanos { #bool }
+
+SQLite no dispone de un tipo especial para valores [booleanos](../../core/datatypes/numbers.md#booleans). Usaremos el tipo `INTEGER` para representar _true_ como **1** y _false_ como **0**.
+
+#### Fecha y hora { #datetime }
+
+SQLite no dispone de un tipo especial para _fecha y hora_. Usaremos el tipo `TEXT` para representar fecha y hora en formato [`ISO8601`](https://iso8601.com/) como [cadenas de texto](../../core/datatypes/strings.md) `#!python 'YYYY-MM-DD HH:MM:SS.SSS'`.
+
+Sin embargo en SQLite sí que existen [múltiples funciones](https://www.sqlite.org/lang_datefunc.html) para trabajar con fecha y hora.
+
+
 ## Conexión a la base de datos { #db-connect }
 
 Una base de datos SQLite no es más que un **fichero binario**, habitualmente con extensión `.db` o `.sqlite`. Antes de realizar cualquier operación es necesario «conectar» con este fichero.
@@ -61,8 +80,8 @@ La **conexión a la base de datos** se realiza a través de la función [`connec
 
 La primera vez que conectamos a una base de datos (fichero) inexistente, Python lo creará sin contenido alguno:
 
-```pycon
->>> !file python.db
+```console
+$ file python.db
 python.db: empty
 ```
 
@@ -73,24 +92,6 @@ Una vez que disponemos de la conexión ya podemos obtener un [`Cursor`](https://
 >>> cur
 <sqlite3.Cursor object at 0x1057d4240>
 ```
-
-## Tipos de datos { #datatypes }
-
-SQLite dispone de un conjunto muy reducido de [tipos de datos](https://www.sqlite.org/datatype3.html). Aunque hay alguno más, con los siguientes nos será suficiente para la inmensa mayoría de diseños de bases de datos que podamos necesitar:
-
-- [x] `INTEGER` :material-arrow-right-bold: para valores **enteros**.
-- [x] `REAL` :material-arrow-right-bold: para valores **flotantes**.
-- [x] `TEXT` :material-arrow-right-bold: para **cadenas de texto**.
-
-### Booleanos { #bool }
-
-SQLite no dispone de un tipo especial para valores [booleanos](../../core/datatypes/numbers.md#booleans). Usaremos el tipo `INTEGER` para representar _true_ como **1** y _false_ como **0**.
-
-### Fecha y hora { #datetime }
-
-SQLite no dispone de un tipo especial para _fecha y hora_. Usaremos el tipo `TEXT` para representar fecha y hora en formato [`ISO8601`](https://iso8601.com/) como [cadenas de texto](../../core/datatypes/strings.md) `#!python 'YYYY-MM-DD HH:MM:SS.SSS'`.
-
-Sin embargo en SQLite sí que existen [múltiples funciones](https://www.sqlite.org/lang_datefunc.html) para trabajar con fecha y hora.
 
 ## Creación de tablas { #create-table }
 
@@ -130,8 +131,8 @@ Ya hemos creado la tabla `pyversions` de manera satisfactoria.
 
 Si comprobamos ahora el contenido del fichero `python.db` podemos observar que nos indica la versión de SQLite y la última escritura:
 
-```pycon
->>> !file python.db
+```console
+$ file python.db
 python.db: SQLite 3.x database, last written using SQLite version 3047001, file counter 1, database pages 3, cookie 0x1, schema 4, UTF-8, version-valid-for 1
 ```
 
@@ -178,6 +179,12 @@ Cuando creamos [la conexión a la base de datos](https://docs.python.org/3/libra
 ```
 
 Así, cada vez que ejecutemos operaciones de modificación sobre la base de datos se lanzará automáticamente el método `commit()` confirmando los cambios indicados.
+
+??? tip "PEP 249"
+
+    La [documentación oficial](https://docs.python.org/3/library/sqlite3.html#sqlite3-transaction-control-autocommit) de Python dice:
+
+    > It is suggested to set [autocommit](https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.autocommit) to `#!python False`, which implies [PEP 249](https://peps.python.org/pep-0249/)-compliant transaction control.
 
 ### Inserción parametrizada { #param-insert }
 
@@ -258,11 +265,11 @@ Veamos cómo sería la inserción anterior utilizando esta técnica, usando...
     
 ### Inserciones en lote { #batch-insert }
 
-Quizás en un escenario más realista tendríamos datos en un formato tabular para cargarlos directamente en una tabla de SQLite.
+Supongamos ahora un escenario en el que disponemos de datos en formato tabular y debemos cargarlos directamente en una tabla de SQLite.
 
-Supongamos por <span class="example">ejemplo:material-flash:</span> que disponemos del siguiente fichero:
+Por <span class="example">ejemplo:material-flash:</span> partimos del siguiente fichero:
 
-```csv title="pyversions.csv"
+```csv title="pyversions.csv" linenums="1"
 branch,year,month,manager
 2.6,2008,10,Barry Warsaw
 2.7,2010,7,Benjamin Peterson
@@ -411,6 +418,57 @@ $ sqlite3 python.db "SELECT * FROM pyversions"
 3.13|2024|10|Thomas Wouters
 ```
 
+??? info "Rendimiento"
+
+    Aunque se podría pensar que `executemany()` tiene mejor rendimiento que `execute()`, aparentemente tras realizar la siguiente prueba de carga, las diferencias no son demasiado relevantes:
+
+    ```pycon hl_lines="29 36 39"
+    >>> import random
+    >>> import sqlite3
+
+    >>> data = [#(1)!
+    ...     [str(random.randint(1, 100)) for _ in range(10)]
+    ...     for _ in range(1_000_000)
+    ... ]
+
+    >>> con = sqlite3.connect('test.db')
+    >>> cur = con.cursor()
+    >>> sql = """
+    ...     CREATE TABLE numbers
+    ...     (N1 INTEGER, N2 INTEGER, N3 INTEGER, N4 INTEGER, N5 INTEGER,
+    ...      N6 INTEGER, N7 INTEGER, N8 INTEGER, N9 INTEGER, N10 INTEGER)
+    ... """
+    >>> cur.execute(sql)
+    <sqlite3.Cursor object at 0x10aab4dc0>
+
+    >>> sql = """INSERT INTO numbers
+    ... (N1, N2, N3, N4, N5, N6, N7, N8, N9, N10)
+    ... VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+
+    >>> # ===== EXECUTE =====
+
+    >>> %%timeit
+    ... for row in data:
+    ...     cur.execute(sql, row)
+    ...
+    2.06 s ± 7.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+    >>> # ===== EXECUTEMANY =====
+
+    >>> %%timeit
+    ... cur.executemany(sql, data)
+    ...
+    1.86 s ± 9.71 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+    >>> round((1 - (1.86/2.06)) * 100)
+    10
+    ```
+    { .annotate }
+    
+    1. 1 millón de filas con 10 columnas, con valores aleatorios enteros entre 1 y 100.
+
+    En esta prueba es aproximadamente un 10% más rápido...
+
 ### Identificador de fila { #rowid }
 
 En el comportamiento por defecto de una base de datos SQLite **todas las tablas disponen de una columna «oculta» denominada «rowid»** o _identificador de fila_.
@@ -473,7 +531,7 @@ Traceback (most recent call last):
 IntegrityError: UNIQUE constraint failed: pyversions.branch
 ```
 
-Se ha elevado una [excepción](../../core/modularity/exceptions.md) de tipo `IntegrityError` indicando que hay valores duplicados en el campo `branch` ya que se trata de una clave primaria y sus valores deben ser únicos. Pero dado que estamos en un gestor de contexto, se realiza un «rollback» de las acciones previas y la base de datos queda en el mismo estado anterior.
+Se ha elevado una [excepción](../../core/modularity/exceptions.md) de tipo `IntegrityError` indicando que hay valores duplicados en el campo `branch` ya que se trata de una clave primaria y sus valores deben ser únicos. Pero dado que estamos en un gestor de contexto, se realiza un «rollback» de las acciones previas y la base de datos queda en el mismo estado anterior. Es decir, no se inserta ninguna fila nueva.
 
 !!! tip "Excepciones"
 
