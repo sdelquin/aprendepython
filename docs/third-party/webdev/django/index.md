@@ -85,6 +85,7 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
     - [Fixtures](models.md#fixtures)
     - [Migraciones manuales](models.md#manual-migrations)
     - [Managers](models.md#managers)
+    - [Funciones](models.md#functions)
 - Interfaz administrativa
     - [Relaciones muchos a muchos](admin.md#many-to-many)
     - [Comandos de gestión](admin.md#management-commands)

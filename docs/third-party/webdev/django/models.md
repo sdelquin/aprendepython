@@ -3659,6 +3659,133 @@ Thinking in Code     | Writing code is also a way of thinking.
 2. El nuevo _manager_ `tech` nos devuelve solo aquellos «posts» que tengan que ver con tecnología.
 3. El nuevo _manager_ `code` nos devuelve solo aquellos «posts» que tengan que ver con código.
 
+## Funciones { #functions }
+
+Hay ocasiones en las que nos interesa aplicar ciertas funciones predefinidas sobre una determinada consulta de la base de datos.
+
+En este apartado veremos los dos posibles enfoques que nos proporciona Django para ello:
+
+1. Agregación.
+2. Anotación.
+
+Vamos a partir del modelo base de `Post` para ejemplificar cada aproximación:
+
+```python title="posts/models.py"
+from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+```
+
+Para disponer de **datos iniciales** en la base de datos, descargamos este fichero [`posts.json`](files/models/posts.json) y [cargamos las «fixtures»](#load-fixtures):
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py loaddata posts #(1)!
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    { .annotate }
+    
+    1. Aunque no estemos indicando la ruta del fichero, por defecto se van a buscar a la carpeta `fixtures/` de cada aplicación del proyecto.
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py loaddata posts #(1)!
+    Installed 5 object(s) from 1 fixture(s)
+    ```
+    { .annotate }
+
+    1. Aunque no estemos indicando la ruta del fichero, por defecto se van a buscar a la carpeta `fixtures/` de cada aplicación del proyecto.
+
+### Agregación { #aggregation }
+
+La [agregación](https://docs.djangoproject.com/en/stable/topics/db/aggregation/) permite **aplicar una función «resumen» sobre un conjunto de datos** («queryset») obteniendo así un «nuevo» atributo con el valor calculado.
+
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos obtener la longitud media de todos los «posts» de nuestra base de datos.
+
+La primera aproximación que se nos viene a la cabeza podría ser la siguiente:
+
+```pycon
+>>> from posts.models import Post
+
+>>> posts = Post.objects.all()
+>>> sum(len(post.content) for post in posts) / len(posts)
+40.0
+```
+
+Pero aplicando agregación podemos obtener el mismo resultado por otro camino:
+
+```pycon hl_lines="5"
+>>> from posts.models import Post
+>>> from django.db.models import Avg#(1)!
+>>> from django.db.models.functions import Length#(2)!
+
+>>> Post.objects.aggregate(avg_length=Avg(Length('content')))#(3)!
+{'avg_length': 40.0}
+```
+{ .annotate }
+
+1. Función de agregación que calcula la media.
+2. Función de base de datos que calcula la longitud de una cadena de caracteres.
+3. Se devuelve un diccionario con el nuevo atributo agregado.
+
+La gran ventaja de este enfoque frente al enfoque «tradicional» (Python) es que realmente se está ejecutando una sentencia SQL más eficiente a nivel de base de datos.
+
+Django nos ofrece una gran cantidad de recursos que podemos aplicar en este contexto:
+
+- [x] [Funciones de agregación](https://docs.djangoproject.com/en/stable/ref/models/querysets/#aggregation-functions)
+- [x] [Funciones de base de datos](https://docs.djangoproject.com/en/stable/ref/models/database-functions/)
+
+### Anotación { #annotation }
+
+La [anotación](https://docs.djangoproject.com/en/6.0/stable/db/aggregation/#aggregating-annotations) permite **aplicar una función sobre cada objeto** de un conjunto de datos («queryset») obteniendo así un nuevo atributo con el valor calculado.
+
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos añadir («anotar») la longitud del contenido de cada «post» de nuestra base de datos.
+
+La primera aproximación que se nos viene a la cabeza podría ser la siguiente:
+
+```pycon
+>>> from posts.models import Post
+
+>>> for post in Post.objects.all():
+...     print(post, len(post.content), sep='|')
+...
+Small Changes|44
+Learning Takes Time|52
+Thinking in Code|39
+Useful Mistakes|29
+Curiosity|36
+```
+
+Pero aplicando anotación podemos obtener el mismo resultado por otro camino:
+
+```pycon hl_lines="4"
+>>> from posts.models import Post
+>>> from django.db.models.functions import Length#(1)!
+
+>>> for post in Post.objects.annotate(length=Length('content')):
+...     print(post, post.length, sep='|')#(2)!
+...
+Small Changes|44
+Learning Takes Time|52
+Thinking in Code|39
+Useful Mistakes|29
+Curiosity|36
+```
+{ .annotate }
+
+1. Función de base de datos que calcula la longitud de una cadena de caracteres.
+2. Aparece un nuevo atributo `length` que podemos utilizar con normalidad.
+
+
 [^1]: En la práctica hay [ciertos aspectos](https://docs.djangoproject.com/en/stable/ref/databases/) a tener en cuenta cuando usamos distintos sistemas gestores de bases de datos.
 [^2]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable
 [^3]: Es importante manejar el módulo [`pathlib`](https://docs.python.org/3/library/pathlib.html) de la librería estándar para manejar rutas en el sitema de ficheros.
