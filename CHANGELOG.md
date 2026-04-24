@@ -6,6 +6,16 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.7
+
+Publicada el 24-04-2026
+
+- Actualiza la versión de Zensical a [0.0.36](https://github.com/zensical/zensical/releases/tag/v0.0.36).
+- Acceso a datos: SQLite
+	- Añade nota sobre uso de "placeholders" en sqlite.
+- Django: Modelos
+	- Añade sección sobre agregación y anotación.
+
 ## Version 3.2.6
 
 Publicada el 23-04-2026
