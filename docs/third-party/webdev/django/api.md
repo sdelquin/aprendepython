@@ -472,7 +472,7 @@ Por tanto, para obtener los resultados de nuestro punto de entrada `/api/posts/`
 3. Cliente API en línea de comandos: `#!console $ curl -X GET http://localhost:8000/api/posts/`
 4. Cliente API con interfaz gráfica: Por <span class="example">ejemplo:material-flash:</span> [Thunder Client](https://www.thunderclient.com/).
 
-??? note "cURL"
+??? tip "cURL"
 
     [`curl`](https://curl.se/) es una aplicación en línea de comandos que permite realizar peticiones HTTP hacia/desde un servidor. A continuación se muestra la manera de instalarlo para distintos sistemas operativos:
 
@@ -484,6 +484,12 @@ Por tanto, para obtener los resultados de nuestro punto de entrada `/api/posts/`
         { .annotate }
         
         1. Instalación mediante [`winstall`](https://winstall.app/apps/Casey.Just).
+
+        Para que no tengas problemas (en Windows) a la hora de ejecutar es recomendable utilizar `curl.exe`:
+
+        ```ps1con
+        > curl.exe -X GET http://localhost:8000/api/posts/
+        ```
 
     === ":simple-apple: MacOS"
 
@@ -808,6 +814,11 @@ Con esta configuración, la respuesta de la API al acceder a [http://localhost:8
 
     Por lo general, es más habitual **mostrar solo el identificador de la categoría** en el esquema del «post» para evitar respuestas demasiado pesadas, especialmente cuando se trata de relaciones de muchos a muchos o cuando la información relacionada es muy extensa. Sin embargo, esto depende del caso de uso específico y de las necesidades de la API.
 
+    Si analizamos el <span class="example">ejemplo:material-flash:</span> del listado de «posts», únicamente a nivel de «tamaño de respuesta»:
+
+    1. El «payload» de la respuesta JSON usando **identificador de clave** ajena ocupa 806 bytes.
+    2. El «payload» de la respuesta JSON usando **esquemas anidados** ajena ocupa 1158 bytes. Esto supone un 70% más que en el primer caso.
+
 #### Campos calculados { #calculated-fields }
 
 En ocasiones, es posible que queramos incluir en la respuesta de la API campos que no existen en el modelo pero que se calculan a partir de otros campos. O incluso que existiendo, lleven una lógica adicional.
@@ -987,6 +998,10 @@ Aparecerán dos nuevos parámetros de consulta en el punto de entrada `/api/post
 - [x] `limit`: número máximo de recursos a devolver en la respuesta.
 - [x] `offset`: número de recursos a saltar antes de empezar a devolver resultados.
 
+!!! tip "Esquema paginado"
+
+    Si visitamos la documentación del proyecto en [http://localhost:8000/api/docs](http://localhost:8000/api/docs) veremos que aparece un «nuevo» esquema `PagedPostSchema`. Se genera de manera automática al añadir paginación sobre el modelo `PostSchema`.
+
 Así las cosas, si hacemos por <span class="example">ejemplo:material-flash:</span> una petición `GET` a [http://localhost:8000/api/posts?limit=2&offset=0](http://localhost:8000/api/posts?limit=2&offset=0) obtendríamos la siguiente respuesta:
 
 ```json
@@ -1028,7 +1043,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos
 
     Vamos a [añadir un método `save()`](models.md#override-save) al modelo `Post` para que se genere automáticamente el `slug` correspondiente al título del «post» al guardarlo en la base de datos:
 
-    ```python title="posts/models.py" hl_lines="20-23"
+    ```python title="posts/models.py" hl_lines="2 20-23"
     from django.db import models
     from django.utils.text import slugify
     
@@ -1087,7 +1102,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos
 
     El manejador (_«route handler»_) debe usar los esquemas de entrada y salida para gestionar la creación del nuevo recurso:
 
-    ```python title="posts/api.py"
+    ```python title="posts/api.py" hl_lines="4 9-11"
     from ninja import Router
     
     from .models import Post
@@ -1157,7 +1172,7 @@ Si queremos asignar una categoría (_clave ajena_) al nuevo «post» que estamos
 
 === "Manejador"
 
-    ```python title="posts/api.py"
+    ```python title="posts/api.py" hl_lines="3 13-16"
     from ninja import Router
 
     from categories.models import Category
@@ -1238,7 +1253,7 @@ Haciendo uso de los recursos que proporciona _Pydantic_ para [configuración de 
 
 === "Manejador"
 
-    ```python title="posts/schemas.py" hl_lines="13 16-17"
+    ```python title="posts/api.py" hl_lines="13 16-17"
     from ninja import Router
 
     from categories.models import Category
@@ -1408,16 +1423,16 @@ Veamos un <span class="example">ejemplo:material-flash:</span> en el que actuali
 
     @router.patch('/{post_id}', response=PostSchemaOut)
     def partial_update_post(request, post_id: int, post: PostSchemaPatch):
-    payload = post.dict(exclude_unset=True)#(1)!
-    if 'category' in payload:#(2)!
-        category_id = payload.pop('category', None)
-        category = Category.objects.get(id=category_id) if category_id else None
-        payload['category'] = category
-    post_obj = Post.objects.get(id=post_id)
-    for attr, value in payload.items():
-        setattr(post_obj, attr, value)
-    post_obj.save()
-    return post_obj
+        payload = post.dict(exclude_unset=True)#(1)!
+        if 'category' in payload:#(2)!
+            category_id = payload.pop('category', None)
+            category = Category.objects.get(id=category_id) if category_id else None
+            payload['category'] = category
+        post_obj = Post.objects.get(id=post_id)
+        for attr, value in payload.items():
+            setattr(post_obj, attr, value)
+        post_obj.save()
+        return post_obj
     ```
     { .annotate }
     
@@ -1490,7 +1505,7 @@ Según el [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457.html) (Problem Detai
 
 ### Validación de datos { #validation }
 
-Cuando se reciben datos en una petición, _Django Ninja_ realiza automáticamente la validación de los datos según los esquemas definidos. Si los datos no cumplen con las validaciones establecidas en el esquema, se devuelve una respuesta con un código de estado HTTP 422 (Unprocessable Entity) y un mensaje de error detallado.
+Cuando se reciben datos en una petición, _Django Ninja_ realiza automáticamente la validación de los datos según los esquemas definidos. Si los datos no cumplen con las validaciones establecidas en el esquema, se devuelve una respuesta con un código de estado [HTTP 422 (Unprocessable Content)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422) y un mensaje de error detallado.
 
 Por <span class="example">ejemplo:material-flash:</span> si intentamos crear un nuevo «post» sin proporcionar el campo `title`, que es obligatorio según nuestro esquema de entrada, obtendremos la siguiente respuesta:
 
@@ -1530,13 +1545,15 @@ Otro <span class="example">ejemplo:material-flash:</span> sería intentar crear 
 
 ### Petición mal formada { #bad-request }
 
-Si un cliente hace una petición con un formato incorrecto (por ejemplo, un cuerpo de petición que no es un JSON válido), _Django Ninja_ devolverá automáticamente una respuesta con un código de estado HTTP 400 (Bad Request) y un mensaje de error indicando que la petición está mal formada.
+Si un cliente hace una petición con un formato incorrecto (por ejemplo, un cuerpo de petición que no es un JSON válido), _Django Ninja_ devolverá automáticamente una respuesta con un código de estado [HTTP 400 (Bad Request)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) y un mensaje de error indicando que la petición está mal formada.
 
 Por <span class="example">ejemplo:material-flash:</span> si intentamos hacer una petición `POST` a [http://localhost:8000/api/posts/](http://localhost:8000/api/posts/) con el siguiente cuerpo mal formado:
 
 ```json title="Request body"
 {
-  "title": "Invalid JSON",//(1)!
+  "title": "Problem with request",
+  "content": "Trailing comma at the end of json body",
+  "category_id": 1,//(1)!
 }
 ```
 { .annotate }
@@ -1547,13 +1564,13 @@ Obtendríamos la siguiente respuesta:
 
 ```json title="Response body (400)"
 {
-  "detail": "Cannot parse request body (Illegal trailing comma before end of object: line 2 column 26 (char 27))"
+  "detail": "Cannot parse request body (Illegal trailing comma before end of object: line 3 column 19 (char 20))"
 }
 ```
 
 ### Método no permitido { #method-not-allowed }
 
-Si un cliente intenta acceder a un punto de entrada utilizando un método HTTP que no está permitido (por ejemplo, haciendo una petición `POST` a un punto de entrada que solo permite `GET`), _Django Ninja_ devolverá automáticamente una respuesta con un código de estado HTTP 405 (Method Not Allowed) y un mensaje de error indicando que el método no está permitido.
+Si un cliente intenta acceder a un punto de entrada utilizando un método HTTP que no está permitido (por ejemplo, haciendo una petición `POST` a un punto de entrada que solo permite `GET`), _Django Ninja_ devolverá automáticamente una respuesta con un código de estado [HTTP 405 (Method Not Allowed)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/405) y un mensaje de error indicando que el método no está permitido.
 
 Por <span class="example">ejemplo:material-flash:</span> si intentamos hacer una petición `PUT` a [http://localhost:8000/api/posts/](http://localhost:8000/api/posts/) (que solo permite `GET` o `POST`), obtendremos la siguiente respuesta:
 
@@ -1565,11 +1582,11 @@ Por <span class="example">ejemplo:material-flash:</span> si intentamos hacer una
 
 ### Recurso no encontrado { #not-found }
 
-Una forma bastante sencilla de gestionar el error de recurso no encontrado es utilizar el método [`get_object_or_404()`](views.md#not-found-query) de Django, que devuelve una respuesta con un código de estado HTTP 404 (Not Found) si el recurso no existe.
+Una forma bastante sencilla de gestionar el error de recurso no encontrado es utilizar el método [`get_object_or_404()`](views.md#not-found-query) de Django, que devuelve una respuesta con un código de estado [HTTP 404 (Not Found)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404) si el recurso no existe.
 
 Por <span class="example">ejemplo:material-flash:</span> en el manejador de obtención de detalle de un «post», podríamos modificar la consulta para utilizar `get_object_or_404()` de la siguiente manera:
 
-```python title="posts/api.py" hl_lines="12"
+```python title="posts/api.py" hl_lines="1 12"
 from django.shortcuts import get_object_or_404
 from ninja import Router
 
@@ -1594,11 +1611,11 @@ Si ahora intentamos acceder a un «post» que no existe (por ejemplo, con `id=99
 
 ### Devolviendo errores { #raise-error }
 
-En algunos casos, es posible que queramos devolver un error personalizado con un mensaje específico y un código de estado HTTP determinado. Para ello, _Django Ninja_ [proporciona la función `HttpError`](https://django-ninja.dev/guides/errors/) que nos permite crear respuestas de error personalizadas.
+En algunos casos, es posible que queramos devolver un error personalizado con un mensaje específico y un código de estado HTTP determinado. Para ello, _Django Ninja_ [proporciona la clase `HttpError`](https://django-ninja.dev/guides/errors/) que nos permite crear respuestas de error personalizadas.
 
-Supongamos por <span class="example">ejemplo:material-flash:</span> que hay una serie de «posts» restringidos en nuestro «blog». Por lo tanto, queremos devolver un error de acceso denegado (código de estado HTTP 403) si el usuario intenta acceder a uno de estos «posts» restringidos. Podríamos modificar el manejador de obtención de detalle del «post» de la siguiente manera:
+Supongamos por <span class="example">ejemplo:material-flash:</span> que hay una serie de «posts» restringidos en nuestro «blog». Por lo tanto, queremos devolver un error de acceso denegado [HTTP 403 (Forbidden)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403) si el usuario intenta acceder a uno de estos «posts» restringidos. Podríamos modificar el manejador de obtención de detalle del «post» de la siguiente manera:
 
-```python title="posts/api.py" hl_lines="15-16"
+```python title="posts/api.py" hl_lines="1 3 15-16"
 from django.shortcuts import get_object_or_404
 from ninja import Router
 from ninja.errors import HttpError
