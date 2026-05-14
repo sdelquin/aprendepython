@@ -10,7 +10,7 @@ build: clean
 
 # Build site docker-way
 docker: clean
-    docker run --rm -it -v ${PWD}:/docs zensical/zensical:{{ zensical-version }} build
+    docker run --rm -v ${PWD}:/docs zensical/zensical:{{ zensical-version }} build
 
 # Clean temp files
 clean:
