@@ -36,7 +36,7 @@ class PostAdmin(admin.ModelAdmin):#(4)!
 4. Necesitamos crear una clase que hereda de `ModelAdmin`. El nombre de la clase (por convención) suele ser el nombre del modelo :material-plus-box: `Admin`.
 5. No es necesario inicialmente que implementemos nada más.
 
-:material-check-all:{ .blue } Cuando accedamos ahora a http://localhost/admin/ veremos que estará disponible un enlace [Posts]() para gestionar los objetos del modelo `Post`.
+:material-check-all:{ .blue } Cuando accedamos ahora a http://localhost/admin/ veremos que estará disponible un enlace [Posts](http://localhost/admin/posts/post/) para gestionar los objetos del modelo `Post`.
 
 !!! abstract "Singular/Plural"
 

@@ -18,8 +18,8 @@ En otras palabras, en una especie de **contrato** que se establece entre dos art
 
 También existe el concepto de **API REST** (Representational State Transfer) con las siguientes características:
 
-- Todos los recursos se identifican mediante una [URL](#urls).
-- Se utilizan **métodos HTTP** para indicar la [operación a realizar](#url-design).
+- Todos los recursos se identifican mediante una [URL](urls.md).
+- Se utilizan **métodos HTTP** para indicar la [operación a realizar](#entrypoint-design).
 - Cada petición del cliente al servidor debe incluir toda la información necesaria para procesarla; el servidor no guarda sesiones previas («stateless» o **sin estado**).
 - Formato de datos habitualmente en **JSON**.
 
@@ -443,7 +443,7 @@ Una vez hecho esto, podemos [levantar el servidor de desarrollo](setup.md#first-
 
 ![Ninja API inicial](./images/api/ninjaapi-initial.png)
 
-La «magia» de _Django Ninja_ hace que tengamos **documentación generada automáticamente** de nuestra API siguiendo la especificación **OpenAPI**[^1]. Nos aparecen todos nuestros [puntos de entrada](#urls) y todos nuestros [esquemas](#schemas).
+La «magia» de _Django Ninja_ hace que tengamos **documentación generada automáticamente** de nuestra API siguiendo la especificación **OpenAPI**[^1]. Nos aparecen todos nuestros [puntos de entrada](#entrypoints) y todos nuestros [esquemas](#schemas).
 
 === "Punto de entrada"
 

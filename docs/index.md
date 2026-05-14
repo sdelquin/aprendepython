@@ -9,9 +9,9 @@ Monty Python © Imagen generada con Inteligencia Artificial
 
 El contenido de esta página está organizado en tres grandes bloques:
 
-1. [Fundamentos del lenguaje](/core/index.md)
-2. [Librería estándar](/stdlib/index.md)
-3. [Paquetes de terceros](/third-party/index.md)
+1. [Fundamentos del lenguaje](/core/)
+2. [Librería estándar](/stdlib/)
+3. [Paquetes de terceros](/third-party/)
 
 ---
 

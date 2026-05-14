@@ -8,7 +8,7 @@ tags:
 
 # Desarrollo web { #webdev }
 
-El «desarrollo web» es el proceso de crear y mantener sitios web. Involucra tareas como el diseño, la programación, la implementación de contenido y la configuración de servidores web. Este proceso requiere el uso de diferentes tecnologías y lenguajes de programación, como HTML, CSS, [Python](/core/introduction/python.md) o JavaScript, entre otros. Además, el desarrollo web puede incluir aspectos relacionados con la identidad corporativa, el arte y la generación de ideas para la presencia digital.
+El «desarrollo web» es el proceso de crear y mantener sitios web. Involucra tareas como el diseño, la programación, la implementación de contenido y la configuración de servidores web. Este proceso requiere el uso de diferentes tecnologías y lenguajes de programación, como HTML, CSS, [Python](../../../core/introduction/python.md) o JavaScript, entre otros. Además, el desarrollo web puede incluir aspectos relacionados con la identidad corporativa, el arte y la generación de ideas para la presencia digital.
 
 ## Introducción { #intro }
 

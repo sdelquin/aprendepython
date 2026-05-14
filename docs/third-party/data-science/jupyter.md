@@ -45,7 +45,7 @@ El paquete proporciona un comando `jupyter` que puede usarse para distintas func
 
 Un «notebook» es un **documento interactivo** compuestos por **celdas** que contienen:
 
-- [x] Texto en formato [Markdown](https://www.markdownguide.org/basic-syntax/) (incluyendo [fórmulas]()).
+- [x] Texto en formato [Markdown](https://www.markdownguide.org/basic-syntax/) (incluyendo [fórmulas](#formula-examples)).
 - [x] Código Python.
 - [x] Elementos multimedia.
 
