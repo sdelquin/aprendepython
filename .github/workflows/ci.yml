@@ -11,10 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build docker image
-        run: docker build . -t aprendepython
+      - name: Install just
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf \
+            https://just.systems/install.sh | bash -s -- --to /usr/local/bin
       - name: Build documentation
-        run: docker run -v ${PWD}:/docs zensical/zensical build
+        run: just docker
       - name: Sync files with production server
         uses: burnett01/rsync-deployments@4.1
         with:

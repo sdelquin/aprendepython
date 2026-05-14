@@ -1,3 +1,5 @@
+zensical-version := `perl -ne 'print $1 if /zensical\s*==\s*([\d.]+)/' pyproject.toml`
+
 # Run development server
 serve port="8000": clean
     uv run zensical serve -a localhost:{{port}}
@@ -8,7 +10,7 @@ build: clean
 
 # Build site docker-way
 docker: clean
-    docker run --rm -it -v ${PWD}:/docs zensical/zensical build
+    docker run --rm -it -v ${PWD}:/docs zensical/zensical:{{ zensical-version }} build
 
 # Clean temp files
 clean:
