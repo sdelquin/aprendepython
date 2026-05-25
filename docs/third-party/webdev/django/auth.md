@@ -145,7 +145,7 @@ class LoginForm(forms.Form):
 ```
 { .annotate }
 
-1. El [«widget»](forms.md/#widgets) nos permite cambiar el elemento HTML al renderizar el campo de formulario.
+1. El [«widget»](forms.md#widgets) nos permite cambiar el elemento HTML al renderizar el campo de formulario.
 
 ### Plantilla de login { #login-template }
 

@@ -65,7 +65,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-Para hacer una prueba inicial del intérprete vamos a retomar el primer programa que se suele hacer. Es el llamado [«Hello, World»](../introduction/machine.md/#assembly). Para ello escribimos lo siguiente en el intérprete y pulsamos la tecla ++enter++:
+Para hacer una prueba inicial del intérprete vamos a retomar el primer programa que se suele hacer. Es el llamado [«Hello, World»](../introduction/machine.md#assembly). Para ello escribimos lo siguiente en el intérprete y pulsamos la tecla ++enter++:
 
 ```pycon
 >>> print('Hello, World')
