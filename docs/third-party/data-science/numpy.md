@@ -687,7 +687,7 @@ NumPy ofrece una gran variedad de [distribuciones aleatorias](https://numpy.org/
     ```
     { .annotate }
     
-    1. Esto es un «huevo de pascua»[^4] que permite acceder al [Zen de Python](../../core/introduction/python.md#zen-of-python).
+    1. Esto es un «huevo de pascua»[^4] que permite acceder al [Zen de Python](../../devenv/development/python.md#zen-of-python).
     2. Necesitamos el módulo `codecs` para realizar una conversión de formatos.
     3. Almacenamos en `zen` una lista con los principios del _Zen de Python_ (vía https://bit.ly/3xhsucQ).
     4. Extraemos 5 principios sin reemplazo.

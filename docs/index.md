@@ -7,15 +7,7 @@ Aprende el lenguaje de programación ^^Python^^ :material-snake:{ .slide .green 
 Monty Python © Imagen generada con Inteligencia Artificial
 ///
 
-El contenido de esta página está organizado en tres grandes bloques:
-
-1. [Fundamentos del lenguaje](/core/)
-2. [Librería estándar](/stdlib/)
-3. [Paquetes de terceros](/third-party/)
-
----
-
-Si quieres **apoyar este proyecto** te dejo dos vías:
+Si quieres **apoyar este proyecto** te dejo dos opciones :pill:
 
 <div class="grid cards" markdown>
 

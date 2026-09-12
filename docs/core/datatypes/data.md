@@ -652,7 +652,7 @@ Type:      builtin_function_or_method
 
 
 
-[^1]: Ya en 1946, John Von Neuman [propuso](../introduction/history.md#computing-milestones) guardar en memoria no sólo los datos sino también el código.
+[^1]: Ya en 1946, John Von Neuman [propuso](../../devenv/development/history.md#computing-milestones) guardar en memoria no sólo los datos sino también el código.
 [^2]: Los metadatos son datos que describen otros datos.
 [^3]: Para ser exactos, sí se pueden utilizar otros caracteres, e incluso emojis en los nombres de variables, aunque no suele ser una práctica extendida, ya que podría dificultar la legibilidad.
 [^4]: Esto es un detalle de implementación de CPython.

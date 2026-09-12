@@ -81,7 +81,7 @@ flowchart TD
     s -->|Yes| r4(["Se devuelve el fichero correspondiente"])
 ```
 
-:material-check-all:{ .blue } Los **espacios de nombres** son muy importantes a la hora de organizar las plantillas de nuestro proyecto Django. Ya lo dice el [Zen de Python](../../../core/introduction/python.md#zen-of-python): «Namespaces are one honking great idea -- let's do more of those!».
+:material-check-all:{ .blue } Los **espacios de nombres** son muy importantes a la hora de organizar las plantillas de nuestro proyecto Django. Ya lo dice el [Zen de Python](../../../devenv/development/python.md#zen-of-python): «Namespaces are one honking great idea -- let's do more of those!».
 
 !!! danger "TemplateDoesNotExist"
 

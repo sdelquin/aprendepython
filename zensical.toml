@@ -29,23 +29,28 @@ repo = "material/github"
 # ==============================================================================
 
 [[project.nav]]
-"Inicio" = "index.md"
+"Entornos de desarrollo" = [
+    "devenv/index.md",
+    {"Desarrollo de software" = [
+        "devenv/development/index.md",
+        "devenv/development/machine.md",
+        "devenv/development/history.md",
+        "devenv/development/langs.md",
+        "devenv/development/python.md",
+        "devenv/development/stages.md",
+        "devenv/development/methodologies.md",
+    ]},
+    {"Entorno integrado de desarrollo" = [
+        "devenv/ide/index.md",
+        "devenv/ide/thonny.md",
+        "devenv/ide/real-context.md",
+        "devenv/ide/vscode.md",
+    ]}
+]
 
 [[project.nav]]
 "Fundamentos del lenguaje" = [
     "core/index.md",
-    {"Introducción" = [
-        "core/introduction/index.md",
-        "core/introduction/machine.md",
-        "core/introduction/history.md",
-        "core/introduction/python.md",
-    ]},
-    {"Entornos de desarrollo" = [
-        "core/devenv/index.md",
-        "core/devenv/thonny.md",
-        "core/devenv/real-context.md",
-        "core/devenv/vscode.md",
-    ]},
     {"Tipos de datos" = [
         "core/datatypes/index.md",
         "core/datatypes/data.md",

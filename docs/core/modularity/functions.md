@@ -963,7 +963,7 @@ Ahora veamos el comportamiento de la ordenación en función de la clave indicad
 
 #### Enfoque funcional { #functional-approach }
 
-Como ya se comentó [aquí](../introduction/python.md#language-features) Python es un lenguaje de programación **multiparadigma**. Uno de los paradigmas[^7]
+Como ya se comentó [aquí](../../devenv/development/python.md#language-features) Python es un lenguaje de programación **multiparadigma**. Uno de los paradigmas[^7]
 menos explotados en este lenguaje es la [programación funcional](https://es.wikipedia.org/wiki/Programaci%C3%B3n_funcional).
 
 Python nos ofrece tres funciones que encajan verdaderamente bien en este enfoque: `#!python map()`, `#!python filter()` y `#!python reduce()`:

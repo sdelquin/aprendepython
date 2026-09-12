@@ -47,7 +47,7 @@ Una vez con la herramienta instalada, basta con crear un fichero `justfile` en e
 
 ## Justfile para Django { #django-justfile }
 
-A continuación se muestra un `justfile` con _recetas_ para un proyecto Django, suponiendo que se está utilizando [`uv`](../../../core/devenv/real-context.md#uv) como gestor de entornos virtuales y paquetería Python:
+A continuación se muestra un `justfile` con _recetas_ para un proyecto Django, suponiendo que se está utilizando [`uv`](../../../devenv/ide/real-context.md#uv) como gestor de entornos virtuales y paquetería Python:
 
 ```makefile title="justfile" linenums="1"
 # Run development server

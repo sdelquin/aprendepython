@@ -1,8 +1,8 @@
 ---
 icon: octicons/cpu-24
 tags:
-  - Fundamentos del lenguaje
-  - Introducción
+  - Entornos de desarrollo
+  - Desarrollo de software
   - Hablando con la máquina
 ---
 
@@ -95,11 +95,76 @@ sequenceDiagram
   CPU -->> User: Done!
 ```
 
-En el caso particular de Python el proceso de compilación genera un código intermedio denominado **bytecode**.
+### Compilación en C { #c-compilation }
 
-Si partimos del ejemplo anterior:
+En el caso particular de **C** el proceso de compilación genera un código intermedio denominado **object code**.
 
-```python
+Si partimos del <span class="example">ejemplo:material-flash:</span> anterior:
+
+```c title="helloworld.c"
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World");
+    return 0;
+}
+```
+
+Podemos compilarlo de la siguiente manera:
+
+```console
+$ gcc -c helloworld.c
+```
+
+??? info "gcc"
+
+    [gcc](https://gcc.gnu.org/) es el compilador de C más utilizado. Está soportado por la [GNU](https://www.gnu.org/home.es.html) y su código es «opensource» disponible desde [este repositorio](https://github.com/gcc-mirror/gcc).
+
+Esto genera un nuevo archivo `helloworld.o` que en mi máquina tiene la siguiente especificación:
+
+```console
+$ file helloworld.o
+helloworld.o: Mach-O 64-bit object arm64
+```
+
+Podemos comprobar que el archivo «objeto» es **dependiente de la arquitectura** de la máquina. En este caso es ARM.
+
+??? note "Arquitecturas"
+
+    La siguiente tabla es un pequeño resumen de las arquitecturas que nos podemos encontrar hoy en día:
+
+    | Arquitectura | Características | Uso habitual |
+    |---|---|---|
+    | **x86** | Arquitectura tradicional de Intel y AMD. Históricamente asociada a CISC. | PC y servidores 32 bits |
+    | **x86-64 (AMD64)** | Extensión de x86 a 64 bits. | PC y servidores actuales |
+    | **ARM** | Arquitectura RISC, eficiente y de bajo consumo. | Móviles, tablets, dispositivos embebidos y servidores |
+    | **AArch64 (ARM64)** | Versión de ARM para 64 bits. | Smartphones, Raspberry Pi, Apple Silicon y servidores |
+    | **RISC-V** | Arquitectura RISC abierta y basada en un estándar abierto. | Sistemas embebidos, investigación y dispositivos |
+    | **MIPS** | Arquitectura RISC utilizada tradicionalmente en sistemas embebidos y educativos. | Sistemas embebidos y enseñanza |
+
+Como último paso debemos utilizar un «linker» (enlazador) el cual combina los archivos de código objeto y las bibliotecas necesarias, resolviendo las referencias entre ellos para generar el archivo ejecutable final:
+
+```console
+$ gcc helloworld.o -o helloworld
+$ file helloworld
+helloworld: Mach-O 64-bit executable arm64
+```
+
+De nuevo el ejecutable generado es **dependiente de la arquitectura** de la máquina. Ahora sí que podemos lanzar el programa y comprobar su resultado:
+
+```console
+$ ./helloworld
+Hello, World
+```
+
+
+### Compilación en Python { #python-compilation }
+
+En el caso particular de **Python** el proceso de compilación genera un código intermedio denominado **bytecode**.
+
+Si partimos del <span class="example">ejemplo:material-flash:</span> anterior:
+
+```python title="helloworld.py"
 print('Hello, World')
 ```
 
@@ -115,6 +180,27 @@ el programa se compilaría[^1] al siguiente «bytecode»:
            12 CALL                     1
            22 RETURN_VALUE
 ```
+
+??? tip "Detalles sobre compilación"
+
+    El programa `helloworld.py` se puede ~~compilar~~ ejecutar sencillamente con:
+
+    ```console
+    $ python helloworld.py
+    ```
+
+    Si queremos revelar el archivo «bytecode» podemos hacerlo con:
+
+    ```console
+    $ python -m py_compile helloworld.py
+    __pycache__/helloworld.cpython-313.pyc
+    ```
+
+    Si queremos revelar el propio «bytecode» podemos hacerlo con:
+
+    ```console
+    $ python -m dis helloworld.py
+    ```
 
 A continuación estas instrucciones básicas son ejecutadas por el intérprete de «bytecode» de Python (o máquina virtual)[^2]:
 
@@ -133,7 +219,11 @@ graph LR
 
     Los ficheros `.pyc` (del inglés «Python compiled») contienen _bytecode_ en formato binario[^3]. Son generados por el compilador de Python. Su objetivo principal es optimizar la ejecución de un programa, ya que si el código fuente no cambia, no es necesario volver a recompilar.
 
-### Compilado vs Interpretado
+??? question "JVM"
+
+    La Máquina Virtual de Java JVM es el componente encargado de ejecutar el bytecode generado al compilar un programa Java. La JVM actúa como una capa intermedia entre el programa y el sistema operativo, permitiendo que un mismo bytecode pueda ejecutarse en diferentes arquitecturas y sistemas siempre que exista una JVM compatible. Durante la ejecución, la JVM puede interpretar el bytecode o utilizar técnicas como la compilación JIT (Just-In-Time) para traducirlo a código máquina y mejorar el rendimiento.
+
+## Compilado vs Interpretado
 
 Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje «interpretado» como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un «bytecode» que se ejecuta (interpreta) de forma «transparente».
 

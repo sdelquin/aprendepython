@@ -1,8 +1,8 @@
 ---
 icon: fontawesome/brands/python
 tags:
-  - Fundamentos del lenguaje
-  - Introducción
+  - Entornos de desarrollo
+  - Desarrollo de software
   - Python
 ---
 

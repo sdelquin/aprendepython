@@ -1,8 +1,8 @@
 ---
 icon: octicons/git-commit-16
 tags:
-  - Fundamentos del lenguaje
-  - Introducción
+  - Entornos de desarrollo
+  - Desarrollo de software
   - Algo de historia
 ---
 
@@ -145,15 +145,6 @@ Desde la década de 1950 se han sucedido multitud de lenguajes de programación 
     - [Carbon](https://github.com/carbon-language/carbon-lang)
     - [Gleam](https://gleam.run/)
     - [Mojo](https://www.modular.com/mojo)    
-
-El **número** actual de lenguajes de programación depende de lo que se considere un lenguaje de programación y a quién se pregunte:
-
-| Organismo | Número de lenguajes |
-| --- | --- |
-| [TIOBE](https://www.tiobe.com/tiobe-index/programming-languages-definition/#instances) | :material-approximately-equal:250 |
-| [Wikipedia](https://en.wikipedia.org/wiki/List_of_programming_languages) | :material-approximately-equal:700 |
-| [Language List](http://www.info.univ-angers.fr/~gh/hilapr/langlist/langlist.htm) | :material-approximately-equal:2500 |
-| [Online Historical Encyclopaedia of Programming Languages](http://hopl.info/) | :material-approximately-equal:9000 |
 
 ## Creadores de lenguajes de programación { #programming-languages-creators }
 

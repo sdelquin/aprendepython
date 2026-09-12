@@ -17,7 +17,7 @@ Imagen generada con Inteligencia Artificial
 
 El programa además integra tres de las herramientas fundamentales para trabajar en programación: **intérprete**, **editor** y **depurador**.
 
-Cuando vamos a trabajar con Python debemos tener instalado, como mínimo, un [intérprete](../introduction/machine.md#compilers) del lenguaje (para otros lenguajes sería un _compilador_). El **intérprete** nos permitirá ejecutar nuestro código para obtener los resultados deseados. La idea del intéprete es lanzar instrucciones «sueltas» para probar determinados aspectos.
+Cuando vamos a trabajar con Python debemos tener instalado, como mínimo, un [intérprete](../development/machine.md#compilers) del lenguaje (para otros lenguajes sería un _compilador_). El **intérprete** nos permitirá ejecutar nuestro código para obtener los resultados deseados. La idea del intéprete es lanzar instrucciones «sueltas» para probar determinados aspectos.
 
 Pero normalmente queremos ir un poco más allá y poder escribir programas algo más largos, por lo que también necesitaremos un **editor**. Un editor es un programa que nos permite crear ficheros de código (en nuestro caso con extensión `*.py`), que luego son ejecutados por el intérprete.
 
@@ -65,7 +65,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-Para hacer una prueba inicial del intérprete vamos a retomar el primer programa que se suele hacer. Es el llamado [«Hello, World»](../introduction/machine.md#assembly). Para ello escribimos lo siguiente en el intérprete y pulsamos la tecla ++enter++:
+Para hacer una prueba inicial del intérprete vamos a retomar el primer programa que se suele hacer. Es el llamado [«Hello, World»](../development/machine.md#assembly). Para ello escribimos lo siguiente en el intérprete y pulsamos la tecla ++enter++:
 
 ```pycon
 >>> print('Hello, World')
@@ -95,7 +95,7 @@ msg = 'Hello, World'
 print(msg)
 ```
 
-Aunque [ya lo veremos en profundidad](../datatypes/data.md#variables), lo que hemos hecho es añadir una variable `#!python msg` en la ^^línea 1^^ para luego utilizarla al mostrar por pantalla su contenido (^^línea 2^^). Si ahora volvemos a ejecutar nuestro programa veremos que en el panel de variables nos aparece la siguiente información:
+Aunque [ya lo veremos en profundidad](../../core/datatypes/data.md#variables), lo que hemos hecho es añadir una variable `#!python msg` en la ^^línea 1^^ para luego utilizarla al mostrar por pantalla su contenido (^^línea 2^^). Si ahora volvemos a ejecutar nuestro programa veremos que en el panel de variables nos aparece la siguiente información:
 
 | Name           | Value                     |
 | -------------- | ------------------------- |

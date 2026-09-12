@@ -17,7 +17,7 @@ En esta sección estudiaremos las sentencias `if` y `match-case` de _Python_ jun
 
 ## Definición de bloques { #blocks }
 
-A diferencia de otros lenguajes que utilizan _llaves_ para definir los bloques de código (véase C o Java), cuando Guido Van Rossum [diseñó Python](../introduction/python.md#python) quiso evitar estos caracteres por considerarlos innecesarios.
+A diferencia de otros lenguajes que utilizan _llaves_ para definir los bloques de código (véase C o Java), cuando Guido Van Rossum [diseñó Python](../../devenv/development/python.md#python) quiso evitar estos caracteres por considerarlos innecesarios.
 
 Es por ello que en Python los bloques de código se definen a través de **espacios en blanco**, preferiblemente :four: espacios en blanco.[^1]
 

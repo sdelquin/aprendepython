@@ -30,7 +30,7 @@ flowchart LR
 
 ## Entorno de trabajo { #workspace }
 
-Suponiendo que disponemos de [Python](../../../core/devenv/real-context.md#python) ya instalado en nuestra máquina, debemos configurar ciertos aspectos para preparar el entorno de desarrollo de **Django**.
+Suponiendo que disponemos de [Python](../../../devenv/ide/real-context.md#python) ya instalado en nuestra máquina, debemos configurar ciertos aspectos para preparar el entorno de desarrollo de **Django**.
 
 ### Carpeta del proyecto { #project-folder }
 
@@ -43,7 +43,7 @@ $ cd blog
 
 ### Entorno virtual { #virtualenv }
 
-Es altamente recomendable utilizar un [entorno virtual](../../../core/devenv/real-context.md#virtualenvs) a la hora de comenzar cualquier proyecto Python. Django no iba a ser un caso especial.
+Es altamente recomendable utilizar un [entorno virtual](../../../devenv/ide/real-context.md#virtualenvs) a la hora de comenzar cualquier proyecto Python. Django no iba a ser un caso especial.
 
 === "*venv* :octicons-package-24:{.blue}"
 
@@ -85,7 +85,7 @@ Es altamente recomendable utilizar un [entorno virtual](../../../core/devenv/rea
 
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
-    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](../../../core/devenv/real-context.md#uv) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
+    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](../../../devenv/ide/real-context.md#uv) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
 
     ```console
     $ uv init --bare --no-workspace #(1)!
@@ -418,7 +418,7 @@ media/ #(7)!
 
 1. Carpeta que contiene el [entorno virtual](#virtualenv).
 2. Nombre (por defecto) de la base de datos [sqlite](../../../stdlib/data-access/sqlite.md) en Django.
-3. Ficheros con [«bytecode»](../../../core/introduction/machine.md#compilers) compilado de Python.
+3. Ficheros con [«bytecode»](../../../devenv/development/machine.md#compilers) compilado de Python.
 4. Varias carpetas de caché (`.mypy_cache`, `.pytest_cache`, `ruff_cache`)
 5. Carpeta específica de caché para Python.
 6. Carpeta de [archivos estáticos](static.md).
