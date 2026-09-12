@@ -6,7 +6,12 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.2.15
+
+Publicada el 12-09-2026
+
 - Actualiza la versión de Zensical a [0.0.61](https://github.com/zensical/zensical/releases/tag/v0.0.61).
+- Añade sección principal de «Entornos de desarrollo».
 
 ## Version 3.2.14
 
