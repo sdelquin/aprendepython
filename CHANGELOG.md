@@ -9,6 +9,10 @@ Publicada el DD-MM-YYYY
 - Corrige error tipográfico en menú de paquetes.
 - Entornos de desarrollo: Desarrollo de software
   - Mejora documentación.
+- Django: Modelos
+  - Corrige errores menores.
+- Django: Autenticación
+  - Corrige errores menores.
 
 ## Version 3.3.0
 

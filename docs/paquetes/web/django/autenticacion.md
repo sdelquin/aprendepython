@@ -185,7 +185,7 @@ def user_login(request):#(1)!
                 form.add_error(None, 'Incorrect username or password.')#(8)!
     else:
         form = LoginForm()
-    return render( request, 'accounts/login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 ```
 { .annotate }
 

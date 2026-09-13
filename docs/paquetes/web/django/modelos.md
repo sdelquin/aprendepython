@@ -472,6 +472,14 @@ En este punto podríamos querer **revertir** («rollback») la última migració
     1. Indicamos el número de la migración a la que «regresar».
     2. Como era de esperar, la migración ya no aparece aplicada.
 
+??? tip "Revertir todas las migraciones"
+
+    Si lo que necesitamos es revertir hasta el «momento 0» (es decir, todas las migraciones) debemos ejecutar:
+
+    ```console
+    $ uv run python manage.py migrate posts zero
+    ```
+
 La migración se ha revertido correctamente. Si quisiéramos eliminar del registro la migración `0002` bastaría con eliminar el fichero:
 
 ```console
