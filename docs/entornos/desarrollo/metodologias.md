@@ -8,6 +8,11 @@ tags:
 
 # Metodologías de desarrollo
 
+![Banner](images/metodologias/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
+
 Las metodologías de desarrollo son conjuntos de métodos, técnicas y prácticas que permiten organizar y gestionar el proceso de desarrollo de una aplicación. Definen cómo se planifican las tareas, cómo se distribuye el trabajo y cómo se controla la evolución del proyecto. Existen diferentes metodologías, que pueden seguir un enfoque más tradicional y planificado o uno más flexible e iterativo, como ocurre con las metodologías ágiles.
 
 ## Scrum

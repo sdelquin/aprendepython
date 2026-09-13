@@ -15,6 +15,10 @@ Imagen generada con Inteligencia Artificial
 
 Los ordenadores son dispositivos complejos pero están diseñados para hacer una cosa bien: **ejecutar aquello que se les indica**. La cuestión radica en cómo indicarle a una máquina lo que queremos que haga. Esas indicaciones se llaman técnicamente **instrucciones** y se expresan en un **lenguaje**. Podríamos decir que _programar consiste en escribir instrucciones para que sean ejecutadas por un ordenador_. El lenguaje que utilizamos para ello se denomina _lenguaje de programación_.
 
+!!! success "Programa informático"
+
+    Un **programa informático** es un conjunto de instrucciones que indican a un ordenador cómo realizar determinadas tareas para resolver un problema o satisfacer una necesidad.
+
 ## Código máquina
 
 Pero aún no hemos resuelto el problema de cómo hacer que un ordenador (o máquina) entienda un lenguaje de programación. A priori se podría decir que un ordenador sólo entiende un lenguaje muy «simple» denominado [código máquina](https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina). En este lenguaje se utilizan únicamente los símbolos <span class="red">0</span> y <span class="green">1</span> en representación de los niveles de tensión alto y bajo, que al fin y al cabo, son los estados que puede manejar un [circuito digital](https://es.wikipedia.org/wiki/Circuito_digital). En este contexto, por tanto, hablamos de [sistema binario](https://es.wikipedia.org/wiki/Sistema_binario). Si tuviéramos que escribir programas de ordenador en este formato sería una tarea ardua, pero afortunadamente con el tiempo se han ido creando lenguajes de programación intermedios que, posteriormente, son convertidos a código máquina.
@@ -69,6 +73,10 @@ int main() {
 }
 ```
 
+!!! success "Código fuente"
+
+    El código fuente es el conjunto de instrucciones escritas por un programador en un lenguaje de programación, que define el comportamiento y funcionamiento de un programa.
+
 ## Python
 
 Si seguimos «subiendo» en esta lista de lenguajes de programación, podemos llegar hasta [Python](https://es.wikipedia.org/wiki/Python). Se dice que es un lenguaje de más alto nivel en el sentido de que sus instrucciones son más entendibles por un humano. Veamos cómo se escribiría el programa _«Hello, World»_ en el lenguaje de programación Python:
@@ -81,7 +89,7 @@ print('Hello, World')
 
 ## Compiladores
 
-Los [compiladores](https://es.wikipedia.org/wiki/Compilador) son programas que convierten un lenguaje «cualquiera» en _código máquina_. Se pueden ver como traductores, permitiendo a la máquina interpretar lo que queremos hacer.
+Los [compiladores](https://es.wikipedia.org/wiki/Compilador) son programas que convierten un lenguaje «cualquiera» (_código fuente_) en _código máquina_. Se pueden ver como traductores, permitiendo a la máquina interpretar lo que queremos hacer.
 
 ```mermaid
 sequenceDiagram
@@ -110,7 +118,7 @@ int main() {
 }
 ```
 
-Podemos compilarlo de la siguiente manera:
+Podemos compilar este código fuente de la siguiente manera:
 
 ```console
 $ gcc -c helloworld.c
@@ -120,7 +128,7 @@ $ gcc -c helloworld.c
 
     [gcc](https://gcc.gnu.org/) es el compilador de C más utilizado. Está soportado por la [GNU](https://www.gnu.org/home.es.html) y su código es «opensource» disponible desde [este repositorio](https://github.com/gcc-mirror/gcc).
 
-Esto genera un nuevo archivo `helloworld.o` que en mi máquina tiene la siguiente especificación:
+Así se genera un nuevo archivo `helloworld.o` que (_en mi máquina_) tiene la siguiente especificación:
 
 ```console
 $ file helloworld.o
@@ -142,7 +150,7 @@ Podemos comprobar que el archivo «objeto» es **dependiente de la arquitectura*
     | **RISC-V** | Arquitectura RISC abierta y basada en un estándar abierto. | Sistemas embebidos, investigación y dispositivos |
     | **MIPS** | Arquitectura RISC utilizada tradicionalmente en sistemas embebidos y educativos. | Sistemas embebidos y enseñanza |
 
-Como último paso debemos utilizar un «linker» (enlazador) el cual combina los archivos de código objeto y las bibliotecas necesarias, resolviendo las referencias entre ellos para generar el archivo ejecutable final:
+Como último paso debemos utilizar un «linker» (enlazador) el cual combina los archivos de código objeto y las bibliotecas necesarias[^1], resolviendo las referencias entre ellos para generar el archivo ejecutable final:
 
 ```console
 $ gcc helloworld.o -o helloworld
@@ -168,7 +176,7 @@ Si partimos del <span class="example">ejemplo:material-flash:</span> anterior:
 print('Hello, World')
 ```
 
-el programa se compilaría[^1] al siguiente «bytecode»:
+el programa se compilaría[^2] al siguiente «bytecode»:
 
 ```asm
 0           0 RESUME                   0
@@ -202,7 +210,7 @@ el programa se compilaría[^1] al siguiente «bytecode»:
     $ python -m dis helloworld.py
     ```
 
-A continuación estas instrucciones básicas son ejecutadas por el intérprete de «bytecode» de Python (o máquina virtual)[^2]:
+A continuación estas instrucciones básicas son ejecutadas por el intérprete de «bytecode» de Python (o máquina virtual)[^3]:
 
 ```mermaid
 graph LR
@@ -217,7 +225,7 @@ graph LR
 
 !!! tip ".pyc"
 
-    Los ficheros `.pyc` (del inglés «Python compiled») contienen _bytecode_ en formato binario[^3]. Son generados por el compilador de Python. Su objetivo principal es optimizar la ejecución de un programa, ya que si el código fuente no cambia, no es necesario volver a recompilar.
+    Los ficheros `.pyc` (del inglés «Python compiled») contienen _bytecode_ en formato binario[^4]. Son generados por el compilador de Python. Su objetivo principal es optimizar la ejecución de un programa, ya que si el código fuente no cambia, no es necesario volver a recompilar.
 
 ??? question "JVM"
 
@@ -227,6 +235,7 @@ graph LR
 
 Si queremos ver una diferencia entre un lenguaje compilado como C y un lenguaje «interpretado» como Python es que, aunque ambos realizan un proceso de traducción del código fuente, la compilación de C genera un código objeto que debe ser ejecutado en una segunda fase explícita, mientras que la compilación de Python genera un «bytecode» que se ejecuta (interpreta) de forma «transparente».
 
-[^1]: Consulta aquí más información sobre el [intérprete de bytecode](https://devguide.python.org/internals/interpreter/).
-[^2]: Imagen basada en el artículo [Python bytecode analysis](https://nowave.it/python-bytecode-analysis-1.html).
-[^3]: Es posible incluso obtener el _bytecode_ (legible) desde un fichero `.pyc`. Aquí tienes este [post](https://mathspp.com/blog/til/read-bytecode-from-a-pyc-file) donde se explica claramente.
+[^1]: En este ejemplo de código C una de las librerías que habría que «linkar» sería [`stdio`](https://es.wikipedia.org/wiki/Stdio.h).
+[^2]: Consulta aquí más información sobre el [intérprete de bytecode](https://devguide.python.org/internals/interpreter/).
+[^3]: Imagen basada en el artículo [Python bytecode analysis](https://nowave.it/python-bytecode-analysis-1.html).
+[^4]: Es posible incluso obtener el _bytecode_ (legible) desde un fichero `.pyc`. Aquí tienes este [post](https://mathspp.com/blog/til/read-bytecode-from-a-pyc-file) donde se explica claramente.

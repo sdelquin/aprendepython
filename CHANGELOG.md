@@ -7,6 +7,8 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 Publicada el DD-MM-YYYY
 
 - Corrige error tipográfico en menú de paquetes.
+- Entornos de desarrollo: Desarrollo de software
+  - Mejora documentación.
 
 ## Version 3.3.0
 

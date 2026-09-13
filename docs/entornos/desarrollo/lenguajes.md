@@ -8,6 +8,11 @@ tags:
 
 # Lenguajes de programación
 
+![Banner](images/lenguajes/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
+
 Un lenguaje de programación es un lenguaje formal que permite escribir instrucciones para que un ordenador pueda interpretarlas y ejecutar determinadas tareas.
 
 ## Número de lenguajes
@@ -55,3 +60,10 @@ El **número** actual de lenguajes de programación depende de lo que se conside
 |---|---|---|
 | **Propósito general (GPL)** | Diseñados para desarrollar una gran variedad de aplicaciones y resolver problemas de diferentes ámbitos. | C, C++, Java, Python, JavaScript |
 | **Propósito específico (DSL)** | Diseñados para resolver problemas concretos o trabajar en un dominio determinado. | SQL, HTML, CSS, MATLAB, R |
+
+## Tipos de lenguajes según su nivel de abstracción
+
+| Nivel | Características | Ejemplos |
+|---|---|---|
+| **Bajo nivel** | Están muy próximos al funcionamiento interno del procesador y ofrecen poco nivel de abstracción respecto al hardware. | Lenguaje máquina, ensamblador |
+| **Alto nivel** | Proporcionan un mayor nivel de abstracción, utilizando estructuras y conceptos más cercanos al lenguaje humano y al problema que se quiere resolver. | C, C++, Java, Python, JavaScript |

@@ -8,6 +8,11 @@ tags:
 
 # Fases de desarrollo
 
+![Banner](images/fases/banner.jpg)
+/// caption
+Imagen generada con Inteligencia Artificial
+///
+
 El desarrollo de una aplicación es un proceso que se divide en diferentes fases, desde la identificación de las necesidades que debe cubrir hasta su puesta en funcionamiento y mantenimiento. Cada fase tiene unos objetivos y tareas concretas que permiten organizar el trabajo y garantizar que la aplicación final cumpla con los requisitos establecidos.
 
 ## Fase de análisis

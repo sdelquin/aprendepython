@@ -113,13 +113,13 @@ Existen ránkings y estudios de mercado que sitúan a Python como uno de los len
 
 === "TIOBE"
 
-    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **febrero de 2026** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
+    En el momento de la escritura de este documento, la última actualización del [Índice TIOBE](https://www.tiobe.com/tiobe-index/) es de **septiembre de 2026** en el que **Python ocupaba el primer puesto** de los ^^lenguajes de programación más usados^^, por delante de C y C++.
 
     | Puesto | Lenguaje |  Uso   |
     | ------ | -------- | ------ |
-    | 1      | Python   | 21.81% |
-    | 2      | C        | 11.05% |
-    | 3      | C++      | 8.55%  |
+    | 1      | Python   | 17.76% |
+    | 2      | C        | 20.28% |
+    | 3      | C++      | 8.67%  |
 
 === "Stack Overflow"
 
@@ -158,35 +158,35 @@ De acuerdo con el propio [blog de Guido Van Rossum](https://python-history.blogs
 A partir de ese momento se empezaron a desarrollar las versiones estables «mayores» indicadas en la siguiente tabla:
 
 <div class="annotate" markdown>
-|                    Versión                     | Fecha de lanzamiento |  Release manager(1)   |
-| ---------------------------------------------- | -------------------- | --------------------- |
-| **Python 1.0**                                 | Enero 1994           | Guido van Rossum      |
-| Python 1.5                                     | Diciembre 1997       | Guido van Rossum      |
-| Python 1.6                                     | Septiembre 2000      | Guido van Rossum      |
-| **Python 2.0**                                 | Octubre 2000         | Guido van Rossum      |
-| Python 2.1                                     | Abril 2001           | Guido van Rossum      |
-| Python 2.2                                     | Diciembre 2001       | Guido van Rossum      |
-| Python 2.3                                     | Julio 2003           | Guido van Rossum      |
-| Python 2.4                                     | Noviembre 2004       | Guido van Rossum      |
-| Python 2.5                                     | Septiembre 2006      | Guido van Rossum      |
-| [Python 2.6](https://docs.python.org/2.6/)     | Octubre 2008         | Barry Warsaw          |
-| [Python 2.7](https://docs.python.org/2.7/)     | Julio 2010           | Benjamin Peterson     |
-| [**Python 3.0**](https://docs.python.org/3.0/) | Diciembre 2008       | Barray Warsaw         |
-| [Python 3.1](https://docs.python.org/3.1/)     | Junio 2009           | Benjamin Peterson     |
-| [Python 3.2](https://docs.python.org/3.2/)     | Febrero 2011         | Georg Brandl          |
-| [Python 3.3](https://docs.python.org/3.3/)     | Septiembre 2012      | Georg Brandl          |
-| [Python 3.4](https://docs.python.org/3.4/)     | Marzo 2014           | Larry Hastings        |
-| [Python 3.5](https://docs.python.org/3.5/)     | Septiembre 2015      | Larry Hastings        |
-| [Python 3.6](https://docs.python.org/3.6/)     | Diciembre 2016       | Ned Deily             |
-| [Python 3.7](https://docs.python.org/3.7/)     | Junio 2018           | Ned Deily             |
-| [Python 3.8](https://docs.python.org/3.8/)     | Octubre 2019         | Łukasz Langa          |
-| [Python 3.9](https://docs.python.org/3.9/)     | Octubre 2020         | Łukasz Langa          |
-| [Python 3.10](https://docs.python.org/3.10/)   | Octubre 2021         | Pablo Galindo Salgado |
-| [Python 3.11](https://docs.python.org/3.11/)   | Octubre 2022         | Pablo Galindo Salgado |
-| [Python 3.12](https://docs.python.org/3.12/)   | Octubre 2023         | Thomas Wouters        |
-| [Python 3.13](https://docs.python.org/3.13/)   | Octubre 2024         | Thomas Wouters        |
-| [Python 3.14](https://docs.python.org/3.14/)   | Octubre 2025         | Hugo van Kemenade     |
-| [Python 3.15](https://docs.python.org/3.15/)   | Octubre 2026         | Hugo van Kemenade     |
+|                    Versión                     | Fecha de lanzamiento |                  Release manager(1)                   |
+| ---------------------------------------------- | -------------------- | ----------------------------------------------------- |
+| **Python 1.0**                                 | Enero 1994           | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 1.5                                     | Diciembre 1997       | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 1.6                                     | Septiembre 2000      | [Guido van Rossum](https://github.com/gvanrossum)     |
+| **Python 2.0**                                 | Octubre 2000         | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 2.1                                     | Abril 2001           | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 2.2                                     | Diciembre 2001       | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 2.3                                     | Julio 2003           | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 2.4                                     | Noviembre 2004       | [Guido van Rossum](https://github.com/gvanrossum)     |
+| Python 2.5                                     | Septiembre 2006      | [Guido van Rossum](https://github.com/gvanrossum)     |
+| [Python 2.6](https://docs.python.org/2.6/)     | Octubre 2008         | [Barry Warsaw](https://github.com/warsaw)             |
+| [Python 2.7](https://docs.python.org/2.7/)     | Julio 2010           | [Benjamin Peterson](https://github.com/benjaminp)     |
+| [**Python 3.0**](https://docs.python.org/3.0/) | Diciembre 2008       | [Barray Warsaw](https://github.com/warsaw)            |
+| [Python 3.1](https://docs.python.org/3.1/)     | Junio 2009           | [Benjamin Peterson](https://github.com/benjaminp)     |
+| [Python 3.2](https://docs.python.org/3.2/)     | Febrero 2011         | [Georg Brandl](https://github.com/birkenfeld)         |
+| [Python 3.3](https://docs.python.org/3.3/)     | Septiembre 2012      | [Georg Brandl](https://github.com/birkenfeld)         |
+| [Python 3.4](https://docs.python.org/3.4/)     | Marzo 2014           | [Larry Hastings](https://github.com/larryhastings)    |
+| [Python 3.5](https://docs.python.org/3.5/)     | Septiembre 2015      | [Larry Hastings](https://github.com/larryhastings)    |
+| [Python 3.6](https://docs.python.org/3.6/)     | Diciembre 2016       | [Ned Deily](https://github.com/ned-deily)             |
+| [Python 3.7](https://docs.python.org/3.7/)     | Junio 2018           | [Ned Deily](https://github.com/ned-deily)             |
+| [Python 3.8](https://docs.python.org/3.8/)     | Octubre 2019         | [Łukasz Langa](https://github.com/ambv)               |
+| [Python 3.9](https://docs.python.org/3.9/)     | Octubre 2020         | [Łukasz Langa](https://github.com/ambv)               |
+| [Python 3.10](https://docs.python.org/3.10/)   | Octubre 2021         | [Pablo Galindo Salgado](https://github.com/pablogsal) |
+| [Python 3.11](https://docs.python.org/3.11/)   | Octubre 2022         | [Pablo Galindo Salgado](https://github.com/pablogsal) |
+| [Python 3.12](https://docs.python.org/3.12/)   | Octubre 2023         | [Thomas Wouters](https://github.com/yhg1s)            |
+| [Python 3.13](https://docs.python.org/3.13/)   | Octubre 2024         | [Thomas Wouters](https://github.com/yhg1s)            |
+| [Python 3.14](https://docs.python.org/3.14/)   | Octubre 2025         | [Hugo van Kemenade](https://github.com/hugovk)        |
+| [Python 3.15](https://docs.python.org/3.15/)   | Octubre 2026         | [Hugo van Kemenade](https://github.com/hugovk)        |
 </div>
 1. El «release manager» de una versión de Python es un/una [«core developer»](https://hugovk.github.io/python-core-devs/) encargado/a de coordinar y responsabilizarse de liberar dicha versión de Python en tiempo y forma.
 
