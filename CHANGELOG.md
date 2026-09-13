@@ -6,6 +6,8 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Fix typo at packages title.
+
 ## Version 3.3.0
 
 Publicada el 13-09-2006

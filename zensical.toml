@@ -94,7 +94,7 @@ repo = "material/github"
 ]
 
 [[project.nav]]
-"Paquetes de paquetes" = [
+"Paquetes" = [
     "paquetes/index.md",
     {"Aprendizaje" = [
         "paquetes/aprendizaje/index.md",
