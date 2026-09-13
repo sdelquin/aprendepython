@@ -6,6 +6,12 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.0
+
+Publicada el 13-09-2006
+
+- Migra las URLs en inglés a URLs en español.
+
 ## Version 3.2.15
 
 Publicada el 12-09-2026
