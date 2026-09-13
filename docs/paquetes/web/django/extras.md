@@ -1,0 +1,1012 @@
+---
+icon: material/battery-charging-30
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
+---
+
+# Extras
+
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
+Existe un ecosistema enorme de **paquetes de terceros** que ofrecen funcionalidades extras a Django. En esta sección veremos algunos de los más interesantes.
+
+??? tip "INSTALLED_APPS"
+
+    La mayoría de paquetes requiere añadir sus aplicaciones a `settings.py`. Es por ello que se recomienda seguir una mínima estructura similar a la siguiente:
+
+    ```python title="main/settings.py"
+    INSTALLED_APPS = [
+        # DJANGO APPS
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        ...
+
+        # THIRD PARTY APPS
+        'django_browser_reload',
+        'django_rq',
+        ...
+
+        # CUSTOM APPS
+        'posts.apps.PostsConfig',
+        'accounts.apps.AccountsConfig',
+        ...
+    ]
+    ```
+
+## Django Reload
+
+[`django-browser-reload`](https://github.com/adamchainz/django-browser-reload) es un paquete Python que recarga la web del proyecto en el navegador cada vez que detecta un cambio en los ficheros de código, **sin necesidad** de hacerlo _manualmente_.
+
+### Instalación
+
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install django-browser-reload
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add --dev django-browser-reload
+    ```
+
+### Configuración
+
+Para configurar `django-browser-reload` debemos añadir ciertas líneas a `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = (
+    # ...
+    'django_browser_reload',
+    # ...
+)
+
+MIDDLEWARE = [
+    # ...
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
+    # ...
+]
+```
+
+También debemos añadir cierta configuración a las [URLs de primer nivel](urls.md#urls-de-primer-nivel):
+
+```python title="main/urls.py"
+from django.urls import include, path
+
+
+urlpatterns = [
+    # ...
+    path('__reload__/', include('django_browser_reload.urls')),
+    # ...
+]
+```
+
+### Modo de uso
+
+Una vez que lancemos el _servidor de desarrollo_ ya estaremos en disposición de trabajar con nuestro proyecto y ver los cambios en el navegador con **recarga automática** cada vez que modifiquemos algún archivo.
+
+## Crispy Forms
+
+[`django-crispy-forms`](https://django-crispy-forms.readthedocs.io/en/latest/) es un paquete Python que proporciona utilidades para renderizar formularios de una manera elegante y reutilizable en Django.
+
+Este paquete permite trabajar con [distintos «frameworks» CSS](https://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs). Uno de los más utilizados es **Bootstrap**. En esta sección veremos cómo manejar formularios e integrarlos con estas herramientas.
+
+### Instalación
+
+Lo primero será [integrar Bootstrap](estaticos.md#bootstrap) en nuestro proyecto.
+
+Hecho esto y dado que vamos a trabajar con Bootstrap, podemos utilizar directamente el paquete [`crispy-bootstrap5`](https://github.com/django-crispy-forms/crispy-bootstrap5) que, como su nombre indica, nos va a permitir usar Bootstrap v5 y que también nos instalará (como dependencia) el paquete `django-crispy-forms`.
+
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install crispy-bootstrap5
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add crispy-bootstrap5
+    ```
+
+### Configuración
+
+Para configurar `crispy-bootstrap5` debemos añadir ciertas líneas a `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = (
+    # ...
+    'crispy_forms',
+    'crispy_bootstrap5',
+    # ...
+)
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+```
+
+### Modo de uso
+
+La forma más simple de utilizar este paquete es mediante el **filtro** [`|crispy`](https://django-crispy-forms.readthedocs.io/en/latest/filters.html).
+
+Si tomamos como <span class="example">ejemplo:material-flash:</span> el [formulario de modelo para añadir un «post»](formularios.md#formularios-de-modelo) en un «blog», la plantilla nos quedaría de la siguiente manera:
+
+```htmldjango title="posts/templates/posts/post/add.html" hl_lines="1 4"
+{% load crispy_forms_tags %}<!--(1)!-->
+
+<form method="post">
+    {{ form|crispy }}<!--(2)!-->
+    <button type="submit" class="btn btn-primary">Add post</button>
+</form>
+```
+{ .annotate }
+
+1. Cargamos el filtro «crispy».
+2. Renderizamos el formulario mediante `crispy-forms`.
+
+Pero existe una aproximación más personalizable y es utilizar la **etiqueta de plantilla** [`{% crispy %}`](https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html).
+
+Como <span class="example">ejemplo:material-flash:</span> de uso de esta etiqueta vamos a implementar formularios y plantillas para [inicio de sesión](autenticacion.md#login) y [registro de usuario](autenticacion.md#registro).
+
+#### Login
+
+Veamos la implementación del inicio de sesión:
+
+=== "Formulario de clase"
+
+    ```python title="accounts/forms.py" hl_lines="1-3 11-19"
+    from crispy_bootstrap5.bootstrap5 import FloatingField
+    from crispy_forms.helper import FormHelper
+    from crispy_forms.layout import Layout, Submit
+    from django import forms
+
+
+    class LoginForm(forms.Form):
+        username = forms.CharField()
+        password = forms.CharField(widget=forms.PasswordInput)
+
+        def __init__(self, *args, **kwargs):#(1)!
+            super().__init__(*args, **kwargs)#(2)!
+            self.helper = FormHelper()#(3)!
+            self.helper.attrs = {'novalidate': True}#(4)!
+            self.helper.layout = Layout(#(5)!
+                FloatingField('username'),#(6)!
+                FloatingField('password'),#(7)!
+                Submit('login', 'Login', css_class='w-100 mt-2 mb-2'),#(8)!
+            )
+    ```
+    { .annotate }
+
+    1. Será necesario sobreescribir el constructor del formulario para definir las características del renderizado.
+    2. No puede faltar la llamada al constructor de la clase base.
+    3. La clase [`FormHelper`](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html) define el comportamiento del renderizado del formulario en `django-crispy-forms`.
+    4. Añadimos el atributo `novalidate` al formulario para indicar que [no se valide desde HTML](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation).
+    5. Utilizamos la clase [`Layout`](https://django-crispy-forms.readthedocs.io/en/latest/layouts.html) que permite cambiar la forma en la que se renderizan los campos del formulario en `django-crispy-forms`.
+    6. Incluimos en el «layout» el campo `username` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    7. Incluimos en el «layout» el campo `password` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    8.  - Incluimos en el «layout» un botón para enviar el formulario utilizando [`Submit`](https://django-crispy-forms.readthedocs.io/en/latest/api_layout.html#layout.Submit).
+        - Es posible incluir clases CSS al control HTML mediante el parámetro `css_class`.
+
+=== "Plantilla"
+
+    ```htmldjango title="accounts/templates/accounts/login.html" hl_lines="2 12"
+    {% extends "base.html" %}
+    {% load crispy_forms_tags %}<!--(1)!-->
+
+    {% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <div class="card border-dark">
+            <h4 class="card-header">
+                Login
+            </h4>
+            <div class="card-body">
+                {% crispy form %}<!--(2)!-->
+            </div>
+            <div class="card-footer">
+                Don't have an account? <a href="{% url 'signup' %}">Sign up</a> here.
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    ```
+    { .annotate }
+
+    1. Cargamos las utilidades para plantillas del paquete `crispy-forms`.
+    2. Así de fácil se renderiza TODO el formulario :material-emoticon-happy:
+
+#### Registro
+
+Veamos la implementación del inicio de sesión (con todos los campos requeridos):
+
+=== "Formulario de modelo"
+
+    ```python title="accounts/forms.py" hl_lines="5 9-24" 
+    class SignupForm(forms.ModelForm):
+        class Meta:
+            model = get_user_model()
+            fields = ('username', 'password', 'first_name', 'last_name', 'email')
+            required = ('username', 'password', 'first_name', 'last_name', 'email')
+            widgets = {'password': forms.PasswordInput}
+            help_texts = {'username': None}
+
+        def __init__(self, *args, **kwargs):#(1)!
+            super().__init__(*args, **kwargs)#(2)!
+
+            for field in self.Meta.required:
+                self.fields[field].required = True
+
+            self.helper = FormHelper()#(3)!
+            self.helper.attrs = {'novalidate': True}#(4)!
+            self.helper.layout = Layout(#(5)!
+                FloatingField('username'),#(6)!
+                FloatingField('password'),#(7)!
+                FloatingField('first_name'),#(8)!
+                FloatingField('last_name'),#(9)!
+                FloatingField('email'),#(10)!
+                Submit('signup', 'Sign up', css_class='btn-info w-100 mt-2 mb-2'),#(11)!
+            )
+
+        def save(self, *args, **kwargs):
+            user = super().save(commit=False)
+            user.set_password(self.cleaned_data['password'])
+            user = super().save(*args, **kwargs)
+            return user
+    ```
+    { .annotate }
+
+    1. Será necesario sobreescribir el constructor del formulario para definir las características del renderizado.
+    2. No puede faltar la llamada al constructor de la clase base.
+    3. La clase [`FormHelper`](https://django-crispy-forms.readthedocs.io/en/latest/form_helper.html) define el comportamiento del renderizado del formulario en `django-crispy-forms`.
+    4. Añadimos el atributo `novalidate` al formulario para indicar que [no se valide desde HTML](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation).
+    5. Utilizamos la clase [`Layout`](https://django-crispy-forms.readthedocs.io/en/latest/layouts.html) que permite cambiar la forma en la que se renderizan los campos del formulario en `django-crispy-forms`.
+    6. Incluimos en el «layout» el campo `username` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    7. Incluimos en el «layout» el campo `password` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    8. Incluimos en el «layout» el campo `first_name` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    9. Incluimos en el «layout» el campo `last_name` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    10. Incluimos en el «layout» el campo `email` del formulario como un [`FloatingField`](https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#whats-new) (presente en el paquete `crispy-bootstrap5`) que permite usar las [nuevas etiquetas flotantes](https://getbootstrap.com/docs/5.3/forms/floating-labels/) de Bootstrap.
+    11.  - Incluimos en el «layout» un botón para enviar el formulario utilizando [`Submit`](https://django-crispy-forms.readthedocs.io/en/latest/api_layout.html#layout.Submit).
+        - Es posible incluir clases CSS al control HTML mediante el parámetro `css_class`.
+
+=== "Plantilla"
+
+    ```htmldjango title="accounts/templates/accounts/signup.html" hl_lines="2 12"
+    {% extends "base.html" %}
+    {% load crispy_forms_tags %}<!--(1)!-->
+
+    {% block content}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <div class="card border-dark">
+            <h4 class="card-header">
+                Sign up
+            </h4>
+            <div class="card-body">
+                {% crispy form %}<!--(2)!-->
+            </div>
+            <div class="card-footer">
+                Already have an account? <a href="{% url 'login' %}">Login</a> here.
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    ```
+    { .annotate }
+
+    1. Cargamos las utilidades para plantillas del paquete `crispy-forms`.
+    2. Así de fácil se renderiza TODO el formulario :material-emoticon-happy:
+
+    !!! example "Campos de fichero"
+
+        Cuando implementamos un formulario que incluye campos de fichero, `crispy-forms` lo renderiza mostrando el fichero actual asignado y un botón para «limpiar» el contenido del mismo (siempre que no sea obligatorio).
+
+        Para modificar este comportamiento y simplemente mostrar un control de selección de fichero, podemos [modificar el «widget»](formularios.md#modificando-widgets). Veamos un <span class="example">ejemplo:material-flash:</span> con **la imagen de «avatar»** en un _perfil de un usuario_:
+
+        ```python title="users/forms.py" hl_lines="6"
+        class EditProfileForm(forms.ModelForm):
+            class Meta:
+                model = Profile
+                fields = ['avatar', 'bio']
+                widgets = {
+                    'avatar': forms.FileInput(attrs={'accept': 'image/*'}),
+                }
+        ```
+
+## Sorl Thumbnail
+
+[`sorl-thumbnail`](https://sorl-thumbnail.readthedocs.io/en/latest/index.html) es un paquete Python que se integra con Django y permite generar miniaturas («thumbnails») de imágenes de manera sencilla.
+
+### Instalación
+
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install sorl-thumbnail
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add sorl-thumbnail
+    ```
+
+### Configuración
+
+Para configurar `sorl-thumbnail` debemos «instalar» la aplicación en `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = (
+    # ...
+    'sorl.thumbnail',
+    # ...
+)
+```
+
+!!! note "Cuidado con el nombre"
+
+    Cuidado porque la cadena que debemos añadir a `INSTALLED_APPS` es `'sorl.thumbnail'` (_con punto en el medio_).
+
+Por último aplicamos las migraciones correspondientes a la aplicación:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console hl_lines="1"
+    $ ./manage.py migrate thumbnail
+    Operations to perform:
+      Apply all migrations: thumbnail
+    Running migrations:
+      Applying thumbnail.0001_initial... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console hl_lines="1"
+    $ uv run manage.py migrate thumbnail
+    Operations to perform:
+      Apply all migrations: thumbnail
+    Running migrations:
+      Applying thumbnail.0001_initial... OK
+    ```
+
+Esta migración creará una nueva tabla en la base de datos llamada `thumbnail_kvstore` donde se almacenarán las referencias a las miniaturas.
+
+### Modo de uso
+
+Aunque existen [múltiples casos de uso](https://sorl-thumbnail.readthedocs.io/en/latest/template.html) la forma más habitual de usar `sorl-thumbnail` es crear una miniatura en una plantilla.
+
+Imaginemos por <span class="example">ejemplo:material-flash:</span> que estamos desarrollando una aplicación tipo «blog» donde cada «post» dispone de una [imagen de portada](modelos.md#campos-de-fichero) (atributo `cover`) que queremos mostrar en la plantilla pero en forma de miniatura:
+
+```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="1 5-7"
+{% load thumbnail %}<!--(1)!-->
+
+<div class="post">
+  <h1>{{ post.title }}</h1>
+  {% thumbnail post.cover "200x200" crop="center" format="PNG" as thumb %}<!--(2)!-->
+    <img src="{{ thumb.url }}" alt="Post cover"><!--(3)!-->
+  {% endthumbnail %}<!--(4)!-->
+  <p>{{ post.content }}</p>
+</div>
+```
+{ .annotate }
+
+1. Cargamos las etiquetas/filtros del paquete `sorl-thumbnail`.
+2. Usamos la etiqueta `{% thumbnail %}` indicando lo siguiente:
+    - La imagen a transformar es `post.cover`.
+    - El tamaño de la miniatura será de _200x200 píxeles_.
+    - Recorte en la zona central mediante `#!python crop="center"`
+    - Usar formato de imagen PNG.
+    - Asignar el objeto miniatura a una variable `thumb` con `#!python as thumb`.
+3. Utilizamos la variable `thumb` creada anteriormente y mostramos la imagen.
+4. Hay que cerrar la etiqueta.
+
+De esta forma habremos creado una miniatura de 200x200 píxeles para mostrar la imagen de portada del «post» en cuestión.
+
+### Gestión de miniaturas
+
+El paquete `sorl-thumbnail` almacena las miniaturas en la ruta `MEDIA_ROOT/THUMBNAIL_PREFIX`:
+
+- [x] [`MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) [suele definirse](modelos.md#ruta-del-fichero) como `media/`
+- [x] [`THUMBNAIL_PREFIX`](https://sorl-thumbnail.readthedocs.io/en/latest/reference/settings.html#thumbnail-prefix) tiene valor por defecto `cache/`
+
+Por tanto la carpeta resultante donde se guardan las miniaturas generadas sería `/media/cache/`.
+
+#### Comandos de gestión de miniaturas
+
+El paquete `sorl-thumbnail` ofrece distintos [comandos de gestión](https://sorl-thumbnail.readthedocs.io/en/latest/management.html) para borrar miniaturas, resetear la base de datos, hacer limpieza etc.
+
+De menor a mayor grado de «agresividad» en el borrado tenemos estos comandos:
+
+- [`manage.py thumbnail cleanup`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-cleanup)
+- [`manage.py thumbnail clear`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-clear)
+- [`manage.py thumbnail clear_delete_referenced`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-clear-delete-referenced)
+- [`manage.py thumbnail clear_delete_all`](https://sorl-thumbnail.readthedocs.io/en/latest/management.html#thumbnail-clear-delete-all)
+
+## Django Markdownify
+
+[`django-markdownify`](https://django-markdownify.readthedocs.io/en/latest/) es un paquete Python que se integra con Django y ofrece un [filtro de plantilla](plantillas.md#filtros) para convertir **Markdown en HTML**.
+
+### Instalación
+
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install django-markdownify
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-markdownify
+    ```
+
+:material-check-all:{ .blue } Este paquete depende de [Python-Markdown](https://python-markdown.github.io/) que se instala automáticamente. En este último paquete encontramos la función [`markdown.markdown`](https://python-markdown.github.io/reference/) que puede ser útil en vistas u otros componentes.
+
+### Configuración
+
+Para configurar `django-markdownify` debemos «instalar» la aplicación en `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = (
+    # ...
+    'markdownify.apps.MarkdownifyConfig',
+    # ...
+)
+```
+
+??? info "Whitelist"
+
+    Un detalle importante a tener en cuenta es que este paquete trabaja con una [«whitelist» de etiquetas](https://django-markdownify.readthedocs.io/en/latest/settings.html#whitelist-tags) que por defecto son: `a`, `abbr`, `acronym`, `b`, `blockquote`, `code`, `em`, `i`, `li`, `ol`, `strong`, `ul`.
+
+    Si queremos modificar las etiquetas tendremos que tocar el fichero `settings.py`. Por <span class="example">ejemplo:material-flash:</span> para incluir también la etiqueta `<pre>` tendremos que hacer lo siguiente:
+
+    ```python title="main/settings.py" hl_lines="14"
+    MARKDOWNIFY = {
+        "default": {
+            "WHITELIST_TAGS": [
+                'a',
+                'abbr',
+                'acronym',
+                'b',
+                'blockquote',
+                'em',
+                'i',
+                'li',
+                'ol',
+                'p',
+                'pre',
+                'strong',
+                'ul',
+            ]
+        }
+    } 
+    ```
+
+### Modo de uso
+
+El modo de uso es realmente sencillo. Veamos un <span class="example">ejemplo:material-flash:</span> en el que partimos de un objeto «post» cuyo contenido está en formato _markdown_. Con el siguiente fragmento de código conseguiremos que el contenido del «post» se convierta a HTML:
+
+```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="1 4"
+{% load markdownify %}
+
+<h1>{{ post.title }}</h1>
+<p>{{ post.content|markdownify }}</p>
+```
+
+## Django-RQ
+
+[`django-rq`](https://github.com/rq/django-rq) es un paquete Python que se integra con Django y permite **desacoplar tareas** enviándolas a una _cola de mensajes_ gestionada por [Redis](https://redis.io/es/).
+
+Entre los casos de uso más habituales están aquellas tareas que consumen mucha CPU o realizan gran cantidad de operaciones de entrada/salida. No es recomendable tener al usuario esperando a que finalicen estas tareas para dar una respuesta HTTP.
+
+Lo habitual es indicar al usuario de que la tarea «en cuestión» ya se está procesando y notificar a posteriori cuando se haya completado.
+
+### Instalación
+
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install django-rq
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-rq
+    ```
+
+!!! success "Redis"
+
+    Es necesario igualmente [tener instalado el servicio Redis :simple-redis:](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/). Para probar si tienes el servicio instalado y bien configurado en tu sistema basta con hacer:
+
+    ```console
+    $ redis-cli ping
+    PONG
+    ```
+
+### Configuración
+
+Para configurar `django-rq` debemos añadir ciertas líneas a `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = (
+    # ...
+    'django_rq',#(1)!
+    # ...
+)
+
+RQ_QUEUES = {#(2)!
+    'default': {#(3)!
+        'HOST': 'localhost',#(4)!
+        'PORT': 6379,#(5)!
+        'DB': 0,#(6)!
+    },
+}
+```
+{ .annotate }
+
+1. Se «instala» la aplicación para que Django la reconozca.
+2. Se definen las distintas _colas de mensajes_.
+3. Existen la posibilidad de crear distintas prioridades. Con `default` tenemos suficiente (según el contexto).
+4. Máquina en la que está instalado el servicio `redis` (en este caso _localhost_).
+5. Puerto en el cual está escuchando el servicio `redis` (el habitual es 6379).
+6.  - Número (identificador) de base de datos a utilizar dentro de `redis` (en este caso 0). Se podría usar cualquier otro identificador.
+    - Especialmente para entornos de producción, si ya existe otro proceso RQ usando `DB=0` hay que usar un identificador no «ocupado», por ejemplo `DB=1`.
+
+Aunque no es obligatorio, es **muy recomendable** añadir las URLs de gestión:
+
+```python title="main/urls.py" hl_lines="9"
+from django.contrib import admin
+from django.urls import include, path
+
+import notices.views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # ...
+    path('django-rq/', include('django_rq.urls')),#(1)!
+]
+```
+{ .annotate }
+
+1. Accediendo a http://localhost:8000/django-rq/ (o la URL correspondiente de producción) podremos gestionar las tareas que se envían a RQ.
+
+Por último aplicamos las migraciones correspondientes a la aplicación:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console hl_lines="1"
+    $ ./manage.py migrate django_rq
+    Operations to perform:
+    Apply all migrations: django_rq
+    Running migrations:
+    Applying django_rq.0001_initial... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console hl_lines="1"
+    $ uv run manage.py migrate django_rq
+    Operations to perform:
+    Apply all migrations: django_rq
+    Running migrations:
+    Applying django_rq.0001_initial... OK
+    ```
+
+### Modo de uso
+
+Para desacoplar una tarea y enviarla a la cola de mensajes hay que realizar tres pasos:
+
+:one: Marcar la función en cuestión como una tarea.  
+:two: Invocar el «desacople» de la tarea.  
+:three: Levantar un «worker» RQ para atender peticiones.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> en el proyecto del «blog». La idea es que cada vez que se almacene un nuevo «post» desacoplemos una **tarea que calcula estadísticas**:
+
+=== "Tarea"
+
+    ```python title="posts/tasks.py"
+    from django_rq import job#(1)!
+    
+    import posts.models as pm#(2)!
+    
+    
+    @job#(3)!
+    def post_stats() -> None:#(4)!
+        posts = pm.Post.objects.all()
+        num_posts = posts.count()
+        tot_content_length = sum(len(post.content) for post in posts)
+        avg_content_length = tot_content_length / num_posts if num_posts > 0 else 0
+        print(f'Total Posts: {num_posts}')
+        print(f'Average Content Length: {avg_content_length:.2f} characters')
+    
+    ```
+    { .annotate }
+    
+    1. Importamos el decorador.
+    2.  - Deberíamos importar con `#!python from .models import Post` pero nos llevaría a un *import circular*.
+        - Para resolverlo, realizamos la importación de esta manera.
+        - El alias `#!python as` es opcional.
+    3. Marcamos la función como una tarea _django-rq_.
+    4.  - Definimos la función normalmente.
+        - En este caso la función no tiene parámetros pero se podrían definir aquellos parámetros necesarios.
+        - En el caso de pasar argumentos estos deben ser **serializables**. Por defecto se [utiliza el módulo `pickle` como serializador](https://python-rq.org/docs/jobs/#job--queue-creation-with-custom-serializer), pero se podrían definir otros serializadores alternativos.
+
+
+=== "Modelo"
+
+    ```python title="posts/models.py" hl_lines="4 15-19"
+    from django.db import models
+    from django.utils.text import slugify
+    
+    from . import tasks#(1)!
+    
+    
+    class Post(models.Model):
+        title = models.CharField(max_length=256)
+        slug = models.SlugField(max_length=256)
+        content = models.TextField()
+    
+        def __str__(self):
+            return self.title
+    
+        def save(self, *args, **kwargs):
+            if not self.slug:
+                self.slug = slugify(self.title)
+            super().save(*args, **kwargs)
+            tasks.post_stats.delay()#(2)!
+    ```
+    { .annotate }
+    
+    1. Importamos el módulo de tareas.
+    2. ~~Invocamos~~ Desacoplamos la tarea.
+
+Ahora es necesario **levantar el proceso** que atiende las peticiones de tareas desatendidas:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py rqworker
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py rqworker
+    ```
+
+La salida debería ser similar a la siguiente:
+
+```console
+18:31:45 Worker 06a7fa349ea0459aa9c38e0a2132a201: started with PID 89082, version 2.6.1
+18:31:45 Worker 06a7fa349ea0459aa9c38e0a2132a201: subscribing to channel rq:pubsub:06a7fa349ea0459aa9c38e0a2132a201
+18:31:45 *** Listening on default...
+18:31:45 Worker 06a7fa349ea0459aa9c38e0a2132a201: cleaning registries for queue: default
+```
+
+En el momento de guardar nuevos «posts» podremos observar que la tarea se «encola» y se atiende por *django-rq* de la forma esperada:
+
+=== "Django"
+
+    ```pycon
+    >>> Post.objects.create(title='Django is awesome', content='Django makes it easier to build better web apps')
+    <Post: Django is awesome>
+    >>> Post.objects.create(title='Python is great', content='Python makes it funnier to write software')
+    <Post: Python is great>
+    ```    
+
+=== "Django RQ"
+
+    ```console hl_lines="1-3 7-9"
+    10:42:35 default: posts.tasks.post_stats() (aa15b6b7-d369-46aa-a14a-58334f3f6740)
+    Total Posts: 1
+    Average Content Length: 47.00 characters
+    10:42:35 Successfully completed posts.tasks.post_stats() job in 0:00:00.006705s on worker 75f316d097dc425abfece73b18a0c702
+    10:42:35 default: Job OK (aa15b6b7-d369-46aa-a14a-58334f3f6740)
+    10:42:35 Result is kept for 500 seconds
+    10:44:18 default: posts.tasks.post_stats() (d57539ea-a169-4671-9ac4-fa892135f8ac)
+    Total Posts: 2
+    Average Content Length: 44.00 characters
+    10:44:18 Successfully completed posts.tasks.post_stats() job in 0:00:00.007005s on worker 75f316d097dc425abfece73b18a0c702
+    10:44:18 default: Job OK (d57539ea-a169-4671-9ac4-fa892135f8ac)
+    10:44:18 Result is kept for 500 seconds
+    ```
+
+#### Recargar tras cambios
+
+El comando `./manage.py rqworker` no recarga el proceso cuando hay cambios en el código.
+
+Para solucionarlo, podemos hacer uso del paquete [`watchdog`](https://github.com/gorakhargosh/watchdog) que se encarga de «escuchar» cambios en el código y recargar los procesos indicados. Su instalación es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install watchdog
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add --dev watchdog #(1)!
+    ```
+    { .annotate }
+    
+    1. Dado que es una utilidad exclusivamente para la fase de desarrollo, utilizamos el modificador `--dev` para indicar que sólo se instale en dicho contexto.
+
+Suponiendo que las tareas RQ las estamos escribiendo en ficheros `tasks.py` se podría usar el siguiente comando `watchdog` para recargar los cambios:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker #(1)!
+    ```
+    { .annotate }
+
+    1. Si quisiéramos recargar tras un cambio en cualquier fichero Python tendríamos que modificar el argumento: `--pattern=*.py`
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker #(1)!
+    ```
+    { .annotate }
+
+    1. Si quisiéramos recargar tras un cambio en cualquier fichero Python tendríamos que modificar el argumento: `--pattern=*.py`
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`rq`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+## Enviar correo
+
+Una tarea bastante habitual en cualquier aplicación web es notificar a los usuarios mediante correo electrónico. Es por ello que Django ofrece [una serie de funcionalidades de envío de correo](https://docs.djangoproject.com/en/stable/topics/email/), que hacen esta tarea realmente sencilla.
+
+### Configuración
+
+Es necesario definir —al menos— las siguientes variables en el fichero de configuración del proyecto:
+
+```python title="main/settings.py"
+EMAIL_HOST = 'email-host'
+EMAIL_PORT = 'email-port'
+EMAIL_HOST_USER = 'email-host-user'
+EMAIL_HOST_PASSWORD = 'email-host-password'
+DEFAULT_FROM_EMAIL = 'default-from-email'#(1)!
+```
+{ .annotate }
+
+1.  - Se trata del correo electrónico origen que verá el usuario notificado.
+    - Aunque este dato no es oligatorio, resulta cómodo fijarlo aquí y poder usarlo en el resto de la aplicación.
+    - Suele ser habitual algo del estilo `#!python 'noreply@example.com'`
+
+#### Brevo
+
+Basándome en mi experiencia, y sin buscar ningún tipo de publicidad (no me llevo nada), me gustaría comentar aquí el caso de [Brevo](https://www.brevo.com/es/) que proporciona [credenciales «gratuitas»](https://www.brevo.com/es/pricing/) para poder hacer uso de sus servicios SMTP.
+
+Una vez dados de alta en _Brevo_, tendremos que acceder a la [sección de configuración SMTP](https://app.brevo.com/settings/keys/smtp) y **Generar una nueva clave SMTP**. Con esto ya dispondremos de los datos necesarios para configurar el envío de correo:
+
+| Configuración | Valor |
+| --- | --- |
+| `EMAIL_HOST` | `#!python 'smtp-relay.brevo.com'` |
+| `EMAIL_PORT` | 587 |
+| `EMAIL_HOST_USER` | Correo de «Iniciar Sesión/Login» de tu configuración SMTP<br>Típicamente algo en la forma `a7f45c86e@smtp-brevo.com` |
+| `EMAIL_HOST_PASSWORD` | Valor de clave SMTP<br>:warning: Sólo aparecerá la primera vez (guárdala en sitio seguro) |
+| `DEFAULT_FROM_EMAIL` | El correo electrónico que usaste para crear la cuenta [brevo.com](https://brevo.com) |
+
+!!! danger "EMAIL_HOST_PASSWORD"
+
+    Nunca expongas el contenido de `EMAIL_HOST_PASSWORD` ni lo incluyas en el control de versiones de tu proyecto. El paquete [`prettyconf`](../../../paquetes/config/prettyconf.md) puede ser de gran ayuda.
+
+### Modo de uso
+
+Existen varias maneras de enviar correo a través de Django, pero aquí vamos a tratar el caso de uso mediante la clase [`EmailMessage`](https://docs.djangoproject.com/en/stable/topics/email/#the-emailmessage-class), ya que es la que ofrece mayor flexibilidad.
+
+=== "Envío simple"
+
+    ```pycon
+    >>> from django.core.mail import EmailMessage
+
+    >>> email = EmailMessage(
+    ...     subject='Email test',
+    ...     body='Hello there! This is the email body',
+    ...     to=['recipient@example.com'],
+    ... )
+
+    >>> email.send()#(1)!
+    1
+    ```
+    { .annotate }
+    
+    1. Esta función devuelve un `#!python 1` si todo ha ido bien y un valor distinto si ha habido algún error.
+
+=== "Envío con HTML"
+
+    ```python hl_lines="8"
+    >>> from django.core.mail import EmailMessage
+    
+    >>> email = EmailMessage(
+    ...     subject='Email test',
+    ...     body='<h3>Hello there!</h3> <p>This is the email body</p>',
+    ...     to=['recipient@example.com'],
+    ... )
+    >>> email.content_subtype = 'html'
+    
+    >>> email.send()#(1)!
+    1
+    ```
+    { .annotate }
+    
+    1. Esta función devuelve un `#!python 1` si todo ha ido bien y un valor distinto si ha habido algún error.
+
+=== "Envío con HTML y adjunto"
+
+    ```python hl_lines="9"
+    >>> from django.core.mail import EmailMessage
+    
+    >>> email = EmailMessage(
+    ...     subject='Email test',
+    ...     body='<h3>Hello there!</h3> <p>This is the email body</p>',
+    ...     to=['recipient@example.com'],
+    ... )
+    >>> email.content_subtype = 'html'
+    >>> email.attach_file('report.pdf')#(1)!
+    
+    >>> email.send()#(2)!
+    1
+    ```
+    { .annotate }
+    
+    1. Puedes usar *ruta relativa* o *ruta absoluta* al fichero en cuestión.
+    2. Esta función devuelve un `#!python 1` si todo ha ido bien y un valor distinto si ha habido algún error.
+
+??? tip "Múltiples destinatarios"
+
+    En el caso de querer enviar el mismo correo a múltiples destinatarios, podemos usar el parámetro `to` (_formato lista_) del constructor sobre `EmailMessage()`.
+
+    Pero una forma más «eficiente» de llevarlo a cabo es utilizando la función [`send_mass_mail()`](https://docs.djangoproject.com/en/stable/topics/email/#send-mass-mail) que sólo abre una única conexión con el servidor SMTP.
+
+#### Plantillas de correo
+
+Una estrategia bastante interesante es escribir la plantilla de correo (como una plantilla normal de Django) pero usando *Markdown* y luego renderizarla mediante [Django Markdownify](#django-markdownify).
+
+Supogamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que preparamos una plantilla de correo para informar de que un nuevo «post» se ha añadido al «blog» desde la vista correspondiente:
+
+=== "Plantilla"
+
+    ```markdown title="posts/templates/posts/emails/add.md"
+    Hi there!
+
+    We are exited to announce that a new post has added to our blog:
+    **{{ post }}**
+
+    Keep in touch!
+    Best regards.
+    ```
+
+=== "Vista"
+
+    ```python title="posts/views.py" hl_lines="3 5 13-16"
+    from django.core.mail import EmailMessage
+    from django.shortcuts import redirect, render
+    from django.template.loader import render_to_string#(1)!
+
+    from markdown import markdown#(2)!
+
+
+    @login_required
+    def add_post(request):
+        if request.method == 'POST':
+            if (form := AddPostForm(request.POST)).is_valid():
+                post = form.save()
+                body = markdown(render_to_string(#(3)!
+                    'posts/emails/add.md',#(4)!
+                    {'post': post},#(5)!
+                ))
+                email = EmailMessage(
+                    subject='New post',
+                    body=body,
+                    to=['super@blog.com'],
+                )
+                email.send()#(6)!
+                return redirect('posts:post-list')
+        else:
+            form = AddPostForm()
+        return render(request, 'posts/post/add.html', {'form': form})
+    ```    
+    { .annotate }
+    
+    1. Necesitamos la función [`render_to_string()`](https://docs.djangoproject.com/en/stable/topics/templates/#django.template.loader.render_to_string) que devuelve la plantilla renderizada como *cadena de texto*.
+    2. El paquete `markdown` nos permite pasar de *Markdown* a HTML.
+    3. Renderizamos la plantilla usando funcionalidades de Django y luego la convertimos desde *Markdown* a HTML.
+    4. Pasamos la ruta a la plantilla de correo.
+    5. El contexto vendrá definido por el «post» que acabamos de crear.
+    6. Idealmente habría que [desacoplar esta tarea](#django-rq).
+
+## Django ColorField
+
+[`django-colorfield`](https://github.com/fabiocaccamo/django-colorfield) es un paquete Python que proporciona un **«nuevo» campo para almacenar colores** en los modelos de Django.
+
+Además ofrece un **«color picker»** muy agradable para seleccionar el color de manera visual en la interfaz administrativa de Django.
+
+### Instalación
+
+La instalación del paquete es muy sencilla:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ pip install django-colorfield
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django-colorfield
+    ```
+
+### Configuración
+
+Para configurar `django-colorfield` debemos «instalar» la aplicación en `settings.py`:
+
+```python title="main/settings.py"
+INSTALLED_APPS = (
+    # ...
+    'colorfield',
+    # ...
+)
+```
+
+??? tip "Producción"
+
+    Sólo en un escenario de producción, debes ejecutar también el siguiente comando para recopilar los ficheros estáticos y que el selector de color en la interfaz administrativa funcione correctamente:
+
+    === "*venv* :octicons-package-24:{.blue}"
+
+        ```console
+        $ ./manage.py collectstatic
+        ```
+
+    === "*uv* &nbsp;:simple-uv:{.uv}"
+
+        ```console
+        $ uv run manage.py collectstatic
+        ```
+
+### Modo de uso
+
+Este paquete proporciona la clase [`ColorField`](https://github.com/fabiocaccamo/django-colorfield?tab=readme-ov-file#models) para almacenar colores.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> para almacenar el ^^color de la categoría de un «post»^^ en un proyecto de «blog»:
+
+```python title="categories/models.py" hl_lines="9"
+from colorfield.fields import ColorField
+from django.db import models
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256)
+    content = models.TextField()
+    color = ColorField(default='#FF0000')#(1)!
+```
+{ .annotate }
+
+1.  - Es posible definir un **color por defecto**.
+    - En este caso se ha definido el rojo `#FF0000`.

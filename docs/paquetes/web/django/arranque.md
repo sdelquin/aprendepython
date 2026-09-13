@@ -1,0 +1,475 @@
+---
+icon: material/engine-outline
+tags:
+  - Paquetes de terceros
+  - Desarrollo web
+  - Django
+---
+
+# Puesta en marcha
+
+<span class="dj-level">:material-signal-cellular-1: Django básico</span>
+
+## Flujo de procesos
+
+Como bien se señaló en sus [características](desarrollo-web.md#django), Django se fundamenta en un esquema **MTV** (_Model-Template-View_). Su flujo de procesos es algo del siguiente estilo:
+
+```mermaid
+flowchart LR
+    req{{Petición HTTP}} e1@==> url[URLs]
+    url e2@--> view[Vistas]
+    view e3@<--> model[(Modelos)]
+    view e4@==> resp{{Respuesta HTTP}}
+    view e5@<--> template[Plantillas]
+    e1@{ animate: true }
+    e2@{ animate: true }
+    e3@{ animate: true }
+    e4@{ animate: true }
+    e5@{ animate: true }
+```
+
+## Entorno de trabajo
+
+Suponiendo que disponemos de [Python](../../../entornos/ide/contexto-real.md#python) ya instalado en nuestra máquina, debemos configurar ciertos aspectos para preparar el entorno de desarrollo de **Django**.
+
+### Carpeta del proyecto
+
+Imaginemos que el proyecto se va a llamar `blog`. Crearemos una carpeta con dicho nombre:
+
+```console
+$ mkdir blog
+$ cd blog
+```
+
+### Entorno virtual
+
+Es altamente recomendable utilizar un [entorno virtual](../../../entornos/ide/contexto-real.md#entornos-virtuales) a la hora de comenzar cualquier proyecto Python. Django no iba a ser un caso especial.
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    Una vez ==dentro de la carpeta del proyecto== vamos a crear el citado entorno virtual. Para ello haremos lo siguiente:
+
+    ```console
+    $ python -m venv .venv --prompt blog
+    ```
+
+    !!! danger "Carpeta del proyecto"
+
+        Es importante que estemos dentro de la carpeta del proyecto cuando creemos el entorno virtual.
+
+    #### Activar el entorno virtual { #activate-venv }
+
+    Para activar el entorno virtual usamos el siguiente comando:
+
+    ```console
+    $ source .venv/bin/activate
+    ```
+
+    :material-check-all:{ .blue } Cuando el entorno virtual está activado, suele aparecer el nombre del «prompt» del proyecto entre paréntesis delante del símbolo del sistema:
+
+    ```console
+    (blog)$ 
+    ```
+
+    !!! tip "Recuerda activar"
+
+        Todas las intervenciones que hagamos durante el desarrollo del proyecto requieren tener el entorno virtual activado para disponer de las distintas librerías y paquetes previamente instaladas. ¡Recuerda activar el entorno virtual!
+
+    #### Desactivar el entorno virtual { #desactivate-venv }
+
+    Para desactivar el entorno virtual basta con ejecutar el siguiente comando:
+
+    ```console
+    $ deactivate
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](../../../entornos/ide/contexto-real.md#uv) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
+
+    ```console
+    $ uv init --bare --no-workspace #(1)!
+    Initialized project `blog`
+    ```
+    { .annotate }
+    
+    1. Se creará un fichero `pyproject.toml` (en la carpeta del proyecto) con el siguiente contenido:
+
+        ```toml
+        [project]
+        name = "blog"
+        version = "0.1.0"
+        requires-python = ">=3.13"
+        dependencies = [] 
+        ```
+
+## Nuevo proyecto
+
+Suponiendo que ya hemos [creado la carpeta](#carpeta-del-proyecto) y el [entorno virtual](#entorno-virtual) vamos a crear un **nuevo proyecto Django**.
+
+### Instalación de dependencias
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    [Activamos el entorno virtual](#activate-venv) e ^^instalamos^^ el paquete _Django_:
+
+    ```console
+    $ pip install django
+    ```
+
+    !!! tip "Recuerda activar"
+
+        Todas las intervenciones que hagamos durante el desarrollo del proyecto requieren tener el entorno virtual activado para disponer de las distintas librerías y paquetes previamente instaladas. ¡Recuerda activar el entorno virtual!
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv add django #(1)!
+    Using CPython 3.13.2
+    Creating virtual environment at: .venv
+    Resolved 5 packages in 281ms
+    Installed 3 packages in 128ms
+     + asgiref==3.9.2
+     + django==5.2.6
+     + sqlparse==0.5.3
+    ```
+    { .annotate }
+    
+    1.  1. Crea el entorno virtual (si no existía).
+        2. Instala `django` (y sus dependencias) en el entorno virtual.
+        3. Añade `django` como requerimiento a `pyproject.toml`
+        4. Crea el archivo `uv.lock` con las dependencias necesarias.
+
+Podemos inspeccionar el contenido de la carpeta `.venv` donde se ha creado el _entorno virtual_. Mostramos aquellas carpetas y ficheros más relevantes:
+
+```mermaid
+flowchart LR
+    venv[.venv] --> bin[bin<br>scripts]
+    bin --> python{{python}}
+    bin --> django-admin{{django-admin}}
+    venv --> lib
+    lib --> py314[python3.14]
+    py314 --> sp[site-packages]
+    sp --> django
+    sp --> asgiref
+    sp --> sqlparse
+```
+
+### Creación del proyecto
+
+Cuando instalamos Django, este paquete ofrece un ejecutable llamado [`django-admin`](https://docs.djangoproject.com/en/stable/ref/django-admin/).
+
+Supongamos que el proyecto se va a llamar `blog` y que ya estamos dentro de una carpeta llamada `blog`.
+
+Para crear el proyecto lanzamos el siguiente comando:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ django-admin startproject main .
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run django-admin startproject main .
+    ```
+
+El proyecto habrá quedado con la siguiente estructura:
+
+```python
+.
+├── main
+│   ├── __init__.py#(1)!
+│   ├── asgi.py#(2)!
+│   ├── settings.py#(3)!
+│   ├── urls.py#(4)!
+│   └── wsgi.py#(5)!
+└── manage.py#(6)!
+```
+{ .annotate }
+
+1. Identifica la carpeta como un paquete Python.
+2. Configuraciones para el servidor de aplicación ASGI.
+3. Configuraciones del propio proyecto.
+4. URLs de primer nivel.
+5. Configuraciones para el servidor de aplicación WSGI.
+6. Herramienta (manejador) para gestión del proyecto.
+
+El fichero `manage.py` nos permite ejecutar una [gran variedad de acciones](https://docs.djangoproject.com/en/stable/ref/django-admin/) sobre el proyecto Django. Su funcionalidad es la misma que `django-admin` pero además establece la variable de entorno [`DJANGO_SETTINGS_MODULE`](https://docs.djangoproject.com/en/stable/topics/settings/#envvar-DJANGO_SETTINGS_MODULE) apuntando a las configuraciones del proyecto `main/settings.py`.
+
+??? tip "main"
+
+    El hecho de haber elegido `main` como nombre del proyecto es simplemente porque se crea una carpeta con ese nombre dentro del proyecto con los elementos «principales» (_main_).
+
+    Pero se podría haber utilizando cualquier otro nombre que denotara ese lugar preferente: `core`, `base`, `kernet`, etc.
+
+## Primer arranque
+
+Para verificar que todo está en orden podemos comprobar el estado del proyecto con el siguiente comando:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py check
+    System check identified no issues (0 silenced).
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py check
+    System check identified no issues (0 silenced).
+    ```
+    
+    ??? abstract "justfile"
+
+        Consulta la receta [`check`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+Antes de arrancar nuestro proyecto Django por primera vez, necesitamos aplicar las [migraciones](modelos.md#migraciones). Aunque se verán con más profundidad en futuras secciones, en este punto podemos entender que hay una serie de acciones a llevar a cabo en la base de datos para que Django pueda disponer de una estructura sobre la que trabajar.
+
+Para ello ejecutamos el siguiente comando:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py migrate
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, sessions
+    Running migrations:
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying admin.0002_logentry_remove_auto_add... OK
+      Applying admin.0003_logentry_add_action_flag_choices... OK
+      Applying contenttypes.0002_remove_content_type_name... OK
+      Applying auth.0002_alter_permission_name_max_length... OK
+      Applying auth.0003_alter_user_email_max_length... OK
+      Applying auth.0004_alter_user_username_opts... OK
+      Applying auth.0005_alter_user_last_login_null... OK
+      Applying auth.0006_require_contenttypes_0002... OK
+      Applying auth.0007_alter_validators_add_error_messages... OK
+      Applying auth.0008_alter_user_username_max_length... OK
+      Applying auth.0009_alter_user_last_name_max_length... OK
+      Applying auth.0010_alter_group_name_max_length... OK
+      Applying auth.0011_update_proxy_permissions... OK
+      Applying auth.0012_alter_user_first_name_max_length... OK
+      Applying sessions.0001_initial... OK
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py migrate
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, sessions
+    Running migrations:
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying admin.0002_logentry_remove_auto_add... OK
+      Applying admin.0003_logentry_add_action_flag_choices... OK
+      Applying contenttypes.0002_remove_content_type_name... OK
+      Applying auth.0002_alter_permission_name_max_length... OK
+      Applying auth.0003_alter_user_email_max_length... OK
+      Applying auth.0004_alter_user_username_opts... OK
+      Applying auth.0005_alter_user_last_login_null... OK
+      Applying auth.0006_require_contenttypes_0002... OK
+      Applying auth.0007_alter_validators_add_error_messages... OK
+      Applying auth.0008_alter_user_username_max_length... OK
+      Applying auth.0009_alter_user_last_name_max_length... OK
+      Applying auth.0010_alter_group_name_max_length... OK
+      Applying auth.0011_update_proxy_permissions... OK
+      Applying auth.0012_alter_user_first_name_max_length... OK
+      Applying sessions.0001_initial... OK
+    ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`migrate`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+Ahora ya estamos en disposición de «levantar» el **servidor de desarrollo** de Django:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py runserver
+    Watching for file changes with StatReloader
+    Performing system checks...
+    
+    System check identified no issues (0 silenced).
+    September 28, 2025 - 21:41:23
+    Django version 5.2.6, using settings 'main.settings'
+    Starting development server at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+    
+    WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+    For more information on production servers see: https://docs.djangoproject.com/en/stable/howto/deployment/
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py runserver
+    Watching for file changes with StatReloader
+    Performing system checks...
+    
+    System check identified no issues (0 silenced).
+    September 28, 2025 - 21:41:23
+    Django version 5.2.6, using settings 'main.settings'
+    Starting development server at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+    
+    WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+    For more information on production servers see: https://docs.djangoproject.com/en/stable/howto/deployment/
+    ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`dev`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+Siempre y cuando no haya surgido algún inconveniente de última hora, con esto ya tendremos accesible el proyecto en la URL [http://127.0.0.1:8000/](http://127.0.0.1:8000/) (1)
+{ .annotate }
+
+1. También estará disponible en [http://localhost:8000/](http://localhost:8000/)
+
+!!! question "Detener el servidor"
+
+    Para detener el servidor de desarrollo basta con pulsar ++ctrl+c++
+
+!!! warning "Puerto en uso"
+
+    Es posible que en algún momento —al arrancar el servidor de desarrollo— nos aparezca este mensaje: <span class="acc">«Error: That port is already in use.»</span> Ello se debe a que ya existe un proceso escuchando en el puerto 8000.
+
+    Para resolverlo debemos «matar» el proceso (o procesos) bloqueantes:
+    
+    ```bash
+    pkill -f "[Pp]ython.*manage.py runserver" || echo "No process"
+    ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`kill`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+### Interfaz administrativa
+
+Django proporciona «automágicamente» una [interfaz administrativa](admin.md) que permite interactuar con la base de datos de manera cómoda y accesible.
+
+Para poder acceder a dicha interfaz administrativa, obviamente necesitaremos unas **credenciales**. Vamos a aprovechar este momento para crear una cuenta de **«superusuario»** (_administrador_) mediante el subcomando `createsuperuser`:
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    ```console
+    $ ./manage.py createsuperuser
+    Username (leave blank to use 'sdelquin'): admin
+    Email address: admin@example.com
+    Password:
+    Password (again):
+    Superuser created successfully.
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    ```console
+    $ uv run manage.py createsuperuser
+    Username (leave blank to use 'sdelquin'): admin
+    Email address: admin@example.com
+    Password:
+    Password (again):
+    Superuser created successfully.
+    ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`create-su`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+Ahora ya podremos acceder a la **interfaz administrativa**[^3] en la URL http://127.0.0.1:8000/admin/ con las credenciales anteriores.
+
+## Control de versiones
+
+Es muy habitual usar un sistema de control de versiones sobre los proyectos de desarrollo de software. Más concretamente [git](https://git-scm.com/) se ha convertido es un estándar «de-facto» en el mundo del desarrollo.
+
+Para crear un nuevo repositorio, usaremos el siguiente comando:
+
+```console
+$ git init
+```
+
+:material-alarm-light:{.acc} Esto no será necesario si ya estás trabajando en un repositorio `git`(GitHub) creado previamente.
+
+### Ignorando archivos
+
+Es fundamental **excluir ciertos archivos** del sistema de control de versiones. Para ello es necesario crear un fichero `.gitignore` en el raíz de nuestro proyecto.
+
+Aunque existen [plantillas prediseñadas `.gitignore`](https://github.com/github/gitignore) para cada tipo de proyecto, a continuación se muestra un contenido mínimo para un proyecto Django:
+
+```bash title=".gitignore"
+.venv #(1)!
+db.sqlite3 #(2)!
+*.pyc #(3)!
+*_cache/ #(4)!
+__pycache__/ #(5)!
+static/ #(6)!
+media/ #(7)!
+*.log #(8)!
+.env #(9)!
+```
+{ .annotate }
+
+1. Carpeta que contiene el [entorno virtual](#entorno-virtual).
+2. Nombre (por defecto) de la base de datos [sqlite](../../../libreria/datos/sqlite.md) en Django.
+3. Ficheros con [«bytecode»](../../../entornos/desarrollo/maquina.md#compiladores) compilado de Python.
+4. Varias carpetas de caché (`.mypy_cache`, `.pytest_cache`, `ruff_cache`)
+5. Carpeta específica de caché para Python.
+6. Carpeta de [archivos estáticos](estaticos.md).
+7. Carpeta de [archivos media](modelos.md#ruta-del-fichero).
+8. Archivos de auditoría/registro.
+9. Archivo de [configuraciones](../../config/prettyconf.md).
+
+## Requerimientos
+
+Para que los proyectos (Python) puedan ser reproducibles en otros entornos (por ejemplo en producción) es altamente recomendable añadir un fichero con los requerimientos.
+
+=== "*venv* :octicons-package-24:{.blue}"
+
+    El fichero de requerimientos se suele denominar `requirements.txt` y contiene una línea por cada paquete/librería Python que utilicemos en el proyecto.
+
+    En el caso de un proyecto Django, inicialmente sólo tendremos este requerimiento[^1]:
+
+    ```title="requirements.txt"
+    django
+    ```
+
+    Pero también es posible fijar[^2] la versión exacta del paquete que estamos utilizando. Esto ayuda a que sea más fácil reproducir el proyecto en otro entorno.
+
+    Para añadir el número de versión al fichero de requisitos simplemente lo agregamos a cada línea:
+
+    ```title="requirements.txt"
+    django==5.1.1
+    ```
+
+    Una forma más «directa» de hacer esto es mediante utilidades de línea de comandos:
+
+    ```console
+    $ pip freeze | grep -i django >> requirements.txt
+    ```
+
+=== "*uv* &nbsp;:simple-uv:{.uv}"
+
+    La gestión de los requerimientos por parte de `uv` es transparente. Maneja dos ficheros que permiten definir los requerimientos del proyecto:
+
+    <div class="annotate" markdown>
+
+    - [x] `pyproject.toml`(1)
+    - [x] `uv.lock`(2)
+
+    </div>
+
+    1. Aquí se definen los requerimientos (paquetes instalados con `uv add`)
+    2. Aquí se establecen las dependencias de los paquetes «primarios» instalados previamente.
+
+    :material-alarm-light:{.acc} Ambos ficheros deberían estar en el **control de versiones**.
+
+[^1]: También se denominan **dependencias** del proyecto.
+[^2]: Viene del verbo «pin» en inglés.
+[^3]: La interfaz administrativa ha sido generada por Django sin escribir una sola línea de código adicional.
