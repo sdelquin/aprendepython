@@ -6,7 +6,7 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
-- Fix typo at packages title.
+- Corrige error tipográfico en menú de paquetes.
 
 ## Version 3.3.0
 
