@@ -1,8 +1,8 @@
 ---
 icon: material/microsoft-visual-studio-code
 tags:
-  - Fundamentos del lenguaje
   - Entornos de desarrollo
+  - Entorno integrado de desarrollo
   - Visual Studio Code
 ---
 
@@ -61,7 +61,7 @@ A continuación se muestran los ficheros de configuración _que yo utilizo_ para
     
         `%APPDATA%\Code\User\settings.json`
 
-    === ":simple-apple: MacOS"
+    === ":simple-apple: macOS"
 
         `~/Library/Application Support/Code/User/settings.json`
 
@@ -100,7 +100,7 @@ A continuación se muestran los ficheros de configuración _que yo utilizo_ para
     
         `%APPDATA%\ruff\ruff.toml`
 
-    === ":simple-apple: MacOS"
+    === ":simple-apple: macOS"
 
         `~/.config/ruff/ruff.toml`
 
@@ -128,7 +128,7 @@ A continuación se muestran los ficheros de configuración _que yo utilizo_ para
     
         `%APPDATA%\ty\ty.toml`
 
-    === ":simple-apple: MacOS"
+    === ":simple-apple: macOS"
 
         `~/.config/ty/ty.toml`
 

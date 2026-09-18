@@ -61,6 +61,7 @@
 *[TDD]: Test-Driven Development
 *[TIOBE]: The Importance Of Being Earnest
 *[TPU]: Tensor Processing Unit
+*[UML]: Unified Modeling Language
 *[URL]: Uniform Resource Locators
 *[UUID]: Universally Unique Identifier
 *[VPS]: Virtual Private Server

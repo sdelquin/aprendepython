@@ -336,9 +336,98 @@ Por aquí te dejo una lista de consejos muy interesantes cuando nos enfrentamos 
 26. Lee código de otras personas para inspirarte.
 27. Únete a comunidades de desarrollo para aprender con otros/as programadores/as. Por ejemplo: [Python Canarias](https://pythoncanarias.es).
 
+## Instalación
+
+La forma más habitual de instalar Python (junto con sus librerías) es descargarlo e instalarlo desde su página oficial:
+
+=== ":fontawesome-brands-windows: Windows"
+
+    [Descargar Python para Windows](https://www.python.org/downloads/windows/)
+    !!! info "Ayuda"
+
+        [Tutorial para instalar Python en Windows](https://www.freecodecamp.org/news/how-to-install-python-in-windows-operating-system/)
+
+=== ":simple-apple: macOS"
+
+    [Descargar Python para macOS](https://www.python.org/downloads/macos/)
+
+=== ":simple-linux: Linux"
+
+    [Descargar Python para Linux](https://www.python.org/downloads/linux/)
+
+## Gestión de paquetes
+
+La instalación limpia[^7] de Python ya ofrece de por sí muchos paquetes y módulos que vienen por defecto. Es lo que se llama la [librería estándar](https://docs.python.org/es/3.12/tutorial/stdlib.html). Pero una de las características más destacables de Python es su inmenso «ecosistema» de paquetes disponibles en el [Python Package Index (PyPI)](https://pypi.org/).
+
+Para gestionar los paquetes que tenemos en nuestro sistema se utiliza la herramienta [pip](https://pip.pypa.io/en/stable/), una utilidad que también se incluye en la instalación (por defecto) de Python. Con ella podremos instalar, desinstalar y actualizar paquetes, según nuestras necesidades. A continuación se muestran las instrucciones que usaríamos para cada una de estas operaciones:
+
+=== ":octicons-diff-added-24: Instalar"
+
+    ```console
+    $ pip install pytest  # pytest es sólo un ejemplo
+    ```
+
+    En el caso de querer **instalar dependencias desde un fichero**[^8] tendríamos que ejecutar:
+
+    ```console
+    $ pip install -r requirements.txt
+    ```
+
+    ??? tip "Caché"
+
+        Utiliza el siguiente comando si quieres deshabilitar la caché[^9] a la hora de instalar paquetes:
+
+        ```console
+        $ pip install --no-cache-dir pytest
+        ```
+
+=== ":octicons-diff-removed-24: Desinstalar"
+
+    ```console
+    $ pip uninstall pytest
+    ```
+
+=== ":material-update: Actualizar"
+
+    ```console
+    $ pip install -U pytest
+    ```
+
+!!! danger "This environment is externally managed"
+
+    A partir del [PEP 668](https://peps.python.org/pep-0668/) se decidió que `pip` no debería instalar (_por defecto_) paquetes a nivel global en el sistema operativo, ya que esto podría provocar conflictos de versiones con otras herramientas ya instaladas.
+
+    Lo que se recomienda es utilizar [entornos virtuales](#entornos-virtuales) para aislar los espacios de trabajo.
+
+### Entornos virtuales
+
+Cuando trabajamos en distintos proyectos, no todos ellos requieren los mismos paquetes ni siquiera la misma versión de Python. La gestión de estas situaciones no es sencilla si únicamente instalamos paquetes y manejamos configuraciones a nivel global (a nivel del sistema). Es por ello que surge el concepto de **entornos virtuales**. Como su propio nombre indica se trata de crear distintos entornos en función de las necesidades de cada proyecto, lo que nos permite establecer qué versión de Python usaremos y qué paquetes instalaremos dentro del mismo.
+
+La manera ~~más sencilla~~ oficial de [crear un entorno virtual](https://docs.python.org/es/3/library/venv.html#creating-virtual-environments) es la siguiente:
+
+```console
+$ cd myproject #(1)!
+$ python -m venv --prompt myproject .venv #(2)!
+$ source .venv/bin/activate #(3)!
+```
+
+1. Entrar en la carpeta de nuestro proyecto.
+2. Este comando crea una carpeta `.venv`[^10] con los ficheros que constituyen el entorno virtual.
+3. Activar el entorno virtual. A partir de aquí todo lo que se instale quedará dentro del entorno virtual.
+
+!!! note "VIRTUAL_ENV"
+
+    Cuando activamos el entorno virtual se «crea» una variable de entorno `VIRTUAL_ENV` que contiene la ruta al entorno virtual. _Esto es muy útil para tomar decisiones en función de si está activo o no el entorno virtual actual_.
+
+En cualquier caso, animamos encarecidamente al uso de [`uv`](../ide/uv.md) como herramienta de instalación y proyectos Python.
+
 [^1]: Amplía información sobre el GIL en [este enlace](https://codigofacilito.com/articulos/gil-python).
 [^2]: El primer «commit» de CPython registrado por Guido van Rossum está disponible en [Github](https://github.com/python/cpython/commit/7f777ed95a19224294949e1b4ce56bbffcb1fe9f).
 [^3]: Ciclo de trabajo de duración fija enfocado en desarrollar determinados aspectos software.
 [^4]: Dícese de algo/alguien que sigue las convenciones de Python.
 [^5]: Imagen generada con Inteligencia Artificial.
 [^6]: Consejos obtenidos de la cuenta :simple-x: de [@codewithvoid](https://twitter.com/codewithvoid).
+[^7]: También llamada «vanilla installation» ya que es la que viene por defecto y en la que no se realiza ninguna personalización.
+[^8]: Como regla general los proyectos hechos en Python suelen tener un fichero `requirements.txt` con las dependencias del proyecto. Un paquete por cada línea con la opción de fijar su versión.
+[^9]: La caché de pip es un almacenamiento temporal que acelera la instalación de paquetes.
+[^10]: Es una **convención** llamar `.venv` al directorio/carpeta que contiene el entorno virtual Python.

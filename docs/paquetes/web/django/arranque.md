@@ -30,7 +30,7 @@ flowchart LR
 
 ## Entorno de trabajo
 
-Suponiendo que disponemos de [Python](../../../entornos/ide/contexto-real.md#python) ya instalado en nuestra máquina, debemos configurar ciertos aspectos para preparar el entorno de desarrollo de **Django**.
+Suponiendo que disponemos de [Python](../../../entornos/desarrollo/python.md#instalacion) ya instalado en nuestra máquina, debemos configurar ciertos aspectos para preparar el entorno de desarrollo de **Django**.
 
 ### Carpeta del proyecto
 
@@ -43,7 +43,7 @@ $ cd blog
 
 ### Entorno virtual
 
-Es altamente recomendable utilizar un [entorno virtual](../../../entornos/ide/contexto-real.md#entornos-virtuales) a la hora de comenzar cualquier proyecto Python. Django no iba a ser un caso especial.
+Es altamente recomendable utilizar un [entorno virtual](../../../entornos/desarrollo/python.md#entornos-virtuales) a la hora de comenzar cualquier proyecto Python. Django no iba a ser un caso especial.
 
 === "*venv* :octicons-package-24:{.blue}"
 
@@ -85,7 +85,7 @@ Es altamente recomendable utilizar un [entorno virtual](../../../entornos/ide/co
 
 === "*uv* &nbsp;:simple-uv:{.uv}"
 
-    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](../../../entornos/ide/contexto-real.md#uv) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
+    Una vez ==dentro de la carpeta del proyecto== vamos a crear un [proyecto (_uv_)](../../../entornos/ide/uv.md) que gestiona de forma transparente el _entorno virtual_. Para ello haremos lo siguiente:
 
     ```console
     $ uv init --bare --no-workspace #(1)!

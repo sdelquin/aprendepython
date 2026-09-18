@@ -12,7 +12,7 @@ tags:
 
 ## Instalación
 
-Hay [múltiples vías](https://github.com/casey/just?tab=readme-ov-file#installation) para instalar `uv`:
+Hay [múltiples vías](https://github.com/casey/just?tab=readme-ov-file#installation) para instalar `just`:
 
 === ":fontawesome-brands-windows: Windows"
 
@@ -23,7 +23,7 @@ Hay [múltiples vías](https://github.com/casey/just?tab=readme-ov-file#installa
     
     1. Instalación mediante [`winstall`](https://winstall.app/apps/Casey.Just).
 
-=== ":simple-apple: MacOS"
+=== ":simple-apple: macOS"
 
     ```console
     $ mkdir -p ~/.local/bin
@@ -47,7 +47,7 @@ Una vez con la herramienta instalada, basta con crear un fichero `justfile` en e
 
 ## Justfile para Django
 
-A continuación se muestra un `justfile` con _recetas_ para un proyecto Django, suponiendo que se está utilizando [`uv`](../../../entornos/ide/contexto-real.md#uv) como gestor de entornos virtuales y paquetería Python:
+A continuación se muestra un `justfile` con _recetas_ para un proyecto Django, suponiendo que se está utilizando [`uv`](../../../entornos/ide/uv.md) como gestor de entornos virtuales y paquetería Python:
 
 ```makefile title="justfile" linenums="1"
 # Run development server

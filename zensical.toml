@@ -42,9 +42,18 @@ repo = "material/github"
     ]},
     {"Entorno integrado de desarrollo" = [
         "entornos/ide/index.md",
+        "entornos/ide/uv.md",
         "entornos/ide/thonny.md",
-        "entornos/ide/contexto-real.md",
         "entornos/ide/vscode.md",
+    ]},
+    {"Pruebas de software" = [
+        "entornos/pruebas/index.md",
+    ]},
+    {"Prácticas de desarrollo" = [
+        "entornos/practicas/index.md",
+    ]},
+    {"Diagramas" = [
+        "entornos/diagramas/index.md",
     ]}
 ]
 

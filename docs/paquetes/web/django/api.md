@@ -491,7 +491,7 @@ Por tanto, para obtener los resultados de nuestro punto de entrada `/api/posts/`
         > curl.exe -X GET http://localhost:8000/api/posts/
         ```
 
-    === ":simple-apple: MacOS"
+    === ":simple-apple: macOS"
 
         ```console
         $ brew install curl

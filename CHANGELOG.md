@@ -13,6 +13,8 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores.
 - Django: Autenticación
   - Corrige errores menores.
+- Entorno integrado de desarrollo: uv
+  - Añade documentación.
 
 ## Version 3.3.0
 

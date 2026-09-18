@@ -1,0 +1,3 @@
+# Diagramas
+
+Los diagramas son una herramienta fundamental para representar de forma gráfica la estructura y el comportamiento de un sistema software, facilitando su análisis, diseño y comprensión. En esta unidad se estudiarán diferentes tipos de diagramas UML (Lenguaje Unificado de Modelado), prestando especial atención a los diagramas de clases y a su representación de objetos y relaciones, así como a los diagramas de casos de uso, secuencia, comunicación, actividad y estados. También se abordará el uso de herramientas para su creación, la generación automática de código y la ingeniería inversa.

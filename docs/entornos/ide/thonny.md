@@ -1,8 +1,8 @@
 ---
 icon: material/baby-carriage
 tags:
-  - Fundamentos del lenguaje
   - Entornos de desarrollo
+  - Entorno integrado de desarrollo
   - Thonny
 ---
 
@@ -27,7 +27,7 @@ Cuando nos encontramos con un programa que proporciona estas funciones (e inclus
 
 ## Instalación
 
-Para instalar Thonny debemos [acceder a su web](https://thonny.org/) y descargar la aplicación para nuestro sistema operativo. La ventaja es que está disponible tanto para **Windows**, **MacOS** y **Linux**. Una vez descargado el fichero lo ejecutamos y seguimos su instalación paso por paso.
+Para instalar Thonny debemos [acceder a su web](https://thonny.org/) y descargar la aplicación para nuestro sistema operativo. La ventaja es que está disponible tanto para **Windows**, **macOS** y **Linux**. Una vez descargado el fichero lo ejecutamos y seguimos su instalación paso por paso.
 
 Una vez terminada la instalación ya podemos lanzar la aplicación que se verá parecida a la siguiente imagen:
 
@@ -60,7 +60,7 @@ El intérprete de Python (por lo general) se identifica claramente porque posee 
 
 ```console
 $ python
-Python 3.12.5 (main, Aug 14 2024, 04:32:18) [Clang 18.1.8 ] on darwin
+Python 3.14.0 (main, Aug 14 2026, 04:32:18) [Clang 18.1.8 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
