@@ -1082,7 +1082,7 @@ Suponiendo que estamos usando la configuración por defecto de SQLite, primero d
     
     1. Instalación mediante [`winstall`](https://winstall.app/apps/SQLite.SQLite).
 
-=== ":simple-apple: MacOS"
+=== ":simple-apple: macOS"
 
     ```console
     $ brew install sqlite #(1)!
