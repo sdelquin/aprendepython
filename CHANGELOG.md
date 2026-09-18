@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.1
+
+Publicada el 18-09-2026
+
 - Corrige error tipográfico en menú de paquetes.
 - Entornos de desarrollo: Desarrollo de software
   - Mejora documentación.
