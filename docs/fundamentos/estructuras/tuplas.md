@@ -364,7 +364,7 @@ Sin embargo lo que obtendremos **no es una tupla** sino un [generador](../modula
 
 ## Tuplas vs Listas
 
-Aunque las tuplas y las listas puedan parecer estructuras de datos muy similares, sabemos que las tuplas carecen de ciertas operaciones, especialmente las que tienen que ver con la modificación de sus valores, ya que no son inmutables.
+Aunque las tuplas y las listas puedan parecer estructuras de datos muy similares, sabemos que las tuplas carecen de ciertas operaciones, especialmente las que tienen que ver con la modificación de sus valores, ya que no son mutables.
 
 Si las listas son más flexibles y potentes, **¿por qué íbamos a necesitar tuplas?** Veamos 4 potenciales ^^ventajas^^ del uso de tuplas frente a las listas:
 
