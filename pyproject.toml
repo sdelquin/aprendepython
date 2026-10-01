@@ -3,5 +3,5 @@ name = "aprendepython"
 version = "3.3.1"
 requires-python = ">=3.14"
 dependencies = [
-    "zensical==0.0.61",
+    "zensical==0.0.67",
 ]
