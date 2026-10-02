@@ -305,6 +305,8 @@ Django nos ofrece la posibilidad de comprobar el registro de migraciones:
      [X] 0001_initial
     sessions
      [X] 0001_initial
+    shared
+     (no migrations)
     ```
     { .annotate }
     
@@ -338,6 +340,8 @@ Django nos ofrece la posibilidad de comprobar el registro de migraciones:
      [X] 0001_initial
     sessions
      [X] 0001_initial
+    shared
+     (no migrations)
     ```
     { .annotate }
     
@@ -1123,13 +1127,33 @@ Podemos abrir una «shell» de base de datos con el comando:
 
 Podemos comprobar con una sencilla consulta SQL que el objeto se ha creado correctamente en la base de datos:
 
-```shell
+```sqlite3
 sqlite> .mode line
 sqlite> SELECT * FROM posts_post;
      id = 1
   title = Check out the new Django version
-   slug = check-out-the-new-django-version
 content = Awesome features of the last release of Django
+   slug = check-out-the-new-django-version
+
+     id = 2
+  title = Understanding URL routing in Django
+content = Learn how Django URL patterns work and how to organize routes for scalable applications.
+   slug = understanding-url-routing-in-django
+
+     id = 3
+  title = Working with function-based views in Django
+content = Learn how to handle requests and responses using function-based views in Django applications.
+   slug = working-with-function-based-views-in-django
+
+     id = 4
+  title = Mastering Django templates
+content = Understand template inheritance, context variables, and best practices for clean frontend rendering.
+   slug = mastering-django-templates
+
+     id = 5
+  title = Working with forms in Django
+content = Learn how to create, validate, and process forms using Django forms and ModelForms.
+   slug = working-with-forms-in-django
 ```
 
 !!! tip "Modo caja"
@@ -1167,6 +1191,7 @@ Partiendo del <span class="example">ejemplo:material-flash:</span> con el modelo
 >>> from posts.models import Post
 
 >>> Post.objects.all()#(1)!
+<QuerySet [<Post: Check out the new Django version>, <Post: Understanding URL routing in Django>, <Post: Working with function-based views in Django>, <Post: Mastering Django templates>, <Post: Working with forms in Django>]>
 ```
 { .annotate }
 
@@ -1197,7 +1222,8 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 ```pycon
 >>> from posts.models import Post
 
->>> Post.objects.filter(title__startswith='A')#(1)!
+>>> Post.objects.filter(title__startswith='W')#(1)!
+<QuerySet [<Post: Working with function-based views in Django>, <Post: Working with forms in Django>]>
 ```
 { .annotate }
 
@@ -1214,7 +1240,8 @@ En el siguiente <span class="example">ejemplo:material-flash:</span> vamos a rec
 ```pycon
 >>> from posts.models import Post
 
->>> p = Post.objects.get(pk=7)#(1)!
+>>> Post.objects.get(pk=1)#(1)!
+<Post: Check out the new Django version>
 ```
 { .annotate }
 
@@ -1224,21 +1251,23 @@ En el siguiente <span class="example">ejemplo:material-flash:</span> vamos a rec
 
     Cuando usamos el método `get()` y Django no encuentra ningún objeto que satisfaga la condición, lanzará una excepción de tipo [DoesNotExist](https://docs.djangoproject.com/en/stable/ref/models/class/#django.db.models.Model.DoesNotExist). Todos los modelos heredan esta excepción como atributo de clase, por lo tanto es posible capturarla de la siguiente manera:
 
-    ```python
-    try:
-        p = Post.objects.get(pk=-1)
-    except Post.DoesNotExist as err:
-        print('Sorry the post you need does not exist')
+    ```pycon
+    >>> try:
+    ...     Post.objects.get(pk=-1)
+    ... except Post.DoesNotExist as err:
+    ...     print('Sorry the post you need does not exist')
+    ...
+    Sorry the post you need does not exist
     ```
 
-Es posible que en cierta documentación de Django encuentres la siguiente «fórmula» para obtener un único objeto:
+Es posible que en cierta documentación de Django encuentres la siguiente «fórmula» para obtener un único objeto mediante la función [`first()`](#primeros-y-ultimos):
 
 ```python
-post = Post.objects.filter(pk=7).first()#(1)!
-```
-{ .annotate }
+>>> Post.objects.filter(pk=1).first()   # Caso 1
+<Post: Check out the new Django version>
 
-1. Utilizamos la función [`first()`](#primeros-y-ultimos).
+>>> Post.objects.filter(pk=-1).first()  # Caso 2
+```
 
 Hay que diferenciar dos casos:
 
@@ -1254,7 +1283,8 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 ```pycon
 >>> from posts.models import Post
 
->>> Post.objects.filter(title__startswith='A').exclude(title__endswith='z')#(1)!
+>>> Post.objects.filter(title__startswith='W').exclude(title__contains='forms')#(1)!
+<QuerySet [<Post: Working with function-based views in Django>]>
 ```
 { .annotate }
 
@@ -1262,7 +1292,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
     - El método `filter()` devuelve un [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) (una especie de lista «perezosa» de objetos).
     - `startswith` es un [«field lookup»](#selectores-de-consulta). Existen muchos otros.
     - El método `exclude()` devuelve un [QuerySet](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet) (una especie de lista «perezosa» de objetos).
-    - `endswith` es un [«field lookup»](#selectores-de-consulta). Existen muchos otros.
+    - `contains` es un [«field lookup»](#selectores-de-consulta). Existen muchos otros.
 
 !!! note "Encadenados"
 
@@ -1303,18 +1333,18 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
     | [`regex`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#regex) | Busca si casa con una expresión regular. |
     | [`iregex`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iregex) | Busca si casa con una expresión regular (ignorando mayúsculas/minúsculas). |
 
-=== "Fechas"
+=== "Fecha y Hora"
 
     | Selector | Descripción |
     | --- | --- |
     | [`date`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#date) | Busca si la fecha coincide. |
     | [`year`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#year) | Busca si el año coincide. |
-    | [`iso_year`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iso-year) | Busca si el año coincide en formato ISO 8601. |
+    | [`iso_year`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iso-year) | Busca si el año coincide en formato [ISO 8601](https://es.wikipedia.org/wiki/ISO_8601). |
     | [`month`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#month) | Busca si el mes coincide. |
     | [`day`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#day) | Busca si el día coincide. |
     | [`week`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#week) | Busca si la semana coincide. |
-    | [`week_day`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#week-day) | Busca si el día de la semana coincide. |
-    | [`iso_week_day`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iso-week-day) | Busca si el día de la semana coincide en formato ISO 8601. |
+    | [`week_day`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#week-day) | Busca si el día de la semana coincide.<br>(Domingo=1, Sábado=7) |
+    | [`iso_week_day`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#iso-week-day) | Busca si el día de la semana coincide en formato [ISO 8601](https://es.wikipedia.org/wiki/ISO_8601).<br>(Lunes=1, Domingo=7) |
     | [`quarter`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#quarter) | Busca si el trimestre del año coincide. |
     | [`time`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#time) | Busca si el «tiempo» coincide. |
     | [`hour`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#hour) | Busca si la hora coincide. |
@@ -1325,11 +1355,11 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
 
     | Selector | Descripción |
     | --- | --- |
-    | [`in`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#in) | Busca si aparece en un iterable de valores. |
-    | [`gt`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#gt) | Busca si es mayor que un valor. |
-    | [`gte`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#gt) | Busca si es mayor o igual que un valor. |
-    | [`lt`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#lt) | Busca si es menor que un valor. |
-    | [`lte`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#lte) | Busca si es menor o igual que un valor. |
+    | [`in`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#in) | Busca si aparece $\in$ en un iterable de valores. |
+    | [`gt`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#gt) | Busca si es mayor $>$ que un valor. |
+    | [`gte`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#gt) | Busca si es mayor o igual $\ge$ que un valor. |
+    | [`lt`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#lt) | Busca si es menor $<$ que un valor. |
+    | [`lte`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#lte) | Busca si es menor o igual $\le$ que un valor. |
     | [`range`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#range) | Busca si está en un rango $(min, max)$ |
     | [`isnull`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#isnull) | Busca si el valor es nulo. |
 </div>
@@ -1339,12 +1369,27 @@ A continuación se muestran todos los **selectores de consulta disponibles en Dj
     - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
 3.  - En **SQLite :simple-sqlite:** [ignora mayúsculas/minúsculas](https://docs.djangoproject.com/en/stable/ref/databases/#substring-matching-and-case-sensitivity).
     - En **PostgreSQL :simple-postgresql:** respeta mayúsculas/minúsculas.
+
+!!! tip "Combinación de selectores"
+
+    Cuando queremos aplicar varios filtros simultáneamente —unidos con un «:fontawesome-solid-y:»— podemos hacerlo desde la misma expresión.
+
+    Por <span class="example">ejemplo:material-flash:</span> queremos obtener todos los «posts» cuyo título empiece por la letra y cuyo título contenga la cadena «forms»:
+
+    ```pycon
+    >>> Post.objects.filter(title__startswith='W', title__contains='forms')
+    <QuerySet [<Post: Working with forms in Django>]>
+    ```
     
 ### Borrando objetos
 
 Una vez que tenemos localizado el objeto que queremos borrar, es muy sencillo ya que simplemente tendremos que invocar al método [`delete()`](https://docs.djangoproject.com/en/stable/topics/db/queries/#deleting-objects):
 
-```pycon
+```pycon hl_lines="5"
+>>> from posts.models import Post
+
+>>> post = Post.objects.get(pk=1)
+
 >>> post.delete()#(1)!
 (1, {'posts.Post': 1})
 ```
@@ -1358,7 +1403,7 @@ Este método ^^también funciona^^ para **borrados en lote**. Por <span class="e
 
 ```pycon
 >>> Post.objects.all().delete()
-(10, {'posts.Post': 10})
+(5, {'posts.Post': 5})
 ```
 
 ### Contando objetos
@@ -1371,7 +1416,7 @@ Si queremos por <span class="example">ejemplo:material-flash:</span> sacar el n�
 >>> from posts.models import Post
 
 >>> Post.objects.count()#(1)!
-10
+5
 ```
 { .annotate }
 
@@ -1383,7 +1428,7 @@ Si queremos por <span class="example">ejemplo:material-flash:</span> sacar el n�
 
     ```pycon
     >>> len(Post.objects.all())
-    10
+    5
     ```
 
     Aunque el resultado es el mismo que utilizando `.count()`, esta consulta es mucho más costosa ya que se recuperan todos los objetos de la tabla (`#!sql SELECT * FROM posts_post`) y luego se cuentan.
@@ -1397,8 +1442,10 @@ Por <span class="example">ejemplo:material-flash:</span> si queremos saber si ex
 ```pycon
 >>> from posts.models import Post
 
->>> if Post.objects.filter(title__startswith='A').exists():
-...     print('Hay posts que empiezan por la letra A')
+>>> if Post.objects.filter(title__startswith='C').exists():
+...     print('Hay posts que empiezan por la letra C')
+...
+Hay posts que empiezan por la letra C
 ```
 
 ### Ordenando resultados
@@ -1411,6 +1458,7 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos
 >>> from posts.models import Post
 
 >>> Post.objects.order_by('title')#(1)!
+<QuerySet [<Post: Check out the new Django version>, <Post: Mastering Django templates>, <Post: Understanding URL routing in Django>, <Post: Working with forms in Django>, <Post: Working with function-based views in Django>]>
 ```
 { .annotate }
 
@@ -1433,6 +1481,7 @@ Django ofrece varias funciones para acceder a los primeros y últimos objetos de
 
     ```pycon
     >>> Post.objects.order_by('title').first()
+    <Post: Check out the new Django version>
     ```
 
 === "`last`"
@@ -1441,6 +1490,7 @@ Django ofrece varias funciones para acceder a los primeros y últimos objetos de
 
     ```pycon
     >>> Post.objects.order_by('title').last()
+    <Post: Working with function-based views in Django>
     ```
 
 === "`earliest`"
@@ -1449,6 +1499,7 @@ Django ofrece varias funciones para acceder a los primeros y últimos objetos de
 
     ```pycon
     >>> Post.objects.earliest('pk')
+    <Post: Check out the new Django version>
     ```
 
 === "`latest`"
@@ -1457,6 +1508,7 @@ Django ofrece varias funciones para acceder a los primeros y últimos objetos de
 
     ```pycon
     >>> Post.objects.latest('pk')
+    <Post: Working with forms in Django>
     ```
 
 ### Actualizando objetos
@@ -1466,8 +1518,10 @@ Django proporciona el método [`update()`](https://docs.djangoproject.com/en/sta
 Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos borrar el contenido de todos los «posts» de nuestro «blog». Para ello podemos utilizar esta aproximación:
 
 ```pycon
+>>> from posts.models import Post
+
 >>> Post.objects.update(content='')#(1)!
-10
+5
 ```
 { .annotate }
 
@@ -1484,21 +1538,23 @@ Por <span class="example">ejemplo:material-flash:</span> un «post» que se actu
 ```pycon
 >>> from posts.models import Post
 
->>> post = Post.objects.get(slug='first-post')#(1)!
-
+>>> post = Post.objects.get(pk=1)#(1)!
+>>> original_content = post.content
 >>> post.content#(2)!
-'First post'
+'Awesome features of the last release of Django'
 
->>> Post.objects.filter(slug='first-post').update(content='Updated content')#(3)!
+>>> Post.objects.filter(pk=1).update(content='Updated content')#(3)!
 1
-
 >>> post.content#(4)!
-'First post'
-
+'Awesome features of the last release of Django'
 >>> post.refresh_from_db()#(5)!
-
 >>> post.content#(6)!
 'Updated content'
+
+>>> post.content = original_content#(7)!
+>>> post.save()#(8)!
+>>> post.content
+'Awesome features of the last release of Django'
 ```
 { .annotate }
 
@@ -1508,6 +1564,8 @@ Por <span class="example">ejemplo:material-flash:</span> un «post» que se actu
 4. Comprobamos su contenido (en memoria) que no está sincronizado con la base de datos.
 5. Refrescamos el objeto desde la base de datos.
 6. Comprobamos que qhora su contenido (en memoria) sí coincide con el que tiene la base de datos.
+7. Volvemos a dejar «como antes» el contenido del «post».
+8. Actualizamos su contenido (en la base de datos)
 
 En realidad la operación `refresh_from_db()` es la opuesta a [`save()`](#guardando-objetos):
 
