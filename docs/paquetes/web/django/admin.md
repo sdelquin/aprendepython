@@ -18,7 +18,7 @@ Pero existen una gran cantidad de opciones de personalización de la interfaz ad
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que tenemos un modelo `Post` y queremos gestionar dicho modelo desde la interfaz administrativa. Para ello debemos registrarlo en el siguiente fichero:
 
-```python title="admin.py"
+```python title="posts/admin.py"
 from django.contrib import admin#(1)!
 
 from .models import Post#(2)!

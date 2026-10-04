@@ -1471,6 +1471,17 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos
 
     Por <span class="example">ejemplo:material-flash:</span> `#!python Post.objects.order_by('-title')` ordenaría los «posts» por su título de forma descendente (es decir de la `Z` a la `A`).
 
+También es posible ordenar los resultados por **varios campos a la vez**. Para ello los pasamos como argumentos al método.
+
+Por <span class="example">ejemplo:material-flash:</span> si queremos ordenar el listado de «posts» primero por su contenido y luego por su título:
+
+```pycon hl_lines="3"
+>>> from posts.models import Post
+
+>>> Post.objects.order_by('content', 'title')
+<QuerySet [<Post: Check out the new Django version>, <Post: Understanding URL routing in Django>, <Post: Working with forms in Django>, <Post: Working with function-based views in Django>, <Post: Mastering Django templates>]>
+```
+
 #### Primeros y últimos
 
 Django ofrece varias funciones para acceder a los primeros y últimos objetos de una consulta que cumplan ciertas condiciones:
