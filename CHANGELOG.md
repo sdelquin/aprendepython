@@ -12,6 +12,8 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores.
 - Django: URLs
   - Corrige errores menores.
+- Entorno integrado de desarrollo: Visual Studio Code
+  - Añade documentación sobre varios apartados.
 
 ## Version 3.3.2
 
