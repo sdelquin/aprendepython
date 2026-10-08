@@ -1,0 +1,3 @@
+# Pruebas
+
+Las pruebas constituyen una parte fundamental del desarrollo de paquetes Python, ya que permiten comprobar que el código funciona correctamente y que los cambios realizados no introducen errores en funcionalidades que ya estaban implementadas. Una estrategia de pruebas adecuada facilita la detección temprana de problemas, mejora la mantenibilidad del proyecto y aporta confianza a la hora de modificar o ampliar su código. En esta sección se analizarán diferentes aspectos relacionados con la realización de pruebas en paquetes Python, así como las herramientas y técnicas que pueden emplearse para automatizar este proceso.

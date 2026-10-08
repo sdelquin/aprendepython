@@ -14,6 +14,8 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores.
 - Entorno integrado de desarrollo: Visual Studio Code
   - Añade documentación sobre varios apartados.
+- Paquetes: Pruebas
+  - Añade documentación sobre pytest.
 
 ## Version 3.3.2
 

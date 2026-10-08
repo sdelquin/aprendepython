@@ -151,6 +151,10 @@ repo = "material/github"
         "paquetes/pdf/index.md",
         "paquetes/pdf/weasyprint.md",
     ]},
+    {"Pruebas" = [
+        "paquetes/pruebas/index.md",
+        "paquetes/pruebas/pytest.md",
+    ]},
     {"Redes" = [
         "paquetes/redes/index.md",
         "paquetes/redes/requests.md",
