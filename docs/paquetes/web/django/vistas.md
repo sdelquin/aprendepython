@@ -51,7 +51,7 @@ Si quisiéramos devolver un HTML mediante el objeto `HttpResponse` nos quedaría
 from django.http import HttpResponse
 
 
-def hello_world(request):
+def post_list(request):
     return HttpResponse("""
 <!DOCTYPE html>
 <html>
