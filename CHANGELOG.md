@@ -18,6 +18,8 @@ Publicada el DD-MM-YYYY
   - Añade documentación sobre pytest.
 - Django: Plantillas
   - Corrige errores menores.
+- Django: Formularios
+  - Mejora documentación de formularios de clase.
 
 ## Version 3.3.2
 

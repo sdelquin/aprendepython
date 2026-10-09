@@ -45,6 +45,7 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos 
 { .annotate }
 
 1.  - Un formulario se puede enviar con método **«get»** o con método **«post»**. Cada uno tiene sus [ventajas e inconvenientes](https://www.baeldung.com/cs/http-get-vs-post).
+    - El método por defecto de envío de un formulario es «get» por lo que modificamos a `#!html method="post"`.
     - En un modelo [SSR](desarrollo-web.md#ssr) es recomendable validar el envío del formulario en el servidor. Para ello desactivamos la validación HTML → `#!html <form method="post" novalidate>`
 2. Django proporciona este mecanismo de seguridad contra CSRF. [Genera un token](https://www.geeksforgeeks.org/csrf-token-in-django/) único que debe ser enviado en la petición para que sea válida.
 3. Los nombres que damos a los «widgets» son importantes. En este caso el nombre es `post-title` y contendrá el título del post que introduzca el usuario.
@@ -264,6 +265,36 @@ Ahora veamos cuál es el código que debemos introducir en la plantilla:
     | `#!htmldjango {{ form.as_p }}` | Cada campo en un `<p>` |
     | `#!htmldjango {{ form.as_ul }}` | Cada campo en un `<ul><li>` |
     | Personalizado :material-power: | [Documentación oficial de Django](https://docs.djangoproject.com/en/stable/topics/forms/#working-with-form-templates) |
+
+Igualmente debemos añadir la [URL](urls.md) correspondiente encargada de «enrutar» esta petición:
+
+```python title="posts/urls.py" hl_lines="9"
+from django.urls import path
+
+from . import views
+
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='post-list'),
+    path('add/', views.add_post, name='add-post'),
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+]
+```
+
+??? danger "Orden en URLs"
+
+    El orden en el que añadimos las URLs es fundamental. En este <span class="example">ejemplo:material-flash:</span> la URL `add-post` debe ir siempre **ANTES** que `post-detail` ya que, de lo contrario, Django entendería que `add` es un `slug` y trataría de gestionarlo mediante la URL `post-detail`:
+
+    ```python title="posts/urls.py"
+    # ❌ INCORRECTO!!
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('add/', views.add_post, name='add-post'),
+    ]
+    ```
+
 
 Por último veamos cómo implementar la vista que debe procesar el formulario:
 
