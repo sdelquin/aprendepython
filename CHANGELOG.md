@@ -22,6 +22,8 @@ Publicada el DD-MM-YYYY
   - Mejora documentación de formularios de clase.
 - Django: Justfile
   - Añade receta para comprimir el proyecto.
+- Pruebas: Pytest
+  - Añade documentación sobre línea de comandos.
 
 ## Version 3.3.2
 

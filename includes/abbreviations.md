@@ -4,6 +4,7 @@
 *[ASCII]: American Standard Code for Information Interchange
 *[ASGI]: Asynchronous Server Gateway Interface
 *[CISC]: Complex Instruction Set Computer
+*[CLI]: Command Line Interface
 *[CLR]: Common Language Runtime
 *[COBOL]: Common Business-Oriented Language
 *[CORS]: Cross-Origin Resource Sharing

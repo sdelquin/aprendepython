@@ -494,6 +494,35 @@ def ensure_int(calc):#(3)!
 
 Aunque los valores `x` e `y` ni siquiera son valores enteros, los tests pasan :octicons-checkbox-16:{.green} ya que la «fixture» se ejecuta automáticamente y los aproxima a valores enteros `#!python x=6; y=2`
 
+## Línea de comandos
+
+`pytest` no deja de ser una herramienta CLI que nos permite modificar su comportamiento a partir de distintos [modificadores](https://docs.pytest.org/en/stable/reference/reference.html#command-line-flags) en línea de comandos.
+
+Hay una enorme cantidad de opciones. En la siguiente tabla se resumen aquellas que resultan más interesantes:
+
+<div class="annotate" markdown>
+| Modificador | Comportamiento |
+| --- | --- |
+| `-k` | Lanzar tests con búsqueda por nombre.(1) |
+| `-m` | Lanzar tests con búsqueda por marcador.(2) |
+| `-x` | Termina tras el primer test fallido. |
+| `--lf` | Lanza solo los tests que fallaron en la última ejecución.  |
+| `--sw` | Termina tras el primer test fallido y continúa desde el último test fallido. |
+| `-v` | Aumenta la «verbosidad» (mensajes informativos) a nivel 1. |
+| `-vv` | Aumenta la «verbosidad» (mensajes informativos) a nivel 2. |
+| `-vvv` | Aumenta la «verbosidad» (mensajes informativos) a nivel 3. |
+| `-q` | Disminute la «verbosidad» (mensajes informativos) a nivel 0. |
+| `-s` | Muestra los «print» de usuario en la salida de los tests. |
+</div>
+1. Por <span class="example">ejemplo:material-flash:</span> lanzar los tests que incluyan en su nombre `typesafe`:
+    ```console
+    $ pytest -k typesafe
+    ```
+2. Por <span class="example">ejemplo:material-flash:</span> lanzar los tests con el marcador `typesafe`:
+    ```console
+    $ pytest -m typesafe
+    ```
+
 
 [^1]: Sistema de «plugins» de pytest.
 [^2]: Importante para establecer las rutas de búsqueda de los módulos.
