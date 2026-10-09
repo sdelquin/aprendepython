@@ -16,6 +16,8 @@ Publicada el DD-MM-YYYY
   - Añade documentación sobre varios apartados.
 - Paquetes: Pruebas
   - Añade documentación sobre pytest.
+- Django: Plantillas
+  - Corrige errores menores.
 
 ## Version 3.3.2
 

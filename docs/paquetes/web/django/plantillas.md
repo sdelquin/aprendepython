@@ -443,10 +443,10 @@ Django nos permite externalizar partes de una plantilla a un fichero, para luego
 Supongamos por <span class="example">ejemplo:material-flash:</span> que disponemos de la siguiente plantilla para mostrar la cabecera («header») de un «blog»:
 
 ```htmldjango title="shared/templates/header.html"
-<div class="header">
+<header>
     <h1>The ultimate blog</h1>
-    <h2>{{ subtitle }}</h1><!--(1)!-->
-</div>
+    <h2>{{ subtitle }}</h2><!--(1)!-->
+</header>
 ```
 { .annotate }
 
@@ -471,6 +471,41 @@ Django nos ofrece **dos modos** de incluir la plantilla anterior:
     {% include "header.html" with subtitle="Don't miss the cutting edge info!" %} 
     ...
     ```
+
+Siguiendo con el <span class="example">ejemplo:material-flash:</span> anterior tendríamos que incluir la cabecera desde la plantilla base. Para ello haremos lo siguiente:
+
+```htmldjango title="shared/templates/base.html" hl_lines="10"
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} | {% endif %}Blog</title>
+  </head>
+
+  <body>
+    {% include "header.html" %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
+```
+
+Ahora cada plantilla de salida tendrá una cabecera que incluso podemos personalizar desde la vista añadiendo un **subtítulo** a nuestro gusto:
+
+```python title="posts/views.py" hl_lines="7"
+def post_list(request):
+    posts = Post.objects.all()
+    return render(
+        request,
+        'posts/post/list.html',
+        {
+            'subtitle': 'Listado de posts',
+            'posts': posts,
+        },
+    )
+```
 
 ### Otras etiquetas
 
