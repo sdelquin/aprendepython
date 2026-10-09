@@ -20,6 +20,8 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores.
 - Django: Formularios
   - Mejora documentación de formularios de clase.
+- Django: Justfile
+  - Añade receta para comprimir el proyecto.
 
 ## Version 3.3.2
 

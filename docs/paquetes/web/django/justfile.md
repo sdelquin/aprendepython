@@ -212,6 +212,27 @@ kill:
 test pytest_args="":
     uv run pytest -s {{ pytest_args }}
 
+# Zip project
+[group('utils')]
+zip:
+    zip -r "$(basename "$PWD").zip" . \
+    -x ".venv/*" \
+        ".git/*" \
+        "__pycache__/*" \
+        "*/__pycache__/*" \
+        "*.py[cod]" \
+        "*.egg-info/*" \
+        ".pytest_cache/*" \
+        ".mypy_cache/*" \
+        ".ruff_cache/*" \
+        ".tox/*" \
+        ".nox/*" \
+        ".coverage" \
+        "htmlcov/*" \
+        "*.log" \
+        ".DS_Store" \
+        "*/.DS_Store"
+
 # Generate random secret key
 [group('production')]
 secret-key:
