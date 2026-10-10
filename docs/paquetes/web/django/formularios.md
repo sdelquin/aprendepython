@@ -52,9 +52,36 @@ Supongamos por <span class="example">ejemplo:material-flash:</span> que creamos 
 4. Los nombres que damos a los «widgets» son importantes. En este caso el nombre es `post-content` y contendrá el contenido del post que introduzca el usuario.
 5. Necesitamos un botón para realizar el envío.
 
-El envío de este formulario llegará al correspondiente fichero [`urls.py`](urls.md) que ejecutará una determinada vista dentro del fichero [`views.py`](vistas.md).
+Necesitamos definir una URL que se encargue de enrutar este formulario:
 
-Veamos cómo procesar esta solicitud, siguiendo con el <span class="example">ejemplo:material-flash:</span> anterior de creación de un «post»:
+```python title="posts/urls.py" hl_lines="9"
+from django.urls import path
+
+from . import views
+
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='post-list'),
+    path('add/', views.add_post, name='add-post'),
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+]
+```
+
+??? danger "Orden en URLs"
+
+    El orden en el que añadimos las URLs es fundamental. En este <span class="example">ejemplo:material-flash:</span> la URL `add-post` debe ir siempre **ANTES** que `post-detail` ya que, de lo contrario, Django entendería que `add` es un `slug` y trataría de gestionarlo mediante la URL `post-detail`:
+
+    ```python title="posts/urls.py"
+    # ❌ INCORRECTO!!
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('add/', views.add_post, name='add-post'),
+    ]
+    ```
+
+Por último habrá que definir la correspondiente vista encargada de procesar la petición:
 
 ```python title="posts/views.py"
 from django.http import HttpResponse
@@ -404,6 +431,35 @@ Ahora veremos cómo es el código de la plantilla:
     | `#!htmldjango {{ form.as_ul }}` | Cada campo en un `<ul><li>` |
     | Personalizado :material-power: | [Documentación oficial de Django](https://docs.djangoproject.com/en/stable/topics/forms/#working-with-form-templates) |
 
+Necesitamos definir una URL que se encargue de enrutar este formulario:
+
+```python title="posts/urls.py" hl_lines="9"
+from django.urls import path
+
+from . import views
+
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='post-list'),
+    path('add/', views.add_post, name='add-post'),
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+]
+```
+
+??? danger "Orden en URLs"
+
+    El orden en el que añadimos las URLs es fundamental. En este <span class="example">ejemplo:material-flash:</span> la URL `add-post` debe ir siempre **ANTES** que `post-detail` ya que, de lo contrario, Django entendería que `add` es un `slug` y trataría de gestionarlo mediante la URL `post-detail`:
+
+    ```python title="posts/urls.py"
+    # ❌ INCORRECTO!!
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('add/', views.add_post, name='add-post'),
+    ]
+    ```
+
 Por último veamos cómo implementar la [vista](vistas.md) que debe procesar el formulario:
 
 === "Estructura estándar :octicons-organization-24:"
@@ -512,11 +568,16 @@ Seguimos con el <span class="example">ejemplo:material-flash:</span> anterior y 
 
 Lo primero será definir un [formulario de modelo](#formularios-de-modelo) para editar «posts»:
 
-```python title="posts/forms.py"
+```python title="posts/forms.py" hl_lines="11-14"
 from django import forms
 
 from .models import Post
 
+
+class AddPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'content')
 
 class EditPostForm(forms.ModelForm):
     class Meta:
@@ -540,14 +601,62 @@ La presentación de este modelo en **la plantilla** no difiere mucho de lo que y
 1. Aprovechamos para mostrar el título del «post» en la plantilla.
 2. En un modelo [SSR](desarrollo-web.md#ssr) es recomendable validar el envío del formulario en el servidor. Para ello desactivamos la validación HTML → `#!html <form method="post" novalidate>`
 
+Necesitamos definir una URL que se encargue de enrutar este formulario. Aquí tenemos dos opciones:
+
+=== "`/posts/edit/post-slug/`"
+
+    ```python title="posts/urls.py" hl_lines="10"
+    from django.urls import path
+
+    from . import views
+
+    app_name = 'posts'
+
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('add/', views.add_post, name='add-post'),
+        path('edit/<slug:post_slug>', views.edit_post, name='edit-post'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+    ]
+    ```
+
+=== "`/posts/post-slug/edit/`"
+
+    ```python title="posts/urls.py" hl_lines="11"
+    from django.urls import path
+
+    from . import views
+
+    app_name = 'posts'
+
+    urlpatterns = [
+        path('', views.post_list, name='post-list'),
+        path('add/', views.add_post, name='add-post'),
+        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+        path('<slug:post_slug>/edit/', views.edit_post, name='edit-post'),
+    ]
+    ```
+
 Por último escribimos **la vista** que procesará este formulario:
 
-```python title="posts/views.py" hl_lines="11"
+```python title="posts/views.py" hl_lines="20-30"
 from django.shortcuts import redirect, render
 from django.utils.text import slugify
 
-from .forms import EditPostForm
+from .forms import AddPostForm, EditPostForm
 from .models import Post
+
+
+def add_post(request):
+    if request.method == 'POST':
+        if (form := AddPostForm(request.POST)).is_valid():
+            post = form.save(commit=False)
+            post.slug = slugify(post.title)
+            post.save()
+            return redirect('posts:post-list')
+    else:
+        form = AddPostForm()
+    return render(request, 'posts/post/add.html', {'form': form})
 
 
 def edit_post(request, post_slug: str):#(1)!
