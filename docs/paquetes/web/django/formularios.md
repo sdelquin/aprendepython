@@ -601,41 +601,22 @@ La presentación de este modelo en **la plantilla** no difiere mucho de lo que y
 1. Aprovechamos para mostrar el título del «post» en la plantilla.
 2. En un modelo [SSR](desarrollo-web.md#ssr) es recomendable validar el envío del formulario en el servidor. Para ello desactivamos la validación HTML → `#!html <form method="post" novalidate>`
 
-Necesitamos definir una URL que se encargue de enrutar este formulario. Aquí tenemos dos opciones:
+Necesitamos definir una URL que se encargue de enrutar este formulario:
 
-=== "`/posts/edit/post-slug/`"
+```python title="posts/urls.py" hl_lines="11"
+from django.urls import path
 
-    ```python title="posts/urls.py" hl_lines="10"
-    from django.urls import path
+from . import views
 
-    from . import views
+app_name = 'posts'
 
-    app_name = 'posts'
-
-    urlpatterns = [
-        path('', views.post_list, name='post-list'),
-        path('add/', views.add_post, name='add-post'),
-        path('edit/<slug:post_slug>', views.edit_post, name='edit-post'),
-        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
-    ]
-    ```
-
-=== "`/posts/post-slug/edit/`"
-
-    ```python title="posts/urls.py" hl_lines="11"
-    from django.urls import path
-
-    from . import views
-
-    app_name = 'posts'
-
-    urlpatterns = [
-        path('', views.post_list, name='post-list'),
-        path('add/', views.add_post, name='add-post'),
-        path('<slug:post_slug>/', views.post_detail, name='post-detail'),
-        path('<slug:post_slug>/edit/', views.edit_post, name='edit-post'),
-    ]
-    ```
+urlpatterns = [
+    path('', views.post_list, name='post-list'),
+    path('add/', views.add_post, name='add-post'),
+    path('<slug:post_slug>/', views.post_detail, name='post-detail'),
+    path('<slug:post_slug>/edit/', views.edit_post, name='edit-post'),
+]
+```
 
 Por último escribimos **la vista** que procesará este formulario:
 
