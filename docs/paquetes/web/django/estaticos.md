@@ -42,7 +42,7 @@ shared
         └── background.png
 ```
 
-- La ruta para acceder a `base.css` sería `css/custom.css`
+- La ruta para acceder a `base.css` sería `css/base.css`
 - La ruta para acceder a `logo.svg` sería `images/logo.svg`
 
 :material-check-all:{ .blue } Django se encargará de rastrear las carpetas `static` de las aplicaciones para encontrar los estáticos indicados. Por lo tanto los **espacios de nombres** también son importantes a la hora de organizar los estáticos de nuestro proyecto Django.
