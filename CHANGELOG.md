@@ -24,6 +24,8 @@ Publicada el DD-MM-YYYY
   - Añade receta para comprimir el proyecto.
 - Pruebas: Pytest
   - Añade documentación sobre línea de comandos.
+- Django: Estáticos
+  - Añade código para ejemplo de blog.
 
 ## Version 3.3.2
 

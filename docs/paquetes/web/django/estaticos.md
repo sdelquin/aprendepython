@@ -74,9 +74,17 @@ Hay dos variables importantes en `settings.py` que definen el comportamiento de 
 
 Para acceder a ficheros estáticos desde una plantilla Django debemos utilizar la etiqueta [`{% static %}`](https://docs.djangoproject.com/en/stable/ref/templates/builtins/#static).
 
-Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <span class="example">ejemplo:material-flash:</span> anterior del «blog»:
+Vamos por <span class="example">ejemplo:material-flash:</span> a definir una hoja de estilos _mínima_ para nuestro proyecto:
 
-```htmldjango title="shared/templates/base.html" hl_lines="1 9 14 19"
+```css title="shared/static/css/base.css"
+body {
+    background-color: beige;
+}
+```
+
+Ahora tenemos que enlazarla desde la plantilla base de nuestro proyecto:
+
+```htmldjango title="shared/templates/base.html" hl_lines="1 9"
 {% load static %}<!--(1)!-->
 
 <!DOCTYPE html>
@@ -84,19 +92,15 @@ Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <sp
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Blog</title>
+    <title>{% if title %}{{ title }} | {% endif %}Blog</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}"><!--(2)!-->
   </head>
 
   <body>
-    <header>
-        <img src="{% static 'images/logo.svg' %}"/><!--(3)!-->
-    </header>
-
-    <p>
-        I like this post
-        <img src="{% static 'posts/images/like.png' %}"/><!--(4)!-->
-    </p>
+    {% include "header.html" %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
   </body>
 </html>
 ```
@@ -105,8 +109,8 @@ Supongamos que tratamos de acceder a los ficheros estáticos definidos en el <sp
 1.  - Es necesario cargar la etiqueta `static`.
     - Debería escribirse al principio de la plantilla, eso sí, siempre después de [`{% extends %}`](plantillas.md#herencia) que debe ser la primera..
 2. URL generada: `/static/css/base.css`
-3. URL generada: `/static/images/logo.svg`
-4. URL generada: :material-arrow-right-box: `/static/posts/images/like.png`
+
+Si ahora recargas la página del «blog» podrás ver un bonito color _beige_ de fondo.
 
 !!! tip "Caché"
 
