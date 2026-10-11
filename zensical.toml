@@ -51,6 +51,7 @@ repo = "material/github"
     ]},
     {"Prácticas de desarrollo" = [
         "entornos/practicas/index.md",
+        "entornos/practicas/git.md",
     ]},
     {"Diagramas" = [
         "entornos/diagramas/index.md",

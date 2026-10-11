@@ -26,6 +26,8 @@ Publicada el DD-MM-YYYY
   - Añade documentación sobre línea de comandos.
 - Django: Estáticos
   - Añade código para ejemplo de blog.
+- Prácticas de desarrollo: Git
+  - Añade documentación
 
 ## Version 3.3.2
 

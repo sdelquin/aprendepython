@@ -14,6 +14,7 @@
 *[CSRF]: Cross Site Request Forgery
 *[CSR]: Client Side Rendering
 *[CSS]: Cascading Style Sheets
+*[CVS]: Concurrent Version System
 *[DOM]: Document Object Model
 *[DPI]: Dots Per Inch
 *[DRY]: Don't Repeat Yourself
@@ -25,6 +26,7 @@
 *[GIL]: Global Interpreter Locker
 *[GPL]: General-Purpose Language
 *[GPU]: Graphics Processing Unit
+*[GUI]: Graphical User Interface
 *[HTML]: Hypertext Markup Language
 *[HTTP]: Hypertext Transfer Protocol
 *[IBM]: International Business Machines Corporation

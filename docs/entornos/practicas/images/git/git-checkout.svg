@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 392 570" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="Mesa-de-trabajo1" serif:id="Mesa de trabajo1" transform="matrix(0.204167,0,0,0.527778,0,0)">
+        <rect x="0" y="0" width="1920" height="1080" style="fill:none;"/>
+        <g transform="matrix(4.89796,0,0,1.89474,-754.286,-310.737)">
+            <g transform="matrix(1,-0,-0,1,154,164)">
+                <path d="M258.5,531L246,556L233.5,531L258.5,531Z" style="fill:rgb(128,128,128);"/>
+                <path d="M246,436L246,536" style="fill:none;stroke:rgb(128,128,128);stroke-width:8.33px;"/>
+            </g>
+        </g>
+        <g transform="matrix(8.392e-15,1.89474,-4.07451,3.90246e-15,4236.51,-689.684)">
+            <g transform="matrix(2.47588e-15,-1.2021,1,2.05963e-15,364,1039.76)">
+                <path d="M291,48.5L266,36L291,23.5L291,48.5Z" style="fill:rgb(206,212,44);"/>
+                <path d="M365.826,36L286,36" style="fill:none;stroke:rgb(206,212,44);stroke-width:8.33px;"/>
+            </g>
+        </g>
+        <g transform="matrix(-9.48818e-15,-1.89474,4.89796,-3.67043e-15,-1733.88,1584)">
+            <path d="M400,600L400,720" style="fill:none;stroke:rgb(206,212,44);stroke-width:8.33px;"/>
+        </g>
+        <g transform="matrix(2.99914e-16,-1.89474,4.89796,1.16019e-16,-754.286,826.105)">
+            <circle cx="400" cy="400" r="20" style="fill:rgb(232,68,65);"/>
+        </g>
+        <g transform="matrix(2.99914e-16,-1.89474,4.89796,1.16019e-16,-755.14,1078.11)">
+            <circle cx="400" cy="400" r="20" style="fill:rgb(232,68,65);"/>
+        </g>
+        <g transform="matrix(2.99914e-16,-1.89474,4.89796,1.16019e-16,-754.286,1338.13)">
+            <circle cx="400" cy="400" r="20" style="fill:rgb(232,68,65);"/>
+        </g>
+        <g transform="matrix(1.45238e-16,-1.26316,4.89796,1.37181e-16,-754.286,1331.37)">
+            <path d="M400,400L1000,400" style="fill:none;stroke:rgb(232,68,65);stroke-width:9.81px;"/>
+        </g>
+        <g transform="matrix(1.45238e-16,-1.26316,4.89796,1.37181e-16,-167.385,1331.37)">
+            <path d="M400,400L1000,400" style="fill:none;stroke:rgb(206,212,44);stroke-width:9.81px;"/>
+        </g>
+        <g transform="matrix(4.89796,0,0,1.89474,-3168.95,-319.776)">
+            <text x="680px" y="220px" style="font-family:'VictorMono-Bold', 'Victor Mono', monospace;font-weight:700;font-size:41.881px;fill:rgb(232,68,65);">24c1201</text>
+        </g>
+        <g transform="matrix(4.89796,0,0,1.89474,-3169.81,-67.7755)">
+            <text x="680px" y="220px" style="font-family:'VictorMono-Bold', 'Victor Mono', monospace;font-weight:700;font-size:41.881px;fill:rgb(232,68,65);">66c4e10</text>
+        </g>
+        <g transform="matrix(4.89796,0,0,1.89474,-3168.95,192.253)">
+            <text x="680px" y="220px" style="font-family:'VictorMono-Bold', 'Victor Mono', monospace;font-weight:700;font-size:41.881px;fill:rgb(232,68,65);">aa94f74</text>
+        </g>
+        <g transform="matrix(2.99914e-16,-1.89474,4.89796,1.16019e-16,-754.286,1584)">
+            <circle cx="400" cy="400" r="20" style="fill:rgb(22,179,56);"/>
+        </g>
+        <g transform="matrix(4.89796,0,0,1.89474,-2835.63,438.119)">
+            <text x="680px" y="220px" style="font-family:'VictorMono-Bold', 'Victor Mono', monospace;font-weight:700;font-size:41.881px;fill:rgb(22,179,56);">HEAD</text>
+        </g>
+    </g>
+</svg>
