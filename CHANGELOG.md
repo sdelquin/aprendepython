@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.3
+
+Publicada el 11-10-2026
+
 - Django: Modelos
   - Corrige errores menores.
 - Django: Interfaz administrativa.
