@@ -23,6 +23,7 @@
 *[ENIAC]: Electronic Numerical Integrator And Computer
 *[FFT]: Fast Fourier Transform
 *[FORTRAN]: The IBM Mathematical Formula Translating System
+*[GFM]: GitHub Flavored Markdown
 *[GIL]: Global Interpreter Locker
 *[GPL]: General-Purpose Language
 *[GPU]: Graphics Processing Unit
