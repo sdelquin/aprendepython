@@ -6,6 +6,13 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.5
+
+Publicada el 14-10-2026
+
+- Entornos de desarrollo: Diagramas
+  - Añade diagrama de clases, diagrama de casos de uso, diagrama de secuencia y diagrama de actividad.
+
 ## Version 3.3.4
 
 Publicada el 12-10-2026
