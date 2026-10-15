@@ -3,7 +3,9 @@
 *[APL]: A Programming Language
 *[ASCII]: American Standard Code for Information Interchange
 *[ASGI]: Asynchronous Server Gateway Interface
+*[CD]: Continuous Delivery
 *[CISC]: Complex Instruction Set Computer
+*[CI]: Continuous Integration
 *[CLI]: Command Line Interface
 *[CLR]: Common Language Runtime
 *[COBOL]: Common Business-Oriented Language
@@ -74,4 +76,5 @@
 *[WSL]: Windows Subsystem for Linux
 *[XP]: Extreme Programming
 *[XSS]: Cross Site Scripting
+*[YAML]: YAML Ain't Markup Language
 *[YARV]: Yet another Ruby VM

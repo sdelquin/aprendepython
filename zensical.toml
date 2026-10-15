@@ -53,6 +53,7 @@ repo = "material/github"
         "entornos/practicas/index.md",
         "entornos/practicas/git.md",
         "entornos/practicas/markdown.md",
+        "entornos/practicas/cicd.md",
     ]},
     {"Diagramas" = [
         "entornos/diagramas/index.md",
