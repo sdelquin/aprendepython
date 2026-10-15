@@ -6,6 +6,13 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.6
+
+Publicada el 15-10-2026
+
+- Entornos de desarrollo: Prácticas de desarrollo
+  - Añade documentación sobre CI/CD.
+
 ## Version 3.3.5
 
 Publicada el 14-10-2026
