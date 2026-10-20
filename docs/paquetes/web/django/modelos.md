@@ -946,6 +946,21 @@ Combinando estos dos parámetros podemos definir campos opcionales para nuestro 
 
     Recuerda que `#!python null=False` es algo que ^^no tiene sentido^^ ya que los campos son obligatorios por defecto.
 
+## Valor por defecto
+
+Es muy habitual en el diseño de modelos incorporar un **valor por defecto** a determinados atributos. Con esto conseguimos que, si no se le asigna un valor a la hora de la creación del objeto, tome dicho _valor por defecto_.
+
+Por <span class="example">ejemplo:material-flash:</span> si queremos que el **contenido** del «post» siempre parta de un texto inicial, podemos hacer lo siguiente:
+
+```python title="posts/models.py" hl_lines="6"
+from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
+    content = models.TextField(default='Not written yet')
+```
+
 ## ORM
 
 Como ya se introdujo en las [características de Django](desarrollo-web.md#django) el ORM (Object-Relational Mapper) es la herramienta que permite interactuar con bases de datos usando objetos y clases de Python en lugar de escribir directamente consultas SQL.
@@ -1408,7 +1423,7 @@ Este método ^^también funciona^^ para **borrados en lote**. Por <span class="e
 
 ### Contando objetos
 
-Hay muchas ocasiones en las que resulta necesario obtener el número de objetos que tiene una determinada consulta. Para ello Django nos ofrece el método [`count()`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet.count).
+Hay muchas ocasiones en las que resulta necesario obtener el número de objetos que contiene una determinada consulta. Para ello Django nos ofrece el método [`count()`](https://docs.djangoproject.com/en/stable/ref/models/querysets/#django.db.models.query.QuerySet.count).
 
 Si queremos por <span class="example">ejemplo:material-flash:</span> sacar el número total de «posts» que hay en nuestro «blog» podríamos escribir lo siguiente:
 
@@ -1421,6 +1436,17 @@ Si queremos por <span class="example">ejemplo:material-flash:</span> sacar el n�
 { .annotate }
 
 1. También se puede aplicar sobre un filtro :material-arrow-right-box: `#!python Post.objects.filter(title__contains='Test').count()`
+
+En el caso de que nos veamos obligados (por el contexto) a [recuperar](#recuperando-objetos) una serie de objetos, no es necesario hacer una segunda consulta, ya que podemos obtener el número de objetos desde la «queryset» anterior:
+
+```pycon hl_lines="5"
+>>> from posts.models import Post
+
+>>> posts = Post.objects.all()
+
+>>> posts.count()
+5
+```
 
 ??? warning "Contando con `len`"
 
