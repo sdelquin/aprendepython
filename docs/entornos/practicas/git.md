@@ -469,7 +469,101 @@ Existe la posibilidad de «restaurar todo» mediante el comando `git restore .`
 
 ### Borrar archivos
 
-El comando **`git clean`**[:octicons-link-external-16:](https://git-scm.com/docs/git-clean) es el que se utiliza para **borrar archivos** dentro del control de versiones.
+Hay que diferenciar dos escenarios en este apartado:
+
+1. Borrar archivos con seguimiento.
+2. Borrar archivos sin seguimiento.
+
+#### Borrar archivos con seguimiento
+
+El comando **`git rm`**[:octicons-link-external-16:](https://git-scm.com/docs/git-rm) es el que se utiliza para **borrar archivos ==con seguimiento==** dentro del control de versiones.
+
+En este enfoque tenemos dos opciones:
+
+:one: Borrar archivos del disco y del seguimiento en control de versiones:
+
+=== "Mediante `git rm`"
+
+    ```console hl_lines="8 15"
+    $ ls
+    main.py
+
+    $ git status
+    On branch main
+    nothing to commit, working tree clean
+
+    $ git rm main.py #(1)!
+    rm 'main.py'
+
+    $ ls
+
+    $ git status
+    On branch main
+    Changes to be committed:
+    (use "git restore --staged <file>..." to unstage)
+        deleted:    main.py
+    ```
+    { .annotate }
+    
+    1. Al borrar con `git rm main.py` los cambios ya quedan preparados.
+
+=== "Mediante `rm`"
+
+    ```console hl_lines="8 14"
+    $ ls
+    main.py
+    
+    $ git status
+    On branch main
+    nothing to commit, working tree clean
+
+    $ rm main.py
+
+    $ ls
+
+    $ git status #(1)!
+    On branch main
+    Changes not staged for commit:
+      (use "git add/rm <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+    	deleted:    main.py
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+    ```
+    { .annotate }
+    
+    1. Al borrar con `rm main.py` los cambios no están aún preparados.
+
+:two: Borrar archivos solo del seguimiento en control de versiones.
+
+```console hl_lines="8 18"
+$ ls
+main.py
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+$ git rm --cached main.py
+rm 'main.py'
+
+$ ls
+main.py
+
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	deleted:    main.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	main.py
+```
+
+#### Borrar archivos sin seguimiento
+
+El comando **`git clean`**[:octicons-link-external-16:](https://git-scm.com/docs/git-clean) es el que se utiliza para **borrar archivos ==sin seguimiento==** dentro del control de versiones.
 
 Supongamos que el escenario actual es el siguiente:
 
@@ -504,6 +598,14 @@ Removing upload.C
 ```
 
 Si se utiliza `git clean -f` se forzará a borrar los archivos sin dar opciones.
+
+!!! danger "Restaurar repositorio"
+
+    Si se quiere restaurar el repositorio al estado original borrando todos los ficheros sin seguimiento y de manera recursiva, se puede utilizar el siguiente comando:
+
+    ```console
+    $ git clean -xdf  # DANGER
+    ```
 
 ### Gestionar ramas
 
@@ -1174,7 +1276,7 @@ Desde la **perspectiva del propietario del repositorio** `sdelquin` haríamos lo
 
 El comando **`git stash`**[:octicons-link-external-16:](https://git-scm.com/docs/git-stash) es el que se utiliza para **almacenar temporalmente los cambios** dentro del control de versiones.
 
-Veamos a continuación un <span class="example">ejemplo:material-flash:</span> de aplicación:
+Veamos a continuación un <span class="example">ejemplo:material-flash:</span> de cómo aplicarlo:
 
 === "Consultar estado"
 
@@ -1502,6 +1604,11 @@ cache/#(6)!
 7. No ignora el archivo `important.txt` dentro de la carpeta `cache`
 
 Es **fundamental** prestar atención y **no incluir ficheros sensibles** dentro del control de versiones. Lo que **no debería**{.red} estar en el control de versiones de un repositorio:
+
+- Bases de datos:
+
+        *.sqlite3
+        *.db
 
 - Contraseñas o credenciales:
 
