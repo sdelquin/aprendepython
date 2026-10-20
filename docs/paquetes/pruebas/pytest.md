@@ -13,7 +13,7 @@ tags:
 Imagen generada con Inteligencia Artificial
 ///
 
-[`pytest`](https://docs.pytest.org/) es es uno de los paquetes más conocidos del ecosistema Python. Permite escribir _tests_ (unidades de prueba) legibles y escalables de forma muy cómoda.
+[`pytest`](https://docs.pytest.org/) es es uno de los paquetes más conocidos y [usados](https://pypistats.org/packages/requests) del ecosistema Python. Permite escribir _tests_ (unidades de prueba) legibles y escalables de forma muy cómoda.
 
 ## Instalación
 
@@ -233,7 +233,7 @@ Si ahora lanzamos los tests veremos que hay algo que ha cambiado en la salida y 
 
 ## Fixtures
 
-Vamos a pasar a <span class="example">ejemplo:material-flash:</span> algo más avanzado en el que introducimos una [clase](../../fundamentos/modularidad/poo.md#creando-clases) como simil de una calculadora:
+Vamos a pasar a un <span class="example">ejemplo:material-flash:</span> algo más avanzado en el que introducimos una [clase](../../fundamentos/modularidad/poo.md#creando-clases) como _simil de una calculadora_:
 
 ```python title="main.py" linenums="1"
 class Calculator:
@@ -505,14 +505,14 @@ Hay una enorme cantidad de opciones. En la siguiente tabla se resumen aquellas q
 | --- | --- |
 | `-k` | Lanzar tests con búsqueda por nombre.(1) |
 | `-m` | Lanzar tests con búsqueda por marcador.(2) |
-| `-x` | Termina tras el primer test fallido. |
-| `--lf` | Lanza solo los tests que fallaron en la última ejecución.  |
-| `--sw` | Termina tras el primer test fallido y continúa desde el último test fallido. |
-| `-v` | Aumenta la «verbosidad» (mensajes informativos) a nivel 1. |
-| `-vv` | Aumenta la «verbosidad» (mensajes informativos) a nivel 2. |
-| `-vvv` | Aumenta la «verbosidad» (mensajes informativos) a nivel 3. |
-| `-q` | Disminute la «verbosidad» (mensajes informativos) a nivel 0. |
-| `-s` | Muestra los «print» de usuario en la salida de los tests. |
+| `-x` | Terminar tras el primer test fallido. |
+| `--lf` | Lanzar solo los tests que fallaron en la última ejecución.  |
+| `--sw` | Terminar tras el primer test fallido y continúa desde el último test fallido. |
+| `-v` | Aumentar la «verbosidad» (mensajes informativos) a nivel 1. |
+| `-vv` | Aumentar la «verbosidad» (mensajes informativos) a nivel 2. |
+| `-vvv` | Aumentar la «verbosidad» (mensajes informativos) a nivel 3. |
+| `-q` | Disminuir la «verbosidad» (mensajes informativos) a nivel 0. |
+| `-s` | Mostrar los «print» de usuario en la salida de los tests. |
 </div>
 1. Por <span class="example">ejemplo:material-flash:</span> lanzar los tests que incluyan en su nombre `typesafe`:
     ```console

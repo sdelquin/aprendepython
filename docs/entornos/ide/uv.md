@@ -13,13 +13,15 @@ tags:
 Imagen generada con Inteligencia Artificial
 ///
 
-[uv](https://docs.astral.sh/uv/getting-started/features/) proporciona características esenciales para el desarrollo con Python — desde instalar Python y manejar «scripts» sencillos hasta trabajar en proyectos de gran entidad que soportan múltiples versiones de Python y plataformas. Es [extremadamente rápida](https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md) y está escrita en lenguaje [Rust](https://www.rust-lang.org/es).
+[uv](https://docs.astral.sh/uv/getting-started/features/) proporciona características esenciales para el desarrollo con Python — desde instalar Python y manejar «scripts» sencillos hasta trabajar en proyectos de gran entidad que soportan múltiples versiones de Python y plataformas. Es [extremadamente rápido](https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md) y está escrito en lenguaje [Rust](https://www.rust-lang.org/es).
 
-Hay que aclarar que uv no forma parte del «tooling» oficial de Python. Está desarrollado por la empresa [Astral](https://astral.sh/) y sus dirigientes establecen el rumbo y toman las decisiones correspondientes. Pero también es justo decir que el nivel de adopción de la comunidad Python sobre sus herramientas está siendo enorme y se está convirtiendo en una especia de «estándar de facto» para trabajar con Python.
+Hay que aclarar que _uv_ no forma parte del «tooling» oficial de Python. Está desarrollado por la empresa [Astral :simple-astral:](https://astral.sh/) y sus dirigientes establecen el rumbo de la herramienta y toman decisiones en base a sus intereses.
+
+Pero también es justo decir que **el nivel de adopción de la comunidad Python** sobre sus herramientas está siendo enorme y se está convirtiendo en una especie de «estándar de facto» para trabajar con Python.
 
 ## Instalación
 
-Proporciona métodos de **instalación** muy sencillos:
+Se proporcionan múltiples métodos de **instalación** realmente sencillos:
 
 - [Instalación para macOS :simple-apple: y Linux :simple-linux:](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1).
 - [Instalación para Windows :fontawesome-brands-windows:](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2).
@@ -60,7 +62,7 @@ uv 0.12.13 (aarch64-unknown-linux-gnu)
 
 ## Versiones de Python
 
-Una vez instalado, podemos empezar a dar nuestros primeros pasos con uv. Supongamos que lo primero que queremos es ver qué versiones de Python tenemos instaladas en nuestro sistema:
+Una vez instalado, podemos empezar a dar nuestros primeros pasos con uv. Supongamos que lo primero que queremos es ver qué versiones de Python hay disponibles:
 
 ```console
 $ uv python list
@@ -103,7 +105,11 @@ Installed Python 3.14.7 in 3.10s
         $ uv python install 3.10
         ```
 
-Podemos comprobar que efectivamente se ha instalado y nos aparece en el listado de versiones disponibles:
+!!! success "3 segundos"
+
+    Se puede observar que únicamente :material-run-fast: ha tardado $3.10s$ en instalar Python.
+
+Podemos comprobar que efectivamente se ha instalado dicha versiónd de Python y que nos aparece en el listado de versiones disponibles:
 
 ```console hl_lines="5-6"
 $ uv python list
@@ -117,7 +123,7 @@ cpython-3.14.7-linux-aarch64-gnu                    .local/share/uv/python/cpyth
 
 !!! info "Ruta de instalación"
 
-    Una de las cosas interesantes de `uv` es que instala las versiones de Python en una carpeta del HOME del usuario, concretamente en `~/.local/share/uv/`
+    Una de las cosas interesantes de _uv_ es que instala las versiones de Python en una carpeta del HOME del usuario, concretamente en `~/.local/share/uv/`
 
 ### Intérprete de Python
 
@@ -154,7 +160,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-Es posible igualmente instalar otra versión de Python indicando a la vez que sea la versión «por defecto»:
+Es posible igualmente instalar otra versión de Python indicando —en el mismo comando— que sea la versión «por defecto»:
 
 ```console hl_lines="16-17 24"
 $ uv python install --default 3.10
@@ -187,22 +193,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ## Proyectos
 
-Al igual que ocurría con los [entornos virtuales nativos de Python](../desarrollo/python.md#entornos-virtuales), `uv` ofrece la posibilidad de trabajar con proyectos que (internamente) disponen de un entorno virtual.
+Al igual que ocurría con los [entornos virtuales nativos de Python](../desarrollo/python.md#entornos-virtuales), _uv_ ofrece la posibilidad de trabajar con proyectos que (internamente) disponen de un entorno virtual.
 
 ### Inicializar un proyecto
 
-Lo primero será crear una carpeta de trabajo:
-
-```console
-$ mkdir proyecto
-$ cd proyecto
-```
-
-Y ahora inicializamos el proyecto `uv` de la siguiente manera:
+Con el siguiente comando creamos un nuevo proyecto vacío _uv_:
 
 ```console hl_lines="1"
-$:~/proyecto> uv init --bare --no-project #(1)!
-Initialized project `proyecto`
+$ uv init --bare --no-project proyecto #(1)!
+Initialized project `proyecto` at `/home/sdelquin/proyecto`
 ```
 { .annotate }
 
@@ -211,6 +210,8 @@ Initialized project `proyecto`
 La creación del proyecto es «simplemente» la inclusión del fichero `pyproject.toml` con las especificaciones del proyecto:
 
 ```console
+$ cd proyecto
+
 $:~/proyecto> ls
 pyproject.toml
 
@@ -224,12 +225,12 @@ dependencies = []
 
 !!! tip "Versión específica"
 
-    Por defecto `uv` siempre trata de utilizar (instalar) la última versión disponible de Python. Pero si queremos que nuestro proyecto trabaje con una versión específica de Python, podemos indicarlo a la hora de inicializar el proyecto.
+    Por defecto _uv_ siempre trata de utilizar (instalar) la última versión disponible de Python. Pero si queremos que nuestro proyecto trabaje con una versión específica de Python, podemos indicarlo a la hora de inicializar el proyecto.
 
     Por <span class="example">ejemplo:material-flash:</span> si vamos a utilizar Python 3.11:
 
     ```console
-    $ uv init -p3.11 --bare --no-project
+    $ uv init -p3.11 --bare --no-project proyecto
     ```
 
 ### Añadir dependencias
@@ -313,7 +314,7 @@ dev = [
 
 #### Otras dependencias
 
-Lo bueno de `uv` es que permite definir cualquier grupo de dependencias (aunque el grupo `dev` ya existe por defecto).
+Lo bueno de _uv_ es que permite definir cualquier grupo de dependencias (aunque el grupo `dev` ya existe por defecto).
 
 Esto nos brinda la posibilidad, por ejemplo, de definir dependencias que son exclusivamente para un entorno de producción. Supongamos que queremos desplegar una aplicación web [Django](../../paquetes/web/django/) utilizando el paquete [`gunicorn`](https://gunicorn.org/):
 
@@ -347,9 +348,9 @@ prod = [
 
 #### Fijar una versión
 
-Es posible que —en determinadas circunstancias— interese instalar una versión concreta de un paquete. Esto es posible hacerlo con uv de forma muy sencilla.
+Es posible que —en determinadas circunstancias— interese instalar una versión concreta de un paquete. Esto es posible hacerlo con _uv_ de forma muy sencilla.
 
-Supongamos que nos interesa [una versión](https://github.com/yaml/pyyaml/releases) un poco más antigua del paquete `pyyaml`:
+Supongamos que nos interesa la [versión](https://github.com/yaml/pyyaml/releases) 6.0.2 del paquete `pyyaml`:
 
 ```console
 $:~/proyecto> uv add pyyaml==6.0.2
@@ -380,7 +381,7 @@ sqlparse             0.6.0
 urllib3              2.8.0
 ```
 
-En el caso de que queremos visualizar el **árbol de dependencias** que forma `pyproject.toml` + `uv.lock` podemos ejecutar el siguiente comando:
+En el caso de que queramos visualizar el **árbol de dependencias** que forma `pyproject.toml` + `uv.lock` podemos ejecutar el siguiente comando:
 
 ```console
 $:~/proyecto> uv tree --all-groups
@@ -405,7 +406,7 @@ proyecto v0.1.0
 
 ### Sincronizar dependencias
 
-Una de las características más potentes de uv es que puede recrear el entorno virtual (con todas sus dependencias) de una forma totalmente exacta y muy rápidamente.
+Una de las características más potentes de _uv_ es que puede recrear el entorno virtual (con todas sus dependencias) de una forma totalmente exacta y muy rápidamente.
 
 Para sincronizar dependencias utilizamos el comando `uv sync`.
 
@@ -458,7 +459,9 @@ sqlparse             0.6.0
 urllib3              2.8.0
 ```
 
-Es importante señalar que las dependencias de «producción» no se han instalado, porque por defecto no tiene en cuenta los grupos adicionales que hemos creado. Si queremos tenerlas en cuenta basta indicarlo en el propio comando:
+Es importante señalar que las dependencias de «producción» no se han instalado, porque por defecto _uv_ no tiene en cuenta los [grupos adicionales](#otras-dependencias) que hemos creado.
+
+Si queremos tenerlas en cuenta basta con indicarlo en el propio comando:
 
 ```console
 $:~/proyecto> uv sync --all-groups
@@ -528,11 +531,21 @@ Installed 4 packages in 582ms
 
 No solo hemos borrado el paquete `requests` sino también todas sus dependencias (que no fueran requeridas por algún otro paquete del proyecto).
 
+### Ejecutar archivos
+
+Dentro de un proyecto _uv_ hay que tener en cuenta que los archivos `.py` que queramos ejecutar deben estar en el «entorno» adecuado. Para ello siempre debemos invocar utilizando `uv run`.
+
+Por <span class="example">ejemplo:material-flash:</span> si disponemos de un fichero principal de nuestra aplicación `main.py` la manera de invocarlo sería la siguiente:
+
+```console
+$:~/proyecto> uv run main.py
+```
+
 ## Scripts
 
 Es posible «empaquetar» todas las dependencias de un proyecto en un único script y ejecutarlo de forma transparente sin necesidad de gestionar el entorno virtual asociado.
 
-Esto es muy potente ya que podemos «distribuir» artefactos software hechos en Python en un único archivo que podrá ser ejecutado en cualquier contexto (siempre y cuando exista `uv` en el sistema).
+Esto es muy potente ya que podemos «distribuir» artefactos software hechos en Python en un único archivo que podrá ser ejecutado en cualquier contexto (siempre y cuando exista _uv_ en el sistema).
 
 ### Inicializar un script
 
@@ -649,7 +662,7 @@ Hello from fichero.py!
 
 ## Herramientas
 
-Otra de las ventajas de utilizar `uv` es que nos permite gestionar herramientas Python de una forma muy sencilla y a la vez muy potente.
+Otra de las ventajas de utilizar _uv_ es que nos permite gestionar herramientas Python de una forma muy sencilla y a la vez muy potente.
 
 ### Instalar herramientas
 
@@ -715,7 +728,7 @@ Nothing to upgrade
 
 ### Ejecutar herramientas al vuelo
 
-No es obligatorio instalar una herramienta para poder utilizarlo. Gracias a un rendimiento espectacular de `uv` es posible invocar herramientas al vuelo sin necesidad de tenerlas instaladas previamente.
+No es obligatorio instalar una herramienta para poder utilizarlo. Gracias a un rendimiento espectacular de _uv_ es posible invocar herramientas al vuelo sin necesidad de tenerlas instaladas previamente.
 
 ```console hl_lines="4"
 $ uv tool list
@@ -755,20 +768,21 @@ $ uvx cowsay -t 'al vuelo' #(1)!
 
 ### Python como herramienta
 
-Uno de los casos de uso típico de «herramienta» en `uv` es lanzar una versión específica de Python pero con **dependencias** al vuelo.
+Uno de los casos de uso típico de «herramienta» en _uv_ es lanzar una versión específica de Python pero con [dependencias](#anadir-dependencias) al vuelo.
 
-Supongamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que nos interesa lanzar un intérprete de Python 3.8 con el paquete `requests`:
+Supongamos el siguiente <span class="example">ejemplo:material-flash:</span> en el que nos interesa lanzar un intérprete de Python 3.8 con el paquete `requests` ya incorporado:
 
-```console hl_lines="1"
+```console hl_lines="1 7"
 $ uvx --with requests python@3.8
 Installed 5 packages in 27ms
 Python 3.8.20 (default, Oct  2 2024, 15:14:40)
 [GCC 6.3.0 20170516] on linux
 Type "help", "copyright", "credits" or "license" for more information.
+
 >>> import requests
+
 >>> requests.get('https://aprendepython.es')
 <Response [200]>
->>>
 ```
 
 

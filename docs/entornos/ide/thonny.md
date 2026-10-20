@@ -27,9 +27,9 @@ Cuando nos encontramos con un programa que proporciona estas funciones (e inclus
 
 ## Instalación
 
-Para instalar Thonny debemos [acceder a su web](https://thonny.org/) y descargar la aplicación para nuestro sistema operativo. La ventaja es que está disponible tanto para **Windows**, **macOS** y **Linux**. Una vez descargado el fichero lo ejecutamos y seguimos su instalación paso por paso.
+Para instalar Thonny debemos [acceder a su web](https://thonny.org/) y descargar la aplicación para nuestro sistema operativo. La ventaja es que está disponible tanto para **Windows**, **macOS** y **Linux**. Una vez descargado el fichero, lo ejecutamos y seguimos la instalación paso por paso.
 
-Una vez terminada la instalación ya podemos lanzar la aplicación que se verá parecida a la siguiente imagen:
+Cuando termine la instalación ya podemos lanzar la aplicación que se verá algo similar a la siguiente imagen:
 
 ![Thonny empty](images/thonny/thonny-empty.png)
 ///caption
@@ -44,12 +44,8 @@ Aspecto de Thonny una vez arrancado
 Podemos observar que la pantalla está dividida en **3 paneles**:
 
 - ^^Panel principal^^ que contiene el **editor** e incluye la etiqueta `<untitled>` donde escribiremos nuestro código fuente Python.
-- ^^Panel inferior^^ con la etiqueta «Shell» que contiene el **intérprete** de Python. En el momento de la escritura del presente documento, Thonny incluye la versión de Python 3.10.
+- ^^Panel inferior^^ con la etiqueta «Shell» que contiene el **intérprete** de Python. En el momento de la escritura del presente documento, Thonny incluye la versión de **Python 3.14**.
 - ^^Panel derecho^^ que contiene el **depurador**. Más concretamente se trata de la ventana de variables donde podemos inspeccionar el valor de las mismas.
-
-!!! warning "Versión de Python"
-
-    Las actualizaciones de Thonny no están «alineadas» con las últimas versiones de Python, por lo que es probable que no dispongas de la última versión estable de Python en Thonny. En cualquier caso, siempre se podrá configurar el editor para utilizar una instalación personalizada de Python más actualizada.
 
 ## Intérprete
 
