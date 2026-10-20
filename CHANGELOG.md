@@ -6,6 +6,27 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.7
+
+Publicada el 20-10-2026
+
+- Entorno integrado de desarrollo: uv
+  - Corrige errores menores.
+- Entorno integrado de desarrollo: Thony
+  - Corrige errores menores.
+- Pruebas: Pytest
+  - Corrige errores menores.
+- Entornos de desarrollo: Diagramas
+  - Añade documentación de elementos para cada diagrama.
+- Prácticas de desarrollo: Git
+  - Añade documentación de borrado de archivos.
+- Entorno integrado de desarrollo: Visual Studio Code
+  - Añade documentación de Markdown.
+- Tipos de datos: Cadenas de texto
+  - Mejora explicación de formateado de flotantes con «fstrings».
+- Desarrollo web: Django
+  - Añade documentación sobre valores por defecto en modelos.
+
 ## Version 3.3.6
 
 Publicada el 15-10-2026
