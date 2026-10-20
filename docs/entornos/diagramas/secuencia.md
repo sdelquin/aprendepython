@@ -14,6 +14,20 @@ Se utiliza para describir cómo colaboran los diferentes componentes de una apli
 
 A diferencia del [diagrama de clases](clases.md), que representa la estructura estática del sistema, el diagrama de secuencia muestra su **comportamiento dinámico**, centrándose en el orden temporal de las interacciones.
 
+## Elementos
+
+A continuación se detallan los principales elementos que forman parte de un diagrama de secuencia:
+
+| Elemento | Finalidad |
+|---|---|
+| **Actores** | Representan a las personas o sistemas externos que participan en la interacción. |
+| **Líneas de vida** | Representan la existencia de un participante a lo largo del tiempo mediante una línea vertical discontinua. |
+| **Participantes u objetos** | Representan las entidades que intervienen en la interacción y se sitúan en la parte superior del diagrama. |
+| **Mensajes** | Representan la comunicación entre participantes mediante flechas que indican el emisor, el receptor y el orden de las interacciones. |
+| **Activaciones** | Representan los intervalos durante los cuales un participante está ejecutando una operación. |
+| **Mensajes de creación y destrucción** | Representan, respectivamente, la creación de un objeto y el final de su existencia durante la interacción. |
+| **Fragmentos combinados** | Representan estructuras de control, como alternativas (`alt`), opciones (`opt`) y repeticiones (`loop`), que condicionan el comportamiento de la interacción. |
+
 ## Ejemplo
 
 A continuación se presenta un <span class="example">ejemplo:material-flash:</span> de **diagrama de casos de uso** para un _Sistema de gestión de una biblioteca_:

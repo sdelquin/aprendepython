@@ -12,6 +12,19 @@ Un **diagrama de clases** es un diagrama [UML](https://www.ibm.com/docs/es/iis/1
 
 Se utiliza principalmente durante el diseño de software orientado a objetos para representar cómo se organiza un sistema antes de implementarlo mediante código.
 
+## Elementos
+
+A continuación se detallan los principales elementos que forman parte de un diagrama de clases:
+
+| Elemento | Finalidad |
+| --- | --- |
+| **Clases** | Representan los elementos del sistema y se dibujan mediante rectángulos que contienen su nombre, atributos y métodos. |
+| **Atributos** | Representan las propiedades o los datos de una clase y se definen mediante su nombre, tipo y visibilidad. |
+| **Métodos u operaciones** | Representan los comportamientos de una clase e indican las operaciones que pueden realizar sus objetos. |
+| **Relaciones entre clases** | Representan las conexiones entre las clases mediante asociaciones, herencia, agregaciones, composiciones o dependencias. |
+| **Multiplicidad o cardinalidad** | Indica cuántos objetos de una clase pueden relacionarse con un objeto de otra clase. |
+| **Visibilidad** | Indica desde dónde pueden accederse los atributos y métodos mediante los símbolos público (`+`), privado (`-`), protegido (`#`) y de paquete (`~`). |
+
 ## Ejemplo
 
 A continuación se presenta un <span class="example">ejemplo:material-flash:</span> de **diagrama de clases** para un _Sistema de gestión de una biblioteca_:

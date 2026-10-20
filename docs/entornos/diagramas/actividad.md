@@ -14,6 +14,21 @@ Se utiliza para describir el comportamiento de un sistema mediante una secuencia
 
 A diferencia del [diagrama de secuencia](secuencia.md), que se centra en los mensajes intercambiados entre participantes a lo largo del tiempo, el diagrama de actividad se centra en las **acciones que componen un proceso** y el flujo que las conecta.
 
+## Elementos
+
+A continuación se detallan los principales elementos que forman parte de un diagrama de actividad:
+
+| Elemento | Finalidad |
+|---|---|
+| **Nodo inicial** | Indica el punto de comienzo del flujo de actividades y se representa mediante un círculo negro. |
+| **Actividades o acciones** | Representan las tareas o pasos que se ejecutan durante un proceso y se dibujan mediante rectángulos con las esquinas redondeadas. |
+| **Flujos de control** | Representan el orden de ejecución de las actividades mediante flechas que conectan los distintos elementos. |
+| **Nodos de decisión** | Permiten elegir entre diferentes caminos del flujo en función de una condición y se representan mediante un rombo. |
+| **Nodos de fusión** | Unifican diferentes caminos alternativos del flujo en uno solo y se representan mediante un rombo. |
+| **Nodos de bifurcación y unión** | Permiten dividir el flujo en actividades paralelas y sincronizar su finalización, respectivamente, y se representan mediante una barra gruesa. |
+| **Nodo final de actividad** | Indica la finalización completa de la actividad y se representa mediante un círculo negro rodeado por otro círculo. |
+| **Carriles («swimlanes»)** | Organizan las actividades en regiones que indican qué actor, persona o componente es responsable de ejecutarlas. |
+
 ## Ejemplo
 
 A continuación se presenta un <span class="example">ejemplo:material-flash:</span> de **diagrama de casos de uso** para un _Sistema de gestión de una biblioteca_:
