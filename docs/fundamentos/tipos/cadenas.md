@@ -812,32 +812,50 @@ Los «f-strings» proporcionan una gran variedad de **opciones de formateado**: 
     El **modificador** para formatear flotantes es `f` (_flotante_):
 
     ```pycon
-    >>> PI = 3.14159265
+    >>> value = 2765.378194183
     
-    >>> f'{PI:f}'#(1)!
-    '3.141593'
+    >>> f'{value:f}'#(1)!
+    '2765.378194'
     
-    >>> f'{PI:.3f}'
-    '3.142'
+    >>> f'{value:.3f}'#(2)!
+    '2765.378'
     
-    >>> f'{PI:12f}'
-    '    3.141593'
+    >>> f'{value:12f}'#(3)!
+    ' 2765.378194'
+
+    >>> f'{value:012f}'#(4)!
+    '02765.378194'
     
-    >>> f'{PI:7.2f}'
-    '   3.14'
+    >>> f'{value:7.2f}'#(5)!
+    '2765.38'
     
-    >>> f'{PI:07.2f}'
-    '0003.14'
+    >>> f'{value:09.2f}'#(6)!
+    '002765.38'
     
-    >>> f'{PI:.010f}'
-    '3.1415926500'
+    >>> f'{value:.012f}'#(7)!
+    '2765.378194183000'
     
-    >>> f'{PI:e}'
-    '3.141593e+00'
+    >>> f'{value:e}'#(8)!
+    '2.765378e+03'
     ```
     { .annotate }
     
     1. Por defecto se muestran **6 cifras decimales**.
+    2. Mostrar `value` con 3 cifras decimales.
+    3.  - Mostrar `value` con tamaño 12 y con el número de cifras decimales por defecto (6)
+        - El tamaño 12 incluye el punto decimal.
+        - Por tanto se añade un espacio en blanco al principio para completar y llegar a 12 caracteres.
+    4.  - Mostrar `value` con tamaño 12 y con el número de cifras decimales por defecto (6), rellenando con `0` si es necesario.
+        - El tamaño 12 incluye el punto decimal.
+        - Por tanto se añade un `0` al principio para completar y llegar a 12 caracteres.
+    5.  - Mostrar `value` con tamaño 7 incluyendo 2 cifras decimales.
+        - El tamaño 7 incluye el punto decimal.
+    6.  - Mostrar `value` con tamaño 9 incluyendo 2 cifras decimales, rellenando con `0` si es necesario.
+        - El tamaño 9 incluye el punto decimal.
+    7. Mostrar `value` con 12 cifras decimales, rellenando con `0` si es necesario.
+    8.  - Mostrar `value` en [notación exponencial](https://es.wikipedia.org/wiki/Notaci%C3%B3n_cient%C3%ADfica#Notaci%C3%B3n_exponencial._(Notaci%C3%B3n_E)).
+        - Se utilizan 6 cifras decimales (valor por defecto).
+        - $2.765378e+03 \equiv 2.765378 \times 10^3$
 
     ??? tip "zfill :fontawesome-brands-creative-commons-zero:"
     
