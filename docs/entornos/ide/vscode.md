@@ -357,6 +357,28 @@ Pero también es posible añadir manualmente el seguimiento de otras variables o
 
 ![VSCode Debug Watch](images/vscode/vscode-debug-watch.png)
 
+## Markdown
+
+Visual Studio Code permite [editar y renderizar](https://code.visualstudio.com/docs/languages/markdown) código [Markdown](../practicas/markdown.md) sin salir del propio IDE y de _manera nativa_.
+
+Es tan sencillo como dividir la pantalla en dos paneles:
+
+- A la izquierda podemos tener nuestro editor de código con el fichero `.md`
+- A la derecha podemos presentar la visualización del documento.
+
+![VSCode Markdown](./images/vscode/vscode-markdown.png)
+
+El comando que abre la **previsualización del documento** _Markdown_ es `Markdown: Toggle Preview` aunque también podemos usar [atajos de teclado](#atajos-de-teclado):
+
+=== "Linux :simple-linux: y Windows :fontawesome-brands-windows:"
+
+    ++ctrl++ ++k++ ++v++
+
+=== "macOS :simple-apple:"
+
+    ++cmd++ ++k++ ++v++
+
 
 [^1]: Un «linter» es una herramienta software que permite detectar errores en el código previo a su ejecución.
 [^2]: Fuente: [Gastón Danielsen](https://dev.to/gastondanielsen/atajos-de-teclado-shortcuts-en-vscode-430a).
+
