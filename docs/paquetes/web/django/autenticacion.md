@@ -10,7 +10,7 @@ tags:
 
 <span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
-Django proporciona un [sistema de autenticación](https://docs.djangoproject.com/en/stable/topics/auth/default/) —incorporado en el propio framework— que facilita en gran medida la gestión de accesos y de usuarios.
+Django proporciona un [sistema de autenticación](https://docs.djangoproject.com/en/stable/topics/auth/default/) —incorporado en el propio framework— que facilita en gran medida la gestión de accesos y usuarios.
 
 ## Usuario
 
@@ -39,6 +39,8 @@ Existe un modelo [`User`](https://docs.djangoproject.com/en/stable/ref/contrib/a
     | [`set_password()`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.set_password) | Establece la contraseña del usuario | :material-alpha-w-box:{.green} |
     | [`check_password()`](https://docs.djangoproject.com/en/stable/ref/contrib/auth/#django.contrib.auth.models.User.check_password) | Comprueba la contraseña del usuario | :material-alpha-r-box:{.red} |
 
+:material-alpha-r-box:{.red} → _Read_ (Lectura)  
+:material-alpha-w-box:{.green} → _Write_ (Escritura)
 
 ??? tip "Password"
 
@@ -63,6 +65,18 @@ Para **acceder al modelo de usuario** disponemos de dos vías:
 | --- | --- | --- | --- | --- |
 | [Claves ajenas](modelos.md#claves-ajenas) | `#!python from django.conf import settings` | `settings.AUTH_USER_MODEL` | Cadena de texto cualificada | `#!python 'auth.User'` |
 | [Vistas](vistas.md) y/o [formularios](formularios.md) | `#!python from django.contrib.auth import get_user_model`  | `get_user_model()` | Función que devuelve el modelo | `django.contrib.auth.models.User` |
+
+!!! tip "Importación automática"
+
+    En _versiones recientes_ de Django, al abrir un [intérprete de Python](modelos.md#shell) (mediante `./manage.py shell`) se producen una serie de «automatic imports». Uno de ellos es precisamente el modelo de usuario:
+
+    ```console
+    $ ./manage.py shell
+    13 objects imported automatically (use -v 2 for details)
+
+    >>> User
+    django.contrib.auth.models.User
+    ```
 
 ### Acceso a la instancia
 
@@ -115,9 +129,9 @@ urlpatterns = [
 
 De esta forma tendremos acceso «directo» a las funcionalidades de autenticación desde la raíz de la URL:
 
-- `http://misitioweb.com/login/`
-- `http://misitioweb.com/logout/`
-- `http://misitioweb.com/signup/`
+- `https://misitioweb.com/login/`
+- `https://misitioweb.com/logout/`
+- `https://misitioweb.com/signup/`
 
 !!! warning "Nombre"
 
