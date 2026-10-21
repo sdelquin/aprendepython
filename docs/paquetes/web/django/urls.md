@@ -361,7 +361,7 @@ Es posible que queramos «apuntar» una determinada URL en `main/urls.py`{ .gree
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que disponemos de una vista de contacto (información acerca de la web) en la aplicación `shared` y que queremos apuntar directamente a dicha vista desde las URLs de primer nivel:
 
-```python title="main/urls.py" hl_lines="9"
+```python title="main/urls.py" hl_lines="4 9"
 from django.contrib import admin
 from django.urls import path, include
 
@@ -386,9 +386,9 @@ urlpatterns = [
 
 Es posible que queramos redireccionar una determinada URL en `main/urls.py`{ .green } a otra URL (habitualmente a través de su nombre).
 
-Supongamos por <span class="example">ejemplo:material-flash:</span> un escenario en el que queremos redirigir la URL raíz de nuestro blog `/` al listado de «posts» que hay en la plataforma:
+Supongamos por <span class="example">ejemplo:material-flash:</span> un escenario en el que queremos redirigir la URL raíz de nuestro blog `/` al listado de «posts» que hay en el sistema:
 
-```python title="main/urls.py" hl_lines="7"
+```python title="main/urls.py" hl_lines="2 7"
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
@@ -416,7 +416,7 @@ Es posible que queramos renderizar una plantilla directamente desde `main/urls.p
 
 En un <span class="example">ejemplo:material-flash:</span> donde tengamos una plantilla «estática» que ^^no dependa del contexto^^, podemos aplicar esta técnica de manera sencilla. Supongamos que queremos renderizar una página de índice:
 
-```python title="main/urls.py" hl_lines="7"
+```python title="main/urls.py" hl_lines="2 7"
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import path, include

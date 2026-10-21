@@ -679,7 +679,7 @@ Django proporciona una gran cantidad de [widgets «built-in»](https://docs.djan
 
 ### Widgets predefinidos
 
-Para acceder a cada «widget» basta con importarlo desde: `#!python from django import forms` y luego usarlo (por ejemplo) con `#!python forms.TextInput` ...
+Para acceder a cada «widget» basta con importarlo desde: `#!python from django import forms` y luego usarlo (por <span class="example">ejemplo:material-flash:</span>) con `#!python forms.TextInput` ...
 
 === "Para manejo de texto"
 
@@ -749,7 +749,7 @@ Retomando el <span class="example">ejemplo:material-flash:</span> de los «posts
 
 === "Formulario de modelo :material-form-dropdown:"
 
-    ```python title="posts/forms.py" hl_lines="5"
+    ```python title="posts/forms.py" hl_lines="10"
     from django import forms
     
     from .models import Post
@@ -775,7 +775,7 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
 
     Una primera aproximación sería modificar la definición de los campos:
 
-    ```python title="posts/forms.py"
+    ```python title="posts/forms.py" hl_lines="5-6"
     from django import forms
 
 
@@ -784,9 +784,9 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
         content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     ```
 
-    Pero también es posible hacerlo de manera programática:
+    Pero también es posible hacerlo de **manera programática**:
 
-    ```python title="posts/forms.py"
+    ```python title="posts/forms.py" hl_lines="8-9"
     from django import forms
 
 
@@ -802,7 +802,7 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
 
     Una primera aproximación sería modificar la definición en la clase `Meta`:
 
-    ```python title="posts/forms.py"
+    ```python title="posts/forms.py" hl_lines="10-13"
     from django import forms
 
     from .models import Post
@@ -818,9 +818,9 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
             }
     ```
 
-    Pero también es posible hacerlo de manera programática:
+    Pero también es posible hacerlo de **manera programática**:
 
-    ```python title="posts/forms.py"
+    ```python title="posts/forms.py" hl_lines="10-12 14-17"
     from django import forms
 
     from .models import Post
@@ -844,9 +844,9 @@ Continuando con el <span class="example">ejemplo:material-flash:</span> de los �
 
     Dentro del constructor (o cualquier otro método de instancia), es posible recorrer los campos del formulario mediante `#!python self.fields`, un iterable que devuelve objetos de tipo [`Field`](https://docs.djangoproject.com/en/stable/ref/forms/fields/#django.forms.Field).
 
-Si queremos modificar atributos de todos los campos visibles del formulario, podemos aplicar lo siguiente:
+Si queremos modificar atributos de **todos los campos visibles** del formulario, podemos aplicar lo siguiente:
 
-```python title="posts/forms.py"
+```python title="posts/forms.py" hl_lines="11-14"
 from django import forms
 
 from .models import Post
@@ -874,7 +874,7 @@ class AddPostForm(forms.ModelForm):#(1)!
 
 Uno de los «widgets» que suele ser más complicado de ajustar es el de fecha/hora.
 
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos un formulario de clase para añadir un post que incluye _fecha de publicación_:
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que creamos un ^^formulario de clase^^ para añadir un «post» que incluye _fecha de publicación_:
 
 ```python title="posts/forms.py" hl_lines="7"
 from django import forms
@@ -896,7 +896,9 @@ Con esta configuración obtendremos un control interactivo para seleccionar la f
 
 <span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
-Hay ocasiones en las que nos interesa personalizar el guardado de un formulario para modificar determinados atributos o realizar otras acciones. Esto se consigue sobreescribiendo el método `save()` del formulario.
+Hay ocasiones en las que nos interesa personalizar el guardado de un formulario para modificar determinados atributos o realizar otras acciones.
+
+Esto se consigue sobreescribiendo el método `save()` del formulario lo que favorece su _encapsulamiento_.
 
 ### Escenario sin claves ajenas
 
@@ -904,7 +906,7 @@ Vamos a retomar el <span class="example">ejemplo:material-flash:</span> del [for
 
 La idea que hay detrás de esta nueva aproximación es **encapsular** el código «adicional» (personalizado) en el propio método `save()` del formulario de modelo:
 
-```python title="posts/forms.py" hl_lines="10-14"
+```python title="posts/forms.py" hl_lines="2 10-14"
 from django import forms
 from django.utils.text import slugify
 
@@ -930,7 +932,7 @@ class AddPostForm(forms.ModelForm):
 4. Ahora ya podemos almacenar el objeto `post` en disco llamando al método de la clase base.
 5. :fontawesome-solid-circle-exclamation:{.red} El método `save()` de un formulario ^^siempre^^ debe devolver la instancia creada.
 
-Con este diseño de formulario, crear un nuevo «post» a partir de su _formulario de modelo_ es muy sencillo:
+Con este «nuevo» diseño de formulario, crear un nuevo «post» a partir de su _formulario de modelo_ **desde la vista** es muy sencillo:
 
 ```python title="posts/views.py" hl_lines="10"
 from django.shortcuts import redirect, render
@@ -942,7 +944,7 @@ from .forms import AddPostForm
 def add_post(request):
     if request.method == 'POST':
         if (form := AddPostForm(request.POST)).is_valid():
-            post = form.save()#(1)!
+            form.save()#(1)!
             return redirect('posts:post-list')
     else:
         form = AddPostForm()
@@ -950,7 +952,8 @@ def add_post(request):
 ```
 { .annotate }
 
-1. Toda la «lógica» de generación del «slug» queda encapsulada en el propio formulario.
+1.  - Toda la «lógica» de generación del «slug» queda encapsulada en el propio formulario.
+    - En este contexto no necesitamos el objeto, pero si fuera necesario para cualquier acción posterior podemos obtenerlo mediante `#!python post = form.save()`
 
 !!! info "Modelo"
 
