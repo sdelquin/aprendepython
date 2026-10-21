@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Logo AprendePython
+  - Mejora pequeños aspectos estéticos.
+- Actualiza la versión de Zensical a [0.0.71](https://github.com/zensical/zensical/releases/tag/v0.0.71).
+
 ## Version 3.3.8
 
 Publicada el 21-10-2026
