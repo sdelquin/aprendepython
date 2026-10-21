@@ -9,6 +9,8 @@ Publicada el DD-MM-YYYY
 - Logo AprendePython
   - Mejora pequeños aspectos estéticos.
 - Actualiza la versión de Zensical a [0.0.71](https://github.com/zensical/zensical/releases/tag/v0.0.71).
+- Aprendizaje: Pypas
+  - Añade logotipo de pypas.
 
 ## Version 3.3.8
 

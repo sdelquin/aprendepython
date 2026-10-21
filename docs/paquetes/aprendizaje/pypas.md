@@ -6,7 +6,7 @@ tags:
   - pypas
 ---
 
-# pypas
+# pypas ![Logo Pypas](./images/pypas/pypas-logo.svg){width=25px .sub}
 
 ![Banner](images/pypas/banner.jpg)
 ///caption

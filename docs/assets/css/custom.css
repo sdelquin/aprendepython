@@ -228,3 +228,9 @@ span.dj-level {
 a span.twemoji {
   vertical-align: middle !important;
 }
+
+/* Rules for alignment */
+
+.sub {
+  vertical-align: sub;
+}

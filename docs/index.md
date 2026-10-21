@@ -1,6 +1,6 @@
 # Aprende Python
 
-Aprende el lenguaje de programación ^^Python^^ :material-snake:{ .slide .green } y descubre un **mundo de posibilidades**.
+Aprende el lenguaje de programación ^^Python^^ ![logo](assets/images/aprendepython-logo.svg){width=20px .beat .sub} y descubre un **mundo de posibilidades**.
 
 ![Monty Python](assets/images/monty-python.jpg)
 ///caption
