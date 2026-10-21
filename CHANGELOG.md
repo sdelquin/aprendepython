@@ -6,6 +6,17 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.8
+
+Publicada el 21-10-2026
+
+- Django: URLs
+  - Corrige errores menores.
+- Django: Formularios
+  - Corrige errores menores.
+- Django: Autenticación
+  - Mejora documentación de modelo de usuario.
+
 ## Version 3.3.7
 
 Publicada el 20-10-2026
