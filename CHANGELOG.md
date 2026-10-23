@@ -6,11 +6,17 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.9
+
+Publicada el 23-10-2026
+
 - Logo AprendePython
   - Mejora pequeños aspectos estéticos.
 - Actualiza la versión de Zensical a [0.0.71](https://github.com/zensical/zensical/releases/tag/v0.0.71).
 - Aprendizaje: Pypas
   - Añade logotipo de pypas.
+- Django: Autenticación
+  - Añade documentación sobre validación de la contraseña.
 
 ## Version 3.3.8
 
