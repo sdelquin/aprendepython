@@ -97,6 +97,8 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
     - [Procesadores de contexto](plantillas.md#procesadores-de-contexto)
 - Formularios
     - [Validación de formularios](formularios.md#validacion)
+- Autenticación
+    - [Seguridad de la contraseña](autenticacion.md#seguridad-de-la-contrasena)
 - Estáticos
     - [Bootstrap](estaticos.md#bootstrap)
 - Internacionalización

@@ -376,6 +376,10 @@ class SignupForm(forms.ModelForm):
             return user
     ```
 
+!!! danger "Seguridad de la contraseña"
+
+    En esta aproximación no se está llevando a cabo **ningún tipo de validación sobre la contraseña** introducida por el usuario en el registro. Para ello se recomienda la lectura del apartado [Seguridad de la contraseña](#seguridad-de-la-contrasena).
+
 ### Plantilla de registro
 
 ```htmldjango title="accounts/templates/accounts/signup.html"
@@ -420,7 +424,7 @@ def user_signup(request):
 
 ### URL de registro
 
-```python title="main/urls.py" hl_lines="6"
+```python title="accounts/urls.py" hl_lines="6"
 from django.urls import path
 
 from . import views
@@ -440,6 +444,133 @@ En algún punto de nuestras plantillas deberemos añadir un enlace para registro
 { .annotate }
 
 1. Puedes usar condiciones para saber si el usuario está autenticado :material-arrow-right-box: `#!htmldjango {% if user.is_authenticated %}`.
+
+### Seguridad de la contraseña
+
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
+Con el código que hemos visto en el [formulario de registro](#formulario-de-registro) no podemos asegurar que la contraseña introducida cumpla con unos mínimos de seguridad.
+
+Es por ello que podemos hacer uso de la [validación de formularios](formularios.md#validacion) para mejorar la seguridad de la contraseña introducida:
+
+```python title="accounts/forms.py" hl_lines="3 19-22"
+from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
+
+
+class SignupForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('username', 'password', 'first_name', 'last_name', 'email')
+        widgets = {'password': forms.PasswordInput}
+        help_texts = {'username': None}
+    
+    def save(self, *args, **kwargs):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        user = super().save(*args, **kwargs)
+        return user
+    
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        validate_password(password)
+        return password
+```
+
+La función [`validate_password()`](https://docs.djangoproject.com/en/stable/topics/auth/passwords/#django.contrib.auth.password_validation.validate_password) aplica las [validaciones por defecto para contraseñas](https://docs.djangoproject.com/en/stable/topics/auth/passwords/#enabling-password-validation) que se resumen en:
+
+1. Comprobar que la contraseña no sea similar a otros atributos del usuario.
+2. Comprobar que la contraseña tenga un mínimo de caracteres (8).
+3. Comprobar que la contraseña no sea común.
+4. Comprobar que la contraseña no sea únicamente numérica.
+
+#### Validaciones propias
+
+Si las validaciones por defecto vistas anteriormente no cubren las necesidades de tu contexto, Django permite [escribir tu propio validador](https://docs.djangoproject.com/en/stable/topics/auth/passwords/#writing-your-own-validator) para la contraseña de usuario.
+
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que definimos las siguientes reglas sobre la contraseña:
+
+1. Longitud mínima de 14 caracteres.
+2. Incluir al menos una letra.
+3. Inlucir al menos un dígito.
+4. Incluir al menos un símbolo.
+
+Un validador no es más que una [clase](../../../fundamentos/modularidad/poo.md#creando-clases) Python que debe implementar ciertos métodos:
+
+```python title="accounts/validators.py"
+import string
+from abc import ABC
+
+from django.core.exceptions import ValidationError
+
+
+class ItemInPassword(ABC):
+    def check_item(self, password, target_items):
+        return any(char in target_items for char in password)
+
+
+class PasswordMinimumLengthValidator:
+    PASSWORD_MIN_LENGTH = 16
+
+    def __init__(self, min_length=PASSWORD_MIN_LENGTH):
+        self.min_length = min_length
+
+    def validate(self, password, user=None):
+        if len(password) < self.min_length:
+            raise ValidationError(f'Password must contain at least {self.min_length} chars.')
+
+
+class LetterInPasswordValidator(ItemInPassword):
+    def __init__(self, letters=string.ascii_letters):
+        self.letters = letters
+
+    def validate(self, password, user=None):
+        if not self.check_item(password, self.letters):
+            raise ValidationError('Password must contain at least one letter.')
+
+
+class DigitInPasswordValidator(ItemInPassword):
+    def __init__(self, digits=string.digits):
+        self.digits = digits
+
+    def validate(self, password, user=None):
+        if not self.check_item(password, self.digits):
+            raise ValidationError('Password must contain at least one digit.')
+
+
+class SymbolInPasswordValidator(ItemInPassword):
+    PASSWORD_SYMBOLS = r'!@#$%^&*()-_=+"[]{};:,.?'
+
+    def __init__(self, symbols=PASSWORD_SYMBOLS):
+        self.symbols = symbols
+
+    def validate(self, password, user=None):
+        if not self.check_item(password, self.symbols):
+            raise ValidationError(
+                f'Password must contain at least one of these symbols: {self.symbols}'
+            )
+```
+
+Ahora ya solo nos queda incluir estos validadores en [`AUTH_PASSWORD_VALIDATORS`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-AUTH_PASSWORD_VALIDATORS):
+
+```python title="main/settings.py"
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'accounts.validators.PasswordMinimumLengthValidator',
+    },
+    {
+        'NAME': 'accounts.validators.LetterInPasswordValidator',
+    },
+    {
+        'NAME': 'accounts.validators.DigitInPasswordValidator',
+    },
+    {
+        'NAME': 'accounts.validators.SymbolInPasswordValidator',
+    },
+]
+```
+
 
 ## Requisito estar logeado
 
