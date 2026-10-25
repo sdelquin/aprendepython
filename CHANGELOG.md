@@ -12,6 +12,7 @@ Publicada el 25-10-2026
 
 - Django: Modelos
   - Mejora documentación sobre claves ajenas 1:N y 1:1.
+- Actualiza la versión de Zensical a [0.0.72](https://github.com/zensical/zensical/releases/tag/v0.0.72).
 
 ## Version 3.3.9
 
