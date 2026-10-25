@@ -1830,6 +1830,8 @@ Django nos ofrece muchas [funcionalidades](https://docs.djangoproject.com/en/sta
 :two: Relaciones uno a uno → $1:1$  
 :three: Relaciones muchos a muchos → $N:N$
 
+A continuación analizaremos cada uno de estos casos en profundidad.
+
 ### Relaciones uno a muchos
 
 Veamos un <span class="example">ejemplo:material-flash:</span> en el que permitimos que un «post» de un «blog» admita comentarios:
@@ -1841,7 +1843,7 @@ erDiagram
 
 > :material-alarm-light-outline:{.hl} Un «post» tiene cero o muchos comentarios, pero un comentario está relacionado con un único «post».
 
-Partimos de un modelo de «post» habitual:
+Partimos del siguiente modelo de «post»:
 
 ```python title="posts/models.py"
 from django.db import models
@@ -1851,23 +1853,47 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, unique=True)
     content = models.TextField()
+    published = models.BooleanField(default=False)
 ```
 
-Para relacionar ambos modelos usamos un campo de tipo [`ForeignKey`](https://docs.djangoproject.com/en/stable/ref/models/fields/#foreignkey):
+:fontawesome-solid-wand-magic-sparkles: Tendremos que [crear una nueva aplicación](aplicaciones.md#crear-una-aplicacion) `comments` para almacenar los comentarios.
+
+Al crear el modelo `Comment` incluiremos un atributo `post` que será de tipo [`ForeignKey`](https://docs.djangoproject.com/en/stable/ref/models/fields/#foreignkey) y nos permitirá indicar el «post» al que hace referencia:
 
 ```python title="comments/models.py" hl_lines="7-11"
 from django.db import models
 
 
 class Comment(models.Model):
-    alias = models.CharField(max_length=128)
+    alias = models.CharField(max_length=128)#(1)!
     content = models.TextField()
     post = models.ForeignKey(
         'posts.Post',              # Modelo relacionado
         related_name='comments',   # Nombre relacionado
         on_delete=models.CASCADE,  # Acción de borrado
     )
+
+    def __str__(self):
+        return self.content
 ```
+{ .annotate }
+
+1. Nombre de usuario o «alias» de la persona que escribe el comentario.
+
+??? tip "Interfaz administrativa"
+
+    Para poder acceder al modelo desde la **interfaz administrativa** tendremos que [registrarlo](admin.md#registrar-un-modelo):
+
+    ```python title="comments/admin.py"
+    from django.contrib import admin
+    
+    from .models import Comment
+    
+    
+    @admin.register(Comment)
+    class CommentAdmin(admin.ModelAdmin):
+        pass
+    ```
 
 Analicemos cada parámetro de `ForeignKey` por separado:
 
@@ -1879,11 +1905,11 @@ Analicemos cada parámetro de `ForeignKey` por separado:
 
 El primer parámetro que recibe `ForeignKey` es el modelo que vamos a relacionar.
 
-Hay dos formas de indicarlo:
+Hay dos formas de establecerlo:
 
 <div class="annotate" markdown>
-1. Si se indica en formato «string» hay que especificarlo como: `#!python '<app>.<Model>'`. (1)
-2. También podemos importar el modelo y hacer referencia directa.
+1. Mediante una [cadena de texto](../../../fundamentos/tipos/cadenas.md) con el formato: `#!python '<app>.<Model>'`. (1)
+2. Haciendo un «import» del modelo y con una referencia directa.
 </div>
 1. Esto permite evitar los llamados «circular imports».
 
@@ -1946,15 +1972,97 @@ El parámetro [`on_delete`](https://docs.djangoproject.com/en/stable/ref/models/
 
 Los posibles valores de este parámetro se muestran en la siguiente tabla:
 
+<div class="annotate" markdown>
 | Valor | Acción |
 | --- | --- |
 | [`models.CASCADE`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.CASCADE) | Borrado en cascada de todos los objetos relacionados. |
 | [`models.PROTECT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.PROTECT) | Impide el borrado si existen objetos relacionados. |
-| [`models.RESTRICT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.RESTRICT) | Impide el borrado si existen objetos relacionados (con matices). |
+| [`models.RESTRICT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.RESTRICT) | Impide el borrado si existen objetos relacionados (con matices)(1) |
 | [`models.SET_NULL`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_NULL) | Pone a `#!sql NULL` la clave ajena (sólo si admite nulos). |
 | [`models.SET_DEFAULT`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET_DEFAULT) | Pone un valor por defecto en la clave ajena (necesario definir `default`). |
 | [`models.SET`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.SET) | Pone un valor dado en la clave ajena. |
 | [`models.DO_NOTHING`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.DO_NOTHING) | No hace nada. Deja que la base de datos gestione el error de integridad. |
+</div>
+1. Permite la eliminación si los objetos que lo referencian también van a eliminarse mediante una operación en cascada dentro de la misma operación de borrado.
+
+#### Operaciones con claves ajenas
+
+Veamos a continuación diferentes operaciones que podemos realizar con claves ajenas sobre el <span class="example">ejemplo:material-flash:</span> concreto de los comentarios de un «post» dentro de un «blog»:
+
+=== "Creación :octicons-diff-added-24:"
+
+    Dado un «post» creamos un comentario vinculado con dicho «post»:
+
+    ```pycon hl_lines="9"
+    >>> from posts.models import Post
+    >>> from comments.models import Comment
+
+    >>> post = Post.objects.get(slug='mastering-django-templates')
+    
+    >>> comment = Comment.objects.create(
+    ...     alias='sdelquin',
+    ...     content='Template inheritance is a very useful practice',
+    ...     post=post,#(1)!
+    ... )
+    ```
+    { .annotate }
+    
+    1. Al final no deja de ser un atributo más al que asignamos un valor (objeto de clase `Post`).
+
+=== "Asignación :fontawesome-solid-sign-in:"
+
+    Podemos «reasignar» un comentario de un «post» a otro:
+
+    ```pycon hl_lines="7-8"
+    >>> from posts.models import Post
+    >>> from comments.models import Comment
+    
+    >>> post = Post.objects.get(slug='check-out-the-new-django-version')
+    >>> comment = Comment.objects.last()
+
+    >>> comment.post = post#(1)!
+    >>> comment.save()
+    ```
+    { .annotate }
+    
+    1. Al final no deja de ser un atributo más al que asignamos un valor (objeto de clase `Post`).
+
+=== "Consulta :material-magnify:"
+
+    Consultamos todos los comentarios de aquellos «posts» que empiecen por la letra «M»:
+    
+    ```pycon hl_lines="3"
+    >>> from comments.models import Comment
+
+    >>> Comment.objects.filter(post__title__startswith='M')#(1)!
+    ```
+    { .annotate }
+    
+    1. Para acceder a un campo de un objeto relacionado (_clave ajena_) hay que utilizar doble subguión. Véase `post__title`.
+
+=== "Borrado :material-delete:"
+
+    :one: Borramos todos los comentarios de un determinado «post»:
+
+    ```pycon hl_lines="4"
+    >>> from posts.models import Post
+    
+    >>> post = Post.objects.get(slug='check-out-the-new-django-version')
+    >>> post.comments.delete()#(1)!
+    ```
+    { .annotate }
+    
+    1. Utilizamos [`related-name`](#nombre-relacionado) para acceder a la *relación inversa*.
+
+    :two: Borramos (desvinculamos) un determinado comentario de un «post»:
+
+    ```pycon hl_lines="1"
+    >>> comment.post = None#(1)!
+    >>> comment.save()
+    ```
+    { .annotate }
+    
+    1. Esto sólo se podrá hacer si pueden existir comentarios "húerfanos" (consultar [claves ajenas nulas](#claves-ajenas-nulas)).
 
 #### Claves ajenas nulas
 
@@ -1989,9 +2097,9 @@ erDiagram
 
 > :material-alarm-light-outline:{.hl} Un usuario escribe cero o muchos comentarios, pero un comentario lo escribe un único usuario.
 
-Por tanto, tendremos que añadir una **clave ajena** al usuario en el modelo de comentario:
+Por tanto, tendremos que añadir una [clave ajena](#claves-ajenas) al [usuario](autenticacion.md#usuario) en el modelo de comentario:
 
-```python title="comments/models.py" hl_lines="13"
+```python title="comments/models.py" hl_lines="1 12-17"
 from django.conf import settings
 from django.db import models
 
@@ -2014,90 +2122,33 @@ class Comment(models.Model):
 1. Consulta [acceso al modelo de usuario](autenticacion.md#usuario).
 2. Si borramos un usuario se borrarán todos sus comentarios.
 
-#### Operaciones con claves ajenas
+??? danger "Añadir campos no nulos"
 
-Veamos a continuación diferentes operaciones que podemos realizar con claves ajenas sobre el <span class="example">ejemplo:material-flash:</span> concreto de los comentarios de un «post» dentro de un «blog»:
+    Si el modelo `Comment` ya existía y añadimos un nuevo atributo `user` **no nulo** Django se va a quejar porque no sabe cómo «rellenar» dicho campo en las posibles filas existentes de la tabla en la base de datos.
 
-=== "Creación :octicons-diff-added-24:"
+    La forma correcta de abordar este escenario es mediante una [migración manual](#migraciones-manuales), pero para «salir del paso» podemos permitir que los comentarios «no los haya escrito nadie» ...
 
-    Creamos un «post» y a continuación creamos un comentario vinculado a dicho «post»:
+    ```python title="comments/models.py" hl_lines="16-17"
+    from django.conf import settings
+    from django.db import models
 
-    ```pycon hl_lines="13"
-    >>> from posts.models import Post
-    >>> from comments.models import Comment
 
-    >>> post = Post.create(
-    ...     title='Django makes it very simple',
-    ...     slug='django-makes-it-very-simple',
-    ...     content='You can save related objects quite fast',
-    ... )
-    
-    >>> comment = Comment.create(
-    ...     alias='sdelquin',
-    ...     content='You are absolutely right!',
-    ...     post=post,#(1)!
-    ... )
+    class Comment(models.Model):
+        content = models.TextField()
+        post = models.ForeignKey(
+            'posts.Post',
+            related_name='comments',
+            on_delete=models.CASCADE,
+        )
+        user = models.ForeignKey(
+            settings.AUTH_USER_MODEL,
+            related_name='comments',
+            on_delete=models.CASCADE,
+            blank=True,
+            null=True
+        )
     ```
-    { .annotate }
     
-    1. Al final no deja de ser un atributo más al que asignamos un valor (objeto de clase `Post`).
-
-=== "Asignación :fontawesome-solid-sign-in:"
-
-    Dado un «post» y un «comentario», vinculamos (asignamos) el comentario al «post»:
-
-    ```pycon hl_lines="7-8"
-    >>> from posts.models import Post
-    >>> from comments.models import Comment
-    
-    >>> post = Post.objects.get(slug='django-is-awesome')
-    >>> comment = Comments.objects.get(content='Yes indeed!')
-
-    >>> comment.post = post#(1)!
-    >>> comment.save()
-    ```
-    { .annotate }
-    
-    1. Al final no deja de ser un atributo más al que asignamos un valor (objeto de clase `Post`).
-
-=== "Consulta :material-magnify:"
-
-    Consultamos todos los comentarios de aquellos «posts» que empiecen por la palabra «Future»:
-    
-    ```pycon hl_lines="3"
-    >>> from comments.models import Comment
-
-    >>> Comment.objects.filter(post__title__startswith('Future'))#(1)!
-    ```
-    { .annotate }
-    
-    1. Para acceder a un campo de un objeto relacionado (_clave ajena_) hay que utilizar doble subguión. Véase `post__title`.
-
-=== "Borrado :material-delete:"
-
-    :one: Borramos todos los comentarios de un determinado «post»:
-
-    ```pycon hl_lines="4"
-    >>> from posts.models import Post
-    
-    >>> post = Post.objects.get(slug='django-is-awesome')
-    >>> post.comments.delete()#(1)!
-    ```
-    { .annotate }
-    
-    1. Utilizamos [`related-name`](#nombre-relacionado) para acceder a la *relación inversa*.
-
-    :two: Borramos (desvinculamos) un determinado comentario de un «post»:
-
-    ```pycon hl_lines="1"
-    >>> comment.post = None#(1)!
-    >>> comment.save()
-    ```
-    { .annotate }
-    
-    1. Esto sólo se podrá hacer si pueden existir comentarios "húerfanos" (consultar [claves ajenas nulas](#claves-ajenas-nulas)).
-
-
 ### Relaciones uno a uno
 
 Django ofrece la posibilidad de definir [relaciones uno a uno](https://docs.djangoproject.com/en/stable/topics/db/examples/one_to_one/#one-to-one-relationships) utilizando la clase [`OneToOneField()`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.OneToOneField).
@@ -2108,9 +2159,9 @@ Un caso de uso muy habitual de este tipo de relaciones es cuando queremos [exten
 
 Dado que no tenemos acceso «directo» a modificar el modelo [`User`](autenticacion.md#usuario) predefinido en Django hay que buscar [otras alternativas](https://medium.com/@karimdhrif4444/mastering-user-management-comprehensive-guide-to-extending-djangos-user-model-51c2ccd793d4) para extender dicho modelo.
 
-La opción más «sencilla» es [crear un modelo alternativo](https://docs.djangoproject.com/en/stable/topics/auth/customizing/#extending-the-existing-user-model) que disponga de una **clave ajena al usuario** de tipo **uno a uno**.
+La opción más «sencilla» es [crear un modelo alternativo](https://docs.djangoproject.com/en/stable/topics/auth/customizing/#extending-the-existing-user-model) que disponga de una **clave ajena al usuario** (con cardinalidad **uno a uno**).
 
-Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos añadir la **profesión** y el **teléfono** a la información de usuario. Crearemos un nuevo modelo denominado `Profile` (_perfil de usuario_) que se relaciona con `User` y que contendrá los atributos «extendidos» de usuario:
+Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos añadir la **profesión** y el **teléfono** a la información de usuario. Crearemos un nuevo modelo denominado `Profile` (_perfil de usuario_) que se relacionará con `User` y que contendrá los atributos «extendidos» de usuario:
 
 ```mermaid
 erDiagram
@@ -2119,11 +2170,13 @@ erDiagram
 
 > :material-alarm-light-outline:{.hl} Un usuario tiene un único perfil y cada perfil sólo pertenece a un usuario.
 
-Como se puede observar, se trata de una relación `1:1` por lo que vamos a utilizar la clase [`OneToOneField()`](#relaciones-uno-a-uno) que proporciona Django. La implementación sería la siguiente:
+:fontawesome-solid-wand-magic-sparkles: Tendremos que [crear una nueva aplicación](aplicaciones.md#crear-una-aplicacion) `users` para almacenar los perfiles de usuario (y quién sabe qué otros posibles modelos en el futuro).
+
+Como se puede observar en el diagrama anterior, se trata de una relación `1:1` por lo que vamos a utilizar la clase [`OneToOneField()`](#relaciones-uno-a-uno) que proporciona Django. La implementación sería la siguiente:
 
 ```python title="users/models.py" hl_lines="6-10"
-from django.db import models
 from django.conf import settings
+from django.db import models
 
 
 class Profile(models.Model):
@@ -2134,15 +2187,31 @@ class Profile(models.Model):
     )
     occupation = models.CharField(max_length=256, blank=True)
     phone = models.CharField(max_length=16, blank=True)
+
+    def __str__(self):
+        return self.user.username
 ```
 { .annotate }
 
 1. Se podría poner directamente `#!python 'auth.User'` aunque este acceso [está más desacoplado](autenticacion.md#usuario).
 2. Al ser un `OneToOneField()` el `related_name` debería ser el nombre de la clase a la que pertenece en **minúsculas singular**.
 
-!!! note "Acceso al perfil"
+Dado un objeto `user` el **acceso a su perfil** será posible mediante `user.profile` gracias a la _relación inversa_ (`related_name`) definida en el modelo.
 
-    Dado un objeto `user` el acceso a su perfil sería `user.profile` gracias a la _relación inversa_ definida en el modelo.
+??? tip "Interfaz administrativa"
+
+    Para poder acceder al modelo desde la **interfaz administrativa** tendremos que [registrarlo](admin.md#registrar-un-modelo):
+
+    ```python title="users/admin.py"
+    from django.contrib import admin
+    
+    from .models import Profile
+    
+    
+    @admin.register(Profile)
+    class ProfileAdmin(admin.ModelAdmin):
+        pass
+    ```
 
 ### Relaciones muchos a muchos
 
@@ -2667,7 +2736,7 @@ Las dos opciones de las que disponemos son [`FileField`](https://docs.djangoproj
 
 Vamos a partir de un <span class="example">ejemplo:material-flash:</span> en el que modelamos un «post» con una imagen de _portada_ («cover»). Para ello añadimos un nuevo campo `cover` de tipo `ImageField`:
 
-```python title="posts/models.py" hl_lines="8-11"
+```python title="posts/models.py" hl_lines="9-12"
 from django.db import models
 
 
@@ -2675,17 +2744,21 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256, unique=True)
     content = models.TextField()
+    published = models.BooleanField(default=True)
     cover = models.ImageField(
         upload_to='covers',
-        default='covers/nocover.png',
+        default='covers/nocover.png',#(1)!
     )
 ```
+{ .annotate }
+
+1. Puedes descargar un <span class="example">ejemplo:material-flash:</span> de _portada por defecto_ [aquí](./images/models/nocover.png).
 
 Analicemos cada parámetro de `ImageField` por separado:
 
 === "`upload_to` :material-upload:"
 
-    El atributo `upload_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) que, por defecto, es la raíz de nuestro proyecto.
+    El atributo `upload_to` de un campo `ImageField` o `FileField` nos indica la carpeta a la que se van a subir los ficheros como **ruta relativa** a [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) que, por defecto, es **la raíz de nuestro proyecto**.
 
     Es decir que si tenemos `#!python upload_to='covers'` esto crearía una carpeta `covers` en el raíz de nuestro proyecto con las imágenes (_portadas_) de los «posts» que vayamos creando.
 
@@ -2711,7 +2784,15 @@ Analicemos cada parámetro de `ImageField` por separado:
 
 ??? warning "Dependencias si trabajamos con imágenes"
 
-    Cuando trabajamos con campos de tipo `ImageField` debemos instalar el paquete [pillow](https://pillow.readthedocs.io/en/stable/):
+    Al crear las migraciones de algún modelo que contenga `ImageField` es posible que obtengamos el siguiente error:
+
+    ```console
+    ERRORS:
+    posts.Post.cover: (fields.E210) Cannot use ImageField because Pillow is not installed.
+    	HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "python -m pip install Pillow".
+    ```
+
+    Cuando trabajamos con este tipo de campos debemos instalar el paquete [Pillow](https://pillow.readthedocs.io/en/stable/):
 
     === "*venv* :octicons-package-24:{.blue}"
     
@@ -2729,7 +2810,7 @@ Analicemos cada parámetro de `ImageField` por separado:
 
 Django ofrece la posibilidad de modificar la configuración [`settings.MEDIA_ROOT`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MEDIA_ROOT) para indicar la ruta «base» donde se van a almacenar este tipo de recursos en el **sistema de ficheros**.
 
-Suele ser una **buena práctica** establecer `/media` como la carpeta para la subida de ficheros. Para ello modificamos la siguiente variable de la configuración del proyecto:
+Suele ser una **buena práctica** establecer `/media` como la carpeta para la subida de ficheros. Para ello modificamos la siguiente variable de configuración del proyecto:
 
 ```python title="main/settings.py"
 MEDIA_ROOT = BASE_DIR / 'media'#(1)!
@@ -2819,7 +2900,7 @@ class AddPostForm(forms.ModelForm):
 
 #### Gestión de la plantilla
 
-Cuando definimos un formulario en una plantilla que va a contener algún campo de fichero, es fundamental definir el atributo [`enctype`](https://www.w3schools.com/tags/att_form_enctype.asp) del formulario para que todo funcione correctamente.
+Cuando incluimos un formulario en una plantilla que va a contener algún campo de fichero, es fundamental definir el atributo [`enctype`](https://www.w3schools.com/tags/att_form_enctype.asp) del formulario para que todo funcione correctamente.
 
 A continuación se muestra un <span class="example">ejemplo:material-flash:</span> de un formulario para añadir un «post» a nuestra aplicación «blog»:
 

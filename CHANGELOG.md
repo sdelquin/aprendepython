@@ -6,6 +6,13 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.10
+
+Publicada el 25-10-2026
+
+- Django: Modelos
+  - Mejora documentación sobre claves ajenas 1:N y 1:1.
+
 ## Version 3.3.9
 
 Publicada el 23-10-2026
