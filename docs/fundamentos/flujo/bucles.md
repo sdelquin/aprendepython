@@ -317,8 +317,8 @@ Veamos distintos casos de uso:
 === "Rango: $[0,1,2]$"
 
     ```pycon
-    >>> for i in range(3):#(1)!
-    ...     print(i)
+    >>> for num in range(3):#(1)!
+    ...     print(num)
     ...
     0
     1
@@ -333,8 +333,8 @@ Veamos distintos casos de uso:
 === "Rango: $[1,3,5]$"
 
     ```pycon
-    >>> for i in range(1, 6, 2):#(1)!
-    ...     print(i)
+    >>> for num in range(1, 6, 2):#(1)!
+    ...     print(num)
     ...
     1
     3
@@ -344,24 +344,33 @@ Veamos distintos casos de uso:
     
     1. `#!python start=1`, `#!python stop=6`, `#!python step=2`
 
-=== "Rango: $[2,1,0]$"
+=== "Rango: $[5,4,3]$"
 
     ```pycon
-    >>> for i in range(2, -1, -1):#(1)!
-    ...     print(i)
+    >>> for num in range(5, 2, -1):#(1)!
+    ...     print(num)
     ...
-    2
-    1
-    0
+    5 
+    4 
+    3
     ```
     { .annotate }
     
     1.  - `#!python start=2`, `#!python stop=-1`, `#!python step=-1`
         - Vamos «hacia atrás» por tanto el límite final estará uno por debajo de donde queremos llegar.
 
-!!! warning "i, j, k"
+??? warning "i, j, k"
 
-    Se suelen utilizar nombres de variables `i`, `j`, `k` para lo que se denominan **contadores**[^4]. Este tipo de variables toman valores numéricos enteros como en los ejemplos anteriores.
+    Históricamente se han utilizado nombres de variables `i`, `j`, `k` para lo que se denominan **contadores**[^4]. Este tipo de variables suelen toman valores numéricos enteros:
+
+    ```pycon
+    >>> for i in range(4):
+    ...     print(i)
+    0
+    1
+    2
+    3
+    ```
     
     :material-alarm-light:{ .red } No conviene generalizar el uso de estas variables a situaciones en las que, claramente, tenemos la posibilidad de **asignar un nombre semánticamente más significativo**.
 

@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Control de flujo: Bucles
+  - Corrige variables en bucle `for`.
+
 ## Version 3.3.10
 
 Publicada el 25-10-2026
