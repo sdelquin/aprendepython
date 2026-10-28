@@ -71,7 +71,7 @@ MIDDLEWARE = [
 ]
 ```
 
-Mediante este «middleware» Django proporciona un objeto `messages` (disponible en vistas y plantillas) que contendrá la lista de mensajes que queremos notificar.
+Mediante este «middleware» Django proporciona un objeto `messages` (disponible en vistas y plantillas) que contendrá la **lista de mensajes** que queremos notificar.
 
 Para cada mensaje podemos indicar el [nivel informativo](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#message-tags) asociado. El módulo `messages` dentro de `django.contrib` contiene las siguientes constantes:
 
@@ -87,7 +87,7 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
 
 === "Vista"
 
-    ```python title="posts/views.py" hl_lines="1 11 13"
+    ```python title="posts/views.py" hl_lines="1 12 14"
     from django.contrib import messages#(1)!
     from django.shortcuts import render
 
@@ -98,18 +98,19 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que que
         try:
             post = Post.objects.get(slug=post_slug)
             post.delete()
-            messages.success(request, 'Post deleted successfully')#(2)!
         except Post.DoesNotExist:
-            messages.error(request, 'Post does not exist')#(3)!
+            messages.error(request, 'Post does not exist')#(2)!
+        else:
+            messages.success(request, 'Post deleted successfully')#(3)!
         posts = Post.objects.all()
         return render(request, 'posts/post/list.html', {'posts': posts})#(4)!
     ```
     { .annotate }
     
     1. Importamos el objeto `messages` para gestionar los mensajes.
-    2.  - Añadimos un **mensaje de éxito** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
+    2.  - Añadimos un **mensaje de error** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
+    3.  - Añadimos un **mensaje de éxito** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
         - Atajo para: `#!python messages.add_message(request, messages.SUCCESS, 'Post delete successfully')`
-    3.  - Añadimos un **mensaje de error** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
         - Atajo para: `#!python messages.add_message(request, messages.ERROR, 'Post does not exist')`
     4. No es necesario incluir los mensajes en el contexto porque el «middleware» ya se encarga de ello.
 

@@ -14,6 +14,12 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores en documentación de claves ajenas.
 - Django: Vistas
   - Corrige resaltado de código en ciertos ejemplos.
+- Django: URLs
+  - Corrige erores menores.
+- Django: Interfaz administrativa
+  - Corrige erores menores.
+- Django: Middleware
+  - Corrige erores menores.
 
 ## Version 3.3.10
 

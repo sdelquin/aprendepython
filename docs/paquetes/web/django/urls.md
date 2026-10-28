@@ -175,9 +175,9 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 
 <span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
-Django permite ~~crear~~ registrar [conversores de rutas personalizados](https://docs.djangoproject.com/en/stable/topics/http/urls/#registering-custom-path-converters) de tal forma que obtenemos un objeto del tipo (clase) deseado directamente en la vista.
+Django permite ~~crear~~ registrar [conversores de rutas personalizados](https://docs.djangoproject.com/en/stable/topics/http/urls/#registering-custom-path-converters) de tal forma que obtengamos un objeto del tipo/clase Python deseado, directamente en la vista.
 
-Y además es muy fácil de implementar. Lo único que necesitamos es escribir una clase con dos métodos concretos y registrarla convenientemente.
+Y además es muy fácil de implementar. Lo único que necesitamos es **escribir una clase** con los métodos `to_python()` y `to_url()`, y registrarla convenientemente.
 
 Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un **conversor personalizado** para un «post» de un «blog» a partir de su _slug_:
 
@@ -459,13 +459,13 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
             '<slug:post_slug>/status/private/',
             views.change_post_status,
             name='change-post-status',
-            kwargs={'post_private': True},#(1)!
+            kwargs={'post_published': False},#(1)!
         ),
         path(
             '<slug:post_slug>/status/public/',
             views.change_post_status,
             name='change-post-status',
-            kwargs={'post_private': False},#(2)!
+            kwargs={'post_published': True},#(2)!
         ),
     ]
     ```
@@ -482,10 +482,10 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
     from .models import Post
 
 
-    def change_post_status(request, post_slug: str, post_private: bool):#(1)!
+    def change_post_status(request, post_slug: str, post_published: bool):#(1)!
         try:
             post = Post.objects.get(slug=post_slug)
-            post.private = post_private
+            post.published = post_published
             post.save()
         except Post.DoesNotExist:
             return HttpResponse('Post does not exist')

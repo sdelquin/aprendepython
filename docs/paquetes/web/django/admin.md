@@ -182,7 +182,7 @@ En la interfaz administrativa de Django podemos realizar acciones sobre objetos 
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pretendemos regenerar todos los «slugs» de los «posts» existentes en nuestra base de datos, a partir de cada uno de sus títulos:
 
-```python title="posts/admin.py" hl_lines="17"
+```python title="posts/admin.py" hl_lines="2 4 7-11 17"
 from django.contrib import admin
 from django.utils.text import slugify
 
