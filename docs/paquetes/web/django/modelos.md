@@ -890,37 +890,38 @@ class Post(models.Model):
 
 <span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
-Aunque quizás no sea del todo realista, supongamos un <span class="example">ejemplo:material-flash:</span> en el que no pueden haber dos «posts» con el mismo título y «slug».
+Aunque quizás **no sea del todo realista**, supongamos un <span class="example">ejemplo:material-flash:</span> en el que no pueden haber dos «posts» con el mismo título y «slug».
 
 Para modelar esto haremos uso del atributo [`unique_together`](https://docs.djangoproject.com/en/stable/ref/models/options/#unique-together) que ofrece Django:
 
-```python title="posts/models.py" hl_lines="8-9"
+```python title="posts/models.py" hl_lines="5 8-9"
 from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(max_length=256, unique=True)
+    slug = models.SlugField(max_length=256)#(1)!
     content = models.TextField()
 
-    class Meta:#(1)!
+    class Meta:#(2)!
         unique_together = ['title', 'slug']
 ```
 { .annotate }
 
-1.  - La clase interior `Meta` permite indicarle a Django [ciertas opciones](https://docs.djangoproject.com/en/stable/ref/models/options/#model-meta-options) para un modelo.
+1. Eliminamos la restricción de campo único para `slug` porque lo vamos a definir «en conjunto».
+2.  - La clase interior `Meta` permite indicarle a Django [ciertas opciones](https://docs.djangoproject.com/en/stable/ref/models/options/#model-meta-options) para un modelo.
     - Por una cuestión de «estilo» se suele escribir justo debajo de los atributos del modelo.
 
 ??? example "Marca y modelo"
 
     Un <span class="example">ejemplo:material-flash:</span> quizás más evidente de _valores únicos juntos_ sea el de **marca** y **modelo** en una aplicación de gestión de productos. Obviamente la marca de un producto se puede repetir, y el modelo de un producto se puede repetir, pero lo que no puede pasar es que se repitan ambos. En otras palabras, **marca-modelo** deben ser únicas:
 
-    |  #  |   Marca    |  Modelo  |                Estado                 |
-    | --- | ---------- | -------- | ------------------------------------- |
-    | 1   | Logitech   | ^^K120^^ | :material-check:{.green}              |
-    | 2   | Samsung    | ^^K120^^ | :material-check:{.green}              |
-    | 3   | ^^Lenovo^^ | Z562     | :material-check:{.green}              |
-    | 4   | ^^Lenovo^^ | W208     | :material-check:{.green}              |
-    | 5   | Logitech   | K120     | :material-cancel:{.red} (colisión #1) |
+    |  #  |   Marca    |  Modelo  |               Estado               |
+    | --- | ---------- | -------- | ---------------------------------- |
+    | 1   | Logitech   | ^^K120^^ | :material-check:{.green}           |
+    | 2   | Samsung    | ^^K120^^ | :material-check:{.green}           |
+    | 3   | ^^Lenovo^^ | Z562     | :material-check:{.green}           |
+    | 4   | ^^Lenovo^^ | W208     | :material-check:{.green}           |
+    | 5   | Logitech   | K120     | :material-cancel:{.red} (colisión) |
 
 ## Campos opcionales
 
@@ -2084,7 +2085,7 @@ class Comment(models.Model):
     )
 ```
 
-#### Claves ajenas con usuario
+### Claves ajenas con usuario
 
 Es muy habitual relacionar modelos con la clase [`User`](autenticacion.md#usuario) predefinida en Django. No es distinto de lo que hemos visto hasta ahora, pero sí vale la pena indicar cómo se referencia.
 
@@ -2092,28 +2093,25 @@ Siguiendo con el <span class="example">ejemplo:material-flash:</span> del «blog
 
 ```mermaid
 erDiagram
-    USER ||--o{ COMMENT : writes
+    AUTHOR ||--o{ POST : writes
 ```
 
-> :material-alarm-light-outline:{.hl} Un usuario escribe cero o muchos comentarios, pero un comentario lo escribe un único usuario.
+> :material-alarm-light-outline:{.hl} Un autor escribe cero o muchos «posts», pero un «post» lo escribe un único usuario.
 
-Por tanto, tendremos que añadir una [clave ajena](#claves-ajenas) al [usuario](autenticacion.md#usuario) en el modelo de comentario:
+Por tanto, tendremos que añadir una [clave ajena](#claves-ajenas) al [usuario](autenticacion.md#usuario) en el modelo de «post»:
 
-```python title="comments/models.py" hl_lines="1 12-17"
+```python title="posts/models.py" hl_lines="1 9-13"
 from django.conf import settings
 from django.db import models
 
 
-class Comment(models.Model):
+class Post(models.Model):
+    title = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=256, unique=True)
     content = models.TextField()
-    post = models.ForeignKey(
-        'posts.Post',
-        related_name='comments',
-        on_delete=models.CASCADE,
-    )
-    user = models.ForeignKey(
+    author = models.ForeignKey(
         settings.AUTH_USER_MODEL,#(1)!
-        related_name='comments',
+        related_name='posts',
         on_delete=models.CASCADE,#(2)!
     )
 ```
@@ -2122,27 +2120,28 @@ class Comment(models.Model):
 1. Consulta [acceso al modelo de usuario](autenticacion.md#usuario).
 2. Si borramos un usuario se borrarán todos sus comentarios.
 
+!!! note "Migraciones"
+
+    Recuerda crear y aplicaciones [migraciones](#migraciones).
+
 ??? danger "Añadir campos no nulos"
 
-    Si el modelo `Comment` ya existía y añadimos un nuevo atributo `user` **no nulo** Django se va a quejar porque no sabe cómo «rellenar» dicho campo en las posibles filas existentes de la tabla en la base de datos.
+    Si el modelo `Post` ya existía y añadimos un nuevo atributo `author` **no nulo** Django se va a quejar porque no sabe cómo «rellenar» dicho campo en las posibles filas existentes de la tabla en la base de datos.
 
-    La forma correcta de abordar este escenario es mediante una [migración manual](#migraciones-manuales), pero para «salir del paso» podemos permitir que los comentarios «no los haya escrito nadie» ...
+    La forma correcta de abordar este escenario es mediante una [migración manual](#migraciones-manuales), pero para «salir del paso» podemos permitir que los _posts_ «no los haya escrito nadie» ...
 
-    ```python title="comments/models.py" hl_lines="16-17"
+    ```python title="posts/models.py" hl_lines="13-14"
     from django.conf import settings
     from django.db import models
 
 
-    class Comment(models.Model):
+    class Post(models.Model):
+        title = models.CharField(max_length=256)
+        slug = models.SlugField(max_length=256, unique=True)
         content = models.TextField()
-        post = models.ForeignKey(
-            'posts.Post',
-            related_name='comments',
-            on_delete=models.CASCADE,
-        )
-        user = models.ForeignKey(
+        author = models.ForeignKey(
             settings.AUTH_USER_MODEL,
-            related_name='comments',
+            related_name='posts',
             on_delete=models.CASCADE,
             blank=True,
             null=True
@@ -2752,7 +2751,7 @@ class Post(models.Model):
 ```
 { .annotate }
 
-1. Puedes descargar un <span class="example">ejemplo:material-flash:</span> de _portada por defecto_ [aquí](./images/models/nocover.png).
+1. Puedes descargar un <span class="example">ejemplo:material-flash:</span> de _portada por defecto_ [aquí](./images/models/nocover.png) (_imagen generada con IA_).
 
 Analicemos cada parámetro de `ImageField` por separado:
 
@@ -2833,6 +2832,11 @@ media
 
 ### URL del fichero
 
+Suele ser una **buena práctica** establecer `/media` como la URL base de acceso a los ficheros subidos. Para ello modificamos la siguiente variable de la configuración del proyecto:
+
+```python title="main/settings.py"
+MEDIA_URL = 'media/'
+```
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pasamos un objeto `post` de tipo `Post` a una plantilla para renderizar su contenido. El acceso a la URL de la portada del «post» es muy sencillo:
 
 ```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="3"
@@ -2845,12 +2849,6 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> en el que pas
 { .annotate }
 
 1. El campo `cover` (`ImageField`) dispone de un atributo `url` que devuelve la URL de la imagen.
-
-Suele ser una **buena práctica** establecer `/media` como la URL de acceso a los ficheros subidos. Para ello modificamos la siguiente variable de la configuración del proyecto:
-
-```python title="main/settings.py"
-MEDIA_URL = 'media/'
-```
 
 !!! note "URL de acceso"
 
@@ -2946,7 +2944,7 @@ Hay ocasiones en las que nos interesa personalizar el guardado de un modelo para
 
 Vamos a retomar el <span class="example">ejemplo:material-flash:</span> del «post». Supongamos que queremos, siempre que se guarde un objeto de tipo `Post` generar su «slug» a partir del título y que se almacene en la base de datos:
 
-```python title="posts/models.py" hl_lines="10-12"
+```python title="posts/models.py" hl_lines="2 10-12"
 from django.db import models
 from django.utils.text import slugify
 
@@ -2966,9 +2964,15 @@ class Post(models.Model):
 2. Convertimos el título a «slug».
 3. Llamamos al constructor de la clase base `models.Model` para almacenar definitivamente el objeto en disco.
 
-Pensemos ahora en un <span class="example">ejemplo:material-flash:</span> en el que sólo queremos crear el «slug» de un «post» ^^la primera vez que se crea el objeto^^. Para ello hay que buscar una manera de identificar si estamos en ese momento.
+!!! success "Formulario"
 
-Django proporciona un atributo [`_state`](https://docs.djangoproject.com/en/stable/ref/models/instances/#state) que está disponible en todas las instancias de modelo y que dispone de un atributo `adding` que indica si el objeto aún no se ha guardado en la base de datos:
+    En este punto podríamos borrar el método `#!python save()` del [formulario de modelo](formularios.md#escenario-sin-claves-ajenas) ya que la lógica de generación del «slug» se está realizando en el propio modelo.
+
+### Creación del objeto
+
+Pensemos ahora en un escenario donde nos interesa generar el «slug» de un «post» únicamente ^^la primera vez que se crea el objeto^^. Para ello hay que buscar una manera de identificar si estamos en ese contexto.
+
+Django proporciona un atributo [`_state`](https://docs.djangoproject.com/en/stable/ref/models/instances/#state) que está disponible en todas las instancias de modelo y que —a su vez— dispone de un atributo `adding` que indica si el objeto aún no se ha guardado en la base de datos:
 
 ```python title="posts/models.py" hl_lines="11"
 from django.db import models
@@ -3013,6 +3017,13 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 ```
 
+!!! warning "Implicaciones"
+
+    Hay que tener en cuenta lo siguiente:
+
+    1. Este cambio implica crear y aplicar [migraciones](#migraciones).
+    2. Es necesario eliminar los [`prepopulated_fields`](admin.md#campos-autocompletados) vinculados con el campo `slug` en `posts/admin.py`, ya que ahora el campo no se «autocompleta» en la interfaz administrativa sino que se genera al guardarlo.
+
 ## URL canónica
 
 <span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
@@ -3021,7 +3032,7 @@ Django nos ofrece la posibilidad de asignar a cada instancia de modelo una URL c
 
 Continuando con el <span class="example">ejemplo:material-flash:</span> del «post», podríamos definir su URL canónica de la siguiente manera:
 
-```python title="posts/models.py" hl_lines="11-12"
+```python title="posts/models.py" hl_lines="2 11-12"
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -3029,7 +3040,7 @@ from django.utils.text import slugify
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(max_length=256, unique=True)
+    slug = models.SlugField(max_length=256, unique=True, editable=False)
     content = models.TextField()
 
     def get_absolute_url(self):
@@ -3092,7 +3103,7 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
-    slug = models.SlugField(max_length=256, unique=True)
+    slug = models.SlugField(max_length=256, unique=True, editable=False)
     content = models.TextField()
 
     class Meta:#(1)!
@@ -3105,7 +3116,9 @@ class Post(models.Model):
     - Es posible indicar ordenación descendente: `#!python '-title'`
     - Es posible también usar una _tupla_.
 
-:material-check-all:{ .blue } Por supuesto esta ordenación por defecto siempre puede ser "invalidada" por un [`order_by()`](#ordenando-resultados) explícito.
+!!! info "Invalidar ordenación"
+
+    Por supuesto esta ordenación por defecto siempre puede ser "invalidada" por un [`order_by()`](#ordenando-resultados) explícito.
 
 ## Señales
 
