@@ -8,6 +8,10 @@ Publicada el DD-MM-YYYY
 
 - Control de flujo: Bucles
   - Corrige variables en bucle `for`.
+- Django: Modelos
+  - Corrige ejemplos en claves ajenas.
+- Django: Formularios
+  - Corrige errores menores en documentación de claves ajenas.
 
 ## Version 3.3.10
 

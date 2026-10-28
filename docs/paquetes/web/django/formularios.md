@@ -961,7 +961,7 @@ def add_post(request):
 
 ### Escenario con claves ajenas
 
-Veamos ahora un <span class="example">ejemplo:material-flash:</span> algo más elaborado, en el que no sólo tenemos un «post» sino que tenemos una [clave ajena](modelos.md#claves-ajenas) al ^^usuario^^ que lo escribió.
+Veamos ahora un <span class="example">ejemplo:material-flash:</span> algo más elaborado, en el que no sólo tenemos un «post» sino que tenemos una [clave ajena](modelos.md#claves-ajenas-con-usuario) al ^^autor^^ (_usuario_) que lo escribió.
 
 Por tanto queremos que cuando se cree un nuevo «post» desde el formulario de modelo, también se almacene de forma «automática» el usuario que lo escribió.
 
@@ -985,7 +985,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
         
         def save(self, user, *args, **kwargs):#(1)!
             post = super().save(commit=False)#(2)!
-            post.user = user#(3)!
+            post.author = user#(3)!
             post = super().save(*args, **kwargs)#(4)!
             return post
     ```
@@ -996,7 +996,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
     3. Asignamos el usuario a la clave ajena correspondiente en el «post».
     4. Guardamos definitivamente el objeto en la base de datos.
 
-    Ahora podremos simplificar el código de la vista correspondiente:
+    Ahora podremos simplificar el código de la correspondiente vista:
 
     ```python title="posts/views.py" hl_lines="9"
     from django.shortcuts import redirect, render
@@ -1008,7 +1008,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
         if request.method == 'POST':
             if (form := AddPostForm(request.POST)).is_valid():
                 post = form.save(request.user)#(1)!
-                return redirect('home')
+                return redirect(post)
         else:
             form = AddPostForm()
         return render(request, 'posts/post/add.html', {'form': form})
@@ -1021,7 +1021,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
 
     Es posible que necesitemos realizar alguna lógica adicional en el constructor:
 
-    ```python title="posts/forms.py" hl_lines="12 16"
+    ```python title="posts/forms.py" hl_lines="10-13 15-19"
     from django import forms
     from django.utils.text import slugify
 
@@ -1038,7 +1038,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
         
         def save(self, *args, **kwargs):
             post = super().save(commit=False)
-            post.user = self.user#(4)!
+            post.author = self.user#(4)!
             post = super().save(*args, **kwargs)
             return post
     ```
@@ -1050,7 +1050,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
     3. Guardamos «temporalmente» el usuario que escribió el «post» para utilizarlo posteriormente.
     4. Asignamos el usuario a la clave ajena correspondiente en el «post».
 
-    Ahora podremos simplificar el código de la vista correspondiente:
+    Ahora podremos simplificar el código de la correspondiente vista:
 
     ```python title="posts/views.py" hl_lines="8-9 12"
     from django.shortcuts import redirect, render
@@ -1062,7 +1062,7 @@ Veamos a continuación dos enfoques según lo que necesitemos:
         if request.method == 'POST':
             if (form := AddPostForm(request.user, request.POST)).is_valid():#(1)!
                 post = form.save()#(2)!
-                return redirect('home')
+                return redirect(post)
         else:
             form = AddPostForm(request.user)#(3)!
         return render(request, 'posts/post/add.html', {'form': form})
