@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.11
+
+Publicada el 28-10-2026
+
 - Control de flujo: Bucles
   - Corrige variables en bucle `for`.
 - Django: Modelos
