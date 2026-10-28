@@ -12,6 +12,8 @@ Publicada el DD-MM-YYYY
   - Corrige ejemplos en claves ajenas.
 - Django: Formularios
   - Corrige errores menores en documentación de claves ajenas.
+- Django: Vistas
+  - Corrige resaltado de código en ciertos ejemplos.
 
 ## Version 3.3.10
 

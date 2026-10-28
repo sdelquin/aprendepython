@@ -218,9 +218,9 @@ Para ello usaremos el atributo `status` con un valor numérico (_del código de 
 
 Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos incorporar este enfoque en el detalle de un «post» de un «blog»:
 
-```python title="posts/views.py" hl_lines="13"
-from django.shortcuts import render
+```python title="posts/views.py" hl_lines="1 11-14"
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from .models import Post
 
@@ -267,9 +267,9 @@ Diferencias relevantes:
 
 Por tanto, el <span class="example">ejemplo:material-flash:</span> anterior de «post» no encontrado se podría reescribir de la siguiente manera:
 
-```python title="posts/views.py" hl_lines="11-13"
-from django.shortcuts import render
+```python title="posts/views.py" hl_lines="1 11-13"
 from django.http import HttpResponseNotFound
+from django.shortcuts import render
 
 from .models import Post
 
@@ -372,7 +372,7 @@ ALLOWED_HOSTS = ['localhost']#(2)!
 1. Necesitamos indicar que no estamos en depuración (desarrollo).
 2. Django obliga a permitir «hosts» de acceso cuando el modo depuración está deshabilitado: *CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.*{.red}
 
-Ahora sí que ya debería de funcionar la personalización del error 404. Para ello bastaría con acceder a una URL del estilo http://localhost:8000/posts/este-post-no-existe/
+Ahora sí que ya debería de funcionar la personalización del error 404. Para ello bastaría con acceder a una URL del estilo <http://localhost:8000/posts/este-post-no-existe/>
 
 #### Manejadores de error
 
