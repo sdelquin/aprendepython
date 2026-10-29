@@ -341,7 +341,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> para personalizar
 
     !!! tip "Variables ausentes"
 
-        Para que el código anterior funcione es importante desactivar [`string_if_invalid`](plantillas.md#salida-vacía) en `main/settings.py`
+        Para que el código anterior funcione es importante desactivar [`string_if_invalid`](plantillas.md#salida-vacia) en `main/settings.py`
 
 === "URLs"
 
