@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Django: Vistas
+  - Corrige errores menores en código de ejemplo.
+
 ## Version 3.3.11
 
 Publicada el 28-10-2026

@@ -230,7 +230,7 @@ def post_detail(request, post_slug: str):
         post = Post.objects.get(slug=post_slug)
     except Post.DoesNotExist:
         return HttpResponse(
-            f"Post with slug '{post.slug}' does not exist",
+            f"Post with slug '{post_slug}' does not exist",
             status=404,
         )
     return render(request, 'posts/post/detail.html', {'post': post})
@@ -279,7 +279,7 @@ def post_detail(request, post_slug: str):
         post = Post.objects.get(slug=post_slug)
     except Post.DoesNotExist:
         return HttpResponseNotFound(
-            f"Post with slug '{post.slug}' does not exist",
+            f"Post with slug '{post_slug}' does not exist",
         )
     return render(request, 'posts/post/detail.html', {'post': post})
 ```
@@ -335,9 +335,13 @@ Veamos un <span class="example">ejemplo:material-flash:</span> para personalizar
     ```htmldjango title="shared/templates/404.html"
     <h1>Blog: 404</h1>
     <p>
-        {{ error_message|default:"The resource you are looking for does not exist }}
+        {{ error_message|default:"The resource you are looking for does not exist" }}
     </p>
     ```
+
+    !!! tip "Variables ausentes"
+
+        Para que el código anterior funcione es importante desactivar [`string_if_invalid`](plantillas.md#salida-vacía) en `main/settings.py`
 
 === "URLs"
 
