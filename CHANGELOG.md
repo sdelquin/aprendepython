@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.3.12
+
+Publicada el 29-10-2026
+
 - Actualiza la versión de Zensical a [0.0.73](https://github.com/zensical/zensical/releases/tag/v0.0.73).
 - Django: Vistas
   - Corrige errores menores en código de ejemplo.
