@@ -8,6 +8,9 @@ Publicada el DD-MM-YYYY
 
 - Django: Vistas
   - Corrige errores menores en código de ejemplo.
+- Django: URLs
+  - Mejora documentación de conversores personalizados.
+  - Completa ejemplo de pasar argumentos a una vista.
 
 ## Version 3.3.11
 

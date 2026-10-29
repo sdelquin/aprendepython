@@ -175,11 +175,11 @@ Veamos una tabla resumen con los [conversores de rutas predefinidos](https://doc
 
 <span class="dj-level">:material-signal-cellular-2: Django intermedio</span>
 
-Django permite ~~crear~~ registrar [conversores de rutas personalizados](https://docs.djangoproject.com/en/stable/topics/http/urls/#registering-custom-path-converters) de tal forma que obtengamos un objeto del tipo/clase Python deseado, directamente en la vista.
+Más allá de los [conversores predefinidos](#conversores-predefinidos) Django permite ~~crear~~ registrar [conversores de rutas personalizados](https://docs.djangoproject.com/en/stable/topics/http/urls/#registering-custom-path-converters) de forma que obtengamos un objeto del tipo/clase Python deseado, directamente en la vista.
 
 Y además es muy fácil de implementar. Lo único que necesitamos es **escribir una clase** con los métodos `to_python()` y `to_url()`, y registrarla convenientemente.
 
-Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un **conversor personalizado** para un «post» de un «blog» a partir de su _slug_:
+Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un **conversor personalizado** para un «post» de un «blog» a partir de su _slug_ y lo aplicamos para **borrar un «post»**:
 
 === "Conversor"
 
@@ -196,7 +196,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
             return get_object_or_404(Post, slug=post_slug)#(5)!
 
         def to_url(self, post: Post) -> str:#(6)!
-            return post.slug
+            return str(post.slug)#(7)!
     ```
     { .annotate }
     
@@ -208,10 +208,11 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     5. Ver [consulta no encontrada](vistas.md#consulta-no-encontrada).
     6.  - Este método convierte el objeto a la subruta correspondiente de la URL.
         - Python :material-arrow-right-thin: URL
+    7.  Aquí se podría haber puesto únicamente `#!python return post.slug` pero es posible que [ty](https://docs.astral.sh/ty/) se queje: «Return type does not match returned value: expected `str`, found `SlugField | Unknown`»
 
 === "URLs"
 
-    ```python title="posts/urls.py" hl_lines="1 3 7 11"
+    ```python title="posts/urls.py" hl_lines="1 3 7 12"
     from django.urls import path, register_converter#(1)!
 
     from . import converters, views#(2)!
@@ -221,8 +222,9 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     register_converter(converters.PostConverter, 'post')#(3)!
 
     urlpatterns = [
-        path('', views.post_list, name='post-list')
-        path('<post:post>/', views.post_detail, name='post-detail')#(4)!
+        path('', views.post_list, name='post-list'),
+        # ...
+        path('<post:post>/delete/', views.delete_post, name='delete-post'),#(4)!
     ]
     ```    
     { .annotate }
@@ -234,14 +236,15 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
 
 === "Vista"
 
-    ```python title="posts/views.py" hl_lines="6"
-    from django.shortcuts import render
+    ```python title="posts/views.py" hl_lines="6-8"
+    from django.shortcuts import redirect
 
     from .models import Post
 
 
-    def post_detail(request, post: Post):#(1)!
-        return render(request, 'posts/post/detail.html', {'post': post})
+    def delete_post(request, post: Post):#(1)!
+        post.delete()
+        return redirect('posts:post-list')
     ```
     { .annotate }
     
@@ -258,6 +261,46 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     { .annotate }
     
     1. Ahora ya no pasamos el «slug» del «post», sino directamente un objeto de tipo `Post` que Django sabrá como convertir a URL.
+
+??? tip "URL canónica"
+
+    En el caso de que aplicáramos este conversor personalizado de ruta al detalle de un «post» habría que tener presente un pequeño cambio en la [URL canónica](modelos.md#url-canonica):
+
+    === "URLs"
+
+        ```python title="posts/urls.py" hl_lines="12"
+        from django.urls import path, register_converter
+
+        from . import converters, views
+
+
+        app_name = 'posts'
+        register_converter(converters.PostConverter, 'post')
+
+        urlpatterns = [
+            path('', views.post_list, name='post-list'),
+            # ...
+            path('<post:post>/', views.post_detail, name='post-detail'),
+            path('<post:post>/delete/', views.delete_post, name='delete-post'),
+        ]
+        ```
+    
+    === "Modelo"
+    
+        ```python title="posts/models.py" hl_lines="7"
+        class Post(models.Model):
+            title = models.CharField(max_length=256)
+            slug = models.SlugField(max_length=256, unique=True)
+            content = models.TextField()
+
+            def get_absolute_url(self):
+                return reverse('posts:post-detail', args=[self])#(1)!
+        ```
+        { .annotate }
+        
+        1. Ya no usamos `#!python self.slug` porque la URL espera recibir un objeto de tipo `Post` en vez de un `str`.
+    
+    Igualmente habría que modificar la vista y los enlaces en las plantillas que hagan referencia al detalle de un «post».
 
 ## Redirección
 
@@ -458,13 +501,13 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
         path(
             '<slug:post_slug>/status/private/',
             views.change_post_status,
-            name='change-post-status',
+            name='make-post-private',
             kwargs={'post_published': False},#(1)!
         ),
         path(
             '<slug:post_slug>/status/public/',
             views.change_post_status,
-            name='change-post-status',
+            name='make-post-public',
             kwargs={'post_published': True},#(2)!
         ),
     ]
@@ -476,23 +519,31 @@ Supongamos un <span class="example">ejemplo:material-flash:</span> donde **cambi
 
 === "Vista"
 
-    ```python title="posts/views.py" hl_lines="6 9"
-    from django.http import HttpResponse
+    ```python title="posts/views.py" hl_lines="1 6-9"
+    from django.shortcuts import get_object_or_404
 
     from .models import Post
 
 
     def change_post_status(request, post_slug: str, post_published: bool):#(1)!
-        try:
-            post = Post.objects.get(slug=post_slug)
-            post.published = post_published
-            post.save()
-        except Post.DoesNotExist:
-            return HttpResponse('Post does not exist')
+        post = get_object_or_404(Post, slug=post_slug)
+        post.published = post_published
+        post.save()
     ```
     { .annotate }
     
-    1. El parámetro `post_private` vendrá establecido desde `posts/urls.py`.
+    1. El argumento `post_published` viene fijado desde `posts/urls.py`.
+
+=== "Plantilla"
+
+    ```htmldjango title="posts/templates/posts/post/detail.html" hl_lines="4-5"
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    
+    <a href="{% url 'posts:make-post-private' post.slug %}">Make post private</a>
+    <a href="{% url 'posts:make-post-public' post.slug %}">Make post public</a>
+    ```
+    
 
 ## Expresiones regulares
 
