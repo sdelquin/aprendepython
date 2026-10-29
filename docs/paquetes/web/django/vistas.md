@@ -360,23 +360,35 @@ Veamos un <span class="example">ejemplo:material-flash:</span> para personalizar
     
     1. La variable [`handler404`](https://docs.djangoproject.com/en/1.8/ref/urls/#handler404) establece la vista que procesa errores 404.
 
-Es muy probable que con la configuración anterior sigas sin poder ver la página 404 personalizada. Esto se debe a que en modo «debug» Django proporciona otro tipo de plantillas con mayor información para desarrollo.
+La idea es que al acceder a un «post» que no existe <http://localhost:8000/posts/este-post-no-existe/> nos aparezca nuestra «flamante» página de error. Sin embargo, es muy probable que con la configuración anterior **sigas sin poder ver la página 404 personalizada**. Esto se debe a que en modo «debug» Django proporciona otro tipo de plantillas con mayor información para desarrollo, por lo que la plantilla solo es visible en un **entorno de producción**.
 
-Para poder probar este tipo de respuestas en desarrollo, debemos «simular» un entorno de producción de la siguiente manera:
+Pero —a efectos de prueba— podemos hacer un ligero retoque:
 
-```python title="main/settings.py"
-# ...
-DEBUG = False#(1)!
+```python title="main/urls.py" hl_lines="16-21"
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.shortcuts import render
+from django.urls import include, path
 
-ALLOWED_HOSTS = ['localhost']#(2)!
-# ...
+handler404 = 'shared.views.custom_404'
+
+urlpatterns = [
+    path('', include('accounts.urls')),
+    path('', lambda r: render(r, 'index.html'), name='index'),
+    path('admin/', admin.site.urls),
+    path('posts/', include('posts.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    from shared.views import custom_404
+
+    urlpatterns += [
+        path('404/', lambda r: custom_404(r, exception=None)),
+    ]
 ```
-{ .annotate }
 
-1. Necesitamos indicar que no estamos en depuración (desarrollo).
-2. Django obliga a permitir «hosts» de acceso cuando el modo depuración está deshabilitado: *CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.*{.red}
-
-Ahora sí que ya debería de funcionar la personalización del error 404. Para ello bastaría con acceder a una URL del estilo <http://localhost:8000/posts/este-post-no-existe/>
+Así podrás **probar el diseño** de tu página de error personalizada 404 a través de: <http://localhost:8000/404/>. Eso sí, esto solo funcionará estando en **modo desarrollo** es decir con `#!python DEBUG = False`.
 
 #### Manejadores de error
 
