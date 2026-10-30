@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.4.0
+
+Publicada el 30-10-2026
+
 - Cambia imagen de portada.
 
 ## Version 3.3.12
