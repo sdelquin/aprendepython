@@ -1,13 +1,13 @@
 # Aprende Python
 
-Aprende el lenguaje de programación ^^Python^^ ![logo](assets/images/aprendepython-logo.svg){width=20px .beat .sub} y descubre un **mundo de posibilidades**.
+Aprende el lenguaje de programación ^^Python^^ ![logo](assets/images/aprendepython-logo.svg){width=20px .beat .sub} y descubre un **mundo de posibilidades**...
 
-![Monty Python](assets/images/monty-python.jpg)
+![Monty Python](assets/images/amazonas.jpg)
 ///caption
-Monty Python © Imagen generada con Inteligencia Artificial
+Imagen generada con Inteligencia Artificial
 ///
 
-Si quieres **apoyar este proyecto** te dejo dos opciones :pill:
+Si quieres **apoyar este proyecto** te dejo dos opciones :fontawesome-solid-arrow-turn-down:{.bottom}
 
 <div class="grid cards" markdown>
 

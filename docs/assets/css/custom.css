@@ -232,5 +232,9 @@ a span.twemoji {
 /* Rules for alignment */
 
 .sub {
-  vertical-align: sub;
+  vertical-align: sub !important;
+}
+
+.bottom {
+  vertical-align: bottom !important;
 }
