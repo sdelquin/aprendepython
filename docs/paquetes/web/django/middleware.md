@@ -57,7 +57,7 @@ Cada «middleware» define una o varias clases que aportan distintas funcionalid
 
 El [«middleware» de mensajes](https://docs.djangoproject.com/en/stable/ref/contrib/messages/) permite crear y publicar mensajes en nuestro proyecto web de manera rápida y sencilla.
 
-Django ya lo tiene habilitado _por defecto_, pero si no fuera así, para activarlo simplemente tendríamos que añadirlo a la lista [`MIDDLEWARE`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MIDDLEWARE) en el fichero de configuraciones:
+Django **ya lo tiene habilitado por defecto**, pero si no fuera así, para activarlo simplemente tendríamos que añadirlo a la lista [`MIDDLEWARE`](https://docs.djangoproject.com/en/stable/ref/settings/#std-setting-MIDDLEWARE) en el fichero de configuraciones:
 
 ```python title="main/settings.py" hl_lines="7"
 MIDDLEWARE = [
@@ -83,71 +83,145 @@ Para cada mensaje podemos indicar el [nivel informativo](https://docs.djangoproj
 | `WARNING` | `warning` | Mensaje de advertencia |
 | `ERROR` | `error` | Mensaje de error |
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos notificar al usuario que el «post» de un «blog» ha sido borrado satisfactoriamente (o no):
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos notificar cuando se añade un «post»:
 
 === "Vista"
 
-    ```python title="posts/views.py" hl_lines="1 12 14"
+    ```python title="posts/views.py" hl_lines="1 13-14 17"
     from django.contrib import messages#(1)!
     from django.shortcuts import render
 
+    from .forms import AddPostForm
     from .models import Post
 
 
-    def delete_post(request, post_slug: str):
-        try:
-            post = Post.objects.get(slug=post_slug)
-            post.delete()
-        except Post.DoesNotExist:
-            messages.error(request, 'Post does not exist')#(2)!
+    def add_post(request):
+        if request.method == 'POST':
+            if (form := AddPostForm(request.POST, request.FILES)).is_valid():
+                post = form.save()
+                total_posts = Post.objects.count()
+                messages.success(request, 'Post has been successfully added')#(2)!
+                messages.info(request, f'{total_posts} posts at the blog so far!')#(3)!
+                return redirect(post)
+            else:
+                messages.error(request, 'Please check form errors')#(4)!
         else:
-            messages.success(request, 'Post deleted successfully')#(3)!
-        posts = Post.objects.all()
-        return render(request, 'posts/post/list.html', {'posts': posts})#(4)!
+            form = AddPostForm()
+        return render(
+            request,
+            'posts/post/add.html',
+            {'form': form, 'subtitle': 'Add post'},#(5)!
+        )
     ```
     { .annotate }
     
     1. Importamos el objeto `messages` para gestionar los mensajes.
-    2.  - Añadimos un **mensaje de error** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
-    3.  - Añadimos un **mensaje de éxito** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
+    2.  - Añadimos un **mensaje de éxito** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
+    2.  - Añadimos un **mensaje informativo** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
+    4.  - Añadimos un **mensaje de error** mediante el método [`add_message()`](https://docs.djangoproject.com/en/stable/ref/contrib/messages/#django.contrib.messages.add_message).
         - Atajo para: `#!python messages.add_message(request, messages.SUCCESS, 'Post delete successfully')`
         - Atajo para: `#!python messages.add_message(request, messages.ERROR, 'Post does not exist')`
-    4. No es necesario incluir los mensajes en el contexto porque el «middleware» ya se encarga de ello.
+    5. No es necesario incluir los mensajes en el contexto porque el «middleware» ya se encarga de ello.
 
-=== "Plantilla"
+=== "Plantilla de mensajes"
 
-    ```htmldjango title="posts/post/list.html" hl_lines="1-9"
+    ```htmldjango title="shared/templates/messages.html" hl_lines="1-9"
     {% if messages %}
-    <ul class="messages">
+    <ul class="messages"><!--(1)!-->
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><!--(1)!-->
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><!--(2)!-->
                 {{ message }}
             </li>
         {% endfor %}
     </ul>
     {% endif %}
-
-    <ul class="posts">
-    {% for post in posts %}
-        <li><a href="{% url 'posts:post-detail' post.slug %}">{{ post.title }}</a></li>
-    {% endfor %}
-    </ul>
     ```
     { .annotate }
     
-    1. Cada mensaje dispone de una etiqueta `tag` que se está usando como _clase CSS_ del mensaje.
+    1. El código HTML generado para el bloque de mensajes es similar a:
+        ```html
+        <ul class="messages">
+            <li class="success">
+                Post has been successfully added
+            </li>
+            <li class="info">
+                21 posts at the blog so far!
+            </li>
+        </ul>
+        ```
+    2. Cada mensaje dispone de una etiqueta `tag` que se está usando como _clase CSS_ del mensaje.
 
-    El código HTML generado para el bloque de mensajes es similar a:
+=== "Plantilla base"
 
-    ```html
-    <ul class="messages">
-        <li class="success">
-            Post deleted successfully
-        </li>
-    </ul>
+    ```htmldjango title="shared/templates/base.html" hl_lines="9-10 15"
+    {% load static %}
+    
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% if title %}{{ title }} | {% endif %}Blog</title>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <script src="{% static 'js/base.js' %}" defer></script>
+      </head>
+    
+      <body>
+        {% include "header.html" %}
+        {% include "messages.html" %}
+    
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+      </body>
+    </html>
     ```
 
-    :material-check-all:{ .blue } El bloque de mensajes `#!html <ul>...</ul>` es apropiado para [incluirlo](plantillas.md#inclusion) en plantillas base.
+=== "Estilos"
+
+    ```css title="shared/static/css/base.css"
+    ul.messages {
+      list-style: none;
+      padding: 0;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    
+      & li {
+        color: beige;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-family: sans-serif;
+        margin-bottom: 0.5rem;
+    
+        &.success {
+          background-color: forestgreen;
+        }
+    
+        &.error {
+          background-color: tomato;
+        }
+    
+        &.info {
+          background-color: dodgerblue;
+        }
+      }
+    } 
+    ```
+
+=== "JavaScript"
+
+    ```javascript title="shared/static/js/base.js"
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const messages = document.querySelector("ul.messages");
+    
+      if (messages) {
+        setTimeout(() => messages.remove(), 5000);
+      }
+    });
+    ```
+
+    :bulb: Con el código anterior los mensajes desaparecerán pasados 5 segundos.
 
 ## Middleware personalizado
 

@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Django: Middleware
+  - Desarrolla ejemplo de «middleware» de mensajes.
+
 ## Version 3.4.0
 
 Publicada el 30-10-2026
