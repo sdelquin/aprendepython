@@ -6,6 +6,7 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Actualiza la versión de Zensical a [0.0.74](https://github.com/zensical/zensical/releases/tag/v0.0.74).
 - Django: Middleware
   - Desarrolla ejemplo de «middleware» de mensajes.
 - Django: Interfaz administrativa
