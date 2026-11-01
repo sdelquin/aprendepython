@@ -275,7 +275,7 @@ Veamos otras maneras de presentar la clave ajena a «post» para que sea más ac
 
         Si es así, lo que debemos hacer para solucionarlo es habilitar campos de búsqueda para los «posts»:
 
-        ```python title="posts/models.py" hl_lines="8"
+        ```python title="posts/admin.py" hl_lines="8"
         from django.contrib import admin
         
         from .models import Post

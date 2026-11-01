@@ -8,6 +8,8 @@ Publicada el DD-MM-YYYY
 
 - Django: Middleware
   - Desarrolla ejemplo de «middleware» de mensajes.
+- Django: Interfaz administrativa
+  - Corrige error tipográfico.
 
 ## Version 3.4.0
 
