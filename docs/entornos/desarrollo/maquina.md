@@ -34,44 +34,138 @@ Si intentamos visualizar un programa en código máquina, únicamente obtendría
 
 ## Ensamblador
 
-El primer lenguaje de programación que encontramos en esta «escalada» es **ensamblador**. Veamos a continuación un [ejemplo de código en ensamblador](https://medium.com/nabucodonosor-editorial/hola-mundo-ensamblado-x86-ff62789ab9b0) del típico programa que se escribe por primera vez, el _«Hello, World»_:
+El primer lenguaje de programación que encontramos en esta «escalada» es **ensamblador**. Veamos a continuación un **ejemplo de código ensamblador** del típico programa que se escribe por primera vez, el _«Hello, World»_:
 
-```asm
-SYS_SALIDA equ 1
+=== "Arquitectura x86-64 (AMD64) :simple-linux: :fontawesome-brands-windows:"
 
-section .data
-    msg db "Hello, World",0x0a
-    len equ $ - msg ;longitud de msg
+    ```asm title="hello.s"
+    .section .data
+        mensaje:
+            .ascii "Hello, World!\n"
+        longitud = . - mensaje
 
-section .text
-global _start ;para el linker
-_start: ;marca la entrada
-    mov eax, 4 ;llamada al sistema (sys_write)
-    mov ebx, 1 ;descripción de archivo (stdout)
-    mov ecx, msg ;msg a escribir
-    mov edx, len ;longitud del mensaje
-    int 0x80 ;llama al sistema de interrupciones
+    .section .text
+    .global main
 
-fin: mov eax, SYS_SALIDA ;llamada al sistema (sys_exit)
-    int 0x80
-```
+    main:
+        mov $1, %rax
+        mov $1, %rdi
+        lea mensaje(%rip), %rsi
+        mov $14, %rdx
+        syscall
 
-Aunque resulte difícil de creer, lo «único» que hace este programa es mostrar en la pantalla de nuestro ordenador el texto `Hello, World`.
+        mov $0, %rax
+        ret
 
-Un detalle fundamental es que sólo funcionará para una [arquitectura x86](https://es.wikipedia.org/wiki/X86), ya que las instrucciones en ensamblador están vinculadas con el tipo de arquitectura del procesador.
+    .section .note.GNU-stack,"",@progbits
+    ```
+
+    Lo podemos probar usando [gcc](https://gcc.gnu.org/):
+
+    ```console
+    $ uname -a
+    Linux matraka 6.17.0-14-generic #14~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC
+    Thu Jan 15 15:52:10 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+    $ gcc hello.s -o hello
+
+    $ file hello
+    hello: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV),
+    dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2,
+    BuildID[sha1]=c139dab1e5c606ff2c065ca05175e086a1905803,
+    for GNU/Linux 3.2.0, not stripped
+
+    $ ./hello
+    Hello, World!
+    ```
+
+=== "Arquitectura aarch64 (ARM64) :simple-apple:"
+
+    ```asm title="hello.s"
+    .section __TEXT,__text
+    .global _main
+    
+    _main:
+        mov x0, #1
+        adrp x1, mensaje@PAGE
+        add  x1, x1, mensaje@PAGEOFF
+        mov x2, #14
+        mov x16, #4
+        svc #0x80
+    
+        mov x0, #0
+        ret
+    
+    .section __TEXT,__const
+    mensaje:
+        .ascii "Hello, World!\n"
+    ```
+
+    Lo podemos probar usando [gcc](https://gcc.gnu.org/):
+
+    ```console
+    $ uname -a
+    Darwin dmc12.local 25.3.0 Darwin Kernel Version 25.3.0: Wed Jan 28 20:53:31 PST 2026;
+    root:xnu-12377.91.3~2/RELEASE_ARM64_T8103 arm64
+
+    $ gcc hello.s -o hello
+
+    $ file hello
+    hello: Mach-O 64-bit executable arm64
+
+    $ ./hello
+    Hello, World!
+    ```
+
+    
+
+Aunque resulte difícil de creer, lo «único» que hace este programa es mostrar en la pantalla de nuestro ordenador el texto `Hello, World!`.
+
+Un detalle fundamental es que cada código ensamblador solo funcionará en un tipo de CPU ya que las instrucciones en ensamblador están vinculadas con el tipo de arquitectura del procesador.
 
 ## C
 
 Aunque el lenguaje ensamblador nos facilita un poco la tarea de desarrollar programas, sigue siendo bastante complicado ya que las instrucciones son muy específicas y no proporcionan una semántica entendible. Uno de los lenguajes que vino a suplir – en parte – estos obstáculos fue [C](<https://es.wikipedia.org/wiki/C_(lenguaje_de_programaci%C3%B3n)>). Considerado para muchas personas como un referente en cuanto a los lenguajes de programación, permite hacer uso de instrucciones más claras y potentes. El mismo ejemplo anterior del programa _«Hello, World»_ se escribiría así en lenguaje C:
 
-```c
+```c title="hello.c"
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World");
+    printf("Hello, World!\n");
     return 0;
 }
 ```
+
+=== "Arquitectura x86-64 (AMD64) :simple-linux: :fontawesome-brands-windows:"
+
+    Lo podemos probar usando [gcc](https://gcc.gnu.org/):
+
+    ```console
+    $ gcc hello.c -o hello
+
+    $ file hello
+    hello: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV),
+    dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2,
+    BuildID[sha1]=e2dff68cfef7d6c982055f199117e67929ee0008,
+    for GNU/Linux 3.2.0, not stripped
+
+    $ ./hello
+    Hello, World!
+    ```
+
+=== "Arquitectura aarch64 (ARM64) :simple-apple:"
+
+    Lo podemos probar usando [gcc](https://gcc.gnu.org/):
+
+    ```console
+    $ gcc hello.c -o hello
+
+    $ file hello
+    hello: Mach-O 64-bit executable arm64
+
+    $ ./hello
+    Hello, World!
+    ```
 
 !!! success "Código fuente"
 
@@ -81,9 +175,27 @@ int main() {
 
 Si seguimos «subiendo» en esta lista de lenguajes de programación, podemos llegar hasta [Python](https://es.wikipedia.org/wiki/Python). Se dice que es un lenguaje de más alto nivel en el sentido de que sus instrucciones son más entendibles por un humano. Veamos cómo se escribiría el programa _«Hello, World»_ en el lenguaje de programación Python:
 
-```python
-print('Hello, World')
+```python title="hello.py"
+print('Hello, World!')
 ```
+
+=== "Arquitectura x86-64 (AMD64) :simple-linux: :fontawesome-brands-windows:"
+
+    Lo podemos probar con [python](https://www.python.org/):
+
+    ```console
+    $ python hello.py
+    Hello, World!
+    ```
+
+=== "Arquitectura aarch64 (ARM64) :simple-apple:"
+
+    Lo podemos probar con [python](https://www.python.org/):
+
+    ```console
+    $ python hello.py
+    Hello, World!
+    ```
 
 ¡Pues así de fácil! :material-robot-happy-outline:{.hl} Hemos pasado de _código máquina_ (ceros y unos) a código Python en el que se puede entender perfectamente lo que estamos indicando al ordenador. La pregunta que surge es: ¿cómo entiende una máquina lo que tiene que hacer si le pasamos un programa hecho en Python (o cualquier otro lenguaje de programación de alto nivel)? La respuesta es un **compilador**.
 
@@ -109,11 +221,11 @@ En el caso particular de **C** el proceso de compilación genera un código inte
 
 Si partimos del <span class="example">ejemplo:material-flash:</span> anterior:
 
-```c title="helloworld.c"
+```c title="hello.c"
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World");
+    printf("Hello, World!");
     return 0;
 }
 ```
@@ -121,21 +233,21 @@ int main() {
 Podemos compilar este código fuente de la siguiente manera:
 
 ```console
-$ gcc -c helloworld.c
+$ gcc -c hello.c
 ```
 
 ??? info "gcc"
 
     [gcc](https://gcc.gnu.org/) es el compilador de C más utilizado. Está soportado por la [GNU](https://www.gnu.org/home.es.html) y su código es «opensource» disponible desde [este repositorio](https://github.com/gcc-mirror/gcc).
 
-Así se genera un nuevo archivo `helloworld.o` que (_en mi máquina_) tiene la siguiente especificación:
+Así se genera un nuevo archivo `hello.o` que (_en mi máquina_) tiene la siguiente especificación:
 
 ```console
-$ file helloworld.o
+$ file hello.o
 helloworld.o: Mach-O 64-bit object arm64
 ```
 
-Podemos comprobar que el archivo «objeto» es **dependiente de la arquitectura** de la máquina. En este caso es ARM.
+Podemos comprobar que el archivo «objeto» es **dependiente de la arquitectura** de la máquina. En este caso es ARM64.
 
 ??? note "Arquitecturas"
 
@@ -172,8 +284,8 @@ En el caso particular de **Python** el proceso de compilación genera un código
 
 Si partimos del <span class="example">ejemplo:material-flash:</span> anterior:
 
-```python title="helloworld.py"
-print('Hello, World')
+```python title="hello.py"
+print('Hello, World!')
 ```
 
 el programa se compilaría[^2] al siguiente «bytecode»:
@@ -183,7 +295,7 @@ el programa se compilaría[^2] al siguiente «bytecode»:
 
 1           2 PUSH_NULL
             4 LOAD_NAME                0 (print)
-            6 LOAD_CONST               0 ('Hello, World')
+            6 LOAD_CONST               0 ('Hello, World!')
             8 PRECALL                  1
            12 CALL                     1
            22 RETURN_VALUE
@@ -191,23 +303,23 @@ el programa se compilaría[^2] al siguiente «bytecode»:
 
 ??? tip "Detalles sobre compilación"
 
-    El programa `helloworld.py` se puede ~~compilar~~ ejecutar sencillamente con:
+    El programa `hello.py` se puede ~~compilar~~ ejecutar sencillamente con:
 
     ```console
-    $ python helloworld.py
+    $ python hello.py
     ```
 
     Si queremos revelar el archivo «bytecode» podemos hacerlo con:
 
     ```console
-    $ python -m py_compile helloworld.py
-    __pycache__/helloworld.cpython-313.pyc
+    $ python -m py_compile hello.py
+    __pycache__/hello.cpython-313.pyc
     ```
 
     Si queremos revelar el propio «bytecode» podemos hacerlo con:
 
     ```console
-    $ python -m dis helloworld.py
+    $ python -m dis hello.py
     ```
 
 A continuación estas instrucciones básicas son ejecutadas por el intérprete de «bytecode» de Python (o máquina virtual)[^3]:

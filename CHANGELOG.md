@@ -8,6 +8,8 @@ Publicada el DD-MM-YYYY
 
 - Procesamiento de texto: Expresiones regulares
   - Añade ejercicio.
+- Desarrollo de software: Hablando con la máquina
+  - Desarrolla las fases de compilación.
 
 ## Version 3.5.1
 
