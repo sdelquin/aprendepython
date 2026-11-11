@@ -193,9 +193,11 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
         regex = r'[\w-]+'#(3)!
 
         def to_python(self, post_slug: str) -> Post:#(4)!
+            """Recibe un slug y devuelve su objeto Post"""
             return get_object_or_404(Post, slug=post_slug)#(5)!
 
         def to_url(self, post: Post) -> str:#(6)!
+            """Recibe un objeto Post y devuelve su slug"""
             return str(post.slug)#(7)!
     ```
     { .annotate }
@@ -206,7 +208,7 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     4.  - Este método convierte el patrón capturado `#!python str` en el objeto correspondiente.
         - URL :material-arrow-right-thin: Python
     5. Ver [consulta no encontrada](vistas.md#consulta-no-encontrada).
-    6.  - Este método convierte el objeto a la subruta correspondiente de la URL.
+    6.  - Este método convierte el objeto `self` al patrón correspondiente de la URL.
         - Python :material-arrow-right-thin: URL
     7.  Aquí se podría haber puesto únicamente `#!python return post.slug` pero es posible que [ty](https://docs.astral.sh/ty/) se queje: «Return type does not match returned value: expected `str`, found `SlugField | Unknown`»
 
@@ -261,6 +263,11 @@ Veamos un <span class="example">ejemplo:material-flash:</span> donde creamos un 
     { .annotate }
     
     1. Ahora ya no pasamos el «slug» del «post», sino directamente un objeto de tipo `Post` que Django sabrá como convertir a URL.
+
+El hecho de utilizar el mismo nombre en la captura de «urls» puede llevar a confusión. Aquí se explica de una forma más clara:
+
+![Dark image](images/urls/custom-converters-dark.svg#only-dark)
+![Light image](images/urls/custom-converters-light.svg#only-light)
 
 ??? tip "URL canónica"
 

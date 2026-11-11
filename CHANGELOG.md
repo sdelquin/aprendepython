@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Django: URLs
+  - Aclara la implementación y uso de conversores personalizados de rutas.
+
 ## Version 3.5.0
 
 Publicada el 09-11-2026
