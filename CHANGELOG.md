@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Procesamiento de texto: Expresiones regulares
+  - Añade ejercicio.
+
 ## Version 3.5.1
 
 Publicada el 11-11-2026

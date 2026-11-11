@@ -600,3 +600,4 @@ Hay que tener en cuenta ciertos matices al utilizar corchetes `#!python []` en u
 3. [pypas](../../paquetes/aprendizaje/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `valid-email`
 4. [pypas](../../paquetes/aprendizaje/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `calc-from-str`
 5. [pypas](../../paquetes/aprendizaje/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `valid-url`
+6. [pypas](../../paquetes/aprendizaje/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `drop-name`
