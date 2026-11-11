@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.5.1
+
+Publicada el 11-11-2026
+
 - Actualiza la versión de Zensical a [0.1.1](https://github.com/zensical/zensical/releases/tag/v0.1.1).
 - Django: URLs
   - Aclara la implementación y uso de conversores personalizados de rutas.
