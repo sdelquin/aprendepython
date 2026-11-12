@@ -15,6 +15,8 @@ Publicada el DD-MM-YYYY
 - Añade el plugin [glightbox](https://zensical.org/docs/compatibility/mkdocs/plugins/#glightbox) para abrir imágenes con [lightbox](https://lokeshdhakar.com/projects/lightbox2/).
 - Desarrollo de software: Fases de desarrollo
   - Añade diagrama de flujo con fases de desarrollo.
+- Desarrollo de software: Metodologías de desarrollo
+  - Añade herramientas software.
 
 ## Version 3.5.1
 

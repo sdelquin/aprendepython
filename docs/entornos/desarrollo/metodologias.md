@@ -38,6 +38,14 @@ flowchart TB
   Planificación --> Desarrollo --> Revisión --> Retrospectiva --> N[Nuevo Sprint] --> Planificación;
 ```
 
+### Software
+
+Podemos encontrar distinto software para trabajo con Scrum. A continuación se muestran algunas herramientas con filosofía _opensource_:
+
+- [Taiga](https://taiga.io/)
+- [OpenProject](https://www.openproject.org/)
+- [Plane](https://plane.so/)
+
 ## Kanban
 
 Kanban es un método ágil de gestión del trabajo que busca visualizar el flujo de tareas, limitar el trabajo en curso y mejorar continuamente el proceso. Se utiliza habitualmente en equipos de desarrollo de software, aunque puede aplicarse a muchos otros tipos de proyectos.
@@ -78,6 +86,14 @@ Kanban busca mantener un flujo continuo:
 `Tarea → Tarea → Tarea → Tarea → ...`
 
 Esto hace que Kanban sea especialmente adecuado para equipos que reciben trabajo de manera continua, como equipos de mantenimiento o soporte.
+
+### Software
+
+Podemos encontrar distinto software para trabajo con Kanban. A continuación se muestran algunas herramientas con filosofía _opensource_:
+
+- [Kanboard](https://kanboard.org/)
+- [WeKan](https://wekan.fi/)
+- [Vikunja](https://vikunja.io/)
 
 ## Extreme programming
 
