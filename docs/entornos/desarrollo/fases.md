@@ -15,6 +15,28 @@ Imagen generada con Inteligencia Artificial
 
 El desarrollo de una aplicación es un proceso que se divide en diferentes fases, desde la identificación de las necesidades que debe cubrir hasta su puesta en funcionamiento y mantenimiento. Cada fase tiene unos objetivos y tareas concretas que permiten organizar el trabajo y garantizar que la aplicación final cumpla con los requisitos establecidos.
 
+```mermaid
+flowchart TD
+    A[Fase de análisis] ==> D[Fase de diseño] ==> C[Fase de codificación] ==> P[Fase de pruebas] ==> DOC[Fase de documentación] ==> E[Fase de explotación] ==> M[Fase de mantenimiento]
+    P ==> C
+
+    A e1@-.-> REQ@{ shape: paper-tape, label: "Especificación de requisitos"}
+    D e2@-.-> DIS@{ shape: paper-tape, label: "Diseño detallado"}
+    C e3@-.-> FUN@{ shape: paper-tape, label: "Versión funcional"}
+    P e4@-.-> ERR@{ shape: paper-tape, label: "Resolución de errores"}
+    DOC e5@-.-> DOCU@{ shape: paper-tape, label: "Documentación del sistema"}
+    E e6@-.-> DESP@{ shape: paper-tape, label: "Despliegue del proyecto"}
+    M e7@-.-> MEJ@{ shape: paper-tape, label: "Mejoras y actualizaciones"}
+
+    e1@{ animate: true }
+    e2@{ animate: true }
+    e3@{ animate: true }
+    e4@{ animate: true }
+    e5@{ animate: true }
+    e6@{ animate: true }
+    e7@{ animate: true }
+```
+
 ## Fase de análisis
 
 La fase de análisis es la **primera etapa del desarrollo de una aplicación** y tiene como objetivo **determinar qué debe hacer la aplicación y qué necesidades debe cubrir**. En esta fase se estudian los **requisitos** del sistema, se identifican los **usuarios** que van a utilizarlo y se definen las **funcionalidades** que deberá ofrecer. También se analizan las restricciones y condiciones que pueden afectar al proyecto, como el tiempo, los recursos disponibles o las tecnologías que se pueden utilizar. El resultado de esta fase es una **especificación** clara de los requisitos que servirá como base para las siguientes etapas del desarrollo.

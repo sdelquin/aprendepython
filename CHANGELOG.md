@@ -13,6 +13,8 @@ Publicada el DD-MM-YYYY
 - Desarrollo de software: Python
   - Completa documentación de versiones y desarrollo del lenguaje.
 - Añade el plugin [glightbox](https://zensical.org/docs/compatibility/mkdocs/plugins/#glightbox) para abrir imágenes con [lightbox](https://lokeshdhakar.com/projects/lightbox2/).
+- Desarrollo de software: Fases de desarrollo
+  - Añade diagrama de flujo con fases de desarrollo.
 
 ## Version 3.5.1
 
