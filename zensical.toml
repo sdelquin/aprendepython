@@ -280,3 +280,4 @@ custom_checkbox = true
 [project.markdown_extensions.pymdownx.snippets]
 auto_append = ["includes/abbreviations.md"]
 [project.markdown_extensions.pymdownx.blocks.caption]
+[project.plugins.glightbox]
