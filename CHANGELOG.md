@@ -10,6 +10,8 @@ Publicada el DD-MM-YYYY
   - Añade ejercicio.
 - Desarrollo de software: Hablando con la máquina
   - Desarrolla las fases de compilación.
+- Desarrollo de software: Python
+  - Completa documentación de versiones y desarrollo del lenguaje.
 
 ## Version 3.5.1
 
