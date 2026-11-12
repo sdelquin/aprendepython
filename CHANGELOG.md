@@ -17,6 +17,8 @@ Publicada el DD-MM-YYYY
   - Añade diagrama de flujo con fases de desarrollo.
 - Desarrollo de software: Metodologías de desarrollo
   - Añade herramientas software.
+- Entorno integrado de desarrollo: uv
+  - Añade y mejora la documentación existente.
 
 ## Version 3.5.1
 

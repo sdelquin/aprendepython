@@ -21,7 +21,7 @@ Pero también es justo decir que **el nivel de adopción de la comunidad Python*
 
 ## Instalación
 
-Se proporcionan múltiples métodos de **instalación** realmente sencillos:
+Astral proporciona mecanismos muy sencillos para la instalación de _uv_:
 
 - [Instalación para macOS :simple-apple: y Linux :simple-linux:](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_1).
 - [Instalación para Windows :fontawesome-brands-windows:](https://docs.astral.sh/uv/getting-started/installation/#__tabbed_1_2).
@@ -62,7 +62,7 @@ uv 0.12.13 (aarch64-unknown-linux-gnu)
 
 ## Versiones de Python
 
-Una vez instalado, podemos empezar a dar nuestros primeros pasos con uv. Supongamos que lo primero que queremos es ver qué versiones de Python hay disponibles:
+Una vez instalado, podemos empezar a dar nuestros primeros pasos con _uv_. Supongamos que lo primero que queremos es ver qué versiones de Python hay disponibles:
 
 ```console
 $ uv python list
@@ -88,6 +88,8 @@ graalpy-3.10.0-linux-aarch64-gnu                    <download available>
 graalpy-3.8.5-linux-aarch64-gnu                     <download available>
 ```
 
+### Instalar Python
+
 Es posible que algunas de las [versiones de Python](../desarrollo/python.md#versiones-de-python) puedan estar ya instaladas en nuestro sistema. En ese caso veremos la ruta de nuestro sistema operativo que lleva a dicha versión.
 
 Ahora vamos a instalar una versión de Python:
@@ -109,7 +111,7 @@ Installed Python 3.14.7 in 3.10s
 
     Se puede observar que únicamente :material-run-fast: ha tardado $3.10s$ en instalar Python.
 
-Podemos comprobar que efectivamente se ha instalado dicha versiónd de Python y que nos aparece en el listado de versiones disponibles:
+Podemos comprobar que efectivamente se ha instalado dicha versión de Python y que nos aparece en el listado de versiones disponibles:
 
 ```console hl_lines="5-6"
 $ uv python list
@@ -123,7 +125,11 @@ cpython-3.14.7-linux-aarch64-gnu                    .local/share/uv/python/cpyth
 
 !!! info "Ruta de instalación"
 
-    Una de las cosas interesantes de _uv_ es que instala las versiones de Python en una carpeta del HOME del usuario, concretamente en `~/.local/share/uv/`
+    Una de las cosas interesantes de _uv_ es que almacena todo su contenido en una carpeta del HOME del usuario, concretamente en `~/.local/share/uv` aislando el resto del sistema y evitando conflictos.
+    
+    Las **versiones de Python** se instalan en la carpeta `~/.local/share/uv/python`. En cualquier caso siempre podremos obtener dicha ruta mediante el comando: `uv python dir`
+
+    Los **distintos ejecutables** son enlazados desde la carpeta `~/.local/bin` (que debería estar en el PATH). En cualquier caso siempre podremos obtener dicha ruta mediante el comando: `uv python dir --bin`
 
 ### Intérprete de Python
 
@@ -136,7 +142,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-uv por defecto solo instala «ejecutables versionados» (`python3.14`). Pero es posible instalar `python` como ejecutable mediante la siguiente opción:
+_uv_ por defecto solo instala «ejecutables versionados» (`python3.14`). Pero es posible instalar `python` como ejecutable mediante la siguiente opción:
 
 ```console hl_lines="9-10 17"
 $ uv python install --default
@@ -191,6 +197,17 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
+### Desinstalar Python
+
+Es posible desinstalar cualquier versión de Python de una manera muy sencilla:
+
+```console
+$ uv python uninstall 3.14
+Searching for Python versions matching: Python 3.14
+Uninstalled Python 3.14.10 in 59ms
+ - cpython-3.14.10-linux-aarch64-gnu (python3.14)
+```
+
 ## Proyectos
 
 Al igual que ocurría con los [entornos virtuales nativos de Python](../desarrollo/python.md#entornos-virtuales), _uv_ ofrece la posibilidad de trabajar con proyectos que (internamente) disponen de un entorno virtual.
@@ -243,11 +260,11 @@ Using CPython 3.14.7
 Creating virtual environment at: .venv
 Resolved 6 packages in 384ms
 Installed 5 packages in 21ms
- + certifi==2026.7.22
- + charset-normalizer==3.5.1
- + idna==3.19
+ + certifi==2026.10.23
+ + charset-normalizer==3.5.2
+ + idna==3.20
  + requests==2.34.2
- + urllib3==2.7.0
+ + urllib3==2.8.0
 ```
 
 Aquí acaban de ocurrir varias cosas:
@@ -288,10 +305,10 @@ $:~/proyecto> uv add --dev django-debug-toolbar
 Resolved 11 packages in 558ms
 Prepared 4 packages in 928ms
 Installed 4 packages in 155ms
- + asgiref==3.12.1
- + django==6.1.1
+ + asgiref==3.13.0
+ + django==6.1.3
  + django-debug-toolbar==8.0.0
- + sqlparse==0.6.0
+ + sqlparse==0.6.1
 ```
 
 Esta dependencia se ha incluido en `pyproject.toml` dentro del grupo `dev`:
@@ -322,7 +339,7 @@ Esto nos brinda la posibilidad, por ejemplo, de definir dependencias que son exc
 $:~/proyecto> uv add --group prod gunicorn
 Resolved 12 packages in 463ms
 Installed 1 package in 25ms
- + gunicorn==26.2.0
+ + gunicorn==27.0.0
 ```
 
 Comprobamos el estado del fichero de configuración del proyecto:
@@ -342,7 +359,7 @@ dev = [
     "django-debug-toolbar>=8.0.0",
 ]
 prod = [
-    "gunicorn>=26.2.0",
+    "gunicorn>=27.0.0",
 ]
 ```
 
@@ -366,43 +383,67 @@ Llegado el caso podríamos querer consultar las dependencias que tenemos actualm
 
 Para ello podemos utilizar la herramienta [`pip`](../../entornos/desarrollo/python/#gestion-de-paquetes) a través de uv[^1]:
 
-```console
-$:~/proyecto> uv pip list
-Package              Version
--------------------- ---------
-asgiref              3.12.1
-certifi              2026.7.22
-charset-normalizer   3.5.1
-django               6.1.1
-django-debug-toolbar 8.0.0
-idna                 3.20
-requests             2.34.2
-sqlparse             0.6.0
-urllib3              2.8.0
-```
+=== "Como lista :material-view-list:"
 
-En el caso de que queramos visualizar el **árbol de dependencias** que forma `pyproject.toml` + `uv.lock` podemos ejecutar el siguiente comando:
+    ```console
+    $:~/proyecto> uv pip list
+    Package              Version
+    -------------------- ----------
+    asgiref              3.13.0
+    certifi              2026.10.23
+    charset-normalizer   3.5.2
+    django               6.1.3
+    django-debug-toolbar 8.0.0
+    gunicorn             27.0.0
+    idna                 3.20
+    requests             2.34.2
+    sqlparse             0.6.1
+    urllib3              2.8.0
+    ```
 
+=== "Como árbol :material-pine-tree:"
+
+    ```console
+    $:~/proyecto> uv pip tree
+    django-debug-toolbar v8.0.0
+    ├── django v6.1.3
+    │   ├── asgiref v3.13.0
+    │   └── sqlparse v0.6.1
+    └── sqlparse v0.6.1
+    gunicorn v27.0.0
+    requests v2.34.2
+    ├── certifi v2026.10.23
+    ├── charset-normalizer v3.5.2
+    ├── idna v3.20
+    └── urllib3 v2.8.0
+    ```
+
+En el caso de que queramos visualizar el **árbol de dependencias** que forma `pyproject.toml` + `uv.lock` (identificando incluso sus grupos) podemos ejecutar el siguiente comando:
+
+<div class="annotate" markdown>
 ```console
 $:~/proyecto> uv tree --all-groups
 Resolved 12 packages in 1ms
 proyecto v0.1.0
 ├── requests v2.34.2
-│   ├── certifi v2026.7.22
-│   ├── charset-normalizer v3.5.1
+│   ├── certifi v2026.10.23
+│   ├── charset-normalizer v3.5.2
 │   ├── idna v3.20
 │   └── urllib3 v2.8.0
-├── django-debug-toolbar v8.0.0 (group: dev)
-│   ├── django v6.1.1
-│   │   ├── asgiref v3.12.1
-│   │   └── sqlparse v0.6.0
-│   └── sqlparse v0.6.0
-└── gunicorn v26.2.0 (group: prod)
+├── django-debug-toolbar v8.0.0 (group: dev)(1)
+│   ├── django v6.1.3
+│   │   ├── asgiref v3.13.0
+│   │   └── sqlparse v0.6.1
+│   └── sqlparse v0.6.1
+└── gunicorn v27.0.0 (group: prod)(2)
 ```
+</div>
+1. Dependencias del grupo `dev` (_desarrollo_)
+2. Dependencias del grupo `prod` (_producción_)
 
-!!! warning "Dependencias declaradas"
+!!! warning "Dependencias declaradas vs instaladas"
 
-    El comando `uv tree` no muestra las dependencias instaladas, muestra las **dependencias declaradas** en el proyecto.
+    El comando `uv tree` no muestra las dependencias instaladas, muestra las **dependencias declaradas** en los ficheros de configuración del proyecto.
 
 ### Sincronizar dependencias
 
@@ -418,7 +459,7 @@ $:~/proyecto> uv pip list
 Using Python 3.14.7 environment at: /root/.local/share/uv/python/cpython-3.14.7-linux-aarch64-gnu
 Package Version
 ------- -------
-pip     26.2.1
+pip     26.2.2
 ```
 
 Ahora mismo ni siquiera tenemos un entorno virtual creado ya que hemos borrado la carpeta `.venv` por tanto no hay ninguna dependencia Python instalada.
@@ -429,16 +470,16 @@ Para volver a **sincronizar** el proyecto ejecutamos:
 $ $:~/proyecto> uv sync
 Using CPython 3.14.7
 Creating virtual environment at: .venv
-Resolved 12 packages in 1ms
-Installed 9 packages in 585ms
- + asgiref==3.12.1
- + certifi==2026.7.22
- + charset-normalizer==3.5.1
- + django==6.1.1
+Resolved 12 packages in 2ms
+Installed 9 packages in 622ms
+ + asgiref==3.13.0
+ + certifi==2026.10.23
+ + charset-normalizer==3.5.2
+ + django==6.1.3
  + django-debug-toolbar==8.0.0
  + idna==3.20
  + requests==2.34.2
- + sqlparse==0.6.0
+ + sqlparse==0.6.1
  + urllib3==2.8.0
 ```
 
@@ -447,15 +488,15 @@ Comprobamos ahora las dependencias instaladas:
 ```console
 $:~/proyecto> uv pip list
 Package              Version
--------------------- ---------
-asgiref              3.12.1
-certifi              2026.7.22
-charset-normalizer   3.5.1
-django               6.1.1
+-------------------- ----------
+asgiref              3.13.0
+certifi              2026.10.23
+charset-normalizer   3.5.2
+django               6.1.3
 django-debug-toolbar 8.0.0
 idna                 3.20
 requests             2.34.2
-sqlparse             0.6.0
+sqlparse             0.6.1
 urllib3              2.8.0
 ```
 
@@ -467,7 +508,7 @@ Si queremos tenerlas en cuenta basta con indicarlo en el propio comando:
 $:~/proyecto> uv sync --all-groups
 Resolved 12 packages in 1ms
 Installed 1 package in 12ms
- + gunicorn==26.2.0
+ + gunicorn==27.0.0
 ```
 
 #### Seleccionando dependencias
@@ -485,11 +526,11 @@ Esto lo conseguimos ejecutando el siguiente comando:
 ```console
 $:~/proyecto> uv sync --no-group dev --group prod
 Resolved 12 packages in 1ms
-Uninstalled 4 packages in 96ms
- - asgiref==3.12.1
- - django==6.1.1
+Uninstalled 4 packages in 92ms
+ - asgiref==3.13.0
+ - django==6.1.3
  - django-debug-toolbar==8.0.0
- - sqlparse==0.6.0
+ - sqlparse==0.6.1
 ```
 
 Por tanto si ahora listamos las dependencias instaladas en el sistema solo veremos las «generales» y las de producción, sin que aparezcan las de desarrollo:
@@ -497,10 +538,10 @@ Por tanto si ahora listamos las dependencias instaladas en el sistema solo verem
 ```console
 $:~/proyecto> uv pip list
 Package            Version
------------------- ---------
-certifi            2026.7.22
-charset-normalizer 3.5.1
-gunicorn           26.2.0
+------------------ ----------
+certifi            2026.10.23
+charset-normalizer 3.5.2
+gunicorn           27.0.0
 idna               3.20
 requests           2.34.2
 urllib3            2.8.0
@@ -514,18 +555,18 @@ Por <span class="example">ejemplo:material-flash:</span> supongamos que ya no ne
 
 ```console
 $:~/proyecto> uv remove requests
-Resolved 7 packages in 326ms
+Resolved 7 packages in 155ms
 Uninstalled 6 packages in 7ms
-Installed 4 packages in 582ms
- + asgiref==3.12.1
- - certifi==2026.7.22
- - charset-normalizer==3.5.1
- + django==6.1.1
+Installed 4 packages in 596ms
+ + asgiref==3.13.0
+ - certifi==2026.10.23
+ - charset-normalizer==3.5.2
+ + django==6.1.3
  + django-debug-toolbar==8.0.0
- - gunicorn==26.2.0
+ - gunicorn==27.0.0
  - idna==3.20
  - requests==2.34.2
- + sqlparse==0.6.0
+ + sqlparse==0.6.1
  - urllib3==2.8.0
 ```
 
@@ -695,6 +736,14 @@ $ cowsay -t holi
            ||     ||
 ```
 
+!!! info "Ruta de instalación"
+
+    Una de las cosas interesantes de _uv_ es que almacena todo su contenido en una carpeta del HOME del usuario, concretamente en `~/.local/share/uv` aislando el resto del sistema y evitando conflictos.
+    
+    Las **herramientas de Python** se instalan en la carpeta `~/.local/share/uv/tools`. En cualquier caso siempre podremos obtener dicha ruta mediante el comando: `uv tool dir`
+
+    Los **distintos ejecutables** son enlazados desde la carpeta `~/.local/bin` (que debería estar en el PATH). En cualquier caso siempre podremos obtener dicha ruta mediante el comando: `uv tool dir --bin`
+
 ### Listar herramientas
 
 Como era de esperar, hay una forma fácil de listar las herramientas instaladas:
@@ -747,7 +796,7 @@ $ uv tool run cowsay -t 'al vuelo'
                ||     ||
 ```
 
-Al ser algo tan «atractivo» han creado un ~~comando~~ alias para esto:
+Al ser algo tan «atractivo» Astral ha implementado un ~~comando~~ alias para esto:
 
 ```console
 $ uvx cowsay -t 'al vuelo' #(1)!
