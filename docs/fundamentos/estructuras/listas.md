@@ -159,6 +159,19 @@ En el troceado de listas, a diferencia de lo que ocurre al obtener elementos, no
 
 :material-check-all:{ .blue } Ninguna de las operaciones anteriores modifican la lista original, simplemente devuelven una lista nueva.
 
+### Longitud de una lista
+
+Podemos conocer el número de elementos que tiene una lista mediante la función `#!python len()`.
+
+Por <span class="example">ejemplo:material-flash:</span> para conocer la cantidad de productos de nuestra lista de la compra haríamos lo siguiente:
+
+```pycon hl_lines="3"
+>>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
+
+>>> len(shopping)
+5
+```
+
 ### Invertir una lista
 
 Python nos ofrece varios mecanismos para invertir los elementos de una lista, en función del resultado que busquemos:
@@ -607,19 +620,6 @@ False
 !!! exercise "Ejercicio"
 
     [pypas](../../paquetes/aprendizaje/pypas.md) &nbsp;:fontawesome-solid-hand-holding-heart:{ .acc .slide } `isogram`
-
-### Longitud de una lista
-
-Podemos conocer el número de elementos que tiene una lista mediante la función `#!python len()`.
-
-Por <span class="example">ejemplo:material-flash:</span> para conocer la cantidad de productos de nuestra lista de la compra haríamos lo siguiente:
-
-```pycon hl_lines="3"
->>> shopping = ['Agua', 'Huevos', 'Aceite', 'Sal', 'Limón']
-
->>> len(shopping)
-5
-```
 
 ### Contar ocurrencias
 

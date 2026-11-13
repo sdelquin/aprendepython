@@ -6,6 +6,9 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+- Estructuras de datos: Listas
+  - Reubica apartado de «longitud de una lista».
+
 ## Version 3.5.2
 
 Publicada el 12-11-2026
