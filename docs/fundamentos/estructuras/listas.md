@@ -700,7 +700,22 @@ Existe _una variante_ de `split()` en la que indicamos el **número máximo de d
 1. Aquí `split()` no nos está sirviendo mucho...
 2. Al indicar el máximo de «una división» hemos conseguido el resultado.
 
-:material-check-all:{ .blue } También existe la función `rsplit()` que se comporta exactamente igual que la función `split()` pero **empezando por la derecha**.
+??? tip "Por la derecha"
+
+    También existe la función `rsplit()` que se comporta exactamente igual que la función `split()` pero **empezando por la derecha**:
+
+    ```pycon
+    >>> url = 'python.org/downloads/releases'
+
+    >>> url.rsplit('/')#(1)!
+    ['python.org', 'downloads', 'releases']
+
+    >>> url.rsplit('/', 1)
+    ['python.org/downloads', 'releases']
+    ```
+    { .annotate }
+
+    1. Se comporta igual que `split()`.
 
 ##### Diviendo líneas
 
@@ -711,17 +726,27 @@ Otro caso de uso muy habitual es querer dividir un fragmento de texto por sus sa
 
 Por <span class="example">ejemplo:material-flash:</span>, supongamos que tenemos una estrofa de la canción [«Cómo hablar» de Amaral](https://www.youtube.com/watch?v=DjkLlTLMNDs) y queremos obtener una lista con cada frase:
 
-```python
+```pycon
 >>> lyrics = """Si volviera a nacer, si empezara de nuevo
 ... Volvería a buscarte en mi nave del tiempo
 ... Es el destino quien nos lleva y nos guia
-... Nos separa y nos une a traves de la vida"""
+... Nos separa y nos une a través de la vida"""
 
 >>> lyrics.splitlines()
 ['Si volviera a nacer, si empezara de nuevo',
  'Volvería a buscarte en mi nave del tiempo',
  'Es el destino quien nos lleva y nos guia',
- 'Nos separa y nos une a traves de la vida']
+ 'Nos separa y nos une a través de la vida']
+```
+
+A efectos prácticos `splitlines()` $\equiv$ `#!python split('\n')`:
+
+```pycon
+>>> lyrics.split('\n')
+['Si volviera a nacer, si empezara de nuevo',
+ 'Volvería a buscarte en mi nave del tiempo',
+ 'Es el destino quien nos lleva y nos guia',
+ 'Nos separa y nos une a través de la vida']
 ```
 
 !!! exercise "Ejercicio"
@@ -756,7 +781,23 @@ Veamos un <span class="example">ejemplo:material-flash:</span> muy sencillo a pa
     ('3', '//', '4')
     ```
 
-:material-check-all:{ .blue } También existe la función `rpartition()` que se comporta exactamente igual que la función `partition()` pero **empezando por la derecha**.
+Si el separador (o elemento a buscar) no existe se devuelve lo siguiente:
+
+```pycon
+>>> text.partition('*')
+('3+4', '', '')
+```
+
+!!! tip "Por la derecha"
+
+    También existe la función `rpartition()` que se comporta exactamente igual que la función `partition()` pero **empezando por la derecha**:
+
+    ```pycon
+    >>> text = '3+4+2+7'
+    
+    >>> text.rpartition('+')
+    ('3+4+2', '+', '7')
+    ```
 
 ### Unir lista como «string»
 

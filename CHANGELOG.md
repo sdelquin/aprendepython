@@ -9,6 +9,7 @@ Publicada el DD-MM-YYYY
 - Estructuras de datos: Listas
   - Reubica apartado de «longitud de una lista».
   - Añade explicación sobre control de listas vacías.
+  - Mejora documentación sobre `rsplit()` y `rpartition()`.
 
 ## Version 3.5.2
 
