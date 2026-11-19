@@ -172,6 +172,33 @@ Por <span class="example">ejemplo:material-flash:</span> para conocer la cantida
 5
 ```
 
+#### Lista vacía
+
+Mediante el cálculo de la longitud de una lista, obviamente podremos comprobar si se trata de una lista vacía:
+
+```pycon
+>>> shopping = []
+
+>>> if len(shopping) == 0:
+...     print('No shopping list')
+...
+No shopping list
+```
+
+Pero también podemos aprovecharnos de la [veracidad](../flujo/condicionales.md#veracidad) de una lista:
+
+```pycon
+>>> shopping = []
+
+>>> if not shopping:
+...     print('No shopping list')
+...
+No shopping list
+```
+        
+
+
+
 ### Invertir una lista
 
 Python nos ofrece varios mecanismos para invertir los elementos de una lista, en función del resultado que busquemos:
