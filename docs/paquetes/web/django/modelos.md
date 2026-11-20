@@ -1628,7 +1628,7 @@ Django ofrece dos variantes:
 
 ### Enumerados textuales
 
-En este escenario se utiliza un campo `CharField` y se definen los posibles valores mediante el parámetro `choices` a través de una subclase de `models.TextChoices`.
+En este escenario se utiliza un campo de tipo `CharField` y se definen los posibles valores mediante el parámetro `choices` a través de una subclase de `models.TextChoices`.
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos clasificar los «posts» del «blog» por **categorías**:
 
@@ -1672,7 +1672,9 @@ class Post(models.Model):
 5. Se definen las opciones con referencia a la clase interior.
 6. ^^No es obligatorio^^ aunque sí **recomendable** definir un valor por defecto.
 
-La clase interior `Category` es de tipo [`TextChoices`](https://github.com/django/django/blob/main/django/db/models/enums.py#L107) y permite ciertas operaciones:
+:material-lightbulb-on:{.acc} Tras [crear y aplicar migraciones](#migraciones) ya tendríamos disponible el nuevo campo `category` en la base de datos.
+
+La clase interior `Category` es de tipo [`TextChoices`](https://github.com/django/django/blob/main/django/db/models/enums.py#L107) y admite ciertas operaciones:
 
 ```pycon
 >>> Post.Category.choices
@@ -1734,7 +1736,7 @@ Para **comprobar el valor de un tipo enumerado** debemos hacer uso de la clase i
         # ...
     ```
 
-Para **comprobar si el valor está dentro de un enumerado** también debemos hacer uso de la clase interior. Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos verificar si un determinado valor es una categoría de «post»:
+Para **comprobar si el valor está dentro de un enumerado** también debemos hacer uso de la clase interior. Veamos un <span class="example">ejemplo:material-flash:</span> en el que queremos verificar si un determinado valor es una categoría _válida_ de «post»:
 
 === "Forma incorrecta :material-thumb-down:"
 
@@ -1757,7 +1759,7 @@ Para **comprobar si el valor está dentro de un enumerado** también debemos hac
 
 ### Enumerados enteros
 
-En este escenario se utiliza un campo `IntegerField` y se definen los posibles valores mediante el parámetro `choices` a través de una subclase de `models.IntegerChoices`.
+En este escenario se utiliza un campo de tipo `IntegerField` y se definen los posibles valores mediante el parámetro `choices` a través de una subclase de `models.IntegerChoices`.
 
 Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos valorar la **calidad** de los «posts» del «blog» en base a una escala predeterminada:
 
@@ -1794,6 +1796,8 @@ class Post(models.Model):
     - Aunque dependiendo del contexto se podría usar un `PositiveSmallIntegerField()`.
 4. Se definen las opciones con referencia a la clase interior.
 5. ^^No es obligatorio^^ aunque sí **recomendable** definir un valor por defecto.
+
+:material-lightbulb-on:{.acc} Tras [crear y aplicar migraciones](#migraciones) ya tendríamos disponible el nuevo campo `rating` en la base de datos.
 
 !!! tip "Graduación"
 
@@ -2234,11 +2238,16 @@ from django.db import models
 class Label(models.Model):
     name = models.CharField(max_length=128)
     slug = models.SlugField(max_length=128, unique=True)
+
+    def __str__(self):
+        return self.name
 ```
 
 !!! tip "Aplicación independiente"
 
     El hecho de que una etiqueta pueda tener sentido fuera de los «posts» (por ejemplo aplicarse también a otros elementos) indica que podríamos crear una aplicación `labels` para almacenar los modelos.
+
+:material-lightbulb-on:{.acc} Tras [crear y aplicar migraciones](#migraciones) ya tendríamos disponible el nuevo modelo `Label` en la base de datos.
 
 Para relacionar los «posts» con las etiquetas usaremos un campo de tipo [`ManyToManyField`](https://docs.djangoproject.com/en/stable/ref/models/fields/#django.db.models.ManyToManyField):
 
@@ -2273,6 +2282,8 @@ class Post(models.Model):
     
         El argumento `on_delete` define cómo manejar la eliminación de un objeto relacionado. En un campo `ManyToManyField`, las relaciones se gestionan a través de una tabla intermedia automática. En este escenario [`on_delete` no tiene efecto](https://stackoverflow.com/questions/15303059/django-manytomanyfield-and-on-delete) ya que no hay un «objeto relacionado» único que se deba eliminar directamente como en un `ForeignKey`.
 
+:material-lightbulb-on:{.acc} Tras [crear y aplicar migraciones](#migraciones) ya tendríamos disponible el nuevo campo `labels` en la base de datos.
+
 Lo primero será crear etiquetas y «posts»:
 
 ```pycon
@@ -2302,6 +2313,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
 
     ```pycon title="Añadir etiquetas a un «post»"
     >>> post_python.labels.add(label_tech)#(1)!
+
     ```
     { .annotate }
     
@@ -2314,21 +2326,25 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
         >>> # Desde un iterable (queryset)
         >>> post_python.labels.add(*labels)
         ```
-
-    ```pycon title="Añadir «posts» a una etiqueta"
-    >>> label_ai.posts.add(post_midjourney)#(1)!
-    ```
-    { .annotate }
     
-    1. También se pueden añadir varios «posts» a la vez:
+    ??? note "Del revés"
 
-        ```pycon
-        >>> # Por separado
-        >>> label_ai.posts.add(post_python, post_midjourney)
-
-        >>> # Desde un iterable (queryset)
-        >>> label_ai.posts.add(*posts)
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+    
+        ```pycon title="Añadir «posts» a una etiqueta"
+        >>> label_ai.posts.add(post_midjourney)#(1)!
         ```
+        { .annotate }
+
+        1. También se pueden añadir varios «posts» a la vez:
+
+            ```pycon
+            >>> # Por separado
+            >>> label_ai.posts.add(post_python, post_midjourney)
+
+            >>> # Desde un iterable (queryset)
+            >>> label_ai.posts.add(*posts)
+            ```
 
 === "Crear y añadir :material-creation-outline:"
 
@@ -2339,16 +2355,20 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     <Label: Technology>
     ```
     { .annotate }
-    
+
     1.  Hay que darle valor a todos los atributos obligatorios de la etiqueta.
 
-    ```pycon title="Crear «post» y añadirlo a una etiqueta"
-    >>> label_ai.posts.create(title='Midjourney', content='Awesome images')#(1)!
-    <Post: Midjourney>
-    ```
-    { .annotate }
-    
-    1.  Hay que darle valor a todos los atributos obligatorios del «post».
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Crear «post» y añadirlo a una etiqueta"
+        >>> label_ai.posts.create(title='Midjourney', content='Awesome images')#(1)!
+        <Post: Midjourney>
+        ```
+        { .annotate }
+        
+        1.  Hay que darle valor a todos los atributos obligatorios del «post».
 
 === "Reemplazar :material-file-replace:"
 
@@ -2361,12 +2381,16 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     
     1. Pasamos un [iterable](../../../fundamentos/modularidad/poo.md#iterables) de objetos.
 
-    ```pycon title="Reemplazar los «posts» de una etiqueta"
-    >>> label_ai.posts.set([post_python, post_midjourney])#(1)!
-    ```
-    { .annotate }
-    
-    1. Pasamos un [iterable](../../../fundamentos/modularidad/poo.md#iterables) de objetos.
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Reemplazar los «posts» de una etiqueta"
+        >>> label_ai.posts.set([post_python, post_midjourney])#(1)!
+        ```
+        { .annotate }
+        
+        1. Pasamos un [iterable](../../../fundamentos/modularidad/poo.md#iterables) de objetos.
     
 === "Eliminar :material-delete:"
 
@@ -2383,18 +2407,24 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
         >>> post_python.labels.clear()
         ```
 
-    ```pycon title="Eliminar «posts» de una etiqueta"
-    >>> label_tech.posts.remove(post_midjourney)#(1)!
-    ```
-    { .annotate }
-    
-    1.  Para eliminar **todos** los «posts» de una etiqueta utilizamos el método [`clear()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.clear):
-        
-        ```pycon
-        >>> label_ai.posts.clear()
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Eliminar «posts» de una etiqueta"
+        >>> label_tech.posts.remove(post_midjourney)#(1)!
         ```
+        { .annotate }
+        
+        1.  Para eliminar **todos** los «posts» de una etiqueta utilizamos el método [`clear()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.clear):
+            
+            ```pycon
+            >>> label_ai.posts.clear()
+            ```
 
 === "Consultar :material-magnify:"
+
+    Utilizamos los [métodos de consulta](#recuperando-objetos) que ya hemos visto para el ORM:
 
     ```pycon title="Consultar las etiquetas de un «post»"
     >>> post_python.labels.all()#(1)!
@@ -2404,13 +2434,17 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     
     1. También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
 
-    ```pycon title="Consultar los «posts» de una etiqueta"
-    >>> label_ai.posts.all()#(1)!
-    <QuerySet [<Post: Midjourney>, <Post: Python>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Consultar los «posts» de una etiqueta"
+        >>> label_ai.posts.all()#(1)!
+        <QuerySet [<Post: Midjourney>, <Post: Python>]>
+        ```
+        { .annotate }
+        
+        1. También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
     
 !!! info "Interfaz administrativa"
 
@@ -2418,7 +2452,7 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
 
 #### Relaciones muchos a muchos con modelo intermedio
 
-Hay ocasiones en las que la relación «muchos a muchos» debe incluir **atributos adicionales**. Para ello Django nos ofrece la posibilidad de añadir un [modelo intermedio](https://docs.djangoproject.com/en/stable/topics/db/models/#intermediary-manytomany) en el campo `ManyToManyField()`.
+Hay ocasiones en las que la relación «muchos a muchos» debe incluir **atributos adicionales**. Para ello Django nos ofrece la posibilidad de incorporar un [modelo intermedio](https://docs.djangoproject.com/en/stable/topics/db/models/#intermediary-manytomany) en el campo `ManyToManyField()`.
 
 Si continuamos con el <span class="example">ejemplo:material-flash:</span> anterior, supongamos que ahora queremos registrar **los detalles del etiquetado** de un determinado «post». Veamos cómo proceder.
 
@@ -2475,6 +2509,8 @@ class PostLabelingDetail(models.Model):
 
     El hecho de que el modelo `PostLabelingDetail` viva en la aplicación `posts` se explica porque es un caso de etiquetado específico para «posts» que no tendría sentido para otro tipo de objetos y, por lo tanto, no conlleva la creación de una nueva aplicación.
 
+:material-lightbulb-on:{.acc} Tras [crear y aplicar migraciones](#migraciones) ya tendríamos disponible el nuevo modelo `PostLabelingDetail` en la base de datos.
+
 El modelo para los «posts» incorpora ahora el atributo `through` con el modelo intermedio que se va a utilizar:
 
 ```python title="posts/models.py" hl_lines="12"
@@ -2494,26 +2530,48 @@ class Post(models.Model):
     )
 ```
 
-Lo primero será crear etiquetas y «posts»:
+!!! danger "Migraciones"
 
-```pycon
->>> from labels.models import Label
->>> from posts.models import Post
+    Si venimos del modelo `Post` con campo `labels` en [relaciones muchos a muchos](#relaciones-muchos-a-muchos) y hacemos la modificación anterior, no podremos realizar la migración de forma directa ya que es muy probable que obtengamos el siguiente error:
 
->>> label_tech = Label.objects.create(name='Technology', slug='tech')
->>> label_ai = Label.objects.create(name='Artificial Intelligence', slug='ai')
+        You cannot alter to or from M2M fields, or add or remove through= on M2M fields
+    
+    Aunque hay soluciones más elaboradas, en un entorno de aprendizaje podemos arreglarlo volviendo atrás y [deshaciendo la migración](#revertir-migraciones) hasta llegar justo antes de haber añadido el campo `labels` en el modelo `Post`. Tras eso, ya podemos retomarlo y volver a aplicar la migración.
 
->>> post_python = Post.objects.create(
-...     title='Python',
-...     slug='python',
-...     content='Now is better than never',
-... )
->>> post_midjourney = Post.objects.create(
-...     title='Midjourney',
-...     slug='midjourney',
-...     content='Awesome images',
-... )
-```
+Para poder ejemplificar los distintos casos de uso en este escenario deberíamos disponer de etiquetas y «posts» sobre los que trabajar:
+
+=== "Si ya están creados..."
+
+    ```pycon
+    >>> from labels.models import Label
+    >>> from posts.models import Post
+
+    >>> label_tech = Label.objects.get(slug='tech')
+    >>> label_ai = Label.objects.get(slug='ai')
+    >>> post_python = Post.objects.get(slug='python')
+    >>> post_midjourney = Post.objects.get(slug='midjourney')
+    ```
+
+=== "Si hay que crearlos..."
+
+    ```pycon
+    >>> from labels.models import Label
+    >>> from posts.models import Post
+
+    >>> label_tech = Label.objects.create(name='Technology', slug='tech')
+    >>> label_ai = Label.objects.create(name='Artificial Intelligence', slug='ai')
+
+    >>> post_python = Post.objects.create(
+    ...     title='Python',
+    ...     slug='python',
+    ...     content='Now is better than never',
+    ... )
+    >>> post_midjourney = Post.objects.create(
+    ...     title='Midjourney',
+    ...     slug='midjourney',
+    ...     content='Awesome images',
+    ... )
+    ```
 
 Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «muchos a muchos con modelo intermedio»:
 
@@ -2561,6 +2619,8 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
 
 === "Añadir «relacionalmente» :octicons-diff-added-16:"
 
+    Utilizamos el método [`add()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.add) para añadir objetos relacionados:
+
     ```pycon title="Añadir etiquetas a un «post»"
     >>> post_python.labels.add(#(1)!
     ...     label_tech,#(2)!
@@ -2574,20 +2634,26 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     3.  - Especificamos el/los campo(s) de la relación intermedia.
         - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
-    ```pycon title="Añadir «posts» a una etiqueta"
-    >>> label_ai.posts.add(#(1)!
-    ...     post_python,#(2)!
-    ...     through_defaults={'reason': 'Python is the language for AI'},#(3)!
-    ... )     
-    ```
-    { .annotate }
-    
-    1. Utilizamos el método `add()` para añadir ^^un «post»^^.
-    2. Indicamos el «post» a añadir.
-    3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Añadir «posts» a una etiqueta"
+        >>> label_ai.posts.add(#(1)!
+        ...     post_python,#(2)!
+        ...     through_defaults={'reason': 'Python is the language for AI'},#(3)!
+        ... )     
+        ```
+        { .annotate }
+        
+        1. Utilizamos el método `add()` para añadir ^^un «post»^^.
+        2. Indicamos el «post» a añadir.
+        3.  - Especificamos el/los campo(s) de la relación intermedia.
+            - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Crear y añadir :material-creation-outline:"
+
+    Utilizamos el método [`create()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.create) para crear y añadir objetos relacionados:
 
     ```pycon title="Crear una etiqueta y añadirla a un «post»"
     >>> post_python.labels.create(#(1)!
@@ -2602,22 +2668,28 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     2. Hay que darle valor a todos los atributos obligatorios de la etiqueta.
     3.  - Especificamos el/los campo(s) de la relación intermedia.
         - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
     
-    ```pycon title="Crear un «post» y añadirlo a una etiqueta"
-    >>> label_ai.posts.create(#(1)!
-    ...     title='Midjourney', content='Awesome images',#(2)!
-    ...     through_defaults={'reason': 'Midjourney is generative AI'},#(3)!
-    ... )
-    <Post: Midjourney>
-    ```
-    { .annotate }
-    
-    1. Utilizamos el método `create()` que **devuelve el objeto creado**.
-    2. Hay que darle valor a todos los atributos obligatorios del «post».
-    3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+        ```pycon title="Crear un «post» y añadirlo a una etiqueta"
+        >>> label_ai.posts.create(#(1)!
+        ...     title='Midjourney', content='Awesome images',#(2)!
+        ...     through_defaults={'reason': 'Midjourney is generative AI'},#(3)!
+        ... )
+        <Post: Midjourney>
+        ```
+        { .annotate }
+        
+        1. Utilizamos el método `create()` que **devuelve el objeto creado**.
+        2. Hay que darle valor a todos los atributos obligatorios del «post».
+        3.  - Especificamos el/los campo(s) de la relación intermedia.
+            - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Reemplazar :material-file-replace:"
+
+    Utilizamos el método [`set()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.set) para reemplazar objetos relacionados:
 
     ```pycon title="Reemplazar las etiquetas de un «post»"
     >>> post_python.labels.set(#(1)!
@@ -2632,20 +2704,26 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     3.  - Especificamos el/los campo(s) de la relación intermedia.
         - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
-    ```pycon title="Reemplazar los «posts» de una etiqueta"
-    >>> label_ai.posts.set(#(1)!
-    ...     [post_python, post_midjourney],#(2)!
-    ...     through_defaults={'reason': 'Python is cool tech'},#(3)!
-    ... )
-    ```
-    { .annotate }
-    
-    1. Utilizamos el método `set()` que **reemplaza objetos relacionados**.
-    2. Pasamos un [iterable](../../../fundamentos/modularidad/poo.md#iterables) de objetos.
-    3.  - Especificamos el/los campo(s) de la relación intermedia.
-        - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Reemplazar los «posts» de una etiqueta"
+        >>> label_ai.posts.set(#(1)!
+        ...     [post_python, post_midjourney],#(2)!
+        ...     through_defaults={'reason': 'Python is cool tech'},#(3)!
+        ... )
+        ```
+        { .annotate }
+        
+        1. Utilizamos el método `set()` que **reemplaza objetos relacionados**.
+        2. Pasamos un [iterable](../../../fundamentos/modularidad/poo.md#iterables) de objetos.
+        3.  - Especificamos el/los campo(s) de la relación intermedia.
+            - No es necesario añadir `labeled_at` ya que se almacena automáticamente gracias a `auto_now_add`.
 
 === "Eliminar :material-delete:"
+
+    Utilizamos el método [`remove()`](https://docs.djangoproject.com/en/stable/ref/models/relations/#django.db.models.fields.related.RelatedManager.remove) para eliminar objetos relacionados:
 
     ```pycon title="Eliminar etiquetas de un «post»"
     >>> post_python.labels.remove(label_ai)#(1)!
@@ -2658,34 +2736,24 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
         >>> post_python.labels.clear()
         ```
 
-    ```pycon title="Eliminar «posts» de una etiqueta"
-    >>> label_tech.posts.remove(post_midjourney)#(1)!
-    ```
-    { .annotate }
-    
-    1. Para eliminar **todos** los «posts» de una etiqueta:
-        
-        ```pycon
-        >>> label_ai.posts.clear()
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Eliminar «posts» de una etiqueta"
+        >>> label_tech.posts.remove(post_midjourney)#(1)!
         ```
+        { .annotate }
+        
+        1. Para eliminar **todos** los «posts» de una etiqueta:
+            
+            ```pycon
+            >>> label_ai.posts.clear()
+            ```
 
 === "Consultar :material-magnify:"
 
-    ```pycon title="Consultar las etiquetas de un «post»"
-    >>> post_python.labels.all()#(1)!
-    <QuerySet [<Label: Technology>, <Label: Artificial Intelligence>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
-
-    ```pycon title="Consultar los «posts» de una etiqueta"
-    >>> label_ai.posts.all()#(1)!
-    <QuerySet [<Post: Midjourney>, <Post: Python>]>
-    ```
-    { .annotate }
-    
-    1. También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
+    Utilizamos los [métodos de consulta](#recuperando-objetos) que ya hemos visto para el ORM:
 
     ```pycon title="Consultar los detalles de etiquetado de un «post»"
     >>> post_python.post_labeling_details.all()#(1)!
@@ -2694,32 +2762,35 @@ Ahora podemos realizar distintas operaciones sobre el campo `labels` de tipo «m
     ```
     { .annotate }
     
-    1. <span class="example">Ejemplo:material-flash:</span> en plantilla:
-        ```htmldjango title="posts/templates/posts/post/detail.html"
-        <h1>{{ post }}</h1><!--(1)!-->
-        <h2>Labels</h2>
-        <ul class="labels">
-            {% for detail in post.post_labeling_details.all %}
-                <li>
-                    <b>{{ detail.label }}</b> <!--(2)!-->
-                    <span class="post-labeling-detail">
-                        {{ detail }}<!--(3)!-->
-                    </span>
-                </li>
-            {% endfor %}
-        </ul>
-        ```
+    1.  - También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
+        - <span class="example">Ejemplo:material-flash:</span> en plantilla:
+            ```htmldjango title="posts/templates/posts/post/detail.html"
+            <h1>{{ post }}</h1>
+            <h2>Labels</h2>
+            <ul class="labels">
+                {% for detail in post.post_labeling_details.all %}
+                    <li>
+                        <b>{{ detail.label }}</b>
+                        <span class="post-labeling-detail">
+                            {{ detail }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+            ```
+
+    ??? note "Del revés"
+
+        También es posible utilizar la relación inversa para aplicar esta aproximación «del revés»:
+
+        ```pycon title="Consultar los detalles de etiquetado de un «post» (desde la etiqueta)"
+        >>> label_ai.post_labeling_details.all()#(1)!
+        <QuerySet [<PostLabelingDetail: Python is the language for AI (23-11-2025)>,
+                <PostLabelingDetail: Midjourney is generative AI (23-11-2025)>]> 
+        ``` 
         { .annotate }
         
-        1. Nos valemos de `#!python Post.__str__()`
-        2. Nos valemos de `#!python Label.__str__()`
-        3. Nos valemos de `#!python PostLabelingDetail.__str__()`
-
-    ```pycon title="Consultar los detalles de etiquetado de un «post» (desde la etiqueta)"
-    >>> label_ai.post_labeling_details.all()
-    <QuerySet [<PostLabelingDetail: Python is the language for AI (23-11-2025)>,
-               <PostLabelingDetail: Midjourney is generative AI (23-11-2025)>]> 
-    ``` 
+        1. También se puede aplicar [`filter()`](#ciertos-objetos), [`get()`](#un-unico-objeto) o [`exclude()`](#excluyendo-objetos).
     
 !!! info "Interfaz administrativa"
 

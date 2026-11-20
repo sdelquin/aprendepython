@@ -10,6 +10,8 @@ Publicada el DD-MM-YYYY
   - Reubica apartado de «longitud de una lista».
   - Añade explicación sobre control de listas vacías.
   - Mejora documentación sobre `rsplit()` y `rpartition()`.
+- Django: Modelos
+  - Mejora documentación sobre relaciones muchos a muchos.
 
 ## Version 3.5.2
 
