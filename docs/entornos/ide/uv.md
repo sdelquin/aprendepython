@@ -226,6 +226,7 @@ Initialized project `proyecto` at `/home/sdelquin/proyecto`
 
 La creación del proyecto es «simplemente» la inclusión del fichero `pyproject.toml` con las especificaciones del proyecto:
 
+<div class="annotate" markdown>
 ```console
 $ cd proyecto
 
@@ -234,21 +235,60 @@ pyproject.toml
 
 $:~/proyecto> cat pyproject.toml
 [project]
-name = "proyecto"
-version = "0.1.0"
+name = "proyecto"(1)
+version = "0.1.0"(2)
+requires-python = ">=3.14"(3)
+dependencies = [](4)
+```
+</div>
+1. Nombre del proyecto.
+2. Versión del proyecto.
+3. Versión mínima de Python requerida.
+4. Dependencias del proyecto.
+
+#### Fijar una versión
+
+Cuando inicializamos un proyecto _uv_ siempre se establece la **versión mínima** del proyecto a la **última versión disponible** de Python (que tengamos instalada).
+
+Esto se puede comprobar en la línea correspondiente del fichero `pyproject.toml`:
+
+```toml title="pyproject.toml"
 requires-python = ">=3.14"
-dependencies = []
 ```
 
-!!! tip "Versión específica"
+Si queremos que la versión mínima sea otra, podemos inicializar el proyecto indicando ese matiz. Por <span class="example">ejemplo:material-flash:</span> supongamos que queremos inicializar el proyecto con una versión mínima de Python 3.10:
 
-    Por defecto _uv_ siempre trata de utilizar (instalar) la última versión disponible de Python. Pero si queremos que nuestro proyecto trabaje con una versión específica de Python, podemos indicarlo a la hora de inicializar el proyecto.
+```console hl_lines="1 5"
+$ uv init --bare --no-project -p3.10 proyecto
+Initialized project `proyecto` at `/Users/sdelquin/proyecto`
 
-    Por <span class="example">ejemplo:material-flash:</span> si vamos a utilizar Python 3.11:
+$ cat proyecto/pyproject.toml | grep requires-python
+requires-python = ">=3.10"
+```
+
+Pero aún así, cuando _uv_ efectivamente cree su **entorno virtual** seguirá tratando de usar la última versión disponible de Python.
+
+Para poder **fijar la versión de Python** tendremos que «pinear» utilizando el siguiente comando:
+
+```console hl_lines="3"
+$ cd proyecto
+
+$:~/proyecto> uv python pin 3.10 #(1)!
+Pinned `.python-version` to `3.10`
+
+$:~/proyecto> cat .python-version #(2)!
+3.10
+```
+{ .annotate }
+
+1. Si se intentara fijar una versión de Python anterior a la mínima definida en `pyproject.toml` obtendríamos el siguiente error:
 
     ```console
-    $ uv init -p3.11 --bare --no-project proyecto
+    $ uv python pin 3.9
+    error: The requested Python version `3.9` is incompatible with the project `requires-python` value of `>=3.10`.
     ```
+
+2. Se crea un archivo de texto plano `.python-version` con la versión de Python que realmente utilizará _uv_ en sus operaciones posteriores.
 
 ### Añadir dependencias
 
@@ -771,9 +811,16 @@ No tools installed
 De cuando en cuando los paquetes que tenemos instalados (como herramientas) reciben actualizaciones. Es posible actualizar una herramienta de la siguiente manera:
 
 ```console hl_lines="1"
-$ uv tool upgrade cowsay
+$ uv tool upgrade cowsay #(1)!
 Nothing to upgrade
 ```
+{ .annotate }
+
+1. Es posible actualizar sin usar la caché:
+
+    ```console
+    $ uv tool upgrade --no-cache cowsay
+    ```
 
 ### Ejecutar herramientas al vuelo
 

@@ -16,6 +16,8 @@ Publicada el DD-MM-YYYY
   - Mejora documentación sobre validación.
 - Entorno integrado de desarrollo: Visual Studio Code
   - Añade configuración para `ruff.toml`
+- Entorno integrado de desarrollo: uv
+  - Añade documentación sobre versiones de Python.
 
 ## Version 3.5.2
 

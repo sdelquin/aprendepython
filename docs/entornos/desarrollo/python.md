@@ -450,7 +450,32 @@ $ source .venv/bin/activate #(3)!
 
     Cuando activamos el entorno virtual se «crea» una variable de entorno `VIRTUAL_ENV` que contiene la ruta al entorno virtual. _Esto es muy útil para tomar decisiones en función de si está activo o no el entorno virtual actual_.
 
-En cualquier caso, animamos encarecidamente al uso de [`uv`](../ide/uv.md) como herramienta de instalación y proyectos Python.
+??? warning "Paquete python3-venv"
+
+    En sistemas Linux de tipo Debian/Ubuntu es posible que obtengas el siguiente error al intentar crear el entorno virtual:
+
+        The virtual environment was not created successfully because
+        ensurepip is not available.
+        
+        On Debian/Ubuntu systems, you need to install the python3-venv
+        package using the following command.
+        
+            apt install python3-venv
+        
+        You may need to use sudo with that command. After installing
+        the python3-venv package, recreate your virtual environment.
+        
+        Failing command: /path/to/.venv/bin/python3
+    
+    En principio se debería resolver fácilmente instlaado el paquete sugerido:
+
+    ```console
+    $ sudo apt-get install python3-venv
+    ```
+
+!!! success "uv"
+
+    Aunque ~~aún~~ no forma parte del estándar de Python, se recomienda visitar el apartado [uv](../ide/uv.md) como herramienta de gestión de entornos virtuales, versiones de Python, gestión de proyectos, manejo de herramientas, y muchas otras funcionalidades.
 
 [^1]: Amplía información sobre el GIL en [este enlace](https://codigofacilito.com/articulos/gil-python).
 [^2]: El primer «commit» de CPython registrado por Guido van Rossum está disponible en [Github](https://github.com/python/cpython/commit/7f777ed95a19224294949e1b4ce56bbffcb1fe9f).
