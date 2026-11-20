@@ -3452,6 +3452,11 @@ Pero existen ocasiones en las que queremos añadir nuevas validaciones a los cam
 
 La **validación individual** nos sirve para validar el valor de _cada campo por separado_ haciendo uso de [validadores](https://docs.djangoproject.com/en/stable/ref/validators/).
 
+En este enfoque se distinguen dos casos:
+
+- [Validadores predefinidos](#validadores-predefinidos).
+- [Validadores personalizados](#validadores-personalizados).
+
 #### Validadores predefinidos
 
 Django proporciona una serie de [validadores predefinidos](https://docs.djangoproject.com/en/stable/ref/validators/#built-in-validators). A continuación se muestran algunos de ellos:
@@ -3488,11 +3493,21 @@ class Post(models.Model):
 1. Importamos los validadores.
 2. Establecemos los validadores en la definición del campo.
 
+:material-lightbulb-on:{.acc} Tras [crear y aplicar migraciones](#migraciones) ya tendríamos disponible el nuevo campo `rank` en la base de datos.
+
+Si ahora probamos a guardar un nuevo «post» con una valoración —por ejemplo— de 10, obtendremos un error de validación informando que no puede ser mayor que 5.
+
+!!! warning "Comportamiento de los validadores"
+
+    Los validadores **no se ejecutan** cuando guardamos «directamente» un modelo, sólo se ejecutan cuando creamos [formularios de modelo](formularios.md#formularios-de-modelo) y tratamos de guardar una instancia del mismo.
+
+    También funcionan en los formularios habilitados en la [interfaz administrativa](admin.md).
+
 #### Validadores personalizados
 
-También es posible definir validadores personalizados. Se trata únicamente de definir una **función** que recibe el valor del campo y realiza las comprobaciones correspondiente.
+También es posible definir validadores personalizados. Se trata únicamente de implementar una **función** que recibe el valor del campo y realiza las comprobaciones correspondientes.
 
-Continuando con <span class="example">ejemplo:material-flash:</span> del «blog» supongamos que nos interesa validar que el título de un «post» siempre se escriba en _formato título_:
+Continuando con <span class="example">ejemplo:material-flash:</span> del «blog» supongamos que nos interesa validar que el título de un «post» nunca se escriba en _mayúsculas_:
 
 === "Validador"
 
@@ -3500,15 +3515,15 @@ Continuando con <span class="example">ejemplo:material-flash:</span> del «blog�
     from django.core.exceptions import ValidationError#(1)!
     
     
-    def validate_title(value: str):#(2)!
-        if not value.istitle():#(3)!
-            raise ValidationError(f'{value} is not in title format')#(4)!
+    def validate_title(title: str):#(2)!
+        if title.isupper():#(3)!
+            raise ValidationError('Post title is not allowed to be UPPERCASE')#(4)!
     ```
     { .annotate }
 
     1. Los errores de validación hay que indicarlos mediante objetos de tipo [`ValidationError`](https://docs.djangoproject.com/en/stable/ref/forms/validation/#raising-validationerror).
-    2. El validador es simplemente una función que recibe `value` (valor a validar).
-    3. Comprobamos si el valor (_título del «post»_) está en formato _título_.
+    2. El validador es simplemente una función que recibe el valor del campo a validar.
+    3. Comprobamos si el valor (_título del «post»_) está en mayúsculas.
     4. Lanzamos una excepción con el mensaje de error correspondiente.
 
 === "Modelo"
@@ -3532,9 +3547,7 @@ Continuando con <span class="example">ejemplo:material-flash:</span> del «blog�
     1. Importamos el validador personalizado que hemos creado.
     2. Asignamos el validador personalizado al campo del título del «post».
 
-!!! warning "Comportamiento de los validadores"
-
-    Los validadores **no se ejecutan** cuando guardamos «directamente» un modelo, sólo se ejecutan cuando creamos [formularios de modelo](formularios.md#formularios-de-modelo) y tratamos de guardar una instancia del mismo.
+Si ahora probamos a guardar un nuevo «post» con un título en mayúsculas, obtendremos un error de validación informando que no es posible.
 
 ### Validación cruzada
 
@@ -3560,14 +3573,16 @@ class Post(models.Model):
     
     def clean(self):
         if self.slug != slugify(self.title):
-            raise ValidationError("Slug does not match with title's slugify")
+            raise ValidationError("Post slug does not match with title")
 ```
+
+Si ahora probamos a guardar un nuevo «post»[^5] cuyo «slug» no coincide con la transformación correcta de su título, obrendremos un error de validación informando que ambos campos no casan.
 
 ## Fixtures
 
 <span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
-Una «fixture» es una colección de ficheros que contienen el contenido serializado[^5] de la base de datos. Django ofrece [herramientas](https://docs.djangoproject.com/en/stable/topics/db/fixtures/) para poder gestionar _fixtures_.
+Una «fixture» es una colección de ficheros que contienen el contenido serializado[^6] de la base de datos. Django ofrece [herramientas](https://docs.djangoproject.com/en/stable/topics/db/fixtures/) para poder gestionar _fixtures_.
 
 Partiremos del <span class="example">ejemplo:material-flash:</span> del «post» en un «blog»:
 
@@ -4082,4 +4097,5 @@ Curiosity|36
 [^2]: El slug es la parte que identifica a una página en concreto dentro de una URL amigable
 [^3]: Es importante manejar el módulo [`pathlib`](https://docs.python.org/3/library/pathlib.html) de la librería estándar para manejar rutas en el sitema de ficheros.
 [^4]: Una URL canónica es la URL que mejor representa un determinado recurso web.
-[^5]: La información se convierte en una secuencia estructurada de datos (por ejemplo, texto o bytes) para poder guardarse, transmitirse o reconstruirse después.
+[^5]: Si se va a guardar un «post» mediante la interfaz administrativa, asegurarse de que el campo `slug` no tenga activado el parámetro [`editable`](#editable) porque en ese caso no aparecerá en el formulario.
+[^6]: La información se convierte en una secuencia estructurada de datos (por ejemplo, texto o bytes) para poder guardarse, transmitirse o reconstruirse después.

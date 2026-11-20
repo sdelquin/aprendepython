@@ -13,6 +13,7 @@ Publicada el DD-MM-YYYY
 - Django: Modelos
   - Mejora documentación sobre relaciones muchos a muchos.
   - Mejora documentación sobre señales.
+  - Mejora documentación sobre validación.
 
 ## Version 3.5.2
 
