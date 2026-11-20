@@ -12,6 +12,7 @@ Publicada el DD-MM-YYYY
   - Mejora documentación sobre `rsplit()` y `rpartition()`.
 - Django: Modelos
   - Mejora documentación sobre relaciones muchos a muchos.
+  - Mejora documentación sobre señales.
 
 ## Version 3.5.2
 

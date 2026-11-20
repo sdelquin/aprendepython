@@ -3195,7 +3195,7 @@ class Post(models.Model):
 
 <span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
 
-Las [señales](https://docs.djangoproject.com/en/stable/topics/signals/) en Django permiten realizar acciones cuando suceden determinados eventos. Los más habituales están relacionados con _modificación de modelos_.
+Las [señales](https://docs.djangoproject.com/en/stable/topics/signals/) en Django permiten realizar acciones cuando suceden determinados eventos. Los más habituales están relacionados con la **modificación de modelos**.
 
 ### Señales de modelo
 
@@ -3205,7 +3205,7 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
     [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#pre-init) se lanza al comienzo del método `__init__()`  
 
-    ```python
+    ```python title="Esqueleto para manejar una señal pre_init"
     from django.db.models.signals import pre_init
     from .models import MyModel
     
@@ -3225,7 +3225,7 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
     [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#post-init) se lanza al final del método `__init__()`
 
-    ```python
+    ```python title="Esqueleto para manejar una señal post_init"
     from django.db.models.signals import post_init
     from .models import MyModel
     
@@ -3244,7 +3244,7 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
     [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#pre-save) se lanza al comienzo del método `#!python save()`
 
-    ```python
+    ```python title="Esqueleto para manejar una señal pre_save"
     from django.db.models.signals import pre_save
     from .models import MyModel
     
@@ -3264,9 +3264,9 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
 === "`post_save`"
 
-    [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#post-save) se lanza al final del método `#!python save()`
+    [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#post-save) se lanza al final del método `#!python save()` **solo si el método finaliza correctamente**.
 
-    ```python
+    ```python title="Esqueleto para manejar una señal post_save"
     from django.db.models.signals import post_save
     from .models import MyModel
     
@@ -3289,7 +3289,7 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
     [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#pre-delete) se lanza al comienzo del método `#!python delete()`
 
-    ```python
+    ```python title="Esqueleto para manejar una señal pre_delete"
     from django.db.models.signals import pre_delete
     from .models import MyModel
     
@@ -3308,9 +3308,9 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
 === "`post_delete`"
 
-    [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#post-delete) se lanza al final del método `#!python delete()`
+    [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#post-delete) se lanza al final del método `#!python delete()` **solo si el método finaliza correctamente**.
 
-    ```python
+    ```python title="Esqueleto para manejar una señal post_delete"
     from django.db.models.signals import post_delete
     from .models import MyModel
     
@@ -3331,7 +3331,7 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
 
     [Esta señal](https://docs.djangoproject.com/en/stable/ref/signals/#m2m-changed) se lanza al modificar un campo [`ManyToManyField`](#relaciones-muchos-a-muchos) de una instancia de modelo.
 
-    ```python
+    ```python title="Esqueleto para manejar una señal m2m_changed"
     from django.db.models.signals import m2m_changed
     from .models import MyModel
     
@@ -3357,61 +3357,85 @@ Veamos a continuación las [señales de modelo](https://docs.djangoproject.com/e
         - `pk_set`: Claves primarias de los objetos involucrados en la operación.
         - `using`: Alias de la base de datos que se está usando.
 
-### Registrar una señal
+### Uso de señales
 
-Vamos a ilustrar mediante un <span class="example">ejemplo:material-flash:</span> la forma de trabajar con señales en Django. Partiendo de una aplicación de «blog», queremos implementar un artefacto software que, cada vez que se cree un nuevo «post», enviemos un correo al administrador notificando este hecho.
+Vamos a mostrar <span class="example">ejemplo:material-flash:</span> para aclarar el uso de señales en Django. Partiendo de la aplicación de «blog», queremos implementar un artefacto software que, cada vez que se cree un nuevo «post», se envíe un mensaje al administrador notificando este hecho.
 
-Lo primero será **registrar la señal** que en este caso se trata de `post_save`:
+En este caso estamos hablando de la señal `post_save` sobre el modelo `Post`. La implementación pasa por las siguientes fases:
 
-```python title="posts/signals.py"
-from django.db.models.signals import post_save#(1)!
-from django.dispatch import receiver#(2)!
+=== "Definir la tarea"
 
-from .models import Post#(3)!
-from .tasks import send_message#(4)!
+    Se recomienda definir un módulo de tareas:
+
+    ```python title="posts/tasks.py"
+    def send_message(to_user: str, msg: str) -> None:
+        print(f'Hello {to_user},\n{msg}')
+    ```
+
+=== "Registrar la señal"
+
+    Para registrar la señal usaremos los artefactos que proporciona Django:
+
+    ```python title="posts/signals.py"
+    from django.db.models.signals import post_save#(1)!
+    from django.dispatch import receiver#(2)!
+
+    from .models import Post#(3)!
+    from .tasks import send_message#(4)!
 
 
-@receiver(post_save, sender=Post)#(5)!
-def notify_administrator_with_new_post(sender, instance, created, **kwargs):#(6)!
-    if created:#(7)!
-        msg = f'Post #{instance.pk} has been created!'#(8)!
-        send_message('admin', msg)#(9)!
+    @receiver(post_save, sender=Post)#(5)!
+    def notify_administrator_with_new_post(sender, instance, created, **kwargs):#(6)!
+        if created:#(7)!
+            msg = f'Post "{instance.title}" has been created!'#(8)!
+            send_message('admin', msg)#(9)!
+    ```
+    { .annotate }
+
+    1. Importamos la señal `post_save`.
+    2. Para registrar la señal necesitamos el decorador `receiver`.
+    3. Importamos el modelo sobre el que vamos a trabajar.
+    4. Importamos la función que [envía correos](extras.md#enviar-correo) (_ficticio, sólo a efectos de demostración_).
+    5. Registramos la señal `post_save` sobre la clase `Post`.
+    6. Definimos la función que se va a ejecutar, teniendo en cuenta los parámetros necesarios.
+    7. En este caso, sólo nos interesa aplicar la lógica cuando se crea una nueva instancia de «post».
+    8. Construimos un mensaje usando la clave primaria del «post» (`instance`).
+    9. Enviamos el mensaje al usuario `admin`.
+
+=== "Conectar la señal"
+
+    Es necesario conectar la señal (o señales) con la aplicación en cuestión. Esto lo hacemos desde el fichero de configuración de la propia aplicación:
+
+    ```python title="posts/apps.py" hl_lines="8-9"
+    from django.apps import AppConfig
+
+
+    class PostsConfig(AppConfig):
+        default_auto_field = 'django.db.models.BigAutoField'
+        name = 'posts'
+
+        def ready(self):#(1)!
+            from . import signals#(2)!
+    ```
+    { .annotate }
+
+    1. El método `ready()` nos indica el momento en el que la aplicación `posts` está disponible.
+    2.  - Importamos las señales previamente definidas.
+        - Si el «linter» se queja de esta línea (_import_) podemos añadir comentario y solucionarlo de la siguiente manera:
+            ```python
+            from . import signals  # noqa
+            ```
+    
+Podemos probar el correcto funcionamiento de una manera muy sencilla:
+
+```pycon hl_lines="5-6"
+>>> post = Post.objects.create(
+...     title='Testing signals',
+...     content='A new post will be saved'
+... )
+Hello admin,
+Post "Testing signals" has been created!
 ```
-{ .annotate }
-
-1. Importamos la señal `post_save`.
-2. Para registrar la señal necesitamos el decorador `receiver`.
-3. Importamos el modelo sobre el que vamos a trabajar.
-4. Importamos la función que [envía correos](extras.md#enviar-correo) (_ficticio, sólo a efectos de demostración_).
-5. Registramos la señal `post_save` sobre la clase `Post`.
-6. Definimos la función que se va a ejecutar, teniendo en cuenta los parámetros necesarios.
-7. En este caso, sólo nos interesa aplicar la lógica cuando se crea una nueva instancia de «post».
-8. Construimos un mensaje usando la clave primaria del «post» (`instance`).
-9. Enviamos el mensaje al usuario `admin`.
-
-### Conectar una señal
-
-Es necesario conectar la señal (o señales) con la aplicación en cuestión. Esto lo hacemos desde el fichero de configuración de la propia aplicación:
-
-```python title="posts/apps.py" hl_lines="8-9"
-from django.apps import AppConfig
-
-
-class PostsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'posts'
-
-    def ready(self):#(1)!
-        from . import signals#(2)!
-```
-{ .annotate }
-
-1. El método `ready()` nos indica el momento en el que la aplicación `posts` está disponible.
-2.  - Importamos las señales previamente definidas.
-    - Si el «linter» se queja de esta línea (_import_) podemos añadir comentario y solucionarlo de la siguiente manera:
-        ```python
-        from . import signals  # noqa
-        ```
 
 ## Validación
 
