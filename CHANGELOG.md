@@ -14,6 +14,8 @@ Publicada el DD-MM-YYYY
   - Mejora documentación sobre relaciones muchos a muchos.
   - Mejora documentación sobre señales.
   - Mejora documentación sobre validación.
+- Entorno integrado de desarrollo: Visual Studio Code
+  - Añade configuración para `ruff.toml`
 
 ## Version 3.5.2
 

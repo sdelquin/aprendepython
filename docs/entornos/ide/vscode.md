@@ -140,23 +140,25 @@ A continuación se muestran los ficheros de configuración _que yo utilizo_ para
     
     [lint]
     extend-select = ["Q", "ARG001"]#(2)!
+    ignore = ["PLR1730"]#(3)!
     
     [lint.flake8-quotes]
-    inline-quotes = "single"#(3)!
+    inline-quotes = "single"#(4)!
     
     [format]
-    quote-style = "single"#(4)!
+    quote-style = "single"#(5)!
     
     [lint.flake8-unused-arguments]
-    ignore-variadic-names = true#(5)!
+    ignore-variadic-names = true#(6)!
     ```    
     { .annotate }
     
-    1. [https://docs.astral.sh/ruff/settings/#line-length](https://docs.astral.sh/ruff/settings/#line-length)
-    2. [https://docs.astral.sh/ruff/settings/#lint_extend-select](https://docs.astral.sh/ruff/settings/#lint_extend-select)
-    3. [https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_inline-quotes](https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_inline-quotes)
-    4. [https://docs.astral.sh/ruff/settings/#format_quote-style](https://docs.astral.sh/ruff/settings/#format_quote-style)
-    5. [https://docs.astral.sh/ruff/settings/#lint_flake8-unused-arguments_ignore-variadic-names](https://docs.astral.sh/ruff/settings/#lint_flake8-unused-arguments_ignore-variadic-names)
+    1. <https://docs.astral.sh/ruff/settings/#line-length>
+    2. <https://docs.astral.sh/ruff/settings/#lint_extend-select>
+    3. <https://docs.astral.sh/ruff/rules/if-stmt-min-max/> 
+    4. <https://docs.astral.sh/ruff/settings/#lint_flake8-quotes_inline-quotes>
+    5. <https://docs.astral.sh/ruff/settings/#format_quote-style>
+    6. <https://docs.astral.sh/ruff/settings/#lint_flake8-unused-arguments_ignore-variadic-names>
 
     Ubicación del fichero de configuración de Ruff:
 
@@ -182,9 +184,9 @@ A continuación se muestran los ficheros de configuración _que yo utilizo_ para
     ```
     { .annotate }
     
-    1. [https://docs.astral.sh/ty/reference/rules/#unresolved-attribute](https://docs.astral.sh/ty/reference/rules/#unresolved-attribute)
-    2. [https://docs.astral.sh/ty/reference/rules/#invalid-parameter-default](https://docs.astral.sh/ty/reference/rules/#invalid-parameter-default)
-    3. [https://docs.astral.sh/ty/reference/rules/#possibly-missing-attribute](https://docs.astral.sh/ty/reference/rules/#possibly-missing-attribute)
+    1. <https://docs.astral.sh/ty/reference/rules/#unresolved-attribute>
+    2. <https://docs.astral.sh/ty/reference/rules/#invalid-parameter-default>
+    3. <https://docs.astral.sh/ty/reference/rules/#possibly-missing-attribute>
 
     Ubicación del fichero de configuración de Ty:
 
