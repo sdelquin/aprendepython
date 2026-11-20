@@ -18,6 +18,8 @@ Publicada el DD-MM-YYYY
   - Añade configuración para `ruff.toml`
 - Entorno integrado de desarrollo: uv
   - Añade documentación sobre versiones de Python.
+- Pruebas: pytest
+  - Corrige errores menores.
 
 ## Version 3.5.2
 

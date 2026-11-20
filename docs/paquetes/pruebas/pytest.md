@@ -31,6 +31,14 @@ La instalación del paquete es muy sencilla:
     $ uv add pytest
     ```
 
+    !!! tip "Dependencia de desarrollo"
+    
+        Dado que `pytest` debería ser una dependencia únicamente de [desarrollo](../../entornos/desarrollo/fases.md#fase-de-pruebas) sería más «ortodoxo» instalarla como [dependencia de desarrollo](../../entornos/ide/uv.md#dependencias-de-desarrollo):
+
+        ```console
+        $ uv add --dev pytest
+        ```
+
 ## Estructura
 
 Supongamos el siguiente fragmento de código Python como <span class="example">ejemplo:material-flash:</span> de partida:
@@ -65,7 +73,7 @@ def test_add():#(2)!
 
 La estructura —por tanto— del proyecto, quedaría de momento de la siguiente manera:
 
-```console
+```
 .
 ├── main.py
 └── tests
@@ -208,7 +216,7 @@ def test_add():
 
 Sin embargo no parece la mejor estrategia en términos de legibilidad y mantenibilidad del código. Es por ello que pytest proporciona [parametrización](https://docs.pytest.org/en/stable/how-to/parametrize.html):
 
-```python linenums="1"
+```python title="tests/test_main.py" linenums="1"
 import pytest#(1)!
 
 from main import add
@@ -329,7 +337,7 @@ Podemos observar que cada función de test tiene un parámetro llamado `calc` qu
 
 ### Fixtures que reciben fixtures
 
-No hay ningún inconveniente en que una «fixture» reciba como argumento otra «fixture». Podemos ver el siguiente <span class="example">ejemplo:material-flash:</span> de la calculadora:
+No hay ningún inconveniente en que una «fixture» reciba como argumento otra «fixture». Podemos comprobarlo en el siguiente <span class="example">ejemplo:material-flash:</span> de la calculadora:
 
 ```python title="tests/conftest.py" linenums="1" hl_lines="6-8 12"
 import pytest
