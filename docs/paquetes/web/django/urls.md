@@ -305,7 +305,14 @@ El hecho de utilizar el mismo nombre en la captura de «urls» puede llevar a co
         ```
         { .annotate }
         
-        1. Ya no usamos `#!python self.slug` porque la URL espera recibir un objeto de tipo `Post` en vez de un `str`.
+        1.  - Ya no usamos `#!python self.slug` porque la URL espera recibir un objeto de tipo `Post` en vez de un `str`.
+            - También es posible hacer la llamada mediante [argumentos nominales](../../../fundamentos/modularidad/funciones.md#argumentos-nominales):
+                ```python
+                reverse(
+                    'posts:post-detail',
+                    kwargs={'post': self},
+                ) 
+                ```
     
     Igualmente habría que modificar la vista y los enlaces en las plantillas que hagan referencia al detalle de un «post».
 

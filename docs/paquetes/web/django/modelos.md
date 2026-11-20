@@ -3119,7 +3119,14 @@ class Post(models.Model):
 ```
 { .annotate }
 
-1. La función [reverse](urls.md#url-desde-nombre) ya nos devuelve la URL correspondiente.
+1.  - La función [reverse](urls.md#url-desde-nombre) ya nos devuelve la URL correspondiente.
+    - También es posible hacer la llamada mediante [argumentos nominales](../../../fundamentos/modularidad/funciones.md#argumentos-nominales):
+        ```python
+        reverse(
+            'posts:post-detail',
+            kwargs={'post_slug': self.slug},
+        ) 
+        ```
 
 ### URL canónica en vistas
 

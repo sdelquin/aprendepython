@@ -20,6 +20,8 @@ Publicada el DD-MM-YYYY
   - Añade documentación sobre versiones de Python.
 - Pruebas: pytest
   - Corrige errores menores.
+- Django: URLs
+  - Aclara la forma de implementar `get_absolute_url()`.
 
 ## Version 3.5.2
 
