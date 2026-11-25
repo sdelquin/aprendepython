@@ -364,14 +364,14 @@ Obviamente también podemos hacer uso de `raw_id_fields` o `autocomplete_fields`
 
 Django ofrece la posibilidad de añadir [comandos personalizados](https://docs.djangoproject.com/en/stable/howto/custom-management-commands/) para ser ejecutados mediante `./manage.py <command>`. Hay escenarios en los que esto es realmente útil.
 
-Vamos a partir del <span class="example">ejemplo:material-flash:</span> de un «blog» donde queremos implementar un _comando de gestión personalizado_ para borrar todos los comentarios de uno o varios «posts».
+Vamos a partir del <span class="example">ejemplo:material-flash:</span> de un «blog» donde queremos implementar un _comando de gestión personalizado_ para borrar todos los [comentarios](modelos.md#relaciones-uno-a-muchos) de uno o varios «posts».
 
 Para ello definimos el comando de la siguiente manera:
 
 ```python title="posts/management/commands/delete_comments.py"
 from django.core.management.base import BaseCommand, CommandError#(1)!
 
-from .models import Post#(2)!
+from posts.models import Post#(2)!
 
 
 class Command(BaseCommand):#(3)!
