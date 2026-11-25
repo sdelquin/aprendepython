@@ -3992,10 +3992,10 @@ Hay ocasiones en las que nos interesa aplicar ciertas funciones predefinidas sob
 
 En este apartado veremos los dos posibles enfoques que nos proporciona Django para ello:
 
-1. Agregación.
-2. Anotación.
+:one: [Agregación](#agregacion)  
+:two: [Anotación](#anotacion)
 
-Vamos a partir del modelo base de `Post` para ejemplificar cada aproximación:
+Vamos a partir del modelo base `Post` para ejemplificar cada aproximación:
 
 ```python title="posts/models.py"
 from django.db import models
@@ -4034,9 +4034,9 @@ Para disponer de **datos iniciales** en la base de datos, descargamos este fiche
 
 ### Agregación
 
-La [agregación](https://docs.djangoproject.com/en/stable/topics/db/aggregation/) permite **aplicar una función «resumen» sobre un conjunto de datos** («queryset») obteniendo así un «nuevo» atributo con el valor calculado.
+La [agregación](https://docs.djangoproject.com/en/stable/topics/db/aggregation/#generating-aggregates-over-a-queryset) permite **aplicar una función «resumen» sobre un conjunto de datos** («queryset») obteniendo así un «nuevo» atributo con el valor calculado.
 
-Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos obtener la longitud media de todos los «posts» de nuestra base de datos.
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos obtener la **longitud media de todos los «posts»** de nuestra base de datos.
 
 La primera aproximación que se nos viene a la cabeza podría ser la siguiente:
 
@@ -4062,7 +4062,12 @@ Pero aplicando agregación podemos obtener el mismo resultado por otro camino:
 
 1. Función de agregación que calcula la media.
 2. Función de base de datos que calcula la longitud de una cadena de caracteres.
-3. Se devuelve un diccionario con el nuevo atributo agregado.
+3.  - Se devuelve un diccionario con el nuevo atributo agregado.
+    - La consulta SQL que realmente se está ejecutando es la siguiente:
+    ```sql
+    SELECT AVG(LENGTH("posts_post"."content")) AS "avg_length"
+    FROM "posts_post" 
+    ```
 
 La gran ventaja de este enfoque frente al enfoque «tradicional» (Python) es que realmente se está ejecutando una sentencia SQL más eficiente a nivel de base de datos.
 
@@ -4073,9 +4078,9 @@ Django nos ofrece una gran cantidad de recursos que podemos aplicar en este cont
 
 ### Anotación
 
-La [anotación](https://docs.djangoproject.com/en/6.0/stable/db/aggregation/#aggregating-annotations) permite **aplicar una función sobre cada objeto** de un conjunto de datos («queryset») obteniendo así un nuevo atributo con el valor calculado.
+La [anotación](https://docs.djangoproject.com/en/stable/topics/db/aggregation/#generating-aggregates-for-each-item-in-a-queryset) permite **aplicar una función «resumen» sobre cada objeto** de un conjunto de datos («queryset») obteniendo así un nuevo atributo con el valor calculado.
 
-Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos añadir («anotar») la longitud del contenido de cada «post» de nuestra base de datos.
+Supongamos por <span class="example">ejemplo:material-flash:</span> que queremos **añadir («anotar») la longitud del contenido de cada «post»** de nuestra base de datos.
 
 La primera aproximación que se nos viene a la cabeza podría ser la siguiente:
 
@@ -4083,18 +4088,18 @@ La primera aproximación que se nos viene a la cabeza podría ser la siguiente:
 >>> from posts.models import Post
 
 >>> for post in Post.objects.all():
-...     print(post, len(post.content), sep='|')
+...     print(f'{post.title:20s} | {len(post.content)}')
 ...
-Small Changes|44
-Learning Takes Time|52
-Thinking in Code|39
-Useful Mistakes|29
-Curiosity|36
+Small Changes        | 44
+Learning Takes Time  | 52
+Thinking in Code     | 39
+Useful Mistakes      | 29
+Curiosity            | 36
 ```
 
 Pero aplicando anotación podemos obtener el mismo resultado por otro camino:
 
-```pycon hl_lines="4"
+```pycon hl_lines="4-5"
 >>> from posts.models import Post
 >>> from django.db.models.functions import Length#(1)!
 

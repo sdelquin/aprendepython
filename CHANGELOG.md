@@ -10,6 +10,7 @@ Publicada el DD-MM-YYYY
   - Mejora documentación sobre «fixtures».
   - Mejora documentación sobre migraciones manuales.
   - Arregla errores menores en «managers».
+  - Mejora documentación sobre funciones.
 
 ## Version 3.5.3
 
