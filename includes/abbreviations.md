@@ -50,6 +50,7 @@
 *[PC]: Personal Computer
 *[PDF]: Portable Document Format
 *[PEP]: Python Enhacement Proposals
+*[PK]: Primary Key
 *[PNG]: Portable Network Graphics
 *[PVM]: Python Virtual Machine
 *[RAM]: Random Access Memory

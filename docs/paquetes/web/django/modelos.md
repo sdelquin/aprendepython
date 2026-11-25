@@ -3591,7 +3591,7 @@ Si ahora probamos a guardar un nuevo «post»[^5] cuyo «slug» no coincide con 
 
 Una «fixture» es una colección de ficheros que contienen el contenido serializado[^6] de la base de datos. Django ofrece [herramientas](https://docs.djangoproject.com/en/stable/topics/db/fixtures/) para poder gestionar _fixtures_.
 
-Partiremos del <span class="example">ejemplo:material-flash:</span> del «post» en un «blog»:
+Como <span class="example">ejemplo:material-flash:</span> partiremos del modelo de un «post» siguiendo con nuestro «blog»:
 
 ```python title="posts/models.py"
 from django.db import models
@@ -3655,49 +3655,49 @@ Para generar (volcar) las _fixtures_ debemos hacer uso del comando [`manage.py d
     $ ./manage.py dumpdata --indent 2 posts
     [
     {
-    "model": "posts.post",
-    "pk": 1,
-    "fields": {
-        "title": "Small Changes",
-        "slug": "small-changes",
-        "content": "Small daily changes can lead to big results."
-    }
+      "model": "posts.post",
+      "pk": 1,
+      "fields": {
+          "title": "Small Changes",
+          "slug": "small-changes",
+          "content": "Small daily changes can lead to big results."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 2,
-    "fields": {
-        "title": "Learning Takes Time",
-        "slug": "learning-takes-time",
-        "content": "Technology moves fast, but real learning takes time."
-    }
+      "model": "posts.post",
+      "pk": 2,
+      "fields": {
+          "title": "Learning Takes Time",
+          "slug": "learning-takes-time",
+          "content": "Technology moves fast, but real learning takes time."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 3,
-    "fields": {
-        "title": "Thinking in Code",
-        "slug": "thinking-in-code",
-        "content": "Writing code is also a way of thinking."
-    }
+      "model": "posts.post",
+      "pk": 3,
+      "fields": {
+          "title": "Thinking in Code",
+          "slug": "thinking-in-code",
+          "content": "Writing code is also a way of thinking."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 4,
-    "fields": {
-        "title": "Useful Mistakes",
-        "slug": "useful-mistakes",
-        "content": "Not every error is a failure."
-    }
+      "model": "posts.post",
+      "pk": 4,
+      "fields": {
+          "title": "Useful Mistakes",
+          "slug": "useful-mistakes",
+          "content": "Not every error is a failure."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 5,
-    "fields": {
-        "title": "Curiosity",
-        "slug": "curiosity",
-        "content": "Great ideas are born from curiosity."
-    }
+      "model": "posts.post",
+      "pk": 5,
+      "fields": {
+          "title": "Curiosity",
+          "slug": "curiosity",
+          "content": "Great ideas are born from curiosity."
+      }
     }
     ]
     ```
@@ -3707,50 +3707,50 @@ Para generar (volcar) las _fixtures_ debemos hacer uso del comando [`manage.py d
     ```console
     $ uv run manage.py dumpdata --indent 2 posts
     [
-    {
-    "model": "posts.post",
-    "pk": 1,
-    "fields": {
-        "title": "Small Changes",
-        "slug": "small-changes",
-        "content": "Small daily changes can lead to big results."
-    }
+      {
+      "model": "posts.post",
+      "pk": 1,
+      "fields": {
+          "title": "Small Changes",
+          "slug": "small-changes",
+          "content": "Small daily changes can lead to big results."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 2,
-    "fields": {
-        "title": "Learning Takes Time",
-        "slug": "learning-takes-time",
-        "content": "Technology moves fast, but real learning takes time."
-    }
+      "model": "posts.post",
+      "pk": 2,
+      "fields": {
+          "title": "Learning Takes Time",
+          "slug": "learning-takes-time",
+          "content": "Technology moves fast, but real learning takes time."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 3,
-    "fields": {
-        "title": "Thinking in Code",
-        "slug": "thinking-in-code",
-        "content": "Writing code is also a way of thinking."
-    }
+      "model": "posts.post",
+      "pk": 3,
+      "fields": {
+          "title": "Thinking in Code",
+          "slug": "thinking-in-code",
+          "content": "Writing code is also a way of thinking."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 4,
-    "fields": {
-        "title": "Useful Mistakes",
-        "slug": "useful-mistakes",
-        "content": "Not every error is a failure."
-    }
+      "model": "posts.post",
+      "pk": 4,
+      "fields": {
+          "title": "Useful Mistakes",
+          "slug": "useful-mistakes",
+          "content": "Not every error is a failure."
+      }
     },
     {
-    "model": "posts.post",
-    "pk": 5,
-    "fields": {
-        "title": "Curiosity",
-        "slug": "curiosity",
-        "content": "Great ideas are born from curiosity."
-    }
+      "model": "posts.post",
+      "pk": 5,
+      "fields": {
+          "title": "Curiosity",
+          "slug": "curiosity",
+          "content": "Great ideas are born from curiosity."
+      }
     }
     ]
     ```
@@ -3762,7 +3762,7 @@ Para generar (volcar) las _fixtures_ debemos hacer uso del comando [`manage.py d
     - `--indent 2`: la salida se formatea más «bonita» con una indentación de 2 espacios.
     - `posts`: nombre de aplicación desde la que se volcarán las _fixtures_
 
-    También se puede indicar `app_label.ModelName` para volcar las _fixtures_ de un modelo en concreto.
+    También se puede indicar `app_label.ModelName` para volcar las _fixtures_ de un modelo en concreto. En el caso de no indicar nada se volcarían todos los modelos existentes el proyecto.
 
 Si en vez de mostrar el resultado «por pantalla» queremos volcarlo a un fichero podemos hacerlo con:
 
@@ -3804,8 +3804,17 @@ Para cargar las _fixtures_ debemos hacer uso del comando [`manage.py loaddata`](
     $ uv run manage.py loaddata posts.json
     Installed 5 object(s) from 1 fixture(s)
     ```
-    
-!!! tip "Ubicación de «fixtures»"
+
+Cuando Django carga «fixtures» en la base de datos comprueba la clave primaria (PK) de cada objeto antes de ejecutar la operación:
+
+```mermaid
+flowchart LR
+    LD("<tt>manage.py loaddata</tt>") --> PK[(¿PK existe?)]
+    PK --NO--> CREATE[Crea el objeto]
+    PK --SI--> UPDATE[Actualiza el objeto con los datos de la fixture: Sobreescribe los campos incluidos]
+```
+
+!!! note "Ubicación de «fixtures»"
 
     Si no se indica una ruta al fichero de «fixtures», Django lo buscará primero en la carpeta actual de trabajo y, si no lo encuentra, en la carpeta `fixtures` de cada una de las aplicaciones instaladas en el proyecto.
 
