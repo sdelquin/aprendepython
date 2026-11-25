@@ -3832,10 +3832,10 @@ Así, por <span class="example">ejemplo:material-flash:</span>, podríamos obten
 
 Pero este escenario se puede ampliar de dos formas distintas:
 
-1. Añadiendo métodos adicionales al _manager_ por defecto.
-2. Añadiendo _managers_ adicionales al _manager_ por defecto.
+1. Añadiendo **métodos adicionales** al _manager_ por defecto.
+2. Añadiendo **managers adicionales** al _manager_ por defecto.
 
-Vamos a partir del modelo base de `Post` para ejemplificar cada aproximación:
+Vamos a partir del modelo base `Post` para ejemplificar cada aproximación:
 
 ```python title="posts/models.py"
 from django.db import models
@@ -3874,7 +3874,7 @@ Para disponer de **datos iniciales** en la base de datos, descargamos este fiche
 
 ### Añadiendo métodos
 
-Supongamos que queremos añadir al _manager_ por defecto `objects` un método `with_length()` que nos devuelve los «posts» de la base de datos pero incluyendo una [anotación](https://docs.djangoproject.com/en/stable/topics/db/aggregation/) con el tamaño de cada «post»:
+Supongamos que queremos añadir al _manager_ por defecto `objects` un método `with_length()` que nos devuelve los «posts» de la base de datos pero incluyendo una [anotación](#anotacion) con el tamaño[^7] de cada «post»:
 
 ```python title="posts/models.py" hl_lines="2 5-7 18"
 from django.db import models
@@ -3918,9 +3918,9 @@ Curiosity            | 36
 
 ### Añadiendo managers
 
-Supongamos que queremos añadir algunos _managers_ que devuelvan los «posts» pero filtrando su contenido por ciertas palabras clave, con lo que facilitar el acceso a los mismos:
+Supongamos ahora que queremos añadir algunos _managers_ que devuelvan los «posts» pero filtrando su contenido por ciertas palabras clave, con lo que facilitar el acceso a los mismos:
 
-```python title="main/posts.py" hl_lines="4-6 9-11 22-24"
+```python title="posts/models.py" hl_lines="4-6 9-11 22-24"
 from django.db import models
 
 
@@ -4119,3 +4119,4 @@ Curiosity|36
 [^4]: Una URL canónica es la URL que mejor representa un determinado recurso web.
 [^5]: Si se va a guardar un «post» mediante la interfaz administrativa, asegurarse de que el campo `slug` no tenga activado el parámetro [`editable`](#editable) porque en ese caso no aparecerá en el formulario.
 [^6]: La información se convierte en una secuencia estructurada de datos (por ejemplo, texto o bytes) para poder guardarse, transmitirse o reconstruirse después.
+[^7]: En este contexto el tamaño de un «post» se mide en número total de caracteres.

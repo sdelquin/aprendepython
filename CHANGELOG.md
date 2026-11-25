@@ -9,6 +9,7 @@ Publicada el DD-MM-YYYY
 - Django: Modelos
   - Mejora documentación sobre «fixtures».
   - Mejora documentación sobre migraciones manuales.
+  - Arregla errores menores en «managers».
 
 ## Version 3.5.3
 
