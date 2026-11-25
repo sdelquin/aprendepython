@@ -15,6 +15,8 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores en comandos de gestión.
 - Django: URLs
   - Mejora documentación de expresiones regulares.
+- Django: Plantillas
+  - Corrige errores menores en etiquetas y filtros.
 
 ## Version 3.5.3
 

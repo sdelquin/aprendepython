@@ -612,23 +612,9 @@ Django permite crear [etiquetas personalizadas](https://docs.djangoproject.com/e
 
 Aunque hay otros tipos, el caso de uso más habitual de una etiqueta personalizada es la de incluir una plantilla que requiere de cierto procesamiento previo. Es lo que Django denomina [«inclusion tags»](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#inclusion-tags) (_etiquetas de inclusión_).
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una etiqueta personalizada para listar todos los «posts» de nuestro «blog» que superen una determinada valoración.
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una etiqueta personalizada para **listar todos los «posts» de nuestro «blog» que superen una determinada valoración**.
 
-El **modelo** del que partimos es el siguiente:
-
-```python title="posts/models.py" hl_lines="8"
-from django.db import models
-
-
-class Post(models.Model):
-    title = models.CharField(max_length=256)
-    slug = models.SlugField(max_length=256, unique=True)
-    content = models.TextField()
-    rating = models.FloatField(default=0)
-
-    def __str__(self):
-        return self.title
-```
+Partiremos de [este modelo](modelos.md#validadores-predefinidos) en el que se incorpora un atributo `rank` que representa la valoración de un «post» como valor entero entre 1 y 5.
 
 Empezaremos por crear la **plantilla** que vamos a renderizar:
 
@@ -649,8 +635,8 @@ register = template.Library()
 
 
 @register.inclusion_tag('posts/includes/list.html')#(1)!
-def post_list(min_rating: int = 0):#(2)!
-    posts = Post.objects.filter(rating__gte=min_rating)#(3)!
+def post_list(min_rank: int = 1):#(2)!
+    posts = Post.objects.filter(rank__gte=min_rank)#(3)!
     return {'posts': posts}#(4)!
 ```
 { .annotate }
@@ -658,7 +644,7 @@ def post_list(min_rating: int = 0):#(2)!
 1.  - Es necesario registrar la etiqueta usando el decorador `@register`.
     - En este tipo de etiquetas se define la plantilla que se va a renderizar.
     - El argumento `#!python takes_context=True` haría que dispusiéramos del parámetro `context` en `post_list()` para acceder al contexto de la petición.
-2.  - Esta etiqueta recibe un único parámetro que indica el mínimo «rating» a filtrar.
+2.  - Esta etiqueta recibe un único parámetro que indica la valoración mínima a filtrar.
     - Las etiquetas personalizadas admiten cualquier número de parámetros.
 3. Consulta de los «posts» que cumplen la condición.
 4. Debemos retornar un _diccionario_ que se convertirá en el **contexto** para renderizar la plantilla.
@@ -675,13 +661,14 @@ Lo que nos quedaría es utilizar la etiqueta creada en alguna plantilla:
 {% load post_extras %}<!--(1)!-->
 
 <div class="posts">
-    {% post_list 5 %}<!--(2)!-->
+    {% post_list 3 %}<!--(2)!-->
 </div>
 ```
 { .annotate }
 
 1. Para poder utilizar la etiqueta debemos cargar el módulo en cuestión.
-2. Dado que `min_rating` tiene un valor por defecto, podríamos usar la etiqueta sin argumentos: `#!htmldjango {% post_list %}` (si queremos todos los «posts»).
+2.  - Mostraría todos los «posts» cuya valoración sea mayor o igual a 3.
+    - Dado que `min_rank` tiene un valor por defecto, podríamos usar la etiqueta sin argumentos: `#!htmldjango {% post_list %}` (si queremos todos los «posts»).
 
 ??? tip "Argumentos nominales"
 
@@ -689,7 +676,7 @@ Lo que nos quedaría es utilizar la etiqueta creada en alguna plantilla:
     Nada impide que pasemos **argumentos nominales**(1) a nuestra etiqueta personalizada. Eso sí, igual que en el resto de funciones Python, los argumentos nominales deben proporcionarse después de los argumentos posicionales.
     { .annotate }
     
-    1. Por <span class="example">ejemplo:material-flash:</span> :material-arrow-right-box: `#!htmldjango {% post_list min_rating=5 %}`
+    1. Por <span class="example">ejemplo:material-flash:</span> :material-arrow-right-box: `#!htmldjango {% post_list min_rank=3 %}`
 
 !!! warning "Reiniciar servidor de desarrollo"
 
@@ -798,7 +785,7 @@ Django permite crear [filtros personalizados](https://docs.djangoproject.com/en/
 
 A diferencia de las [etiquetas](#etiquetas-personalizadas) los filtros ^^deben recibir^^ **un argumento** (y eventualmente otro). El primer argumento es el valor de la variable a la que aplicamos el filtro y el segundo argumento es opcional y permite modificar el comportamiento predefinido.
 
-A continuación planteamos un <span class="example">ejemplo:material-flash:</span> en el que se crea un filtro personalizado para calcular el «tamaño» de un «post» en función de varias métricas:
+A continuación planteamos un <span class="example">ejemplo:material-flash:</span> en el que se crea un filtro personalizado para **calcular el «tamaño» de un «post» en función de varias métricas**:
 
 ```python title="posts/templatetags/post_extras.py"
 from django import template
@@ -862,11 +849,11 @@ Lo que nos quedaría es utilizar el filtro creado en alguna plantilla:
 
 #### Devolviendo HTML
 
-Hay ocasiones en las que nos interesa implementar un filtro que devuelva código HTML. En principio lo haríamos de la misma forma que se ha visto anteriormente devolviendo una cadena de texto con el código HTML correspondiente.
+Hay ocasiones en las que nos interesa **implementar un filtro que devuelva código HTML**. En principio lo haríamos de la misma forma que hemos visto anteriormente retornando una cadena de texto con el código HTML correspondiente.
 
 Pero hay que tener en cuenta ciertos aspectos de seguridad:
 
-1. Si el código HTML que vamos a devolver desde el filtro contiene potencial información proveniente del usuario (vía formulario por ejemplo), es altamente recomendable utilizar la función [`format_html`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.html.format_html) que se encarga de escapar sus argumentos. Evitaríamos por ejemplo ataques XSS.
+1. Si el código HTML que vamos a devolver desde el filtro contiene datos provenientes del usuario (vía formulario por ejemplo), es altamente recomendable utilizar la función [`format_html`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.html.format_html) que se encarga de escapar sus argumentos. Evitaríamos por ejemplo ataques XSS.
 2. Si el código HTML que vamos a devolver contiene información confiable, necesitamos «marcarlo como seguro» para que Django realmente lo renderice en la plantilla final. Para ello haríamos uso de la función [`mark_safe`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.safestring.mark_safe).
 
 Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un determinado «post» con un formato HTML destacado:
@@ -944,7 +931,7 @@ TEMPLATES = [
 
 Django nos permite implementar nuestros [propios procesadores de contexto](https://docs.djangoproject.com/en/stable/ref/templates/api/#writing-your-own-context-processors) con el objetivo de inyectar en «todas» las plantillas ciertos datos comunes.
 
-Planteamos un <span class="example">ejemplo:material-flash:</span> en el que estamos diseñando un «blog» y queremos tener acceso en todo momento al último «post» que se ha publicado.
+Planteamos un <span class="example">ejemplo:material-flash:</span> en el que estamos diseñando un «blog» y queremos tener acceso en todo momento al **último «post» que se ha publicado**.
 
 Un _procesador de contexto_ no es más que una función que vive en algún lugar (aplicación) de nuestro proyecto:
 
