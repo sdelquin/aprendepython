@@ -17,6 +17,8 @@ Publicada el DD-MM-YYYY
   - Mejora documentación de expresiones regulares.
 - Django: Plantillas
   - Corrige errores menores en etiquetas y filtros.
+- Django: Formularios
+  - Corrige errores menores en validación de formularios.
 
 ## Version 3.5.3
 

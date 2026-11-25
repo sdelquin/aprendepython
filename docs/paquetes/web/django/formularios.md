@@ -1087,7 +1087,7 @@ Django permite añadir [validación personalizada](https://docs.djangoproject.co
 
 En este tipo de validación analizamos cada campo por separado. Si el formulario dispone de un campo llamado `foo` se podrá personalizar su validación implementando el ^^método de instancia^^ `clean_foo()`.
 
-Partiendo de un «blog» veamos un <span class="example">ejemplo:material-flash:</span> de [formulario para añadir «post»](#formularios-de-modelo) donde queremos validar que el título del «post» no esté completamente en mayúsculas:
+Partiendo de un «blog» veamos un <span class="example">ejemplo:material-flash:</span> de [formulario para añadir «post»](#formularios-de-modelo) donde queremos validar que **el título del «post» no esté completamente en mayúsculas**:
 
 ```python title="posts/forms.py" hl_lines="11-14"
 from django import forms
@@ -1146,7 +1146,7 @@ class AddPostForm(forms.ModelForm):
 
 Cuando la validación que queremos hacer involucra más de un campo, es adecuado implementar un método de instancia `clean()` para esta tarea.
 
-Continuando con el <span class="example">ejemplo:material-flash:</span> anterior, supongamos ahora que queremos validar que alguna de las palabras del título del «post» aparezcan en su contenido:
+Continuando con el <span class="example">ejemplo:material-flash:</span> anterior, supongamos ahora que queremos validar que **alguna de las palabras del título del «post» aparezcan en su contenido**:
 
 ```python title="posts/forms.py" hl_lines="11-15"
 from django import forms
