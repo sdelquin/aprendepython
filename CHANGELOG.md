@@ -13,6 +13,8 @@ Publicada el DD-MM-YYYY
   - Mejora documentación sobre funciones.
 - Django: Interfaz administrativa
   - Corrige errores menores en comandos de gestión.
+- Django: URLs
+  - Mejora documentación de expresiones regulares.
 
 ## Version 3.5.3
 
