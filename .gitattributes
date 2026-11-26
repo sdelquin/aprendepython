@@ -1,0 +1,5 @@
+# Incluir Markdown en las estadísticas
+*.md linguist-detectable
+
+# Excluir justfile de las estadísticas
+justfile -linguist-detectable
