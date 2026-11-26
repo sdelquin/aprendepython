@@ -16,7 +16,7 @@ Publicada el DD-MM-YYYY
 - Django: URLs
   - Mejora documentación de expresiones regulares.
 - Django: Plantillas
-  - Corrige errores menores en etiquetas y filtros.
+  - Mejora documentación de etiquetas personalizadas.
 - Django: Formularios
   - Corrige errores menores en validación de formularios.
 

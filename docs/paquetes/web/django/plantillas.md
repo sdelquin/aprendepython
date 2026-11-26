@@ -610,13 +610,122 @@ A continuación se muestran otras etiquetas de plantilla disponibles en Django:
 
 Django permite crear [etiquetas personalizadas](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#writing-custom-template-tags) más allá de las predefinidas («built-in»).
 
-Aunque hay otros tipos, el caso de uso más habitual de una etiqueta personalizada es la de incluir una plantilla que requiere de cierto procesamiento previo. Es lo que Django denomina [«inclusion tags»](https://docs.djangoproject.com/en/stable/howto/custom-template-tags/#inclusion-tags) (_etiquetas de inclusión_).
+De forma general podemos clasificar las etiquetas personalizadas en dos grandes grupos:
 
-Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una etiqueta personalizada para **listar todos los «posts» de nuestro «blog» que superen una determinada valoración**.
+1. [Etiquetas simples](#etiquetas-simples).
+2. [Etiquetas de inclusión](#etiquetas-de-inclusion).
 
-Partiremos de [este modelo](modelos.md#validadores-predefinidos) en el que se incorpora un atributo `rank` que representa la valoración de un «post» como valor entero entre 1 y 5.
+#### Etiquetas simples
 
-Empezaremos por crear la **plantilla** que vamos a renderizar:
+Las [etiquetas simples](https://docs.djangoproject.com/en/latest/howto/custom-template-tags/#simple-tags) («simple tags») sirven para devolver un resultado a una plantilla tras una cierta lógica de negocio.
+
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una etiqueta personalizada simple que devuelva el **instante del último inicio de sesión** de un usuario.
+
+Dado que el ámbito de esta etiqueta tiene que ver con [autenticación](autenticacion.md), la vamos a implementar dentro de la aplicación `accounts`:
+
+```python title="accounts/templatetags/account_extras.py"
+from django import template
+
+register = template.Library()
+
+
+@register.simple_tag(takes_context=True)#(1)!
+def last_login(context) -> str:#(2)!
+    request = context['request']
+    try:
+        return request.user.last_login
+    except AttributeError:
+        return 'No login'
+```
+{ .annotate }
+
+1. El parámetro `#!python takes_context=True` nos permite obtener el contexto actual de la plantilla.
+2.  - Recibimos un parámetro `context` con el contexto actual de la plantilla.
+    - La etiqueta podría recibir otros parámetros adicionales.
+
+!!! warning "Ubicación de las etiquetas"
+
+    Las etiquetas personalizadas deben ubicarse en una carpeta `templatetags` dentro de la aplicación correspondiente.
+    
+    Es «habitual» que si la aplicación se llama `foos` (por <span class="example">ejemplo:material-flash:</span>) las etiquetas personalizadas estén en `foos/templatetags/foo_extras.py` (_aunque el nombre del módulo es arbritrario_).
+
+Ahora ya podríamos utilizar esta etiqueta en cualquier plantilla:
+
+```htmldjango title="shared/templates/index.html"
+{% load account_extras %}<!--(1)!-->
+
+{% last_login %}<!--(2)!-->
+```
+{ .annotate }
+
+1. Para poder utilizar la etiqueta debemos cargar el módulo en cuestión.
+2. Invocamos la etiqueta (en este caso sin argumentos).
+
+!!! warning "Reiniciar servidor de desarrollo"
+
+    Si ves que no te reconoce la etiqueta personalizada que acabas de implementar, reinicia el servidor de desarrollo.
+
+##### Devolviendo HTML
+
+Hay ocasiones en las que nos interesa **implementar una etiqueta simple que devuelva código HTML**. En principio lo haríamos de la misma forma que hemos visto anteriormente retornando una cadena de texto con el código HTML correspondiente.
+
+Pero hay que tener en cuenta ciertos aspectos de seguridad:
+
+1. Si el código HTML que vamos a devolver desde el filtro contiene datos provenientes del usuario (vía formulario por ejemplo), es altamente recomendable utilizar la función [`format_html`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.html.format_html) que se encarga de escapar sus argumentos. Evitaríamos por ejemplo ataques XSS.
+2. Si el código HTML que vamos a devolver contiene información confiable, necesitamos «marcarlo como seguro» para que Django realmente lo renderice en la plantilla final. Para ello haríamos uso de la función [`mark_safe`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.safestring.mark_safe).
+
+```mermaid
+flowchart LR
+    A[Retornar HTML] --> B[¿Hay que interpolar variables?]
+    B --SI--> C["<tt>format_html</tt>"]
+    B --NO--> D["<tt>mark_safe</tt>"]
+```
+
+Retomando el <span class="example">ejemplo:material-flash:</span> anterior para mostrar el **instante del último inicio de sesión**, supongamos que ahora queremos añadir HTML al resultado:
+
+=== "Etiqueta"
+
+    ```python title="accounts/templatetags/account_extras.py" hl_lines="2 7-19"
+    from django import template
+    from django.utils.html import format_html
+
+    register = template.Library()
+
+
+    @register.simple_tag(takes_context=True)
+    def last_login(context, color='lightsteelblue') -> str:
+        request = context['request']
+        try:
+            content = request.user.last_login.strftime('%d/%m/%Y %H:%M:%S')
+        except AttributeError:
+            color = 'tomato'
+            content = 'No login'
+        return format_html(
+            '<span class="badge" style="background-color: {}">{}</span>',
+            color,
+            content,
+        )
+    ```
+
+=== "Estilos"
+
+    ```css title="shared/static/css/base.css"
+    .badge {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border-radius: 0.5rem;
+    } 
+    ```
+
+#### Etiquetas de inclusión
+
+Las [etiquetas de inclusión](https://docs.djangoproject.com/en/latest/howto/custom-template-tags/#inclusion-tags) («inclusion tags») sirven para devolver una plantilla (que se incluirá en otra) con un cierto procesamiento previo.
+
+Supongamos un <span class="example">ejemplo:material-flash:</span> en el que queremos crear una etiqueta personalizada de inclusión para **listar todos los «posts» de nuestro «blog» que superen una determinada valoración**.
+
+Partiremos de [este modelo](modelos.md#validadores-predefinidos) en el que se incorpora un atributo `rank` el cual representa la valoración de un «post» como valor entero entre 1 y 5.
+
+Lo primero será crear la **plantilla** que vamos a renderizar (inclusión):
 
 ```htmldjango title="posts/templates/posts/includes/list.html"
 {% for post in posts %}
@@ -625,7 +734,7 @@ Empezaremos por crear la **plantilla** que vamos a renderizar:
 {% endfor %}
 ```
 
-A continuación definimos la **etiqueta**:
+Dado que el contexto de esta etiqueta tiene que ver con «posts», la vamos a implementar dentro la aplicación `posts`:
 
 ```python title="posts/templatetags/post_extras.py"
 from django import template
@@ -655,7 +764,7 @@ def post_list(min_rank: int = 1):#(2)!
     
     Es «habitual» que si la aplicación se llama `foos` (por <span class="example">ejemplo:material-flash:</span>) las etiquetas personalizadas estén en `foos/templatetags/foo_extras.py` (_aunque el nombre del módulo es arbritrario_).
 
-Lo que nos quedaría es utilizar la etiqueta creada en alguna plantilla:
+En este punto ya podríamos utilizar la etiqueta creada en cualquier plantilla:
 
 ```htmldjango title="posts/templates/posts/post/list.html" hl_lines="1 4"
 {% load post_extras %}<!--(1)!-->
@@ -855,6 +964,13 @@ Pero hay que tener en cuenta ciertos aspectos de seguridad:
 
 1. Si el código HTML que vamos a devolver desde el filtro contiene datos provenientes del usuario (vía formulario por ejemplo), es altamente recomendable utilizar la función [`format_html`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.html.format_html) que se encarga de escapar sus argumentos. Evitaríamos por ejemplo ataques XSS.
 2. Si el código HTML que vamos a devolver contiene información confiable, necesitamos «marcarlo como seguro» para que Django realmente lo renderice en la plantilla final. Para ello haríamos uso de la función [`mark_safe`](https://docs.djangoproject.com/en/stable/ref/utils/#django.utils.safestring.mark_safe).
+
+```mermaid
+flowchart LR
+    A[Retornar HTML] --> B[¿Hay que interpolar variables?]
+    B --SI--> C["<tt>format_html</tt>"]
+    B --NO--> D["<tt>mark_safe</tt>"]
+```
 
 Un <span class="example">ejemplo:material-flash:</span> podría ser mostrar un determinado «post» con un formato HTML destacado:
 
