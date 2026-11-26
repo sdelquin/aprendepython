@@ -176,6 +176,260 @@ Lo más habitual es utilizar ficheros estáticos directamente en plantillas, per
     1. Es necesario importar la función `path()`.
     2. En este caso se devolverá la ruta :material-arrow-right-box: `/home/guido/dev/blog/posts/static/posts/images/like.png`
 
+## Tailwind
+
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
+[Tailwind :simple-tailwindcss:](https://tailwindcss.com/) ofrece un conjunto de herramientas que facilitan el desarrollo de interfaces «frontend» para aplicaciones web.
+
+### Instalación
+
+Hay varias maneras de [instalar](https://tailwindcss.com/docs/installation/) Tailwind y de integrarlo en un proyecto Django. En esta sección veremos cómo implantarlo usando [npm :simple-npm:](https://www.npmjs.com/) y acceso a ficheros estáticos.
+
+Lo primero será instalar [tailwind y sus herramientas en línea de comandos](https://tailwindcss.com/docs/installation/tailwind-cli):
+
+```console
+$ npm install tailwindcss @tailwindcss/cli #(1)!
+```
+{ .annotate }
+
+1. Desde el raíz de nuestro proyecto Django.
+
+El comando anterior creará una carpeta `node_modules` con **multitud** de ficheros y subcarpetas, correspondientes a los paquetes *Node* instalados y a todas sus dependencias.
+
+!!! warning "Control de versiones"
+
+    Recuerda excluir la carpeta `node_modules` del control de versiones añadiéndola al fichero `.gitignore` de tu proyecto.
+
+<div class="annotate" markdown>
+También se crearán dos ficheros de seguimiento de paquetes (1):
+
+- `package.json` que almacena las versiones (mínimas) de los paquetes instalados.
+- `package-lock.json` que almacena las dependencias de los paquetes instalados.
+</div>
+
+1. En el caso de utilizar [`uv`](../../../entornos/ide/uv.md) (gestión de paquetería Python), podríamos decir que:
+
+    - `package.json` $\approx$ `pyproject.toml`
+    - `package-lock.json` $\approx$ `uv.lock`
+
+### Configuración
+
+Debemos crear alguna hoja de estilos desde la que importemos _tailwind_:
+
+```css title="shared/static/css/app.css"
+@import "tailwindcss";
+```
+
+La parte «curiosa» que tiene Tailwind es que «rastrea» nuestro HTML en busca de clases CSS que le «pertenezcan». Así, una vez identificadas, genera un CSS de salida que realmente es el que deberemos incluir en nuestras plantillas.
+
+Por tanto necesitamos **lanzar un proceso** (en el entorno de desarrollo) que «escuche» los cambios que realizamos en las plantillas y se encargue de regenerar (compilar) esas reglas de estilo.
+
+En nuestro <span class="example">ejemplo:material-flash:</span> ejecutaremos el siguiente comando:
+
+```console
+$ npx tailwindcss -i shared/static/css/app.css -o shared/static/css/tailwind.css --watch
+```
+
+??? abstract "justfile"
+
+    Consulta la receta [`tailwind-watch`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+Aquí identificamos tres elementos:
+
+1. `app.css` es el «punto de entrada» (_input_).
+2. `tailwind.css` es el fichero generado/compilado (_output_).
+3. Mantenemos una «escucha» a los cambios (_watch_).
+
+??? note "Producción"
+
+    En un entorno de producción no es necesario «escuchar» los cambios, lo único que necesitamos es generar directamente el fichero compilado CSS:
+
+    ```console
+    $ npx tailwindcss -i shared/static/css/app.css -o shared/static/css/tailwind.css
+    ```
+
+    ??? abstract "justfile"
+
+        Consulta la receta [`tailwind`](justfile.md#justfile-para-django) para incluirla en tu `justfile`.
+
+### Plantillas
+
+Ya solo nos queda incluir el fichero _tailwind_ procesado de reglas CSS en nuestras plantillas.
+
+Para el <span class="example">ejemplo:material-flash:</span> del «blog» usaremos la plantilla base:
+
+```htmldjango title="shared/templates/base.html" hl_lines="9"
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}"><!--(1)!-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}"><!--(2)!-->
+  </head>
+
+  <body>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
+```
+{ .annotate }
+
+1. Enlazamos el archivo compilado de Tailwind.
+2. Podemos enlazar estilos propios CSS.
+
+Así todas las plantillas que hereden de `base.html` dispondrán del enorme catálogo de clases Tailwind para mejorar la interfaz de usuario.
+
+### Modo de uso
+
+La [documentación](https://tailwindcss.com/docs/) de Tailwind es muy completa y explica cada una de las muchas clases CSS que pone a disposición.
+
+Un <span class="example">ejemplo:material-flash:</span> sencillo sería modificar el color de fondo de nuestro «blog»:
+
+```htmldjango title="shared/templates/base.html" hl_lines="13"
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  </head>
+
+  <body class="bg-violet-300"><!--(1)!-->
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
+```
+{ .annotate }
+
+3. Añadimos un fondo de [color](https://tailwindcss.com/docs/colors) violeta claro.
+
+## Lucide
+
+<span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
+
+Siempre resulta útil disponer de un conjunto de iconos para utilizar en el «frontend» de nuestros proyectos web. Lamentablemente Tailwind no dispone de iconos «propios» con lo que necesitamos alguna librería externa.
+
+Hay cientos de recursos para incorporar iconos, pero en este caso me centraré en [Lucide :simple-lucide:](https://lucide.dev/). Se trata de un proyecto con mucha relevancia y que incorpora gran cantidad de iconos.
+
+### Instalación
+
+Lucide proporciona distintos [paquetes](https://lucide.dev/packages) en función del _framework_ «frontend» que estemos utilizando. Para este <span class="example">ejemplo:material-flash:</span> vamos a utilizar la [versión estática](https://lucide.dev/guide/static/):
+
+```console
+$ npm install lucide-static #(1)!
+```
+{ .annotate }
+
+1. Desde el raíz de nuestro proyecto Django.
+
+El comando anterior creará una carpeta `node_modules` con **multitud** de ficheros y subcarpetas, correspondientes a los paquetes *Node* instalados y a todas sus dependencias.
+
+!!! warning "Control de versiones"
+
+    Recuerda excluir la carpeta `node_modules` del control de versiones añadiéndola al fichero `.gitignore` de tu proyecto.
+
+### Configuración
+
+Para poder acceder a los archivos creados en `node_modules` desde las plantillas Django, necesitamos especificar en la configuración del proyecto que dicha carpeta contiene **estáticos**.
+
+Para ello añadimos la siguiente línea al fichero `settings.py`:
+
+```python title="main/settings.py"
+STATICFILES_DIRS = [BASE_DIR / 'node_modules']#(1)!
+```
+{ .annotate }
+
+1.  - Esta variable permite añadir **rutas extras** donde Django irá a buscar ficheros estáticos.
+    - Puedes añadirla donde quieras, pero un buen lugar podría ser junto a la variable `STATIC_URL`.
+
+### Plantillas
+
+Simplemente necesitamos cargar el archivo `lucide.css` desde nuestra plantilla base:
+
+```htmldjango title="shared/templates/base.html" hl_lines="10"
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'lucide-static/font/lucide.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  </head>
+
+  <body class="bg-violet-300">
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+  <footer >
+</html>
+```
+
+### Modo de uso
+
+Para incluir un icono en una plantilla de nuestro proyecto, primero tendremos que [buscar](https://lucide.dev/icons/) en la web de Lucide y localizar el **identificador del icono**.
+
+Por <span class="example">ejemplo:material-flash:</span> vamos a incluir el icono :lucide-archive: cuyo identificador es [`archive`](https://lucide.dev/icons/archive) en el listado de «posts» de nuestro blog. Para ello usaremos una etiqueta `#!html <i class="icon-archive"></i>` siempre con el prefijo `icon` en la clase CSS:
+
+```htmldjango title="posts/templates/posts/post/list.html" hl_lines="3"
+<ul>
+    {% for post in posts %}
+        <li><i class="icon-archive"></i> {{ post }}</li>
+    {% endfor %}
+</ul>
+```
+
+??? tip "Etiqueta de plantilla"
+
+    Aquí podría ser muy útil implementar una [etiqueta personalizada simple de plantilla](plantillas.md#devolviendo-html) que devolviera el código HTML del icono a partir de su identificador:
+
+    === "Etiqueta"
+    
+        ```python title="shared/templatetags/shared_extras.py"
+        from django import template
+        from django.utils.html import format_html
+        
+        register = template.Library()
+        
+        
+        @register.simple_tag
+        def icon(icon_id: str) -> str:
+            return format_html('<i class="icon-{}"></i>', icon_id)
+        ```
+    
+    === "Plantilla"
+    
+        ```htmldjango title="posts/templates/posts/post/list.html" hl_lines="1 5"
+        {% load shared_extras %}
+
+        <ul>
+            {% for post in posts %}
+                <li>{% icon "archive" %} {{ post }}</li>
+            {% endfor %}
+        </ul>
+        ```
+
+
 ## Bootstrap
 
 <span class="dj-level">:material-signal-cellular-3: Django avanzado</span>
@@ -197,14 +451,8 @@ $ npm install bootstrap bootstrap-icons #(1)!
 
 1. Desde el raíz de nuestro proyecto Django.
 
-El comando anterior creará una carpeta `node_modules` con **multitud** de ficheros y subcarpetas, correspondientes a los paquetes *Node* instalados y a todas sus dependencias.
-
-!!! warning "Control de versiones"
-
-    Recuerda excluir la carpeta `node_modules` del control de versiones añadiéndola al fichero `.gitignore` de tu proyecto.
-
 <div class="annotate" markdown>
-También crearán dos ficheros de seguimiento de paquetes (1):
+También se crearán dos ficheros de seguimiento de paquetes (1):
 
 - `package.json` que almacena las versiones (mínimas) de los paquetes instalados.
 - `package-lock.json` que almacena las dependencias de los paquetes instalados.
@@ -362,7 +610,8 @@ A continuación se presenta una _propuesta_ de modal con _Bootstrap_ mediante un
         btn_classes="btn btn-danger btn-sm"
         btn_icon="bi bi-journal-x"
     %}
-    ```    
+    ```   
+
 
 
 [^1]: Guardar copias de datos de forma temporal en una ubicación de almacenamiento más rápida.

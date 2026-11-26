@@ -100,6 +100,8 @@ Los contenidos de cada bloque se identifican por una **insignia**. Existe una se
 - Autenticación
     - [Seguridad de la contraseña](autenticacion.md#seguridad-de-la-contrasena)
 - Estáticos
+    - [Tailwind](estaticos.md#tailwind)
+    - [Lucide](estaticos.md#lucide)
     - [Bootstrap](estaticos.md#bootstrap)
 - Internacionalización
     - [Internacionalización](i18n.md)

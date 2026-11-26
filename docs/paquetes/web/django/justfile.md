@@ -275,6 +275,19 @@ poedit app locale="es":
 [group('redis')]
 rq:
     uv run watchmedo auto-restart --pattern=tasks.py --recursive -- ./manage.py rqworker 
+
+alias tw:=tailwind-watch
+# Build (and watch) Tailwind CSS (for development)
+[group('static')]
+tailwind-watch:
+    #!/usr/bin/env bash
+    npx tailwindcss -i shared/static/css/app.css -o shared/static/css/tailwind.css --watch
+
+# Build Tailwind CSS (for production)
+[group('static')]
+tailwind:
+    #!/usr/bin/env bash
+    npx tailwindcss -i shared/static/css/app.css -o shared/static/css/tailwind.css
 ```
 
 ## Invocar recetas

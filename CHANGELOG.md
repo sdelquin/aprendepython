@@ -19,6 +19,8 @@ Publicada el DD-MM-YYYY
   - Mejora documentación de etiquetas personalizadas.
 - Django: Formularios
   - Corrige errores menores en validación de formularios.
+- Django: Estáticos
+  - Añade documentación sobre Tailwind y Lucide.
 
 ## Version 3.5.3
 
