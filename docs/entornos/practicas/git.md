@@ -73,42 +73,17 @@ En ambos casos se intuye que el **mantenimiento** a largo plazo de los cambios n
 
 [Git :simple-git:](https://git-scm.com/) es un **sistema de control de versiones distribuido** diseñado para manejar **proyectos de software** con rapidez y eficiencia.
 
-### Aclarando conceptos
+### Algo de historia
 
-Hay que diferenciar los distintos tipos de artefactos que participan de un sistema de control de versiones:
+Desde los comienzos del desarrollo de software se han ido creando distintos sistemas de control de versiones. En la siguiente tabla se muestran solo algunos de los proyectos que han tenido mayor repercusión:
 
-=== "CLI :octicons-terminal-16:"
+| Año | Sistema | Modelo | Descripción |
+| --- | --- | --- | --- |
+| 1986 | [CVS](https://es.wikipedia.org/wiki/CVS) | Centralizado | Trabajo concurrente sobre un repositorio compartido |
+| 2000 | [Subversion (SVN)](https://subversion.apache.org/) | Centralizado | Evolución de CVS |
+| 2005 | [Git](https://git-scm.com/) | Distribuido | Nuevo paradigma de control de versiones |
+| 2005 | [Mercurial](https://www.mercurial-scm.org/) | Distribuido | Alternativa distribuida a Git |
 
-    Herramientas en línea de comandos:
-
-    | Herramienta | Descripción | Lanzamiento |
-    | --- | --- | --- |
-    | [CVS](https://es.wikipedia.org/wiki/CVS) | Sistema concurrente de versiones | 1990 |
-    | [Subversion :simple-subversion:](https://subversion.apache.org/) | Control de versiones ^^centralizado^^ (SVN) | 2000 |
-    | [Mercurial :simple-mercurial:](https://www.mercurial-scm.org/) | Herramienta distribuida de gestión de código fuente | 2005 |
-    | [Git :simple-git:](https://git-scm.com/) | Sistema de control de versiones ^^distribuido^^ | 2005 |
-
-=== "GUI :material-television-guide:"
-
-    Interfaces gráficas de usuario:
-
-    | Herramienta | Descripción | Lanzamiento |
-    | --- | --- | --- |
-    | [TortoiseGit :material-tortoise:](https://tortoisegit.org/) | Cliente de escritorio para git | 2008 |
-    | [GitKraken :simple-gitkraken:](https://gitkraken.com/) | Cliente de escritorio para git | 2014 |
-    | [GitHub Desktop :simple-github:](https://desktop.github.com/) | Cliente de escritorio para git | 2015 |
-    | [VSCode :material-microsoft-visual-studio-code:](https://code.visualstudio.com/docs/sourcecontrol/overview) | Cliente de escritorio para git | 2015 |
-
-=== "Web :material-web:"
-
-    Servicios web:
-
-    | Herramienta | Descripción | Lanzamiento |
-    | --- | --- | --- |
-    | [GitHub :simple-github:](https://github.com) | Servicio web de control de versiones | 2008 |
-    | [Bitbucket :simple-bitbucket:](https://bitbucket.org/) | Servicio web de control de versiones | 2008 |
-    | [GitLab :simple-gitlab:](https://gitlab.com/) | Servicio web de control de versiones | 2011 |
-        
 ### Centralizado vs Distribuido
 
 Es interesante conocer las diferencias entre un sistema de control de versiones centralizado y otro distribuido. En este caso pondremos como <span class="example">ejemplo:material-flash:</span> **SVN** _vs_ **GIT**.
@@ -119,11 +94,15 @@ Es interesante conocer las diferencias entre un sistema de control de versiones 
 
     ---
 
+    Existe un único repositorio central que almacena el historial de versiones y al que acceden todos los desarrolladores.
+
     ![SVN Arquitectura](./images/git/svn-arch.png)
 
 -   :simple-git:{.lg .middle} **GIT**
 
     ---
+
+    Cada desarrollador dispone de una copia completa del repositorio, incluyendo todo su historial de versiones.
 
     ![GIT Arquitectura](./images/git/git-arch.png)
 
@@ -147,6 +126,10 @@ Tras analizar todo lo anteriormente dicho, la eleción de `git` como sistema de 
 ///caption
 Flujo de trabajo en Git
 ///
+
+### Git vs GitHub
+
+A menudo se confunden los términos, pero Git y GitHub son cosas distintas. Mientras Git es un sistema de control de versiones distribuido, GitHub es una plataforma en la nube para alojar repositorios Git y facilitar el trabajo colaborativo.
 
 ## Preparación del entorno de desarrollo
 
@@ -265,6 +248,9 @@ Esto se conoce como **clonar un repositorio** y hay dos maneras de hacerlo:
 
     :octicons-key-16: En este caso la **autenticación** se produce utilizando **clave pública/privada**.
 
+    1. Ejecutar `ssh-keygen -t rsa`
+    2. Copiar `~/.ssh/id_rsa.pub` en <https://github.com/settings/keys>
+
 === "Clonado vía **https** :material-web:{.lg .middle}"
 
     ```console
@@ -272,6 +258,9 @@ Esto se conoce como **clonar un repositorio** y hay dos maneras de hacerlo:
     ```
 
     :octicons-key-16: En este caso la **autenticación** se produce utilizando **usuario y token**.
+
+    1. Generar token de acceso: <https://github.com/settings/tokens/new>
+    2. Utilizar _nombre de usuario_ y _token de acceso_ al clonar mediante `https`.
     
 ## Flujo de trabajo
 
