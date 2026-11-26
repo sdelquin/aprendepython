@@ -10,6 +10,7 @@ Publicada el DD-MM-YYYY
 
 Publicada el 26-11-2026
 
+- Actualiza la versión de Zensical a [0.1.3](https://github.com/zensical/zensical/releases/tag/v0.1.3).
 - Django: Modelos
   - Mejora documentación sobre «fixtures».
   - Mejora documentación sobre migraciones manuales.
@@ -36,7 +37,6 @@ Publicada el 26-11-2026
 
 Publicada el 20-11-2026
 
-- Actualiza la versión de Zensical a [0.1.3](https://github.com/zensical/zensical/releases/tag/v0.1.3).
 - Estructuras de datos: Listas
   - Reubica apartado de «longitud de una lista».
   - Añade explicación sobre control de listas vacías.
