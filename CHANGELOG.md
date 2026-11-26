@@ -32,7 +32,6 @@ Publicada el 26-11-2026
 - Prácticas de desarrollo: Git
   - Mejora documentación de apartados iniciales.
 
-
 ## Version 3.5.3
 
 Publicada el 20-11-2026
