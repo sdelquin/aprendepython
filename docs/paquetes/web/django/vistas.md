@@ -154,6 +154,30 @@ def view(request):
 2.  - Aunque existen [múltiples métodos HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) para una petición, lo habitual es trabajar con dos de ellos: [`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) y [`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
     - En cualquier caso si se quiere asegurar que es un método `GET` basta con indicarlo explícitamente :material-arrow-right-box: `#!python if request.method == 'GET':`
 
+### Requerir método
+
+Hay ocasiones en las que ciertas vistas sólo pueden ser invocadas mediante `GET` o mediante `POST`. Para forzar este comportamiento podemos hacer uso de los [decoradores HTTP](https://docs.djangoproject.com/en/stable/topics/http/decorators/) que proporciona Django:
+
+=== "Requerir GET"
+
+    ```python
+    from django.views.decorators.http import require_GET
+
+    @require_GET
+    def view(request):
+        # request.method is 100% GET!
+    ```
+
+=== "Requerir POST"
+
+    ```python
+    from django.views.decorators.http import require_POST
+
+    @require_POST
+    def view(request):
+        # request.method is 100% POST!
+    ```
+
 ## Decorando vistas
 
 Los [decoradores](../../../fundamentos/modularidad/funciones.md#decoradores) en Python permite modificar el comportamiento de una función de un modo poco intrusivo y bastante elegante.

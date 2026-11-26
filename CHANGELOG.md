@@ -23,6 +23,8 @@ Publicada el DD-MM-YYYY
   - Añade documentación sobre Tailwind y Lucide.
 - Modularidad: Funciones
   - Añade documentación sobre `functools.wraps`.
+- Django: Vistas
+  - Añade documentación sobre requerir método HTTP.
 
 
 ## Version 3.5.3
