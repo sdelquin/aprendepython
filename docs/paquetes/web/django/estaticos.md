@@ -124,7 +124,7 @@ Si ahora recargas la página del «blog» podrás ver un bonito color _beige_ de
     
     === "Linux :simple-linux:"
     
-        <kbd>Ctrl + F5</kbd>
+        <kbd>Ctrl + Shift + R</kbd>
         
     === "macOS :simple-apple:"
     
