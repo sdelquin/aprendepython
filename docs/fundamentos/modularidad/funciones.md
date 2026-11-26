@@ -1313,6 +1313,22 @@ Veamos un <span class="example">ejemplo:material-flash:</span> de decorador que 
 ...
 ```
 
+??? example "functools.wraps"
+
+    Para conservar el nombre original de la función decorada y su [«docstring»](#documentacion) podemos hacer uso de [`@functools.wraps`](https://docs.python.org/3/library/functools.html#functools.wraps):
+
+    ```pycon hl_lines="1 4"
+    >>> from functools import wraps
+
+    >>> def binarize(func):
+    ...     @wraps(func)
+    ...     def wrapper(*args, **kwargs):
+    ...         result = func(*args, **kwargs)
+    ...         return bin(result)
+    ...     return wrapper
+    ...
+    ```
+
 Una característica interesante de los decoradores es que los podemos aplicar a cualquier función[^10]. Supongamos que lo queremos aplicar sobre la siguiente:
 
 ```pycon hl_lines="4"

@@ -21,6 +21,8 @@ Publicada el DD-MM-YYYY
   - Corrige errores menores en validación de formularios.
 - Django: Estáticos
   - Añade documentación sobre Tailwind y Lucide.
+- Modularidad: Funciones
+  - Añade documentación sobre `functools.wraps`.
 
 
 ## Version 3.5.3
