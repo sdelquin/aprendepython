@@ -6,6 +6,10 @@ Las versiones siguen [versionado semántico](https://semver.org/) (`<major>.<min
 
 Publicada el DD-MM-YYYY
 
+## Version 3.6.0
+
+Publicada el 26-11-2026
+
 - Django: Modelos
   - Mejora documentación sobre «fixtures».
   - Mejora documentación sobre migraciones manuales.
